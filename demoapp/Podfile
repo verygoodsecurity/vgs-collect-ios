@@ -1,0 +1,21 @@
+platform :ios, '12.0'
+
+target 'demoapp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'SnapKit'
+  # Pods for demoapp
+
+  pod 'VGSFramework', :path => '../framework'
+
+  target 'demoappTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'demoappUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
