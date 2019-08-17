@@ -8,7 +8,8 @@
 
 import Foundation
 
-public enum FieldsType: Int, CaseIterable {
+public enum FieldType: Int, CaseIterable {
+    case none
     case creditCardField
     case dateExpirationField
     case cvvField

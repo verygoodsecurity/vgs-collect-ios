@@ -1,6 +1,8 @@
 PODS:
+  - AnyFormatKit (0.2.2)
   - SnapKit (5.0.0)
   - VGSFramework (0.0.1):
+    - AnyFormatKit
     - SnapKit
 
 DEPENDENCIES:
@@ -9,6 +11,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AnyFormatKit
     - SnapKit
 
 EXTERNAL SOURCES:
@@ -16,8 +19,9 @@ EXTERNAL SOURCES:
     :path: "../framework"
 
 SPEC CHECKSUMS:
+  AnyFormatKit: e3452e241d9f03ebf95bad6bcffa12ae718b0e07
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  VGSFramework: ebc6402340690f66ca8f0e698e5a922004ee0dcc
+  VGSFramework: 40a7dadffe057dab3c75647625258d0635cbc37f
 
 PODFILE CHECKSUM: bdbbca5cd91f47f06bd6d8758fddd821ba3749d1
 

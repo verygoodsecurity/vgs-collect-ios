@@ -1,16 +1,20 @@
 PODS:
+  - AnyFormatKit (0.2.2)
   - SnapKit (5.0.0)
 
 DEPENDENCIES:
+  - AnyFormatKit
   - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AnyFormatKit
     - SnapKit
 
 SPEC CHECKSUMS:
+  AnyFormatKit: e3452e241d9f03ebf95bad6bcffa12ae718b0e07
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: e2e64b1bdc5c676cb27997c5263043a1ae3ed250
+PODFILE CHECKSUM: 9027df338ec4a27e0ca4011d1fa7b1d8ae9ae0fe
 
 COCOAPODS: 1.7.5

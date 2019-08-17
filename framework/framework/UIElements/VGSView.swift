@@ -9,31 +9,24 @@ import UIKit
 
 public class VGSView: UIView {
     
-    public var elementType: FieldsType = .nameHolderField
-    
-    public var borderWidth: CGFloat = 0 {
-        didSet {
-            layer.borderWidth = borderWidth
-        }
-    }
-    
-    public var borderColor: UIColor = .clear {
-        didSet {
-            layer.borderColor = borderColor.cgColor
-        }
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        Storage.shared.addElement(self)
+        mainStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        Storage.shared.addElement(self)
+        mainStyle()
     }
-    
-    deinit {
-        Storage.shared.removeElement(self)
+}
+
+// MARK: - UI path
+extension VGSView {
+    private func mainStyle() {
+        clipsToBounds = true
+        
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 4
     }
 }
