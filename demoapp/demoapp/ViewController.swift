@@ -11,15 +11,61 @@ import VGSFramework
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var testView: VGSView!
+    var cardNumebr = VGSTextField()
+    var expCardDate = VGSTextField()
+    var cvvCardNum = VGSTextField()
+    
+    override func loadView() {
+        super.loadView()
+        initialization()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextFields()
         
-        testView.elementType = .cvvField
+        cardNumebr.text = "3456789867656545"
+    }
+    
+    private func initialization() {
+        // init card number text field
+        view.addSubview(cardNumebr)
+        cardNumebr.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(155)
+        }
         
-        testView.borderColor = .red
-        testView.borderWidth = 1
+        // init expiration card date
+        view.addSubview(expCardDate)
+        expCardDate.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(cardNumebr.snp.bottom).offset(10)
+        }
+        
+        // init CVV card number
+        view.addSubview(cvvCardNum)
+        cvvCardNum.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(expCardDate.snp.bottom).offset(10)
+        }
+    }
+    
+    private func setupTextFields() {
+        // type
+//        cardNumebr.type = .creditCardField
+//        expCardDate.type = .dateExpirationField
+//        cvvCardNum.type = .cvvField
+        
+        // placeholder
+        cardNumebr.placeholder = "card number"
+        expCardDate.placeholder = "expiration date"
+        cvvCardNum.placeholder = "cvv"
     }
 }
 
