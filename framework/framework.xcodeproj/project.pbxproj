@@ -14,9 +14,11 @@
 		FD12B9C02304619200B670DD /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD12B9B22304619100B670DD /* framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD12B9CB2304840900B670DD /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9CA2304840900B670DD /* VGSTextField.swift */; };
 		FD12B9CF230491C600B670DD /* VGSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9CE230491C600B670DD /* VGSView.swift */; };
-		FD12B9D22304943A00B670DD /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9D12304943A00B670DD /* Core.swift */; };
 		FD12B9D42304957700B670DD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9D32304957700B670DD /* Storage.swift */; };
 		FD83A3FF230AD2880078BB60 /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A3FE230AD2880078BB60 /* VGSButton.swift */; };
+		FD83A401230AEA330078BB60 /* VGSFramework.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FD83A400230AEA330078BB60 /* VGSFramework.podspec */; };
+		FD83A404230AEA8D0078BB60 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A403230AEA8D0078BB60 /* APIClient.swift */; };
+		FD83A406230AEABD0078BB60 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A405230AEABD0078BB60 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,9 +46,11 @@
 		FD12B9BF2304619200B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD12B9CA2304840900B670DD /* VGSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextField.swift; sourceTree = "<group>"; };
 		FD12B9CE230491C600B670DD /* VGSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSView.swift; sourceTree = "<group>"; };
-		FD12B9D12304943A00B670DD /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		FD12B9D32304957700B670DD /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD83A3FE230AD2880078BB60 /* VGSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSButton.swift; sourceTree = "<group>"; };
+		FD83A400230AEA330078BB60 /* VGSFramework.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGSFramework.podspec; sourceTree = "<group>"; };
+		FD83A403230AEA8D0078BB60 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FD83A405230AEABD0078BB60 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 		FD12B9A52304619100B670DD = {
 			isa = PBXGroup;
 			children = (
+				FD83A400230AEA330078BB60 /* VGSFramework.podspec */,
 				FD12B9B12304619100B670DD /* framework */,
 				FD12B9BC2304619200B670DD /* frameworkTests */,
 				FD12B9B02304619100B670DD /* Products */,
@@ -113,6 +118,7 @@
 		FD12B9B12304619100B670DD /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				FD83A402230AEA7D0078BB60 /* APIClient */,
 				FD12B9D02304942E00B670DD /* Core */,
 				FD12B9C9230483E300B670DD /* UIElements */,
 				FD12B9B22304619100B670DD /* framework.h */,
@@ -143,10 +149,18 @@
 		FD12B9D02304942E00B670DD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				FD12B9D12304943A00B670DD /* Core.swift */,
+				FD83A405230AEABD0078BB60 /* Enums.swift */,
 				FD12B9D32304957700B670DD /* Storage.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		FD83A402230AEA7D0078BB60 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				FD83A403230AEA8D0078BB60 /* APIClient.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD83A401230AEA330078BB60 /* VGSFramework.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,11 +322,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD12B9D22304943A00B670DD /* Core.swift in Sources */,
 				FD12B9D42304957700B670DD /* Storage.swift in Sources */,
 				FD83A3FF230AD2880078BB60 /* VGSButton.swift in Sources */,
 				FD12B9CB2304840900B670DD /* VGSTextField.swift in Sources */,
 				FD12B9CF230491C600B670DD /* VGSView.swift in Sources */,
+				FD83A406230AEABD0078BB60 /* Enums.swift in Sources */,
+				FD83A404230AEA8D0078BB60 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
