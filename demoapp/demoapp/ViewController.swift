@@ -24,6 +24,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupTextFields()
         
+        // uncomment for testing
+//        turnOnObservation()
+        
         cardNumebr.text = "3456789867656545"
     }
     
@@ -69,3 +72,22 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - Check security
+extension ViewController {
+    func turnOnObservation() {
+        // Important thing
+        // using for lessing mistakes #keyPath(cardNumebr.textView)
+        addObserver(self,
+                    forKeyPath: "cardNumebr.textView",
+                    options: [.old, .new],
+                    context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "cardNumebr.textView" {
+            
+            print(" We r hacked")
+        }
+    }
+}
