@@ -14,31 +14,41 @@ public class VGSTextField: VGSView {
     private var textView = UITextView(frame: .zero)
     private var placeholderLabel = UILabel(frame: .zero)
     
-    public var text: String? {
-        get {
-            return textView.text
-        }
-        set {
-            guard let text = newValue else {
-                return
+    public var type: FieldType = .none {
+        didSet {
+            if type != oldValue {
+                textView.isSecureTextEntry = type.isSecureDate
+                textView.keyboardType = type.keyboardType
+                placeholderLabel.text = type.placeholder
             }
-            textView.text = text
         }
     }
     
-    public var placeholder: String? {
-        get {
-            return placeholderLabel.text
-        }
-        set {
-            guard let text = newValue else {
-                placeholderLabel.isHidden = true
-                return
-            }
-            placeholderLabel.text = text
-            placeholderLabel.isHidden = false
-        }
-    }
+//    public var text: String? {
+//        get {
+//            return textView.text
+//        }
+//        set {
+//            guard let text = newValue else {
+//                return
+//            }
+//            textView.text = text
+//        }
+//    }
+//
+//    public var placeholder: String? {
+//        get {
+//            return placeholderLabel.text
+//        }
+//        set {
+//            guard let text = newValue else {
+//                placeholderLabel.isHidden = true
+//                return
+//            }
+//            placeholderLabel.text = text
+//            placeholderLabel.isHidden = false
+//        }
+//    }
     
     // MARK: - init
     override init(frame: CGRect) {
@@ -51,8 +61,16 @@ public class VGSTextField: VGSView {
         mainInitialization()
     }
     
+    deinit {
+        // remove element from storage
+        Storage.shared.removeElement(self)
+    }
+    
     // MARK: - private API
-    private func mainInitialization() {        
+    private func mainInitialization() {
+        // add element to the storage
+        Storage.shared.addElement(self)
+        
         // text view
         textView.delegate = self
         textView.keyboardDismissMode = .onDrag

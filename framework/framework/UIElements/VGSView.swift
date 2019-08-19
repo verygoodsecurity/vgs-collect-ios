@@ -22,7 +22,6 @@ public class VGSView: UIView {
 extension VGSView {
     private func mainStyle() {
         clipsToBounds = true
-        
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 4
