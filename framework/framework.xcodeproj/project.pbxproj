@@ -16,6 +16,7 @@
 		FD12B9CF230491C600B670DD /* VGSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9CE230491C600B670DD /* VGSView.swift */; };
 		FD12B9D22304943A00B670DD /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9D12304943A00B670DD /* Core.swift */; };
 		FD12B9D42304957700B670DD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9D32304957700B670DD /* Storage.swift */; };
+		FD83A3FF230AD2880078BB60 /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A3FE230AD2880078BB60 /* VGSButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		FD12B9CE230491C600B670DD /* VGSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSView.swift; sourceTree = "<group>"; };
 		FD12B9D12304943A00B670DD /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		FD12B9D32304957700B670DD /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		FD83A3FE230AD2880078BB60 /* VGSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				FD12B9CE230491C600B670DD /* VGSView.swift */,
+				FD83A3FE230AD2880078BB60 /* VGSButton.swift */,
 				FD12B9CA2304840900B670DD /* VGSTextField.swift */,
 			);
 			path = UIElements;
@@ -306,6 +309,7 @@
 			files = (
 				FD12B9D22304943A00B670DD /* Core.swift in Sources */,
 				FD12B9D42304957700B670DD /* Storage.swift in Sources */,
+				FD83A3FF230AD2880078BB60 /* VGSButton.swift in Sources */,
 				FD12B9CB2304840900B670DD /* VGSTextField.swift in Sources */,
 				FD12B9CF230491C600B670DD /* VGSView.swift in Sources */,
 			);

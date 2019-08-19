@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     var cvvCardNum = VGSTextField()
     var nameHolder = VGSTextField()
     
+    var send = VGSButton()
+    
     override func loadView() {
         super.loadView()
         initialization()
@@ -65,14 +67,26 @@ class ViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(expCardDate.snp.bottom).offset(10)
         }
+        
+        // init send button
+        view.addSubview(send)
+        send.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(55)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(cvvCardNum.snp.bottom).offset(35)
+        }
     }
     
     private func setupTextFields() {
-        // type
+        // type for text fields
         cardNumebr.type = .cardNumberField
         nameHolder.type = .nameHolderField
         expCardDate.type = .dateExpirationField
         cvvCardNum.type = .cvvField
+        
+        // type for button
+        send.type = .sendButton
     }
 }
 

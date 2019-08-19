@@ -1,5 +1,5 @@
 //
-//  Core.swift
+//  Enums.swift
 //  framework
 //
 //  Created by Vitalii Obertynskyi on 8/14/19.
@@ -45,6 +45,20 @@ public enum FieldType: Int, CaseIterable {
             return .decimalPad
         default:
             return .alphabet
+        }
+    }
+}
+
+public enum ButtonType: Int, CaseIterable {
+    case none
+    case sendButton
+    
+    var defaultTitle: String {
+        switch self {
+        case .sendButton:
+            return "Send"
+        default:
+            return ""
         }
     }
 }
