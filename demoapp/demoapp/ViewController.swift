@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var cardNumebr = VGSTextField()
     var expCardDate = VGSTextField()
     var cvvCardNum = VGSTextField()
+    var nameHolder = VGSTextField()
     
     override func loadView() {
         super.loadView()
@@ -26,8 +27,6 @@ class ViewController: UIViewController {
         
         // uncomment for testing
 //        turnOnObservation()
-        
-        cardNumebr.text = "3456789867656545"
     }
     
     private func initialization() {
@@ -40,13 +39,22 @@ class ViewController: UIViewController {
             make.top.equalTo(155)
         }
         
+        // init name holder
+        view.addSubview(nameHolder)
+        nameHolder.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(cardNumebr.snp.bottom).offset(10)
+        }
+        
         // init expiration card date
         view.addSubview(expCardDate)
         expCardDate.snp.makeConstraints { make in
             make.left.equalTo(25)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
-            make.top.equalTo(cardNumebr.snp.bottom).offset(10)
+            make.top.equalTo(nameHolder.snp.bottom).offset(10)
         }
         
         // init CVV card number
@@ -61,14 +69,10 @@ class ViewController: UIViewController {
     
     private func setupTextFields() {
         // type
-//        cardNumebr.type = .creditCardField
-//        expCardDate.type = .dateExpirationField
-//        cvvCardNum.type = .cvvField
-        
-        // placeholder
-        cardNumebr.placeholder = "card number"
-        expCardDate.placeholder = "expiration date"
-        cvvCardNum.placeholder = "cvv"
+        cardNumebr.type = .cardNumberField
+        nameHolder.type = .nameHolderField
+        expCardDate.type = .dateExpirationField
+        cvvCardNum.type = .cvvField
     }
 }
 
