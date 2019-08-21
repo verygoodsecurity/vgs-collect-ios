@@ -11,11 +11,13 @@ import VGSFramework
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var consoleLabel: UILabel!
+    
+    // VGS Elements
     var cardNumebr = VGSTextField()
     var expCardDate = VGSTextField()
     var cvvCardNum = VGSTextField()
     var nameHolder = VGSTextField()
-    
     var send = VGSButton()
     
     override func loadView() {
@@ -25,8 +27,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTextFields()
-        
+        setupElements()
         // uncomment for testing
 //        turnOnObservation()
     }
@@ -78,15 +79,31 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setupTextFields() {
-        // type for text fields
-        cardNumebr.type = .cardNumberField
-        nameHolder.type = .nameHolderField
-        expCardDate.type = .dateExpirationField
-        cvvCardNum.type = .cvvField
+    private func setupElements() {
+        cardNumebr.model = VGSModel(alisa: "cardNumber", "card number", type: .cardNumberField)
+        expCardDate.model = VGSModel(alisa: "expDate", "exp date", type: .dateExpirationField)
+        nameHolder.model = VGSModel(alisa: "nameHolder", "Name Holder", type: .nameHolderField)
+        cvvCardNum.model = VGSModel(alisa: "cvvNum", "cvv", type: .cvvField)
         
         // type for button
         send.type = .sendButton
+        // callback for see received data
+        send.callBack = { [weak self] data, error in
+            
+            DispatchQueue.main.async {
+                
+                guard let self = self, error == nil else {
+                    return
+                }
+                
+                var txt = ""
+                data?.forEach({ (key, value) in
+                    txt.append("\(key)= \(value)\n\n")
+                })
+                
+                self.consoleLabel.text = txt
+            }
+        }
     }
 }
 

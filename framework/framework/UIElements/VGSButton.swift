@@ -11,6 +11,8 @@ import UIKit
 public class VGSButton: VGSView {
     private var button = UIButton(type: .custom)
     
+    public var callBack:((_ data: JsonData?, _ error: Error?) -> Void)?
+    
     public var type: ButtonType = .none {
         didSet {
             if type != oldValue {
@@ -72,5 +74,8 @@ public class VGSButton: VGSView {
     @objc
     private func sendAction(_ sender: UIButton) {
         
+        Storage.shared.sendData { [weak self] (data, error) in
+            self?.callBack?(data, error)
+        }
     }
 }

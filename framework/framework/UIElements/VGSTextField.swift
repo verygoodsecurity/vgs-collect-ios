@@ -8,47 +8,37 @@
 
 import UIKit
 import SnapKit
-import AnyFormatKit
 
 public class VGSTextField: VGSView {
     private var textView = UITextView(frame: .zero)
     private var placeholderLabel = UILabel(frame: .zero)
     
-    public var type: FieldType = .none {
+    var type: FieldType = .none {
         didSet {
             if type != oldValue {
                 textView.isSecureTextEntry = type.isSecureDate
                 textView.keyboardType = type.keyboardType
-                placeholderLabel.text = type.placeholder
             }
         }
     }
     
-//    public var text: String? {
-//        get {
-//            return textView.text
-//        }
-//        set {
-//            guard let text = newValue else {
-//                return
-//            }
-//            textView.text = text
-//        }
-//    }
-//
-//    public var placeholder: String? {
-//        get {
-//            return placeholderLabel.text
-//        }
-//        set {
-//            guard let text = newValue else {
-//                placeholderLabel.isHidden = true
-//                return
-//            }
-//            placeholderLabel.text = text
-//            placeholderLabel.isHidden = false
-//        }
-//    }
+    public var model: VGSModel? {
+        didSet {
+            guard let model = model else {
+                return
+            }
+            placeholderLabel.text = model.placeholder
+            type = model.type
+        }
+    }
+    
+    var text: String? {
+        get {
+            return textView.text
+        }
+        set {
+        }
+    }
     
     // MARK: - init
     override init(frame: CGRect) {
@@ -87,6 +77,13 @@ public class VGSTextField: VGSView {
         placeholderLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
         }
+    }
+}
+
+// MARK: - Statuses
+extension VGSTextField {
+    var isEmpty: Bool {
+        return (text?.count == 0)
     }
 }
 
