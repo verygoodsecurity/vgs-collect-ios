@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class VGSModel {
+public class VGSTextFieldModel {
     private(set) var alias: String!
     
     public var token: String?
@@ -16,9 +16,9 @@ public class VGSModel {
     public var type: FieldType = .none
     
     
-    public init(alisa name: String, _ placeholder: String = "", type: FieldType = .none) {
+    public init(alias name: String, placeholder text: String = "", textField type: FieldType = .none) {
         self.alias = name
-        self.placeholder = placeholder
+        self.placeholder = text
         self.type = type
     }
 }

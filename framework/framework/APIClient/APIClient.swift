@@ -13,23 +13,22 @@ public typealias JsonData = [String: Any]
 public typealias BodyData = [String: Any]
 
 class APIClient {
-    static func sendSaveCardRequest(value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
-        /**
-         saveCard
-         post https://tntva5wfdrp.SANDBOX.verygoodproxy.com/post
-         */
-        
+    
+    private let baseURL: URL!
+    
+    init(baseURL url: URL) {
+        baseURL = url
+    }
+    
+    func sendSaveCardRequest(value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         let headers = [
-            "Content-Type":"application/json",
+            "Content-Type": "application/json",
         ]
-        
         // JSON Body
         let body: [String : Any] = value
-        
         // Path
-        let path = "https://tntva5wfdrp.SANDBOX.verygoodproxy.com/post"
-        
+        let path = baseURL.appendingPathComponent("post")
         // Fetch Request
         Alamofire.request(path,
                           method: .post,

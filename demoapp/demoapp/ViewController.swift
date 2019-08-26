@@ -10,32 +10,39 @@ import UIKit
 import VGSFramework
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var consoleLabel: UILabel!
+
+    // VGS Core
+    var vgs: VGS? = nil
     
     // VGS Elements
-    var cardNumebr = VGSTextField()
+    var cardNumber = VGSTextField()
     var expCardDate = VGSTextField()
     var cvvCardNum = VGSTextField()
     var nameHolder = VGSTextField()
-    var send = VGSButton()
+    var send = UIButton()
     
     override func loadView() {
         super.loadView()
-        initialization()
+        setupUI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        vgs = VGS(upstreamHost: "https://tntva5wfdrp.SANDBOX.verygoodproxy.com")
+        
         setupElements()
+        
         // uncomment for testing
-//        turnOnObservation()
+        turnOnObservation()
     }
     
-    private func initialization() {
+    private func setupUI() {
         // init card number text field
-        view.addSubview(cardNumebr)
-        cardNumebr.snp.makeConstraints { make in
+        view.addSubview(cardNumber)
+        cardNumber.snp.makeConstraints { make in
             make.left.equalTo(25)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
@@ -48,7 +55,7 @@ class ViewController: UIViewController {
             make.left.equalTo(25)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
-            make.top.equalTo(cardNumebr.snp.bottom).offset(10)
+            make.top.equalTo(cardNumber.snp.bottom).offset(10)
         }
         
         // init expiration card date
@@ -70,6 +77,8 @@ class ViewController: UIViewController {
         }
         
         // init send button
+        send.setTitle("Send", for: .normal)
+        send.backgroundColor = .green
         view.addSubview(send)
         send.snp.makeConstraints { make in
             make.left.equalTo(25)
@@ -80,30 +89,31 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        cardNumebr.model = VGSModel(alisa: "cardNumber", "card number", type: .cardNumberField)
-        expCardDate.model = VGSModel(alisa: "expDate", "exp date", type: .dateExpirationField)
-        nameHolder.model = VGSModel(alisa: "nameHolder", "Name Holder", type: .nameHolderField)
-        cvvCardNum.model = VGSModel(alisa: "cvvNum", "cvv", type: .cvvField)
+        cardNumber.model = VGSTextFieldModel(alias: "cardNumber", placeholder: "card number", textField: .cardNumberField)
+        expCardDate.model = VGSTextFieldModel(alias: "expDate", placeholder: "exp date", textField: .dateExpirationField)
+        nameHolder.model = VGSTextFieldModel(alias: "nameHolder", placeholder: "Name Holder", textField: .nameHolderField)
+        cvvCardNum.model = VGSTextFieldModel(alias: "cvvNum", placeholder: "cvv", textField: .cvvField)
         
-        // type for button
-        send.type = .sendButton
-        // callback for see received data
-        send.callBack = { [weak self] data, error in
-            
-            DispatchQueue.main.async {
+        // Register text fields
+        let tfs = [cardNumber, expCardDate, nameHolder, cvvCardNum]
+        vgs?.registerTextFields(textField: tfs)
+        
+        send.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
+    }
+}
+
+// MARK: - send/receive data
+extension ViewController {
+    @objc
+    func sendData(_ sender: UIButton) {
+        vgs?.sendData(completion: { (json, error) in
+            if error == nil, let json = json {
+                print(json)
                 
-                guard let self = self, error == nil else {
-                    return
-                }
-                
-                var txt = ""
-                data?.forEach({ (key, value) in
-                    txt.append("\(key)= \(value)\n\n")
-                })
-                
-                self.consoleLabel.text = txt
+            } else {
+                print("Error: \(String(describing: error?.localizedDescription))")
             }
-        }
+        })
     }
 }
 
@@ -111,16 +121,16 @@ class ViewController: UIViewController {
 extension ViewController {
     func turnOnObservation() {
         // Important thing
-        // using for lessing mistakes #keyPath(cardNumebr.textView)
+        // using for lessing mistakes #keyPath(cardNumber.textView)
         addObserver(self,
-                    forKeyPath: "cardNumebr.textView",
+                    forKeyPath: "cardNumber.text",
                     options: [.old, .new],
                     context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == "cardNumebr.textView" {
+        if keyPath == "cardNumber.text" {
             
             print(" We r hacked")
         }

@@ -22,7 +22,7 @@ public class VGSTextField: VGSView {
         }
     }
     
-    public var model: VGSModel? {
+    public var model: VGSTextFieldModel? {
         didSet {
             guard let model = model else {
                 return
@@ -51,16 +51,8 @@ public class VGSTextField: VGSView {
         mainInitialization()
     }
     
-    deinit {
-        // remove element from storage
-        Storage.shared.removeElement(self)
-    }
-    
     // MARK: - private API
     private func mainInitialization() {
-        // add element to the storage
-        Storage.shared.addElement(self)
-        
         // text view
         textView.delegate = self
         textView.keyboardDismissMode = .onDrag

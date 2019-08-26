@@ -58,24 +58,5 @@ public class VGSButton: VGSView {
     
     private func setupButton() {
         button.setTitle(type.defaultTitle, for: .normal)
-        
-        // setup action
-        switch type {
-        case .sendButton:
-            button.addTarget(self,
-                             action: #selector(sendAction(_:)),
-                             for: .touchUpInside)
-        default:
-            break
-        }
-    }
-
-    // MARK: - Actions
-    @objc
-    private func sendAction(_ sender: UIButton) {
-        
-        Storage.shared.sendData { [weak self] (data, error) in
-            self?.callBack?(data, error)
-        }
     }
 }

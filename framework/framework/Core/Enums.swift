@@ -6,7 +6,7 @@
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public enum FieldType: Int, CaseIterable {
     case none
