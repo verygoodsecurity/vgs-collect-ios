@@ -50,7 +50,7 @@ extension VGS {
             }
         }
         
-        apiClient.sendSaveCardRequest(value: body) { [weak self] (json, error) in
+        apiClient.sendSaveCardRequest(value: body) { (json, error) in
             
             if let error = error {
                 print("Error: \(String(describing: error.localizedDescription))")

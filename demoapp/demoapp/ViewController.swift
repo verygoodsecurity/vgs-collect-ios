@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         setupElements()
         
         // uncomment for testing
-        turnOnObservation()
+//        turnOnObservation()
     }
     
     private func setupUI() {
@@ -106,11 +106,15 @@ class ViewController: UIViewController {
 extension ViewController {
     @objc
     func sendData(_ sender: UIButton) {
-        vgs?.sendData(completion: { (json, error) in
+        consoleLabel.text = "Processing..."
+        view.endEditing(true)
+        vgs?.sendData(completion: { [weak self] (json, error) in
             if error == nil, let json = json {
                 print(json)
+                self?.consoleLabel.text = json.description
                 
             } else {
+                self?.consoleLabel.text = "Something went wrong!"
                 print("Error: \(String(describing: error?.localizedDescription))")
             }
         })
