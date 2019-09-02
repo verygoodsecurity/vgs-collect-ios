@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F71BFDEBABF1B9B92D52540 /* Pods_frameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC62C25DB3E6C53E47FCEB13 /* Pods_frameworkTests.framework */; };
-		27DD3E4FCFBC47CA75CF82ED /* Pods_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B573465C6C5A64322E2B8A3B /* Pods_framework.framework */; };
-		FD12B9B92304619200B670DD /* framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* framework.framework */; };
-		FD12B9BE2304619200B670DD /* frameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9BD2304619200B670DD /* frameworkTests.swift */; };
-		FD12B9C02304619200B670DD /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD12B9B22304619100B670DD /* framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FD12B9CB2304840900B670DD /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9CA2304840900B670DD /* VGSTextField.swift */; };
-		FD12B9CF230491C600B670DD /* VGSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9CE230491C600B670DD /* VGSView.swift */; };
-		FD12B9D42304957700B670DD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9D32304957700B670DD /* Storage.swift */; };
-		FD205F7823146624007751ED /* VGS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD205F7723146624007751ED /* VGS.swift */; };
-		FD205F792314697B007751ED /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A3FE230AD2880078BB60 /* VGSButton.swift */; };
-		FD3AB8DE230DC5170056BA08 /* VGSTextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AB8DD230DC5170056BA08 /* VGSTextFieldModel.swift */; };
-		FD83A401230AEA330078BB60 /* VGSFramework.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FD83A400230AEA330078BB60 /* VGSFramework.podspec */; };
-		FD83A404230AEA8D0078BB60 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A403230AEA8D0078BB60 /* APIClient.swift */; };
-		FD83A406230AEABD0078BB60 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83A405230AEABD0078BB60 /* Enums.swift */; };
+		75EBD1D8CEE139FE888668A7 /* Pods_VGSFrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */; };
+		D06AC61B18447F6EC1968FDE /* Pods_VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */; };
+		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
+		FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93A2316CE5A000EAF52 /* Enums.swift */; };
+		FD05F9492316CE5A000EAF52 /* VGS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93B2316CE5A000EAF52 /* VGS.swift */; };
+		FD05F94A2316CE5A000EAF52 /* VGSTextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSTextFieldModel.swift */; };
+		FD05F94B2316CE5A000EAF52 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93E2316CE5A000EAF52 /* APIClient.swift */; };
+		FD05F94C2316CE5A000EAF52 /* VGSFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9422316CE5A000EAF52 /* Validation.swift */; };
+		FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9442316CE5A000EAF52 /* VGSTextField.swift */; };
+		FD05F9502316CE5A000EAF52 /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9452316CE5A000EAF52 /* VGSButton.swift */; };
+		FD05F9512316CE5A000EAF52 /* VGSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9462316CE5A000EAF52 /* VGSView.swift */; };
+		FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */; };
+		FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,27 +34,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20F49A48D7DA3F14AAD3986D /* Pods-frameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frameworkTests.release.xcconfig"; path = "Target Support Files/Pods-frameworkTests/Pods-frameworkTests.release.xcconfig"; sourceTree = "<group>"; };
-		3B5EE1B0F2294E999D2CB84E /* Pods-framework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-framework.release.xcconfig"; path = "Target Support Files/Pods-framework/Pods-framework.release.xcconfig"; sourceTree = "<group>"; };
-		51D80673C1436FF04824018D /* Pods-frameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-frameworkTests/Pods-frameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6D330579B5D01EDD6572D52B /* Pods-framework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-framework.debug.xcconfig"; path = "Target Support Files/Pods-framework/Pods-framework.debug.xcconfig"; sourceTree = "<group>"; };
-		B573465C6C5A64322E2B8A3B /* Pods_framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC62C25DB3E6C53E47FCEB13 /* Pods_frameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD12B9AF2304619100B670DD /* framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD12B9B22304619100B670DD /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		FD12B9B32304619100B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD12B9B82304619200B670DD /* frameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = frameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD12B9BD2304619200B670DD /* frameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frameworkTests.swift; sourceTree = "<group>"; };
-		FD12B9BF2304619200B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD12B9CA2304840900B670DD /* VGSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextField.swift; sourceTree = "<group>"; };
-		FD12B9CE230491C600B670DD /* VGSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSView.swift; sourceTree = "<group>"; };
-		FD12B9D32304957700B670DD /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		FD205F7723146624007751ED /* VGS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGS.swift; sourceTree = "<group>"; };
-		FD3AB8DD230DC5170056BA08 /* VGSTextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldModel.swift; sourceTree = "<group>"; };
-		FD83A3FE230AD2880078BB60 /* VGSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSButton.swift; sourceTree = "<group>"; };
-		FD83A400230AEA330078BB60 /* VGSFramework.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGSFramework.podspec; sourceTree = "<group>"; };
-		FD83A403230AEA8D0078BB60 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		FD83A405230AEABD0078BB60 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework.release.xcconfig"; path = "Target Support Files/Pods-VGSFramework/Pods-VGSFramework.release.xcconfig"; sourceTree = "<group>"; };
+		3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		EAD03610A2B3B9A3339B094E /* Pods-VGSFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework.debug.xcconfig"; path = "Target Support Files/Pods-VGSFramework/Pods-VGSFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		FD05F93B2316CE5A000EAF52 /* VGS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGS.swift; sourceTree = "<group>"; };
+		FD05F93C2316CE5A000EAF52 /* VGSTextFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextFieldModel.swift; sourceTree = "<group>"; };
+		FD05F93E2316CE5A000EAF52 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FD05F93F2316CE5A000EAF52 /* VGSFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSFramework.h; sourceTree = "<group>"; };
+		FD05F9402316CE5A000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD05F9422316CE5A000EAF52 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		FD05F9442316CE5A000EAF52 /* VGSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextField.swift; sourceTree = "<group>"; };
+		FD05F9452316CE5A000EAF52 /* VGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSButton.swift; sourceTree = "<group>"; };
+		FD05F9462316CE5A000EAF52 /* VGSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSView.swift; sourceTree = "<group>"; };
+		FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFrameworkTests.swift; sourceTree = "<group>"; };
+		FD05F9542316CE64000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD12B9AF2304619100B670DD /* VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD83A400230AEA330078BB60 /* VGSFramework.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGSFramework.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27DD3E4FCFBC47CA75CF82ED /* Pods_framework.framework in Frameworks */,
+				D06AC61B18447F6EC1968FDE /* Pods_VGSFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,8 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD12B9B92304619200B670DD /* framework.framework in Frameworks */,
-				1F71BFDEBABF1B9B92D52540 /* Pods_frameworkTests.framework in Frameworks */,
+				FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */,
+				75EBD1D8CEE139FE888668A7 /* Pods_VGSFrameworkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,8 +82,8 @@
 		C3997B777D76689537B200F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B573465C6C5A64322E2B8A3B /* Pods_framework.framework */,
-				FC62C25DB3E6C53E47FCEB13 /* Pods_frameworkTests.framework */,
+				0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */,
+				3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -90,83 +91,92 @@
 		DF975433A466D40E11FAE732 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6D330579B5D01EDD6572D52B /* Pods-framework.debug.xcconfig */,
-				3B5EE1B0F2294E999D2CB84E /* Pods-framework.release.xcconfig */,
-				51D80673C1436FF04824018D /* Pods-frameworkTests.debug.xcconfig */,
-				20F49A48D7DA3F14AAD3986D /* Pods-frameworkTests.release.xcconfig */,
+				EAD03610A2B3B9A3339B094E /* Pods-VGSFramework.debug.xcconfig */,
+				1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */,
+				6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */,
+				8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FD05F9372316CE5A000EAF52 /* VGSFramework */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F93D2316CE5A000EAF52 /* APIClient */,
+				FD05F9382316CE5A000EAF52 /* Core */,
+				FD05F9402316CE5A000EAF52 /* Info.plist */,
+				FD05F9432316CE5A000EAF52 /* UIElements */,
+				FD05F9412316CE5A000EAF52 /* Validation */,
+				FD05F93F2316CE5A000EAF52 /* VGSFramework.h */,
+			);
+			path = VGSFramework;
+			sourceTree = "<group>";
+		};
+		FD05F9382316CE5A000EAF52 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
+				FD05F9392316CE5A000EAF52 /* Storage.swift */,
+				FD05F93B2316CE5A000EAF52 /* VGS.swift */,
+				FD05F93C2316CE5A000EAF52 /* VGSTextFieldModel.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FD05F93D2316CE5A000EAF52 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F93E2316CE5A000EAF52 /* APIClient.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		FD05F9412316CE5A000EAF52 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F9422316CE5A000EAF52 /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		FD05F9432316CE5A000EAF52 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
+				FD05F9452316CE5A000EAF52 /* VGSButton.swift */,
+				FD05F9462316CE5A000EAF52 /* VGSView.swift */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
+		FD05F9522316CE64000EAF52 /* VGSFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */,
+				FD05F9542316CE64000EAF52 /* Info.plist */,
+			);
+			path = VGSFrameworkTests;
 			sourceTree = "<group>";
 		};
 		FD12B9A52304619100B670DD = {
 			isa = PBXGroup;
 			children = (
-				FD83A400230AEA330078BB60 /* VGSFramework.podspec */,
-				FD12B9B12304619100B670DD /* framework */,
-				FD12B9BC2304619200B670DD /* frameworkTests */,
-				FD12B9B02304619100B670DD /* Products */,
-				DF975433A466D40E11FAE732 /* Pods */,
+				FD05F9372316CE5A000EAF52 /* VGSFramework */,
 				C3997B777D76689537B200F8 /* Frameworks */,
+				DF975433A466D40E11FAE732 /* Pods */,
+				FD12B9B02304619100B670DD /* Products */,
+				FD83A400230AEA330078BB60 /* VGSFramework.podspec */,
+				FD05F9522316CE64000EAF52 /* VGSFrameworkTests */,
 			);
 			sourceTree = "<group>";
 		};
 		FD12B9B02304619100B670DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FD12B9AF2304619100B670DD /* framework.framework */,
-				FD12B9B82304619200B670DD /* frameworkTests.xctest */,
+				FD12B9AF2304619100B670DD /* VGSFramework.framework */,
+				FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		FD12B9B12304619100B670DD /* framework */ = {
-			isa = PBXGroup;
-			children = (
-				FD83A402230AEA7D0078BB60 /* APIClient */,
-				FD12B9D02304942E00B670DD /* Core */,
-				FD12B9C9230483E300B670DD /* UIElements */,
-				FD12B9B22304619100B670DD /* framework.h */,
-				FD12B9B32304619100B670DD /* Info.plist */,
-			);
-			path = framework;
-			sourceTree = "<group>";
-		};
-		FD12B9BC2304619200B670DD /* frameworkTests */ = {
-			isa = PBXGroup;
-			children = (
-				FD12B9BD2304619200B670DD /* frameworkTests.swift */,
-				FD12B9BF2304619200B670DD /* Info.plist */,
-			);
-			path = frameworkTests;
-			sourceTree = "<group>";
-		};
-		FD12B9C9230483E300B670DD /* UIElements */ = {
-			isa = PBXGroup;
-			children = (
-				FD12B9CE230491C600B670DD /* VGSView.swift */,
-				FD83A3FE230AD2880078BB60 /* VGSButton.swift */,
-				FD12B9CA2304840900B670DD /* VGSTextField.swift */,
-			);
-			path = UIElements;
-			sourceTree = "<group>";
-		};
-		FD12B9D02304942E00B670DD /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				FD83A405230AEABD0078BB60 /* Enums.swift */,
-				FD12B9D32304957700B670DD /* Storage.swift */,
-				FD3AB8DD230DC5170056BA08 /* VGSTextFieldModel.swift */,
-				FD205F7723146624007751ED /* VGS.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		FD83A402230AEA7D0078BB60 /* APIClient */ = {
-			isa = PBXGroup;
-			children = (
-				FD83A403230AEA8D0078BB60 /* APIClient.swift */,
-			);
-			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,16 +186,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD12B9C02304619200B670DD /* framework.h in Headers */,
+				FD05F94C2316CE5A000EAF52 /* VGSFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		FD12B9AE2304619100B670DD /* framework */ = {
+		FD12B9AE2304619100B670DD /* VGSFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD12B9C32304619200B670DD /* Build configuration list for PBXNativeTarget "framework" */;
+			buildConfigurationList = FD12B9C32304619200B670DD /* Build configuration list for PBXNativeTarget "VGSFramework" */;
 			buildPhases = (
 				3F4C99E986CA648DA534D75C /* [CP] Check Pods Manifest.lock */,
 				FD12B9AA2304619100B670DD /* Headers */,
@@ -197,14 +207,14 @@
 			);
 			dependencies = (
 			);
-			name = framework;
+			name = VGSFramework;
 			productName = framework;
-			productReference = FD12B9AF2304619100B670DD /* framework.framework */;
+			productReference = FD12B9AF2304619100B670DD /* VGSFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		FD12B9B72304619200B670DD /* frameworkTests */ = {
+		FD12B9B72304619200B670DD /* VGSFrameworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD12B9C62304619200B670DD /* Build configuration list for PBXNativeTarget "frameworkTests" */;
+			buildConfigurationList = FD12B9C62304619200B670DD /* Build configuration list for PBXNativeTarget "VGSFrameworkTests" */;
 			buildPhases = (
 				727E585D309BDB14797AE699 /* [CP] Check Pods Manifest.lock */,
 				FD12B9B42304619200B670DD /* Sources */,
@@ -216,9 +226,9 @@
 			dependencies = (
 				FD12B9BB2304619200B670DD /* PBXTargetDependency */,
 			);
-			name = frameworkTests;
+			name = VGSFrameworkTests;
 			productName = frameworkTests;
-			productReference = FD12B9B82304619200B670DD /* frameworkTests.xctest */;
+			productReference = FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +250,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FD12B9A92304619100B670DD /* Build configuration list for PBXProject "framework" */;
+			buildConfigurationList = FD12B9A92304619100B670DD /* Build configuration list for PBXProject "VGSFramework" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -252,8 +262,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FD12B9AE2304619100B670DD /* framework */,
-				FD12B9B72304619200B670DD /* frameworkTests */,
+				FD12B9AE2304619100B670DD /* VGSFramework */,
+				FD12B9B72304619200B670DD /* VGSFrameworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -263,7 +273,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD83A401230AEA330078BB60 /* VGSFramework.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +301,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-framework-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VGSFramework-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -314,7 +323,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-frameworkTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VGSFrameworkTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -328,14 +337,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD12B9D42304957700B670DD /* Storage.swift in Sources */,
-				FD3AB8DE230DC5170056BA08 /* VGSTextFieldModel.swift in Sources */,
-				FD12B9CB2304840900B670DD /* VGSTextField.swift in Sources */,
-				FD205F7823146624007751ED /* VGS.swift in Sources */,
-				FD12B9CF230491C600B670DD /* VGSView.swift in Sources */,
-				FD83A406230AEABD0078BB60 /* Enums.swift in Sources */,
-				FD205F792314697B007751ED /* VGSButton.swift in Sources */,
-				FD83A404230AEA8D0078BB60 /* APIClient.swift in Sources */,
+				FD05F94A2316CE5A000EAF52 /* VGSTextFieldModel.swift in Sources */,
+				FD05F9512316CE5A000EAF52 /* VGSView.swift in Sources */,
+				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
+				FD05F9492316CE5A000EAF52 /* VGS.swift in Sources */,
+				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
+				FD05F94B2316CE5A000EAF52 /* APIClient.swift in Sources */,
+				FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */,
+				FD05F9502316CE5A000EAF52 /* VGSButton.swift in Sources */,
+				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD12B9BE2304619200B670DD /* frameworkTests.swift in Sources */,
+				FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +362,7 @@
 /* Begin PBXTargetDependency section */
 		FD12B9BB2304619200B670DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FD12B9AE2304619100B670DD /* framework */;
+			target = FD12B9AE2304619100B670DD /* VGSFramework */;
 			targetProxy = FD12B9BA2304619200B670DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -482,7 +492,7 @@
 		};
 		FD12B9C42304619200B670DD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D330579B5D01EDD6572D52B /* Pods-framework.debug.xcconfig */;
+			baseConfigurationReference = EAD03610A2B3B9A3339B094E /* Pods-VGSFramework.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -491,7 +501,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = framework/Info.plist;
+				INFOPLIST_FILE = VGSFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,7 +519,7 @@
 		};
 		FD12B9C52304619200B670DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B5EE1B0F2294E999D2CB84E /* Pods-framework.release.xcconfig */;
+			baseConfigurationReference = 1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -518,7 +528,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = framework/Info.plist;
+				INFOPLIST_FILE = VGSFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -535,11 +545,12 @@
 		};
 		FD12B9C72304619200B670DD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51D80673C1436FF04824018D /* Pods-frameworkTests.debug.xcconfig */;
+			baseConfigurationReference = 6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = frameworkTests/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 69BNY6KMTF;
+				INFOPLIST_FILE = VGSFrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,6 +558,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.frameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -554,11 +566,13 @@
 		};
 		FD12B9C82304619200B670DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20F49A48D7DA3F14AAD3986D /* Pods-frameworkTests.release.xcconfig */;
+			baseConfigurationReference = 8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = frameworkTests/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 69BNY6KMTF;
+				INFOPLIST_FILE = VGSFrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -566,6 +580,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.frameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -574,7 +589,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FD12B9A92304619100B670DD /* Build configuration list for PBXProject "framework" */ = {
+		FD12B9A92304619100B670DD /* Build configuration list for PBXProject "VGSFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD12B9C12304619200B670DD /* Debug */,
@@ -583,7 +598,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD12B9C32304619200B670DD /* Build configuration list for PBXNativeTarget "framework" */ = {
+		FD12B9C32304619200B670DD /* Build configuration list for PBXNativeTarget "VGSFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD12B9C42304619200B670DD /* Debug */,
@@ -592,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD12B9C62304619200B670DD /* Build configuration list for PBXNativeTarget "frameworkTests" */ = {
+		FD12B9C62304619200B670DD /* Build configuration list for PBXNativeTarget "VGSFrameworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD12B9C72304619200B670DD /* Debug */,

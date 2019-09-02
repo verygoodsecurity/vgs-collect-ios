@@ -1,6 +1,6 @@
 //
 //  VGSTextField.swift
-//  framework
+//  VGSFramework
 //
 //  Created by Vitalii Obertynskyi on 8/14/19.
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
@@ -69,13 +69,6 @@ public class VGSTextField: VGSView {
         placeholderLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
         }
-    }
-}
-
-// MARK: - Statuses
-extension VGSTextField {
-    var isEmpty: Bool {
-        return (text?.count == 0)
     }
 }
 

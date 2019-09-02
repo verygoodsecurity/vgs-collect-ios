@@ -1,6 +1,6 @@
 //
 //  VGSButton.swift
-//  framework
+//  VGSFramework
 //
 //  Created by Vitalii Obertynskyi on 8/19/19.
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.

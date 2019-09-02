@@ -1,6 +1,6 @@
 //
 //  VGS.swift
-//  framework
+//  VGSFramework
 //
 //  Created by Vitalii Obertynskyi on 8/26/19.
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
@@ -10,14 +10,13 @@ import Foundation
 
 public class VGS {
     private let apiClient: APIClient
-    private let storage: Storage
+    private let storage = Storage()
     
     public init(upstreamHost url: String) {
         guard let url = URL(string: url) else {
             fatalError("Upstream Host is broken. Can't to converting to URL!")
         }
         apiClient = APIClient(baseURL: url)
-        storage = Storage()
     }
     
     public func registerTextFields(textField objects: [VGSTextField]) {

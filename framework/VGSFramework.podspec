@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "Vitalii Obertynskyi" => "vober@icloud.com" }
+  spec.author             = { "Vitalii Obertynskyi" => "vitaliy.obertinskiy@icloud.com" }
   # Or just: spec.author    = "Vitalii Obertynskyi"
   # spec.authors            = { "Vitalii Obertynskyi" => "vober@icloud.com" }
   spec.social_media_url   = "https://twitter.com/miraving"
@@ -91,7 +91,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "framework", "framework/**/*.{swift}"
+  spec.source_files  = "VGSFramework", "VGSFramework/**/*.{swift}"
   # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"

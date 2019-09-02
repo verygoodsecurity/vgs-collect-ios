@@ -1,15 +1,31 @@
 platform :ios, '12.0'
 
-target 'framework' do
+workspace 'VGSFramework'
+
+target 'VGSFramework' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'SnapKit'
-#  pod 'AnyFormatKit'
   pod 'Alamofire'
 
-  target 'frameworkTests' do
+  target 'VGSFrameworkTests' do
     inherit! :search_paths
     # Pods for testing
   end
+end
 
+# The workaround starts here !!!!!
+targetWorkaround = "Pods-VGSFrameworkTests"
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    puts "#{target.name}"
+    if target.name == targetWorkaround
+      puts "Replacing!!!"
+      
+      puts `cp "./Pods/Target Support Files/Pods-VGSFramework/Pods-VGSFramework.debug.xcconfig" "./Pods/Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.debug.xcconfig"`
+      puts `cp "./Pods/Target Support Files/Pods-VGSFramework/Pods-VGSFramework.release.xcconfig" "./Pods/Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.release.xcconfig"`
+      
+    end
+  end
 end
