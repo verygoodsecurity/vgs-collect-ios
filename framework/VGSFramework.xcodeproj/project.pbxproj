@@ -20,6 +20,7 @@
 		FD05F9512316CE5A000EAF52 /* VGSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9462316CE5A000EAF52 /* VGSView.swift */; };
 		FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */; };
 		FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
+		FD3B25F1231D640500A2CD0F /* VGS+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3B25F0231D640500A2CD0F /* VGS+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		FD05F9542316CE64000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD12B9AF2304619100B670DD /* VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD3B25F0231D640500A2CD0F /* VGS+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGS+extension.swift"; sourceTree = "<group>"; };
 		FD83A400230AEA330078BB60 /* VGSFramework.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGSFramework.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
 				FD05F9392316CE5A000EAF52 /* Storage.swift */,
 				FD05F93B2316CE5A000EAF52 /* VGS.swift */,
+				FD3B25F0231D640500A2CD0F /* VGS+extension.swift */,
 				FD05F93C2316CE5A000EAF52 /* VGSTextFieldConfig.swift */,
 			);
 			path = Core;
@@ -338,6 +341,7 @@
 				FD05F9512316CE5A000EAF52 /* VGSView.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGS.swift in Sources */,
+				FD3B25F1231D640500A2CD0F /* VGS+extension.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FD05F94B2316CE5A000EAF52 /* APIClient.swift in Sources */,
 				FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */,

@@ -32,14 +32,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // chack jailbroke
+        if VGS.isJailbroken() {
+            print("Devise is Jailbroken")
+        }
         // Observe data
-        vgs.observeTextField = { tf in
-            if tf.isEmpty {
-                print("Text field is empty")
-            } else {
-                print("Text field is NOT empty")
-            }
+        vgs.observeForm = { form in
+            print("--------------------------------------")
+            form.forEach({ textField in
+                let name = textField.configuration?.alias ?? "no name"
+                let isEmpty = textField.isEmpty
+                print("TextField: \(name) isEmpty: \(isEmpty)")
+                // set gteen border if tf not empty
+                textField.setGreenBorder(!isEmpty)
+            })
+            
+            form.forEach({ textField in
+                let name = textField.configuration?.alias ?? "no name"
+                let isFocused = textField.isFocused
+                print("TextField: \(name) isFocused: \(isFocused)")
+                
+                textField.setBorderBolder(isFocused)
+            })
         }
         
         setupElements()
@@ -87,7 +101,9 @@ class ViewController: UIViewController {
         
         // init send button
         sendButton.setTitle("Send", for: .normal)
-        sendButton.backgroundColor = .green
+        sendButton.backgroundColor = UIColor.myGreen
+        sendButton.layer.cornerRadius = 6
+        sendButton.clipsToBounds = true
         view.addSubview(sendButton)
         sendButton.snp.makeConstraints { make in
             make.left.equalTo(25)

@@ -9,8 +9,9 @@
 import Foundation
 
 public class VGSTextFieldConfig {
-    private(set) var alias: String!
     private(set) weak var vgs: VGS?
+    
+    public private(set) var alias: String!
     
     public var token: String?
     public var placeholder: String?

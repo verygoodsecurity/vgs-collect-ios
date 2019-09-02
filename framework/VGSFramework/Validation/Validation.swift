@@ -12,4 +12,8 @@ public extension VGSTextField {
     var isEmpty: Bool {
         return (text?.count == 0)
     }
+    
+    override var isFocused: Bool {
+        return textView.isFirstResponder
+    }
 }

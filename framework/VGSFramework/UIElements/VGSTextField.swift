@@ -10,8 +10,10 @@ import UIKit
 import SnapKit
 
 public class VGSTextField: VGSView {
-    private var textView = UITextView(frame: .zero)
-    private var placeholderLabel = UILabel(frame: .zero)
+    var textView = UITextView(frame: .zero)
+    var placeholderLabel = UILabel(frame: .zero)
+    
+    var focusStatus: Bool = false
     
     public var configuration: VGSTextFieldConfig? {
         didSet {
@@ -54,6 +56,7 @@ public class VGSTextField: VGSView {
     // MARK: - private API
     private func mainInitialization() {
         // text view
+//        textView.isUserInteractionEnabled = false
         textView.delegate = self
         textView.keyboardDismissMode = .onDrag
         addSubview(textView)
@@ -72,27 +75,28 @@ public class VGSTextField: VGSView {
     }
 }
 
-// MARK: - Text field delegate
-extension VGSTextField: UITextViewDelegate {
-    
-    public func textViewDidChange(_ textView: UITextView) {
-        configuration?.vgs?.observeTextField?(self)
+// MARK: - change focus here
+extension VGSTextField {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        textView.becomeFirstResponder()
+        // change status
+        configuration?.vgs?.updateStatus(for: self)
     }
-    
-    public func textViewDidBeginEditing(_ textView: UITextView) { }
-    
-    public func textViewDidChangeSelection(_ textView: UITextView) {
-        if let text = textView.text, text.count == 0 {
-            placeholderLabel.isHidden = false
-        } else {
-            placeholderLabel.isHidden = true
-        }
+}
+
+// MARK: - Text field delegate
+extension VGSTextField: UITextViewDelegate {    
+    public func textViewDidChange(_ textView: UITextView) {
+        // show/hide placeholder label
+        placeholderLabel.isHidden = !isEmpty
+        // send status data
+        configuration?.vgs?.updateStatus(for: self)
     }
     
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         // for paste string
         // need to check have digits or characters
-        
         return true
     }
 }

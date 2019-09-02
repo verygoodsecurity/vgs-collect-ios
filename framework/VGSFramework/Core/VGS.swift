@@ -13,6 +13,7 @@ public class VGS {
     private let storage = Storage()
     
     public var observeTextField: ((_ textField: VGSTextField) -> Void)?
+    public var observeForm: ((_ form:[VGSTextField]) -> Void)?
     
     public init(upstreamHost url: String) {
         guard let url = URL(string: url) else {
@@ -31,6 +32,20 @@ public class VGS {
         objects.forEach { [weak self] tf in
             self?.storage.removeElement(tf)
         }
+    }
+}
+
+extension VGS {
+    func updateStatus(for textField: VGSTextField) {
+        // reset all focus status
+        storage.elements.forEach { textField in
+            textField.focusStatus = false
+        }
+        // set ficus for textField
+        textField.focusStatus = true
+        // call observers
+        observeForm?(storage.elements)
+        observeTextField?(textField)
     }
 }
 

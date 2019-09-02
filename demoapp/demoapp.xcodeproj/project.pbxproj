@@ -17,6 +17,7 @@
 		FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD12B9802304616E00B670DD /* LaunchScreen.storyboard */; };
 		FD12B98D2304616E00B670DD /* demoappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B98C2304616E00B670DD /* demoappTests.swift */; };
 		FD12B9982304616E00B670DD /* demoappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9972304616E00B670DD /* demoappUITests.swift */; };
+		FD3B25ED231D463A00A2CD0F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3B25EC231D463A00A2CD0F /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		FD12B9932304616E00B670DD /* demoappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9972304616E00B670DD /* demoappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoappUITests.swift; sourceTree = "<group>"; };
 		FD12B9992304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD3B25EC231D463A00A2CD0F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				FD12B9772304616C00B670DD /* AppDelegate.swift */,
 				FD12B9792304616C00B670DD /* ViewController.swift */,
+				FD3B25EC231D463A00A2CD0F /* Extension.swift */,
 				FD12B97B2304616C00B670DD /* Main.storyboard */,
 				FD12B97E2304616E00B670DD /* Assets.xcassets */,
 				FD12B9802304616E00B670DD /* LaunchScreen.storyboard */,
@@ -386,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD3B25ED231D463A00A2CD0F /* Extension.swift in Sources */,
 				FD12B97A2304616C00B670DD /* ViewController.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
 			);
