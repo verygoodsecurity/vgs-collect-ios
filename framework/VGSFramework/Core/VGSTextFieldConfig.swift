@@ -16,7 +16,7 @@ public class VGSTextFieldConfig {
     public var placeholder: String?
     public var type: FieldType = .none
     
-    public init(_ vgs: VGS, alias name: String, placeholder text: String = "", textField type: FieldType = .none) {
+    public init(_ vgs: VGS, alias name: String, textField type: FieldType = .none, placeholder text: String = "") {
         self.vgs = vgs
         self.alias = name
         self.placeholder = text

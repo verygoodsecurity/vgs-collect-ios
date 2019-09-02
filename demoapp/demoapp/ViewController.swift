@@ -88,10 +88,10 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        cardNumber.configuration = VGSTextFieldConfig(vgs, alias: "cardNumber", placeholder: "card number", textField: .cardNumberField)
-        expCardDate.configuration = VGSTextFieldConfig(vgs, alias: "expDate", placeholder: "exp date", textField: .dateExpirationField)
-        nameHolder.configuration = VGSTextFieldConfig(vgs, alias: "nameHolder", placeholder: "Name Holder", textField: .nameHolderField)
-        cvvCardNum.configuration = VGSTextFieldConfig(vgs, alias: "cvvNum", placeholder: "cvv", textField: .cvvField)
+        cardNumber.configuration = VGSTextFieldConfig(vgs, alias: "cardNumber", textField: .cardNumberField, placeholder: "card number")
+        expCardDate.configuration = VGSTextFieldConfig(vgs, alias: "expDate", textField: .dateExpirationField, placeholder: "exp date")
+        nameHolder.configuration = VGSTextFieldConfig(vgs, alias: "nameHolder", textField: .nameHolderField, placeholder: "Name Holder")
+        cvvCardNum.configuration = VGSTextFieldConfig(vgs, alias: "cvvNum", textField: .cvvField, placeholder: "cvv")
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
