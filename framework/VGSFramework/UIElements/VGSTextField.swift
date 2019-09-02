@@ -74,6 +74,11 @@ public class VGSTextField: VGSView {
 
 // MARK: - Text field delegate
 extension VGSTextField: UITextViewDelegate {
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        configuration?.vgs?.observeTextField?(self)
+    }
+    
     public func textViewDidBeginEditing(_ textView: UITextView) { }
     
     public func textViewDidChangeSelection(_ textView: UITextView) {

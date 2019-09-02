@@ -12,6 +12,8 @@ public class VGS {
     private let apiClient: APIClient
     private let storage = Storage()
     
+    public var observeTextField: ((_ textField: VGSTextField) -> Void)?
+    
     public init(upstreamHost url: String) {
         guard let url = URL(string: url) else {
             fatalError("Upstream Host is broken. Can't to converting to URL!")
@@ -64,8 +66,6 @@ extension VGS {
                     }
                 })
             }
-            
-            print(">>> \(String(describing: elements.compactMap( { $0.configuration?.token } )))")
             block(json, nil)
         }
     }

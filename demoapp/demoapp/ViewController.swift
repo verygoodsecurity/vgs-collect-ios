@@ -32,6 +32,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Observe data
+        vgs.observeTextField = { tf in
+            if tf.isEmpty {
+                print("Text field is empty")
+            } else {
+                print("Text field is NOT empty")
+            }
+        }
+        
         setupElements()
 //        uncomment for testing
 //        turnOnObservation()
