@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // VGS Core
-    var vgs: VGS? = nil
+    var vgs: VGS = VGS(upstreamHost: "https://tntva5wfdrp.SANDBOX.verygoodproxy.com")
     
     // VGS Elements
     var cardNumber = VGSTextField()
@@ -32,11 +32,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        vgs = VGS(upstreamHost: "https://tntva5wfdrp.SANDBOX.verygoodproxy.com")
-        
         setupElements()
-        
 //        uncomment for testing
 //        turnOnObservation()
     }
@@ -92,14 +88,10 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        cardNumber.model = VGSTextFieldModel(alias: "cardNumber", placeholder: "card number", textField: .cardNumberField)        
-        expCardDate.model = VGSTextFieldModel(alias: "expDate", placeholder: "exp date", textField: .dateExpirationField)
-        nameHolder.model = VGSTextFieldModel(alias: "nameHolder", placeholder: "Name Holder", textField: .nameHolderField)
-        cvvCardNum.model = VGSTextFieldModel(alias: "cvvNum", placeholder: "cvv", textField: .cvvField)
-        
-        // Register text fields
-        let tfs = [cardNumber, expCardDate, nameHolder, cvvCardNum]
-        vgs?.registerTextFields(textField: tfs)
+        cardNumber.configuration = VGSTextFieldConfig(vgs, alias: "cardNumber", placeholder: "card number", textField: .cardNumberField)
+        expCardDate.configuration = VGSTextFieldConfig(vgs, alias: "expDate", placeholder: "exp date", textField: .dateExpirationField)
+        nameHolder.configuration = VGSTextFieldConfig(vgs, alias: "nameHolder", placeholder: "Name Holder", textField: .nameHolderField)
+        cvvCardNum.configuration = VGSTextFieldConfig(vgs, alias: "cvvNum", placeholder: "cvv", textField: .cvvField)
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
@@ -116,12 +108,9 @@ extension ViewController {
         view.endEditing(true)
         
         // send data
-        vgs?.sendData(completion: { [weak self] (json, error) in
-            
+        vgs.sendData(completion: { [weak self] (json, error) in
             if error == nil, let json = json {
-                print(json)
                 self?.consoleLabel.text = json.description
-                
             } else {
                 self?.consoleLabel.text = "Something went wrong!"
                 print("Error: \(String(describing: error?.localizedDescription))")

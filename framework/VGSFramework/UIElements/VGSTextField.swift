@@ -13,22 +13,19 @@ public class VGSTextField: VGSView {
     private var textView = UITextView(frame: .zero)
     private var placeholderLabel = UILabel(frame: .zero)
     
-    var type: FieldType = .none {
+    public var configuration: VGSTextFieldConfig? {
         didSet {
-            if type != oldValue {
-                textView.isSecureTextEntry = type.isSecureDate
-                textView.keyboardType = type.keyboardType
-            }
-        }
-    }
-    
-    public var model: VGSTextFieldModel? {
-        didSet {
-            guard let model = model else {
+            guard let config = configuration else {
                 return
             }
-            placeholderLabel.text = model.placeholder
-            type = model.type
+            
+            placeholderLabel.text = config.placeholder
+            textView.isSecureTextEntry = config.type.isSecureDate
+            textView.keyboardType = config.type.keyboardType
+            
+            if let vgs = config.vgs {
+                vgs.registerTextFields(textField: [self])
+            }
         }
     }
     
@@ -36,8 +33,7 @@ public class VGSTextField: VGSView {
         get {
             return textView.text
         }
-        set {
-        }
+        set { }
     }
     
     // MARK: - init
@@ -49,6 +45,10 @@ public class VGSTextField: VGSView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         mainInitialization()
+    }
+    
+    deinit {
+        configuration?.vgs?.unregisterTextFields(textField: [self])
     }
     
     // MARK: - private API
@@ -72,9 +72,8 @@ public class VGSTextField: VGSView {
     }
 }
 
-// Text field delegate
+// MARK: - Text field delegate
 extension VGSTextField: UITextViewDelegate {
-    
     public func textViewDidBeginEditing(_ textView: UITextView) { }
     
     public func textViewDidChangeSelection(_ textView: UITextView) {
@@ -86,34 +85,14 @@ extension VGSTextField: UITextViewDelegate {
     }
     
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
         // for paste string
         // need to check have digits or characters
-        
-        // format input
-//        if let textPattern = formatter?.textPattern, let currentText = textView.text {
-//            
-//            let formatter0 = TextInputFormatter(textPattern: textPattern)
-//            let result = formatter0.formatInput(currentText: currentText,
-//                                                range: range,
-//                                                replacementString: text)
-//            
-//            textView.text = result.formattedText
-//            textView.setCursorLocation(result.caretBeginOffset)
-//            
-////            let startPosition: UITextPosition = textView.beginningOfDocument
-////            let endPosition: UITextPosition = textView.endOfDocument
-////            let selectedRange: UITextRange? = textView.selectedTextRange
-////
-////            let newPosition = startPosition
-////            textView.selectedTextRange = textView.textRange(from: newPosition, to: newPosition)
-//        }
         
         return true
     }
 }
 
-// Text Field security path
+// MARK: - Text Field security path
 extension VGSTextField {
     private func checkObservation() {
         if textView.observationInfo != nil {

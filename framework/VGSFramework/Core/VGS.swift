@@ -19,13 +19,13 @@ public class VGS {
         apiClient = APIClient(baseURL: url)
     }
     
-    public func registerTextFields(textField objects: [VGSTextField]) {
+    func registerTextFields(textField objects: [VGSTextField]) {
         objects.forEach { [weak self] tf in
             self?.storage.addElement(tf)
         }
     }
     
-    public func unregisterTextFields(textField objects: [VGSTextField]) {
+    func unregisterTextFields(textField objects: [VGSTextField]) {
         objects.forEach { [weak self] tf in
             self?.storage.removeElement(tf)
         }
@@ -40,9 +40,9 @@ extension VGS {
         
         let elements = storage.elements
         
-        let allKeys = elements.compactMap( { $0.model?.alias } )
+        let allKeys = elements.compactMap( { $0.configuration?.alias } )
         allKeys.forEach { key in
-            if let value = elements.filter( { $0.model?.alias == key } ).first {
+            if let value = elements.filter( { $0.configuration?.alias == key } ).first {
                 body[key] = value.text
             } else {
                 fatalError("Wrong key: \(key)")
@@ -59,13 +59,13 @@ extension VGS {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
                     
-                    if let element = elements.filter( { $0.model?.alias == key } ).first {
-                        element.model?.token = json?[key] as? String
+                    if let element = elements.filter( { $0.configuration?.alias == key } ).first {
+                        element.configuration?.token = json?[key] as? String
                     }
                 })
             }
             
-            print(">>> \(String(describing: elements.compactMap( { $0.model?.token } )))")
+            print(">>> \(String(describing: elements.compactMap( { $0.configuration?.token } )))")
             block(json, nil)
         }
     }

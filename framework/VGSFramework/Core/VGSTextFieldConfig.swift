@@ -8,15 +8,16 @@
 
 import Foundation
 
-public class VGSTextFieldModel {
+public class VGSTextFieldConfig {
     private(set) var alias: String!
+    private(set) weak var vgs: VGS?
     
     public var token: String?
     public var placeholder: String?
     public var type: FieldType = .none
     
-    
-    public init(alias name: String, placeholder text: String = "", textField type: FieldType = .none) {
+    public init(_ vgs: VGS, alias name: String, placeholder text: String = "", textField type: FieldType = .none) {
+        self.vgs = vgs
         self.alias = name
         self.placeholder = text
         self.type = type
