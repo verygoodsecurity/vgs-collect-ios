@@ -33,17 +33,3 @@ public enum FieldType: Int, CaseIterable {
         }
     }
 }
-
-public enum ButtonType: Int, CaseIterable {
-    case none
-    case sendButton
-    
-    var defaultTitle: String {
-        switch self {
-        case .sendButton:
-            return "Send"
-        default:
-            return ""
-        }
-    }
-}
