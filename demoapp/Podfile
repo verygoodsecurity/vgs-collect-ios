@@ -6,7 +6,7 @@ target 'demoapp' do
   pod 'SnapKit'
   # Pods for demoapp
 
-  pod 'VGSFramework', :path => '../framework'
+  pod 'VGSFramework', :path => '../'
 
   target 'demoappTests' do
     inherit! :search_paths
