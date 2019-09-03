@@ -56,7 +56,6 @@ public class VGSTextField: VGSView {
     // MARK: - private API
     private func mainInitialization() {
         // text view
-//        textView.isUserInteractionEnabled = false
         textView.delegate = self
         textView.keyboardDismissMode = .onDrag
         addSubview(textView)
@@ -65,6 +64,7 @@ public class VGSTextField: VGSView {
         }
         
         // placeholder
+        placeholderLabel.alpha = 0.6
         addSubview(placeholderLabel)
         placeholderLabel.font = textView.font
         placeholderLabel.isUserInteractionEnabled = false

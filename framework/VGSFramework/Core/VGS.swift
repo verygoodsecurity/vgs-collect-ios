@@ -15,8 +15,9 @@ public class VGS {
     public var observeTextField: ((_ textField: VGSTextField) -> Void)?
     public var observeForm: ((_ form:[VGSTextField]) -> Void)?
     
-    public init(upstreamHost url: String) {
-        guard let url = URL(string: url) else {
+    public init(tnt id: String, environment: Environment = .sandbox) {
+        let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
+        guard let url = URL(string: strUrl) else {
             fatalError("Upstream Host is broken. Can't to converting to URL!")
         }
         apiClient = APIClient(baseURL: url)
@@ -41,7 +42,7 @@ extension VGS {
         storage.elements.forEach { textField in
             textField.focusStatus = false
         }
-        // set ficus for textField
+        // set focus for textField
         textField.focusStatus = true
         // call observers
         observeForm?(storage.elements)

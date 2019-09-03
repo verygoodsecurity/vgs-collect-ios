@@ -8,12 +8,17 @@
 
 import UIKit
 
+public enum Environment: String {
+    case sandbox = "SANDBOX"
+    case live = "live"
+}
+
 public enum FieldType: Int, CaseIterable {
     case none
     case cardNumberField
     case dateExpirationField
     case cvvField
-    case nameHolderField
+    case cardHolderNameField
     
     var isSecureDate: Bool {
         switch self {

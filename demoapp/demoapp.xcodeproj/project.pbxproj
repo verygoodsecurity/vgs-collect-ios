@@ -180,6 +180,7 @@
 				FD12B9712304616C00B670DD /* Frameworks */,
 				FD12B9722304616C00B670DD /* Resources */,
 				F0379648B41E1EC4D4178EA4 /* [CP] Embed Pods Frameworks */,
+				FD3B25F2231E4CF700A2CD0F /* Increment Version */,
 			);
 			buildRules = (
 			);
@@ -381,6 +382,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demoapp/Pods-demoapp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FD3B25F2231E4CF700A2CD0F /* Increment Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

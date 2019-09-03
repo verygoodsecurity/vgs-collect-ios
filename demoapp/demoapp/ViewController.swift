@@ -10,16 +10,19 @@ import UIKit
 import VGSFramework
 
 class ViewController: UIViewController {
-    @IBOutlet weak var consoleLabel: UILabel!
-
+    var consoleLabel: UILabel!
+    var consoleMessage: String = "" {
+        didSet {
+            consoleLabel.text = consoleMessage
+        }
+    }
     // VGS Core
-    var vgs: VGS = VGS(upstreamHost: "https://tntva5wfdrp.SANDBOX.verygoodproxy.com")
-    
+    var vgs = VGS(tnt: "tntva5wfdrp", environment: .sandbox)
     // VGS Elements
     var cardNumber = VGSTextField()
     var expCardDate = VGSTextField()
     var cvvCardNum = VGSTextField()
-    var nameHolder = VGSTextField()
+    var cardHolderName = UITextField(frame: .zero)
     
     // Button
     var sendButton = UIButton()
@@ -34,28 +37,24 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // chack jailbroke
         if VGS.isJailbroken() {
-            print("Devise is Jailbroken")
+            print("Device is Jailbroken")
         }
         // Observe data
-        vgs.observeForm = { form in
-            print("--------------------------------------")
-            form.forEach({ textField in
-                let name = textField.configuration?.alias ?? "no name"
-                let isEmpty = textField.isEmpty
-                print("TextField: \(name) isEmpty: \(isEmpty)")
-                // set gteen border if tf not empty
-                textField.setGreenBorder(!isEmpty)
-            })
+        vgs.observeForm = { [weak self] form in
+            
+            self?.consoleMessage = ""
             
             form.forEach({ textField in
                 let name = textField.configuration?.alias ?? "no name"
-                let isFocused = textField.isFocused
-                print("TextField: \(name) isFocused: \(isFocused)")
                 
-                textField.setBorderBolder(isFocused)
+                let isEmpty = textField.isEmpty
+                let isFocused = textField.isFocused
+                
+                self?.consoleMessage.append("\n\(name)\tisEmpty: \(isEmpty), isFocused: \(isFocused)\n")
+                
+                textField.setGreenBorder(!isEmpty)
             })
         }
-        
         setupElements()
 //        uncomment for testing
 //        turnOnObservation()
@@ -63,22 +62,26 @@ class ViewController: UIViewController {
     
     // MARK: - Init UI
     private func setupUI() {
+        // init card holder name
+        cardHolderName.layer.borderWidth = 1
+        cardHolderName.layer.borderColor = UIColor.lightGray.cgColor
+        cardHolderName.layer.cornerRadius = 4
+        cardHolderName.placeholder = " card holder name"
+        view.addSubview(cardHolderName)
+        cardHolderName.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(55)
+        }
+        
         // init card number text field
         view.addSubview(cardNumber)
         cardNumber.snp.makeConstraints { make in
             make.left.equalTo(25)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
-            make.top.equalTo(155)
-        }
-        
-        // init name holder
-        view.addSubview(nameHolder)
-        nameHolder.snp.makeConstraints { make in
-            make.left.equalTo(25)
-            make.height.equalTo(30)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(cardNumber.snp.bottom).offset(10)
+            make.top.equalTo(cardHolderName.snp.bottom).offset(10)
         }
         
         // init expiration card date
@@ -87,7 +90,7 @@ class ViewController: UIViewController {
             make.left.equalTo(25)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
-            make.top.equalTo(nameHolder.snp.bottom).offset(10)
+            make.top.equalTo(cardNumber.snp.bottom).offset(10)
         }
         
         // init CVV card number
@@ -111,13 +114,44 @@ class ViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(cvvCardNum.snp.bottom).offset(35)
         }
+        
+        ///
+        consoleLabel = UILabel(frame: .zero)
+        consoleLabel.text = ""
+        consoleLabel.numberOfLines = 0
+        consoleLabel.contentMode = .topLeft
+        consoleLabel.backgroundColor = .lightGray
+        consoleLabel.textColor = .black
+        view.addSubview(consoleLabel)
+        consoleLabel.snp.makeConstraints { make in
+            make.top.equalTo(sendButton.snp.bottom).offset(35)
+            make.left.equalTo(25)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().priority(250)
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        consoleLabel.addGestureRecognizer(tapGesture)
+        consoleLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc
+    func hideKeyboard() {
+        view.endEditing(true)
     }
     
     private func setupElements() {
-        cardNumber.configuration = VGSTextFieldConfig(vgs, alias: "cardNumber", textField: .cardNumberField, placeholder: "card number")
-        expCardDate.configuration = VGSTextFieldConfig(vgs, alias: "expDate", textField: .dateExpirationField, placeholder: "exp date")
-        nameHolder.configuration = VGSTextFieldConfig(vgs, alias: "nameHolder", textField: .nameHolderField, placeholder: "Name Holder")
-        cvvCardNum.configuration = VGSTextFieldConfig(vgs, alias: "cvvNum", textField: .cvvField, placeholder: "cvv")
+        cardNumber.configuration = VGSTextFieldConfig(vgs, alias: "cardNumber",
+                                                      textField: .cardNumberField,
+                                                      placeholder: "card number")
+        
+        expCardDate.configuration = VGSTextFieldConfig(vgs, alias: "expDate",
+                                                       textField: .dateExpirationField,
+                                                       placeholder: "exp date")
+        
+        cvvCardNum.configuration = VGSTextFieldConfig(vgs, alias: "cvvNum",
+                                                      textField: .cvvField,
+                                                      placeholder: "cvv")
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
