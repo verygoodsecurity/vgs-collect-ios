@@ -16,18 +16,18 @@ class ViewController: UIViewController {
             consoleLabel.text = consoleMessage
         }
     }
-    // VGS Core
-    var vgs = VGS(tnt: "tntva5wfdrp", environment: .sandbox)
-    // VGS Elements
+    // VGS Form
+    var vgsForm = VGSForm(tnt: "tntva5wfdrp", environment: .sandbox)
+    // VGS UI Elements
     var cardNumber = VGSTextField()
     var expCardDate = VGSTextField()
     var cvvCardNum = VGSTextField()
     var cardHolderName = UITextField(frame: .zero)
     
-    // Button
+    // the Send data Button
     var sendButton = UIButton()
     
-    // MARK: - Life circle methods
+    // MARK: - Life cycle methods
     override func loadView() {
         super.loadView()
         setupUI()
@@ -35,12 +35,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // chack jailbroke
-        if VGS.isJailbroken() {
+        // check if device is jailbroken
+        if VGSForm.isJailbroken() {
             print("Device is Jailbroken")
         }
         // Observe data
-        vgs.observeForm = { [weak self] form in
+        vgsForm.observeForm = { [weak self] form in
             
             self?.consoleMessage = ""
             
@@ -141,15 +141,15 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        cardNumber.configuration = VGSTextFieldConfig(vgs, alias: "cardNumber",
+        cardNumber.configuration = VGSTextFieldConfig(vgsForm, alias: "cardNumber",
                                                       textField: .cardNumberField,
                                                       placeholder: "card number")
         
-        expCardDate.configuration = VGSTextFieldConfig(vgs, alias: "expDate",
+        expCardDate.configuration = VGSTextFieldConfig(vgsForm, alias: "expDate",
                                                        textField: .dateExpirationField,
                                                        placeholder: "exp date")
         
-        cvvCardNum.configuration = VGSTextFieldConfig(vgs, alias: "cvvNum",
+        cvvCardNum.configuration = VGSTextFieldConfig(vgsForm, alias: "cvvNum",
                                                       textField: .cvvField,
                                                       placeholder: "cvv")
         
@@ -165,12 +165,20 @@ extension ViewController {
         consoleLabel.text = "Processing..."
         
         // hide kayboard
-        view.endEditing(true)
+        hideKeyboard()
+        
+        var data = [String: Any]()
+        data["cardHolderName"] = cardHolderName.text
         
         // send data
-        vgs.sendData(completion: { [weak self] (json, error) in
+        vgsForm.sendData(data: data, completion: { [weak self] (json, error) in
             if error == nil, let json = json {
-                self?.consoleLabel.text = json.description
+                var strJson = json.description
+                strJson = strJson.replacingOccurrences(of: "[", with: "[\n")
+                strJson = strJson.replacingOccurrences(of: "]", with: "\n]")
+                strJson = strJson.replacingOccurrences(of: ",", with: ",\n")
+                self?.consoleLabel.text = strJson
+                
             } else {
                 self?.consoleLabel.text = "Something went wrong!"
                 print("Error: \(String(describing: error?.localizedDescription))")

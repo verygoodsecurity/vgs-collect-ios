@@ -9,7 +9,7 @@
 import Foundation
 
 public class VGSTextFieldConfig {
-    private(set) weak var vgs: VGS?
+    private(set) weak var vgsForm: VGSForm?
     
     public private(set) var alias: String!
     
@@ -17,8 +17,8 @@ public class VGSTextFieldConfig {
     public var placeholder: String?
     public var type: FieldType = .none
     
-    public init(_ vgs: VGS, alias name: String, textField type: FieldType = .none, placeholder text: String = "") {
-        self.vgs = vgs
+    public init(_ vgs: VGSForm, alias name: String, textField type: FieldType = .none, placeholder text: String = "") {
+        self.vgsForm = vgs
         self.alias = name
         self.placeholder = text
         self.type = type

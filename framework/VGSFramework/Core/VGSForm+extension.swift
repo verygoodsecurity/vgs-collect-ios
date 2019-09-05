@@ -1,5 +1,5 @@
 //
-//  VGS+extension.swift
+//  VGSForm+extension.swift
 //  VGSFramework
 //
 //  Created by Vitalii Obertynskyi on 9/2/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension VGS {
+extension VGSForm {
     public static func isJailbroken() -> Bool {
         
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return false }

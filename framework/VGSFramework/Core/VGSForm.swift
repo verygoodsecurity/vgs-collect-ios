@@ -1,5 +1,5 @@
 //
-//  VGS.swift
+//  VGSForm.swift
 //  VGSFramework
 //
 //  Created by Vitalii Obertynskyi on 8/26/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class VGS {
+public class VGSForm {
     private let apiClient: APIClient
     private let storage = Storage()
     
@@ -36,7 +36,7 @@ public class VGS {
     }
 }
 
-extension VGS {
+extension VGSForm {
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
         storage.elements.forEach { textField in
@@ -51,8 +51,8 @@ extension VGS {
 }
 
 // MARK: - sending data
-extension VGS {
-    public func sendData(completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+extension VGSForm {
+    public func sendData(data: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         var body = BodyData()
         
@@ -67,7 +67,11 @@ extension VGS {
             }
         }
         
-        apiClient.sendSaveCardRequest(value: body) { (json, error) in
+        if data?.count != 0 {
+            body["data"] = data?.description
+        }
+        
+        apiClient.sendRequest(value: body) { (json, error) in
             
             if let error = error {
                 print("Error: \(String(describing: error.localizedDescription))")

@@ -13,14 +13,13 @@ public typealias JsonData = [String: Any]
 public typealias BodyData = [String: Any]
 
 class APIClient {
-    
     private let baseURL: URL!
     
     init(baseURL url: URL) {
         baseURL = url
     }
     
-    func sendSaveCardRequest(value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    func sendRequest(value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         let headers = [
             "Content-Type": "application/json",

@@ -9,6 +9,7 @@
 import UIKit
 import VGSFramework
 
+// MARK: - Extension for styling text fields
 extension VGSTextField {
     func setGreenBorder(_ flag: Bool) {
         layer.borderColor = flag ? UIColor.myGreen.cgColor : UIColor.lightGray.cgColor
@@ -19,6 +20,7 @@ extension VGSTextField {
     }
 }
 
+// MARK: - Correct green for this demo
 extension UIColor {
     @nonobjc class var myGreen: UIColor {
         return UIColor(red: 0.235, green: 0.698, blue: 0.498, alpha: 1.00)

@@ -25,7 +25,7 @@ public class VGSTextField: VGSView {
             textView.isSecureTextEntry = config.type.isSecureDate
             textView.keyboardType = config.type.keyboardType
             
-            if let vgs = config.vgs {
+            if let vgs = config.vgsForm {
                 vgs.registerTextFields(textField: [self])
             }
         }
@@ -50,7 +50,7 @@ public class VGSTextField: VGSView {
     }
     
     deinit {
-        configuration?.vgs?.unregisterTextFields(textField: [self])
+        configuration?.vgsForm?.unregisterTextFields(textField: [self])
     }
     
     // MARK: - private API
@@ -72,16 +72,21 @@ public class VGSTextField: VGSView {
         placeholderLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
         }
+        
+        // tap gesture for update focus state
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(focusOn))
+        textView.addGestureRecognizer(tapGesture)
     }
 }
 
 // MARK: - change focus here
 extension VGSTextField {
-    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        textView.becomeFirstResponder()
+    @objc
+    private func focusOn() {
         // change status
-        configuration?.vgs?.updateStatus(for: self)
+        textView.becomeFirstResponder()
+        configuration?.vgsForm?.updateStatus(for: self)
     }
 }
 
@@ -91,7 +96,7 @@ extension VGSTextField: UITextViewDelegate {
         // show/hide placeholder label
         placeholderLabel.isHidden = !isEmpty
         // send status data
-        configuration?.vgs?.updateStatus(for: self)
+        configuration?.vgsForm?.updateStatus(for: self)
     }
     
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

@@ -9,7 +9,7 @@
 import UIKit
 
 public enum Environment: String {
-    case sandbox = "SANDBOX"
+    case sandbox = "sandbox"
     case live = "live"
 }
 
