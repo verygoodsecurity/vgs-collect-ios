@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         if VGSForm.isJailbroken() {
             print("Device is Jailbroken")
         }
-        // Observe data
+        // Observing data
         vgsForm.observeForm = { [weak self] form in
             
             self?.consoleMessage = ""
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
             make.top.equalTo(55)
         }
         
-        // init card number text field
+        // setup card number text field
         view.addSubview(cardNumber)
         cardNumber.snp.makeConstraints { make in
             make.left.equalTo(25)
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
             make.top.equalTo(cardHolderName.snp.bottom).offset(10)
         }
         
-        // init expiration card date
+        // setup expiration card date
         view.addSubview(expCardDate)
         expCardDate.snp.makeConstraints { make in
             make.left.equalTo(25)
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
             make.top.equalTo(cardNumber.snp.bottom).offset(10)
         }
         
-        // init CVV card number
+        // setup CVV card number
         view.addSubview(cvvCardNum)
         cvvCardNum.snp.makeConstraints { make in
             make.left.equalTo(25)
