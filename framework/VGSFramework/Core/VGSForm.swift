@@ -12,9 +12,22 @@ public class VGSForm {
     private let apiClient: APIClient
     private let storage = Storage()
     
+    /// Observing text fields separately
     public var observeTextField: ((_ textField: VGSTextField) -> Void)?
+    
+    /// Observing text fileds for all form
     public var observeForm: ((_ form:[VGSTextField]) -> Void)?
     
+    /// set custom headers
+    public var customHeaders: [String: String]? {
+        didSet {
+            if customHeaders != oldValue {
+                apiClient.customHeader = customHeaders
+            }
+        }
+    }
+    
+    // MARK: - Initialzation
     public init(tnt id: String, environment: Environment = .sandbox) {
         let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
         guard let url = URL(string: strUrl) else {

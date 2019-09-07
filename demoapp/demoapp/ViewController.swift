@@ -39,7 +39,13 @@ class ViewController: UIViewController {
         if VGSForm.isJailbroken() {
             print("Device is Jailbroken")
         }
-        // Observing data
+        
+        // set custom headers
+        vgsForm.customHeaders = [
+            "my custome header": "some custom data"
+        ]
+        
+        // Observing text fields
         vgsForm.observeForm = { [weak self] form in
             
             self?.consoleMessage = ""
@@ -141,17 +147,23 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        cardNumber.configuration = VGSTextFieldConfig(vgsForm, alias: "cardNumber",
-                                                      textField: .cardNumberField,
-                                                      placeholder: "card number")
+        cardNumber.configuration = VGSTextFieldConfig(form: vgsForm,
+                                                      alias: "cardNumber",
+                                                      isRequired: true,
+                                                      textFieldType: .cardNumberField,
+                                                      placeholderText: "card number")
         
-        expCardDate.configuration = VGSTextFieldConfig(vgsForm, alias: "expDate",
-                                                       textField: .dateExpirationField,
-                                                       placeholder: "exp date")
+        expCardDate.configuration = VGSTextFieldConfig(form: vgsForm,
+                                                       alias: "expDate",
+                                                       isRequired: true,
+                                                       textFieldType: .dateExpirationField,
+                                                       placeholderText: "exp date")
         
-        cvvCardNum.configuration = VGSTextFieldConfig(vgsForm, alias: "cvvNum",
-                                                      textField: .cvvField,
-                                                      placeholder: "cvv")
+        cvvCardNum.configuration = VGSTextFieldConfig(form: vgsForm,
+                                                      alias: "cvvNum",
+                                                      isRequired: true,
+                                                      textFieldType: .cvvField,
+                                                      placeholderText: "cvv")
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
@@ -206,3 +218,6 @@ extension ViewController {
         }
     }
 }
+
+
+

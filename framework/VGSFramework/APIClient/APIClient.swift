@@ -15,15 +15,26 @@ public typealias BodyData = [String: Any]
 class APIClient {
     private let baseURL: URL!
     
+    var customHeader: [String: String]?
+    
     init(baseURL url: URL) {
         baseURL = url
     }
     
     func sendRequest(value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
-        let headers = [
+        var headers = [
             "Content-Type": "application/json",
+            "vgs-client": "sourse=iosSDK"
         ]
+        
+        // Add custom headers if need
+        if let customerHeaders = customHeader, customerHeaders.count > 0 {
+            customerHeaders.keys.forEach({ (key) in
+                headers[key] = customerHeaders[key]
+            })
+        }
+        
         // JSON Body
         let body: [String : Any] = value
         // Path
