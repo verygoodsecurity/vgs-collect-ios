@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         cardHolderName.layer.borderWidth = 1
         cardHolderName.layer.borderColor = UIColor.lightGray.cgColor
         cardHolderName.layer.cornerRadius = 4
-        cardHolderName.placeholder = " card holder name"
+        cardHolderName.placeholder = "card holder name"
         view.addSubview(cardHolderName)
         cardHolderName.snp.makeConstraints { make in
             make.left.equalTo(25)
@@ -147,23 +147,26 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        cardNumber.configuration = VGSTextFieldConfig(form: vgsForm,
-                                                      alias: "cardNumber",
-                                                      isRequired: true,
-                                                      textFieldType: .cardNumberField,
-                                                      placeholderText: "card number")
+        let cardConfiguration = VGSTextFieldConfig(form: vgsForm, alias: "cardNumber")
+        cardConfiguration.placeholder = "card number"
+        cardConfiguration.isRequired = true
+        cardConfiguration.type = .cardNumber
         
-        expCardDate.configuration = VGSTextFieldConfig(form: vgsForm,
-                                                       alias: "expDate",
-                                                       isRequired: true,
-                                                       textFieldType: .dateExpirationField,
-                                                       placeholderText: "exp date")
+        cardNumber.configuration = cardConfiguration
         
-        cvvCardNum.configuration = VGSTextFieldConfig(form: vgsForm,
-                                                      alias: "cvvNum",
-                                                      isRequired: true,
-                                                      textFieldType: .cvvField,
-                                                      placeholderText: "cvv")
+        let expDateConfiguration = VGSTextFieldConfig(form: vgsForm, alias: "expDate")
+        expDateConfiguration.placeholder = "exp date"
+        expDateConfiguration.isRequired = true
+        expDateConfiguration.type = .dateExpiration
+        
+        expCardDate.configuration = expDateConfiguration
+        
+         let cvvConfiguration = VGSTextFieldConfig(form: vgsForm, alias: "cvvNum")
+        cvvConfiguration.placeholder = "cvv"
+        cvvConfiguration.isRequired = true
+        cvvConfiguration.type = .cvv
+        
+        cvvCardNum.configuration = cvvConfiguration
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
@@ -179,6 +182,7 @@ extension ViewController {
         // hide kayboard
         hideKeyboard()
         
+        // send extra data
         var data = [String: Any]()
         data["cardHolderName"] = cardHolderName.text
         

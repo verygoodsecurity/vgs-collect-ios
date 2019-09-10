@@ -15,14 +15,27 @@ public enum Environment: String {
 
 public enum FieldType: Int, CaseIterable {
     case none
-    case cardNumberField
-    case dateExpirationField
-    case cvvField
-    case cardHolderNameField
+    case cardNumber
+    case dateExpiration
+    case cvv
+    case cardHolderName
+    
+    var formatPattern: String {
+        switch self {
+        case .cardNumber:
+            return "#### #### #### ####"
+        case .cvv:
+            return "###"
+        case .dateExpiration:
+            return "##/##"
+        default:
+            return ""
+        }
+    }
     
     var isSecureDate: Bool {
         switch self {
-        case .cardNumberField, .cvvField:
+        case .cvv:
             return true
         default:
             return false
@@ -31,7 +44,7 @@ public enum FieldType: Int, CaseIterable {
     
     var keyboardType: UIKeyboardType{
         switch self {
-        case .cardNumberField, .cvvField, .dateExpirationField:
+        case .cardNumber, .cvv, .dateExpiration:
             return .decimalPad
         default:
             return .alphabet

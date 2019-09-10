@@ -15,19 +15,12 @@ public class VGSTextFieldConfig {
     
     public var token: String?
     public var isRequired: Bool = false
-    public var placeholder: String?
+    public var placeholder: String = ""
     public var type: FieldType = .none
+    public var formatPattern: String = ""
     
-    public init(form vgs: VGSForm,
-                alias: String,
-                isRequired: Bool = false,
-                textFieldType: FieldType = .none,
-                placeholderText: String = "") {
-        
+    public init(form vgs: VGSForm, alias: String) {
         self.vgsForm = vgs
         self.alias = alias
-        self.isRequired = isRequired
-        self.placeholder = placeholderText
-        self.type = textFieldType
     }
 }

@@ -17,10 +17,10 @@
 		FD05F94C2316CE5A000EAF52 /* VGSFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9422316CE5A000EAF52 /* Validation.swift */; };
 		FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9442316CE5A000EAF52 /* VGSTextField.swift */; };
-		FD05F9512316CE5A000EAF52 /* VGSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9462316CE5A000EAF52 /* VGSView.swift */; };
 		FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */; };
 		FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
-		FD3B25F1231D640500A2CD0F /* VGS+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3B25F0231D640500A2CD0F /* VGS+extension.swift */; };
+		FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
+		FD5FC37B23268FD200C98D25 /* MaskedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5FC37A23268FD200C98D25 /* MaskedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +49,13 @@
 		FD05F9402316CE5A000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD05F9422316CE5A000EAF52 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		FD05F9442316CE5A000EAF52 /* VGSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextField.swift; sourceTree = "<group>"; };
-		FD05F9462316CE5A000EAF52 /* VGSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSView.swift; sourceTree = "<group>"; };
 		FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFrameworkTests.swift; sourceTree = "<group>"; };
 		FD05F9542316CE64000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD12B9AF2304619100B670DD /* VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD3B25F0231D640500A2CD0F /* VGS+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGS+extension.swift"; sourceTree = "<group>"; };
-		FD83A400230AEA330078BB60 /* VGSFramework.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGSFramework.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSForm+extension.swift"; sourceTree = "<group>"; };
+		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		FD5FC37A23268FD200C98D25 /* MaskedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +105,7 @@
 				FD05F93D2316CE5A000EAF52 /* APIClient */,
 				FD05F9382316CE5A000EAF52 /* Core */,
 				FD05F9402316CE5A000EAF52 /* Info.plist */,
+				FD5FC37923268FD200C98D25 /* Mask */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
 				FD05F9412316CE5A000EAF52 /* Validation */,
 				FD05F93F2316CE5A000EAF52 /* VGSFramework.h */,
@@ -118,7 +119,7 @@
 				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
 				FD05F9392316CE5A000EAF52 /* Storage.swift */,
 				FD05F93B2316CE5A000EAF52 /* VGSForm.swift */,
-				FD3B25F0231D640500A2CD0F /* VGS+extension.swift */,
+				FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */,
 				FD05F93C2316CE5A000EAF52 /* VGSTextFieldConfig.swift */,
 			);
 			path = Core;
@@ -144,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
-				FD05F9462316CE5A000EAF52 /* VGSView.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -161,12 +161,12 @@
 		FD12B9A52304619100B670DD = {
 			isa = PBXGroup;
 			children = (
+				FD5FC377232674BF00C98D25 /* Package.swift */,
 				FD05F9372316CE5A000EAF52 /* VGSFramework */,
 				FD05F9522316CE64000EAF52 /* VGSFrameworkTests */,
 				C3997B777D76689537B200F8 /* Frameworks */,
 				DF975433A466D40E11FAE732 /* Pods */,
 				FD12B9B02304619100B670DD /* Products */,
-				FD83A400230AEA330078BB60 /* VGSFramework.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,6 +177,14 @@
 				FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FD5FC37923268FD200C98D25 /* Mask */ = {
+			isa = PBXGroup;
+			children = (
+				FD5FC37A23268FD200C98D25 /* MaskedTextField.swift */,
+			);
+			path = Mask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,13 +346,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD05F94A2316CE5A000EAF52 /* VGSTextFieldConfig.swift in Sources */,
-				FD05F9512316CE5A000EAF52 /* VGSView.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGSForm.swift in Sources */,
-				FD3B25F1231D640500A2CD0F /* VGS+extension.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FD05F94B2316CE5A000EAF52 /* APIClient.swift in Sources */,
+				FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */,
 				FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */,
+				FD5FC37B23268FD200C98D25 /* MaskedTextField.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

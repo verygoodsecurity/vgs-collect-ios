@@ -14,6 +14,6 @@ public extension VGSTextField {
     }
     
     override var isFocused: Bool {
-        return textView.isFirstResponder
+        return textField.isFirstResponder
     }
 }

@@ -9,10 +9,8 @@
 import UIKit
 import SnapKit
 
-public class VGSTextField: VGSView {
-    var textView = UITextView(frame: .zero)
-    var placeholderLabel = UILabel(frame: .zero)
-    
+public class VGSTextField: UIView {
+    var textField = MaskedTextField(frame: .zero)
     var focusStatus: Bool = false
     
     public var configuration: VGSTextFieldConfig? {
@@ -21,9 +19,15 @@ public class VGSTextField: VGSView {
                 return
             }
             
-            placeholderLabel.text = config.placeholder
-            textView.isSecureTextEntry = config.type.isSecureDate
-            textView.keyboardType = config.type.keyboardType
+            textField.placeholder = config.placeholder
+            textField.isSecureTextEntry = config.type.isSecureDate
+            textField.keyboardType = config.type.keyboardType
+            
+            if config.formatPattern.count != 0 {
+                textField.formatPattern = config.formatPattern
+            } else {
+                textField.formatPattern = config.type.formatPattern
+            }
             
             if let vgs = config.vgsForm {
                 vgs.registerTextFields(textField: [self])
@@ -33,7 +37,7 @@ public class VGSTextField: VGSView {
     
     var text: String? {
         get {
-            return textView.text
+            return textField.text
         }
         set { }
     }
@@ -55,28 +59,17 @@ public class VGSTextField: VGSView {
     
     // MARK: - private API
     private func mainInitialization() {
+        // set main style for view
+        mainStyle()
         // text view
-        textView.delegate = self
-        textView.keyboardDismissMode = .onDrag
-        addSubview(textView)
-        textView.snp.makeConstraints { make in
+        addSubview(textField)
+        textField.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        // placeholder
-        placeholderLabel.alpha = 0.6
-        addSubview(placeholderLabel)
-        placeholderLabel.font = textView.font
-        placeholderLabel.isUserInteractionEnabled = false
-        placeholderLabel.textColor = .lightGray
-        placeholderLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
-        }
-        
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(focusOn))
-        textView.addGestureRecognizer(tapGesture)
+        textField.addGestureRecognizer(tapGesture)
     }
 }
 
@@ -85,32 +78,26 @@ extension VGSTextField {
     @objc
     private func focusOn() {
         // change status
-        textView.becomeFirstResponder()
+        textField.becomeFirstResponder()
         configuration?.vgsForm?.updateStatus(for: self)
-    }
-}
-
-// MARK: - Text field delegate
-extension VGSTextField: UITextViewDelegate {    
-    public func textViewDidChange(_ textView: UITextView) {
-        // show/hide placeholder label
-        placeholderLabel.isHidden = !isEmpty
-        // send status data
-        configuration?.vgsForm?.updateStatus(for: self)
-    }
-    
-    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // for paste string
-        // need to check have digits or characters
-        return true
     }
 }
 
 // MARK: - Text Field security path
 extension VGSTextField {
     private func checkObservation() {
-        if textView.observationInfo != nil {
+        if textField.observationInfo != nil {
             // check observers here
         }
+    }
+}
+
+// MARK: - Main style for text field
+extension UIView {
+    func mainStyle() {
+        clipsToBounds = true
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 4
     }
 }
