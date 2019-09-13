@@ -25,7 +25,7 @@ class APIClient {
         // Add Headers
         var headers = [
             "Content-Type": "application/json",
-            "vgs-client": "sourse=iosSDK"
+            "vgs-client": "source=iosSDK"
         ]
         
         // Add custom headers if need
