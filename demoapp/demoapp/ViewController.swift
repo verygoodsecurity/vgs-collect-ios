@@ -54,16 +54,20 @@ class ViewController: UIViewController {
                 let name = textField.configuration?.alias ?? "no name"
                 
                 let isEmpty = textField.isEmpty
-                let isFocused = textField.isFocused
+                let isFocus = textField.isFocused
+                let isValid = textField.isValid
                 
-                self?.consoleMessage.append("\n\(name)\tisEmpty: \(isEmpty), isFocused: \(isFocused)\n")
+                self?.consoleMessage.append("\n")
+                self?.consoleMessage.append("\(name)\n")
+                self?.consoleMessage.append(" empty:\(isEmpty)")
+                self?.consoleMessage.append(" valid:\(isValid)")
+                self?.consoleMessage.append(" focus:\(isFocus ? "+":"-")")
+                self?.consoleMessage.append("\n")
                 
                 textField.setGreenBorder(!isEmpty)
             })
         }
         setupElements()
-//        uncomment for testing
-//        turnOnObservation()
     }
     
     // MARK: - Init UI
@@ -147,21 +151,21 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        let cardConfiguration = VGSTextFieldConfig(form: vgsForm, alias: "cardNumber")
+        let cardConfiguration = VGSConfiguration(form: vgsForm, alias: "cardNumber")
         cardConfiguration.placeholder = "card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
         
         cardNumber.configuration = cardConfiguration
         
-        let expDateConfiguration = VGSTextFieldConfig(form: vgsForm, alias: "expDate")
+        let expDateConfiguration = VGSConfiguration(form: vgsForm, alias: "expDate")
         expDateConfiguration.placeholder = "exp date"
         expDateConfiguration.isRequired = true
         expDateConfiguration.type = .dateExpiration
         
         expCardDate.configuration = expDateConfiguration
         
-         let cvvConfiguration = VGSTextFieldConfig(form: vgsForm, alias: "cvvNum")
+         let cvvConfiguration = VGSConfiguration(form: vgsForm, alias: "cvvNum")
         cvvConfiguration.placeholder = "cvv"
         cvvConfiguration.isRequired = true
         cvvConfiguration.type = .cvv
@@ -202,26 +206,3 @@ extension ViewController {
         })
     }
 }
-
-// MARK: - Check security
-extension ViewController {
-    func turnOnObservation() {
-        // Important thing
-        // using for lessing mistakes #keyPath(cardNumber.textView)
-        addObserver(self,
-                    forKeyPath: "cardNumber.text",
-                    options: [.old, .new],
-                    context: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == "cardNumber.text" {
-            
-            print(" We r hacked")
-        }
-    }
-}
-
-
-

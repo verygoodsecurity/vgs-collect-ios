@@ -13,7 +13,7 @@ public class VGSTextField: UIView {
     var textField = MaskedTextField(frame: .zero)
     var focusStatus: Bool = false
     
-    public var configuration: VGSTextFieldConfig? {
+    public var configuration: VGSConfiguration? {
         didSet {
             guard let config = configuration else {
                 return
@@ -29,11 +29,16 @@ public class VGSTextField: UIView {
                 textField.formatPattern = config.type.formatPattern
             }
             
+            // regex
+            validationModel.pattern = config.type.regex
+            
             if let vgs = config.vgsForm {
                 vgs.registerTextFields(textField: [self])
             }
         }
     }
+    
+    public var validationModel = VGSValidation.defaultValidationModel()
     
     var text: String? {
         get {
@@ -66,10 +71,18 @@ public class VGSTextField: UIView {
         textField.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        // delegate
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
         // tap gesture for update focus state
-        let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(focusOn))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func textFieldDidChange(_ sender: UITextField) {
+        // change status
+        configuration?.vgsForm?.updateStatus(for: self)
     }
 }
 
@@ -80,15 +93,6 @@ extension VGSTextField {
         // change status
         textField.becomeFirstResponder()
         configuration?.vgsForm?.updateStatus(for: self)
-    }
-}
-
-// MARK: - Text Field security path
-extension VGSTextField {
-    private func checkObservation() {
-        if textField.observationInfo != nil {
-            // check observers here
-        }
     }
 }
 

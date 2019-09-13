@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// The VGSForm class needed for collect all text filelds
 public class VGSForm {
     private let apiClient: APIClient
     private let storage = Storage()

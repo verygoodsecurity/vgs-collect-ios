@@ -12,14 +12,16 @@
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93A2316CE5A000EAF52 /* Enums.swift */; };
 		FD05F9492316CE5A000EAF52 /* VGSForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93B2316CE5A000EAF52 /* VGSForm.swift */; };
-		FD05F94A2316CE5A000EAF52 /* VGSTextFieldConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSTextFieldConfig.swift */; };
+		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94B2316CE5A000EAF52 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93E2316CE5A000EAF52 /* APIClient.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9422316CE5A000EAF52 /* Validation.swift */; };
 		FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9442316CE5A000EAF52 /* VGSTextField.swift */; };
 		FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */; };
 		FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
 		FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
+		FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */; };
+		FD1B44682327DB75009AA04A /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B44672327DB75009AA04A /* VGSValidation.swift */; };
+		FD572083232A2B8100684E6A /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD572082232A2B8100684E6A /* VGSValidation+type.swift */; };
 		FD5FC37B23268FD200C98D25 /* MaskedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5FC37A23268FD200C98D25 /* MaskedTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,17 +45,19 @@
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FD05F93B2316CE5A000EAF52 /* VGSForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSForm.swift; sourceTree = "<group>"; };
-		FD05F93C2316CE5A000EAF52 /* VGSTextFieldConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextFieldConfig.swift; sourceTree = "<group>"; };
+		FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSConfiguration.swift; sourceTree = "<group>"; };
 		FD05F93E2316CE5A000EAF52 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		FD05F93F2316CE5A000EAF52 /* VGSFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSFramework.h; sourceTree = "<group>"; };
 		FD05F9402316CE5A000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD05F9422316CE5A000EAF52 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		FD05F9442316CE5A000EAF52 /* VGSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextField.swift; sourceTree = "<group>"; };
 		FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFrameworkTests.swift; sourceTree = "<group>"; };
 		FD05F9542316CE64000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD12B9AF2304619100B670DD /* VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSForm+extension.swift"; sourceTree = "<group>"; };
+		FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+state.swift"; sourceTree = "<group>"; };
+		FD1B44672327DB75009AA04A /* VGSValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
+		FD572082232A2B8100684E6A /* VGSValidation+type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FD5FC37A23268FD200C98D25 /* MaskedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,7 +111,7 @@
 				FD05F9402316CE5A000EAF52 /* Info.plist */,
 				FD5FC37923268FD200C98D25 /* Mask */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
-				FD05F9412316CE5A000EAF52 /* Validation */,
+				FD572081232A2B5A00684E6A /* Validation */,
 				FD05F93F2316CE5A000EAF52 /* VGSFramework.h */,
 			);
 			path = VGSFramework;
@@ -120,7 +124,7 @@
 				FD05F9392316CE5A000EAF52 /* Storage.swift */,
 				FD05F93B2316CE5A000EAF52 /* VGSForm.swift */,
 				FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */,
-				FD05F93C2316CE5A000EAF52 /* VGSTextFieldConfig.swift */,
+				FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -133,18 +137,11 @@
 			path = APIClient;
 			sourceTree = "<group>";
 		};
-		FD05F9412316CE5A000EAF52 /* Validation */ = {
-			isa = PBXGroup;
-			children = (
-				FD05F9422316CE5A000EAF52 /* Validation.swift */,
-			);
-			path = Validation;
-			sourceTree = "<group>";
-		};
 		FD05F9432316CE5A000EAF52 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
+				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -179,6 +176,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FD572081232A2B5A00684E6A /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				FD1B44672327DB75009AA04A /* VGSValidation.swift */,
+				FD572082232A2B8100684E6A /* VGSValidation+type.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
 		FD5FC37923268FD200C98D25 /* Mask */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +216,7 @@
 				FD12B9AB2304619100B670DD /* Sources */,
 				FD12B9AC2304619100B670DD /* Frameworks */,
 				FD12B9AD2304619100B670DD /* Resources */,
+				FD57208023292F4900684E6A /* Documentation */,
 			);
 			buildRules = (
 			);
@@ -338,6 +345,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FD57208023292F4900684E6A /* Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Documentation;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "jazzy\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -345,15 +370,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD05F94A2316CE5A000EAF52 /* VGSTextFieldConfig.swift in Sources */,
+				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
+				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGSForm.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FD05F94B2316CE5A000EAF52 /* APIClient.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */,
-				FD05F94E2316CE5A000EAF52 /* Validation.swift in Sources */,
+				FD1B44682327DB75009AA04A /* VGSValidation.swift in Sources */,
 				FD5FC37B23268FD200C98D25 /* MaskedTextField.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
+				FD572083232A2B8100684E6A /* VGSValidation+type.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
