@@ -13,6 +13,7 @@ public class VGSConfiguration {
     
     public private(set) var alias: String!
     
+    public var validationModel: VGSValidation?
     public var token: String?
     public var isRequired: Bool = false
     public var placeholder: String = ""

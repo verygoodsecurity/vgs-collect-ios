@@ -72,9 +72,9 @@ extension VGSForm {
         
         let elements = storage.elements
         
-        let allKeys = elements.compactMap( { $0.configuration?.alias } )
+        let allKeys = elements.compactMap( { $0.alias } )
         allKeys.forEach { key in
-            if let value = elements.filter( { $0.configuration?.alias == key } ).first {
+            if let value = elements.filter( { $0.alias == key } ).first {
                 body[key] = value.text
             } else {
                 fatalError("Wrong key: \(key)")
@@ -95,8 +95,8 @@ extension VGSForm {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
                     
-                    if let element = elements.filter( { $0.configuration?.alias == key } ).first {
-                        element.configuration?.token = json?[key] as? String
+                    if let element = elements.filter( { $0.alias == key } ).first {
+                        element.token = json?[key] as? String
                     }
                 })
             }

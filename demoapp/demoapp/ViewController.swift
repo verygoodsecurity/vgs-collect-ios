@@ -51,20 +51,9 @@ class ViewController: UIViewController {
             self?.consoleMessage = ""
             
             form.forEach({ textField in
-                let name = textField.configuration?.alias ?? "no name"
-                
-                let isEmpty = textField.isEmpty
-                let isFocus = textField.isFocused
-                let isValid = textField.isValid
-                
+                                
+                self?.consoleMessage.append(textField.state.description)
                 self?.consoleMessage.append("\n")
-                self?.consoleMessage.append("\(name)\n")
-                self?.consoleMessage.append(" empty:\(isEmpty)")
-                self?.consoleMessage.append(" valid:\(isValid)")
-                self?.consoleMessage.append(" focus:\(isFocus ? "+":"-")")
-                self?.consoleMessage.append("\n")
-                
-                textField.setGreenBorder(!isEmpty)
             })
         }
         setupElements()

@@ -10,35 +10,14 @@ import UIKit
 import SnapKit
 
 public class VGSTextField: UIView {
+    private(set) weak var vgsForm: VGSForm?
     var textField = MaskedTextField(frame: .zero)
     var focusStatus: Bool = false
-    
-    public var configuration: VGSConfiguration? {
-        didSet {
-            guard let config = configuration else {
-                return
-            }
-            
-            textField.placeholder = config.placeholder
-            textField.isSecureTextEntry = config.type.isSecureDate
-            textField.keyboardType = config.type.keyboardType
-            
-            if config.formatPattern.count != 0 {
-                textField.formatPattern = config.formatPattern
-            } else {
-                textField.formatPattern = config.type.formatPattern
-            }
-            
-            // regex
-            validationModel.pattern = config.type.regex
-            
-            if let vgs = config.vgsForm {
-                vgs.registerTextFields(textField: [self])
-            }
-        }
-    }
-    
-    public var validationModel = VGSValidation.defaultValidationModel()
+    var isRequired: Bool = false
+    var fieldType: FieldType = .none
+    var validationModel = VGSValidation()
+    var alias: String!
+    var token: String?
     
     var text: String? {
         get {
@@ -47,7 +26,44 @@ public class VGSTextField: UIView {
         set { }
     }
     
+    public var configuration: VGSConfiguration? {
+        didSet {
+            
+            guard let configuration = configuration else {
+                return
+            }
+            
+            // config text field
+            alias = configuration.alias
+            isRequired = configuration.isRequired
+            fieldType = configuration.type
+            textField.placeholder = configuration.placeholder
+            textField.isSecureTextEntry = configuration.type.isSecureDate
+            textField.keyboardType = configuration.type.keyboardType
+            
+            if configuration.formatPattern.count != 0 {
+                textField.formatPattern = configuration.formatPattern
+            } else {
+                textField.formatPattern = configuration.type.formatPattern
+            }
+            
+            // regex
+            validationModel.pattern = configuration.type.regex
+            
+            if let vgs = configuration.vgsForm {
+                vgsForm = vgs
+                vgs.registerTextFields(textField: [self])
+            }
+        }
+    }
+    
     // MARK: - init
+    public init(configuration model: VGSConfiguration) {
+        super.init(frame: .zero)
+        mainInitialization()
+        configuration = model
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         mainInitialization()
@@ -59,7 +75,7 @@ public class VGSTextField: UIView {
     }
     
     deinit {
-        configuration?.vgsForm?.unregisterTextFields(textField: [self])
+        vgsForm?.unregisterTextFields(textField: [self])
     }
     
     // MARK: - private API
@@ -82,7 +98,7 @@ public class VGSTextField: UIView {
     @objc
     private func textFieldDidChange(_ sender: UITextField) {
         // change status
-        configuration?.vgsForm?.updateStatus(for: self)
+        vgsForm?.updateStatus(for: self)
     }
 }
 
@@ -92,7 +108,7 @@ extension VGSTextField {
     private func focusOn() {
         // change status
         textField.becomeFirstResponder()
-        configuration?.vgsForm?.updateStatus(for: self)
+        vgsForm?.updateStatus(for: self)
     }
 }
 

@@ -9,21 +9,26 @@
 import Foundation
 
 
-public extension VGSTextField {
-    var isEmpty: Bool {
-        return (text?.count == 0)
-    }
-    
+public extension VGSTextField {    
     var isValid: Bool {
         let str = textField.text ?? ""
-        return validationModel.isValid(str, type: configuration?.type)
-    }
-    
-    var isRequared: Bool {
-        return configuration?.isRequired ?? false
+        return validationModel.isValid(str, type: fieldType)
     }
     
     override var isFocused: Bool {
         return focusStatus
+    }
+    
+    var state: State {
+        var result: State
+        
+        switch fieldType {
+        case .cardNumber:
+            result = CardState(tf: self)
+        default:
+            result = State(tf: self)
+        }
+        
+        return result
     }
 }
