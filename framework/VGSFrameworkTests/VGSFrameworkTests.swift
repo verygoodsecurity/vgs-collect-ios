@@ -9,33 +9,31 @@
 import XCTest
 @testable import VGSFramework
 
-class TestVGS: VGS {
-    public var storage: Storage {
-        return Storage()
-    }
-}
 
 class VGSFrameworkTests: XCTestCase {
-    var vgs: TestVGS? = nil
+    var vgs: VGSForm!
     var card: VGSTextField!
     var cvv: VGSTextField!
     var expDate: VGSTextField!
-    var nameHolder: VGSTextField!
     
     override func setUp() {
-        vgs = TestVGS(upstreamHost: "https://tntva5wfdrp.SANDBOX.verygoodproxy.com")
         
-        card = VGSTextField(frame: .zero)
+        vgs = VGSForm(tnt: "tntva5wfdrp", environment: .sandbox)
+        
+        card = VGSTextField()
+        card.configuration = VGSConfiguration(form: vgs, alias: "cardNum")
+        card.configuration?.type = .cardNumber
         card.text = "1212121212121212"
         
-        cvv = VGSTextField(frame: .zero)
+        cvv = VGSTextField()
+        cvv.configuration = VGSConfiguration(form: vgs, alias: "cvv")
+        cvv.configuration?.type = .cvv
         cvv.text = "123"
         
-        expDate = VGSTextField(frame: .zero)
+        expDate = VGSTextField()
+        expDate.configuration = VGSConfiguration(form: vgs, alias: "expDate")
+        expDate.configuration?.type = .dateExpiration
         expDate.text = "12/23"
-        
-        nameHolder = VGSTextField(frame: .zero)
-        nameHolder.text = "John Connor"
     }
 
     override func tearDown() {
@@ -43,14 +41,12 @@ class VGSFrameworkTests: XCTestCase {
         card = nil
         cvv = nil
         expDate = nil
-        nameHolder = nil
     }
 
-    func testRegisterElements() {
-        let allElements: [VGSTextField] = [card, cvv, expDate, nameHolder]
-        vgs?.registerTextFields(textField: allElements)
+    func testExpDateValid() {
         
-        XCTAssert((allElements.count == vgs?.storage.elements.count))
+        let flag = expDate.isValid
+        XCTAssertTrue(flag)
     }
 
     func testPerformanceExample() {

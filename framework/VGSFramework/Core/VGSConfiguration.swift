@@ -8,11 +8,12 @@
 
 import Foundation
 
-public class VGSTextFieldConfig {
+public class VGSConfiguration {
     private(set) weak var vgsForm: VGSForm?
     
     public private(set) var alias: String!
     
+    public var validationModel: VGSValidation?
     public var token: String?
     public var isRequired: Bool = false
     public var placeholder: String = ""
