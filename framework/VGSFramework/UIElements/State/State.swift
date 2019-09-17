@@ -8,10 +8,10 @@
 import Foundation
 
 public class State {
-    var alias: String!
-    var isRequired: Bool = false
-    var isValid: Bool = false
-    var isEmpty: Bool = false
+    private(set) open var alias: String!
+    open var isRequired: Bool = false
+    open var isValid: Bool = false
+    open var isEmpty: Bool = false
     
     init(tf: VGSTextField) {
         alias = tf.alias
@@ -37,9 +37,9 @@ public class State {
 }
 
 public class CardState: State {
-    var last4: String = ""
-    var first6: String = ""
-    var cardBrand: SwiftLuhn.CardType = .unknown
+    open var last4: String = ""
+    open var first6: String = ""
+    open var cardBrand: SwiftLuhn.CardType = .unknown
     
     override public init(tf: VGSTextField) {
         super.init(tf: tf)

@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     }
     // VGS Form
     var vgsForm = VGSForm(tnt: "tntva5wfdrp", environment: .sandbox)
+    
     // VGS UI Elements
     var cardNumber = VGSTextField()
     var expCardDate = VGSTextField()
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
         if VGSForm.isJailbroken() {
             print("Device is Jailbroken")
         }
+        
         
         // set custom headers
         vgsForm.customHeaders = [

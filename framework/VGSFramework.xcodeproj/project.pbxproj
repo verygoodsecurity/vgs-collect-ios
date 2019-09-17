@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75EBD1D8CEE139FE888668A7 /* Pods_VGSFrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */; };
+		3C514B5FF66E3CC4BE524AC2 /* Pods_VGSFramework_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */; };
 		D06AC61B18447F6EC1968FDE /* Pods_VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93A2316CE5A000EAF52 /* Enums.swift */; };
@@ -15,36 +15,40 @@
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9442316CE5A000EAF52 /* VGSTextField.swift */; };
-		FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */; };
-		FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
 		FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1489FB232D4F6B00FD7781 /* APIClient.swift */; };
 		FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1489FE232D4F8000FD7781 /* MaskedTextField.swift */; };
 		FD148A07232EC53600FD7781 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD148A06232EC53600FD7781 /* State.swift */; };
 		FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 		FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */; };
-		FD572083232A2B8100684E6A /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD572082232A2B8100684E6A /* VGSValidation+type.swift */; };
+		FD24955E2330CC62009024E6 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24955D2330CC62009024E6 /* FormTests.swift */; };
+		FD24955F2330DA39009024E6 /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
+		FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495642330E313009024E6 /* SwiftLuhn.swift */; };
+		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
+		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
+		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
+		FD2495702330E834009024E6 /* CardNumerTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
-		FDD902FE2330043F0053BEBC /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD902FC2330043E0053BEBC /* String+SwiftLuhn.swift */; };
-		FDD902FF2330043F0053BEBC /* SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD902FD2330043E0053BEBC /* SwiftLuhn.swift */; };
-		FDD90301233005EC0053BEBC /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD90300233005EC0053BEBC /* VGSValidation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FD12B9BA2304619200B670DD /* PBXContainerItemProxy */ = {
+		FD2495572330CB49009024E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD12B9A62304619100B670DD /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FD12B9AE2304619100B670DD;
-			remoteInfo = framework;
+			remoteInfo = VGSFramework;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10E5359F4D38E4EE0F07C6BD /* Pods-VGSFramework-FrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework-FrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-VGSFramework-FrameworkTests/Pods-VGSFramework-FrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework.release.xcconfig"; path = "Target Support Files/Pods-VGSFramework/Pods-VGSFramework.release.xcconfig"; sourceTree = "<group>"; };
 		3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D4BC633274FE748E7FD0F90 /* Pods-VGSFramework-FrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework-FrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSFramework-FrameworkTests/Pods-VGSFramework-FrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFramework_FrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD03610A2B3B9A3339B094E /* Pods-VGSFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework.debug.xcconfig"; path = "Target Support Files/Pods-VGSFramework/Pods-VGSFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -53,21 +57,22 @@
 		FD05F93F2316CE5A000EAF52 /* VGSFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSFramework.h; sourceTree = "<group>"; };
 		FD05F9402316CE5A000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD05F9442316CE5A000EAF52 /* VGSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextField.swift; sourceTree = "<group>"; };
-		FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFrameworkTests.swift; sourceTree = "<group>"; };
-		FD05F9542316CE64000EAF52 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD12B9AF2304619100B670DD /* VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1489FB232D4F6B00FD7781 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		FD1489FE232D4F8000FD7781 /* MaskedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextField.swift; sourceTree = "<group>"; };
 		FD148A06232EC53600FD7781 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSForm+extension.swift"; sourceTree = "<group>"; };
 		FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+state.swift"; sourceTree = "<group>"; };
-		FD572082232A2B8100684E6A /* VGSValidation+type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
+		FD2495512330CB49009024E6 /* FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD2495552330CB49009024E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD24955D2330CC62009024E6 /* FormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTests.swift; sourceTree = "<group>"; };
+		FD2495642330E313009024E6 /* SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLuhn.swift; sourceTree = "<group>"; };
+		FD2495652330E313009024E6 /* String+SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SwiftLuhn.swift"; sourceTree = "<group>"; };
+		FD2495672330E313009024E6 /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
+		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
+		FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumerTextFieldTests.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FDD9028D232ED2040053BEBC /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
-		FDD902FC2330043E0053BEBC /* String+SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SwiftLuhn.swift"; sourceTree = "<group>"; };
-		FDD902FD2330043E0053BEBC /* SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLuhn.swift; sourceTree = "<group>"; };
-		FDD90300233005EC0053BEBC /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +84,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD12B9B52304619200B670DD /* Frameworks */ = {
+		FD24954E2330CB49009024E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD12B9B92304619200B670DD /* VGSFramework.framework in Frameworks */,
-				75EBD1D8CEE139FE888668A7 /* Pods_VGSFrameworkTests.framework in Frameworks */,
+				FD24955F2330DA39009024E6 /* VGSFramework.framework in Frameworks */,
+				3C514B5FF66E3CC4BE524AC2 /* Pods_VGSFramework_FrameworkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +101,7 @@
 			children = (
 				0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */,
 				3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */,
+				A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,6 +113,8 @@
 				1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */,
 				6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */,
 				8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */,
+				10E5359F4D38E4EE0F07C6BD /* Pods-VGSFramework-FrameworkTests.debug.xcconfig */,
+				4D4BC633274FE748E7FD0F90 /* Pods-VGSFramework-FrameworkTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -141,20 +149,11 @@
 				FDD9028C232ED2040053BEBC /* Card Brand */,
 				FD1489FD232D4F8000FD7781 /* Mask */,
 				FD148A05232EC53600FD7781 /* State */,
-				FD572081232A2B5A00684E6A /* Validation */,
+				FD2495622330E313009024E6 /* Validation */,
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
 			);
 			path = UIElements;
-			sourceTree = "<group>";
-		};
-		FD05F9522316CE64000EAF52 /* VGSFrameworkTests */ = {
-			isa = PBXGroup;
-			children = (
-				FD05F9532316CE64000EAF52 /* VGSFrameworkTests.swift */,
-				FD05F9542316CE64000EAF52 /* Info.plist */,
-			);
-			path = VGSFrameworkTests;
 			sourceTree = "<group>";
 		};
 		FD12B9A52304619100B670DD = {
@@ -162,7 +161,7 @@
 			children = (
 				FD5FC377232674BF00C98D25 /* Package.swift */,
 				FD05F9372316CE5A000EAF52 /* VGSFramework */,
-				FD05F9522316CE64000EAF52 /* VGSFrameworkTests */,
+				FD2495522330CB49009024E6 /* FrameworkTests */,
 				C3997B777D76689537B200F8 /* Frameworks */,
 				DF975433A466D40E11FAE732 /* Pods */,
 				FD12B9B02304619100B670DD /* Products */,
@@ -173,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				FD12B9AF2304619100B670DD /* VGSFramework.framework */,
-				FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */,
+				FD2495512330CB49009024E6 /* FrameworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,13 +193,41 @@
 			path = State;
 			sourceTree = "<group>";
 		};
-		FD572081232A2B5A00684E6A /* Validation */ = {
+		FD2495522330CB49009024E6 /* FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				FDD903022330060F0053BEBC /* Card */,
-				FDD90303233006170053BEBC /* Date+cvv */,
+				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
+				FD24955D2330CC62009024E6 /* FormTests.swift */,
+				FD2495552330CB49009024E6 /* Info.plist */,
+			);
+			path = FrameworkTests;
+			sourceTree = "<group>";
+		};
+		FD2495622330E313009024E6 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				FD2495632330E313009024E6 /* Card */,
+				FD2495662330E313009024E6 /* Date+cvv */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		FD2495632330E313009024E6 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				FD2495642330E313009024E6 /* SwiftLuhn.swift */,
+				FD2495652330E313009024E6 /* String+SwiftLuhn.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		FD2495662330E313009024E6 /* Date+cvv */ = {
+			isa = PBXGroup;
+			children = (
+				FD2495672330E313009024E6 /* VGSValidation.swift */,
+				FD2495682330E313009024E6 /* VGSValidation+type.swift */,
+			);
+			path = "Date+cvv";
 			sourceTree = "<group>";
 		};
 		FDD9028C232ED2040053BEBC /* Card Brand */ = {
@@ -209,24 +236,6 @@
 				FDD9028D232ED2040053BEBC /* CardBrand.swift */,
 			);
 			path = "Card Brand";
-			sourceTree = "<group>";
-		};
-		FDD903022330060F0053BEBC /* Card */ = {
-			isa = PBXGroup;
-			children = (
-				FDD902FC2330043E0053BEBC /* String+SwiftLuhn.swift */,
-				FDD902FD2330043E0053BEBC /* SwiftLuhn.swift */,
-			);
-			path = Card;
-			sourceTree = "<group>";
-		};
-		FDD90303233006170053BEBC /* Date+cvv */ = {
-			isa = PBXGroup;
-			children = (
-				FDD90300233005EC0053BEBC /* VGSValidation.swift */,
-				FD572082232A2B8100684E6A /* VGSValidation+type.swift */,
-			);
-			path = "Date+cvv";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +261,6 @@
 				FD12B9AB2304619100B670DD /* Sources */,
 				FD12B9AC2304619100B670DD /* Frameworks */,
 				FD12B9AD2304619100B670DD /* Resources */,
-				FD57208023292F4900684E6A /* Documentation */,
 			);
 			buildRules = (
 			);
@@ -263,23 +271,24 @@
 			productReference = FD12B9AF2304619100B670DD /* VGSFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		FD12B9B72304619200B670DD /* VGSFrameworkTests */ = {
+		FD2495502330CB49009024E6 /* FrameworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FD12B9C62304619200B670DD /* Build configuration list for PBXNativeTarget "VGSFrameworkTests" */;
+			buildConfigurationList = FD2495592330CB49009024E6 /* Build configuration list for PBXNativeTarget "FrameworkTests" */;
 			buildPhases = (
-				727E585D309BDB14797AE699 /* [CP] Check Pods Manifest.lock */,
-				FD12B9B42304619200B670DD /* Sources */,
-				FD12B9B52304619200B670DD /* Frameworks */,
-				FD12B9B62304619200B670DD /* Resources */,
+				214EB0B444F18EAAE552EA13 /* [CP] Check Pods Manifest.lock */,
+				FD24954D2330CB49009024E6 /* Sources */,
+				FD24954E2330CB49009024E6 /* Frameworks */,
+				FD24954F2330CB49009024E6 /* Resources */,
+				55E8AA1538A07A4A01999E62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FD12B9BB2304619200B670DD /* PBXTargetDependency */,
+				FD2495582330CB49009024E6 /* PBXTargetDependency */,
 			);
-			name = VGSFrameworkTests;
-			productName = frameworkTests;
-			productReference = FD12B9B82304619200B670DD /* VGSFrameworkTests.xctest */;
+			name = FrameworkTests;
+			productName = FrameworkTests;
+			productReference = FD2495512330CB49009024E6 /* FrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -296,7 +305,7 @@
 						CreatedOnToolsVersion = 10.3;
 						LastSwiftMigration = 1030;
 					};
-					FD12B9B72304619200B670DD = {
+					FD2495502330CB49009024E6 = {
 						CreatedOnToolsVersion = 10.3;
 					};
 				};
@@ -314,7 +323,7 @@
 			projectRoot = "";
 			targets = (
 				FD12B9AE2304619100B670DD /* VGSFramework */,
-				FD12B9B72304619200B670DD /* VGSFrameworkTests */,
+				FD2495502330CB49009024E6 /* FrameworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD12B9B62304619200B670DD /* Resources */ = {
+		FD24954F2330CB49009024E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,6 +346,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		214EB0B444F18EAAE552EA13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VGSFramework-FrameworkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3F4C99E986CA648DA534D75C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,45 +390,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		727E585D309BDB14797AE699 /* [CP] Check Pods Manifest.lock */ = {
+		55E8AA1538A07A4A01999E62 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VGSFramework-FrameworkTests/Pods-VGSFramework-FrameworkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VGSFrameworkTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-VGSFramework-FrameworkTests/Pods-VGSFramework-FrameworkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VGSFramework-FrameworkTests/Pods-VGSFramework-FrameworkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		FD57208023292F4900684E6A /* Documentation */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Documentation;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "jazzy\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -407,38 +415,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
+				FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */,
+				FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
-				FDD902FF2330043F0053BEBC /* SwiftLuhn.swift in Sources */,
+				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGSForm.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */,
-				FDD90301233005EC0053BEBC /* VGSValidation.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
-				FDD902FE2330043F0053BEBC /* String+SwiftLuhn.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */,
+				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
-				FD572083232A2B8100684E6A /* VGSValidation+type.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD12B9B42304619200B670DD /* Sources */ = {
+		FD24954D2330CB49009024E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD05F9552316CE64000EAF52 /* VGSFrameworkTests.swift in Sources */,
+				FD2495702330E834009024E6 /* CardNumerTextFieldTests.swift in Sources */,
+				FD24955E2330CC62009024E6 /* FormTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FD12B9BB2304619200B670DD /* PBXTargetDependency */ = {
+		FD2495582330CB49009024E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FD12B9AE2304619100B670DD /* VGSFramework */;
-			targetProxy = FD12B9BA2304619200B670DD /* PBXContainerItemProxy */;
+			targetProxy = FD2495572330CB49009024E6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -502,6 +511,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -559,6 +569,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -585,9 +596,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -612,51 +623,48 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		FD12B9C72304619200B670DD /* Debug */ = {
+		FD24955A2330CB49009024E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */;
+			baseConfigurationReference = 10E5359F4D38E4EE0F07C6BD /* Pods-VGSFramework-FrameworkTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69BNY6KMTF;
-				INFOPLIST_FILE = VGSFrameworkTests/Info.plist;
+				INFOPLIST_FILE = FrameworkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.frameworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		FD12B9C82304619200B670DD /* Release */ = {
+		FD24955B2330CB49009024E6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */;
+			baseConfigurationReference = 4D4BC633274FE748E7FD0F90 /* Pods-VGSFramework-FrameworkTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69BNY6KMTF;
-				INFOPLIST_FILE = VGSFrameworkTests/Info.plist;
+				INFOPLIST_FILE = FrameworkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.frameworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -682,11 +690,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FD12B9C62304619200B670DD /* Build configuration list for PBXNativeTarget "VGSFrameworkTests" */ = {
+		FD2495592330CB49009024E6 /* Build configuration list for PBXNativeTarget "FrameworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FD12B9C72304619200B670DD /* Debug */,
-				FD12B9C82304619200B670DD /* Release */,
+				FD24955A2330CB49009024E6 /* Debug */,
+				FD24955B2330CB49009024E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
