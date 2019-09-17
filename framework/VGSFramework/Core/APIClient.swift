@@ -21,7 +21,7 @@ class APIClient {
         baseURL = url
     }
     
-    func sendRequest(value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    func sendRequest(path: String, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = [
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ class APIClient {
         // JSON Body
         let body: [String : Any] = value
         // Path
-        let path = baseURL.appendingPathComponent("post")
+        let path = baseURL.appendingPathComponent(path)
         // Fetch Request
         Alamofire.request(path,
                           method: .post,
