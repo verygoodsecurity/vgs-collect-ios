@@ -58,12 +58,6 @@ public class VGSTextField: UIView {
     }
     
     // MARK: - init
-    public init(configuration model: VGSConfiguration) {
-        super.init(frame: .zero)
-        mainInitialization()
-        configuration = model
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         mainInitialization()

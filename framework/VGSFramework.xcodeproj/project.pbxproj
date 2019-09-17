@@ -26,6 +26,7 @@
 		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
+		FD2495702330E834009024E6 /* CardNumerTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		FD2495652330E313009024E6 /* String+SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SwiftLuhn.swift"; sourceTree = "<group>"; };
 		FD2495672330E313009024E6 /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
 		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
+		FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumerTextFieldTests.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FDD9028D232ED2040053BEBC /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,8 +196,9 @@
 		FD2495522330CB49009024E6 /* FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				FD2495552330CB49009024E6 /* Info.plist */,
+				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
 				FD24955D2330CC62009024E6 /* FormTests.swift */,
+				FD2495552330CB49009024E6 /* Info.plist */,
 			);
 			path = FrameworkTests;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2495702330E834009024E6 /* CardNumerTextFieldTests.swift in Sources */,
 				FD24955E2330CC62009024E6 /* FormTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
