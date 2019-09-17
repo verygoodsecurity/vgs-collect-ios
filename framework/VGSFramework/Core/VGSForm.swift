@@ -66,7 +66,7 @@ extension VGSForm {
 
 // MARK: - sending data
 extension VGSForm {
-    public func sendData(data: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func sendData(path: String, data: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         var body = BodyData()
         
@@ -85,7 +85,7 @@ extension VGSForm {
             body["data"] = data?.description
         }
         
-        apiClient.sendRequest(value: body) { (json, error) in
+        apiClient.sendRequest(path: path, value: body) { (json, error) in
             
             if let error = error {
                 print("Error: \(String(describing: error.localizedDescription))")
