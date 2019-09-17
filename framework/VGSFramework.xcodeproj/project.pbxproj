@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,10 +20,12 @@
 		FD148A07232EC53600FD7781 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD148A06232EC53600FD7781 /* State.swift */; };
 		FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 		FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */; };
-		FD1B44682327DB75009AA04A /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B44672327DB75009AA04A /* VGSValidation.swift */; };
 		FD24955E2330CC62009024E6 /* FormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24955D2330CC62009024E6 /* FormTests.swift */; };
 		FD24955F2330DA39009024E6 /* VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSFramework.framework */; };
-		FD572083232A2B8100684E6A /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD572082232A2B8100684E6A /* VGSValidation+type.swift */; };
+		FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495642330E313009024E6 /* SwiftLuhn.swift */; };
+		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
+		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
+		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,11 +62,13 @@
 		FD148A06232EC53600FD7781 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		FD1B445F2327A6A4009AA04A /* VGSForm+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSForm+extension.swift"; sourceTree = "<group>"; };
 		FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+state.swift"; sourceTree = "<group>"; };
-		FD1B44672327DB75009AA04A /* VGSValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
 		FD2495512330CB49009024E6 /* FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2495552330CB49009024E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD24955D2330CC62009024E6 /* FormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTests.swift; sourceTree = "<group>"; };
-		FD572082232A2B8100684E6A /* VGSValidation+type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
+		FD2495642330E313009024E6 /* SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLuhn.swift; sourceTree = "<group>"; };
+		FD2495652330E313009024E6 /* String+SwiftLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SwiftLuhn.swift"; sourceTree = "<group>"; };
+		FD2495672330E313009024E6 /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
+		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FDD9028D232ED2040053BEBC /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +147,7 @@
 				FDD9028C232ED2040053BEBC /* Card Brand */,
 				FD1489FD232D4F8000FD7781 /* Mask */,
 				FD148A05232EC53600FD7781 /* State */,
-				FD572081232A2B5A00684E6A /* Validation */,
+				FD2495622330E313009024E6 /* Validation */,
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
 			);
@@ -196,13 +200,31 @@
 			path = FrameworkTests;
 			sourceTree = "<group>";
 		};
-		FD572081232A2B5A00684E6A /* Validation */ = {
+		FD2495622330E313009024E6 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				FD1B44672327DB75009AA04A /* VGSValidation.swift */,
-				FD572082232A2B8100684E6A /* VGSValidation+type.swift */,
+				FD2495632330E313009024E6 /* Card */,
+				FD2495662330E313009024E6 /* Date+cvv */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		FD2495632330E313009024E6 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				FD2495642330E313009024E6 /* SwiftLuhn.swift */,
+				FD2495652330E313009024E6 /* String+SwiftLuhn.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		FD2495662330E313009024E6 /* Date+cvv */ = {
+			isa = PBXGroup;
+			children = (
+				FD2495672330E313009024E6 /* VGSValidation.swift */,
+				FD2495682330E313009024E6 /* VGSValidation+type.swift */,
+			);
+			path = "Date+cvv";
 			sourceTree = "<group>";
 		};
 		FDD9028C232ED2040053BEBC /* Card Brand */ = {
@@ -390,17 +412,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
+				FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */,
+				FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
+				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGSForm.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSForm+extension.swift in Sources */,
-				FD1B44682327DB75009AA04A /* VGSValidation.swift in Sources */,
+				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
-				FD572083232A2B8100684E6A /* VGSValidation+type.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

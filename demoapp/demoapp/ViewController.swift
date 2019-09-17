@@ -182,7 +182,7 @@ extension ViewController {
         data["cardHolderName"] = cardHolderName.text
         
         // send data
-        vgsForm.sendData(data: data, completion: { [weak self] (json, error) in
+        vgsForm.sendData(path: "post", data: data, completion: { [weak self] (json, error) in
             if error == nil, let json = json {
                 var strJson = json.description
                 strJson = strJson.replacingOccurrences(of: "[", with: "[\n")

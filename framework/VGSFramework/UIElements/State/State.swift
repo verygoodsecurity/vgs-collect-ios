@@ -39,7 +39,7 @@ public class State {
 public class CardState: State {
     var last4: String = ""
     var first6: String = ""
-    var cardBrand: CardBrand = .unknown
+    var cardBrand: SwiftLuhn.CardType = .unknown
     
     override public init(tf: VGSTextField) {
         super.init(tf: tf)
@@ -50,7 +50,8 @@ public class CardState: State {
         
         self.last4 = String(originalText.suffix(4))
         self.first6 = String(originalText.prefix(6))
-        #warning("Need to complite recognise card brand")
+        self.isValid = originalText.isValidCardNumber()
+        self.cardBrand = originalText.suggestedCardType()
     }
     
     override public var description: String {
