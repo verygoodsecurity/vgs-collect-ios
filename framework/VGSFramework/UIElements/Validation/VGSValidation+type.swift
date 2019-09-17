@@ -9,9 +9,7 @@
 import Foundation
 
 extension VGSValidation {
-    func validateType(txt: String, for type: FieldType?) -> Bool {
-        if type == nil { return true }
-        
+    func validateType(txt: String, for type: FieldType) -> Bool {        
         switch type {
         case .dateExpiration:
             return validateExpDate(txt: txt)

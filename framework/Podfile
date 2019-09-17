@@ -8,11 +8,11 @@ target 'VGSFramework' do
   pod 'SnapKit'
   pod 'Alamofire'
 
-  target 'VGSFrameworkTests' do
-    inherit! :search_paths
-    # Pods for testing
+  target 'FrameworkTests' do
+#    inherit! :search_paths
   end
 end
+
 
 # The workaround starts here !!!!!
 targetWorkaround = "Pods-VGSFrameworkTests"
