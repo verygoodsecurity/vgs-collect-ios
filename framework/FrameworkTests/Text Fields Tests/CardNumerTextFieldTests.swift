@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import VGSFramework
+@testable import VGSFramework
 
 class CardNumerTextFieldTests: XCTestCase {
     var form: VGSForm!
@@ -20,29 +20,36 @@ class CardNumerTextFieldTests: XCTestCase {
         
         let config = VGSConfiguration(form: form, alias: "cardNumber")
         config.type = .cardNumber
+        config.isRequired = true
         cardNumerTextField.configuration = config
+        
+        cardNumerTextField.textField.text = "5375 4114 0003 2996"
     }
     
     override func tearDown() {
         form  = nil
+        cardNumerTextField = nil
     }
     
-    func testCardNumberAlias() {
-        XCTAssertFalse(cardNumerTextField.state.alias == nil)
-        XCTAssertFalse(cardNumerTextField.state.alias == "")
+    func testAlias() {
+        XCTAssertNotNil(cardNumerTextField.alias == "cardNumer")
     }
     
-    func testCardNumberStates() {
+    func testCardNumberText() {
+        XCTAssertNotNil(cardNumerTextField.text == "5375 4114 0003 2996")
+    }
+    
+    func testStates() {
         let state = cardNumerTextField.state
         
         if let st = state as? CardState {
-            XCTAssertTrue(st.isEmpty)
-            XCTAssertFalse(st.isValid)
-            XCTAssertTrue(st.first6 == "")
-            XCTAssertTrue(st.last4 == "")
-            XCTAssertTrue(st.cardBrand == .unknown)
+            XCTAssertFalse(st.isEmpty)
+            XCTAssertTrue(st.isValid)
+            XCTAssertTrue(st.first6 == "537541")
+            XCTAssertTrue(st.last4 == "2996")
+            XCTAssertTrue(st.cardBrand == .mastercard)
         } else {
-            XCTAssert(false)
+            XCTAssert(false, "State not for card field")
         }
     }
 }

@@ -51,7 +51,7 @@ extension VGSForm {
         #endif
     }
     
-    static func canOpen(path: String) -> Bool {
+    internal static func canOpen(path: String) -> Bool {
         let file = fopen(path, "r")
         guard file != nil else { return false }
         fclose(file)

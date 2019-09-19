@@ -41,7 +41,6 @@ class ViewController: UIViewController {
             print("Device is Jailbroken")
         }
         
-        
         // set custom headers
         vgsForm.customHeaders = [
             "my custome header": "some custom data"

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import VGSFramework
+@testable import VGSFramework
 
 class FormTests: XCTestCase {
     var form: VGSForm!
@@ -21,10 +21,14 @@ class FormTests: XCTestCase {
     }
 
     func testEnvByDefault() {
-        XCTAssertNotNil(form)
+        let host = form.apiClient.baseURL.host ?? ""
+        XCTAssertTrue(host.contains("sandbox"))
     }
     
-    func testSandboxEnvirinment() {
+    func testLiveEnvirinment() {
+        let liveForm = VGSForm(tnt: "testID", environment: .live)
+        let host = liveForm.apiClient.baseURL.host ?? ""
+        XCTAssertTrue(host.contains("live"))
     }
     
     func testCustomHeader() {
@@ -37,5 +41,26 @@ class FormTests: XCTestCase {
         
         XCTAssertNotNil(form.customHeaders)
         XCTAssert(form.customHeaders![headerKey] == headerValue)
+    }
+    
+    func testJail() {
+        XCTAssertFalse(VGSForm.isJailbroken())
+    }
+    
+    func testCanOpen() {
+        let path = "."
+        XCTAssertTrue(VGSForm.canOpen(path: path))
+    }
+    
+    func testRegistrationTextField() {
+        let config = VGSConfiguration(form: form, alias: "test")
+        let tf = VGSTextField()
+        tf.configuration = config
+        
+        XCTAssertTrue(form.storage.elements.count == 1)
+        
+        form.unregisterTextFields(textField: [tf])
+        
+        XCTAssertTrue(form.storage.elements.count == 0)
     }
 }

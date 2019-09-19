@@ -10,8 +10,8 @@ import Foundation
 
 /// The VGSForm class needed for collect all text filelds
 public class VGSForm {
-    private let apiClient: APIClient
-    private let storage = Storage()
+    internal let apiClient: APIClient
+    internal let storage = Storage()
     
     /// Observing text fields separately
     public var observeTextField: ((_ textField: VGSTextField) -> Void)?

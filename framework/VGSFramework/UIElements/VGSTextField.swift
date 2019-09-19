@@ -11,15 +11,15 @@ import SnapKit
 
 public class VGSTextField: UIView {
     private(set) weak var vgsForm: VGSForm?
-    var textField = MaskedTextField(frame: .zero)
-    var focusStatus: Bool = false
-    var isRequired: Bool = false
-    var fieldType: FieldType = .none
-    var validationModel = VGSValidation()
-    var alias: String!
-    var token: String?
+    internal var textField = MaskedTextField(frame: .zero)
+    internal var focusStatus: Bool = false
+    internal var isRequired: Bool = false
+    internal var fieldType: FieldType = .none
+    internal var validationModel = VGSValidation()
+    internal var alias: String!
+    internal var token: String?
     
-    var text: String? {
+    internal var text: String? {
         get {
             return textField.text
         }
@@ -93,6 +93,23 @@ public class VGSTextField: UIView {
     private func textFieldDidChange(_ sender: UITextField) {
         // change status
         vgsForm?.updateStatus(for: self)
+    }
+}
+
+// MARL: - Text filed delegate
+extension VGSTextField: UITextFieldDelegate {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let tfText = textField.text else {
+            return true
+        }
+        
+        let mask = self.textField.formatPattern
+        if mask.count < tfText.count + string.count {
+            return false
+        }
+        
+        return true
     }
 }
 
