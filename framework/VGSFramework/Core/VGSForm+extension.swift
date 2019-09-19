@@ -9,6 +9,7 @@
 import Foundation
 
 extension VGSForm {
+    /// Check device if it jailbroken
     public static func isJailbroken() -> Bool {
         
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return false }
