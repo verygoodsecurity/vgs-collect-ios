@@ -1,0 +1,16 @@
+# Ordered by output of `jazzy --help config`
+output: ../docs
+clean: true
+objc: false
+# umbrella_header: 
+framework_root: framework/
+sdk: iphonesimulator
+author: Very Good Security
+author_url: https://verygoodsecurity.com
+module: VGSFramework
+github_url: https://github.com/verygoodsecurity/vgs-collect-ios
+github_file_prefix: https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework
+skip_undocumented: true
+hide_documentation_coverage: true
+theme: fullwidth
+exclude: 

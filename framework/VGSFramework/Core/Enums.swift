@@ -8,17 +8,29 @@
 
 import UIKit
 
+/// Environment enumeration
+///
+/// - sandbox: set for debug mode
+/// - live: set for prodaction mode
 public enum Environment: String {
     case sandbox = "sandbox"
     case live = "live"
 }
 
+/// Text field types
+///
+/// - none: Default
+/// - cardNumber: Card number field with formatrion and validation
+/// - dateExpiration: Expiration date with formatting and validation
+/// - cvv: CVV code for card.
+/// - cardHolderName: Card holder name
 public enum FieldType: Int, CaseIterable {
     case none
     case cardNumber
     case dateExpiration
     case cvv
     case cardHolderName
+
     
     var formatPattern: String {
         switch self {
