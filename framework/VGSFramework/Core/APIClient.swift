@@ -13,7 +13,7 @@ public typealias JsonData = [String: Any]
 public typealias BodyData = [String: Any]
 
 class APIClient {
-    private let baseURL: URL!
+    let baseURL: URL!
     
     var customHeader: [String: String]?
     
