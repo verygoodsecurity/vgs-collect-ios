@@ -13,13 +13,13 @@ public class VGSForm {
     internal let apiClient: APIClient
     internal let storage = Storage()
     
-    /// Observing text fields separately
+    /// Observing focused text field of status
     public var observeTextField: ((_ textField: VGSTextField) -> Void)?
     
-    /// Observing text fileds for all form
+    /// Observing all text fields statuses
     public var observeForm: ((_ form:[VGSTextField]) -> Void)?
     
-    /// set custom headers
+    /// Set your custom HTTP headers
     public var customHeaders: [String: String]? {
         didSet {
             if customHeaders != oldValue {
@@ -29,6 +29,12 @@ public class VGSForm {
     }
     
     // MARK: - Initialzation
+    
+    /// Init VGSForm instance
+    ///
+    /// - Parameters:
+    ///   - id: Your tanent id value
+    ///   - environment: By default it's `sandbox`, better for testing. And `live` when you ready for prodaction.
     public init(tnt id: String, environment: Environment = .sandbox) {
         let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
         guard let url = URL(string: strUrl) else {

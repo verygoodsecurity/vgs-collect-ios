@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 
+/// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
     private(set) weak var vgsForm: VGSForm?
     internal var textField = MaskedTextField(frame: .zero)
@@ -83,6 +84,7 @@ public class VGSTextField: UIView {
         }
         // delegate
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.delegate = self
         
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
