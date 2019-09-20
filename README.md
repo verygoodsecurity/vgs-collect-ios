@@ -51,3 +51,12 @@ class ViewController: UIViewController {
     }
 }
 ````
+
+# Technologies what we use:
+- Swift 4.2
+- 3th party lib: (will be removed for the next release)
+    - SnapKit
+    - Alamofire
+- Git, Continuous 
+- Testing solutions: Unit Tests
+
