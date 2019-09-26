@@ -10,12 +10,11 @@ let package = Package(
         .library(name: "VGSFramework", targets: ["VGSFramework"]),
     ],
     dependencies: [
-//        .package(url: "https://url/of/another/package/named/Utility", from: "1.0.0"),
-        .package(name: "SnapKit"),
-        .package(name: "Alamofire")
+        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "4.0.0"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.2")
     ],
     targets: [
-        .target(name: "VGSFramework"),
+        .target(name: "VGSFramework", dependencies: ["SnapKit", "Alamofire"]),
         .testTarget(name: "FrameworkTests", dependencies: ["VGSFramework"]),
     ]
 )
