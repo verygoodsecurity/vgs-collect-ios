@@ -6,9 +6,6 @@ let package = Package(
     products: [
         .library(name: "VGSFramework", targets: ["VGSFramework"]),
     ],
-    platforms: [
-        .iOS(.v12),
-    ],
     dependencies: [
         .package(url: "https://github.com/SnapKit/SnapKit.git", from: "4.0.0"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.2")
