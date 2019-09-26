@@ -75,6 +75,7 @@
 		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
 		FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumerTextFieldTests.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		FD8A9724233CF6F50079FA32 /* VGSFramework.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = VGSFramework.podspec; path = ../VGSFramework.podspec; sourceTree = "<group>"; };
 		FDD9028D232ED2040053BEBC /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 		FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextFieldTests.swift; sourceTree = "<group>"; };
 		FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVVTextFieldTests.swift; sourceTree = "<group>"; };
@@ -166,8 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				FD5FC377232674BF00C98D25 /* Package.swift */,
-				FD05F9372316CE5A000EAF52 /* VGSFramework */,
-				FD2495522330CB49009024E6 /* FrameworkTests */,
+				FD8A9724233CF6F50079FA32 /* VGSFramework.podspec */,
+				FD8A9722233CF63D0079FA32 /* Sources */,
+				FD8A9723233CF6470079FA32 /* Tests */,
 				C3997B777D76689537B200F8 /* Frameworks */,
 				DF975433A466D40E11FAE732 /* Pods */,
 				FD12B9B02304619100B670DD /* Products */,
@@ -235,6 +237,22 @@
 				FD2495682330E313009024E6 /* VGSValidation+type.swift */,
 			);
 			path = "Date+cvv";
+			sourceTree = "<group>";
+		};
+		FD8A9722233CF63D0079FA32 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F9372316CE5A000EAF52 /* VGSFramework */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		FD8A9723233CF6470079FA32 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FD2495522330CB49009024E6 /* FrameworkTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		FDD9028C232ED2040053BEBC /* Card Brand */ = {
@@ -607,7 +625,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VGSFramework/Info.plist;
+				INFOPLIST_FILE = Sources/VGSFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -634,7 +652,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VGSFramework/Info.plist;
+				INFOPLIST_FILE = Sources/VGSFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,7 +673,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69BNY6KMTF;
-				INFOPLIST_FILE = FrameworkTests/Info.plist;
+				INFOPLIST_FILE = Tests/FrameworkTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -675,7 +693,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69BNY6KMTF;
-				INFOPLIST_FILE = FrameworkTests/Info.plist;
+				INFOPLIST_FILE = Tests/FrameworkTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
