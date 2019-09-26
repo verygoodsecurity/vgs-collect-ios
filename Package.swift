@@ -1,11 +1,26 @@
-
-
+// swift-tools-version:5.1
 import PackageDescription
 
-let package = Package(name: "VGSFramework",
-                      platforms: [.iOS(.v12)],
-                      products: [.library(name: "VGSFramework",
-                                          targets: ["VGSFramework"])],
-                      targets: [.target(name: "VGSFramework",
-                                        path: "framework")],
-                      swiftLanguageVersions: [.v5])
+let package = Package(
+    name: "VGSFramework",
+    products: [
+        .library(name: "VGSFramework", targets: ["VGSFramework"]),
+    ],
+    platforms: [
+        .iOS(.v12),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "4.0.0"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.2")
+    ],
+    targets: [
+        .target(
+            name: "VGSFramework",
+            dependencies: ["SnapKit", "Alamofire"]
+        ),
+        .testTarget(
+            name: "FrameworkTests",
+            dependencies: ["VGSFramework"]
+        ),
+    ]
+)
