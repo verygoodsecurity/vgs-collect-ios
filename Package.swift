@@ -13,12 +13,14 @@ let package = Package(
     targets: [
         .target(
             name: "VGSFramework",
-            path: "framework",
             dependencies: ["SnapKit", "Alamofire"]
+        ),
+        .target(
+                name: "VGSFramework",
+                path: "framework"
         ),
         .testTarget(
             name: "FrameworkTests",
-            path: "framework",
             dependencies: ["VGSFramework"]
         ),
     ]
