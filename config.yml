@@ -1,0 +1,17 @@
+jobs:
+  build-and-test:
+    macos:
+      xcode: "11.0.0"
+    steps:
+      - run:
+          name: Install cocoapods
+          command: gem install cocoapods
+      - run:
+          name: Install pods
+          command: pod install
+      - run:
+          name: Run Tests
+          command: fastlane scan
+          environment:
+            SCAN_DEVICE: iPhone 8
+            SCAN_SCHEME: FrameworkTests
