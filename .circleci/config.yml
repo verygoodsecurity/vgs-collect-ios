@@ -16,7 +16,7 @@ jobs:
           command: cd framework; pod install
       - run:
           name: Run Tests
-          command: fastlane scan
+          command: cd framework; fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: FrameworkTests
