@@ -18,7 +18,8 @@ let package = Package(
         ),
         .testTarget(
             name: "FrameworkTests",
-            dependencies: ["VGSFramework"]
+            dependencies: ["VGSFramework"],
+            path: "framework"
         ),
     ]
 )
