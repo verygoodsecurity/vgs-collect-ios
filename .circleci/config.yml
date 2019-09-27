@@ -19,7 +19,7 @@ jobs:
           command: cd framework; fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: FrameworkTests
+            SCAN_SCHEME: VGSFramework
 
 workflows:
   version: 2
