@@ -5,3 +5,4 @@ demoapp/build
 framework/build
 framework/docs
 
+.build/**

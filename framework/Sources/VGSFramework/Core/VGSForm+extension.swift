@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension VGSForm {
     /// Check device if it jailbroken
