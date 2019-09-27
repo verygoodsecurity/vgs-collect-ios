@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
+[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
 
 ## VGS Collect mobile SDKs
 
