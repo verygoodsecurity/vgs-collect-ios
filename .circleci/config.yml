@@ -13,7 +13,7 @@ jobs:
           command: gem install cocoapods --verbose
       - run:
           name: Install pods
-          command: pod install
+          command: cd framework; pod install
       - run:
           name: Run Tests
           command: fastlane scan
