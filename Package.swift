@@ -16,10 +16,10 @@ let package = Package(
             dependencies: ["SnapKit", "Alamofire"],
             path: "framework"
         ),
-        .testTarget(
-            name: "FrameworkTests",
-            dependencies: ["VGSFramework"],
-            path: "framework"
-        ),
+//        .testTarget(
+//            name: "FrameworkTests",
+//            dependencies: ["VGSFramework"],
+//            path: "framework"
+//        ),
     ]
 )
