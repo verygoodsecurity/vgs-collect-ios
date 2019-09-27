@@ -3,6 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "VGSFramework",
+    platforms: [
+        .iOS(.v11),
+    ],
     products: [
         .library(name: "VGSFramework", targets: ["VGSFramework"]),
     ],
