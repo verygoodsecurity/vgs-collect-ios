@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
+
 ## VGS Collect mobile SDKs
 
 VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGS Collect mobile SDKs - are native mobile forms modules that allow customers to collect information securely on mobile devices with iOS and Android
