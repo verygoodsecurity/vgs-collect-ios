@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 /// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
@@ -19,6 +18,13 @@ public class VGSTextField: UIView {
     internal var validationModel = VGSValidation()
     internal var alias: String!
     internal var token: String?
+    
+    /// You can set padding for text and placeholder
+    public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
+        didSet {
+            textField.padding = padding
+        }
+    }
     
     internal var text: String? {
         get {
@@ -78,10 +84,24 @@ public class VGSTextField: UIView {
         // set main style for view
         mainStyle()
         // text view
+        textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
-        textField.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+
+        let views = ["view": self, "textField": textField]
+        
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[textField]-0-|",
+                                                                  options: .alignAllCenterY,
+                                                                  metrics: nil,
+                                                                  views: views)
+        NSLayoutConstraint.activate(horizontalConstraints)
+        
+        let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[textField]-0-|",
+                                                                options: .alignAllCenterX,
+                                                                metrics: nil,
+                                                                views: views)
+        NSLayoutConstraint.activate(verticalConstraint)
+        
+        
         // delegate
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.delegate = self
