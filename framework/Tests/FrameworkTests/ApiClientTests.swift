@@ -17,7 +17,7 @@ class ApiClientTests: XCTestCase {
         collector = VGSCollect(tnt: "tntva5wfdrp")
         apiClient = collector.apiClient
         
-        let config = VGSConfiguration(form: collector, fieldName: "cardNumber")
+        let config = VGSConfiguration(collector: collector, fieldName: "cardNumber")
         let cardField = VGSTextField()
         cardField.configuration = config
         

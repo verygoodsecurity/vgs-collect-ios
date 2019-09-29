@@ -53,7 +53,7 @@ class CollectorTests: XCTestCase {
     }
     
     func testRegistrationTextField() {
-        let config = VGSConfiguration(form: collector, fieldName: "test")
+        let config = VGSConfiguration(collector: collector, fieldName: "test")
         let tf = VGSTextField()
         tf.configuration = config
         

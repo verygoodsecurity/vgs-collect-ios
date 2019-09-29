@@ -18,7 +18,7 @@ class CVVTextFieldTests: XCTestCase {
         
         cvvTextField = VGSTextField()
         
-        let config = VGSConfiguration(form: collector, fieldName: "cvv")
+        let config = VGSConfiguration(collector: collector, fieldName: "cvv")
         config.type = .cvv
         config.isRequired = true
         cvvTextField.configuration = config

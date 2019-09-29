@@ -18,7 +18,7 @@ class CardNumerTextFieldTests: XCTestCase {
         
         cardNumerTextField = VGSTextField()
         
-        let config = VGSConfiguration(form: collector, fieldName: "cardNumber")
+        let config = VGSConfiguration(collector: collector, fieldName: "cardNumber")
         config.type = .cardNumber
         config.isRequired = true
         cardNumerTextField.configuration = config
