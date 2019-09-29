@@ -8,6 +8,7 @@
 
 import UIKit
 import VGSFramework
+import SnapKit
 
 class ViewController: UIViewController {
     var consoleLabel: UILabel!
@@ -104,7 +105,7 @@ class ViewController: UIViewController {
         
         // init send button
         sendButton.setTitle("Send", for: .normal)
-        sendButton.backgroundColor = UIColor.myGreen
+        sendButton.backgroundColor = UIColor(red: 0.337, green: 0.761, blue: 0.333, alpha: 1.00)
         sendButton.layer.cornerRadius = 6
         sendButton.clipsToBounds = true
         view.addSubview(sendButton)
