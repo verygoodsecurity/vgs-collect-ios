@@ -10,13 +10,13 @@ import UIKit
 
 /// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
-    private(set) weak var vgsForm: VGSForm?
+    private(set) weak var vgsCollector: VGSCollect?
     internal var textField = MaskedTextField(frame: .zero)
     internal var focusStatus: Bool = false
     internal var isRequired: Bool = false
     internal var fieldType: FieldType = .none
     internal var validationModel = VGSValidation()
-    internal var alias: String!
+    internal var fieldName: String!
     internal var token: String?
     
     /// You can set padding for text and placeholder
@@ -41,7 +41,7 @@ public class VGSTextField: UIView {
             }
             
             // config text field
-            alias = configuration.alias
+            fieldName = configuration.fieldName
             isRequired = configuration.isRequired
             fieldType = configuration.type
             textField.placeholder = configuration.placeholder
@@ -57,8 +57,8 @@ public class VGSTextField: UIView {
             // regex
             validationModel.pattern = configuration.type.regex
             
-            if let vgs = configuration.vgsForm {
-                vgsForm = vgs
+            if let vgs = configuration.vgsCollector {
+                vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])
             }
         }
@@ -76,7 +76,7 @@ public class VGSTextField: UIView {
     }
     
     deinit {
-        vgsForm?.unregisterTextFields(textField: [self])
+        vgsCollector?.unregisterTextFields(textField: [self])
     }
     
     // MARK: - private API
@@ -114,7 +114,7 @@ public class VGSTextField: UIView {
     @objc
     private func textFieldDidChange(_ sender: UITextField) {
         // change status
-        vgsForm?.updateStatus(for: self)
+        vgsCollector?.updateStatus(for: self)
     }
 }
 
@@ -141,7 +141,7 @@ extension VGSTextField {
     private func focusOn() {
         // change status
         textField.becomeFirstResponder()
-        vgsForm?.updateStatus(for: self)
+        vgsCollector?.updateStatus(for: self)
     }
 }
 

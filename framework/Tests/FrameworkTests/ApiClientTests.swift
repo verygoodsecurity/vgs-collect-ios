@@ -10,14 +10,14 @@ import XCTest
 @testable import VGSFramework
 
 class ApiClientTests: XCTestCase {
-    var form: VGSForm!
+    var collector: VGSCollect!
     var apiClient: APIClient!
     
     override func setUp() {
-        form = VGSForm(tnt: "tntva5wfdrp")
-        apiClient = form.apiClient
+        collector = VGSCollect(tnt: "tntva5wfdrp")
+        apiClient = collector.apiClient
         
-        let config = VGSConfiguration(form: form, alias: "cardNumber")
+        let config = VGSConfiguration(collector: collector, fieldName: "cardNumber")
         let cardField = VGSTextField()
         cardField.configuration = config
         
@@ -32,7 +32,7 @@ class ApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        form.sendData(path: "post") { (data, error) in 
+        collector.sendData(path: "post") { (data, error) in 
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             

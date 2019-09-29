@@ -8,13 +8,13 @@
 import Foundation
 
 public class State {
-    private(set) open var alias: String!
+    private(set) open var fieldName: String!
     open var isRequired: Bool = false
     open var isValid: Bool = false
     open var isEmpty: Bool = false
     
     init(tf: VGSTextField) {
-        alias = tf.alias
+        fieldName = tf.fieldName
         isRequired = tf.isRequired
         isValid = tf.isValid
         isEmpty = (tf.text?.count == 0)
@@ -23,11 +23,11 @@ public class State {
     public var description: String {
         var result = ""
         
-        guard let alias = alias else {
+        guard let fieldName = fieldName else {
             return "Alias property is empty"
         }
         
-        result.append("Name:\(alias)\n")
+        result.append("Name:\(fieldName)\n")
         result.append("-isRequired:\(isRequired)\n")
         result.append("-isValid:\(isValid)\n")
         result.append("-isEmpty:\(isEmpty)\n")

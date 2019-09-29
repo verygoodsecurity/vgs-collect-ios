@@ -10,15 +10,15 @@ import XCTest
 @testable import VGSFramework
 
 class ExpDateTextFieldTests: XCTestCase {
-    var form: VGSForm!
+    var collector: VGSCollect!
     var expDateTextField: VGSTextField!
     
     override func setUp() {
-        form = VGSForm(tnt: "tntva5wfdrp")
+        collector = VGSCollect(tnt: "tntva5wfdrp")
         
         expDateTextField = VGSTextField()
         
-        let config = VGSConfiguration(form: form, alias: "expDate")
+        let config = VGSConfiguration(collector: collector, fieldName: "expDate")
         config.type = .dateExpiration
         expDateTextField.configuration = config
         
@@ -26,12 +26,12 @@ class ExpDateTextFieldTests: XCTestCase {
     }
     
     override func tearDown() {
-        form  = nil
+        collector  = nil
         expDateTextField = nil
     }
     
     func testAlias() {
-        XCTAssertTrue(expDateTextField.state.alias == "expDate")
+        XCTAssertTrue(expDateTextField.state.fieldName == "expDate")
     }
     
     func testWrongDate() {

@@ -10,10 +10,10 @@ import Foundation
 
 /// Class for configuration yout VGSTextField
 public class VGSConfiguration {
-    private(set) weak var vgsForm: VGSForm?
-    
-    /// Alias - `key` for sending data
-    public private(set) var alias: String!
+    private(set) weak var vgsCollector: VGSCollect?
+
+    /// Field name - actualy this is key for you JSON wich contains data
+    public private(set) var fieldName: String!
     
     /// Model for validation
     public var validationModel: VGSValidation?
@@ -32,14 +32,14 @@ public class VGSConfiguration {
     
     /// Set your patter format. Exmp: `##/##` equela `12/23`
     public var formatPattern: String = ""
-    
+        
     /// Initialization
     ///
     /// - Parameters:
     ///   - vgs: VGSForm instance
-    ///   - alias: Alias for your text field
-    public init(form vgs: VGSForm, alias: String) {
-        self.vgsForm = vgs
-        self.alias = alias
+    ///   - fieldName: Name for your text field
+    public init(collector vgs: VGSCollect, fieldName: String) {
+        self.vgsCollector = vgs
+        self.fieldName = fieldName
     }
 }
