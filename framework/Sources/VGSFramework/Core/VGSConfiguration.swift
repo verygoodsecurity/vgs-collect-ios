@@ -38,7 +38,7 @@ public class VGSConfiguration {
     /// - Parameters:
     ///   - vgs: VGSForm instance
     ///   - fieldName: Name for your text field
-    public init(form vgs: VGSCollect, fieldName: String) {
+    public init(collector vgs: VGSCollect, fieldName: String) {
         self.vgsCollector = vgs
         self.fieldName = fieldName
     }

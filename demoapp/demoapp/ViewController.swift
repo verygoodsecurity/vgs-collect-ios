@@ -141,21 +141,21 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        let cardConfiguration = VGSConfiguration(form: vgsCollector, fieldName: "cardNumber")
+        let cardConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cardNumber")
         cardConfiguration.placeholder = "card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
         
         cardNumber.configuration = cardConfiguration
         
-        let expDateConfiguration = VGSConfiguration(form: vgsCollector, fieldName: "expDate")
+        let expDateConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "expDate")
         expDateConfiguration.placeholder = "exp date"
         expDateConfiguration.isRequired = true
         expDateConfiguration.type = .dateExpiration
         
         expCardDate.configuration = expDateConfiguration
         
-         let cvvConfiguration = VGSConfiguration(form: vgsCollector, fieldName: "cvvNum")
+         let cvvConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cvvNum")
         cvvConfiguration.placeholder = "cvv"
         cvvConfiguration.isRequired = true
         cvvConfiguration.type = .cvv
