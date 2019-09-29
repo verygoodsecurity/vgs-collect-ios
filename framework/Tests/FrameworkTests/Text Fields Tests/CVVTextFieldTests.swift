@@ -10,15 +10,15 @@ import XCTest
 @testable import VGSFramework
 
 class CVVTextFieldTests: XCTestCase {
-    var form: VGSForm!
+    var collector: VGSCollect!
     var cvvTextField: VGSTextField!
     
     override func setUp() {
-        form = VGSForm(tnt: "tntva5wfdrp")
+        collector = VGSCollect(tnt: "tntva5wfdrp")
         
         cvvTextField = VGSTextField()
         
-        let config = VGSConfiguration(form: form, alias: "cvv")
+        let config = VGSConfiguration(form: collector, fieldName: "cvv")
         config.type = .cvv
         config.isRequired = true
         cvvTextField.configuration = config
@@ -27,12 +27,12 @@ class CVVTextFieldTests: XCTestCase {
     }
     
     override func tearDown() {
-        form  = nil
+        collector  = nil
         cvvTextField = nil
     }
     
     func testAlias() {
-        XCTAssertTrue(cvvTextField.state.alias == "cvv")
+        XCTAssertTrue(cvvTextField.state.fieldName == "cvv")
     }
     
     func testContent() {

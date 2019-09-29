@@ -10,15 +10,15 @@ import XCTest
 @testable import VGSFramework
 
 class CardNumerTextFieldTests: XCTestCase {
-    var form: VGSForm!
+    var collector: VGSCollect!
     var cardNumerTextField: VGSTextField!
     
     override func setUp() {
-        form = VGSForm(tnt: "tntva5wfdrp")
+        collector = VGSCollect(tnt: "tntva5wfdrp")
         
         cardNumerTextField = VGSTextField()
         
-        let config = VGSConfiguration(form: form, alias: "cardNumber")
+        let config = VGSConfiguration(form: collector, fieldName: "cardNumber")
         config.type = .cardNumber
         config.isRequired = true
         cardNumerTextField.configuration = config
@@ -27,12 +27,12 @@ class CardNumerTextFieldTests: XCTestCase {
     }
     
     override func tearDown() {
-        form  = nil
+        collector  = nil
         cardNumerTextField = nil
     }
     
     func testAlias() {
-        XCTAssertNotNil(cardNumerTextField.alias == "cardNumer")
+        XCTAssertNotNil(cardNumerTextField.fieldName == "cardNumer")
     }
     
     func testCardNumberText() {
