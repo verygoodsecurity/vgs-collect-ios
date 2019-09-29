@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension VGSForm {
+extension VGSCollect {
     /// Check device if it jailbroken
     public static func isJailbroken() -> Bool {
         

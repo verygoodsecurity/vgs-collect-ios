@@ -9,24 +9,24 @@
 import XCTest
 @testable import VGSFramework
 
-class FormTests: XCTestCase {
-    var form: VGSForm!
+class CollectorTests: XCTestCase {
+    var collector: VGSCollect!
     
     override func setUp() {
-        form = VGSForm(tnt: "tntva5wfdrp")
+        collector = VGSCollect(tnt: "tntva5wfdrp")
     }
 
     override func tearDown() {
-        form = nil
+        collector = nil
     }
 
     func testEnvByDefault() {
-        let host = form.apiClient.baseURL.host ?? ""
+        let host = collector.apiClient.baseURL.host ?? ""
         XCTAssertTrue(host.contains("sandbox"))
     }
     
     func testLiveEnvirinment() {
-        let liveForm = VGSForm(tnt: "testID", environment: .live)
+        let liveForm = VGSCollect(tnt: "testID", environment: .live)
         let host = liveForm.apiClient.baseURL.host ?? ""
         XCTAssertTrue(host.contains("live"))
     }
@@ -35,32 +35,32 @@ class FormTests: XCTestCase {
         let headerKey = "costom-header"
         let headerValue = "custom header value"
         
-        form.customHeaders = [
+        collector.customHeaders = [
             headerKey: headerValue
         ]
         
-        XCTAssertNotNil(form.customHeaders)
-        XCTAssert(form.customHeaders![headerKey] == headerValue)
+        XCTAssertNotNil(collector.customHeaders)
+        XCTAssert(collector.customHeaders![headerKey] == headerValue)
     }
     
     func testJail() {
-        XCTAssertFalse(VGSForm.isJailbroken())
+        XCTAssertFalse(VGSCollect.isJailbroken())
     }
     
     func testCanOpen() {
         let path = "."
-        XCTAssertTrue(VGSForm.canOpen(path: path))
+        XCTAssertTrue(VGSCollect.canOpen(path: path))
     }
     
     func testRegistrationTextField() {
-        let config = VGSConfiguration(form: form, alias: "test")
+        let config = VGSConfiguration(collector: collector, fieldName: "test")
         let tf = VGSTextField()
         tf.configuration = config
         
-        XCTAssertTrue(form.storage.elements.count == 1)
+        XCTAssertTrue(collector.storage.elements.count == 1)
         
-        form.unregisterTextFields(textField: [tf])
+        collector.unregisterTextFields(textField: [tf])
         
-        XCTAssertTrue(form.storage.elements.count == 0)
+        XCTAssertTrue(collector.storage.elements.count == 0)
     }
 }

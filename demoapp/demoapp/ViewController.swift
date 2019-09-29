@@ -16,8 +16,8 @@ class ViewController: UIViewController {
             consoleLabel.text = consoleMessage
         }
     }
-    // VGS Form
-    var vgsForm = VGSForm(tnt: "tntva5wfdrp", environment: .sandbox)
+    // Collector vgs
+    var vgsCollector = VGSCollect(tnt: "tntva5wfdrp", environment: .sandbox)
     
     // VGS UI Elements
     var cardNumber = VGSTextField()
@@ -37,17 +37,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // check if device is jailbroken
-        if VGSForm.isJailbroken() {
+        if VGSCollect.isJailbroken() {
             print("Device is Jailbroken")
         }
         
         // set custom headers
-        vgsForm.customHeaders = [
+        vgsCollector.customHeaders = [
             "my custome header": "some custom data"
         ]
         
         // Observing text fields
-        vgsForm.observeForm = { [weak self] form in
+        vgsCollector.observeForm = { [weak self] form in
             
             self?.consoleMessage = ""
             
@@ -141,21 +141,21 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        let cardConfiguration = VGSConfiguration(form: vgsForm, alias: "cardNumber")
+        let cardConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cardNumber")
         cardConfiguration.placeholder = "card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
         
         cardNumber.configuration = cardConfiguration
         
-        let expDateConfiguration = VGSConfiguration(form: vgsForm, alias: "expDate")
+        let expDateConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "expDate")
         expDateConfiguration.placeholder = "exp date"
         expDateConfiguration.isRequired = true
         expDateConfiguration.type = .dateExpiration
         
         expCardDate.configuration = expDateConfiguration
         
-         let cvvConfiguration = VGSConfiguration(form: vgsForm, alias: "cvvNum")
+         let cvvConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cvvNum")
         cvvConfiguration.placeholder = "cvv"
         cvvConfiguration.isRequired = true
         cvvConfiguration.type = .cvv
@@ -181,7 +181,7 @@ extension ViewController {
         data["cardHolderName"] = cardHolderName.text
         
         // send data
-        vgsForm.sendData(path: "post", data: data, completion: { [weak self] (json, error) in
+        vgsCollector.sendData(path: "post", data: data, completion: { [weak self] (json, error) in
             if error == nil, let json = json {
                 var strJson = json.description
                 strJson = strJson.replacingOccurrences(of: "[", with: "[\n")

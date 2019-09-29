@@ -9,7 +9,7 @@
 import Foundation
 
 /// The VGSForm class needed for collect all text filelds
-public class VGSForm {
+public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
     
@@ -56,7 +56,7 @@ public class VGSForm {
     }
 }
 
-extension VGSForm {
+extension VGSCollect {
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
         storage.elements.forEach { textField in
@@ -71,16 +71,16 @@ extension VGSForm {
 }
 
 // MARK: - sending data
-extension VGSForm {
+extension VGSCollect {
     public func sendData(path: String, data: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         var body = BodyData()
         
         let elements = storage.elements
         
-        let allKeys = elements.compactMap( { $0.alias } )
+        let allKeys = elements.compactMap( { $0.fieldName } )
         allKeys.forEach { key in
-            if let value = elements.filter( { $0.alias == key } ).first {
+            if let value = elements.filter( { $0.fieldName == key } ).first {
                 body[key] = value.text
             } else {
                 fatalError("Wrong key: \(key)")
@@ -101,7 +101,7 @@ extension VGSForm {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
                     
-                    if let element = elements.filter( { $0.alias == key } ).first {
+                    if let element = elements.filter( { $0.fieldName == key } ).first {
                         element.token = json?[key] as? String
                     }
                 })
