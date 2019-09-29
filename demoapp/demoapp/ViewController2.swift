@@ -13,12 +13,12 @@ class ViewController2: UIViewController {
 
     @IBOutlet weak var textField: VGSTextField!
     
-    var vgsForm = VGSForm(tnt: "ytyty")
+    var vgsCollector = VGSCollect(tnt: "ytyty")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let config = VGSConfiguration(form: vgsForm, alias: "test")
+        let config = VGSConfiguration(collector: vgsCollector, fieldName: "test")
         config.isRequired = false
         config.placeholder = "name pppp"
         config.type = .cardNumber
