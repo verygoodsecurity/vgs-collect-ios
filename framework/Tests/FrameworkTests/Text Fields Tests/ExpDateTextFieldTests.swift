@@ -19,7 +19,7 @@ class ExpDateTextFieldTests: XCTestCase {
         expDateTextField = VGSTextField()
         
         let config = VGSConfiguration(collector: collector, fieldName: "expDate")
-        config.type = .dateExpiration
+        config.type = .expDate
         expDateTextField.configuration = config
         
         expDateTextField.textField.text = "1223"

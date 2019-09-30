@@ -152,7 +152,7 @@ class ViewController: UIViewController {
         let expDateConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "expDate")
         expDateConfiguration.placeholder = "exp date"
         expDateConfiguration.isRequired = true
-        expDateConfiguration.type = .dateExpiration
+        expDateConfiguration.type = .expDate
         
         expCardDate.configuration = expDateConfiguration
         

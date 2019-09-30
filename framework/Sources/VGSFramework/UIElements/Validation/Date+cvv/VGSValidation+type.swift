@@ -11,7 +11,7 @@ import Foundation
 extension VGSValidation {
     func validateType(txt: String, for type: FieldType) -> Bool {        
         switch type {
-        case .dateExpiration:
+        case .expDate:
             return validateExpDate(txt: txt)
             
         case .cvv:
