@@ -35,7 +35,7 @@ public class VGSCollect {
     /// - Parameters:
     ///   - id: Your tanent id value
     ///   - environment: By default it's `sandbox`, better for testing. And `live` when you ready for prodaction.
-    public init(tnt id: String, environment: Environment = .sandbox) {
+    public init(id: String, environment: Environment = .sandbox) {
         let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
         guard let url = URL(string: strUrl) else {
             fatalError("Upstream Host is broken. Can't to converting to URL!")

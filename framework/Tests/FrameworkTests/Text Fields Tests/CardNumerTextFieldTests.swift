@@ -14,7 +14,7 @@ class CardNumerTextFieldTests: XCTestCase {
     var cardNumerTextField: VGSTextField!
     
     override func setUp() {
-        collector = VGSCollect(tnt: "tntva5wfdrp")
+        collector = VGSCollect(id: "tntva5wfdrp")
         
         cardNumerTextField = VGSTextField()
         
