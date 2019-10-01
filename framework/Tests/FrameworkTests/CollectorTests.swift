@@ -13,7 +13,7 @@ class CollectorTests: XCTestCase {
     var collector: VGSCollect!
     
     override func setUp() {
-        collector = VGSCollect(tnt: "tntva5wfdrp")
+        collector = VGSCollect(id: "tntva5wfdrp")
     }
 
     override func tearDown() {
@@ -26,7 +26,7 @@ class CollectorTests: XCTestCase {
     }
     
     func testLiveEnvirinment() {
-        let liveForm = VGSCollect(tnt: "testID", environment: .live)
+        let liveForm = VGSCollect(id: "testID", environment: .live)
         let host = liveForm.apiClient.baseURL.host ?? ""
         XCTAssertTrue(host.contains("live"))
     }

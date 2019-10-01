@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         }
     }
     // Collector vgs
-    var vgsCollector = VGSCollect(tnt: "tntva5wfdrp", environment: .sandbox)
+    var vgsCollector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
     
     // VGS UI Elements
     var cardNumber = VGSTextField()

@@ -14,7 +14,7 @@ class ApiClientTests: XCTestCase {
     var apiClient: APIClient!
     
     override func setUp() {
-        collector = VGSCollect(tnt: "tntva5wfdrp")
+        collector = VGSCollect(id: "tntva5wfdrp")
         apiClient = collector.apiClient
         
         let config = VGSConfiguration(collector: collector, fieldName: "cardNumber")

@@ -13,7 +13,7 @@ class ViewController2: UIViewController {
 
     @IBOutlet weak var textField: VGSTextField!
     
-    var vgsCollector = VGSCollect(tnt: "ytyty")
+    var vgsCollector = VGSCollect(id: "test")
     
     override func viewDidLoad() {
         super.viewDidLoad()

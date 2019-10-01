@@ -14,7 +14,7 @@ class ExpDateTextFieldTests: XCTestCase {
     var expDateTextField: VGSTextField!
     
     override func setUp() {
-        collector = VGSCollect(tnt: "tntva5wfdrp")
+        collector = VGSCollect(id: "tntva5wfdrp")
         
         expDateTextField = VGSTextField()
         
