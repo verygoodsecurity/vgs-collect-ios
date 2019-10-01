@@ -28,8 +28,8 @@ The VGSFramework has simple possibility for integration. For integration need to
 import VGSFramework
 
 class ViewController: UIViewController {
-    // VGS Form
-    var vgsForm = VGSForm(tnt: "your_tnt_id", environment: .sandbox)
+    // VGS Collect
+    var vgsForm = VGSCollect(id: "your_tnt_id", environment: .sandbox)
     // VGS UI Elements
     var cardNumber = VGSTextField()
     // the Send data Button
@@ -57,7 +57,6 @@ class ViewController: UIViewController {
 # Technologies what we use:
 - Swift 4.2
 - 3th party lib: (will be removed for the next release)
-    - SnapKit
     - Alamofire
 - Git, Continuous 
 - Testing solutions: Unit Tests
