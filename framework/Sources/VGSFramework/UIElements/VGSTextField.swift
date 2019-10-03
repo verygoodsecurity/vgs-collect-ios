@@ -112,7 +112,7 @@ public class VGSTextField: UIView {
     }
     
     @objc
-    private func textFieldDidChange(_ sender: UITextField) {
+    func textFieldDidChange(_ sender: UITextField) {
         // change status
         vgsCollector?.updateStatus(for: self)
     }

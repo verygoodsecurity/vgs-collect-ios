@@ -10,7 +10,6 @@ import Foundation
 
 public class SwiftLuhn {
     public enum CardType: Int {
-        case unknown
         case amex
         case visa
         case mastercard
@@ -20,6 +19,7 @@ public class SwiftLuhn {
         case maestro
         case rupay
         case mir
+        case unknown
     }
     
     public enum CardError: Error {
