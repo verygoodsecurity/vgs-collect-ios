@@ -35,18 +35,11 @@ class ExpDateTextFieldTests: XCTestCase {
     }
     
     func testWrongDate() {
-        let originalExpDate = expDateTextField.text
         expDateTextField.textField.text = "21/23"
         
         let state = expDateTextField.state
         
         XCTAssertFalse(state.isValid)
         XCTAssertFalse(state.isEmpty)
-        
-        expDateTextField.textField.text = originalExpDate
-    }
-    
-    func testStates() {
-        
     }
 }
