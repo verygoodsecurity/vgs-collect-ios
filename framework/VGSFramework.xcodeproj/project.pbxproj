@@ -36,6 +36,7 @@
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
 		FDF696E9234A5D9A00063507 /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSButton.swift */; };
+		FDF696EF234A6CD500063507 /* ButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696EE234A6CD500063507 /* ButtonTests.swift */; };
 		FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */; };
 		FDFCA800233F818C00C81126 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FF233F818C00C81126 /* CardBrandTests.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		FDF696E2234643F300063507 /* LuhnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuhnTests.swift; sourceTree = "<group>"; };
 		FDF696E42346461D00063507 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
 		FDF696E8234A5D9A00063507 /* VGSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSButton.swift; sourceTree = "<group>"; };
+		FDF696EE234A6CD500063507 /* ButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
 		FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+padding.swift"; sourceTree = "<group>"; };
 		FDFCA7FF233F818C00C81126 /* CardBrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +218,7 @@
 		FD2495522330CB49009024E6 /* FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				FDF696ED234A6CC600063507 /* Button */,
 				FDE890802333A75800FA170D /* Text Fields Tests */,
 				FDFCA7FF233F818C00C81126 /* CardBrandTests.swift */,
 				FD24955D2330CC62009024E6 /* CollectorTests.swift */,
@@ -316,6 +319,14 @@
 			children = (
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		FDF696ED234A6CC600063507 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				FDF696EE234A6CD500063507 /* ButtonTests.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,6 +538,7 @@
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
+				FDF696EF234A6CD500063507 /* ButtonTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD24955E2330CC62009024E6 /* CollectorTests.swift in Sources */,
 			);

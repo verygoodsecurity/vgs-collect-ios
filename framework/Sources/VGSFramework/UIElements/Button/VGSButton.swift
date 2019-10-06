@@ -56,11 +56,11 @@ public class VGSButton: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        button.addTarget(self, action: #selector(buttonFunction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     @objc
-    private func buttonFunction(_ sender: UIButton) {
+    internal func buttonAction(_ sender: UIButton) {
         switch type {
         case .camera:
             getImageFromCamera()
