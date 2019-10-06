@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--1-->
+        <!--Card Data-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,11 +18,61 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="1" id="GcF-ad-6mE"/>
+                    <tabBarItem key="tabBarItem" title="Card Data" id="GcF-ad-6mE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="-318"/>
+            <point key="canvasLocation" x="2042.0289855072465" y="-318.75"/>
+        </scene>
+        <!--PHoto-->
+        <scene sceneID="tSJ-sT-vuR">
+            <objects>
+                <viewController id="3ul-g4-aET" customClass="ViewController2" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nI6-UX-yus">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-05-u0C" customClass="VGSButton" customModule="VGSFramework">
+                                <rect key="frame" x="65" y="88" width="284" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="rqx-ZU-evD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xZ7-05-u0C" firstAttribute="top" secondItem="y6D-N5-RTR" secondAttribute="top" constant="88" id="9iq-Wk-TiI"/>
+                            <constraint firstItem="xZ7-05-u0C" firstAttribute="leading" secondItem="y6D-N5-RTR" secondAttribute="leading" constant="65" id="QS1-PN-Jbc"/>
+                            <constraint firstItem="xZ7-05-u0C" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="dbL-lF-R6l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="y6D-N5-RTR"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="PHoto" id="YTB-AU-3I9"/>
+                    <connections>
+                        <outlet property="button" destination="xZ7-05-u0C" id="bfb-0n-eNB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AJq-bH-kNo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2040.5797101449277" y="345.6521739130435"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="BEG-Sr-Dkt">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="afe-xS-bJP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qtf-el-iBF">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="N9H-N5-RQR"/>
+                        <segue destination="3ul-g4-aET" kind="relationship" relationship="viewControllers" id="dNG-P4-6J2"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bhk-cb-oLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1009" y="-33"/>
         </scene>
     </scenes>
 </document>
