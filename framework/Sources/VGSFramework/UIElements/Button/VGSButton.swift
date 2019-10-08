@@ -109,9 +109,11 @@ extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDele
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let originalImage = info[.originalImage] as! UIImage
-        image = originalImage
+        guard let originalImage = info[.originalImage] as? UIImage else {
+            return
+        }
         
+        image = originalImage
         picker.dismiss(animated: true, completion: nil)
     }
 }

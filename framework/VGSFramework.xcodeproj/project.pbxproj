@@ -29,13 +29,13 @@
 		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
+		FD44BB46234D256500B4CB4E /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSButton.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
 		FDE890822333AC6D00FA170D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
 		FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */; };
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
-		FDF696E9234A5D9A00063507 /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSButton.swift */; };
 		FDF696EF234A6CD500063507 /* ButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696EE234A6CD500063507 /* ButtonTests.swift */; };
 		FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */; };
 		FDFCA800233F818C00C81126 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FF233F818C00C81126 /* CardBrandTests.swift */; };
@@ -516,7 +516,7 @@
 				FD05F9492316CE5A000EAF52 /* VGSCollect.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */,
-				FDF696E9234A5D9A00063507 /* VGSButton.swift in Sources */,
+				FD44BB46234D256500B4CB4E /* VGSButton.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
