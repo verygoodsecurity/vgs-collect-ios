@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "VGSFramework",
     platforms: [
-        .iOS(.v11),
+        .iOS(.v12),
     ],
     products: [
         .library(name: "VGSFramework", targets: ["VGSFramework"]),
@@ -15,7 +15,7 @@ let package = Package(
     targets: [
         .target(
             name: "VGSFramework",
-            dependencies: ["SnapKit", "Alamofire"],
+            dependencies: ["Alamofire"],
             path: "framework"
         ),
 //        .testTarget(

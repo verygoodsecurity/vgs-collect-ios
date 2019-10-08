@@ -148,6 +148,8 @@ class ViewController: UIViewController {
         cardConfiguration.type = .cardNumber
         
         cardNumber.configuration = cardConfiguration
+        cardNumber.textColor = .red
+        cardNumber.font = UIFont.boldSystemFont(ofSize: 18)
         
         let expDateConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "expDate")
         expDateConfiguration.placeholder = "exp date"
@@ -155,6 +157,8 @@ class ViewController: UIViewController {
         expDateConfiguration.type = .expDate
         
         expCardDate.configuration = expDateConfiguration
+        expCardDate.textColor = .blue
+        expCardDate.font = UIFont.italicSystemFont(ofSize: 18)
         
          let cvvConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cvvNum")
         cvvConfiguration.placeholder = "cvv"
@@ -162,6 +166,8 @@ class ViewController: UIViewController {
         cvvConfiguration.type = .cvv
         
         cvvCardNum.configuration = cvvConfiguration
+        cvvCardNum.textColor = .green
+        cvvCardNum.font = UIFont.systemFont(ofSize: 18, weight: .black)
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)

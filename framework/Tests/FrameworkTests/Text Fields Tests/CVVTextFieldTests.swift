@@ -44,5 +44,29 @@ class CVVTextFieldTests: XCTestCase {
         XCTAssertFalse(state.isEmpty)
         XCTAssertTrue(state.isValid)
         XCTAssertTrue(state.isRequired)
+        XCTAssertNotNil(state.description)
+    }
+    
+    func testStateDescription() {
+        let expectation = XCTestExpectation(description: "Update TF status.")
+        
+        collector.observeForm = { objects in
+            
+            expectation.fulfill()
+            
+            XCTAssert(objects.count == 1)
+            
+            if let state = objects.first?.state {
+                XCTAssertFalse(state.isEmpty)
+                XCTAssertTrue(state.isValid)
+                XCTAssertTrue(state.isRequired)
+            } else {
+                XCTFail()
+            }
+        }
+        
+        cvvTextField.textFieldDidChange(UITextField())
+        
+        wait(for: [expectation], timeout: 1.0)
     }
 }

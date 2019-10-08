@@ -12,6 +12,9 @@ public class VGSValidation {
     var pattern: String?
     
     func isValid(_ txt: String, type: FieldType) -> Bool {
+        
+        if type == .none { return true }
+        
         guard txt.count != 0, let regex = pattern else {
             return false
         }

@@ -51,7 +51,7 @@ open class MaskedTextField : UITextField {
     }
     
     // MARK: - Text Padding
-    var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
     // MARK: - Constructor
     required public init?(coder aDecoder: NSCoder) {

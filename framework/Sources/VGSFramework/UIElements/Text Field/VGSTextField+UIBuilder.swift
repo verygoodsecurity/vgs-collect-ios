@@ -37,6 +37,22 @@ public extension VGSTextField {
             layer.borderColor = newValue?.cgColor
         }
     }
+    var font: UIFont? {
+        get {
+            return textField.font
+        }
+        set {
+            textField.font = newValue
+        }
+    }
+    @IBInspectable var textColor: UIColor? {
+        get {
+            return textField.textColor
+        }
+        set {
+            textField.textColor = newValue
+        }
+    }
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
