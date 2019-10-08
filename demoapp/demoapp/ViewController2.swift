@@ -11,32 +11,10 @@ import VGSFramework
 
 class ViewController2: UIViewController {
 
-    @IBOutlet weak var textField: VGSTextField!
-    
-    var vgsCollector = VGSCollect(id: "test")
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let config = VGSConfiguration(collector: vgsCollector, fieldName: "test")
-        config.isRequired = false
-        config.placeholder = "name pppp"
-        config.type = .cardNumber
-        
-        textField.configuration = config
-        
-        textField.padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    @IBOutlet weak var button: VGSButton! {
+        didSet {
+            button.presentViewController = self
+            button.type = .library
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
