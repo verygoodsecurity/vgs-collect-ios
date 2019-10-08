@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="2042.0289855072465" y="-318.75"/>
         </scene>
-        <!--PHoto-->
+        <!--Photo-->
         <scene sceneID="tSJ-sT-vuR">
             <objects>
                 <viewController id="3ul-g4-aET" customClass="ViewController2" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y6D-N5-RTR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="PHoto" id="YTB-AU-3I9"/>
+                    <tabBarItem key="tabBarItem" title="Photo" id="YTB-AU-3I9"/>
                     <connections>
                         <outlet property="button" destination="xZ7-05-u0C" id="bfb-0n-eNB"/>
                     </connections>
@@ -62,6 +62,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="afe-xS-bJP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qtf-el-iBF">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
