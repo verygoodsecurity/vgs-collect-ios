@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
   spec.source       = { 
-    :git => "https://github.com/verygoodsecurity/vgs-collect-ios", 
+    :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", 
     :tag => "#{spec.version}" 
   }
   spec.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
