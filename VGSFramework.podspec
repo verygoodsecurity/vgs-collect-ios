@@ -1,6 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "VGSFramework"
   spec.version      = "0.0.1"
+  spec.swift_version = '4.2'
   spec.summary      = "A short description of VGSFramework."
   spec.description  = <<-DESC
   VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGS Collect mobile SDKs - are native mobile forms modules that allow customers to collect information securely on mobile devices with iOS
