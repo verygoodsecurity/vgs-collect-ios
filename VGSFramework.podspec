@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.name         = "VGS Collect ios SDK"
+  spec.name         = "VGS_Collect_ios_SDK"
   spec.version      = "0.0.1"
   spec.swift_version = '4.2'
   spec.description  = <<-DESC
