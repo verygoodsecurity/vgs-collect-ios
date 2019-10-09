@@ -55,7 +55,7 @@ class ViewController: UIViewController {
 }
 ````
 
-# Styling you VGS text fields
+# Styling your VGS text fields
 
 You can use general property for customise your text fields.
 
