@@ -6,8 +6,8 @@ target 'demoapp' do
   pod 'SnapKit'
   # Pods for demoapp
 
-  pod 'VGSFramework', :path => '../'
-#  pod 'VGSFramework', :git => 'https://github.com/verygoodsecurity/vgs-collect-ios.git', :branch => 'dev'
+  pod 'VGSCollectSDK'
+#  pod 'VGSCollectSDK', :path => "../"
 
   target 'demoappTests' do
     inherit! :search_paths

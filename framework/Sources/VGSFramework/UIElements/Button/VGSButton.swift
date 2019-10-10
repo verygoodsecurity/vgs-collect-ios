@@ -67,7 +67,7 @@ public class VGSButton: UIView {
         case .library:
             getImageFromLibrary()
         case .file:
-            #warning("Need to investigate work with icloud file")
+            // Need to investigate work with icloud file
             break
         default:
             showAlert(message: "Need to set correct type for VGSButton")
