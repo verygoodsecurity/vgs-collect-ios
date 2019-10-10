@@ -61,4 +61,17 @@ class TextFielsStyleUI: XCTestCase {
         XCTAssert(newRect.origin.x == value)
         XCTAssert(newRect.size.width == value*(-2))
     }
+    
+    func testFont() {
+        let font = UIFont(name: "Arial", size: 22)
+        textField.font = font
+        XCTAssert(textField.font?.pointSize == font?.pointSize)
+        XCTAssert(textField.font?.familyName == "Arial")
+    }
+    
+    func testTextColor() {
+        let color = UIColor.green
+        textField.textColor = color
+        XCTAssert(textField.textField.textColor == color)
+    }
 }

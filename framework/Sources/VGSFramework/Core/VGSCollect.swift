@@ -14,10 +14,10 @@ public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
     
-    /// Observing focused text field of status
+    /// Observing focused text field of state
     public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
     
-    /// Observing all text fields statuses
+    /// Observing all text fields states
     public var observeStates: ((_ form:[VGSTextField]) -> Void)?
     
     /// Set your custom HTTP headers

@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "VGSFramework",
+    name: "VGSCollectSDK",
     platforms: [
         .iOS(.v12),
     ],
