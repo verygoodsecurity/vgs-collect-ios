@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import Alamofire
 
 /// The VGSForm class needed for collect all text filelds
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
     
-    /// Observing focused text field of status
-    public var observeTextField: ((_ textField: VGSTextField) -> Void)?
+    /// Observing focused text field of state
+    public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
     
-    /// Observing all text fields statuses
-    public var observeForm: ((_ form:[VGSTextField]) -> Void)?
+    /// Observing all text fields states
+    public var observeStates: ((_ form:[VGSTextField]) -> Void)?
     
     /// Set your custom HTTP headers
     public var customHeaders: [String: String]? {
@@ -65,14 +66,14 @@ extension VGSCollect {
         // set focus for textField
         textField.focusStatus = true
         // call observers
-        observeForm?(storage.elements)
-        observeTextField?(textField)
+        observeStates?(storage.elements)
+        observeFieldState?(textField)
     }
 }
 
 // MARK: - sending data
 extension VGSCollect {
-    public func sendData(path: String, data: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         var body = BodyData()
         
@@ -87,11 +88,11 @@ extension VGSCollect {
             }
         }
         
-        if data?.count != 0 {
-            body["data"] = data?.description
+        if extraData?.count != 0 {
+            body["data"] = extraData?.description
         }
         
-        apiClient.sendRequest(path: path, value: body) { (json, error) in
+        apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
             
             if let error = error {
                 print("Error: \(String(describing: error.localizedDescription))")

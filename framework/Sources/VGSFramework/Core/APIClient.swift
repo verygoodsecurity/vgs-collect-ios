@@ -21,7 +21,7 @@ class APIClient {
         baseURL = url
     }
     
-    func sendRequest(path: String, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = [
             "Content-Type": "application/json",

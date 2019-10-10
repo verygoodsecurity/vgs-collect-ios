@@ -50,7 +50,7 @@ class CVVTextFieldTests: XCTestCase {
     func testStateDescription() {
         let expectation = XCTestExpectation(description: "Update TF status.")
         
-        collector.observeForm = { objects in
+        collector.observeStates = { objects in
             
             expectation.fulfill()
             

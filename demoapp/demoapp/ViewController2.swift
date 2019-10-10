@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import VGSFramework
+import VGSCollectSDK
 
 class ViewController2: UIViewController {
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import VGSFramework
+import VGSCollectSDK
 import SnapKit
 
 class ViewController: UIViewController {
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         }
     }
     // Collector vgs
-    var vgsCollector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
+    var vgsForm = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
     
     // VGS UI Elements
     var cardNumber = VGSTextField()
@@ -43,12 +43,12 @@ class ViewController: UIViewController {
         }
         
         // set custom headers
-        vgsCollector.customHeaders = [
+        vgsForm.customHeaders = [
             "my custome header": "some custom data"
         ]
         
         // Observing text fields
-        vgsCollector.observeForm = { [weak self] form in
+        vgsForm.observeStates = { [weak self] form in
             
             self?.consoleMessage = ""
             
@@ -142,7 +142,7 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
-        let cardConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cardNumber")
+        let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
         cardConfiguration.placeholder = "card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
@@ -150,8 +150,9 @@ class ViewController: UIViewController {
         cardNumber.configuration = cardConfiguration
         cardNumber.textColor = .red
         cardNumber.font = UIFont.boldSystemFont(ofSize: 18)
+        cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         
-        let expDateConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "expDate")
+        let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "expDate")
         expDateConfiguration.placeholder = "exp date"
         expDateConfiguration.isRequired = true
         expDateConfiguration.type = .expDate
@@ -160,7 +161,7 @@ class ViewController: UIViewController {
         expCardDate.textColor = .blue
         expCardDate.font = UIFont.italicSystemFont(ofSize: 18)
         
-         let cvvConfiguration = VGSConfiguration(collector: vgsCollector, fieldName: "cvvNum")
+         let cvvConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cvvNum")
         cvvConfiguration.placeholder = "cvv"
         cvvConfiguration.isRequired = true
         cvvConfiguration.type = .cvv
@@ -184,11 +185,11 @@ extension ViewController {
         hideKeyboard()
         
         // send extra data
-        var data = [String: Any]()
-        data["cardHolderName"] = cardHolderName.text
+        var extraData = [String: Any]()
+        extraData["cardHolderName"] = cardHolderName.text
         
         // send data
-        vgsCollector.sendData(path: "post", data: data, completion: { [weak self] (json, error) in
+        vgsForm.submit(path: "post", extraData: extraData, completion: { [weak self] (json, error) in
             if error == nil, let json = json {
                 var strJson = json.description
                 strJson = strJson.replacingOccurrences(of: "[", with: "[\n")
