@@ -6,8 +6,8 @@ target 'demoapp' do
   pod 'SnapKit'
   # Pods for demoapp
 
-  pod 'VGSCollectSDK'
-#  pod 'VGSCollectSDK', :path => "../"
+#  pod 'VGSCollectSDK'
+  pod 'VGSCollectSDK', :path => "../"
 
   target 'demoappTests' do
     inherit! :search_paths
