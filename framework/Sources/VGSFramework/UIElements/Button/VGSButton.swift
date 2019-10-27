@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 public class VGSButton: UIView {
     private(set) weak var vgsCollector: VGSCollect?
@@ -29,12 +30,10 @@ public class VGSButton: UIView {
         mainInitialization()
     }
     
-//    deinit {
-//        
-//    }
-    
     // MARK: - private API
     private func mainInitialization() {
+        
+        mainStyle()
         
         button.setTitle("Upload", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -64,13 +63,32 @@ public class VGSButton: UIView {
         switch type {
         case .camera:
             getImageFromCamera()
+            
         case .library:
             getImageFromLibrary()
+            
         case .file:
-            // Need to investigate work with icloud file
-            break
+            getFile()
+            
         default:
-            showAlert(message: "Need to set correct type for VGSButton")
+            guard let presenter = presentViewController else {
+                fatalError("Need to set presentViewController for VGSButton")
+            }
+            
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (action) in
+                self?.getImageFromLibrary()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] (action) in
+                self?.getImageFromCamera()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "iCloud storage", style: .default, handler: { [weak self] (action) in
+                self?.getFile()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+         
+            presenter.present(actionSheet, animated: true, completion: nil)
         }
     }
 }
@@ -97,6 +115,8 @@ extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDele
             
         } else {
             let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
             picker.sourceType = .camera
             presenter.present(picker, animated: true, completion: nil)
         }
@@ -115,6 +135,30 @@ extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDele
         
         image = originalImage
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension VGSButton: UIDocumentPickerDelegate {
+    internal func getFile() {
+        guard let presenter = presentViewController else {
+            fatalError("Need to set presentViewController for VGSButton")
+        }
+        
+        let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText),String(kUTTypeContent),String(kUTTypeItem),String(kUTTypeData)], in: .import)
+        picker.delegate = self
+        presenter.present(picker, animated: true, completion: nil)
+    }
+    
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        if controller.documentPickerMode == .import {
+            // This is what it should be
+//            let t = String(contentsOfFile: urls.first?.path)
+        }
+    }
+    
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

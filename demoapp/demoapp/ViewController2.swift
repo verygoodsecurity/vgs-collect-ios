@@ -11,10 +11,18 @@ import VGSCollectSDK
 
 class ViewController2: UIViewController {
 
+    let vgsForm = VGSCollect(id: "tntva5wfdrp")
+    
     @IBOutlet weak var button: VGSButton! {
         didSet {
             button.presentViewController = self
-            button.type = .library
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let configuration = VGSConfiguration(collector: vgsForm, fieldName: "image")
+        configuration.type = .cardHolderName
     }
 }
