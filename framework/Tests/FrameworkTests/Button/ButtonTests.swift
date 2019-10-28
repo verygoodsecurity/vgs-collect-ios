@@ -45,4 +45,37 @@ class ButtonTests: XCTestCase {
         XCTAssertNotNil(tmp)
         XCTAssert(tmp?.first == "buttonAction:")
     }
+    
+    func testGetFile() {
+        button.getFile()
+    }
+    
+    // MARK: - UI path
+    func testUIBorder() {
+        let color = UIColor.green
+        button.borderColor = color
+        XCTAssert(button.borderColor == color)
+        XCTAssert(button.layer.borderColor == color.cgColor)
+    }
+    
+    func testBorderWidth() {
+        let width: CGFloat = 1
+        button.borderWidth = width
+        XCTAssert(button.borderWidth == width)
+        XCTAssert(button.layer.borderWidth == width)
+    }
+    
+    func testRadius() {
+        let radius: CGFloat = 4
+        button.cornerRadius = radius
+        XCTAssert(button.cornerRadius == radius)
+        XCTAssert(button.layer.cornerRadius == radius)
+        XCTAssert(button.layer.masksToBounds == true)
+    }
+    
+    func testTextColor() {
+        let color = UIColor.red
+        button.textColor = color
+        XCTAssert(button.button.titleLabel?.textColor == color)
+    }
 }

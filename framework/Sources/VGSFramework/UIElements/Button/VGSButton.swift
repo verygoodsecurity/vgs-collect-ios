@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MobileCoreServices
+
 
 public class VGSButton: UIView {
     private(set) weak var vgsCollector: VGSCollect?
@@ -90,75 +90,6 @@ public class VGSButton: UIView {
          
             presenter.present(actionSheet, animated: true, completion: nil)
         }
-    }
-}
-
-extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    internal func getImageFromLibrary() {
-        guard let presenter = presentViewController else {
-            fatalError("Need to set presentViewController for VGSButton")
-        }
-        
-        let picker = UIImagePickerController()
-        picker.sourceType = .savedPhotosAlbum
-        picker.delegate = self
-        presenter.present(picker, animated: true, completion: nil)
-    }
-    
-    internal func getImageFromCamera() {
-        guard let presenter = presentViewController else {
-            fatalError("Need to set presentViewController for VGSButton")
-        }
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
-            showAlert(message: "No camera - no photo")
-            
-        } else {
-            let picker = UIImagePickerController()
-            picker.delegate = self
-            picker.allowsEditing = true
-            picker.sourceType = .camera
-            presenter.present(picker, animated: true, completion: nil)
-        }
-    }
-
-    // MARK: - UIImage picker delegate
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        guard let originalImage = info[.originalImage] as? UIImage else {
-            return
-        }
-        
-        image = originalImage
-        picker.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension VGSButton: UIDocumentPickerDelegate {
-    internal func getFile() {
-        guard let presenter = presentViewController else {
-            fatalError("Need to set presentViewController for VGSButton")
-        }
-        
-        let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText),String(kUTTypeContent),String(kUTTypeItem),String(kUTTypeData)], in: .import)
-        picker.delegate = self
-        presenter.present(picker, animated: true, completion: nil)
-    }
-    
-    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        
-        if controller.documentPickerMode == .import {
-            // This is what it should be
-//            let t = String(contentsOfFile: urls.first?.path)
-        }
-    }
-    
-    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
 
