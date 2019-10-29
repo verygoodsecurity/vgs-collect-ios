@@ -157,6 +157,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Select File"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAy-vf-iIf">
@@ -172,21 +173,37 @@
                                     <action selector="submit:" destination="3ul-g4-aET" eventType="touchUpInside" id="EcO-fG-fZv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEG-rn-hRF">
+                                <rect key="frame" x="20" y="252.00000000000003" width="374" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-2f-ike">
+                                <rect key="frame" x="197" y="173" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="NEG-rn-hRF" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="1oh-Av-rJI"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="top" secondItem="y6D-N5-RTR" secondAttribute="top" constant="88" id="9iq-Wk-TiI"/>
+                            <constraint firstItem="NEG-rn-hRF" firstAttribute="leading" secondItem="y6D-N5-RTR" secondAttribute="leading" constant="20" id="E0P-jE-p4D"/>
                             <constraint firstItem="NAy-vf-iIf" firstAttribute="width" secondItem="xZ7-05-u0C" secondAttribute="width" id="F9b-i8-OWB"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="leading" secondItem="y6D-N5-RTR" secondAttribute="leading" constant="65" id="QS1-PN-Jbc"/>
+                            <constraint firstItem="ceU-2f-ike" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="TL7-Ug-shM"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="dbL-lF-R6l"/>
                             <constraint firstItem="NAy-vf-iIf" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="f6K-SZ-ntf"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="top" secondItem="ceU-2f-ike" secondAttribute="bottom" constant="5" id="jWN-7m-t6t"/>
                             <constraint firstItem="NAy-vf-iIf" firstAttribute="top" secondItem="xZ7-05-u0C" secondAttribute="bottom" constant="55" id="vH2-78-VCw"/>
+                            <constraint firstItem="NEG-rn-hRF" firstAttribute="top" secondItem="NAy-vf-iIf" secondAttribute="bottom" constant="20" id="vkD-Fs-MOO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y6D-N5-RTR"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Photo" image="cloud-upload" id="YTB-AU-3I9"/>
                     <connections>
+                        <outlet property="activity" destination="ceU-2f-ike" id="DQq-q1-VqC"/>
                         <outlet property="button" destination="xZ7-05-u0C" id="bfb-0n-eNB"/>
+                        <outlet property="label" destination="NEG-rn-hRF" id="c67-cj-5PZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJq-bH-kNo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -206,7 +223,6 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="N9H-N5-RQR"/>
                         <segue destination="3ul-g4-aET" kind="relationship" relationship="viewControllers" id="dNG-P4-6J2"/>
-                        <segue destination="UoS-ic-6zn" kind="relationship" relationship="viewControllers" id="q1D-Uj-rEp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhk-cb-oLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -24,6 +24,7 @@ extension VGSButton: UIDocumentPickerDelegate {
         
         if controller.documentPickerMode == .import {
             if let url = urls.first {
+                title = "Selected"
                 vgsCollector?.storage.files[fieldName] = try? Data(contentsOf: url)
                 
             } else {

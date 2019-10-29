@@ -48,7 +48,9 @@ extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDele
             return
         }
         
-        vgsCollector?.storage.files[fieldName] = originalImage.pngData()
+        title = "Selected"
+        
+        vgsCollector?.storage.files[fieldName] = originalImage
         picker.dismiss(animated: true, completion: nil)
     }
 }
