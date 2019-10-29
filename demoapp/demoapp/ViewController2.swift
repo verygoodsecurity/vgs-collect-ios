@@ -18,11 +18,24 @@ class ViewController2: UIViewController {
             button.presentViewController = self
         }
     }
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        button.configuration = VGSConfiguration(collector: vgsForm, fieldName: "data")
+        
         let configuration = VGSConfiguration(collector: vgsForm, fieldName: "image")
         configuration.type = .cardHolderName
+    }
+    
+    @IBAction private func submit(_ sender: UIButton) {
+        
+        return
+        
+        vgsForm.submitFiles(path: "post", method: .post) { (json, error) in
+            
+            
+        }
     }
 }

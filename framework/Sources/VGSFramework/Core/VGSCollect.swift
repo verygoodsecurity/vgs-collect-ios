@@ -110,4 +110,17 @@ extension VGSCollect {
             block(json, nil)
         }
     }
+    
+    public func submitFiles(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+        
+        var valueForSend = BodyData()
+        storage.files.forEach { (key, value) in
+            let encodedData = value.base64EncodedData(options: .lineLength64Characters)
+            valueForSend[key] = encodedData
+        }
+        
+        if valueForSend.count == 0 { return } 
+        
+        apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)
+    }
 }

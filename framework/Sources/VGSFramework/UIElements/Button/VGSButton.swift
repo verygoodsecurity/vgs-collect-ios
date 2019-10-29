@@ -13,10 +13,17 @@ public class VGSButton: UIView {
     private(set) weak var vgsCollector: VGSCollect?
     internal var button = UIButton(type: .custom)
     internal var fieldName: String!
-    internal var file: Data?
-    internal var image: UIImage?
     internal var token: String?
     
+    public var configuration: VGSConfiguration? {
+        didSet {
+            guard let configuration = configuration else {
+                return
+            }
+            fieldName = configuration.fieldName
+            vgsCollector = configuration.vgsCollector
+        }
+    }
     public var type: ButtonType = .none
     public var presentViewController: UIViewController?
     

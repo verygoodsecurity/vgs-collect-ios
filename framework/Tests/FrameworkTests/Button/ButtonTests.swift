@@ -78,4 +78,12 @@ class ButtonTests: XCTestCase {
         button.textColor = color
         XCTAssert(button.button.titleLabel?.textColor == color)
     }
+    
+    func testTitle() {
+        let title = "adlkjlakjdkajd"
+        button.title = title
+        XCTAssert(button.title == title)
+        XCTAssert(button.button.title(for: .normal) == title)
+        XCTAssert(button.button.titleLabel?.text == title)
+    }
 }

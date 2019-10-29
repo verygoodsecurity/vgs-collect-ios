@@ -47,10 +47,18 @@ public extension VGSButton {
     }
     @IBInspectable var textColor: UIColor? {
         get {
-            return button.titleLabel?.textColor
+            return button.titleColor(for: .normal)
         }
         set {
-            button.titleLabel?.textColor = newValue
+            button.setTitleColor(newValue, for: .normal)
+        }
+    }
+    @IBInspectable var title: String? {
+        get {
+            return button.title(for: .normal)
+        }
+        set {
+            button.setTitle(newValue, for: .normal)
         }
     }
     

@@ -159,12 +159,28 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAy-vf-iIf">
+                                <rect key="frame" x="65" y="198" width="284" height="34"/>
+                                <color key="backgroundColor" red="0.98939794299999995" green="0.48900026079999998" blue="0.33027026059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit data"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submit:" destination="3ul-g4-aET" eventType="touchUpInside" id="EcO-fG-fZv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="top" secondItem="y6D-N5-RTR" secondAttribute="top" constant="88" id="9iq-Wk-TiI"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="width" secondItem="xZ7-05-u0C" secondAttribute="width" id="F9b-i8-OWB"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="leading" secondItem="y6D-N5-RTR" secondAttribute="leading" constant="65" id="QS1-PN-Jbc"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="dbL-lF-R6l"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="f6K-SZ-ntf"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="top" secondItem="xZ7-05-u0C" secondAttribute="bottom" constant="55" id="vH2-78-VCw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y6D-N5-RTR"/>
                     </view>
