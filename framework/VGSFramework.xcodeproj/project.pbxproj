@@ -31,6 +31,8 @@
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
 		FD44BB46234D256500B4CB4E /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSButton.swift */; };
+		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
+		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
 		FDE890822333AC6D00FA170D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
@@ -86,6 +88,8 @@
 		FD2495672330E313009024E6 /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
 		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
 		FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumerTextFieldTests.swift; sourceTree = "<group>"; };
+		FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+security.swift"; sourceTree = "<group>"; };
+		FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecurity.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
 		FDD9028D232ED2040053BEBC /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 		FD1489FD232D4F8000FD7781 /* Mask */ = {
 			isa = PBXGroup;
 			children = (
+				FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */,
 				FD1489FE232D4F8000FD7781 /* MaskedTextField.swift */,
 				FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */,
 			);
@@ -292,6 +297,7 @@
 				FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */,
 				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
 				FDF696E2234643F300063507 /* LuhnTests.swift */,
+				FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */,
 			);
 			path = "Text Fields Tests";
 			sourceTree = "<group>";
@@ -531,6 +537,7 @@
 				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
+				FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */,
 				FD04D96E23658CD0005DC92E /* VGSButton+UIBuilder.swift in Sources */,
@@ -550,6 +557,7 @@
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FDF696EF234A6CD500063507 /* ButtonTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
+				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
 				FD24955E2330CC62009024E6 /* CollectorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

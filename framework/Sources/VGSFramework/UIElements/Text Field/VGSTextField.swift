@@ -95,9 +95,9 @@ public class VGSTextField: UIView {
         NSLayoutConstraint.activate(verticalConstraint)
         
         
-        // delegate
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.addTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
+        //delegate
+        textField.addSomeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
         
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))

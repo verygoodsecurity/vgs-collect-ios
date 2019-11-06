@@ -62,7 +62,6 @@ extension VGSCollect {
         // reset all focus status
         storage.elements.forEach { textField in
             textField.focusStatus = false
-            textField.textField.delegate = nil
         }
         // set focus for textField
         textField.focusStatus = true

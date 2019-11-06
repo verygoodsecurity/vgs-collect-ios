@@ -142,15 +142,20 @@ class ViewController: UIViewController {
     }
     
     private func setupElements() {
+        
+        let textColor = UIColor.systemBlue
+        let textFont = UIFont.systemFont(ofSize: 22)
+        let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        
         let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
         cardConfiguration.placeholder = "card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
         
         cardNumber.configuration = cardConfiguration
-        cardNumber.textColor = .red
-        cardNumber.font = UIFont.boldSystemFont(ofSize: 18)
-        cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        cardNumber.textColor = textColor
+        cardNumber.font = textFont
+        cardNumber.padding = padding
         
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "expDate")
         expDateConfiguration.placeholder = "exp date"
@@ -158,8 +163,9 @@ class ViewController: UIViewController {
         expDateConfiguration.type = .expDate
         
         expCardDate.configuration = expDateConfiguration
-        expCardDate.textColor = .blue
-        expCardDate.font = UIFont.italicSystemFont(ofSize: 18)
+        expCardDate.textColor = textColor
+        expCardDate.font = textFont
+        expCardDate.padding = padding
         
          let cvvConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cvvNum")
         cvvConfiguration.placeholder = "cvv"
@@ -167,8 +173,9 @@ class ViewController: UIViewController {
         cvvConfiguration.type = .cvv
         
         cvvCardNum.configuration = cvvConfiguration
-        cvvCardNum.textColor = .green
-        cvvCardNum.font = UIFont.systemFont(ofSize: 18, weight: .black)
+        cvvCardNum.textColor = textColor
+        cvvCardNum.font = textFont
+        cvvCardNum.padding = padding
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
