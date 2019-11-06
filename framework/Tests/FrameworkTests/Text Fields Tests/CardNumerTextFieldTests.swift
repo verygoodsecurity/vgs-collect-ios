@@ -12,6 +12,7 @@ import XCTest
 class CardNumerTextFieldTests: XCTestCase {
     var collector: VGSCollect!
     var cardNumerTextField: VGSTextField!
+    var cardNum = "4111 1111 1111 1111"
     
     override func setUp() {
         collector = VGSCollect(id: "tntva5wfdrp")
@@ -23,7 +24,7 @@ class CardNumerTextFieldTests: XCTestCase {
         config.isRequired = true
         cardNumerTextField.configuration = config
         
-        cardNumerTextField.textField.text = "5375 4114 0003 2996"
+        cardNumerTextField.textField.text = cardNum
     }
     
     override func tearDown() {
@@ -36,7 +37,7 @@ class CardNumerTextFieldTests: XCTestCase {
     }
     
     func testCardNumberText() {
-        XCTAssertNotNil(cardNumerTextField.text == "5375 4114 0003 2996")
+        XCTAssertNotNil(cardNumerTextField.textField.text == cardNum)
     }
     
     func testStates() {
@@ -45,9 +46,9 @@ class CardNumerTextFieldTests: XCTestCase {
         if let st = state as? CardState {
             XCTAssertFalse(st.isEmpty)
             XCTAssertTrue(st.isValid)
-            XCTAssertTrue(st.first6 == "537541")
-            XCTAssertTrue(st.last4 == "2996")
-            XCTAssertTrue(st.cardBrand == .mastercard)
+            XCTAssertTrue(st.first6 == "411111")
+            XCTAssertTrue(st.last4 == "1111")
+            XCTAssertTrue(st.cardBrand == .visa)
         } else {
             XCTAssert(false, "State not for card field")
         }

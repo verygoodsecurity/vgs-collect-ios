@@ -26,13 +26,6 @@ public class VGSTextField: UIView {
         }
     }
     
-    internal var text: String? {
-        get {
-            return textField.text
-        }
-        set { }
-    }
-    
     public var configuration: VGSConfiguration? {
         didSet {
             
@@ -104,7 +97,7 @@ public class VGSTextField: UIView {
         
         // delegate
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.delegate = self
+        textField.addTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
         
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))

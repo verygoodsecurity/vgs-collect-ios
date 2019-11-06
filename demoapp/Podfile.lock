@@ -9,10 +9,9 @@ DEPENDENCIES:
   - VGSCollectSDK (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - SnapKit
   trunk:
     - Alamofire
+    - SnapKit
 
 EXTERNAL SOURCES:
   VGSCollectSDK:
@@ -25,4 +24,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 290ec3b3684e6803c9c491fceed8c93b2f2cc288
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

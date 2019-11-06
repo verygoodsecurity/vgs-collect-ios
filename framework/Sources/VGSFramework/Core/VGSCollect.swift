@@ -62,6 +62,7 @@ extension VGSCollect {
         // reset all focus status
         storage.elements.forEach { textField in
             textField.focusStatus = false
+            textField.textField.delegate = nil
         }
         // set focus for textField
         textField.focusStatus = true
@@ -82,7 +83,7 @@ extension VGSCollect {
         let allKeys = elements.compactMap( { $0.fieldName } )
         allKeys.forEach { key in
             if let value = elements.filter( { $0.fieldName == key } ).first {
-                body[key] = value.text
+                body[key] = value.textField.text
             } else {
                 fatalError("Wrong key: \(key)")
             }
