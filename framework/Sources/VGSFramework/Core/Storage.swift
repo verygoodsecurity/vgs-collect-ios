@@ -10,6 +10,7 @@ import Foundation
 
 class Storage {
     var elements = [VGSTextField]()
+    var files = BodyData()
     
     func addElement(_ element: VGSTextField) {
         if elements.filter({ $0 == element }).count == 0 {

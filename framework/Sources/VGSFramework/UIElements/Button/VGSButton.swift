@@ -8,14 +8,22 @@
 
 import UIKit
 
+
 public class VGSButton: UIView {
     private(set) weak var vgsCollector: VGSCollect?
     internal var button = UIButton(type: .custom)
     internal var fieldName: String!
-    internal var file: Data?
-    internal var image: UIImage?
     internal var token: String?
     
+    public var configuration: VGSConfiguration? {
+        didSet {
+            guard let configuration = configuration else {
+                return
+            }
+            fieldName = configuration.fieldName
+            vgsCollector = configuration.vgsCollector
+        }
+    }
     public var type: ButtonType = .none
     public var presentViewController: UIViewController?
     
@@ -29,12 +37,10 @@ public class VGSButton: UIView {
         mainInitialization()
     }
     
-//    deinit {
-//        
-//    }
-    
     // MARK: - private API
     private func mainInitialization() {
+        
+        mainStyle()
         
         button.setTitle("Upload", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -64,57 +70,33 @@ public class VGSButton: UIView {
         switch type {
         case .camera:
             getImageFromCamera()
+            
         case .library:
             getImageFromLibrary()
-        case .file:
-            // Need to investigate work with icloud file
-            break
-        default:
-            showAlert(message: "Need to set correct type for VGSButton")
-        }
-    }
-}
-
-extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    internal func getImageFromLibrary() {
-        guard let presenter = presentViewController else {
-            fatalError("Need to set presentViewController for VGSButton")
-        }
-        
-        let picker = UIImagePickerController()
-        picker.sourceType = .savedPhotosAlbum
-        picker.delegate = self
-        presenter.present(picker, animated: true, completion: nil)
-    }
-    
-    internal func getImageFromCamera() {
-        guard let presenter = presentViewController else {
-            fatalError("Need to set presentViewController for VGSButton")
-        }
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
-            showAlert(message: "No camera - no photo")
             
-        } else {
-            let picker = UIImagePickerController()
-            picker.sourceType = .camera
-            presenter.present(picker, animated: true, completion: nil)
+        case .file:
+            getFile()
+            
+        default:
+            guard let presenter = presentViewController else {
+                fatalError("Need to set presentViewController for VGSButton")
+            }
+            
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (action) in
+                self?.getImageFromLibrary()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] (action) in
+                self?.getImageFromCamera()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "iCloud storage", style: .default, handler: { [weak self] (action) in
+                self?.getFile()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+         
+            presenter.present(actionSheet, animated: true, completion: nil)
         }
-    }
-
-    // MARK: - UIImage picker delegate
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        guard let originalImage = info[.originalImage] as? UIImage else {
-            return
-        }
-        
-        image = originalImage
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 
