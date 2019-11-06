@@ -32,26 +32,52 @@ The SDK has simple possibility for integration. For integration need to install 
 import VGSCollectSDK
 
 class ViewController: UIViewController {
-    // VGS Collect
     var vgsForm = VGSCollect(id: "your_tnt_id", environment: .sandbox)
     // VGS UI Elements
     var cardNumber = VGSTextField()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Observing statuses
-        vgsForm.observeForm = { [weak self] form in
-            // receiving text field statuses
-        }
-        
-        let cardConfig = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
-        cardConfig.type = .cardNumber
-        cardConfig.placeholder = "card number"
-        cardNumber.configuration = cardConfig
+    
+    var button = UIButton()
+    
+    // MARK: - Life cycle methods	
+    override func loadView() {
+        super.loadView()
         
         cardNumber.frame = CGRect(x: 10, y: 55, width: 310, height: 35)
         view.addSubview(cardNumber)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Observing state of text fields
+        vgsForm.observeStates = { [weak self] form in
+            // receiving text fields status
+            form.forEach { textField in
+	            print(textField.status.description)
+            }
+        }
+        
+        // config text field
+        let config = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
+				config.type = .cardNumber
+        config.placeholder = "card number"
+        cardNumber.configuration = config
+        
+        // add target for submit button
+        button.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
      }
+     
+     @objc 
+     func sendData(_ sender: UIButton) {
+        // send extra data
+        var extraData = [String: Any]()
+        extraData["cardHolderName"] = "Joe Business"
+        
+        // send data
+        vgsForm.submit(path: "/post", extraData: extraData, completion: { [weak self] (json, error) in
+            // parse incoming data
+        })
+    }
 }
 ````
 
@@ -67,6 +93,7 @@ cardNumber.borderWidth = 1
 cardNumber.borderColor = .lightGray
 cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 cardNumber.textColor = .magenta
+cardNumber.font = UIFont(name: "Arial", size: 22)
 ````
 
 
