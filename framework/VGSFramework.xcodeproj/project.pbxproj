@@ -293,11 +293,11 @@
 			isa = PBXGroup;
 			children = (
 				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
-				FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */,
 				FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */,
-				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
+				FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */,
 				FDF696E2234643F300063507 /* LuhnTests.swift */,
 				FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */,
+				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
 			);
 			path = "Text Fields Tests";
 			sourceTree = "<group>";

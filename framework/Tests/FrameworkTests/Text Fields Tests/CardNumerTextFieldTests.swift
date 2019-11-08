@@ -23,8 +23,6 @@ class CardNumerTextFieldTests: XCTestCase {
         config.type = .cardNumber
         config.isRequired = true
         cardNumerTextField.configuration = config
-        
-        cardNumerTextField.textField.text = cardNum
     }
     
     override func tearDown() {
@@ -33,7 +31,7 @@ class CardNumerTextFieldTests: XCTestCase {
     }
     
     func testAlias() {
-        XCTAssertNotNil(cardNumerTextField.fieldName == "cardNumer")
+        XCTAssertNotNil(cardNumerTextField.fieldName == "cardNumber")
     }
     
     func testCardNumberText() {
@@ -41,7 +39,23 @@ class CardNumerTextFieldTests: XCTestCase {
     }
     
     func testStates() {
-        let state = cardNumerTextField.state
+        
+        var state = cardNumerTextField.state
+        
+        if let st = state as? CardState {
+            XCTAssertTrue(st.isEmpty)
+            XCTAssertFalse(st.isValid)
+            XCTAssertFalse(st.first6 == "411111")
+            XCTAssertFalse(st.last4 == "1111")
+            XCTAssertFalse(st.cardBrand == .visa)
+        } else {
+            XCTAssert(false, "State not for card field")
+        }
+        
+        
+        cardNumerTextField.textField.text = cardNum
+        
+        state = cardNumerTextField.state
         
         if let st = state as? CardState {
             XCTAssertFalse(st.isEmpty)

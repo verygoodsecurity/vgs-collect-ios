@@ -18,14 +18,18 @@ class ExpDateTextFieldTests: XCTestCase {
         
         expDateTextField = VGSTextField()
         
+        
         let config = VGSConfiguration(collector: collector, fieldName: "expDate")
         config.type = .expDate
+        config.formatPattern = "##/####"
+        
         expDateTextField.configuration = config
         
         expDateTextField.textField.text = "1223"
     }
     
     override func tearDown() {
+        expDateTextField.configuration = nil
         collector  = nil
         expDateTextField = nil
     }

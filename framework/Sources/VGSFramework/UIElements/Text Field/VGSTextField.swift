@@ -105,7 +105,7 @@ public class VGSTextField: UIView {
     }
     
     @objc
-    func textFieldDidChange(_ sender: UITextField) {
+    internal func textFieldDidChange(_ sender: UITextField) {
         // change status
         vgsCollector?.updateStatus(for: self)
     }
@@ -131,7 +131,7 @@ extension VGSTextField: UITextFieldDelegate {
 // MARK: - change focus here
 extension VGSTextField {
     @objc
-    private func focusOn() {
+    internal func focusOn() {
         // change status
         textField.becomeFirstResponder()
         vgsCollector?.updateStatus(for: self)

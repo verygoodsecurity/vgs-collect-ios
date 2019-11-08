@@ -21,6 +21,12 @@ class TextFielsStyleUI: XCTestCase {
         textField = nil
     }
     
+    func testFocusOn() {
+        textField.focusOn()
+        XCTAssertFalse(textField.isFocused)
+    }
+    
+    
     func testBorderColor() {
         let color = UIColor.green
         textField.borderColor = color
