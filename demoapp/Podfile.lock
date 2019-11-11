@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.9.0)
   - SnapKit (5.0.1)
-  - VGSCollectSDK (0.0.2):
+  - VGSCollectSDK (0.0.4):
     - Alamofire
 
 DEPENDENCIES:
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  VGSCollectSDK: 4a74ad9185906f83ef7b1dcdbe94be9dead7bb21
+  VGSCollectSDK: 8f4dfb53ccf3a53ea6977f1202e88394fc56a951
 
 PODFILE CHECKSUM: 290ec3b3684e6803c9c491fceed8c93b2f2cc288
 

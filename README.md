@@ -104,7 +104,7 @@ Example:
 
 ````swift
 class ViewController2: UIViewController {
-    let vgsForm = VGSCollect(id: "tanent_id")
+    let vgsForm = VGSCollect(id: "your_tnt_id")
     @IBOutlet weak var selectFileButton: VGSButton! {
         didSet {
             button.presentViewController = self
