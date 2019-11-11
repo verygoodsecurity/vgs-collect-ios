@@ -1,17 +1,19 @@
 [![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-ios-sdk.svg)]()
+[![swift](https://img.shields.io/badge/swift-4.2-orange)]()
+[![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
 
-## VGS Collect mobile SDK
+# VGS Collect mobile SDK
 
 VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGS Collect mobile SDKs - are native mobile forms modules that allow customers to collect information securely on mobile devices with iOS and Android
 
-# Problem
+## Problem
 Customers want to use VGS with their native mobile apps on iOS and Android devices. They want to get the same experience that they have on Web with VGS `Collect.js`.
 
-# Goal
+## Goal
 Customers can use the same VGS Vault and the same server-side for Mobile apps as for Web. Their experience should stay the same and be not dependent on the platform they use: Web or Mobile.
 
-# Integration
+## Integration
 The SDK has simple possibility for integration. For integration need to install the latest version of `cocoapods`.
 
 1. Make a projects on the `xcode`
@@ -19,7 +21,7 @@ The SDK has simple possibility for integration. For integration need to install 
 3. Make a Podfile (command: `pod init`)
 4. Open the Podfile and insert next line
 
-	```
+	```ruby
 	pod 'VGSCollectSDK'
 	```
 
@@ -28,7 +30,7 @@ The SDK has simple possibility for integration. For integration need to install 
 7. Open ViewController
 8. Put next code to your controller
 
-````
+````swift
 import VGSCollectSDK
 
 class ViewController: UIViewController {
@@ -81,13 +83,13 @@ class ViewController: UIViewController {
 }
 ````
 
-# Styling your VGS text fields
+## Styling your VGS text fields
 
 You can use general property for customise your text fields.
 
 Example: 
 
-````
+````swift
 // set UI style
 cardNumber.borderWidth = 1
 cardNumber.borderColor = .lightGray
@@ -96,10 +98,38 @@ cardNumber.textColor = .magenta
 cardNumber.font = UIFont(name: "Arial", size: 22)
 ````
 
+## Upload files securely
+For easy uploading file you can use VGSButton. 
+Example:
 
-# Technologies what we use:
-- Swift 4.2
-- 3th party lib:
-    - Alamofire
-- Git, Continuous 
-- Testing solutions: Unit Tests
+````swift
+class ViewController2: UIViewController {
+    let vgsForm = VGSCollect(id: "tanent_id")
+    @IBOutlet weak var selectFileButton: VGSButton! {
+        didSet {
+            button.presentViewController = self
+        }
+    }
+    var submitButton = UIButton(type: .custom)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        button.configuration = VGSConfiguration(collector: vgsForm, fieldName: "data")
+        submitButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
+    }
+    
+    private func submit(_ sender: UIButton) {
+        sender.isEnabled = false
+        vgsForm.submitFiles(path: "/post", method: .post) { [weak self] (json, error) in
+        
+            sender.isEnabled = true
+            
+            if (error != nil) {
+                print(error?.localizedDescription)
+            } else {
+                print(json)
+            }
+        }
+    }
+}
+````
