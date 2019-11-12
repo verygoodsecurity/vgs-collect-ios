@@ -25,7 +25,7 @@ class ViewController2: UIViewController {
             label.text = ""
         }
     }
-    @IBOutlet weak var button: VGSButton! {
+    @IBOutlet weak var button: VGSFilePicker! {
         didSet {
             button.presentViewController = self
         }
