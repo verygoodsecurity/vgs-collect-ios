@@ -101,7 +101,6 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        
         // delegate
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.delegate = self

@@ -15,7 +15,7 @@ extension VGSButton: UIDocumentPickerDelegate {
             fatalError("Need to set presentViewController for VGSButton")
         }
         
-        let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText),String(kUTTypeContent),String(kUTTypeItem),String(kUTTypeData)], in: .import)
+        let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText), String(kUTTypeContent), String(kUTTypeItem), String(kUTTypeData)], in: .import)
         picker.delegate = self
         presenter.present(picker, animated: true, completion: nil)
     }

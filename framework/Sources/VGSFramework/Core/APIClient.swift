@@ -36,7 +36,7 @@ class APIClient {
         }
         
         // JSON Body
-        let body: [String : Any] = value
+        let body: [String: Any] = value
         // Path
         let path = baseURL.appendingPathComponent(path)
         // Fetch Request
@@ -51,7 +51,7 @@ class APIClient {
                 switch response.result {
                 case .success(let data):
                     
-                    guard let d = data as? JsonData, let json = d["json"] as? JsonData else {
+                    guard let dict = data as? JsonData, let json = dict["json"] as? JsonData else {
                         block(nil, nil)
                         return
                     }

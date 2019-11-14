@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CardBrand: String, CaseIterable  {
+public enum CardBrand: String, CaseIterable {
     case unknown
     case visa
     case mastercard
