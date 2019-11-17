@@ -82,7 +82,7 @@ extension VGSCollect {
         let allKeys = elements.compactMap( { $0.fieldName } )
         allKeys.forEach { key in
             if let value = elements.filter( { $0.fieldName == key } ).first {
-                body[key] = value.textField.text
+                body[key] = value.text
             } else {
                 fatalError("Wrong key: \(key)")
             }

@@ -19,6 +19,11 @@ public class VGSTextField: UIView {
     internal var fieldName: String!
     internal var token: String?
     
+    // just for internal using
+    internal var text: String? {
+        return textField.secureText
+    }
+    
     /// You can set padding for text and placeholder
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet {

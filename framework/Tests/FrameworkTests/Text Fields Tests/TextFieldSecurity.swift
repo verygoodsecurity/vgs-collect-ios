@@ -57,6 +57,10 @@ class TextFieldSecurity: XCTestCase {
                     if let _ = target as? TextFieldSecurity {
                         XCTFail()
                     }
+                    
+                    if let txt = tf.text as? String, txt.count > 0 {
+                        XCTFail()
+                    }
                 }
             }
         }

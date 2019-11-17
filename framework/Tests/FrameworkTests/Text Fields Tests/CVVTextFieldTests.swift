@@ -36,7 +36,7 @@ class CVVTextFieldTests: XCTestCase {
     }
     
     func testContent() {
-        XCTAssertTrue(cvvTextField.textField.text == "123")
+        XCTAssertTrue(cvvTextField.text == "123")
     }
     
     func testStates() {
