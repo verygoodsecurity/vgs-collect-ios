@@ -11,7 +11,7 @@ import Foundation
 
 public extension VGSTextField {    
     var isValid: Bool {
-        let str = textField.text ?? ""
+        let str = text ?? ""
         return validationModel.isValid(str, type: fieldType)
     }
     

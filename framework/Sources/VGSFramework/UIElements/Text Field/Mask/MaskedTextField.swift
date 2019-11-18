@@ -44,10 +44,14 @@ open class MaskedTextField : UITextField {
             super.text = newValue
             self.formatText()
         }
-        
         get {
-            return super.text
+            return nil
         }
+    }
+    
+    /// setting text just for internal using
+    internal var secureText: String? {
+        return super.text
     }
     
     // MARK: - Text Padding
