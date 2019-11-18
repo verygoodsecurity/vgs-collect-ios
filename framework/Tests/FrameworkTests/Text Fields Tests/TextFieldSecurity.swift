@@ -54,12 +54,12 @@ class TextFieldSecurity: XCTestCase {
         textField.subviews.forEach { (view) in
             if let tf = view as? UITextField {
                 tf.allTargets.forEach { (target) in
-                    if let _ = target as? TextFieldSecurity {
-                        XCTFail()
+                    if target is TextFieldSecurity {
+                        XCTFail("Text Field has target")
                     }
                     
-                    if let txt = tf.text as? String, txt.count > 0 {
-                        XCTFail()
+                    if let txt = tf.text, txt.count > 0 {
+                        XCTFail("Not secure. Text was gotted")
                     }
                 }
             }

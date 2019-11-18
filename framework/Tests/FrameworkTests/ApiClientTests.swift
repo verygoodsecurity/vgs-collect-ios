@@ -67,7 +67,7 @@ class ApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending wrong data...")
         
-        collector.submit(path: "/wrongPath") { (data, error) in
+        collector.submit(path: "/wrongPath") { (data, _) in
             XCTAssertNil(data)
             
             expectation.fulfill()

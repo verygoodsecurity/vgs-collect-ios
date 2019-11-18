@@ -10,18 +10,13 @@ let package = Package(
         .library(name: "VGSFramework", targets: ["VGSFramework"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.2")
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "4.9.0")
     ],
     targets: [
         .target(
             name: "VGSFramework",
             dependencies: ["Alamofire"],
             path: "framework"
-        ),
-//        .testTarget(
-//            name: "FrameworkTests",
-//            dependencies: ["VGSFramework"],
-//            path: "framework"
-//        ),
+        )
     ]
 )
