@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UcK-KW-hHF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo-->
+        <scene sceneID="cCI-Yc-wMe">
+            <objects>
+                <viewController id="UcK-KW-hHF" customClass="ViewController2" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jCM-ik-AUh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBz-tJ-zOr" customClass="VGSFilePicker" customModule="VGSCollectSDK">
+                                <rect key="frame" x="65" y="132" width="284" height="55"/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.82745098039999998" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="DpK-AT-dSx"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Select File"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaU-v3-Beo">
+                                <rect key="frame" x="65" y="242" width="284" height="34"/>
+                                <color key="backgroundColor" red="0.98939794299999995" green="0.48900026079999998" blue="0.33027026059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit data"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submit:" destination="UcK-KW-hHF" eventType="touchUpInside" id="Hef-Jz-wjr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSS-qW-1BU">
+                                <rect key="frame" x="20" y="296" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0dX-8Q-28G">
+                                <rect key="frame" x="197" y="217" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LaU-v3-Beo" firstAttribute="width" secondItem="bBz-tJ-zOr" secondAttribute="width" id="1Pt-eN-Ikq"/>
+                            <constraint firstItem="BSS-qW-1BU" firstAttribute="centerX" secondItem="jCM-ik-AUh" secondAttribute="centerX" id="1zR-bI-4rk"/>
+                            <constraint firstItem="bBz-tJ-zOr" firstAttribute="leading" secondItem="11S-lm-oMe" secondAttribute="leading" constant="65" id="5ky-gv-9EL"/>
+                            <constraint firstItem="BSS-qW-1BU" firstAttribute="top" secondItem="LaU-v3-Beo" secondAttribute="bottom" constant="20" id="5ru-wM-jsV"/>
+                            <constraint firstItem="bBz-tJ-zOr" firstAttribute="centerX" secondItem="jCM-ik-AUh" secondAttribute="centerX" id="8bo-Lu-nz2"/>
+                            <constraint firstItem="LaU-v3-Beo" firstAttribute="centerX" secondItem="jCM-ik-AUh" secondAttribute="centerX" id="Ygk-zZ-9QW"/>
+                            <constraint firstItem="LaU-v3-Beo" firstAttribute="top" secondItem="bBz-tJ-zOr" secondAttribute="bottom" constant="55" id="bXP-f1-FfO"/>
+                            <constraint firstItem="LaU-v3-Beo" firstAttribute="top" secondItem="0dX-8Q-28G" secondAttribute="bottom" constant="5" id="eVy-MV-xEB"/>
+                            <constraint firstItem="BSS-qW-1BU" firstAttribute="leading" secondItem="11S-lm-oMe" secondAttribute="leading" constant="20" id="g32-Bf-ca9"/>
+                            <constraint firstItem="bBz-tJ-zOr" firstAttribute="top" secondItem="11S-lm-oMe" secondAttribute="top" constant="88" id="mAj-6Y-qay"/>
+                            <constraint firstItem="0dX-8Q-28G" firstAttribute="centerX" secondItem="jCM-ik-AUh" secondAttribute="centerX" id="saA-BR-lLb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="11S-lm-oMe"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Photo" image="cloud-upload" id="N2P-XZ-oc2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="activity" destination="0dX-8Q-28G" id="x5U-QQ-3sv"/>
+                        <outlet property="button" destination="bBz-tJ-zOr" id="RCz-BA-h5R"/>
+                        <outlet property="label" destination="BSS-qW-1BU" id="9gm-fp-6NM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRf-E2-LRw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2077" y="982"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cloud-upload" width="25" height="25"/>
+    </resources>
+</document>
