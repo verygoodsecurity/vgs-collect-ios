@@ -17,7 +17,6 @@
 		FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD12B9802304616E00B670DD /* LaunchScreen.storyboard */; };
 		FD12B98D2304616E00B670DD /* demoappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B98C2304616E00B670DD /* demoappTests.swift */; };
 		FD12B9982304616E00B670DD /* demoappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9972304616E00B670DD /* demoappUITests.swift */; };
-		FD959A672365959F00CE2C56 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD959A662365959F00CE2C56 /* ViewController3.swift */; };
 		FDFCA7FC233F70C900C81126 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FB233F70C900C81126 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +60,6 @@
 		FD12B9932304616E00B670DD /* demoappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9972304616E00B670DD /* demoappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoappUITests.swift; sourceTree = "<group>"; };
 		FD12B9992304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD959A662365959F00CE2C56 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		FDFCA7FB233F70C900C81126 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,7 +142,6 @@
 				FD12B9772304616C00B670DD /* AppDelegate.swift */,
 				FD12B9792304616C00B670DD /* ViewController.swift */,
 				FDFCA7FB233F70C900C81126 /* ViewController2.swift */,
-				FD959A662365959F00CE2C56 /* ViewController3.swift */,
 				FD12B97B2304616C00B670DD /* Main.storyboard */,
 				FD12B97E2304616E00B670DD /* Assets.xcassets */,
 				FD12B9802304616E00B670DD /* LaunchScreen.storyboard */,
@@ -413,7 +410,6 @@
 			files = (
 				FDFCA7FC233F70C900C81126 /* ViewController2.swift in Sources */,
 				FD12B97A2304616C00B670DD /* ViewController.swift in Sources */,
-				FD959A672365959F00CE2C56 /* ViewController3.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +587,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 69BNY6KMTF;
 				INFOPLIST_FILE = demoapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -611,6 +608,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 69BNY6KMTF;
 				INFOPLIST_FILE = demoapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

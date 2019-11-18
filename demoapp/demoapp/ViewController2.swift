@@ -12,6 +12,8 @@ import VGSCollectSDK
 class ViewController2: UIViewController {
 
     let vgsForm = VGSCollect(id: "tnts8xrfjrt")
+    
+    private var fileKey = "image"
      
     @IBOutlet weak var activity: UIActivityIndicatorView! {
         didSet {
@@ -23,19 +25,16 @@ class ViewController2: UIViewController {
             label.text = ""
         }
     }
-    @IBOutlet weak var button: VGSButton! {
+    @IBOutlet weak var button: VGSFilePicker! {
         didSet {
             button.presentViewController = self
         }
     }
-        
+            
     // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        button.configuration = VGSConfiguration(collector: vgsForm, fieldName: "data")
-        
-        let configuration = VGSConfiguration(collector: vgsForm, fieldName: "image")
-        configuration.type = .cardHolderName
+        button.configuration = VGSConfiguration(collector: vgsForm, fieldName: fileKey)
     }
     
     // MARK: - Action
@@ -45,13 +44,17 @@ class ViewController2: UIViewController {
         label.text = "Uploading..."
         vgsForm.submitFiles(path: "/post", method: .post) { [weak self] (json, error) in
         
-            self?.activity.stopAnimating()
+            guard let self = self else {
+                return
+            }
+            
+            self.activity.stopAnimating()
             sender.isEnabled = true
             
             if (error != nil) {
-                self?.label.text = error?.localizedDescription
+                self.label.text = error?.localizedDescription
             } else {
-                self?.label.text = json?["data"] as? String
+                self.label.text = json?[self.fileKey] as? String
             }
         }
     }

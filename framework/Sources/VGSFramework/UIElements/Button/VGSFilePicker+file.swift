@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-extension VGSButton: UIDocumentPickerDelegate {
+extension VGSFilePicker: UIDocumentPickerDelegate {
     internal func getFile() {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")
@@ -20,16 +20,20 @@ extension VGSButton: UIDocumentPickerDelegate {
         presenter.present(picker, animated: true, completion: nil)
     }
     
+    internal func getFileFromPicker(files urls: [URL]) {
+        if let url = urls.first {
+            title = "Selected"
+            vgsCollector?.storage.files[fieldName] = try? Data(contentsOf: url)
+            
+        } else {
+            print("⚠️ Error: file not found...")
+        }
+    }
+    
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         
         if controller.documentPickerMode == .import {
-            if let url = urls.first {
-                title = "Selected"
-                vgsCollector?.storage.files[fieldName] = try? Data(contentsOf: url)
-                
-            } else {
-                print("⚠️ Error: file not found...")
-            }
+            self.getFileFromPicker(files: urls)
         }
     }
     
