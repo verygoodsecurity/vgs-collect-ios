@@ -61,7 +61,7 @@ class CVVTextFieldTests: XCTestCase {
                 XCTAssertTrue(state.isValid)
                 XCTAssertTrue(state.isRequired)
             } else {
-                XCTFail()
+                XCTFail("Text field state didn't received.")
             }
         }
         

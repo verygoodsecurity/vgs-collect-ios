@@ -8,8 +8,8 @@
 
 import UIKit
 
-
 public class VGSFilePicker: UIView {
+
     private(set) weak var vgsCollector: VGSCollect?
     internal var button = UIButton(type: .custom)
     internal var fieldName: String!
@@ -84,13 +84,13 @@ public class VGSFilePicker: UIView {
             
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (action) in
+            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] _ in
                 self?.getImageFromLibrary()
             }))
-            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] (action) in
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] _ in
                 self?.getImageFromCamera()
             }))
-            actionSheet.addAction(UIAlertAction(title: "iCloud storage", style: .default, handler: { [weak self] (action) in
+            actionSheet.addAction(UIAlertAction(title: "iCloud storage", style: .default, handler: { [weak self] _ in
                 self?.getFile()
             }))
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))

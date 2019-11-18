@@ -99,7 +99,6 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        
         //delegate
         textField.addSomeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)

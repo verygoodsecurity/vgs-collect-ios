@@ -42,7 +42,7 @@ extension VGSFilePicker: UIImagePickerControllerDelegate, UINavigationController
         picker.dismiss(animated: true, completion: nil)
     }
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
         guard let originalImage = info[.originalImage] as? UIImage else {
             return
