@@ -4,7 +4,7 @@ workspace 'VGSCollectSDK'
 
 target 'VGSFramework' do
   use_frameworks!
-  pod 'Alamofire'
+  pod 'Alamofire', "4.9.0"
 
   target 'FrameworkTests' do
 #    inherit! :search_paths

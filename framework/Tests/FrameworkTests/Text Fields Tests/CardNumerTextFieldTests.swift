@@ -52,7 +52,6 @@ class CardNumerTextFieldTests: XCTestCase {
             XCTAssert(false, "State not for card field")
         }
         
-        
         cardNumerTextField.textField.text = cardNum
         
         state = cardNumerTextField.state
