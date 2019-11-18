@@ -9,7 +9,7 @@
 import UIKit
 
 
-public class VGSButton: UIView {
+public class VGSFilePicker: UIView {
     private(set) weak var vgsCollector: VGSCollect?
     internal var button = UIButton(type: .custom)
     internal var fieldName: String!
@@ -100,7 +100,7 @@ public class VGSButton: UIView {
     }
 }
 
-extension VGSButton {
+extension VGSFilePicker {
     internal func showAlert(message string: String) {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")

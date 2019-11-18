@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '0.0.2'
+  spec.version = '0.0.4'
   spec.summary = 'SDK provides the ability for applications safety to collect selective data (cc, PII) and keep your application out of pic scope'
   spec.swift_version = '4.2'
   spec.description  = <<-DESC

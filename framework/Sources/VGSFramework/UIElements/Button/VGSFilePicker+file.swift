@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-extension VGSButton: UIDocumentPickerDelegate {
+extension VGSFilePicker: UIDocumentPickerDelegate {
     internal func getFile() {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")

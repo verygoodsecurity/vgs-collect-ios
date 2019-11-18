@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension VGSFilePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     internal func getImageFromLibrary() {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")

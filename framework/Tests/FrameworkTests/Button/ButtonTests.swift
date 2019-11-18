@@ -11,10 +11,10 @@ import XCTest
 
 class ButtonTests: XCTestCase {
 
-    var button: VGSButton!
+    var button: VGSFilePicker!
     
     override func setUp() {
-        button = VGSButton(frame: .zero)
+        button = VGSFilePicker(frame: .zero)
         button.type = .library
         button.presentViewController = UIViewController()
     }
