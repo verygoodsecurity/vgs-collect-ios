@@ -30,10 +30,9 @@
 		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
-		FD44BB46234D256500B4CB4E /* VGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSButton.swift */; };
+		FD44BB46234D256500B4CB4E /* VGSFilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSFilePicker.swift */; };
 		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
 		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
-		FD44BB46234D256500B4CB4E /* VGSFilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSFilePicker.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
 		FDE890822333AC6D00FA170D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
@@ -155,7 +154,6 @@
 		FD05F9372316CE5A000EAF52 /* VGSFramework */ = {
 			isa = PBXGroup;
 			children = (
-				FDF696EC234A69F600063507 /* Extension */,
 				FD05F9382316CE5A000EAF52 /* Core */,
 				FD05F9402316CE5A000EAF52 /* Info.plist */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
@@ -326,13 +324,6 @@
 				FD04D96D23658CD0005DC92E /* VGSFilePicker+UIBuilder.swift */,
 			);
 			path = Button;
-			sourceTree = "<group>";
-		};
-		FDF696EC234A69F600063507 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		FDF696ED234A6CC600063507 /* Button */ = {
