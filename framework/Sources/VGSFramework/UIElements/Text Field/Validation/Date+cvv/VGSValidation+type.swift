@@ -14,8 +14,8 @@ extension VGSValidation {
         case .expDate:
             return validateExpDate(txt: txt)
             
-        case .cvv:
-            return validateCVV(txt: txt)
+        case .cvc:
+            return validateCVC(txt: txt)
         default:
             return true
         }
@@ -55,7 +55,7 @@ extension VGSValidation {
         }
     }
     
-    private func validateCVV(txt: String) -> Bool {
+    private func validateCVC(txt: String) -> Bool {
         return (txt.count >= 3 && txt.count < 5)
     }
 }

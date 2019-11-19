@@ -211,7 +211,7 @@ class ViewController: UIViewController {
         let cvcConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_cvc")
         cvcConfiguration.placeholder = "CVC"
         cvcConfiguration.isRequired = true
-        cvcConfiguration.type = .cvv
+        cvcConfiguration.type = .cvc
         
         cvcCardNum.configuration = cvcConfiguration
         cvcCardNum.textColor = textColor
