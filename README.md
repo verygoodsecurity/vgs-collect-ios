@@ -1,135 +1,118 @@
 [![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
+[![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-ios-sdk.svg)]()
 [![swift](https://img.shields.io/badge/swift-4.2-orange)]()
-[![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 
-# VGS Collect mobile SDK
 
-VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGS Collect mobile SDKs - are native mobile forms modules that allow customers to collect information securely on mobile devices with iOS and Android
+# VGSCollect iOS SDK
 
-## Problem
-Customers want to use VGS with their native mobile apps on iOS and Android devices. They want to get the same experience that they have on Web with VGS `Collect.js`.
+VGSCollect - is a product suite that allows customers to collect information securely without possession of it. VGSCollect iOS SDK  allows you to securely collect data from your users via forms without having to have that data pass through your systems. The form fields behave like traditional input fields while securing access to the unsecured data.
 
-## Goal
-Customers can use the same VGS Vault and the same server-side for Mobile apps as for Web. Their experience should stay the same and be not dependent on the platform they use: Web or Mobile.
+## Before you start
+ You should have your organisation registered at https://dashboard.verygoodsecurity.com/dashboard/. If there are no Vaults in your organisation - add new Vault, later you should use `<vault-id>` to start collecting data.
 
 ## Integration
-The SDK has simple possibility for integration. For integration need to install the latest version of `cocoapods`.
 
-1. Make a projects on the `xcode`
-2. Open the terminal and go to the project folder
-3. Make a Podfile (command: `pod init`)
-4. Open the Podfile and insert next line
+### CocoaPods
 
-	```ruby
-	pod 'VGSCollectSDK'
-	```
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
-5. Back to terminal and put command `pod install`
-6. Open `<your_project_name>.xcworkspace`
-7. Open ViewController
-8. Put next code to your controller
+```ruby
+pod 'VGSCollectSDK'
+```
 
-````swift
+### Swift Package Manager(Xcode 11+)
+
+[Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
+
+To add VGSCollectSDK package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency. Enter package repository URL and press Next:
+```ruby
+https://github.com/verygoodsecurity/vgs-collect-ios
+```
+Now you need to choose which part of the code you want to look at, you can choose the dependency type(tagged version, branch or commit). Then Xcode will setup all the stuff for you. We recommend to choose `master` branch to get latest stable SDK version.
+
+On Final screen check that you project target is correct and press Finish.
+
+
+
+## Usage
+
+### Create VGSCollect instance and VGS UI Forms
+Use your `<voult-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
+```
+import UIKit
 import VGSCollectSDK
 
 class ViewController: UIViewController {
-    var vgsForm = VGSCollect(id: "your_tnt_id", environment: .sandbox)
-    // VGS UI Elements
-    var cardNumber = VGSTextField()
-    
-    var button = UIButton()
-    
-    // MARK: - Life cycle methods	
-    override func loadView() {
-        super.loadView()
-        
-        cardNumber.frame = CGRect(x: 10, y: 55, width: 310, height: 35)
-        view.addSubview(cardNumber)
-    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Observing state of text fields
-        vgsForm.observeStates = { [weak self] form in
-            // receiving text fields status
-            form.forEach { textField in
-	            print(textField.status.description)
-            }
-        }
-        
-        // config text field
-        let config = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
-				config.type = .cardNumber
-        config.placeholder = "card number"
-        cardNumber.configuration = config
-        
-        // add target for submit button
-        button.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
-     }
-     
-     @objc 
-     func sendData(_ sender: UIButton) {
-        // send extra data
-        var extraData = [String: Any]()
-        extraData["cardHolderName"] = "Joe Business"
-        
-        // send data
-        vgsForm.submit(path: "/post", extraData: extraData, completion: { [weak self] (json, error) in
-            // parse incoming data
-        })
+  var vgsForm = VGSCollect(id: "<vault-id>", environment: .sandbox)
+
+  // VGS UI Elements
+  var cardNumber = VGSTextField()
+
+  override func viewDidLoad() {
+		super.viewDidLoad()
+
+		// Configure Elements UI
+		let cardConfig = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
+		cardConfig.placeholder = "card number"
+		cardConfig.isRequired = true
+		cardConfig.type = .cardNumber
+
+		cardNumber.configuration = cardConfig
+
+		cardNumber.frame = CGRect(x: 10, y: 55, width: 310, height: 35)
+		view.addSubview(cardNumber)
     }
 }
-````
+```
+### Customise Forms
+You can use general properties for styling your forms.
+```
+	// Forms UI styling
+	cardNumber.borderWidth = 1
+	cardNumber.borderColor = .lightGray
+	cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+	cardNumber.textColor = .magenta
+	cardNumber.font = UIFont(name: "Arial", size: 22)
+```
+### Observe Form States
+```
+	// Observing text fields
+	vgsForm.observeStates = { textFields in
+	    textFields.forEach({ textField in
+	           print(textField.state.description)
+	    })
+	}
+```
+### Send data from Forms
+```
+func sendData() {
+    // extra information will be sent together with all sensitive card information
+    var extraData = [String: Any]()
+    extraData["cardHolderName"] = "Joe Business"
 
-## Styling your VGS text fields
-
-You can use general property for customise your text fields.
-
-Example: 
-
-````swift
-// set UI style
-cardNumber.borderWidth = 1
-cardNumber.borderColor = .lightGray
-cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-cardNumber.textColor = .magenta
-cardNumber.font = UIFont(name: "Arial", size: 22)
-````
-
-## Upload files securely
-For easy uploading file you can use VGSButton. 
-Example:
-
-````swift
-class ViewController2: UIViewController {
-    let vgsForm = VGSCollect(id: "your_tnt_id")
-    @IBOutlet weak var selectFileButton: VGSButton! {
-        didSet {
-            button.presentViewController = self
+    // send data
+    vgsForm.submit(path: "/post", extraData: extraData, completion: { (json, error) in
+        if error == nil, let json = json {
+            // parse response data
+        } else {
+            // handle error
         }
-    }
-    var submitButton = UIButton(type: .custom)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        button.configuration = VGSConfiguration(collector: vgsForm, fieldName: "data")
-        submitButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-    }
-    
-    private func submit(_ sender: UIButton) {
-        sender.isEnabled = false
-        vgsForm.submitFiles(path: "/post", method: .post) { [weak self] (json, error) in
-        
-            sender.isEnabled = true
-            
-            if (error != nil) {
-                print(error?.localizedDescription)
-            } else {
-                print(json)
-            }
-        }
-    }
+    })
 }
-````
+```
+
+### For more details check our documentation
+https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
+
+## Dependencies
+- iOS 12+
+- Swift 4.2+
+- 3rd party libraries:
+ - Alamofire
+
+## License
+
+ VGSCollect iOS SDK is released under the MIT license. [See LICENSE](https://github.com/verygoodsecurity/vgs-ios-sdk/blob/master/LICENSE) for details.
