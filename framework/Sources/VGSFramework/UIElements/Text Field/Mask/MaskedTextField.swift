@@ -1,7 +1,14 @@
+//
+//  MaskedTextField.swift
+//  VGSFramework
+//
+//  Created by Vitalii Obertynskyi on 9/28/19.
+//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
+//
 
 import UIKit
 
-open class MaskedTextField : UITextField {
+open class MaskedTextField: UITextField {
 
     public let lettersAndDigitsReplacementChar: String = "*"
     public let anyLetterReplecementChar: String = "@"
@@ -33,6 +40,7 @@ open class MaskedTextField : UITextField {
         get {
             return formatPattern.count + prefix.count
         }
+        set { }
     }
     
     /**
@@ -131,7 +139,6 @@ open class MaskedTextField : UITextField {
         return string
     }
     
-    
     // MARK: - Self Public Methods
     /**
      Func that formats the text based on formatPattern
@@ -163,41 +170,41 @@ open class MaskedTextField : UITextField {
                     let currentTextForFormattingCharacter = String(currentTextForFormatting[currentTextForFormattingPatterRange])
                     
                     switch currentFormatCharacter {
-                        case self.lettersAndDigitsReplacementChar:
-                            finalText += currentTextForFormattingCharacter
-                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                    case self.lettersAndDigitsReplacementChar:
+                        finalText += currentTextForFormattingCharacter
+                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                        formatterIndex = formatPattern.index(after: formatterIndex)
+                    case self.anyLetterReplecementChar:
+                        let filteredChar = self.getOnlyLettersString(currentTextForFormattingCharacter)
+                        if !filteredChar.isEmpty {
+                            finalText += filteredChar
                             formatterIndex = formatPattern.index(after: formatterIndex)
-                        case self.anyLetterReplecementChar:
-                            let filteredChar = self.getOnlyLettersString(currentTextForFormattingCharacter)
-                            if !filteredChar.isEmpty {
-                                finalText += filteredChar
-                                formatterIndex = formatPattern.index(after: formatterIndex)
-                            }
-                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                        case self.lowerCaseLetterReplecementChar:
-                            let filteredChar = self.getLowercaseLettersString(currentTextForFormattingCharacter)
-                            if !filteredChar.isEmpty {
-                                finalText += filteredChar
-                                formatterIndex = formatPattern.index(after: formatterIndex)
-                            }
-                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                        case self.upperCaseLetterReplecementChar:
-                            let filteredChar = self.getUppercaseLettersString(currentTextForFormattingCharacter)
-                            if !filteredChar.isEmpty {
-                                finalText += filteredChar
-                                formatterIndex = formatPattern.index(after: formatterIndex)
-                            }
-                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                        case self.digitsReplecementChar:
-                            let filteredChar = self.getOnlyDigitsString(currentTextForFormattingCharacter)
-                            if !filteredChar.isEmpty {
-                                finalText += filteredChar
-                                formatterIndex = formatPattern.index(after: formatterIndex)
-                            }
-                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                        default:
-                            finalText += currentFormatCharacter
+                        }
+                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                    case self.lowerCaseLetterReplecementChar:
+                        let filteredChar = self.getLowercaseLettersString(currentTextForFormattingCharacter)
+                        if !filteredChar.isEmpty {
+                            finalText += filteredChar
                             formatterIndex = formatPattern.index(after: formatterIndex)
+                        }
+                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                    case self.upperCaseLetterReplecementChar:
+                        let filteredChar = self.getUppercaseLettersString(currentTextForFormattingCharacter)
+                        if !filteredChar.isEmpty {
+                            finalText += filteredChar
+                            formatterIndex = formatPattern.index(after: formatterIndex)
+                        }
+                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                    case self.digitsReplecementChar:
+                        let filteredChar = self.getOnlyDigitsString(currentTextForFormattingCharacter)
+                        if !filteredChar.isEmpty {
+                            finalText += filteredChar
+                            formatterIndex = formatPattern.index(after: formatterIndex)
+                        }
+                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                    default:
+                        finalText += currentFormatCharacter
+                        formatterIndex = formatPattern.index(after: formatterIndex)
                     }
                     
                     if formatterIndex >= self.formatPattern.endIndex ||

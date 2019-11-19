@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public extension VGSTextField {    
     var isValid: Bool {
         let str = text ?? ""

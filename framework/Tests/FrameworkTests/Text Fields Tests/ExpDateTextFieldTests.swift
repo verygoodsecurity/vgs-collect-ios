@@ -18,7 +18,6 @@ class ExpDateTextFieldTests: XCTestCase {
         
         expDateTextField = VGSTextField()
         
-        
         let config = VGSConfiguration(collector: collector, fieldName: "expDate")
         config.type = .expDate
         config.formatPattern = "##/####"

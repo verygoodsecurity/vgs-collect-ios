@@ -18,7 +18,7 @@ public class VGSCollect {
     public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
     
     /// Observing all text fields states
-    public var observeStates: ((_ form:[VGSTextField]) -> Void)?
+    public var observeStates: ((_ form: [VGSTextField]) -> Void)?
     
     /// Set your custom HTTP headers
     public var customHeaders: [String: String]? {
@@ -79,9 +79,9 @@ extension VGSCollect {
         
         let elements = storage.elements
         
-        let allKeys = elements.compactMap( { $0.fieldName } )
+        let allKeys = elements.compactMap({ $0.fieldName })
         allKeys.forEach { key in
-            if let value = elements.filter( { $0.fieldName == key } ).first {
+            if let value = elements.filter({ $0.fieldName == key }).first {
                 body[key] = value.text
             } else {
                 fatalError("Wrong key: \(key)")
@@ -102,7 +102,7 @@ extension VGSCollect {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
                     
-                    if let element = elements.filter( { $0.fieldName == key } ).first {
+                    if let element = elements.filter({ $0.fieldName == key }).first {
                         element.token = json?[key] as? String
                     }
                 })
@@ -111,31 +111,31 @@ extension VGSCollect {
         }
     }
     
-    public func submitFiles(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
-        
-        var valueForSend = BodyData()
-        
-        guard let key = storage.files.keys.first, let value = storage.files.values.first else {
-            return
-        }
-        
-        let result: Data
-        if let image = value as? UIImage {
-            result = image.jpegData(compressionQuality: 0.5)!
-            
-        } else if let data = value as? Data {
-            result = data
-            
-        } else {
-            return
-        }
-        
-        valueForSend[key] = result.base64EncodedString()
-        
-        if valueForSend.count == 0 {
-            return
-        }
-        
-        apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)
-    }
+//    public func submitFiles(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+//        
+//        var valueForSend = BodyData()
+//        
+//        guard let key = storage.files.keys.first, let value = storage.files.values.first else {
+//            return
+//        }
+//        
+//        let result: Data
+//        if let image = value as? UIImage {
+//            result = image.jpegData(compressionQuality: 0.5)!
+//            
+//        } else if let data = value as? Data {
+//            result = data
+//            
+//        } else {
+//            return
+//        }
+//        
+//        valueForSend[key] = result.base64EncodedString()
+//        
+//        if valueForSend.count == 0 {
+//            return
+//        }
+//        
+//        apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)
+//    }
 }

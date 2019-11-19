@@ -13,8 +13,8 @@ import UIKit
 /// - sandbox: set for debug mode
 /// - live: set for prodaction mode
 public enum Environment: String {
-    case sandbox = "sandbox"
-    case live = "live"
+    case sandbox
+    case live
 }
 
 /// Text field types
@@ -31,7 +31,6 @@ public enum FieldType: Int, CaseIterable {
     case cvv
     case cardHolderName
 
-    
     var formatPattern: String {
         switch self {
         case .cardNumber:
