@@ -12,18 +12,20 @@ import SnapKit
 
 class ViewController: UIViewController {
     var consoleLabel: UILabel!
+    var consoleStatusLabel: UILabel!
+    
     var consoleMessage: String = "" {
         didSet {
             consoleLabel.text = consoleMessage
         }
     }
     // Collector vgs
-    var vgsForm = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
+    var vgsForm = VGSCollect(id: "tntbgaa2ads", environment: .sandbox)
     
     // VGS UI Elements
     var cardNumber = VGSTextField()
     var expCardDate = VGSTextField()
-    var cvvCardNum = VGSTextField()
+    var cvcCardNum = VGSTextField()
     var cardHolderName = UITextField(frame: .zero)
     
     // the Send data Button
@@ -51,9 +53,9 @@ class ViewController: UIViewController {
         vgsForm.observeStates = { [weak self] form in
             
             self?.consoleMessage = ""
-            
+            self?.consoleStatusLabel.text = "STATE"
+
             form.forEach({ textField in
-                                
                 self?.consoleMessage.append(textField.state.description)
                 self?.consoleMessage.append("\n")
             })
@@ -63,24 +65,33 @@ class ViewController: UIViewController {
     
     // MARK: - Init UI
     private func setupUI() {
-        // init card holder name
-        cardHolderName.layer.borderWidth = 1
-        cardHolderName.layer.borderColor = UIColor.lightGray.cgColor
-        cardHolderName.layer.cornerRadius = 4
-        cardHolderName.placeholder = "card holder name"
-        view.addSubview(cardHolderName)
-        cardHolderName.snp.makeConstraints { make in
+        // title
+        let titleLabel = UILabel()
+        titleLabel.text = "Collecting credit card data"
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 22)
+        titleLabel.textColor = .black
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
             make.left.equalTo(25)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
             make.top.equalTo(55)
         }
         
+        view.addSubview(cardHolderName)
+        cardHolderName.snp.makeConstraints { make in
+            make.left.equalTo(25)
+            make.height.equalTo(45)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(120)
+        }
+        
         // setup card number text field
         view.addSubview(cardNumber)
         cardNumber.snp.makeConstraints { make in
             make.left.equalTo(25)
-            make.height.equalTo(30)
+            make.height.equalTo(45)
             make.centerX.equalToSuperview()
             make.top.equalTo(cardHolderName.snp.bottom).offset(10)
         }
@@ -89,22 +100,22 @@ class ViewController: UIViewController {
         view.addSubview(expCardDate)
         expCardDate.snp.makeConstraints { make in
             make.left.equalTo(25)
-            make.height.equalTo(30)
+            make.height.equalTo(45)
             make.centerX.equalToSuperview()
             make.top.equalTo(cardNumber.snp.bottom).offset(10)
         }
         
-        // setup CVV card number
-        view.addSubview(cvvCardNum)
-        cvvCardNum.snp.makeConstraints { make in
+        // setup CVC card number
+        view.addSubview(cvcCardNum)
+        cvcCardNum.snp.makeConstraints { make in
             make.left.equalTo(25)
-            make.height.equalTo(30)
+            make.height.equalTo(45)
             make.centerX.equalToSuperview()
             make.top.equalTo(expCardDate.snp.bottom).offset(10)
         }
         
         // init send button
-        sendButton.setTitle("Send", for: .normal)
+        sendButton.setTitle("Submit", for: .normal)
         sendButton.backgroundColor = UIColor(red: 0.337, green: 0.761, blue: 0.333, alpha: 1.00)
         sendButton.layer.cornerRadius = 6
         sendButton.clipsToBounds = true
@@ -113,22 +124,52 @@ class ViewController: UIViewController {
             make.left.equalTo(25)
             make.height.equalTo(55)
             make.centerX.equalToSuperview()
-            make.top.equalTo(cvvCardNum.snp.bottom).offset(35)
+            make.top.equalTo(cvcCardNum.snp.bottom).offset(35)
         }
         
-        ///
+        // setup console views
+        let separastor = UIView()
+        separastor.backgroundColor = .lightGray
+        view.addSubview(separastor)
+        separastor.snp.makeConstraints { make in
+            make.top.equalTo(sendButton.snp.bottom).offset(35)
+            make.left.right.equalTo(0)
+            make.height.equalTo(1)
+        }
+        
+        let consoleBackgroundView = UIView()
+        consoleBackgroundView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        view.addSubview(consoleBackgroundView)
+        consoleBackgroundView.snp.makeConstraints { make in
+            make.top.equalTo(separastor.snp.bottom)
+            make.left.right.equalTo(0)
+            make.bottom.equalToSuperview().priority(250)
+        }
+        
+        consoleStatusLabel = UILabel(frame: .zero)
+        consoleStatusLabel.text = "Waiting for data..."
+        consoleStatusLabel.numberOfLines = 0
+        consoleStatusLabel.textAlignment = .center
+        consoleStatusLabel.textColor = .darkGray
+        consoleStatusLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        consoleStatusLabel.backgroundColor = .white
+        consoleBackgroundView.addSubview(consoleStatusLabel)
+        consoleStatusLabel.snp.makeConstraints { make in
+            make.top.left.right.equalTo(0)
+            make.height.equalTo(40)
+        }
+        
         consoleLabel = UILabel(frame: .zero)
         consoleLabel.text = ""
         consoleLabel.numberOfLines = 0
         consoleLabel.contentMode = .topLeft
-        consoleLabel.backgroundColor = .lightGray
         consoleLabel.textColor = .black
-        view.addSubview(consoleLabel)
+        consoleBackgroundView.addSubview(consoleLabel)
+        
         consoleLabel.snp.makeConstraints { make in
-            make.top.equalTo(sendButton.snp.bottom).offset(35)
-            make.left.equalTo(25)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().priority(250)
+            make.top.equalTo(consoleStatusLabel.snp.bottom).offset(8)
+            make.left.equalTo(30)
+            make.right.equalTo(8)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -143,12 +184,12 @@ class ViewController: UIViewController {
     
     private func setupElements() {
         
-        let textColor = UIColor.systemBlue
+        let textColor = UIColor.black
         let textFont = UIFont.systemFont(ofSize: 22)
-        let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        let padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
-        let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
-        cardConfiguration.placeholder = "card number"
+        let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_number")
+        cardConfiguration.placeholder = "Card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
         
@@ -157,8 +198,8 @@ class ViewController: UIViewController {
         cardNumber.font = textFont
         cardNumber.padding = padding
         
-        let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "expDate")
-        expDateConfiguration.placeholder = "exp date"
+        let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
+        expDateConfiguration.placeholder = "MM/YY"
         expDateConfiguration.isRequired = true
         expDateConfiguration.type = .expDate
         
@@ -167,15 +208,25 @@ class ViewController: UIViewController {
         expCardDate.font = textFont
         expCardDate.padding = padding
         
-         let cvvConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cvvNum")
-        cvvConfiguration.placeholder = "cvv"
-        cvvConfiguration.isRequired = true
-        cvvConfiguration.type = .cvv
+        let cvcConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_cvc")
+        cvcConfiguration.placeholder = "CVC"
+        cvcConfiguration.isRequired = true
+        cvcConfiguration.type = .cvv
         
-        cvvCardNum.configuration = cvvConfiguration
-        cvvCardNum.textColor = textColor
-        cvvCardNum.font = textFont
-        cvvCardNum.padding = padding
+        cvcCardNum.configuration = cvcConfiguration
+        cvcCardNum.textColor = textColor
+        cvcCardNum.font = textFont
+        cvcCardNum.padding = padding
+        
+        
+        cardHolderName.layer.borderWidth = 1
+        cardHolderName.layer.borderColor = UIColor.lightGray.cgColor
+        cardHolderName.layer.cornerRadius = 4
+        cardHolderName.placeholder = "Name"
+        cardHolderName.font = textFont
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: cardHolderName.frame.height))
+        cardHolderName.leftView = paddingView
+        cardHolderName.leftViewMode = .always
         
         // Add target for send button
         sendButton.addTarget(self, action: #selector(sendData(_:)), for: .touchUpInside)
@@ -197,13 +248,9 @@ extension ViewController {
         
         // send data
         vgsForm.submit(path: "post", extraData: extraData, completion: { [weak self] (json, error) in
+            self?.consoleStatusLabel.text = "RESPONSE"
             if error == nil, let json = json {
-                var strJson = json.description
-                strJson = strJson.replacingOccurrences(of: "[", with: "[\n")
-                strJson = strJson.replacingOccurrences(of: "]", with: "\n]")
-                strJson = strJson.replacingOccurrences(of: ",", with: ",\n")
-                self?.consoleLabel.text = strJson
-                
+                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8)!)
             } else {
                 self?.consoleLabel.text = "Something went wrong!"
                 print("Error: \(String(describing: error?.localizedDescription))")
