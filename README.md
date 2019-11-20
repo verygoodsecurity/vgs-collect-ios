@@ -5,12 +5,29 @@
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 
 
-# VGSCollect iOS SDK
+# VGS Collect iOS SDK
 
-VGSCollect - is a product suite that allows customers to collect information securely without possession of it. VGSCollect iOS SDK  allows you to securely collect data from your users via forms without having to have that data pass through your systems. The form fields behave like traditional input fields while securing access to the unsecured data.
+VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGSCollect iOS SDK  allows you to securely collect data from your users via forms without having to have that data pass through your systems. The form fields behave like traditional input fields while securing access to the unsecured data.
+
+Table of contents
+=================
+
+<!--ts-->
+   * [Before you start](#before-you-start)
+   * [Integration](#integration)
+      * [CocoaPods](#cocoapods)
+      * [Swift Package Manager](#swift-package-manager-(-xcode-11+-))
+   * [Usage](#usage)
+      * [Create VGSCollect instance and VGS UI Forms](#create-vgscollect-instance-and-vgs-ui-forms)
+<!--te-->
+
+<p align="center">
+<img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20"><img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+</p>
+
 
 ## Before you start
- You should have your organisation registered at https://dashboard.verygoodsecurity.com/dashboard/. If there are no Vaults in your organisation - add new Vault, later you should use `<vault-id>` to start collecting data.
+You should have your organization registered at https://dashboard.verygoodsecurity.com/dashboard/. Sandbox vault will be pre-created for you. You should use your `<vault-id>` to start collecting data. Follow integration guide below.
 
 ## Integration
 
@@ -39,7 +56,7 @@ On Final screen check that you project target is correct and press Finish.
 ## Usage
 
 ### Create VGSCollect instance and VGS UI Forms
-Use your `<voult-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
+Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
 ```
 import UIKit
 import VGSCollectSDK
