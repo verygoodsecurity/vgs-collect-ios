@@ -169,7 +169,7 @@ class ViewController: UIViewController {
         consoleLabel.snp.makeConstraints { make in
             make.top.equalTo(consoleStatusLabel.snp.bottom).offset(8)
             make.left.equalTo(30)
-            make.right.equalTo(8)
+            make.right.equalTo(15)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
