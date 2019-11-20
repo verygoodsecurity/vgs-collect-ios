@@ -89,7 +89,7 @@ extension VGSCollect {
         }
         
         if extraData?.count != 0 {
-            body["data"] = extraData?.description
+            extraData?.forEach { (key, value) in body[key] = value }
         }
         
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
