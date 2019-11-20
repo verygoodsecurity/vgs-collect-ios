@@ -21,6 +21,10 @@ Table of contents
       * [Create VGSCollect instance and VGS UI Forms](#create-vgscollect-instance-and-vgs-ui-forms)
 <!--te-->
 
+<p align="center">
+<img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20"><img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+</p>
+
 
 ## Before you start
 You should have your organization registered at https://dashboard.verygoodsecurity.com/dashboard/. Sandbox vault will be pre-created for you. You should use your `<vault-id>` to start collecting data. Follow integration guide below.
