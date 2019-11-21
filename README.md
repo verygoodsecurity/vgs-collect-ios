@@ -18,7 +18,13 @@ Table of contents
       * [CocoaPods](#cocoapods)
       * [Swift Package Manager](#swift-package-manager-(-xcode-11+-))
    * [Usage](#usage)
-      * [Create VGSCollect instance and VGS UI Forms](#create-vgscollect-instance-and-vgs-ui-forms)
+      * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
+      * [Customize UI Elements](#customize-ui-elements)
+      * [Observe Fields State](#observe-fields-state)
+      * [Collect and Send Your Data](#collect-and-send-your-data)
+      * [Documentation](#for-more-details-check-our-documentation)
+   * [Dependencies](#dependencies)
+   * [License](#license)
 <!--te-->
 
 <p align="center">
@@ -27,7 +33,7 @@ Table of contents
 
 
 ## Before you start
-You should have your organization registered at https://dashboard.verygoodsecurity.com/dashboard/. Sandbox vault will be pre-created for you. You should use your `<vault-id>` to start collecting data. Follow integration guide below.
+You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your `<vault-id>` to start collecting data. Follow integration guide below.
 
 ## Integration
 
@@ -55,7 +61,7 @@ On Final screen check that you project target is correct and press Finish.
 
 ## Usage
 
-### Create VGSCollect instance and VGS UI Forms
+### Create VGSCollect instance and VGS UI Elements
 Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
 ```
 import UIKit
@@ -84,17 +90,17 @@ class ViewController: UIViewController {
     }
 }
 ```
-### Customise Forms
-You can use general properties for styling your forms.
+### Customize UI Elements
+You can use general properties for styling your UI elements.
 ```
-	// Forms UI styling
+	// UI Elements styling
 	cardNumber.borderWidth = 1
 	cardNumber.borderColor = .lightGray
 	cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 	cardNumber.textColor = .magenta
 	cardNumber.font = UIFont(name: "Arial", size: 22)
 ```
-### Observe Form States
+### Observe Fields State
 ```
 	// Observing text fields
 	vgsForm.observeStates = { textFields in
@@ -103,7 +109,7 @@ You can use general properties for styling your forms.
 	    })
 	}
 ```
-### Send data from Forms
+### Collect and Send Your Data
 ```
 func sendData() {
     // extra information will be sent together with all sensitive card information
