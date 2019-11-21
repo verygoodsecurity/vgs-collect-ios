@@ -11,23 +11,38 @@ import Alamofire
 
 public typealias JsonData = [String: Any]
 public typealias BodyData = [String: Any]
+public typealias HTTPHeaders = [String: String]
 
 class APIClient {
     let baseURL: URL!
     
-    var customHeader: [String: String]?
+    var customHeader: HTTPHeaders?
     
     init(baseURL url: URL) {
         baseURL = url
     }
     
+    internal static let defaultHttpHeaders: HTTPHeaders = {
+        // Add Headers
+        let version = ProcessInfo.processInfo.operatingSystemVersion
+        let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+        let vgsCollectVersion: String = {
+            guard
+                let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
+                let build = vgsInfo["CFBundleShortVersionString"]
+            else { return "Unknown" }
+
+            return "\(build)"
+        }()
+        return [
+            "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(vgsCollectVersion)&osVersion=\(versionString)"
+        ]
+    }()
+    
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
-        var headers = [
-            "Content-Type": "application/json",
-            "vgs-client": "source=iosSDK&medium=vgs-collect&content=1.0"
-        ]
-        
+        var headers = APIClient.defaultHttpHeaders
+        headers["Content-Type"] = "application/json"
         // Add custom headers if need
         if let customerHeaders = customHeader, customerHeaders.count > 0 {
             customerHeaders.keys.forEach({ (key) in
