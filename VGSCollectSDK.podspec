@@ -19,6 +19,9 @@ Pod::Spec.new do |spec|
   # spec.tvos.deployment_target = "9.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
+  spec.resource_bundles = {
+    'CardIcon' => ['framework/Resources/*']
+  }
   spec.frameworks = "Alamofire"
   spec.requires_arc = true
   spec.dependency "Alamofire"

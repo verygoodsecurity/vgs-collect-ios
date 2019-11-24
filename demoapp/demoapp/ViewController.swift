@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     var vgsForm = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
     
     // VGS UI Elements
-    var cardNumber = VGSTextField()
+    var cardNumber = VGSCardTextField()
     var expCardDate = VGSTextField()
     var cvvCardNum = VGSTextField()
     var cardHolderName = UITextField(frame: .zero)
