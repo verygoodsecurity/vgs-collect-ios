@@ -27,11 +27,13 @@ public class State {
             return "Alias property is empty"
         }
         
-        result.append("Name:\(fieldName)\n")
-        result.append("-isRequired:\(isRequired)\n")
-        result.append("-isValid:\(isValid)\n")
-        result.append("-isEmpty:\(isEmpty)\n")
-        
+        result = """
+        "\(fieldName)": {
+            "isRequired": \(isRequired),
+            "isValid": \(isValid),
+            "isEmpty": \(isEmpty)
+        }
+        """
         return result
     }
 }
@@ -56,11 +58,14 @@ public class CardState: State {
     
     override public var description: String {
         var result = super.description
-        
         if isValid {
-            result.append("-last4:\(last4)\n")
-            result.append("-first6:\(first6)\n")
-            result.append("-cardBrand:\(cardBrand)\n")
+            result.append("""
+                , {
+                    "last4": \(last4),
+                    "first6": \(first6),
+                    "cardBrand": \(cardBrand)
+                }
+            """)
         }
         return result
     }
