@@ -135,7 +135,7 @@ https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
 - iOS 10+
 - Swift 5
 - 3rd party libraries:
--- Alamofire
+    - Alamofire
 
 ## License
 
