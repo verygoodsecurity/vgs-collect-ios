@@ -1,9 +1,10 @@
 [![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
 [![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-ios-sdk.svg)]()
-[![swift](https://img.shields.io/badge/swift-4.2-orange)]()
+[![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
+[![swift](https://img.shields.io/badge/swift-5-orange)]()
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
-
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat)](https://cocoapods.org/pods/VGSCollectSDK)
 
 # VGS Collect iOS SDK
 
@@ -131,10 +132,10 @@ func sendData() {
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
 
 ## Dependencies
-- iOS 12+
-- Swift 4.2+
+- iOS 10+
+- Swift 5
 - 3rd party libraries:
- - Alamofire
+-- Alamofire
 
 ## License
 
