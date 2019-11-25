@@ -1,25 +1,20 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '0.0.3'
-  spec.summary = 'SDK provides the ability for applications safety to collect selective data (cc, PII) and keep your application out of pic scope'
+  spec.version = '0.0.4'
+  spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
-  VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGS Collect mobile SDKs - are native mobile forms modules that allow customers to collect information securely on mobile devices with iOS
+  VGS Collect iOS SDK allows you to securely collect data from your users without having to have that data pass through your systems. It provides customizable UI elements for collecting users’ sensitive data securely on mobile devices with iOS.
                    DESC
-  spec.homepage     = "https://www.verygoodsecurity.com"
-  # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
-  spec.license      = "MIT"
+  spec.homepage     = "https://github.com/verygoodsecurity/vgs-collect-ios"
+  spec.documentation_url    = "https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk"
   spec.license      = { type: 'MIT', file: 'LICENSE' }
   spec.author       = { 
-    "Vitalii Obertynskyi" => "vitaliy.obertinskiy@icloud.com", 
-    "Dmytro Khludkov" => "dmytro.khludkov@vgs.io"
+    "Very Good Security" => "support@verygoodsecurity.com"
   }
-  spec.social_media_url   = "https://twitter.com/miraving"
+  spec.social_media_url   = "https://twitter.com/getvgs"
   spec.platform     = :ios, "10.0"
   spec.ios.deployment_target = "10.0"
-  # spec.osx.deployment_target = "10.7"
-  # spec.watchos.deployment_target = "2.0"
-  # spec.tvos.deployment_target = "9.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
   spec.frameworks = "Alamofire"
