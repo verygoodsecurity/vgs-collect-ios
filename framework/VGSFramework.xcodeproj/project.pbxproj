@@ -374,8 +374,8 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
-				ORGANIZATIONNAME = "Vitalii Obertynskyi";
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = VGS;
 				TargetAttributes = {
 					FD12B9AE2304619100B670DD = {
 						CreatedOnToolsVersion = 10.3;
@@ -687,7 +687,7 @@
 			baseConfigurationReference = EAD03610A2B3B9A3339B094E /* Pods-VGSFramework.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -719,7 +719,7 @@
 			baseConfigurationReference = 1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
