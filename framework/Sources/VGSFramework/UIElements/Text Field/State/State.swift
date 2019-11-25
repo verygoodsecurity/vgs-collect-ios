@@ -60,11 +60,11 @@ public class CardState: State {
         var result = super.description
         if isValid {
             result.append("""
-                , {
-                    "last4": \(last4),
-                    "first6": \(first6),
-                    "cardBrand": \(cardBrand)
-                }
+            , {
+                "last4": \(last4),
+                "first6": \(first6),
+                "cardBrand": \(cardBrand)
+            }
             """)
         }
         return result

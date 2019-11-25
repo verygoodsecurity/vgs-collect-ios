@@ -27,11 +27,11 @@ class APIClient {
         let version = ProcessInfo.processInfo.operatingSystemVersion
         let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
         let vgsCollectVersion: String = {
-            guard
-                let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
+            guard let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
                 let build = vgsInfo["CFBundleShortVersionString"]
-            else { return "Unknown" }
-
+            else {
+                return "Unknown"
+            }
             return "\(build)"
         }()
         return [
