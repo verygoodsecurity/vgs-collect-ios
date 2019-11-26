@@ -8,85 +8,50 @@
 
 import UIKit
 
-public class VGSCardTextField: UIView {
-    internal let stackView = UIStackView(frame: .zero)
-    internal var leftView = UIImageView(frame: .zero)
-    internal var rightView = UIView(frame: .zero)
-    internal var vgsTextField = VGSTextField(frame: .zero)
+public class VGSCardTextField: VGSTextField {
     
-    public var configuration: VGSConfiguration? {
-        didSet {
-            guard let config = configuration else {
-                return
-            }
-            config.type = .cardNumber
-            vgsTextField.configuration = config
+    private var iconWidth: CGFloat = 45
+    
+    lazy var leftView = UIImageView(frame: .zero)
+    
+    override func mainInitialization() {
+        super.mainInitialization()
+        
+        leftView.contentMode = .scaleAspectFit
+        textField.leftView = leftView
+        
+        // width constraint
+        let views = ["view": self, "leftView": leftView]
+        leftView.translatesAutoresizingMaskIntoConstraints = false
+        let width = NSLayoutConstraint.constraints(withVisualFormat: "H:[leftView(==\(iconWidth))]",
+            options: .alignAllLeading,
+                                                   metrics: nil,
+                                                   views: views)
+        
+        NSLayoutConstraint.activate(width)
+        
+        padding.left += iconWidth + 5
+        
+        updateUI = { [weak self] in
+            let state = self?.state as! CardState
+            self?.updateCardIcon(with: state)
         }
     }
     
-    // MARL: - init methods
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        mainInitialization()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        mainInitialization()
-    }
-    
-    // MARK: - Private method
-    private func mainInitialization() {
-        mainStyle()
+    private func updateCardIcon(with state: CardState) {
+        guard let bundleURL = Bundle(for: type(of: self)).url(forResource: "CardIcon", withExtension: "bundle"), let bundle = Bundle(url: bundleURL) else {
+            return
+        }
         
-        stackView.addArrangedSubview(vgsTextField)
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stackView)
+        var icon: UIImage!
         
-        let views = ["view": self, "stackView": stackView]
-        // align stackView from the left and right
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]-0-|",
-                                                                   options: .alignAllCenterY,
-                                                                   metrics: nil,
-                                                                   views: views)
-        NSLayoutConstraint.activate(horizontalConstraints)
-        
-        // align stackView from the top and bottom
-        let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|",
-                                                                options: .alignAllCenterX,
-                                                                metrics: nil,
-                                                                views: views)
-        NSLayoutConstraint.activate(verticalConstraint)
-    }
-}
+        switch state.cardBrand {
+        case .visa:
+            icon = UIImage(named: "1", in: bundle, compatibleWith: nil)
+        default:
+            icon = nil
+        }
 
-extension VGSCardTextField {
-    public var textColor: UIColor? {
-        get {
-            return vgsTextField.textColor
-        }
-        set {
-            vgsTextField.textColor = newValue
-        }
-    }
-    
-    public var font: UIFont? {
-        get {
-            return vgsTextField.font
-        }
-        set {
-            vgsTextField.font = newValue
-        }
-    }
-    
-    public var padding: UIEdgeInsets {
-        get {
-            return vgsTextField.padding
-        }
-        set {
-            vgsTextField.padding = newValue
-        }
+        leftView.image = icon
     }
 }

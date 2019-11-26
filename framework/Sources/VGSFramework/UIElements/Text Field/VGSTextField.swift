@@ -19,6 +19,8 @@ public class VGSTextField: UIView {
     internal var fieldName: String!
     internal var token: String?
     
+    var updateUI: (() -> Void)?
+    
     // just for internal using
     internal var text: String? {
         return textField.secureText
@@ -78,7 +80,7 @@ public class VGSTextField: UIView {
     }
     
     // MARK: - private API
-    private func mainInitialization() {
+    func mainInitialization() {
         // set main style for view
         mainStyle()
         // text view
@@ -112,6 +114,7 @@ public class VGSTextField: UIView {
     internal func textFieldDidChange(_ sender: UITextField) {
         // change status
         vgsCollector?.updateStatus(for: self)
+        updateUI?()
     }
 }
 
