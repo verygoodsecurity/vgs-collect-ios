@@ -40,7 +40,7 @@ public class State {
 
 public class CardState: State {
     open var last4: String = ""
-    open var first6: String = ""
+    open var bin: String = ""
     open var cardBrand: SwiftLuhn.CardType = .unknown
     
     override public init(tf: VGSTextField) {
@@ -51,7 +51,7 @@ public class CardState: State {
         }
         
         self.last4 = String(originalText.suffix(4))
-        self.first6 = String(originalText.prefix(6))
+        self.bin = String(originalText.prefix(6))
         self.isValid = originalText.isValidCardNumber()
         self.cardBrand = originalText.suggestedCardType()
     }
@@ -61,8 +61,8 @@ public class CardState: State {
         if isValid {
             result.append("""
             , {
+                "bin": \(bin),
                 "last4": \(last4),
-                "first6": \(first6),
                 "cardBrand": \(cardBrand)
             }
             """)

@@ -45,7 +45,7 @@ class CardNumerTextFieldTests: XCTestCase {
         if let st = state as? CardState {
             XCTAssertTrue(st.isEmpty)
             XCTAssertFalse(st.isValid)
-            XCTAssertFalse(st.first6 == "411111")
+            XCTAssertFalse(st.bin == "411111")
             XCTAssertFalse(st.last4 == "1111")
             XCTAssertFalse(st.cardBrand == .visa)
         } else {
@@ -59,7 +59,7 @@ class CardNumerTextFieldTests: XCTestCase {
         if let st = state as? CardState {
             XCTAssertFalse(st.isEmpty)
             XCTAssertTrue(st.isValid)
-            XCTAssertTrue(st.first6 == "411111")
+            XCTAssertTrue(st.bin == "411111")
             XCTAssertTrue(st.last4 == "1111")
             XCTAssertTrue(st.cardBrand == .visa)
         } else {
