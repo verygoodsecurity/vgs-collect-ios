@@ -4,24 +4,19 @@ import PackageDescription
 let package = Package(
     name: "VGSCollectSDK",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v10),
     ],
     products: [
         .library(name: "VGSFramework", targets: ["VGSFramework"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.0.0-rc.2")
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .exact("4.9.1"))
     ],
     targets: [
         .target(
             name: "VGSFramework",
             dependencies: ["Alamofire"],
             path: "framework"
-        ),
-//        .testTarget(
-//            name: "FrameworkTests",
-//            dependencies: ["VGSFramework"],
-//            path: "framework"
-//        ),
+        )
     ]
 )

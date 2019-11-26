@@ -41,4 +41,38 @@ class ApiClientTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10.0)
     }
+    
+    func testCustomHeader() {
+        let customKey = "sdfhksdfgjsdhfgjh"
+        let customHeader = "djfhdkjsfhksdjhgf"
+        collector.customHeaders = [
+            customKey: customHeader
+        ]
+        
+        let expectation = XCTestExpectation(description: "Sending data...")
+        
+        collector.submit(path: "post") { (data, error) in
+            XCTAssertNotNil(data)
+            XCTAssertNil(error)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    func testErrCase() {
+        
+        collector.customHeaders = nil
+        
+        let expectation = XCTestExpectation(description: "Sending wrong data...")
+        
+        collector.submit(path: "/wrongPath") { (data, _) in
+            XCTAssertNil(data)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
 }

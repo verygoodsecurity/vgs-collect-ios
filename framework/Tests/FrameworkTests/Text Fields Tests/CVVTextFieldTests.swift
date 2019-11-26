@@ -18,8 +18,8 @@ class CVVTextFieldTests: XCTestCase {
         
         cvvTextField = VGSTextField()
         
-        let config = VGSConfiguration(collector: collector, fieldName: "cvv")
-        config.type = .cvv
+        let config = VGSConfiguration(collector: collector, fieldName: "cvc")
+        config.type = .cvc
         config.isRequired = true
         cvvTextField.configuration = config
         
@@ -32,7 +32,7 @@ class CVVTextFieldTests: XCTestCase {
     }
     
     func testAlias() {
-        XCTAssertTrue(cvvTextField.state.fieldName == "cvv")
+        XCTAssertTrue(cvvTextField.state.fieldName == "cvc")
     }
     
     func testContent() {
@@ -61,7 +61,7 @@ class CVVTextFieldTests: XCTestCase {
                 XCTAssertTrue(state.isValid)
                 XCTAssertTrue(state.isRequired)
             } else {
-                XCTFail()
+                XCTFail("Text field state didn't received.")
             }
         }
         

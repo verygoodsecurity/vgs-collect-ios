@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Card Data-->
+        <!--Card-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,11 +18,120 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Card Data" id="GcF-ad-6mE"/>
+                    <tabBarItem key="tabBarItem" title="Card" image="bank_card" id="GcF-ad-6mE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2042.0289855072465" y="-318.75"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Wz4-iE-wka">
+            <objects>
+                <viewController storyboardIdentifier="ViewController3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UoS-ic-6zn" customClass="ViewController3" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XRh-5r-Hp7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTE-bT-IR8">
+                                <rect key="frame" x="20" y="75" width="374" height="180"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gko-Ua-wmn" customClass="VGSTextField" customModule="VGSCollectSDK">
+                                        <rect key="frame" x="15" y="30" width="344" height="45"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Cf9-uQ-uR6"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-mw-Bx3" customClass="VGSTextField" customModule="VGSCollectSDK">
+                                        <rect key="frame" x="15" y="115" width="125" height="35"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="7lO-3z-56a"/>
+                                            <constraint firstAttribute="width" constant="125" id="mi8-p8-XLS"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cp2-Ba-YMI" customClass="VGSTextField" customModule="VGSCollectSDK">
+                                        <rect key="frame" x="269" y="115" width="90" height="35"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="eN7-mh-tOb"/>
+                                            <constraint firstAttribute="height" constant="35" id="zk4-l9-xWV"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Cp2-Ba-YMI" secondAttribute="trailing" constant="15" id="1vw-MD-Sn1"/>
+                                    <constraint firstItem="gko-Ua-wmn" firstAttribute="top" secondItem="mTE-bT-IR8" secondAttribute="top" constant="30" id="Bgw-xp-ItV"/>
+                                    <constraint firstAttribute="bottom" secondItem="UWS-mw-Bx3" secondAttribute="bottom" constant="30" id="WB7-p1-WJP"/>
+                                    <constraint firstAttribute="height" constant="180" id="h0F-Je-399"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cp2-Ba-YMI" secondAttribute="bottom" constant="30" id="hCU-eB-brL"/>
+                                    <constraint firstItem="gko-Ua-wmn" firstAttribute="leading" secondItem="mTE-bT-IR8" secondAttribute="leading" constant="15" id="kbV-I1-Ih7"/>
+                                    <constraint firstItem="UWS-mw-Bx3" firstAttribute="leading" secondItem="mTE-bT-IR8" secondAttribute="leading" constant="15" id="suc-gg-TDk"/>
+                                    <constraint firstAttribute="trailing" secondItem="gko-Ua-wmn" secondAttribute="trailing" constant="15" id="ySN-zc-G0h"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdZ-L3-lCP">
+                                <rect key="frame" x="20" y="275" width="374" height="34"/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.82745098039999998" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendData:" destination="UoS-ic-6zn" eventType="touchUpInside" id="Ck3-2N-LzI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mTE-bT-IR8" firstAttribute="top" secondItem="Wju-yv-Gyo" secondAttribute="top" constant="75" id="1NC-Cl-pkQ"/>
+                            <constraint firstItem="mTE-bT-IR8" firstAttribute="leading" secondItem="Wju-yv-Gyo" secondAttribute="leading" constant="20" id="DT7-Ef-89j"/>
+                            <constraint firstItem="Wju-yv-Gyo" firstAttribute="trailing" secondItem="sdZ-L3-lCP" secondAttribute="trailing" constant="20" id="SDF-hA-FRp"/>
+                            <constraint firstItem="Wju-yv-Gyo" firstAttribute="trailing" secondItem="mTE-bT-IR8" secondAttribute="trailing" constant="20" id="hnm-A7-Hrt"/>
+                            <constraint firstItem="sdZ-L3-lCP" firstAttribute="leading" secondItem="Wju-yv-Gyo" secondAttribute="leading" constant="20" id="vCB-8X-Jvo"/>
+                            <constraint firstItem="sdZ-L3-lCP" firstAttribute="top" secondItem="mTE-bT-IR8" secondAttribute="bottom" constant="20" id="xkm-kO-vA7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wju-yv-Gyo"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="eee-Gq-1hr"/>
+                    <connections>
+                        <outlet property="cardNumber" destination="gko-Ua-wmn" id="FeR-5H-cCu"/>
+                        <outlet property="cvv" destination="Cp2-Ba-YMI" id="NtT-GH-Zjf"/>
+                        <outlet property="expDate" destination="UWS-mw-Bx3" id="pHl-gl-tVN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1r-pO-Bsb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2639.130434782609" y="330.97826086956525"/>
         </scene>
         <!--Photo-->
         <scene sceneID="tSJ-sT-vuR">
@@ -32,29 +141,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-05-u0C" customClass="VGSButton" customModule="VGSFramework">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-05-u0C" customClass="VGSFilePicker" customModule="VGSCollectSDK">
                                 <rect key="frame" x="65" y="88" width="284" height="55"/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.82745098039999998" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="rqx-ZU-evD"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Select File"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAy-vf-iIf">
+                                <rect key="frame" x="65" y="198" width="284" height="34"/>
+                                <color key="backgroundColor" red="0.98939794299999995" green="0.48900026079999998" blue="0.33027026059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit data"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submit:" destination="3ul-g4-aET" eventType="touchUpInside" id="EcO-fG-fZv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEG-rn-hRF">
+                                <rect key="frame" x="20" y="252.00000000000003" width="374" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-2f-ike">
+                                <rect key="frame" x="197" y="173" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="NEG-rn-hRF" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="1oh-Av-rJI"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="top" secondItem="y6D-N5-RTR" secondAttribute="top" constant="88" id="9iq-Wk-TiI"/>
+                            <constraint firstItem="NEG-rn-hRF" firstAttribute="leading" secondItem="y6D-N5-RTR" secondAttribute="leading" constant="20" id="E0P-jE-p4D"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="width" secondItem="xZ7-05-u0C" secondAttribute="width" id="F9b-i8-OWB"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="leading" secondItem="y6D-N5-RTR" secondAttribute="leading" constant="65" id="QS1-PN-Jbc"/>
+                            <constraint firstItem="ceU-2f-ike" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="TL7-Ug-shM"/>
                             <constraint firstItem="xZ7-05-u0C" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="dbL-lF-R6l"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="centerX" secondItem="nI6-UX-yus" secondAttribute="centerX" id="f6K-SZ-ntf"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="top" secondItem="ceU-2f-ike" secondAttribute="bottom" constant="5" id="jWN-7m-t6t"/>
+                            <constraint firstItem="NAy-vf-iIf" firstAttribute="top" secondItem="xZ7-05-u0C" secondAttribute="bottom" constant="55" id="vH2-78-VCw"/>
+                            <constraint firstItem="NEG-rn-hRF" firstAttribute="top" secondItem="NAy-vf-iIf" secondAttribute="bottom" constant="20" id="vkD-Fs-MOO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y6D-N5-RTR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Photo" id="YTB-AU-3I9"/>
+                    <tabBarItem key="tabBarItem" title="Photo" image="cloud-upload" id="YTB-AU-3I9"/>
                     <connections>
+                        <outlet property="activity" destination="ceU-2f-ike" id="DQq-q1-VqC"/>
                         <outlet property="button" destination="xZ7-05-u0C" id="bfb-0n-eNB"/>
+                        <outlet property="label" destination="NEG-rn-hRF" id="c67-cj-5PZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJq-bH-kNo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040.5797101449277" y="345.6521739130435"/>
+            <point key="canvasLocation" x="2077" y="982"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BEG-Sr-Dkt">
@@ -76,4 +230,8 @@
             <point key="canvasLocation" x="1009" y="-33"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bank_card" width="25" height="25"/>
+        <image name="cloud-upload" width="25" height="25"/>
+    </resources>
 </document>
