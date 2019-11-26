@@ -16,7 +16,6 @@
 		FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD12B9802304616E00B670DD /* LaunchScreen.storyboard */; };
 		FD12B98D2304616E00B670DD /* demoappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B98C2304616E00B670DD /* demoappTests.swift */; };
 		FD12B9982304616E00B670DD /* demoappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9972304616E00B670DD /* demoappUITests.swift */; };
-		FDB4C10D23831EE000EA6D3C /* ViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB4C10C23831EE000EA6D3C /* ViewController2.storyboard */; };
 		FDB4C10F23831FE400EA6D3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB4C10E23831FE400EA6D3C /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -59,9 +58,7 @@
 		FD12B9932304616E00B670DD /* demoappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9972304616E00B670DD /* demoappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoappUITests.swift; sourceTree = "<group>"; };
 		FD12B9992304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FDB4C10C23831EE000EA6D3C /* ViewController2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewController2.storyboard; sourceTree = "<group>"; };
 		FDB4C10E23831FE400EA6D3C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		FDFCA7FB233F70C900C81126 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +143,6 @@
 				FD12B9802304616E00B670DD /* LaunchScreen.storyboard */,
 				FDB4C10E23831FE400EA6D3C /* Main.storyboard */,
 				FD12B9792304616C00B670DD /* ViewController.swift */,
-				FDB4C10C23831EE000EA6D3C /* ViewController2.storyboard */,
-				FDFCA7FB233F70C900C81126 /* ViewController2.swift */,
 			);
 			path = demoapp;
 			sourceTree = "<group>";
@@ -281,7 +276,6 @@
 			files = (
 				FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */,
 				FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */,
-				FDB4C10D23831EE000EA6D3C /* ViewController2.storyboard in Resources */,
 				FDB4C10F23831FE400EA6D3C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

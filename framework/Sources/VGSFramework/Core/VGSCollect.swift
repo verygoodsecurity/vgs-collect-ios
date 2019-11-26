@@ -89,7 +89,7 @@ extension VGSCollect {
         }
         
         if extraData?.count != 0 {
-            body["data"] = extraData?.description
+            extraData?.forEach { (key, value) in body[key] = value }
         }
         
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
@@ -109,33 +109,5 @@ extension VGSCollect {
             }
             block(json, nil)
         }
-    }
-    
-    public func submitFiles(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
-        
-        var valueForSend = BodyData()
-        
-        guard let key = storage.files.keys.first, let value = storage.files.values.first else {
-            return
-        }
-        
-        let result: Data
-        if let image = value as? UIImage {
-            result = image.jpegData(compressionQuality: 0.5)!
-            
-        } else if let data = value as? Data {
-            result = data
-            
-        } else {
-            return
-        }
-        
-        valueForSend[key] = result.base64EncodedString()
-        
-        if valueForSend.count == 0 {
-            return
-        }
-        
-        apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)
     }
 }

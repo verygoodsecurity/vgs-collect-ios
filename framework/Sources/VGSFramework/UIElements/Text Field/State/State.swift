@@ -27,18 +27,20 @@ public class State {
             return "Alias property is empty"
         }
         
-        result.append("Name:\(fieldName)\n")
-        result.append("-isRequired:\(isRequired)\n")
-        result.append("-isValid:\(isValid)\n")
-        result.append("-isEmpty:\(isEmpty)\n")
-        
+        result = """
+        "\(fieldName)": {
+            "isRequired": \(isRequired),
+            "isValid": \(isValid),
+            "isEmpty": \(isEmpty)
+        }
+        """
         return result
     }
 }
 
 public class CardState: State {
     open var last4: String = ""
-    open var first6: String = ""
+    open var bin: String = ""
     open var cardBrand: SwiftLuhn.CardType = .unknown
     
     override public init(tf: VGSTextField) {
@@ -49,18 +51,21 @@ public class CardState: State {
         }
         
         self.last4 = String(originalText.suffix(4))
-        self.first6 = String(originalText.prefix(6))
+        self.bin = String(originalText.prefix(6))
         self.isValid = originalText.isValidCardNumber()
         self.cardBrand = originalText.suggestedCardType()
     }
     
     override public var description: String {
         var result = super.description
-        
         if isValid {
-            result.append("-last4:\(last4)\n")
-            result.append("-first6:\(first6)\n")
-            result.append("-cardBrand:\(cardBrand)\n")
+            result.append("""
+            , {
+                "bin": \(bin),
+                "last4": \(last4),
+                "cardBrand": \(cardBrand)
+            }
+            """)
         }
         return result
     }
