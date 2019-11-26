@@ -100,8 +100,7 @@ public class SwiftLuhn {
                 }
                 
                 digitSum = digitSum + product
-            }
-            else {
+            } else {
                 digitSum = digitSum + value
             }
         }
@@ -120,8 +119,8 @@ public class SwiftLuhn {
         
         var foundCardType: CardType = .unknown
         
-        for i in CardType.amex.rawValue...CardType.jcb.rawValue {
-            let cardType = CardType(rawValue: i)!
+        for index in CardType.amex.rawValue...CardType.jcb.rawValue {
+            let cardType = CardType(rawValue: index)!
             let regex = suggest ? suggestionRegularExpression(for: cardType) : regularExpression(for: cardType)
             
             let predicate = NSPredicate(format: "SELF MATCHES %@", regex)

@@ -37,4 +37,22 @@ class CardBrandTests: XCTestCase {
         XCTAssert(brand.patter.first == "^")
         XCTAssert(brand.patter.last == "$")
     }
+    
+    func testMaestro() {
+        let brand = CardBrand.maestro
+        let patter = "^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}$"
+        
+        XCTAssertTrue(brand.patter == patter)
+        XCTAssert(brand.patter.first == "^")
+        XCTAssert(brand.patter.last == "$")
+    }
+    
+    func testNone() {
+        let brand = CardBrand.unknown
+        let patter = ""
+        
+        XCTAssertTrue(brand.patter == patter)
+        XCTAssert(brand.patter.first == nil)
+        XCTAssert(brand.patter.last == nil)
+    }
 }

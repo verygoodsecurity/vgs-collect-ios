@@ -19,18 +19,16 @@ public class VGSTextField: UIView {
     internal var fieldName: String!
     internal var token: String?
     
+    // just for internal using
+    internal var text: String? {
+        return textField.secureText
+    }
+    
     /// You can set padding for text and placeholder
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet {
             textField.padding = padding
         }
-    }
-    
-    internal var text: String? {
-        get {
-            return textField.text
-        }
-        set { }
     }
     
     public var configuration: VGSConfiguration? {
@@ -101,10 +99,9 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        
-        // delegate
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.delegate = self
+        //delegate
+        textField.addSomeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
         
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
@@ -112,7 +109,7 @@ public class VGSTextField: UIView {
     }
     
     @objc
-    func textFieldDidChange(_ sender: UITextField) {
+    internal func textFieldDidChange(_ sender: UITextField) {
         // change status
         vgsCollector?.updateStatus(for: self)
     }
@@ -138,7 +135,7 @@ extension VGSTextField: UITextFieldDelegate {
 // MARK: - change focus here
 extension VGSTextField {
     @objc
-    private func focusOn() {
+    internal func focusOn() {
         // change status
         textField.becomeFirstResponder()
         vgsCollector?.updateStatus(for: self)
