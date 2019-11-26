@@ -59,5 +59,4 @@ extension VGSCollect {
         fclose(file)
         return true
     }
-
 }
