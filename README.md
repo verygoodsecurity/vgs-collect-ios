@@ -64,7 +64,7 @@ On Final screen check that you project target is correct and press Finish.
 
 ### Create VGSCollect instance and VGS UI Elements
 Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
-```
+```swift
 import UIKit
 import VGSCollectSDK
 
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
 ```
 ### Customize UI Elements
 You can use general properties for styling your UI elements.
-```
+```swift
 	// UI Elements styling
 	cardNumber.borderWidth = 1
 	cardNumber.borderColor = .lightGray
@@ -102,7 +102,7 @@ You can use general properties for styling your UI elements.
 	cardNumber.font = UIFont(name: "Arial", size: 22)
 ```
 ### Observe Fields State
-```
+```swift
 	// Observing text fields
 	vgsForm.observeStates = { textFields in
 	    textFields.forEach({ textField in
@@ -111,7 +111,7 @@ You can use general properties for styling your UI elements.
 	}
 ```
 ### Collect and Send Your Data
-```
+```swift
 func sendData() {
     // extra information will be sent together with all sensitive card information
     var extraData = [String: Any]()
