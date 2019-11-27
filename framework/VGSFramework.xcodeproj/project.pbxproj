@@ -88,7 +88,6 @@
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
-		FDD9028D232ED2040053BEBC /* CardBrand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBrand.swift; sourceTree = "<group>"; };
 		FDE7447C238A5C96003AA46B /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FDE7447E238AF13F003AA46B /* VGSCardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
 		FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextFieldTests.swift; sourceTree = "<group>"; };
@@ -272,14 +271,6 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		FDD9028C232ED2040053BEBC /* Card Brand */ = {
-			isa = PBXGroup;
-			children = (
-				FDD9028D232ED2040053BEBC /* CardBrand.swift */,
-			);
-			path = "Card Brand";
-			sourceTree = "<group>";
-		};
 		FDE7447B238A5C79003AA46B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,7 +295,6 @@
 		FDF696E6234A5D7A00063507 /* Text Field */ = {
 			isa = PBXGroup;
 			children = (
-				FDD9028C232ED2040053BEBC /* Card Brand */,
 				FD1489FD232D4F8000FD7781 /* Mask */,
 				FD148A05232EC53600FD7781 /* State */,
 				FD2495622330E313009024E6 /* Validation */,
