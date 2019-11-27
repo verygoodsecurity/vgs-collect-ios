@@ -30,6 +30,7 @@
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
 		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
+		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
 		FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F5656238E7FBB00C24123 /* CardType+icon.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDE7447D238A5C96003AA46B /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
@@ -38,6 +39,7 @@
 		FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */; };
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
+		FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,7 @@
 		FD2495672330E313009024E6 /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
 		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
 		FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumerTextFieldTests.swift; sourceTree = "<group>"; };
+		FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+security.swift"; sourceTree = "<group>"; };
 		FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecurity.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFielsStyleUI.swift; sourceTree = "<group>"; };
 		FDF696E2234643F300063507 /* LuhnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuhnTests.swift; sourceTree = "<group>"; };
 		FDF696E42346461D00063507 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
+		FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+padding.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +200,9 @@
 		FD1489FD232D4F8000FD7781 /* Mask */ = {
 			isa = PBXGroup;
 			children = (
+				FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */,
 				FD1489FE232D4F8000FD7781 /* MaskedTextField.swift */,
+				FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */,
 			);
 			path = Mask;
 			sourceTree = "<group>";
@@ -513,7 +519,9 @@
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				FDE7447F238AF13F003AA46B /* VGSCardTextField.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
+				FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
+				FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

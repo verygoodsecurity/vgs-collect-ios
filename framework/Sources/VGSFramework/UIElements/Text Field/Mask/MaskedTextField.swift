@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MaskedTextField: UITextField {
+open class MaskedTextField: UITextField {
 
     public let lettersAndDigitsReplacementChar: String = "*"
     public let anyLetterReplecementChar: String = "@"
@@ -226,34 +226,5 @@ class MaskedTextField: UITextField {
                 }
             }
         }
-    }
-}
-
-extension MaskedTextField {
-    override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-
-    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-}
-
-extension MaskedTextField {
-    override open func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}
-    
-    override open var delegate: UITextFieldDelegate? {
-        get {
-            return nil
-        }
-        set {}
-    }
-    
-    func addSomeTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
-        super.addTarget(target, action: action, for: controlEvents)
     }
 }
