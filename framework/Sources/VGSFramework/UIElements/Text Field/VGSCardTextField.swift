@@ -10,7 +10,11 @@ import UIKit
 
 public class VGSCardTextField: VGSTextField {
     
+    /// card brand icon width
     var iconWidth: CGFloat = 0
+    
+    /// callback for taking card brand icon
+    public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
     lazy var cardIconView = UIImageView(frame: .zero)
     
@@ -23,7 +27,14 @@ public class VGSCardTextField: VGSTextField {
         
         updateUI = { [weak self] in
             if let state = self?.state as? CardState {
-                self?.cardIconView.image = state.cardBrand.brandIcon
+                
+                if self?.cardsIconSource != nil {
+                    let icon = self?.cardsIconSource?(state.cardBrand)
+                    self?.cardIconView.image = icon
+                    
+                } else {
+                    self?.cardIconView.image = state.cardBrand.brandIcon
+                }
             }
         }
     }

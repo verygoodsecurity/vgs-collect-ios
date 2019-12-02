@@ -60,6 +60,20 @@ class ViewController: UIViewController {
                 self?.consoleMessage.append("\n")
             })
         }
+        
+        // if you wonna to set your card brand icon then use this closure
+//        cardNumber.cardsIconSource = { cardType in
+//            switch cardType {
+//            case .mastercard:
+//                return UIImage(named: "your mastercard icon")
+//            case .visa:
+//                return UIImage(named: "your visa icon")
+//
+//            default:
+//                return nil
+//            }
+//        }
+        
         setupElements()
     }
     
