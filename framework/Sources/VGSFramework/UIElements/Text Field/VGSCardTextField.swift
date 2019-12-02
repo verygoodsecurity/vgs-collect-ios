@@ -10,7 +10,7 @@ import UIKit
 
 public class VGSCardTextField: VGSTextField {
     
-    public var iconWidth: CGFloat = 0
+    var iconWidth: CGFloat = 0
     
     lazy var cardIconView = UIImageView(frame: .zero)
     
@@ -31,8 +31,6 @@ public class VGSCardTextField: VGSTextField {
     private func makeCardIcon() {
         
         cardIconView.contentMode = .scaleAspectFit
-//        textField.rightView = cardIconView
-//        textField.rightViewMode = .always
         addSubview(cardIconView)
         
         // make constraints
