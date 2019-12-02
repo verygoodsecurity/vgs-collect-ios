@@ -23,24 +23,26 @@ extension SwiftLuhn.CardType {
             print("\n\n! Bundle with card icons is absent\n\n")
             return nil
         }
-        
+        var resultIcon: UIImage?
         switch self {
         case .visa:
-            return UIImage(named: "1", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "1", in: bundle, compatibleWith: nil)
             
         case .mastercard:
-            return UIImage(named: "2", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "2", in: bundle, compatibleWith: nil)
             
         case .amex:
-            return UIImage(named: "22", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "22", in: bundle, compatibleWith: nil)
             
         case .maestro:
-            return UIImage(named: "3", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "3", in: bundle, compatibleWith: nil)
             
         case .discover:
-            return UIImage(named: "14", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "14", in: bundle, compatibleWith: nil)
         default:
-            return nil
+            resultIcon = nil
         }
+        
+        return resultIcon
     }
 }
