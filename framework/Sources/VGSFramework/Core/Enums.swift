@@ -75,10 +75,3 @@ public enum FieldType: Int, CaseIterable {
         }
     }
 }
-
-public enum ButtonType: Int, CaseIterable {
-    case none
-    case library
-    case camera
-    case file
-}
