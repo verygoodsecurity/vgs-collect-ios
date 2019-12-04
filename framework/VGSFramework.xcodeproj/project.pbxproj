@@ -32,6 +32,7 @@
 		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
 		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
 		FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F5656238E7FBB00C24123 /* CardType+icon.swift */; };
+		FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA680DE239844FC00372817 /* CardTextFieldTests.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDE7447D238A5C96003AA46B /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FDE7447F238AF13F003AA46B /* VGSCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7447E238AF13F003AA46B /* VGSCardTextField.swift */; };
@@ -87,6 +88,7 @@
 		FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecurity.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
+		FDA680DE239844FC00372817 /* CardTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldTests.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
 		FDE7447C238A5C96003AA46B /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FDE7447E238AF13F003AA46B /* VGSCardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				FDF696E2234643F300063507 /* LuhnTests.swift */,
 				FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */,
 				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
+				FDA680DE239844FC00372817 /* CardTextFieldTests.swift */,
 			);
 			path = "Text Fields Tests";
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
+				FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,

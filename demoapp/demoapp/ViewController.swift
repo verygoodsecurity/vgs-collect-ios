@@ -198,7 +198,7 @@ class ViewController: UIViewController {
     
     private func setupElements() {
         
-        let textColor = UIColor.black
+        let textColor = UIColor.label
         let textFont = UIFont.systemFont(ofSize: 22)
         let padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         

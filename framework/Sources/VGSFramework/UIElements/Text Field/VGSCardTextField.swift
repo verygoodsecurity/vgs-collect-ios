@@ -16,7 +16,7 @@ public class VGSCardTextField: VGSTextField {
     /// callback for taking card brand icon
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
-    lazy var cardIconView = UIImageView(frame: .zero)
+    internal var cardIconView = UIImageView(frame: .zero)
     
     // MARK: - init
     override func mainInitialization() {

@@ -11,9 +11,9 @@ import Foundation
 extension SwiftLuhn.CardType {
     
     internal var bundle: Bundle? {
-        guard let bundleURL = Bundle(for: SwiftLuhn.self).url(forResource: "CardIcon", withExtension: "bundle"),
+        guard let bundleURL = Bundle(for: VGSCollect.self).url(forResource: "CardIcon", withExtension: "bundle"),
             let bundle = Bundle(url: bundleURL) else {
-            return nil
+                return nil
         }
         return bundle
     }
@@ -40,9 +40,9 @@ extension SwiftLuhn.CardType {
         case .discover:
             resultIcon = UIImage(named: "14", in: bundle, compatibleWith: nil)
         default:
-            resultIcon = nil
+            resultIcon = UIImage(named: "0", in: bundle, compatibleWith: nil)
         }
         
-        return resultIcon
+        return resultIcon ?? UIImage(named: "0")
     }
 }
