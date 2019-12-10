@@ -8,16 +8,10 @@ jobs:
       # - run:
       #     name: Fetch CocoaPods Specs
       #     command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      
-      # Install CocoaPods
-  - run:
-      name: Install CocoaPods
-      command: pod install
-
-  # Set Ruby version
-  - run:
-      name: Set Ruby Version
-      command:  echo "ruby-2.4" > ~/.ruby-version
+      # Set Ruby version
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
       
       - run:
           name: Install cocoapods
