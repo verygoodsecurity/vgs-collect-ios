@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C514B5FF66E3CC4BE524AC2 /* Pods_VGSFramework_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */; };
 		D06AC61B18447F6EC1968FDE /* Pods_VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */; };
-		FD04D96E23658CD0005DC92E /* VGSFilePicker+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD04D96D23658CD0005DC92E /* VGSFilePicker+UIBuilder.swift */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93A2316CE5A000EAF52 /* Enums.swift */; };
 		FD05F9492316CE5A000EAF52 /* VGSCollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */; };
@@ -30,18 +29,14 @@
 		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
-		FD44BB46234D256500B4CB4E /* VGSFilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E8234A5D9A00063507 /* VGSFilePicker.swift */; };
 		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
 		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD9028D232ED2040053BEBC /* CardBrand.swift */; };
 		FDE890822333AC6D00FA170D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
-		FDF21EFA2365BE000070C6D4 /* VGSFilePicker+imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF21EF92365BE000070C6D4 /* VGSFilePicker+imagePicker.swift */; };
-		FDF21EFC2365BE200070C6D4 /* VGSFilePicker+file.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF21EFB2365BE200070C6D4 /* VGSFilePicker+file.swift */; };
 		FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */; };
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
-		FDF696EF234A6CD500063507 /* ButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696EE234A6CD500063507 /* ButtonTests.swift */; };
 		FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */; };
 		FDFCA800233F818C00C81126 /* CardBrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FF233F818C00C81126 /* CardBrandTests.swift */; };
 /* End PBXBuildFile section */
@@ -66,7 +61,6 @@
 		8B9B2BCA5214C4DABE1B9B72 /* Pods-VGSFrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFramework_FrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD03610A2B3B9A3339B094E /* Pods-VGSFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework.debug.xcconfig"; path = "Target Support Files/Pods-VGSFramework/Pods-VGSFramework.debug.xcconfig"; sourceTree = "<group>"; };
-		FD04D96D23658CD0005DC92E /* VGSFilePicker+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+UIBuilder.swift"; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollect.swift; sourceTree = "<group>"; };
@@ -96,12 +90,9 @@
 		FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextFieldTests.swift; sourceTree = "<group>"; };
 		FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVVTextFieldTests.swift; sourceTree = "<group>"; };
 		FDE890812333AC6D00FA170D /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
-		FDF21EF92365BE000070C6D4 /* VGSFilePicker+imagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+imagePicker.swift"; sourceTree = "<group>"; };
-		FDF21EFB2365BE200070C6D4 /* VGSFilePicker+file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+file.swift"; sourceTree = "<group>"; };
 		FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFielsStyleUI.swift; sourceTree = "<group>"; };
 		FDF696E2234643F300063507 /* LuhnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuhnTests.swift; sourceTree = "<group>"; };
 		FDF696E42346461D00063507 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
-		FDF696E8234A5D9A00063507 /* VGSFilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePicker.swift; sourceTree = "<group>"; };
 		FDF696EE234A6CD500063507 /* ButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTests.swift; sourceTree = "<group>"; };
 		FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+padding.swift"; sourceTree = "<group>"; };
 		FDFCA7FF233F818C00C81126 /* CardBrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTests.swift; sourceTree = "<group>"; };
@@ -178,7 +169,6 @@
 		FD05F9432316CE5A000EAF52 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
-				FDF696E7234A5D8600063507 /* Button */,
 				FDF696E6234A5D7A00063507 /* Text Field */,
 			);
 			path = UIElements;
@@ -315,17 +305,6 @@
 			path = "Text Field";
 			sourceTree = "<group>";
 		};
-		FDF696E7234A5D8600063507 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				FDF696E8234A5D9A00063507 /* VGSFilePicker.swift */,
-				FDF21EF92365BE000070C6D4 /* VGSFilePicker+imagePicker.swift */,
-				FDF21EFB2365BE200070C6D4 /* VGSFilePicker+file.swift */,
-				FD04D96D23658CD0005DC92E /* VGSFilePicker+UIBuilder.swift */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
 		FDF696ED234A6CC600063507 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,12 +374,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
-				ORGANIZATIONNAME = "Vitalii Obertynskyi";
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = VGS;
 				TargetAttributes = {
 					FD12B9AE2304619100B670DD = {
 						CreatedOnToolsVersion = 10.3;
-						LastSwiftMigration = 1100;
+						LastSwiftMigration = 1120;
 					};
 					FD2495502330CB49009024E6 = {
 						CreatedOnToolsVersion = 10.3;
@@ -536,13 +515,10 @@
 				FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
-				FDF21EFA2365BE000070C6D4 /* VGSFilePicker+imagePicker.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGSCollect.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FDD9028E232ED2040053BEBC /* CardBrand.swift in Sources */,
-				FD44BB46234D256500B4CB4E /* VGSFilePicker.swift in Sources */,
-				FDF21EFC2365BE200070C6D4 /* VGSFilePicker+file.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
@@ -551,7 +527,6 @@
 				FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */,
-				FD04D96E23658CD0005DC92E /* VGSFilePicker+UIBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +541,6 @@
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
-				FDF696EF234A6CD500063507 /* ButtonTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
 				FD24955E2330CC62009024E6 /* CollectorTests.swift in Sources */,
@@ -636,7 +610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -695,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -714,7 +688,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -722,6 +696,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/VGSFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -732,8 +707,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -744,7 +720,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -752,6 +728,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/VGSFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -762,7 +739,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = NO;
-				SWIFT_VERSION = 4.2;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
