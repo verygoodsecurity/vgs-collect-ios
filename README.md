@@ -29,7 +29,7 @@ Table of contents
 <!--te-->
 
 <p align="center">
-<img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20"><img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+<img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-state2.png" width="200" alt="VGS Collect iOS SDK State" hspace="20"><img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
 </p>
 
 
