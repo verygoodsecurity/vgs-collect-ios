@@ -33,9 +33,19 @@ class CardTextFieldTests: XCTestCase {
         
         cardTextField.textField.text = cardNum
         cardTextField.focusOn()
-//        XCTAssertNotNil(cardTextField.cardIconView.image)
-        
-        cardTextField.textField.text = nil
-        XCTAssertNil(cardTextField.cardIconView.image)
+        XCTAssertNotNil(cardTextField.cardIconView.image)
+    }
+    
+    func testIconPresent() {
+        XCTAssertNotNil(SwiftLuhn.CardType.unknown)
+        XCTAssertNotNil(SwiftLuhn.CardType.amex)
+        XCTAssertNotNil(SwiftLuhn.CardType.dinersClub)
+        XCTAssertNotNil(SwiftLuhn.CardType.discover)
+        XCTAssertNotNil(SwiftLuhn.CardType.jcb)
+        XCTAssertNotNil(SwiftLuhn.CardType.maestro)
+        XCTAssertNotNil(SwiftLuhn.CardType.mastercard)
+        XCTAssertNotNil(SwiftLuhn.CardType.mir)
+        XCTAssertNotNil(SwiftLuhn.CardType.visa)
+        XCTAssertNotNil(SwiftLuhn.CardType.rupay)
     }
 }

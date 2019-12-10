@@ -10,19 +10,9 @@ import Foundation
 
 extension SwiftLuhn.CardType {
     
-    internal var bundle: Bundle? {
-        guard let bundleURL = Bundle(for: VGSCollect.self).url(forResource: "CardIcon", withExtension: "bundle"),
-            let bundle = Bundle(url: bundleURL) else {
-                return nil
-        }
-        return bundle
-    }
-    
     var brandIcon: UIImage? {
-        if bundle == nil {
-            print("\n\n! Bundle with card icons is absent\n\n")
-            return nil
-        }
+        let bundle = Bundle(for: VGSCollect.self)
+        
         var resultIcon: UIImage?
         switch self {
         case .visa:
