@@ -37,15 +37,15 @@ class CardTextFieldTests: XCTestCase {
     }
     
     func testIconPresent() {
-        XCTAssertNotNil(SwiftLuhn.CardType.unknown)
-        XCTAssertNotNil(SwiftLuhn.CardType.amex)
-        XCTAssertNotNil(SwiftLuhn.CardType.dinersClub)
-        XCTAssertNotNil(SwiftLuhn.CardType.discover)
-        XCTAssertNotNil(SwiftLuhn.CardType.jcb)
-        XCTAssertNotNil(SwiftLuhn.CardType.maestro)
-        XCTAssertNotNil(SwiftLuhn.CardType.mastercard)
-        XCTAssertNotNil(SwiftLuhn.CardType.mir)
-        XCTAssertNotNil(SwiftLuhn.CardType.visa)
-        XCTAssertNotNil(SwiftLuhn.CardType.rupay)
+        XCTAssertNotNil(SwiftLuhn.CardType.unknown.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.amex.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.dinersClub.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.discover.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.jcb.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.maestro.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.mastercard.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.mir.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.visa.brandIcon)
+        XCTAssertNotNil(SwiftLuhn.CardType.rupay.brandIcon)
     }
 }

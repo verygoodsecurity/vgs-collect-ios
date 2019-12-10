@@ -11,7 +11,7 @@ import Foundation
 extension SwiftLuhn.CardType {
     
     var brandIcon: UIImage? {
-        let bundle = Bundle(for: VGSCollect.self)
+        let bundle = AssetsBundle.main.iconBundle
         
         var resultIcon: UIImage?
         switch self {
@@ -33,6 +33,20 @@ extension SwiftLuhn.CardType {
             resultIcon = UIImage(named: "0", in: bundle, compatibleWith: nil)
         }
         
-        return resultIcon ?? UIImage(named: "0")
+        return resultIcon
+    }
+}
+
+class AssetsBundle {
+    static var main = AssetsBundle()
+    var iconBundle: Bundle?
+    
+    init() {
+        let containingBundle = Bundle(for: AssetsBundle.self)
+        if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
+            iconBundle = Bundle(url: bundleURL)
+        } else {
+            iconBundle = containingBundle
+        }
     }
 }
