@@ -16,7 +16,15 @@ let package = Package(
         .target(
             name: "VGSFramework",
             dependencies: ["Alamofire"],
-            path: "framework"
+            path: "framework",
+            exclude: [
+                "Tests",
+                "Carthage",
+                "Podfile",
+                "Podfile.lock",
+                "../demoapp"
+            ]
         )
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
