@@ -5,15 +5,6 @@ jobs:
       xcode: "11.0"
     steps:
       - checkout
-      # - run:
-      #     name: Set Ruby Version
-      #     command: echo "ruby-2.6.3" > ~/.ruby-version
-      # - run:
-      #     name: Configure Bundler
-      #     command: |
-      #       echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-      #       source $BASH_ENV
-      #       sudo gem install bundler
       - run:
           name: Install cocoapods
           command: sudo gem install cocoapods --verbose
