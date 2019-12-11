@@ -5,14 +5,12 @@ jobs:
       xcode: "11.0"
     steps:
       - checkout
-      # - run:
-      #     name: Fetch CocoaPods Specs
-      #     command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       # Set Ruby version
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.4" > ~/.ruby-version
-      
+     - run:
+          name: Bundle Install
+          command: |
+            sudo gem install bundler -v 1.15.4 # <-- wut
+            bundle install --path vendor/bundle --jobs 4 --retry 3
       - run:
           name: Install cocoapods
           command: gem install cocoapods --verbose
