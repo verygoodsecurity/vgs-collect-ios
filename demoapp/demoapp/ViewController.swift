@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var vgsForm = VGSCollect(id: "<your-vault-id>", environment: .sandbox)
     
     // VGS UI Elements
-    var cardNumber = VGSTextField()
+    var cardNumber = VGSCardTextField()
     var expCardDate = VGSTextField()
     var cvcCardNum = VGSTextField()
     var cardHolderName = UITextField(frame: .zero)
@@ -60,6 +60,20 @@ class ViewController: UIViewController {
                 self?.consoleMessage.append("\n")
             })
         }
+        
+        // if you wonna to set your card brand icon then use this closure
+//        cardNumber.cardsIconSource = { cardType in
+//            switch cardType {
+//            case .mastercard:
+//                return UIImage(named: "your mastercard icon")
+//            case .visa:
+//                return UIImage(named: "your visa icon")
+//
+//            default:
+//                return nil
+//            }
+//        }
+        
         setupElements()
     }
     
@@ -184,7 +198,7 @@ class ViewController: UIViewController {
     
     private func setupElements() {
         
-        let textColor = UIColor.black
+        let textColor = UIColor.label
         let textFont = UIFont.systemFont(ofSize: 22)
         let padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
