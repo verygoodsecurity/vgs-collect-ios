@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.0.0'
+  spec.version = '1.1.1'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -17,6 +17,9 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "10.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
+  spec.resource_bundles = {
+    'CardIcon' => ['framework/Resources/*']
+  }
   spec.frameworks = "Alamofire"
   spec.requires_arc = true
   spec.dependency "Alamofire", "4.9.1"

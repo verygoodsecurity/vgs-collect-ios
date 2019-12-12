@@ -12,12 +12,20 @@ import UIKit
 public class VGSTextField: UIView {
     private(set) weak var vgsCollector: VGSCollect?
     internal var textField = MaskedTextField(frame: .zero)
-    internal var focusStatus: Bool = false
+    internal var focusStatus: Bool = false {
+        didSet {
+            if focusStatus {
+                updateUI?()
+            }
+        }
+    }
     internal var isRequired: Bool = false
     internal var fieldType: FieldType = .none
     internal var validationModel = VGSValidation()
     internal var fieldName: String!
     internal var token: String?
+    
+    var updateUI: (() -> Void)?
     
     // just for internal using
     internal var text: String? {
@@ -59,6 +67,8 @@ public class VGSTextField: UIView {
                 vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])
             }
+            
+            updateUI?()
         }
     }
     
@@ -78,7 +88,7 @@ public class VGSTextField: UIView {
     }
     
     // MARK: - private API
-    private func mainInitialization() {
+    func mainInitialization() {
         // set main style for view
         mainStyle()
         // text view

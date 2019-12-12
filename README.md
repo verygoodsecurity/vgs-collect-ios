@@ -29,14 +29,15 @@ Table of contents
 <!--te-->
 
 <p align="center">
-<img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20"><img src="https://github.com/verygoodsecurity/vgs-collect-ios/blob/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+	<img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20">
+	<img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
 </p>
 
 
 ## Before you start
 You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your `<vault-id>` to start collecting data. Follow integration guide below.
 
-## Integration
+# Integration
 
 ### CocoaPods
 
@@ -51,6 +52,7 @@ pod 'VGSCollectSDK'
 [Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
 
 To add VGSCollectSDK package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency. Enter package repository URL and press Next:
+
 ```ruby
 https://github.com/verygoodsecurity/vgs-collect-ios
 ```
@@ -64,7 +66,8 @@ On Final screen check that you project target is correct and press Finish.
 
 ### Create VGSCollect instance and VGS UI Elements
 Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
-```swift
+
+````swift
 import UIKit
 import VGSCollectSDK
 
@@ -90,9 +93,11 @@ class ViewController: UIViewController {
 		view.addSubview(cardNumber)
     }
 }
-```
+````
+
 ### Customize UI Elements
 You can use general properties for styling your UI elements.
+
 ```swift
 	// UI Elements styling
 	cardNumber.borderWidth = 1
@@ -102,6 +107,7 @@ You can use general properties for styling your UI elements.
 	cardNumber.font = UIFont(name: "Arial", size: 22)
 ```
 ### Observe Fields State
+
 ```swift
 	// Observing text fields
 	vgsForm.observeStates = { textFields in
@@ -111,6 +117,7 @@ You can use general properties for styling your UI elements.
 	}
 ```
 ### Collect and Send Your Data
+
 ```swift
 func sendData() {
     // extra information will be sent together with all sensitive card information
@@ -127,6 +134,18 @@ func sendData() {
     })
 }
 ```
+
+### More useful UI component for bank card
+You can use the VGSCardTextField if you wanna see a card brand icon in the input field.
+
+````swift
+    // create VGSCardTextField instance
+	var cardNumber = VGSCardTextField()
+````
+
+<p align="center">
+	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.png" width=“600">
+</p>
 
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
