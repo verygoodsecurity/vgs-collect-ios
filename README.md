@@ -139,7 +139,7 @@ func sendData() {
 You can use the VGSCardTextField if you wanna see a card brand icon in the input field.
 
 ````swift
-    // initialase you cardNumber like a VGSCardTextField class
+    // create VGSCardTextField instance
 	var cardNumber = VGSCardTextField()
 ````
 
