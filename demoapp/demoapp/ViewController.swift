@@ -176,6 +176,7 @@ class ViewController: UIViewController {
         
         consoleLabel = UILabel(frame: .zero)
         consoleLabel.text = ""
+        consoleLabel.textAlignment = .left
         consoleLabel.numberOfLines = 0
         consoleLabel.contentMode = .topLeft
         consoleLabel.textColor = .black
@@ -183,8 +184,7 @@ class ViewController: UIViewController {
         
         consoleLabel.snp.makeConstraints { make in
             make.top.equalTo(consoleStatusLabel.snp.bottom).offset(8)
-            make.left.equalTo(30)
-            make.right.equalTo(15)
+            make.left.right.equalTo(15)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
