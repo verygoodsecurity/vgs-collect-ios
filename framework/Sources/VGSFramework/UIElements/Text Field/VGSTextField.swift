@@ -53,13 +53,6 @@ public class VGSTextField: UIView {
         }
     }
     
-    /// Constants that identify the semantic meaning expected for a text-entry area
-    public var textContentType: UITextContentType! {
-        didSet {
-            textField.textContentType = textContentType
-        }
-    }
-    
     public var configuration: VGSConfiguration? {
         didSet {
             

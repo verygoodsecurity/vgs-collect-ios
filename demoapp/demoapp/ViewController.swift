@@ -210,6 +210,7 @@ class ViewController: UIViewController {
         cardNumber.font = textFont
         cardNumber.padding = padding
         cardNumber.placeholder = "Card Number"
+        cardNumber.textAlignment = .natural
         
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
         expDateConfiguration.isRequired = true
