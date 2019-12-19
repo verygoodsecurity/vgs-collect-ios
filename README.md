@@ -105,6 +105,8 @@ cardNumber.borderColor = .lightGray
 cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 cardNumber.textColor = .magenta
 cardNumber.font = UIFont(name: "Arial", size: 22)
+cardNumber.textAlignment = .natural
+cardNumber.textContentType = .creditCardNumber
 ```
 ### Observe Fields State
 
