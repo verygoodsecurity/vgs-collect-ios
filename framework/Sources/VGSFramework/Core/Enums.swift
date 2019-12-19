@@ -69,7 +69,7 @@ public enum FieldType: Int, CaseIterable {
     var keyboardType: UIKeyboardType {
         switch self {
         case .cardNumber, .cvc, .expDate:
-            return .decimalPad
+            return .asciiCapableNumberPad
         default:
             return .alphabet
         }

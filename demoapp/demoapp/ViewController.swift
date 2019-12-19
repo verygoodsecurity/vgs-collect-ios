@@ -74,7 +74,6 @@ class ViewController: UIViewController {
 //                return nil
 //            }
 //        }
-        
         setupElements()
     }
     
@@ -110,7 +109,6 @@ class ViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(cardHolderName.snp.bottom).offset(10)
         }
-        
         // setup expiration card date
         view.addSubview(expCardDate)
         expCardDate.snp.makeConstraints { make in
@@ -176,6 +174,7 @@ class ViewController: UIViewController {
         
         consoleLabel = UILabel(frame: .zero)
         consoleLabel.text = ""
+        consoleLabel.textAlignment = .left
         consoleLabel.numberOfLines = 0
         consoleLabel.contentMode = .topLeft
         consoleLabel.textColor = .black
@@ -183,8 +182,7 @@ class ViewController: UIViewController {
         
         consoleLabel.snp.makeConstraints { make in
             make.top.equalTo(consoleStatusLabel.snp.bottom).offset(8)
-            make.left.equalTo(30)
-            make.right.equalTo(15)
+            make.left.right.equalTo(15)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -204,7 +202,6 @@ class ViewController: UIViewController {
         let padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
         let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_number")
-        cardConfiguration.placeholder = "Card number"
         cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
         
@@ -212,9 +209,10 @@ class ViewController: UIViewController {
         cardNumber.textColor = textColor
         cardNumber.font = textFont
         cardNumber.padding = padding
+        cardNumber.placeholder = "Card Number"
+        cardNumber.textAlignment = .natural
         
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
-        expDateConfiguration.placeholder = "MM/YY"
         expDateConfiguration.isRequired = true
         expDateConfiguration.type = .expDate
         
@@ -222,9 +220,9 @@ class ViewController: UIViewController {
         expCardDate.textColor = textColor
         expCardDate.font = textFont
         expCardDate.padding = padding
+        expCardDate.placeholder = "MM/YY"
         
         let cvcConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_cvc")
-        cvcConfiguration.placeholder = "CVC"
         cvcConfiguration.isRequired = true
         cvcConfiguration.type = .cvc
         
@@ -232,7 +230,7 @@ class ViewController: UIViewController {
         cvcCardNum.textColor = textColor
         cvcCardNum.font = textFont
         cvcCardNum.padding = padding
-        
+        cvcCardNum.placeholder = "CVC"
         
         cardHolderName.layer.borderWidth = 1
         cardHolderName.layer.borderColor = UIColor.lightGray.cgColor

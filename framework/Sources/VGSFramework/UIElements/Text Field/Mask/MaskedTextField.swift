@@ -102,7 +102,7 @@ open class MaskedTextField: UITextField {
     }
     
     fileprivate func getOnlyDigitsString(_ string: String) -> String {
-        let charactersArray = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        let charactersArray = string.components(separatedBy: CharacterSet.vgs_asciiDecimalDigits.inverted)
         return charactersArray.joined(separator: "")
     }
     

@@ -24,9 +24,6 @@ public class VGSConfiguration {
     /// Set this property if text filed is required
     public var isRequired: Bool = false
     
-    /// Plaseholder text for text filed
-    public var placeholder: String = ""
-    
     /// Type of text filed. By default `none`
     public var type: FieldType = .none
     

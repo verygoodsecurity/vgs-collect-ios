@@ -78,19 +78,19 @@ class ViewController: UIViewController {
   // VGS UI Elements
   var cardNumber = VGSTextField()
 
-  override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-		// Configure Elements UI
-		let cardConfig = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
-		cardConfig.placeholder = "card number"
-		cardConfig.isRequired = true
-		cardConfig.type = .cardNumber
+        // Configure Elements UI
+        let cardConfig = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
+        cardConfig.isRequired = true
+        cardConfig.type = .cardNumber
 
-		cardNumber.configuration = cardConfig
+        cardNumber.configuration = cardConfig
+        cardNumber.placeholder = "card number"
 
-		cardNumber.frame = CGRect(x: 10, y: 55, width: 310, height: 35)
-		view.addSubview(cardNumber)
+        cardNumber.frame = CGRect(x: 10, y: 55, width: 310, height: 35)
+        view.addSubview(cardNumber)
     }
 }
 ````
@@ -99,22 +99,23 @@ class ViewController: UIViewController {
 You can use general properties for styling your UI elements.
 
 ```swift
-	// UI Elements styling
-	cardNumber.borderWidth = 1
-	cardNumber.borderColor = .lightGray
-	cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-	cardNumber.textColor = .magenta
-	cardNumber.font = UIFont(name: "Arial", size: 22)
+// UI Elements styling
+cardNumber.borderWidth = 1
+cardNumber.borderColor = .lightGray
+cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+cardNumber.textColor = .magenta
+cardNumber.font = UIFont(name: "Arial", size: 22)
+cardNumber.textAlignment = .natural
 ```
 ### Observe Fields State
 
 ```swift
-	// Observing text fields
-	vgsForm.observeStates = { textFields in
-	    textFields.forEach({ textField in
-	           print(textField.state.description)
-	    })
-	}
+// Observing text fields
+vgsForm.observeStates = { textFields in
+    textFields.forEach({ textField in
+           print(textField.state.description)
+    })
+}
 ```
 ### Collect and Send Your Data
 
@@ -139,8 +140,8 @@ func sendData() {
 You can use the VGSCardTextField if you want to see a card brand icon in the input field.
 
 ````swift
-    // create VGSCardTextField instance
-	var cardNumber = VGSCardTextField()
+// create VGSCardTextField instance
+var cardNumber = VGSCardTextField()
 ````
 
 <p align="center">
