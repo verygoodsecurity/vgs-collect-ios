@@ -32,10 +32,31 @@ public class VGSTextField: UIView {
         return textField.secureText
     }
     
+    /// Textfield placeholder string
+    public var placeholder: String? {
+        didSet {
+            textField.placeholder = placeholder
+        }
+    }
+    
     /// You can set padding for text and placeholder
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet {
             textField.padding = padding
+        }
+    }
+    
+    /// The technique to use for aligning the text
+    public var textAlignment: NSTextAlignment = .natural {
+        didSet {
+            textField.textAlignment = textAlignment
+        }
+    }
+    
+    /// Constants that identify the semantic meaning expected for a text-entry area
+    public var textContentType: UITextContentType! {
+        didSet {
+            textField.textContentType = textContentType
         }
     }
     
@@ -50,7 +71,6 @@ public class VGSTextField: UIView {
             fieldName = configuration.fieldName
             isRequired = configuration.isRequired
             fieldType = configuration.type
-            textField.placeholder = configuration.placeholder
             textField.isSecureTextEntry = configuration.type.isSecureDate
             textField.keyboardType = configuration.type.keyboardType
             
