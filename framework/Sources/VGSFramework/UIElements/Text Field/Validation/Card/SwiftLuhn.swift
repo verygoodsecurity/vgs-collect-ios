@@ -161,3 +161,4 @@ public extension SwiftLuhn.CardType {
             return "unknown"
         }
     }
+}
