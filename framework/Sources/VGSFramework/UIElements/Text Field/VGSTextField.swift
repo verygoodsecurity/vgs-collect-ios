@@ -27,7 +27,7 @@ public class VGSTextField: UIView {
     internal var focusStatus: Bool = false {
         didSet {
             if focusStatus {
-                updateUI?()
+                updateView?()
             }
         }
     }
@@ -39,6 +39,8 @@ public class VGSTextField: UIView {
     internal var token: String?
     
     /// Should be only for internal use. Returns textfield text with mask
+    var updateView: (() -> Void)?
+
     internal var text: String? {
         return textField.secureText
     }
@@ -101,7 +103,7 @@ public class VGSTextField: UIView {
                 vgs.registerTextFields(textField: [self])
             }
             
-            updateUI?()
+            updateView?()
         }
     }
     

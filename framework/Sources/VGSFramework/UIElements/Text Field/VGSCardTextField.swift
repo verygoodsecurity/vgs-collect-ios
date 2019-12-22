@@ -27,7 +27,7 @@ public class VGSCardTextField: VGSTextField {
         
         makeCardIcon()
         
-        updateUI = { [weak self] in
+        updateView = { [weak self] in
             if let state = self?.state as? CardState {
                 
                 if self?.cardsIconSource != nil {

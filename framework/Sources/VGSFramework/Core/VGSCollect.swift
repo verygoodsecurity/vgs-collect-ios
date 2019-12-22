@@ -77,6 +77,12 @@ extension VGSCollect {
         // call observers
         observeStates?(storage.elements)
         observeFieldState?(textField)
+        
+        if textField.fieldType == .cardNumber {
+            textField.textField.formatPattern = textField.patterFormat
+            // change cvc format here
+            // change date format here (if needs)
+        }
     }
 }
 
