@@ -1,5 +1,0 @@
-## Fixes [XXXX](url) 
-(Please add link to ClubHouse story)
-
-## Description of changes in release / Impact of release:
-(insert text here)
