@@ -29,6 +29,10 @@ public class VGSConfiguration {
     
     /// Set your patter format. Exmp: `##/##` equela `12/23`
     public var formatPattern: String = ""
+    
+    public var keyboardType: UIKeyboardType?
+    
+    public var returnKeyType: UIReturnKeyType?
         
     /// Initialization
     ///

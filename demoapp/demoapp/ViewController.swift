@@ -62,7 +62,8 @@ class ViewController: UIViewController {
             })
         }
         
-        // if you wonna to set your card brand icon then use this closure
+    
+        // use the closure below if you need to set your own card brand icons
 //        cardNumber.cardsIconSource = { cardType in
 //            switch cardType {
 //            case .mastercard:
@@ -126,7 +127,7 @@ class ViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(expCardDate.snp.bottom).offset(10)
         }
-        
+
         // init send button
         sendButton.setTitle("Submit", for: .normal)
         sendButton.backgroundColor = UIColor(red: 0.337, green: 0.761, blue: 0.333, alpha: 1.00)
@@ -211,6 +212,9 @@ class ViewController: UIViewController {
         cardNumber.padding = padding
         cardNumber.placeholder = "Card Number"
         cardNumber.textAlignment = .natural
+        // To handle VGSTextFieldDelegate methods
+        // cardNumber.delegate = self
+        cardNumber.becomeFirstResponder()
         
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
         expDateConfiguration.isRequired = true
