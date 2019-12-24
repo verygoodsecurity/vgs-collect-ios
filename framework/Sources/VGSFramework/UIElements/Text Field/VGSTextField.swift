@@ -8,6 +8,15 @@
 
 import UIKit
 
+@objc public protocol VGSTextFieldDelegate {
+    /// VGSTextField did become first responder
+    @objc optional func vgsTextFieldDidBeginEditing(_ textfield: VGSTextField)
+    /// VGSTextField did resign first responder
+    @objc optional func vgsTextFieldDidEndEditing(_ textfield: VGSTextField)
+    /// VGSTextField did resign first responder on Return button pressed
+    @objc optional func vgsTextFieldDidEndEditingOnReturn(_ textfield: VGSTextField)
+}
+
 /// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
     private(set) weak var vgsCollector: VGSCollect?
@@ -53,6 +62,7 @@ public class VGSTextField: UIView {
         }
     }
     
+    /// Setup VGSTextField additional params. Default is nil
     public var configuration: VGSConfiguration? {
         didSet {
             
@@ -65,7 +75,8 @@ public class VGSTextField: UIView {
             isRequired = configuration.isRequired
             fieldType = configuration.type
             textField.isSecureTextEntry = configuration.type.isSecureDate
-            textField.keyboardType = configuration.type.keyboardType
+            textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
+            textField.returnKeyType = configuration.returnKeyType ?? .default
             
             if configuration.formatPattern.count != 0 {
                 textField.formatPattern = configuration.formatPattern
@@ -85,6 +96,9 @@ public class VGSTextField: UIView {
         }
     }
     
+    /// Delegates VGSTextField update events. Default is nil
+    public weak var delegate: VGSTextFieldDelegate?
+    
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -95,7 +109,7 @@ public class VGSTextField: UIView {
         super.init(coder: aDecoder)
         mainInitialization()
     }
-    
+        
     deinit {
         vgsCollector?.unregisterTextFields(textField: [self])
     }
@@ -125,7 +139,9 @@ public class VGSTextField: UIView {
         //delegate
         textField.addSomeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
-        
+        textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
+        textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
+        textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit);
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
@@ -138,7 +154,7 @@ public class VGSTextField: UIView {
     }
 }
 
-// MARL: - Text filed delegate
+// MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -152,6 +168,33 @@ extension VGSTextField: UITextFieldDelegate {
         }
         
         return true
+    }
+
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidBeginEditing?(self)
+    }
+
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidEndEditing?(self)
+    }
+    
+    @objc public func textFieldDidEndEditingOnExit(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidEndEditingOnReturn?(self)
+    }
+}
+
+// MARK: - UIResponder methods
+extension VGSTextField {
+    @discardableResult override public func becomeFirstResponder() -> Bool {
+        return textField.becomeFirstResponder()
+    }
+    
+    @discardableResult override public func resignFirstResponder() -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
+    override public var isFirstResponder: Bool {
+        return textField.isFirstResponder
     }
 }
 
