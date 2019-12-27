@@ -12,14 +12,11 @@ extension VGSTextField {
     var formatPatternForCard: String {
         
         let defPattern = "#### #### #### ####"
-        guard let text = textField.secureText,
-            let clearText = text
-                .components(separatedBy: " ")
-                .joined(separator: "") else
-        {
+        guard let text = textField.secureText else {
             return defPattern
         }
         
+        let clearText = text.components(separatedBy: " ").joined(separator: "")
         
         switch clearText.count {
         case 4...14:
