@@ -9,41 +9,46 @@
 import Foundation
 
 extension VGSTextField {
-    var patterFormat: String {
+    var formatPatternForCard: String {
         
-        guard let state = state as? CardState else { return "#### #### #### ####" }
+        let defPattern = "#### #### #### ####"
+        guard let text = textField.secureText,
+            let clearText = text
+                .components(separatedBy: " ")
+                .joined(separator: "") else
+        {
+            return defPattern
+        }
         
-        switch state.cardBrand {
-        case .amex:
-            return "#### ###### #####"
-            
-        case .maestro:
-            return "#### #### #### #### ###"
-            
-        case .dinersClub:
+        
+        switch clearText.count {
+        case 4...14:
             return "#### ###### ####"
             
+        case 15:
+            return "#### ###### #####"
+            
+        case 16:
+            return defPattern
+            
+        case 17...19:
+            return "#### #### #### #### ###"
+            
         default:
-            return "#### #### #### ####"
+            return defPattern
         }
     }
     
-    var symbolCount: ClosedRange<Int>? {
-        
-        guard let state = state as? CardState else { return nil }
-        
-        switch state.cardBrand {
-        case .amex:
-            return 15...15
-            
-        case .maestro:
-            return 12...19
-            
-        case .dinersClub:
-            return 15...15
-            
-        default:
-            return 16...16
+    var formatPatternForCvc: String {
+        if let state = state as? CardState {
+            switch state.cardBrand {
+            case .amex:
+                return "####"
+                
+            default:
+                return "###"
+            }
         }
+        return "###"
     }
 }

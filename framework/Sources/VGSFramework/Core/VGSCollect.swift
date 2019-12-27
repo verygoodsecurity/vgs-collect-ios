@@ -79,8 +79,12 @@ extension VGSCollect {
         observeFieldState?(textField)
         
         if textField.fieldType == .cardNumber {
-            textField.textField.formatPattern = textField.patterFormat
-            // change cvc format here
+            // cange card format
+            textField.textField.formatPattern = textField.formatPatternForCard
+            // change cvc format
+            if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
+                cvcField.textField.formatPattern = textField.formatPatternForCvc
+            }
             // change date format here (if needs)
         }
     }
