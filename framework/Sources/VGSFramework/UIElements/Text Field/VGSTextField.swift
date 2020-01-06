@@ -21,6 +21,7 @@ import UIKit
 
 /// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
+    
     private(set) weak var vgsCollector: VGSCollect?
     internal var textField = MaskedTextField(frame: .zero)
     internal var focusStatus: Bool = false {
@@ -153,6 +154,12 @@ public class VGSTextField: UIView {
     internal func textFieldDidChange(_ sender: UITextField) {
         // change status
         vgsCollector?.updateStatus(for: self)
+    }
+    
+    /// Set textfield text. For internal use only! Not allowed to be public for PCI scope!
+    internal func setText(_ text: String?) {
+        textField.text = text
+        updateUI?()
     }
 }
 
