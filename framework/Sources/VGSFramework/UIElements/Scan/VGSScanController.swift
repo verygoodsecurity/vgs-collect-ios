@@ -22,7 +22,12 @@ public class VGSScanController {
     internal var scanProvider: VGSScanProviderProtocol?
         
     public init(with configuration: VGSScanConfigurationProtocol, delegate: VGSScanControllerDelegate) {
-
+        guard let provider = VGSScanProviderFactory.getScanProviderInstance(configuration.scanProvider) else {
+            assertionFailure("Failed to import \(configuration.scanProvider). Check that module is installed")
+            return
+        }
+        self.scanProvider = provider
+        self.scanProvider?.delegate = delegate
     }
 
     public func presentScan(from viewController: UIViewController) {
