@@ -15,7 +15,7 @@ import UIKit
 import CardScan
 
 internal class VGSCardScanProxy: VGSScanProviderProtocol {
-    weak var delegate: VGSScanProxyDelegate?
+    weak var delegate: VGSScanControllerDelegate?
     weak var view: UIViewController?
 
     func presentScan(from viewController: UIViewController) {
