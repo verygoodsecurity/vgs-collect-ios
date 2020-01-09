@@ -23,4 +23,9 @@ Pod::Spec.new do |spec|
   spec.frameworks = "Alamofire"
   spec.requires_arc = true
   spec.dependency "Alamofire", "4.9.1"
+
+  spec.subspec 'CardScan' do |cardscan|
+    cardscan.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
+    cardscan.dependency  'CardScan'
+  end
 end
