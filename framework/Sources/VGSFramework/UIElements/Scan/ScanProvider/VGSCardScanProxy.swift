@@ -46,8 +46,21 @@ extension VGSCardScanProxy: ScanDelegate {
         if !creditCard.number.isEmpty, let textfield = delegate?.getFormForScanedField?(name: "cardNumber") {
             textfield.setText(creditCard.number)
         }
+        if let month = creditCard.expiryMonth, !month.isEmpty,
+            let year = creditCard.expiryYear, !year.isEmpty,
+            let textfield = delegate?.getFormForScanedField?(name: "cardExpirationDate") {
+            textfield.setText("\(month)\(year)")
+        }
+        if let expMonth = creditCard.expiryMonth, !expMonth.isEmpty, let textfield = delegate?.getFormForScanedField?(name: "cardExpiryMonth") {
+            textfield.setText(expMonth)
+        }
+        if let expYear = creditCard.expiryYear, !expYear.isEmpty, let textfield = delegate?.getFormForScanedField?(name: "cardExpiryYear") {
+            textfield.setText(expYear)
+        }
+        if let name = creditCard.name, !name.isEmpty, let textfield = delegate?.getFormForScanedField?(name: "cardHolderName") {
+            textfield.setText(name)
+        }
         delegate?.userDidFinishScan?()
     }
 }
-
 #endif
