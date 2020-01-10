@@ -37,6 +37,7 @@ public class VGSCollect {
     ///   - id: Your tanent id value
     ///   - environment: By default it's `sandbox`, better for testing. And `live` when you ready for prodaction.
     public init(id: String, environment: Environment = .sandbox) {
+        assert(id.isAlphaNumeric, "Error: vault id is not valid!")
         let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
         guard let url = URL(string: strUrl) else {
             fatalError("Upstream Host is broken. Can't to converting to URL!")
