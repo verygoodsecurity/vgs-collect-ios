@@ -23,9 +23,19 @@ Pod::Spec.new do |spec|
   spec.frameworks = "Alamofire"
   spec.requires_arc = true
   spec.dependency "Alamofire", "4.9.1"
-
+  
+  spec.default_subspec = 'Core'
+  spec.subspec 'Core' do |core|
+  #set as default podspec to prevent from downloading additional modules
+  end
+  
   spec.subspec 'CardScan' do |cardscan|
     cardscan.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
     cardscan.dependency  'CardScan'
+  end
+  
+  spec.subspec 'CardIO' do |cardio|
+    cardio.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{h, m}"
+    cardio.dependency  'CardIODynamic'
   end
 end
