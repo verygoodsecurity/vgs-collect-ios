@@ -300,11 +300,10 @@ extension ViewController {
     func scanData(_ sender: UIButton) {
         // Uncomment code belowe to test card data scanning.
         // You should also install pod 'VGSCollectSDK/CardScan'
-        /**
-        let conf = VGSScanConfiguration(scanProvider: .cardScan)
+
+        let conf = VGSScanConfiguration(scanProvider: .cardIO)
         scanVC = VGSScanController(with: conf, delegate: self)
         scanVC?.presentScan(from: self)
-         */
     }
 }
 
