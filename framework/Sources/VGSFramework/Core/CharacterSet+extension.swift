@@ -8,7 +8,7 @@
 import Foundation
 
 extension CharacterSet {
-    public static var vgs_asciiDecimalDigits: CharacterSet {
+    public static var vgsAsciiDecimalDigits: CharacterSet {
         return self.init(charactersIn: "0123456789")
     }
 }

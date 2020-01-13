@@ -6,7 +6,9 @@
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
 
 public class VGSCardTextField: VGSTextField {
     

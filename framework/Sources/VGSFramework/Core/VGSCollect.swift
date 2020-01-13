@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 import Alamofire
 
 /// The VGSForm class needed for collect all text filelds

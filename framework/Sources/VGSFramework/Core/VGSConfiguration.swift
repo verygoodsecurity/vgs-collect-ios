@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// Class for configuration yout VGSTextField
 public class VGSConfiguration {

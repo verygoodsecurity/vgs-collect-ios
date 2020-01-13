@@ -6,7 +6,9 @@
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
 
 open class MaskedTextField: UITextField {
 
@@ -102,7 +104,7 @@ open class MaskedTextField: UITextField {
     }
     
     fileprivate func getOnlyDigitsString(_ string: String) -> String {
-        let charactersArray = string.components(separatedBy: CharacterSet.vgs_asciiDecimalDigits.inverted)
+        let charactersArray = string.components(separatedBy: CharacterSet.vgsAsciiDecimalDigits.inverted)
         return charactersArray.joined(separator: "")
     }
     
