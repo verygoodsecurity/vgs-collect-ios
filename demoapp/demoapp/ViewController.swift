@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         }
     }
     // Collector vgs
-    var vgsForm = VGSCollect(id: "<your-vault-id>", environment: .sandbox)
+    var vgsForm = VGSCollect(id: "VaultId", environment: .sandbox)
     
     // VGS UI Elements
     // initialase you cardNumber like a VGSCardTextField class
