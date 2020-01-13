@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import UIKit
+#if canImport(CardIO)
+import CardIO
+#endif
 
 internal class VGSScanProviderFactory {
     
     static func getScanProviderInstance(_ provider: ScanProvider) -> VGSScanProviderProtocol? {
         switch  provider {
         case .cardIO:
-            return nil
+            return getCardIOProxy()
         case .cardScan:
             return getCardScanProxy()
         }
@@ -22,6 +26,14 @@ internal class VGSScanProviderFactory {
     private static func getCardScanProxy() -> VGSScanProviderProtocol? {
         #if canImport(CardScan)
             return VGSCardScanProxy()
+        #else
+            return nil
+        #endif
+    }
+    
+    private static func getCardIOProxy() -> VGSScanProviderProtocol? {
+        #if canImport(CardIO)
+            return VGSCardIOProxy()
         #else
             return nil
         #endif
