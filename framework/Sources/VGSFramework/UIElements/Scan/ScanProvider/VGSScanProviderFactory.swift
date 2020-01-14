@@ -18,8 +18,6 @@ internal class VGSScanProviderFactory {
         switch  provider {
         case .cardIO:
             return getCardIOProxy()
-        case .cardScan:
-            return getCardScanProxy()
         }
     }
     
