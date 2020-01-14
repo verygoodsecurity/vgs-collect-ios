@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
 
 extension MaskedTextField {
     override open func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}

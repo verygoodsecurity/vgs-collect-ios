@@ -6,7 +6,9 @@
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
 
 @objc public protocol VGSTextFieldDelegate {
     /// VGSTextField did become first responder
@@ -141,7 +143,7 @@ public class VGSTextField: UIView {
         textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
         textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
-        textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit);
+        textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
