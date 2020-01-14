@@ -10,12 +10,9 @@ import UIKit
 import VGSCollectSDK
 import SnapKit
 
-
 class ViewController: UIViewController {
-
     
     var scanVC: VGSScanController?
-    
     var consoleLabel: UILabel!
     var consoleStatusLabel: UILabel!
     var consoleMessage: String = "" {
@@ -33,10 +30,9 @@ class ViewController: UIViewController {
     var cvcCardNum = VGSTextField()
     var cardHolderName = UITextField(frame: .zero)
     
-    
-    // the Send data Button
+    // Send data Button
     var sendButton = UIButton()
-    // Scan card data
+    // Scan card action button
     var scanButton = UIButton()
 
     // MARK: - Life cycle methods
@@ -298,16 +294,13 @@ extension ViewController {
     
     @objc
     func scanData(_ sender: UIButton) {
-        // Uncomment code belowe to test card data scanning.
-        // You should also install pod 'VGSCollectSDK/CardScan'
-
         let conf = VGSScanConfiguration(scanProvider: .cardIO)
         scanVC = VGSScanController(with: conf, delegate: self)
         scanVC?.presentScan(from: self)
     }
 }
 
-extension ViewController: VGSScanControllerDelegate {
+extension ViewController: VGSCardIOScanControllerDelegate {
     func userDidFinishScan() {
         scanVC?.dismiss(animated: true, completion: nil)
     }
@@ -320,13 +313,13 @@ extension ViewController: VGSScanControllerDelegate {
         scanVC?.dismiss(animated: true, completion: nil)
     }
     
-    func getFormForScanedField(name: String) -> VGSTextField? {
-        switch name {
-        case "cardExpirationDate":
+    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
+        switch type {
+        case .expirationDate:
             return expCardDate
-        case "cardHolderName":
-            return nil
-        case "cardNumber":
+        case .cvc:
+            return cvcCardNum
+        case .cardNumber:
             return cardNumber
         default:
             return nil
