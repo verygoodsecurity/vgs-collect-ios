@@ -12,7 +12,7 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    var scanVC: VGSScanController?
+    var scanController: VGSScanController?
     var consoleLabel: UILabel!
     var consoleStatusLabel: UILabel!
     var consoleMessage: String = "" {
@@ -53,6 +53,9 @@ class ViewController: UIViewController {
             "my custome header": "some custom data"
         ]
 
+        let conf = VGSScanConfiguration(scanProvider: .cardIO)
+        scanController = VGSScanController(with: conf, delegate: self)
+        
         // Observing text fields
         vgsForm.observeStates = { [weak self] form in
 
@@ -294,25 +297,24 @@ extension ViewController {
     
     @objc
     func scanData(_ sender: UIButton) {
-        let conf = VGSScanConfiguration(scanProvider: .cardIO)
-        scanVC = VGSScanController(with: conf, delegate: self)
-        scanVC?.presentScan(from: self)
+        scanController?.presentScan(from: self)
     }
 }
 
 extension ViewController: VGSCardIOScanControllerDelegate {
     func userDidFinishScan() {
-        scanVC?.dismiss(animated: true, completion: nil)
+        scanController?.dismiss(animated: true, completion: nil)
     }
     
     func userDidCancelScan() {
-        scanVC?.dismiss(animated: true, completion: nil)
+        scanController?.dismiss(animated: true, completion: nil)
     }
     
     func userDidSkipScan() {
-        scanVC?.dismiss(animated: true, completion: nil)
+        scanController?.dismiss(animated: true, completion: nil)
     }
     
+    //Asks VGSTextField where scanned data with type need to be set
     func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
         switch type {
         case .expirationDate:
