@@ -136,6 +136,65 @@ var cardNumber = VGSCardTextField()
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
 
+### Scan Credit Card Data
+VGSCollect provide secure CardIO integration module for collecting and setting scaned data into VGSCollectTextFields.
+To start using CardIO as bank cards scanner you should install additional pod into your app:
+```ruby
+pod 'VGSCollectSDK'
+pod 'VGSCollectSDK/CardIO'
+```
+
+In your ViewController create `VGSScanController` instance
+````swift
+class ViewController: UIViewController {
+
+var scanVC: VGSScanController?
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    //Create configuration with specific scan provider(CardIO) and use it to init VGSScanController
+    let conf = VGSScanConfiguration(scanProvider: .cardIO)
+    scanVC = VGSScanController(with: conf, delegate: self)
+}
+
+func scanData(_ sender: UIButton) {
+    scanVC?.presentScan(from: self)
+}
+
+````
+Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically on user confirmation. Check  `CradIODataType` to get available scand data types.
+
+````swift
+extension ViewController: VGSCardIOScanControllerDelegate {
+    func userDidFinishScan() {
+        scanController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func userDidCancelScan() {
+        scanController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func userDidSkipScan() {
+        scanController?.dismiss(animated: true, completion: nil)
+    }
+    
+    //Asks VGSTextField where scanned data with type need to be set
+    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
+        switch type {
+        case .expirationDate:
+            return expCardDate
+        case .cvc:
+            return cvcCardNum
+        case .cardNumber:
+            return cardNumber
+        default:
+            return nil
+        }
+    }
+}
+````
+
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
 
