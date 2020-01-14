@@ -13,7 +13,6 @@ import UIKit
 
 public enum ScanProvider {
     case cardIO
-    case cardScan
 }
 
 internal protocol VGSScanProviderProtocol {
