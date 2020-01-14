@@ -15,15 +15,13 @@ import UIKit
     @objc optional func userDidFinishScan()
     @objc optional func userDidCancelScan()
     @objc optional func userDidSkipScan()
-    @objc optional func getFormForScanedField(name: String) -> VGSTextField?
 }
-  
+
 public class VGSScanController {
     internal var scanProvider: VGSScanProviderProtocol?
         
     public init(with configuration: VGSScanConfigurationProtocol, delegate: VGSScanControllerDelegate) {
         guard let provider = VGSScanProviderFactory.getScanProviderInstance(configuration.scanProvider) else {
-            assertionFailure("Failed to import \(configuration.scanProvider). Check that module is installed")
             return
         }
         self.scanProvider = provider

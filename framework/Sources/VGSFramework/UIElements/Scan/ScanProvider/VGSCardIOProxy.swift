@@ -12,11 +12,24 @@ import Foundation
 import UIKit
 #endif
 
+@objc
+public enum CradIODataType: Int {
+    case cardNumber
+    case expirationDate // "01/21"
+    case expirationMonth // "01"
+    case expirationYear // "21"
+    case cvc
+}
+
+@objc public protocol VGSCardIOScanControllerDelegate: VGSScanControllerDelegate {
+    @objc func textFieldForScannedData(type: CradIODataType) -> VGSTextField?
+}
+
 #if canImport(CardIO)
 import CardIO
 
 internal class VGSCardIOProxy: NSObject, VGSScanProviderProtocol {
-    weak var delegate: VGSScanControllerDelegate?
+    var delegate: VGSScanControllerDelegate?
     weak var view: UIViewController?
 
     func presentScan(from viewController: UIViewController) {
@@ -40,29 +53,31 @@ extension VGSCardIOProxy: CardIOPaymentViewControllerDelegate {
     }
     
     func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
-        guard let cardInfo = cardInfo else {
+        guard let cardInfo = cardInfo, let cardIOdelegate = delegate as? VGSCardIOScanControllerDelegate else {
             delegate?.userDidFinishScan?()
             return
         }
-        if !cardInfo.cardNumber.isEmpty, let textfield = delegate?.getFormForScanedField?(name: "cardNumber") {
+        if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             textfield.setText(cardInfo.cardNumber)
         }
         if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020,
-            let textfield = delegate?.getFormForScanedField?(name: "cardExpirationDate") {
+            let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {
             let yy = "\(cardInfo.expiryYear)".suffix(2)
-            textfield.setText("\(cardInfo.expiryMonth)\(yy)")
+            let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
+            textfield.setText("\(monthString)\(yy)")
         }
-        if 1...12 ~= Int(cardInfo.expiryMonth), let textfield = delegate?.getFormForScanedField?(name: "cardExpiryMonth") {
-            textfield.setText("\(cardInfo.expiryMonth)")
+        if 1...12 ~= Int(cardInfo.expiryMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationMonth) {
+            let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
+            textfield.setText(monthString)
         }
-        if cardInfo.expiryYear >= 2020, let textfield = delegate?.getFormForScanedField?(name: "cardExpiryYear") {
+        if cardInfo.expiryYear >= 2020, let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYear) {
             let yy = String("\(cardInfo.expiryYear)".suffix(2))
             textfield.setText(yy)
         }
-        if let cvv = cardInfo.cvv, !cvv.isEmpty, let textfield = delegate?.getFormForScanedField?(name: "cardCVV") {
-            textfield.setText(cvv)
+        if let cvc = cardInfo.cvv, !cvc.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cvc) {
+            textfield.setText(cvc)
         }
-        delegate?.userDidFinishScan?()
+        cardIOdelegate.userDidFinishScan?()
     }
 }
 #endif
