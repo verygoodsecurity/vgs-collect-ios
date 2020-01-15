@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 import Alamofire
 
 /// The VGSForm class needed for collect all text filelds
@@ -37,6 +40,7 @@ public class VGSCollect {
     ///   - id: Your tanent id value
     ///   - environment: By default it's `sandbox`, better for testing. And `live` when you ready for prodaction.
     public init(id: String, environment: Environment = .sandbox) {
+        assert(Self.tenantIDValid(id), "Error: vault id is not valid!")
         let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
         guard let url = URL(string: strUrl) else {
             fatalError("Upstream Host is broken. Can't to converting to URL!")
@@ -109,5 +113,13 @@ extension VGSCollect {
             }
             block(json, nil)
         }
+    }
+}
+
+// MARK: - Validation
+internal extension VGSCollect {
+
+    class func tenantIDValid(_ tenantId: String) -> Bool {
+        return tenantId.isAlphaNumeric
     }
 }

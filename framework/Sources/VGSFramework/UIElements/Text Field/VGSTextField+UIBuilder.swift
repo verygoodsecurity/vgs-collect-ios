@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
 
 public extension VGSTextField {
     @IBInspectable var cornerRadius: CGFloat {
