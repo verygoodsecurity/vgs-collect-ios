@@ -18,6 +18,8 @@
 		32AAE18D23C360D60053F549 /* VGSCardScanProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AAE18C23C360D60053F549 /* VGSCardScanProxy.swift */; };
 		32AAE18F23C361C70053F549 /* VGSScanProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AAE18E23C361C70053F549 /* VGSScanProviderFactory.swift */; };
 		32ECBD5B23CCA66A00B74E86 /* VGSCardIOProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECBD5A23CCA66A00B74E86 /* VGSCardIOProxy.swift */; };
+		32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */; };
+		32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */; };
 		3C514B5FF66E3CC4BE524AC2 /* Pods_VGSFramework_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */; };
 		D06AC61B18447F6EC1968FDE /* Pods_VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
@@ -78,6 +80,8 @@
 		32AAE18C23C360D60053F549 /* VGSCardScanProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardScanProxy.swift; sourceTree = "<group>"; };
 		32AAE18E23C361C70053F549 /* VGSScanProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanProviderFactory.swift; sourceTree = "<group>"; };
 		32ECBD5A23CCA66A00B74E86 /* VGSCardIOProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOProxy.swift; sourceTree = "<group>"; };
+		32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanController.swift; sourceTree = "<group>"; };
+		32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOHandler.swift; sourceTree = "<group>"; };
 		3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4BC633274FE748E7FD0F90 /* Pods-VGSFramework-FrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework-FrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSFramework-FrameworkTests/Pods-VGSFramework-FrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		6E922F61637505248BC10DE4 /* Pods-VGSFrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-VGSFrameworkTests/Pods-VGSFrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,33 +147,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		323812DE23B50AE800FF6CF8 /* Scan */ = {
+		32FD980523D1FA48005FA989 /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
-				32AAE18623C354290053F549 /* ScanConfiguration */,
-				32AAE18923C354D90053F549 /* ScanProvider */,
-				322F680923C34E35004C1A03 /* VGSScanController.swift */,
+				32FD980623D1FA7B005FA989 /* CardIO */,
 			);
-			path = Scan;
+			path = Integrations;
 			sourceTree = "<group>";
 		};
-		32AAE18623C354290053F549 /* ScanConfiguration */ = {
+		32FD980623D1FA7B005FA989 /* CardIO */ = {
 			isa = PBXGroup;
 			children = (
-				32AAE18723C354290053F549 /* VGSScanConfiguration.swift */,
+				32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */,
+				32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */,
 			);
-			path = ScanConfiguration;
-			sourceTree = "<group>";
-		};
-		32AAE18923C354D90053F549 /* ScanProvider */ = {
-			isa = PBXGroup;
-			children = (
-				32AAE18A23C354EA0053F549 /* VGSScanProvider.swift */,
-				32AAE18E23C361C70053F549 /* VGSScanProviderFactory.swift */,
-				32AAE18C23C360D60053F549 /* VGSCardScanProxy.swift */,
-				32ECBD5A23CCA66A00B74E86 /* VGSCardIOProxy.swift */,
-			);
-			path = ScanProvider;
+			path = CardIO;
 			sourceTree = "<group>";
 		};
 		C3997B777D76689537B200F8 /* Frameworks */ = {
@@ -199,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				FD05F9382316CE5A000EAF52 /* Core */,
+				32FD980523D1FA48005FA989 /* Integrations */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
 				FD05F93F2316CE5A000EAF52 /* VGSFramework.h */,
 				FD05F9402316CE5A000EAF52 /* Info.plist */,
@@ -224,7 +217,6 @@
 		FD05F9432316CE5A000EAF52 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
-				323812DE23B50AE800FF6CF8 /* Scan */,
 				FDF696E6234A5D7A00063507 /* Text Field */,
 			);
 			path = UIElements;
@@ -564,30 +556,26 @@
 				FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */,
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */,
-				322F680A23C34E35004C1A03 /* VGSScanController.swift in Sources */,
 				FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */,
 				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
 				FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */,
+				32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */,
 				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
 				FD05F9492316CE5A000EAF52 /* VGSCollect.swift in Sources */,
-				32AAE18D23C360D60053F549 /* VGSCardScanProxy.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
-				32AAE18B23C354EA0053F549 /* VGSScanProvider.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				FDE7447F238AF13F003AA46B /* VGSCardTextField.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
-				32ECBD5B23CCA66A00B74E86 /* VGSCardIOProxy.swift in Sources */,
 				320E885323A94E1800A9C1FA /* CharacterSet+extension.swift in Sources */,
-				32AAE18823C354290053F549 /* VGSScanConfiguration.swift in Sources */,
+				32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */,
 				FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */,
-				32AAE18F23C361C70053F549 /* VGSScanProviderFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

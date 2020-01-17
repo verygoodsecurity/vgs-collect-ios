@@ -1,45 +1,40 @@
 //
-//  VGSCardIOProxy.swift
+//  VGSCardIOHandler.swift
 //  VGSFramework
 //
-//  Created by Dima on 13.01.2020.
+//  Created by Dima on 17.01.2020.
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
 import Foundation
-
 #if canImport(UIKit)
 import UIKit
 #endif
 
-@objc
-public enum CradIODataType: Int {
-    case cardNumber
-    case expirationDate // "01/21"
-    case expirationMonth // "01"
-    case expirationYear // "21"
-    case cvc
-}
-
-@objc public protocol VGSCardIOScanControllerDelegate: VGSScanControllerDelegate {
-    @objc func textFieldForScannedData(type: CradIODataType) -> VGSTextField?
-}
-
 #if canImport(CardIO)
 import CardIO
 
-internal class VGSCardIOProxy: NSObject, VGSScanProviderProtocol {
+internal class VGSCardIOHandler: NSObject, VGSScanProxyProtocol {
     var delegate: VGSScanControllerDelegate?
     weak var view: UIViewController?
 
-    func presentScan(from viewController: UIViewController) {
+    func presentScanVC(from viewController: UIViewController, animated: Bool, completion: (() -> Void?)) {
         guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true) else {
             print("This device is incompatible with CardIO")
             return
         }
         vc.modalPresentationStyle = .overCurrentContext
         self.view = vc
-        viewController.present(vc, animated: true, completion: nil)
+        viewController.present(vc, animated: animated, completion: completion)
+    }
+    
+    func pushScanVC(from viewController: UIViewController, animated: Bool) {
+        guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true) else {
+            print("This device is incompatible with CardIO")
+            return
+        }
+        self.view = vc
+        viewController.push(vc, animated: animated)
     }
 
     func dismissScan(animated: Bool, completion: (() -> Void)?) {
@@ -47,7 +42,7 @@ internal class VGSCardIOProxy: NSObject, VGSScanProviderProtocol {
     }
 }
 
-extension VGSCardIOProxy: CardIOPaymentViewControllerDelegate {
+extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
         delegate?.userDidCancelScan?()
     }
@@ -81,3 +76,4 @@ extension VGSCardIOProxy: CardIOPaymentViewControllerDelegate {
     }
 }
 #endif
+

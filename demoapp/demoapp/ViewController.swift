@@ -207,7 +207,6 @@ class ViewController: UIViewController {
             make.top.equalTo(consoleStatusLabel.snp.bottom).offset(8)
             make.left.right.equalTo(15)
         }
-
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         consoleLabel.addGestureRecognizer(tapGesture)
         consoleLabel.isUserInteractionEnabled = true
