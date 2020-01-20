@@ -143,7 +143,7 @@ To start using CardIO as bank cards scanner you should install additional pod in
 pod 'VGSCollectSDK'
 pod 'VGSCollectSDK/CardIO'
 ```
-
+	
 In your ViewController create `VGSCardIOScanController` instance
 ````swift
 class ViewController: UIViewController {
@@ -195,6 +195,8 @@ extension ViewController: VGSCardIOScanControllerDelegate {
     }
 }
 ````
+
+You should also add **NSCameraUsageDescription** key with description string into your App Info.plist.
 
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
