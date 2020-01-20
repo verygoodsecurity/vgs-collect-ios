@@ -15,7 +15,7 @@ let environment = Environment.sandbox // Set enviremont
 
 class ViewController: UIViewController {
     
-    var scanController: VGSScanController?
+    var scanController = VGSCardIOScanController()
     var consoleLabel: UILabel!
     var consoleStatusLabel: UILabel!
     var consoleMessage: String = "" {
@@ -55,10 +55,10 @@ class ViewController: UIViewController {
         vgsForm.customHeaders = [
             "my custome header": "some custom data"
         ]
-
-        let conf = VGSScanConfiguration(scanProvider: .cardIO)
-        scanController = VGSScanController(with: conf, delegate: self)
         
+        // set VGSCardIOScanDelegate
+        scanController.delegate = self
+
         // Observing text fields
         vgsForm.observeStates = { [weak self] form in
 
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
                 self?.consoleMessage.append("\n")
             })
         }
-
+        
         // use the closure below if you need to set your own card brand icons
 //        cardNumber.cardsIconSource = { cardType in
 //            switch cardType {
@@ -299,24 +299,25 @@ extension ViewController {
     
     @objc
     func scanData(_ sender: UIButton) {
-        scanController?.presentScan(from: self)
+        scanController.presentCardScanner(on: self, animated: true, completion: nil)
     }
 }
 
 extension ViewController: VGSCardIOScanControllerDelegate {
+    
+    //When user press Done button on CardIO screen
     func userDidFinishScan() {
-        scanController?.dismiss(animated: true, completion: nil)
+        scanController.dismissCardScanner(animated: true, completion: {
+            // add actions on scan controller dismiss completion
+        })
     }
     
+    //When user press Cancel button on CardIO screen
     func userDidCancelScan() {
-        scanController?.dismiss(animated: true, completion: nil)
+        scanController.dismissCardScanner(animated: true, completion: nil)
     }
     
-    func userDidSkipScan() {
-        scanController?.dismiss(animated: true, completion: nil)
-    }
-    
-    //Asks VGSTextField where scanned data with type need to be set
+    //Asks VGSTextField where scanned data with type need to be set.
     func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
         switch type {
         case .expirationDate:
