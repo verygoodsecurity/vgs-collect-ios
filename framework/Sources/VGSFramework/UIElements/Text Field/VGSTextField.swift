@@ -169,6 +169,7 @@ public class VGSTextField: UIView {
     /// Set textfield text. For internal use only! Not allowed to be public for PCI scope!
     internal func setText(_ text: String?) {
         textField.text = text
+        vgsCollector?.updateStatus(for: self)
         updateUI?()
     }
 }
