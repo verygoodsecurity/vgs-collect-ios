@@ -11,36 +11,40 @@ import Foundation
 import UIKit
 #endif
 
-internal protocol VGSScanProxyProtocol {
-    var delegate: VGSScanControllerDelegate? { get set }
-    func presentScanVC(from viewController: UIViewController, animated: Bool, completion: (() -> Void?))
-    func pushScanVC(from viewController: UIViewController, animated: Bool)
+internal protocol VGSScanHandlerProtocol {
+    var delegate: VGSCardIOScanControllerDelegate? { get set }
+    func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)
 }
 
 public class VGSCardIOScanController {
     
-    internal var scanHandler: VGSScanProxyProtocol?
+    internal var scanHandler: VGSScanHandlerProtocol?
     
-    required init(delegate: VGSScanControllerDelegate) {
+    /// VGSCardIOScanControllerDelegate - handle CardIO states
+    public var delegate: VGSCardIOScanControllerDelegate? {
+        didSet {
+            scanHandler?.delegate = delegate
+        }
+    }
+    
+    public required init(_ delegate: VGSCardIOScanControllerDelegate? = nil) {
         #if canImport(CardIO)
-        self.scanHandler = VGSCardIOHandler()
+            self.scanHandler = VGSCardIOHandler()
+            self.delegate = delegate
         #else
-        print("Can't import CardIO. Please check that CardIO submodule is installed")
-        return
+            print("Can't import CardIO. Please check that CardIO submodule is installed")
+            return
         #endif
-        scanHandler?.delegate = delegate
     }
     
-    func presentScan(from viewController: UIViewController, animated: Bool, completion: (() -> Void?)) {
-        scanHandler?.presentScanVC(from: viewController, animated: animated, completion: completion)
+    /// Present CardIO scan controller
+    public func presentCardScanner(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        scanHandler?.presentScanVC(on: viewController, animated: animated, completion: completion)
     }
     
-    func pushScanVC(from viewController: UIViewController, animated: Bool) {
-        scanHandler?.pushScanVC(from: viewController, animated: animated)
-    }
-    
-    func dismissScanVC(animated: Bool, completion: (() -> Void)?) {
+    /// Dismiss CardIO scan controller
+    public func dismissCardScanner(animated: Bool, completion: (() -> Void)?) {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
     }
 }

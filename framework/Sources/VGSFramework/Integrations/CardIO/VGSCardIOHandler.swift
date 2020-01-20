@@ -11,16 +11,39 @@ import Foundation
 import UIKit
 #endif
 
+@objc
+public enum CradIODataType: Int {
+    case cardNumber         // 16 digits string
+    case expirationDate     // "01/21"
+    case expirationMonth    // "01"
+    case expirationYear     // "21"
+    case cvc                // "123"
+}
+
+@objc
+public protocol VGSCardIOScanControllerDelegate {
+    
+    /// On user confirm scanned data by selecting Done button on CardIO screen
+    @objc optional func userDidFinishScan()
+    
+    /// On user pressing Cancel buttonn on CardIO screen
+    @objc optional func userDidCancelScan()
+    
+    /// Asks VGSTextField where scanned data with type need to be set. Called after user select Done button, just before userDidFinishScan() delegate.
+    @objc func textFieldForScannedData(type: CradIODataType) -> VGSTextField?
+}
+
 #if canImport(CardIO)
 import CardIO
 
-internal class VGSCardIOHandler: NSObject, VGSScanProxyProtocol {
-    var delegate: VGSScanControllerDelegate?
+internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
+    
+    weak var delegate: VGSCardIOScanControllerDelegate?
     weak var view: UIViewController?
 
-    func presentScanVC(from viewController: UIViewController, animated: Bool, completion: (() -> Void?)) {
+    func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true) else {
-            print("This device is incompatible with CardIO")
+            print("This device is not compatible with CardIO")
             return
         }
         vc.modalPresentationStyle = .overCurrentContext
@@ -28,16 +51,7 @@ internal class VGSCardIOHandler: NSObject, VGSScanProxyProtocol {
         viewController.present(vc, animated: animated, completion: completion)
     }
     
-    func pushScanVC(from viewController: UIViewController, animated: Bool) {
-        guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true) else {
-            print("This device is incompatible with CardIO")
-            return
-        }
-        self.view = vc
-        viewController.push(vc, animated: animated)
-    }
-
-    func dismissScan(animated: Bool, completion: (() -> Void)?) {
+    func dismissScanVC(animated: Bool, completion: (() -> Void)?) {
         view?.dismiss(animated: animated, completion: completion)
     }
 }
@@ -48,7 +62,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     }
     
     func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
-        guard let cardInfo = cardInfo, let cardIOdelegate = delegate as? VGSCardIOScanControllerDelegate else {
+        guard let cardInfo = cardInfo, let cardIOdelegate = delegate else {
             delegate?.userDidFinishScan?()
             return
         }
@@ -76,4 +90,3 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     }
 }
 #endif
-
