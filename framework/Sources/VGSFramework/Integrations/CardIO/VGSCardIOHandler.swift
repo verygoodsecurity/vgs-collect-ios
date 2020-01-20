@@ -11,28 +11,6 @@ import Foundation
 import UIKit
 #endif
 
-@objc
-public enum CradIODataType: Int {
-    case cardNumber         // 16 digits string
-    case expirationDate     // "01/21"
-    case expirationMonth    // "01"
-    case expirationYear     // "21"
-    case cvc                // "123"
-}
-
-@objc
-public protocol VGSCardIOScanControllerDelegate {
-    
-    /// On user confirm scanned data by selecting Done button on CardIO screen
-    @objc optional func userDidFinishScan()
-    
-    /// On user pressing Cancel buttonn on CardIO screen
-    @objc optional func userDidCancelScan()
-    
-    /// Asks VGSTextField where scanned data with type need to be set. Called after user select Done button, just before userDidFinishScan() delegate.
-    @objc func textFieldForScannedData(type: CradIODataType) -> VGSTextField?
-}
-
 #if canImport(CardIO)
 import CardIO
 

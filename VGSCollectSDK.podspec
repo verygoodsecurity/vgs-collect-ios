@@ -31,6 +31,6 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'CardIO' do |cardio|
     cardio.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{h, m}"
-    cardio.dependency  'CardIODynamic', '5.4.1'
+    cardio.dependency "CardIODynamic", "5.4.1"
   end
 end
