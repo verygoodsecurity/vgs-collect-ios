@@ -24,6 +24,7 @@ Table of contents
       * [Observe Fields State](#observe-fields-state)
       * [Collect and Send Your Data](#collect-and-send-your-data)
       * [Documentation](#for-more-details-check-our-documentation)
+      * [Demo Application](#demo-application)
    * [Dependencies](#dependencies)
    * [License](#license)
 <!--te-->
@@ -147,6 +148,9 @@ var cardNumber = VGSCardTextField()
 <p align="center">
 	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.png" width=“600">
 </p>
+
+## Demo Application
+Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
 
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
