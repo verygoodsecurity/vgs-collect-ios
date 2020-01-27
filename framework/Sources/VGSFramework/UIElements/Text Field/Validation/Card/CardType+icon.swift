@@ -19,21 +19,21 @@ extension SwiftLuhn.CardType {
         var resultIcon: UIImage?
         switch self {
         case .visa:
-            resultIcon = UIImage(named: "1", in: bundle, compatibleWith: nil)
-            
+            resultIcon = UIImage(named: "visa", in: bundle, compatibleWith: nil)
         case .mastercard:
-            resultIcon = UIImage(named: "2", in: bundle, compatibleWith: nil)
-            
+            resultIcon = UIImage(named: "mastercard", in: bundle, compatibleWith: nil)
         case .amex:
-            resultIcon = UIImage(named: "22", in: bundle, compatibleWith: nil)
-            
+            resultIcon = UIImage(named: "amex", in: bundle, compatibleWith: nil)
         case .maestro:
-            resultIcon = UIImage(named: "3", in: bundle, compatibleWith: nil)
-            
+            resultIcon = UIImage(named: "maestro", in: bundle, compatibleWith: nil)
         case .discover:
-            resultIcon = UIImage(named: "14", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "discover", in: bundle, compatibleWith: nil)
+        case .dinersClub:
+            resultIcon = UIImage(named: "dinersClub", in: bundle, compatibleWith: nil)
+        case .jcb:
+            resultIcon = UIImage(named: "jcb", in: bundle, compatibleWith: nil)
         default:
-            resultIcon = UIImage(named: "0", in: bundle, compatibleWith: nil)
+            resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
         }
         
         return resultIcon
