@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 #endif
 
-public extension MaskedTextField {    
+extension MaskedTextField {    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)
     }
