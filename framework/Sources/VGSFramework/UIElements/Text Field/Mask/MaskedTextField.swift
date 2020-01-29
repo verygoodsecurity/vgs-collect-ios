@@ -55,14 +55,14 @@ internal class MaskedTextField: UITextField {
         set {
             super.text = newValue
             self.formatText()
-            self.onEditingChange?()
+            self.editingChanged?()
         }
         get {
             return nil
         }
     }
     
-    internal var onEditingChange: (() -> Void)?
+    internal var editingChanged: (() -> Void)?
     
     /// setting text just for internal using
     internal var secureText: String? {
@@ -111,7 +111,7 @@ internal class MaskedTextField: UITextField {
     @objc fileprivate func textDidChange() {
         self.undoManager?.removeAllActions()
         self.formatText()
-        self.onEditingChange?()
+        self.editingChanged?()
     }
     
     fileprivate func getOnlyDigitsString(_ string: String) -> String {
