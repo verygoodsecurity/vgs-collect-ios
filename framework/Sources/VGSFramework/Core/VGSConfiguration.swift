@@ -18,11 +18,8 @@ public class VGSConfiguration {
     /// Field name - actualy this is key for you JSON wich contains data
     public private(set) var fieldName: String!
     
-    /// Model for validation
-    public var validationModel: VGSValidation?
-    
-    /// token: tmp ptoperty for debugging
-    public var token: String?
+    /// Validation model
+    var validationModel: VGSValidation?
     
     /// Set this property if text filed is required
     public var isRequired: Bool = false

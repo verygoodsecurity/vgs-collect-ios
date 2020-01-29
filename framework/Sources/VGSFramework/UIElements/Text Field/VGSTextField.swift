@@ -144,8 +144,13 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        //delegate
-        textField.addSomeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+       
+        textField.onEditingChange = { [weak self] in
+            if let strongSelf = self {
+                strongSelf.vgsCollector?.updateStatus(for: strongSelf)
+            }
+        }
+         //delegates
         textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
         textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
@@ -153,12 +158,6 @@ public class VGSTextField: UIView {
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc
-    internal func textFieldDidChange(_ sender: UITextField) {
-        // change status
-        vgsCollector?.updateStatus(for: self)
     }
 }
 
