@@ -53,6 +53,7 @@ open class MaskedTextField: UITextField {
         set {
             super.text = newValue
             self.formatText()
+            self.onEditingChange?()
         }
         get {
             return nil
