@@ -65,7 +65,9 @@ class CVVTextFieldTests: XCTestCase {
             }
         }
         
-        cvvTextField.textFieldDidChange(UITextField())
+        cvvTextField.textField.text = "123"
+        cvvTextField.textField.text = "123456"
+        cvvTextField.textField.text = "aaa1234qwwe"
         
         wait(for: [expectation], timeout: 1.0)
     }
