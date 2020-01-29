@@ -138,7 +138,7 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        textField.onEditingChange = { [weak self] in
+        textField.editingChanged = { [weak self] in
             if let strongSelf = self {
                 strongSelf.vgsCollector?.updateStatus(for: strongSelf)
             }
