@@ -1,9 +1,8 @@
-[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
+[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
 [![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-ios-sdk.svg)]()
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
 [![swift](https://img.shields.io/badge/swift-5-orange)]()
-[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat)](https://cocoapods.org/pods/VGSCollectSDK)
 
 # VGS Collect iOS SDK
@@ -17,13 +16,13 @@ Table of contents
    * [Before you start](#before-you-start)
    * [Integration](#integration)
       * [CocoaPods](#cocoapods)
-      * [Swift Package Manager](#swift-package-manager-(-xcode-11+-))
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Customize UI Elements](#customize-ui-elements)
       * [Observe Fields State](#observe-fields-state)
       * [Collect and Send Your Data](#collect-and-send-your-data)
       * [Documentation](#for-more-details-check-our-documentation)
+      * [Demo Application](#demo-application)
    * [Dependencies](#dependencies)
    * [License](#license)
 <!--te-->
@@ -46,21 +45,6 @@ You should have your organization registered at <a href="https://dashboard.veryg
 ```ruby
 pod 'VGSCollectSDK'
 ```
-
-### Swift Package Manager(Xcode 11+)
-
-[Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
-
-To add VGSCollectSDK package dependency to your Xcode project, select File > Swift Packages > Add Package Dependency. Enter package repository URL and press Next:
-
-```ruby
-https://github.com/verygoodsecurity/vgs-collect-ios
-```
-Now you need to choose which part of the code you want to look at, you can choose the dependency type(tagged version, branch or commit). Then Xcode will setup all the stuff for you. We recommend to choose `master` branch to get latest stable SDK version.
-
-On Final screen check that you project target is correct and press Finish.
-
-
 
 ## Usage
 
@@ -136,8 +120,8 @@ func sendData() {
 }
 ```
 
-### More useful UI component for bank card
-You can use the VGSCardTextField if you want to see a card brand icon in the input field.
+### More useful UI component for bank cards
+VGSCardTextField automatically detects card provider and display card brand icon in the input field.
 
 ````swift
 // create VGSCardTextField instance
@@ -145,8 +129,11 @@ var cardNumber = VGSCardTextField()
 ````
 
 <p align="center">
-	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.png" width=“600">
+	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
 </p>
+
+## Demo Application
+Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
 
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
