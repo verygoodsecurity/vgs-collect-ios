@@ -10,6 +10,9 @@ import UIKit
 import VGSCollectSDK
 import SnapKit
 
+let vaultId = "vaultId"// Set your vault id here https://www.verygoodsecurity.com/terminology/nomenclature#vault
+let environment = Environment.sandbox // Set enviremont
+
 class ViewController: UIViewController {
     var consoleLabel: UILabel!
     var consoleStatusLabel: UILabel!
@@ -20,7 +23,7 @@ class ViewController: UIViewController {
         }
     }
     // Collector vgs
-    var vgsForm = VGSCollect(id: "VaultId", environment: .sandbox)
+    var vgsForm = VGSCollect(id: vaultId, environment: environment)
     
     // VGS UI Elements
     // initialase you cardNumber like a VGSCardTextField class
