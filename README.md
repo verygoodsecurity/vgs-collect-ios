@@ -120,8 +120,8 @@ func sendData() {
 }
 ```
 
-### More useful UI component for bank card
-You can use the VGSCardTextField if you want to see a card brand icon in the input field.
+### More useful UI component for bank cards
+VGSCardTextField automatically detects card provider and display card brand icon in the input field.
 
 ````swift
 // create VGSCardTextField instance
@@ -129,7 +129,7 @@ var cardNumber = VGSCardTextField()
 ````
 
 <p align="center">
-	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“400">
+	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
 </p>
 
 ## Demo Application
