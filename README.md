@@ -121,16 +121,17 @@ func sendData() {
 ```
 
 ### More useful UI component for bank cards
+
+<p align="center">
+	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
+</p>
+																       
 VGSCardTextField automatically detects card provider and display card brand icon in the input field.
 
 ````swift
 // create VGSCardTextField instance
 var cardNumber = VGSCardTextField()
 ````
-
-<p align="center">
-	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
-</p>
 
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
