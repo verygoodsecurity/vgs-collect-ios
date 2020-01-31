@@ -30,18 +30,24 @@ public class VGSTextField: UIView {
             }
         }
     }
+    
     internal var isRequired: Bool = false
     internal var fieldType: FieldType = .none
     internal var validationModel = VGSValidation()
     internal var fieldName: String!
     internal var token: String?
     
-    var updateUI: (() -> Void)?
-    
-    // just for internal using
+    /// Should be only for internal use. Returns textfield text with mask
     internal var text: String? {
         return textField.secureText
     }
+    
+    /// Returns textField text without mask
+    internal var rawText: String? {
+        return textField.secureRawText
+    }
+    
+    internal var updateUI: (() -> Void)?
     
     /// Textfield placeholder string
     public var placeholder: String? {
@@ -79,7 +85,7 @@ public class VGSTextField: UIView {
             textField.isSecureTextEntry = configuration.type.isSecureDate
             textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
             textField.returnKeyType = configuration.returnKeyType ?? .default
-            
+
             if configuration.formatPattern.count != 0 {
                 textField.formatPattern = configuration.formatPattern
             } else {
@@ -138,8 +144,12 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        //delegate
-        textField.addSomeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.editingChanged = { [weak self] in
+            if let strongSelf = self {
+                strongSelf.vgsCollector?.updateStatus(for: strongSelf)
+            }
+        }
+         //delegates
         textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
         textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
@@ -148,16 +158,11 @@ public class VGSTextField: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
     }
-    
-    @objc
-    internal func textFieldDidChange(_ sender: UITextField) {
-        // change status
-        vgsCollector?.updateStatus(for: self)
-    }
 }
 
 // MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
+        
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         guard let tfText = textField.text else {
@@ -168,10 +173,9 @@ extension VGSTextField: UITextFieldDelegate {
         if mask.count < tfText.count + string.count {
             return false
         }
-        
         return true
     }
-
+    
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.vgsTextFieldDidBeginEditing?(self)
     }

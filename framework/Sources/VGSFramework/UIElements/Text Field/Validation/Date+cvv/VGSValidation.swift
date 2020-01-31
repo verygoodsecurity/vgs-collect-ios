@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class VGSValidation {
+internal class VGSValidation {
     var pattern: String?
     
     func isValid(_ txt: String, type: FieldType) -> Bool {

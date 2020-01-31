@@ -10,14 +10,16 @@
 import UIKit
 #endif
 
-open class MaskedTextField: UITextField {
+internal class MaskedTextField: UITextField {
 
-    public let lettersAndDigitsReplacementChar: String = "*"
-    public let anyLetterReplecementChar: String = "@"
-    public let lowerCaseLetterReplecementChar: String = "a"
-    public let upperCaseLetterReplecementChar: String = "A"
-    public let digitsReplecementChar: String = "#"
-    
+    enum MaskedTextReplacementChar: String {
+        case lettersAndDigit = "*"
+        case anyLetter = "@"
+        case lowerCaseLetter = "a"
+        case upperCaseLetter = "A"
+        case digits = "#"
+    }
+
     /**
      Var that holds the format pattern that you wish to apply
      to some text
@@ -38,7 +40,7 @@ open class MaskedTextField: UITextField {
     /**
      Var that have the maximum length, based on the mask set
      */
-    open var maxLength: Int {
+    var maxLength: Int {
         get {
             return formatPattern.count + prefix.count
         }
@@ -49,31 +51,39 @@ open class MaskedTextField: UITextField {
      Overriding the var text from UITextField so if any text
      is applied programmatically by calling formatText
      */
-    override open var text: String? {
+    override var text: String? {
         set {
             super.text = newValue
             self.formatText()
+            self.editingChanged?()
         }
         get {
             return nil
         }
     }
     
+    internal var editingChanged: (() -> Void)?
+    
     /// setting text just for internal using
     internal var secureText: String? {
         return super.text
+    }
+    
+    /// returns textfield text without mask
+    internal var secureRawText: String? {
+        return getRawText()
     }
     
     // MARK: - Text Padding
     var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
     // MARK: - Constructor
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
     }
     
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
     }
@@ -101,6 +111,7 @@ open class MaskedTextField: UITextField {
     @objc fileprivate func textDidChange() {
         self.undoManager?.removeAllActions()
         self.formatText()
+        self.editingChanged?()
     }
     
     fileprivate func getOnlyDigitsString(_ string: String) -> String {
@@ -128,6 +139,13 @@ open class MaskedTextField: UITextField {
         return charactersArray.joined(separator: "")
     }
     
+    fileprivate func getRawText() -> String? {
+        guard let text = secureText else {
+            return nil
+        }
+        return formatPattern.isEmpty ? secureText : getFilteredString(text)
+    }
+    
     fileprivate func getStringWithoutPrefix(_ string: String) -> String {
         if string.range(of: self.prefix) != nil {
             if string.count > self.prefix.count {
@@ -136,19 +154,17 @@ open class MaskedTextField: UITextField {
             } else if string.count == self.prefix.count {
                 return ""
             }
-            
         }
         return string
     }
     
-    // MARK: - Self Public Methods
     /**
      Func that formats the text based on formatPattern
      
      Override this function if you want to customize the behaviour of 
      the class
      */
-    open func formatText() {
+    func formatText() {
         var currentTextForFormatting = ""
         
         if let text = super.text {
@@ -167,44 +183,46 @@ open class MaskedTextField: UITextField {
                 while true {
                     let formatPatternRange = formatterIndex ..< formatPattern.index(after: formatterIndex)
                     let currentFormatCharacter = String(self.formatPattern[formatPatternRange])
-                    
-                    let currentTextForFormattingPatterRange = currentTextForFormattingIndex ..< currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                    let currentTextForFormattingCharacter = String(currentTextForFormatting[currentTextForFormattingPatterRange])
-                    
-                    switch currentFormatCharacter {
-                    case self.lettersAndDigitsReplacementChar:
-                        finalText += currentTextForFormattingCharacter
-                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                        formatterIndex = formatPattern.index(after: formatterIndex)
-                    case self.anyLetterReplecementChar:
-                        let filteredChar = self.getOnlyLettersString(currentTextForFormattingCharacter)
-                        if !filteredChar.isEmpty {
-                            finalText += filteredChar
+                    if let currentFormatCharacterType = MaskedTextReplacementChar(rawValue: currentFormatCharacter) {
+                        
+                        let currentTextForFormattingPatterRange = currentTextForFormattingIndex ..< currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                        let currentTextForFormattingCharacter = String(currentTextForFormatting[currentTextForFormattingPatterRange])
+
+                        switch currentFormatCharacterType {
+                        case .lettersAndDigit:
+                            finalText += currentTextForFormattingCharacter
+                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
                             formatterIndex = formatPattern.index(after: formatterIndex)
+                        case .anyLetter:
+                            let filteredChar = self.getOnlyLettersString(currentTextForFormattingCharacter)
+                            if !filteredChar.isEmpty {
+                                finalText += filteredChar
+                                formatterIndex = formatPattern.index(after: formatterIndex)
+                            }
+                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                        case .lowerCaseLetter:
+                            let filteredChar = self.getLowercaseLettersString(currentTextForFormattingCharacter)
+                            if !filteredChar.isEmpty {
+                                finalText += filteredChar
+                                formatterIndex = formatPattern.index(after: formatterIndex)
+                            }
+                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                        case .upperCaseLetter:
+                            let filteredChar = self.getUppercaseLettersString(currentTextForFormattingCharacter)
+                            if !filteredChar.isEmpty {
+                                finalText += filteredChar
+                                formatterIndex = formatPattern.index(after: formatterIndex)
+                            }
+                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
+                        case .digits:
+                            let filteredChar = self.getOnlyDigitsString(currentTextForFormattingCharacter)
+                            if !filteredChar.isEmpty {
+                                finalText += filteredChar
+                                formatterIndex = formatPattern.index(after: formatterIndex)
+                            }
+                            currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
                         }
-                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                    case self.lowerCaseLetterReplecementChar:
-                        let filteredChar = self.getLowercaseLettersString(currentTextForFormattingCharacter)
-                        if !filteredChar.isEmpty {
-                            finalText += filteredChar
-                            formatterIndex = formatPattern.index(after: formatterIndex)
-                        }
-                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                    case self.upperCaseLetterReplecementChar:
-                        let filteredChar = self.getUppercaseLettersString(currentTextForFormattingCharacter)
-                        if !filteredChar.isEmpty {
-                            finalText += filteredChar
-                            formatterIndex = formatPattern.index(after: formatterIndex)
-                        }
-                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                    case self.digitsReplecementChar:
-                        let filteredChar = self.getOnlyDigitsString(currentTextForFormattingCharacter)
-                        if !filteredChar.isEmpty {
-                            finalText += filteredChar
-                            formatterIndex = formatPattern.index(after: formatterIndex)
-                        }
-                        currentTextForFormattingIndex = currentTextForFormatting.index(after: currentTextForFormattingIndex)
-                    default:
+                    } else {
                         finalText += currentFormatCharacter
                         formatterIndex = formatPattern.index(after: formatterIndex)
                     }
