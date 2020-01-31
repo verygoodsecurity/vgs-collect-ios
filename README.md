@@ -125,7 +125,7 @@ func sendData() {
 <p align="center">
 	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
 </p>
-																       
+
 VGSCardTextField automatically detects card provider and display card brand icon in the input field.
 
 ````swift
