@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   VGS Collect iOS SDK allows you to securely collect data from your users without having to have that data pass through your systems. It provides customizable UI elements for collecting users’ sensitive data securely on mobile devices with iOS.
                    DESC
   spec.homepage     = "https://github.com/verygoodsecurity/vgs-collect-ios"
-  spec.documentation_url    = "https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk"
+  spec.documentation_url    = "https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/index"
   spec.license      = { type: 'MIT', file: 'LICENSE' }
   spec.author       = { 
     "Very Good Security" => "support@verygoodsecurity.com"
