@@ -62,6 +62,11 @@ public class VGSCollect {
 }
 
 extension VGSCollect {
+    
+    public func getTextField(fieldName: String) -> VGSTextField? {
+        return storage.elements.first(where: { $0.fieldName == fieldName })
+    }
+    
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
         storage.elements.forEach { textField in
