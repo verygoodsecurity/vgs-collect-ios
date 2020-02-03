@@ -106,7 +106,7 @@ extension VGSCollect {
             if let error = error {
                 print("Error: \(String(describing: error.localizedDescription))")
                 block(json, error)
-                
+                return
             } else {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
@@ -115,8 +115,9 @@ extension VGSCollect {
                         element.token = json?[key] as? String
                     }
                 })
+                block(json, nil)
+                return
             }
-            block(json, nil)
         }
     }
 }
