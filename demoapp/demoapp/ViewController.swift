@@ -56,6 +56,8 @@ class ViewController: UIViewController {
             "my custome header": "some custom data"
         ]
         
+        // set preferred device camera
+//        scanController.preferredCameraPosition = .front
         // set VGSCardIOScanDelegate
         scanController.delegate = self
 
