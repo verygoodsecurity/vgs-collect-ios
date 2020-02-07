@@ -7,12 +7,16 @@
 //
 
 import Foundation
+import AVFoundation.AVCaptureDevice
+
 #if canImport(UIKit)
 import UIKit
 #endif
 
 internal protocol VGSScanHandlerProtocol {
     var delegate: VGSCardIOScanControllerDelegate? { get set }
+    var cameraPosition: AVCaptureDevice.Position? { get set }
+    
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)
 }
@@ -25,6 +29,12 @@ public class VGSCardIOScanController {
     public var delegate: VGSCardIOScanControllerDelegate? {
         didSet {
             scanHandler?.delegate = delegate
+        }
+    }
+    
+    public var preferredCameraPosition: AVCaptureDevice.Position? {
+        didSet {
+            scanHandler?.cameraPosition = preferredCameraPosition
         }
     }
     

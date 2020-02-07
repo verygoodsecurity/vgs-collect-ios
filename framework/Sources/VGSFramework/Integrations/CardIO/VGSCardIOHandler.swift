@@ -13,14 +13,16 @@ import UIKit
 
 #if canImport(CardIO)
 import CardIO
+import AVFoundation.AVCaptureDevice
 
 internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     
     weak var delegate: VGSCardIOScanControllerDelegate?
     weak var view: UIViewController?
-
+    var cameraPosition: AVCaptureDevice.Position?
+    
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true) else {
+        guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true, preferredDevicePosition: cameraPosition ?? .unspecified) else {
             print("This device is not compatible with CardIO")
             return
         }
