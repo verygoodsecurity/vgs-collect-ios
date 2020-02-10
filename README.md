@@ -21,8 +21,9 @@ Table of contents
       * [Customize UI Elements](#customize-ui-elements)
       * [Observe Fields State](#observe-fields-state)
       * [Collect and Send Your Data](#collect-and-send-your-data)
-      * [Documentation](#for-more-details-check-our-documentation)
+      * [Scan Credit Card Data](#scan-credit-card-cata)
       * [Demo Application](#demo-application)
+      * [Documentation](#for-more-details-check-our-documentation)
    * [Dependencies](#dependencies)
    * [License](#license)
 <!--te-->
@@ -133,16 +134,15 @@ VGSCardTextField automatically detects card provider and display card brand icon
 var cardNumber = VGSCardTextField()
 ````
 
-## Demo Application
-Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
-
 ### Scan Credit Card Data
-VGSCollect provide secure CardIO integration module for collecting and setting scaned data into VGSCollectTextFields.
-To start using CardIO as bank cards scanner you should install additional pod into your app:
+VGSCollect provide secure [card.io](https://github.com/verygoodsecurity/CardIOSDK-iOS) integration for collecting and setting scanned data into ``VGSTextFields``. 
+To use [card.io](https://github.com/verygoodsecurity/CardIOSDK-iOS) with **VGSCollectSDK** you should add **CardIO** module alongside with core **VGSCollectSDK** module into your App Podfile:
 ```ruby
 pod 'VGSCollectSDK'
 pod 'VGSCollectSDK/CardIO'
 ```
+
+Also you need to add **<NSCameraUsageDescription>** key with camera usage description into your App ``Info.plist``.
 	
 In your ViewController create `VGSCardIOScanController` instance
 ````swift
@@ -199,7 +199,8 @@ extension ViewController: VGSCardIOScanControllerDelegate {
 }
 ````
 
-You should also add **NSCameraUsageDescription** key with description string into your App Info.plist.
+## Demo Application
+Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
 
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
