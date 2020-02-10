@@ -62,6 +62,11 @@ public class VGSCollect {
 }
 
 extension VGSCollect {
+    
+    public func getTextField(fieldName: String) -> VGSTextField? {
+        return storage.elements.first(where: { $0.fieldName == fieldName })
+    }
+    
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
         storage.elements.forEach { textField in
@@ -101,7 +106,7 @@ extension VGSCollect {
             if let error = error {
                 print("Error: \(String(describing: error.localizedDescription))")
                 block(json, error)
-                
+                return
             } else {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
@@ -110,8 +115,9 @@ extension VGSCollect {
                         element.token = json?[key] as? String
                     }
                 })
+                block(json, nil)
+                return
             }
-            block(json, nil)
         }
     }
 }
