@@ -153,6 +153,9 @@ var scanController = VGSCardIOScanController()
 override func viewDidLoad() {
     super.viewDidLoad()
     
+    // set preferred device camera
+    scanController.preferredCameraPosition = .front
+    
     // set VGSCardIOScanDelegate
     scanController.delegate = self
 }
