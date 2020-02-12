@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-public class VGSButton: UIView {
+public class VGSFilePicker: UIView {
     private(set) weak var vgsCollector: VGSCollect?
     internal var button = UIButton(type: .custom)
     internal var fieldName: String!
@@ -24,7 +23,7 @@ public class VGSButton: UIView {
             vgsCollector = configuration.vgsCollector
         }
     }
-    public var type: ButtonType = .none
+    public var type: FileSource = .none
     public var presentViewController: UIViewController?
     
     public override init(frame: CGRect) {
@@ -84,13 +83,13 @@ public class VGSButton: UIView {
             
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (action) in
+            actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] _ in
                 self?.getImageFromLibrary()
             }))
-            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] (action) in
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] _ in
                 self?.getImageFromCamera()
             }))
-            actionSheet.addAction(UIAlertAction(title: "iCloud storage", style: .default, handler: { [weak self] (action) in
+            actionSheet.addAction(UIAlertAction(title: "iCloud storage", style: .default, handler: { [weak self] _ in
                 self?.getFile()
             }))
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
@@ -100,7 +99,7 @@ public class VGSButton: UIView {
     }
 }
 
-extension VGSButton {
+extension VGSFilePicker {
     internal func showAlert(message string: String) {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")

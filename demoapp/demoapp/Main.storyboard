@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,50 @@
             </objects>
             <point key="canvasLocation" x="2268" y="-271"/>
         </scene>
+        <!--File-->
+        <scene sceneID="Fu8-wn-sbv">
+            <objects>
+                <viewController id="9Jh-bq-fKs" customClass="ViewController2" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZKQ-ah-6px">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTi-7e-kA5" customClass="VGSFilePicker" customModule="VGSCollectSDK">
+                                <rect key="frame" x="84.666666666666686" y="343" width="245" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="245" id="8fp-nI-R0Q"/>
+                                    <constraint firstAttribute="height" constant="50" id="R44-tu-4j0"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9K-QZ-hbQ">
+                                <rect key="frame" x="84.666666666666686" y="418" width="245" height="30"/>
+                                <state key="normal" title="Upload"/>
+                                <connections>
+                                    <action selector="uploadTap:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="9zq-ap-CHV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="centerX" secondItem="ZKQ-ah-6px" secondAttribute="centerX" id="HFD-Ug-KRV"/>
+                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="top" secondItem="KTi-7e-kA5" secondAttribute="bottom" constant="25" id="IyS-LT-Wrm"/>
+                            <constraint firstItem="KTi-7e-kA5" firstAttribute="centerY" secondItem="ZKQ-ah-6px" secondAttribute="centerY" id="XwB-NM-PeX"/>
+                            <constraint firstItem="KTi-7e-kA5" firstAttribute="centerX" secondItem="ZKQ-ah-6px" secondAttribute="centerX" id="efI-v7-WnB"/>
+                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="trailing" secondItem="KTi-7e-kA5" secondAttribute="trailing" id="owC-0A-HRn"/>
+                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="leading" secondItem="KTi-7e-kA5" secondAttribute="leading" id="uVw-gG-M0e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Qf-Hr-yH8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="File" image="cloud-upload" id="rxi-rR-J3s"/>
+                    <connections>
+                        <outlet property="button" destination="KTi-7e-kA5" id="sDD-EN-a8h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tze-B5-UQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2289.8550724637685" y="429.61956521739131"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BEG-Sr-Dkt">
             <objects>
@@ -36,6 +80,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="N9H-N5-RQR"/>
+                        <segue destination="9Jh-bq-fKs" kind="relationship" relationship="viewControllers" id="r8O-tg-y2k"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhk-cb-oLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,5 +90,6 @@
     </scenes>
     <resources>
         <image name="bank_card" width="25" height="25"/>
+        <image name="cloud-upload" width="25" height="25"/>
     </resources>
 </document>

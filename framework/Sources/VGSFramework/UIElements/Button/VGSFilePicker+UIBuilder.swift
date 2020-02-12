@@ -8,7 +8,7 @@
 
 import Foundation
 
- public extension VGSButton {
+ public extension VGSFilePicker {
     @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
