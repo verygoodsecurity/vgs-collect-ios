@@ -9,31 +9,35 @@
 import UIKit
 import MobileCoreServices
 
- extension VGSButton: UIDocumentPickerDelegate {
+extension VGSFilePicker: UIDocumentPickerDelegate {
     internal func getFile() {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")
         }
-
-         let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText),String(kUTTypeContent),String(kUTTypeItem),String(kUTTypeData)], in: .import)
+        
+        let docType = [String(kUTTypeText),
+                       String(kUTTypeContent),
+                       String(kUTTypeItem),
+                       String(kUTTypeData)]
+        let picker = UIDocumentPickerViewController(documentTypes: docType, in: .import)
         picker.delegate = self
         presenter.present(picker, animated: true, completion: nil)
     }
-
-     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-
-         if controller.documentPickerMode == .import {
+    
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        if controller.documentPickerMode == .import {
             if let url = urls.first {
                 title = "Selected"
                 vgsCollector?.storage.files[fieldName] = try? Data(contentsOf: url)
-
-             } else {
+                
+            } else {
                 print("⚠️ Error: file not found...")
             }
         }
     }
-
-     public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+    
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
 }

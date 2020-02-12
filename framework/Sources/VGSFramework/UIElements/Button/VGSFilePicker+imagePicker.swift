@@ -8,7 +8,7 @@
 
 import UIKit
 
- extension VGSButton: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+ extension VGSFilePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     internal func getImageFromLibrary() {
         guard let presenter = presentViewController else {
             fatalError("Need to set presentViewController for VGSButton")
@@ -42,8 +42,7 @@ import UIKit
         picker.dismiss(animated: true, completion: nil)
     }
 
-     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
+     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
          guard let originalImage = info[.originalImage] as? UIImage else {
             return
         }
