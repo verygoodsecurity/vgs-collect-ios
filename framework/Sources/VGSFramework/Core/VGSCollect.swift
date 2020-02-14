@@ -84,7 +84,7 @@ extension VGSCollect {
 extension VGSCollect {
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
-        var body = BodyData()
+        var body = FileData()
         
         let elements = storage.elements
         
@@ -121,9 +121,9 @@ extension VGSCollect {
         }
     }
     
-    public func submitFiles(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func submitFile(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
-         var valueForSend = BodyData()
+         var valueForSend = FileData()
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
             return
