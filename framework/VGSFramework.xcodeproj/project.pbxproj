@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		320E885323A94E1800A9C1FA /* CharacterSet+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */; };
 		3222A47B23CC6A4D00836A8D /* VGSCollectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3222A47A23CC6A4D00836A8D /* VGSCollectTests.swift */; };
+		3262B2F823F5A32400D4A73D /* VGSFilePicker+imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F423F5A32400D4A73D /* VGSFilePicker+imagePicker.swift */; };
+		3262B2F923F5A32400D4A73D /* VGSFilePicker+file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F523F5A32400D4A73D /* VGSFilePicker+file.swift */; };
+		3262B2FB23F5A32400D4A73D /* FileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F723F5A32400D4A73D /* FileSource.swift */; };
+		3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */; };
+		3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2FE23F5A3B300D4A73D /* VGSDocumentPicker.swift */; };
+		3262B30123F6CBCB00D4A73D /* VGSFilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B30023F6CBCB00D4A73D /* VGSFilePickerController.swift */; };
 		328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */; };
@@ -41,11 +47,6 @@
 		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
 		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
 		FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F5656238E7FBB00C24123 /* CardType+icon.swift */; };
-		FD7503A923F48DDF00591668 /* VGSFilePicker+file.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7503A423F48DDF00591668 /* VGSFilePicker+file.swift */; };
-		FD7503AA23F48DDF00591668 /* VGSFilePicker+imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7503A523F48DDF00591668 /* VGSFilePicker+imagePicker.swift */; };
-		FD7503AB23F48DDF00591668 /* FileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7503A623F48DDF00591668 /* FileSource.swift */; };
-		FD7503AC23F48DDF00591668 /* VGSFilePicker+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7503A723F48DDF00591668 /* VGSFilePicker+UIBuilder.swift */; };
-		FD7503AD23F48DDF00591668 /* VGSFilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7503A823F48DDF00591668 /* VGSFilePicker.swift */; };
 		FD7503B223F4934900591668 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA680DE239844FC00372817 /* CardTextFieldTests.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
@@ -74,6 +75,12 @@
 		1CF8407A4E7AC1C8DE5FDF53 /* Pods-VGSFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSFramework.release.xcconfig"; path = "Target Support Files/Pods-VGSFramework/Pods-VGSFramework.release.xcconfig"; sourceTree = "<group>"; };
 		320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+extension.swift"; sourceTree = "<group>"; };
 		3222A47A23CC6A4D00836A8D /* VGSCollectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectTests.swift; sourceTree = "<group>"; };
+		3262B2F423F5A32400D4A73D /* VGSFilePicker+imagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+imagePicker.swift"; sourceTree = "<group>"; };
+		3262B2F523F5A32400D4A73D /* VGSFilePicker+file.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+file.swift"; sourceTree = "<group>"; };
+		3262B2F723F5A32400D4A73D /* FileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSource.swift; sourceTree = "<group>"; };
+		3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSImagePicker.swift; sourceTree = "<group>"; };
+		3262B2FE23F5A3B300D4A73D /* VGSDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDocumentPicker.swift; sourceTree = "<group>"; };
+		3262B30023F6CBCB00D4A73D /* VGSFilePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerController.swift; sourceTree = "<group>"; };
 		328B5C6F23C8DA2600A39515 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldTest.swift; sourceTree = "<group>"; };
 		32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanController.swift; sourceTree = "<group>"; };
@@ -111,11 +118,6 @@
 		FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecurity.swift; sourceTree = "<group>"; };
 		FD5FC377232674BF00C98D25 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
-		FD7503A423F48DDF00591668 /* VGSFilePicker+file.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+file.swift"; sourceTree = "<group>"; };
-		FD7503A523F48DDF00591668 /* VGSFilePicker+imagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+imagePicker.swift"; sourceTree = "<group>"; };
-		FD7503A623F48DDF00591668 /* FileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSource.swift; sourceTree = "<group>"; };
-		FD7503A723F48DDF00591668 /* VGSFilePicker+UIBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSFilePicker+UIBuilder.swift"; sourceTree = "<group>"; };
-		FD7503A823F48DDF00591668 /* VGSFilePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFilePicker.swift; sourceTree = "<group>"; };
 		FDA680DE239844FC00372817 /* CardTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldTests.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
 		FDE7447C238A5C96003AA46B /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
@@ -150,6 +152,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3262B2F323F5A32400D4A73D /* FilePicker */ = {
+			isa = PBXGroup;
+			children = (
+				3262B30023F6CBCB00D4A73D /* VGSFilePickerController.swift */,
+				3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */,
+				3262B2FE23F5A3B300D4A73D /* VGSDocumentPicker.swift */,
+				3262B2F723F5A32400D4A73D /* FileSource.swift */,
+				3262B2F423F5A32400D4A73D /* VGSFilePicker+imagePicker.swift */,
+				3262B2F523F5A32400D4A73D /* VGSFilePicker+file.swift */,
+			);
+			path = FilePicker;
+			sourceTree = "<group>";
+		};
 		32FD980523D1FA48005FA989 /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,22 +236,10 @@
 		FD05F9432316CE5A000EAF52 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
-				FD0B3FD023F3409C002A6A52 /* Button */,
+				3262B2F323F5A32400D4A73D /* FilePicker */,
 				FDF696E6234A5D7A00063507 /* Text Field */,
 			);
 			path = UIElements;
-			sourceTree = "<group>";
-		};
-		FD0B3FD023F3409C002A6A52 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				FD7503A623F48DDF00591668 /* FileSource.swift */,
-				FD7503A823F48DDF00591668 /* VGSFilePicker.swift */,
-				FD7503A423F48DDF00591668 /* VGSFilePicker+file.swift */,
-				FD7503A523F48DDF00591668 /* VGSFilePicker+imagePicker.swift */,
-				FD7503A723F48DDF00591668 /* VGSFilePicker+UIBuilder.swift */,
-			);
-			path = Button;
 			sourceTree = "<group>";
 		};
 		FD0B3FD723F343DF002A6A52 /* Button */ = {
@@ -584,7 +587,6 @@
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */,
 				FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */,
-				FD7503A923F48DDF00591668 /* VGSFilePicker+file.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */,
 				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
@@ -596,19 +598,21 @@
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */,
-				FD7503AA23F48DDF00591668 /* VGSFilePicker+imagePicker.swift in Sources */,
+				3262B2F923F5A32400D4A73D /* VGSFilePicker+file.swift in Sources */,
+				3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */,
+				3262B2FB23F5A32400D4A73D /* FileSource.swift in Sources */,
+				3262B2F823F5A32400D4A73D /* VGSFilePicker+imagePicker.swift in Sources */,
+				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				FDE7447F238AF13F003AA46B /* VGSCardTextField.swift in Sources */,
-				FD7503AD23F48DDF00591668 /* VGSFilePicker.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
 				320E885323A94E1800A9C1FA /* CharacterSet+extension.swift in Sources */,
 				32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */,
 				FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */,
+				3262B30123F6CBCB00D4A73D /* VGSFilePickerController.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				32FD980E23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift in Sources */,
 				FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */,
-				FD7503AC23F48DDF00591668 /* VGSFilePicker+UIBuilder.swift in Sources */,
-				FD7503AB23F48DDF00591668 /* FileSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

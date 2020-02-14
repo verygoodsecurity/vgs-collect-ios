@@ -11,15 +11,39 @@ import Foundation
 import UIKit
 #endif
 
+
+protocol VGSBaseConfigurationProtocol {
+    
+    var vgsCollector: VGSCollect? { get }
+    
+    var fieldName: String { get }
+}
+
+protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
+
+    var validationModel: VGSValidation? { get set }
+    
+    var isRequired: Bool { get }
+    
+    var type: FieldType  { get }
+    
+    var formatPattern: String { get set }
+    
+    var keyboardType: UIKeyboardType? { get set }
+    
+    var returnKeyType: UIReturnKeyType? { get set }
+}
+
 /// Class for configuration yout VGSTextField
-public class VGSConfiguration {
+public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
+        
     private(set) weak var vgsCollector: VGSCollect?
 
-    /// Field name - actualy this is key for you JSON wich contains data
-    public private(set) var fieldName: String!
-    
     /// Validation model
-    var validationModel: VGSValidation?
+    internal var validationModel: VGSValidation?
+    
+    /// Field name - actualy this is key for you JSON wich contains data
+    public let fieldName: String
     
     /// Set this property if text filed is required
     public var isRequired: Bool = false

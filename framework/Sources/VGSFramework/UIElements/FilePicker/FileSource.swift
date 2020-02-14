@@ -9,7 +9,6 @@
 import Foundation
 
 public enum FileSource: Int, CaseIterable {
-    case none
     case library
     case camera
     case file
