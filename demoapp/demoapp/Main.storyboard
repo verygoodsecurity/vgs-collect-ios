@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +11,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -27,42 +25,36 @@
         <!--File-->
         <scene sceneID="Fu8-wn-sbv">
             <objects>
-                <viewController id="9Jh-bq-fKs" customClass="ViewController2" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9Jh-bq-fKs" customClass="FilePickerViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZKQ-ah-6px">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTi-7e-kA5" customClass="VGSFilePicker" customModule="VGSCollectSDK">
-                                <rect key="frame" x="84.666666666666686" y="343" width="245" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="245" id="8fp-nI-R0Q"/>
-                                    <constraint firstAttribute="height" constant="50" id="R44-tu-4j0"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9K-QZ-hbQ">
-                                <rect key="frame" x="84.666666666666686" y="418" width="245" height="30"/>
+                                <rect key="frame" x="275.5" y="285" width="49" height="30"/>
                                 <state key="normal" title="Upload"/>
                                 <connections>
-                                    <action selector="uploadTap:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="9zq-ap-CHV"/>
+                                    <action selector="selectFileAction:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="9zq-ap-CHV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFm-4f-kTP">
+                                <rect key="frame" x="277" y="365" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="submitAction:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="Aca-a7-SYH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="O9K-QZ-hbQ" firstAttribute="centerX" secondItem="ZKQ-ah-6px" secondAttribute="centerX" id="HFD-Ug-KRV"/>
-                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="top" secondItem="KTi-7e-kA5" secondAttribute="bottom" constant="25" id="IyS-LT-Wrm"/>
-                            <constraint firstItem="KTi-7e-kA5" firstAttribute="centerY" secondItem="ZKQ-ah-6px" secondAttribute="centerY" id="XwB-NM-PeX"/>
-                            <constraint firstItem="KTi-7e-kA5" firstAttribute="centerX" secondItem="ZKQ-ah-6px" secondAttribute="centerX" id="efI-v7-WnB"/>
-                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="trailing" secondItem="KTi-7e-kA5" secondAttribute="trailing" id="owC-0A-HRn"/>
-                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="leading" secondItem="KTi-7e-kA5" secondAttribute="leading" id="uVw-gG-M0e"/>
+                            <constraint firstItem="qFm-4f-kTP" firstAttribute="centerX" secondItem="ZKQ-ah-6px" secondAttribute="centerX" id="IPG-nx-oLj"/>
+                            <constraint firstItem="qFm-4f-kTP" firstAttribute="top" secondItem="O9K-QZ-hbQ" secondAttribute="bottom" constant="50" id="Z0q-c8-M4U"/>
+                            <constraint firstItem="O9K-QZ-hbQ" firstAttribute="centerY" secondItem="ZKQ-ah-6px" secondAttribute="centerY" id="iqc-ru-nef"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Qf-Hr-yH8"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="File" image="cloud-upload" id="rxi-rR-J3s"/>
-                    <connections>
-                        <outlet property="button" destination="KTi-7e-kA5" id="sDD-EN-a8h"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tze-B5-UQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
