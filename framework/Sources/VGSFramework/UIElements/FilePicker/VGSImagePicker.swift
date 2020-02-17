@@ -8,10 +8,13 @@
 
 import Foundation
 
-internal class VGSImagePicker: NSObject, FilePickerProtocol {
-    weak var vgsCollector: VGSCollect?
-    var filename: String = ""
-    let picker = UIImagePickerController()
+internal class VGSImagePicker: NSObject, VGSFilePickerProtocol {
+    
+    weak var delegate: VGSFilePickerControllerDelegate?
+    
+    private weak var vgsCollector: VGSCollect?
+    private var filename: String = ""
+    private let picker = UIImagePickerController()
     
     required init(configuration: VGSFilePickerConfiguration, sourceType: UIImagePickerController.SourceType) {
         super.init()
@@ -23,10 +26,14 @@ internal class VGSImagePicker: NSObject, FilePickerProtocol {
     
     func present(on viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         if !isSourceEnabled() {
-            //delegate error
+            delegate?.filePickingFailedWithError?("image_source_not_available_error")
             return
         }
         viewController.present(picker, animated: animated, completion: completion)
+    }
+    
+    func dismiss(animated: Bool, completion: (() -> Void)?) {
+        picker.dismiss(animated: animated, completion: completion)
     }
     
     private func isSourceEnabled() -> Bool {
@@ -37,6 +44,8 @@ internal class VGSImagePicker: NSObject, FilePickerProtocol {
             return UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
         case .savedPhotosAlbum:
             return UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum)
+        @unknown default:
+            return false
         }
     }
 }
@@ -44,15 +53,15 @@ internal class VGSImagePicker: NSObject, FilePickerProtocol {
 extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-       picker.dismiss(animated: true, completion: nil)
+        delegate?.userDidSCancelFilePicking()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             vgsCollector?.storage.files[filename] = image
+            delegate?.userDidPickFileWithInfo([String: Any]())
         } else {
-            //delegate error
+            delegate?.filePickingFailedWithError?("image_not_found_error")
         }
-        picker.dismiss(animated: true, completion: nil)
     }
 }

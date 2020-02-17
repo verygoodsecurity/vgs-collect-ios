@@ -9,10 +9,12 @@
 import Foundation
 import MobileCoreServices
 
-internal class VGSDocumentPicker: NSObject, FilePickerProtocol {
-    weak var vgsCollector: VGSCollect?
-    var filename: String = ""
-    var picker: UIDocumentPickerViewController!
+internal class VGSDocumentPicker: NSObject, VGSFilePickerProtocol {
+    
+    weak var delegate: VGSFilePickerControllerDelegate?
+    private weak var vgsCollector: VGSCollect?
+    private var filename: String = ""
+    private var picker: UIDocumentPickerViewController!
     
     required init(configuration: VGSFilePickerConfiguration) {
         super.init()
@@ -25,11 +27,17 @@ internal class VGSDocumentPicker: NSObject, FilePickerProtocol {
                        String(kUTTypeData)]
         picker = UIDocumentPickerViewController(documentTypes: docType, in: .import)
         picker.delegate = self
+        if #available(iOS 11.0, *) {
+            picker.allowsMultipleSelection = false
+        }
     }
     
     func present(on viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
-
         viewController.present(picker, animated: animated, completion: completion)
+    }
+    
+    func dismiss(animated: Bool, completion: (() -> Void)?) {
+        picker.dismiss(animated: animated, completion: completion)
     }
 }
 
@@ -39,15 +47,14 @@ extension VGSDocumentPicker: UIDocumentPickerDelegate {
         if controller.documentPickerMode == .import {
             if let url = urls.first {
                 vgsCollector?.storage.files[filename] = try? Data(contentsOf: url)
-
             } else {
-                //delegate error
-                print("⚠️ Error: file not found...")
+                delegate?.filePickingFailedWithError?("file_not_found_error")
             }
+            return
         }
     }
 
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        controller.dismiss(animated: true, completion: nil)
+        delegate?.userDidSCancelFilePicking()
     }
 }
