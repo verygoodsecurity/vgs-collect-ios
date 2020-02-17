@@ -18,6 +18,7 @@
 		328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */; };
+		32E4989C23FAEF8300863E61 /* VGSFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */; };
 		32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */; };
 		32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */; };
 		32FD980E23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */; };
@@ -83,6 +84,7 @@
 		328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePickerController+internal.swift"; sourceTree = "<group>"; };
 		328B5C6F23C8DA2600A39515 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldTest.swift; sourceTree = "<group>"; };
+		32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFileInfo.swift; sourceTree = "<group>"; };
 		32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanController.swift; sourceTree = "<group>"; };
 		32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOHandler.swift; sourceTree = "<group>"; };
 		32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanControllerDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */,
 				3262B2FE23F5A3B300D4A73D /* VGSDocumentPicker.swift */,
 				3262B2F723F5A32400D4A73D /* VGSFileSource.swift */,
+				32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */,
 			);
 			path = FilePicker;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				3262B30123F6CBCB00D4A73D /* VGSFilePickerController.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				32FD980E23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift in Sources */,
+				32E4989C23FAEF8300863E61 /* VGSFileInfo.swift in Sources */,
 				FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

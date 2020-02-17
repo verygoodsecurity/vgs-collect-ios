@@ -126,26 +126,27 @@ extension VGSCollect {
          var valueForSend = FileData()
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
+            //TODO: return error
+             block(nil, NSError(domain: "VGSCollectSDK", code: 410, userInfo: ["data_error": "can't get data"]))
             return
         }
 
-         let result: Data
-        if let image = value as? UIImage {
-            result = image.jpegData(compressionQuality: 0.5)!
-
-         } else if let data = value as? Data {
+        let result: Data
+ 
+        if let data = value as? Data {
             result = data
-
-         } else {
+        } else {
+            //TODO: return error
+            block(nil, NSError(domain: "VGSCollectSDK", code: 410, userInfo: ["data_error": "can't get data"]))
             return
         }
 
-         valueForSend[key] = result.base64EncodedString()
+        valueForSend[key] = result.base64EncodedString()
 
-         if valueForSend.count == 0 {
+        if valueForSend.count == 0 {
+            block(nil, NSError(domain: "VGSCollectSDK", code: 410, userInfo: ["data_error": "data is nil or zero"]))
             return
         }
-
          apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)
     }
 }

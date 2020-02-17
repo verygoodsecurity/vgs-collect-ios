@@ -10,12 +10,14 @@ import Foundation
 
 @objc
 public protocol VGSFilePickerControllerDelegate {
-    @objc func userDidPickFileWithInfo(_ info: [String: Any])
-    @objc func userDidSCancelFilePicking()
+    func userDidPickFileWithInfo(_ info: VGSFileInfo)
+    func userDidSCancelFilePicking()
     @objc optional func filePickingFailedWithError(_ error: String)
 }
 
 public class VGSFilePickerController {
+    
+    @IBOutlet weak var stateLabel: UILabel!
     
     public weak var delegate: VGSFilePickerControllerDelegate? {
         didSet {
