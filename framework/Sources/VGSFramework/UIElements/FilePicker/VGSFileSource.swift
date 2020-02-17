@@ -8,8 +8,8 @@
 
 import Foundation
 
-public enum FileSource: Int, CaseIterable {
+public enum VGSFileSource: Int, CaseIterable {
     case library
     case camera
-    case file
+    case documentsDirectory
 }

@@ -11,7 +11,6 @@ import Foundation
 import UIKit
 #endif
 
-
 protocol VGSBaseConfigurationProtocol {
     
     var vgsCollector: VGSCollect? { get }
@@ -25,7 +24,7 @@ protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
     
     var isRequired: Bool { get }
     
-    var type: FieldType  { get }
+    var type: FieldType { get }
     
     var formatPattern: String { get set }
     
