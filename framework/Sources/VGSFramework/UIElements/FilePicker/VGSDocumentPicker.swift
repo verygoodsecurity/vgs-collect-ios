@@ -43,15 +43,18 @@ internal class VGSDocumentPicker: NSObject, VGSFilePickerProtocol {
 
 extension VGSDocumentPicker: UIDocumentPickerDelegate {
      func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-
-        if controller.documentPickerMode == .import {
-            if let url = urls.first {
-                vgsCollector?.storage.files[filename] = try? Data(contentsOf: url)
-            } else {
-                delegate?.filePickingFailedWithError?("file_not_found_error")
-            }
+        guard controller.documentPickerMode == .import else {
             return
         }
+
+        if let url = urls.first, let fileData = try? Data(contentsOf: url) {
+            vgsCollector?.storage.files[filename] = fileData
+            let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnit: "byte")
+            delegate?.userDidPickFileWithInfo(fileMetadata)
+        } else {
+            delegate?.filePickingFailedWithError?("file_not_found_error")
+        }
+        return
     }
 
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {

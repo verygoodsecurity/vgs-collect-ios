@@ -57,9 +57,10 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            vgsCollector?.storage.files[filename] = image
-            delegate?.userDidPickFileWithInfo([String: Any]())
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let imageData = image.jpegData(compressionQuality: 1) {
+            vgsCollector?.storage.files[filename] = imageData
+            let imgMetadata = VGSFileInfo(fileExtension: "jpeg", size: imageData.count, sizeUnit: "byte")
+            delegate?.userDidPickFileWithInfo(imgMetadata)
         } else {
             delegate?.filePickingFailedWithError?("image_not_found_error")
         }
