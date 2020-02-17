@@ -212,11 +212,13 @@ class ViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         consoleLabel.addGestureRecognizer(tapGesture)
         consoleLabel.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tapGesture)
     }
 
     @objc
     func hideKeyboard() {
         view.endEditing(true)
+        consoleLabel.endEditing(true)
     }
 
     private func setupElements() {
