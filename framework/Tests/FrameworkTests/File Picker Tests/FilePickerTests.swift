@@ -29,7 +29,7 @@ class FilePickerTests: XCTestCase {
     func testUpload() {
         //The Bundle for your current class
         let bundle = Bundle(for: type(of: self))
-        let testImage = UIImage(named: "visa", in: bundle, compatibleWith: nil)
+        let testImage = UIImage(named: "visa", in: bundle, compatibleWith: nil)?.jpegData(compressionQuality: 1)
         
         XCTAssertNotNil(testImage)
         vgsForm.storage.files["image"] = testImage
