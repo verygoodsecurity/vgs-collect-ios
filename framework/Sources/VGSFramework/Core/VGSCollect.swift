@@ -126,8 +126,8 @@ extension VGSCollect {
          var valueForSend = FileData()
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
-            //TODO: return error
-             block(nil, NSError(domain: "VGSCollectSDK", code: 410, userInfo: ["data_error": "can't get data"]))
+            block(nil, VGSError(type: .inputFileNotFound, userInfo: ["key": "file_not_found_error",
+                                                                     "description": "File not selected or doesn't exists"]))
             return
         }
 
@@ -136,15 +136,16 @@ extension VGSCollect {
         if let data = value as? Data {
             result = data
         } else {
-            //TODO: return error
-            block(nil, NSError(domain: "VGSCollectSDK", code: 410, userInfo: ["data_error": "can't get data"]))
+            block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: ["key": "not_supported_file_format",
+                                                                               "description": "File format is not supported"]))
             return
         }
 
         valueForSend[key] = result.base64EncodedString()
 
         if valueForSend.count == 0 {
-            block(nil, NSError(domain: "VGSCollectSDK", code: 410, userInfo: ["data_error": "data is nil or zero"]))
+            block(nil,  VGSError(type: .inputFileTypeIsNotSupported, userInfo: ["key": "not_supported_file_format",
+                                                                                "description": "File format is not supported"]))
             return
         }
          apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)

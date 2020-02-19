@@ -10,6 +10,7 @@
 		320E885323A94E1800A9C1FA /* CharacterSet+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */; };
 		3222A47B23CC6A4D00836A8D /* VGSCollectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3222A47A23CC6A4D00836A8D /* VGSCollectTests.swift */; };
 		324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CDEE123FB12E200653890 /* FilePickerTests.swift */; };
+		324D783B23FD46E200B3C09B /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324D783A23FD46E200B3C09B /* VGSError.swift */; };
 		3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F723F5A32400D4A73D /* VGSFileSource.swift */; };
 		3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */; };
 		3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2FE23F5A3B300D4A73D /* VGSDocumentPicker.swift */; };
@@ -77,6 +78,7 @@
 		320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+extension.swift"; sourceTree = "<group>"; };
 		3222A47A23CC6A4D00836A8D /* VGSCollectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectTests.swift; sourceTree = "<group>"; };
 		324CDEE123FB12E200653890 /* FilePickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
+		324D783A23FD46E200B3C09B /* VGSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSError.swift; sourceTree = "<group>"; };
 		3262B2F723F5A32400D4A73D /* VGSFileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFileSource.swift; sourceTree = "<group>"; };
 		3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSImagePicker.swift; sourceTree = "<group>"; };
 		3262B2FE23F5A3B300D4A73D /* VGSDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDocumentPicker.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */,
 				FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */,
 				FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */,
+				324D783A23FD46E200B3C09B /* VGSError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */,
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */,
+				324D783B23FD46E200B3C09B /* VGSError.swift in Sources */,
 				FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */,
