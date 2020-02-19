@@ -16,6 +16,8 @@ import Alamofire
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
+    /// Max file size limit by proxy. Is static and can't be changed!
+    internal let maxFileSizeInternalLimitInBytes = 24_000_000
     
     /// Observing focused text field of state
     public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
@@ -141,6 +143,11 @@ extension VGSCollect {
             return
         }
 
+        if result.count >= maxFileSizeInternalLimitInBytes {
+            block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: ["key": "file_size_too_large",
+                                                                                "description": "File size is too large: (\(result.count)) bytes. Max file size should be \(maxFileSizeInternalLimitInBytes) bytes"]))
+            return
+        }
         valueForSend[key] = result.base64EncodedString()
 
         if valueForSend.count == 0 {
