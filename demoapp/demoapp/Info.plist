@@ -29,6 +29,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
