@@ -66,11 +66,11 @@ class APIClient {
                 switch response.result {
                 case .success(let data):
                     
-                    guard let dict = data as? JsonData, let json = dict["json"] as? JsonData else {
+                    guard let dict = data as? JsonData else {
                         block(nil, nil)
                         return
                     }
-                    block(json, nil)
+                    block(dict, nil)
                     
                 case .failure(let error):
                     block(nil, error)
