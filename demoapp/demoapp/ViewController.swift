@@ -290,8 +290,8 @@ extension ViewController {
         // send data
         vgsForm.submit(path: "post", extraData: extraData, completion: { [weak self] (json, error) in
             self?.consoleStatusLabel.text = "RESPONSE"
-            if error == nil, let json = json {
-                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8)!)
+            if error == nil, let data = json?["json"] {
+                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
             } else {
                 self?.consoleLabel.text = "Something went wrong!"
                 print("Error: \(String(describing: error?.localizedDescription))")
