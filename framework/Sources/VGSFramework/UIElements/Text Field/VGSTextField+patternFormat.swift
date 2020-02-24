@@ -12,7 +12,7 @@ extension VGSTextField {
     var formatPatternForCard: String {
         
         let defPattern = "#### #### #### ####"
-        guard let text = textField.secureText else {
+        guard let text = textField.getSecureRawText else {
             return defPattern
         }
         

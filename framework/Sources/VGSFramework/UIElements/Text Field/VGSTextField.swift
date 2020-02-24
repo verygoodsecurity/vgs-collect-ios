@@ -10,76 +10,36 @@
 import UIKit
 #endif
 
-@objc public protocol VGSTextFieldDelegate {
-    /// VGSTextField did become first responder
-    @objc optional func vgsTextFieldDidBeginEditing(_ textfield: VGSTextField)
-    /// VGSTextField did resign first responder
-    @objc optional func vgsTextFieldDidEndEditing(_ textfield: VGSTextField)
-    /// VGSTextField did resign first responder on Return button pressed
-    @objc optional func vgsTextFieldDidEndEditingOnReturn(_ textfield: VGSTextField)
-}
-
 /// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
-    
     private(set) weak var vgsCollector: VGSCollect?
     internal var textField = MaskedTextField(frame: .zero)
-    internal var focusStatus: Bool = false {
-        didSet {
-            if focusStatus {
-                updateView?()
-            }
-        }
-    }
-    
+    internal var focusStatus: Bool = false
     internal var isRequired: Bool = false
     internal var fieldType: FieldType = .none
     internal var validationModel = VGSValidation()
     internal var fieldName: String!
     internal var token: String?
     
-    /// Should be only for internal use. Returns textfield text with mask
-    var updateView: (() -> Void)?
-
-    internal var text: String? {
-        return textField.secureText
-    }
-    
-    /// Returns textField text without mask
-    internal var rawText: String? {
-        return textField.secureRawText
-    }
-    
-    internal var updateUI: (() -> Void)?
-    
     /// Textfield placeholder string
     public var placeholder: String? {
-        didSet {
-            textField.placeholder = placeholder
-        }
+        didSet { textField.placeholder = placeholder }
     }
     
     /// You can set padding for text and placeholder
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
-        didSet {
-            textField.padding = padding
-        }
+        didSet { textField.padding = padding }
     }
     
     /// The technique to use for aligning the text
     public var textAlignment: NSTextAlignment = .natural {
-        didSet {
-            textField.textAlignment = textAlignment
-        }
+        didSet { textField.textAlignment = textAlignment }
     }
     
     /// Setup VGSTextField additional params. Default is nil
     public var configuration: VGSConfiguration? {
         didSet {
-            
-            guard let configuration = configuration else {
-                return
-            }
+            guard let configuration = configuration else { return }
             
             // config text field
             fieldName = configuration.fieldName
@@ -88,7 +48,7 @@ public class VGSTextField: UIView {
             textField.isSecureTextEntry = configuration.type.isSecureDate
             textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
             textField.returnKeyType = configuration.returnKeyType ?? .default
-
+            
             if configuration.formatPattern.count != 0 {
                 textField.formatPattern = configuration.formatPattern
             } else {
@@ -102,8 +62,6 @@ public class VGSTextField: UIView {
                 vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])
             }
-            
-            updateView?()
         }
     }
     
@@ -120,7 +78,7 @@ public class VGSTextField: UIView {
         super.init(coder: aDecoder)
         mainInitialization()
     }
-        
+    
     deinit {
         vgsCollector?.unregisterTextFields(textField: [self])
     }
@@ -132,13 +90,13 @@ public class VGSTextField: UIView {
         // text view
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
-
+        
         let views = ["view": self, "textField": textField]
         
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[textField]-0-|",
-                                                                  options: .alignAllCenterY,
-                                                                  metrics: nil,
-                                                                  views: views)
+                                                                   options: .alignAllCenterY,
+                                                                   metrics: nil,
+                                                                   views: views)
         NSLayoutConstraint.activate(horizontalConstraints)
         
         let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[textField]-0-|",
@@ -147,13 +105,8 @@ public class VGSTextField: UIView {
                                                                 views: views)
         NSLayoutConstraint.activate(verticalConstraint)
         
-        textField.editingChanged = { [weak self] in
-            if let strongSelf = self {
-                strongSelf.vgsCollector?.updateStatus(for: strongSelf)
-            }
-        }
-         //delegates
-        textField.addSomeTarget(self, action: #selector(textField(_:shouldChangeCharactersIn:replacementString:)), for: .editingChanged)
+        //delegates
+        textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)        
         textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
@@ -161,41 +114,28 @@ public class VGSTextField: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
     }
-
+    
     @objc
-    internal func textFieldDidChange(_ sender: UITextField) {
-        // change status
+    func textFieldValueChanged() {
+        // update status
+        textField.updateTextFormat()
         vgsCollector?.updateStatus(for: self)
     }
     
     /// Set textfield text. For internal use only! Not allowed to be public for PCI scope!
+    @available(*, deprecated, message: "Don't use this method")
     internal func setText(_ text: String?) {
-        textField.text = text
+        textField.secureText = text
         vgsCollector?.updateStatus(for: self)
-        updateUI?()
     }
 }
 
 // MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
-        
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        guard let tfText = textField.text else {
-            return true
-        }
-        
-        let mask = self.textField.formatPattern
-        if mask.count < tfText.count + string.count {
-            return false
-        }
-        return true
-    }
-    
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.vgsTextFieldDidBeginEditing?(self)
     }
-
+    
     public func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.vgsTextFieldDidEndEditing?(self)
     }
@@ -226,7 +166,7 @@ extension VGSTextField {
     internal func focusOn() {
         // change status
         textField.becomeFirstResponder()
-        vgsCollector?.updateStatus(for: self)
+        textFieldValueChanged()
     }
 }
 
