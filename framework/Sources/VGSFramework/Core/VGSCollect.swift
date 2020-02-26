@@ -12,6 +12,7 @@ import UIKit
 #endif
 import Alamofire
 
+
 /// The VGSForm class needed for collect all text filelds
 public class VGSCollect {
     internal let apiClient: APIClient
@@ -84,9 +85,13 @@ extension VGSCollect {
 extension VGSCollect {
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
-        var body = BodyData()
-        
         let elements = storage.elements
+        if let error = validate(elements) {
+            block(nil, error)
+            return
+        }
+
+        var body = BodyData()
         
         let allKeys = elements.compactMap({ $0.fieldName })
         allKeys.forEach { key in
@@ -100,7 +105,7 @@ extension VGSCollect {
         if extraData?.count != 0 {
             extraData?.forEach { (key, value) in body[key] = value }
         }
-        
+                
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
             
             if let error = error {
@@ -124,7 +129,28 @@ extension VGSCollect {
 
 // MARK: - Validation
 internal extension VGSCollect {
-
+    
+    func validate(_ input: [VGSTextField]) -> Error? {
+        var isRequiredErrorFields = [String]()
+        var isRequiredValidOnlyErrorFields = [String]()
+        
+        for textField in input {
+            if textField.isRequired, textField.text.isNilOrEmpty {
+                isRequiredErrorFields.append(textField.fieldName)
+            }
+            if textField.isRequiredValidOnly && !textField.state.isValid {
+                isRequiredValidOnlyErrorFields.append(textField.fieldName)
+            }
+        }
+        
+        if isRequiredErrorFields.count > 0 {
+            return VGSTextFieldInputError.isRequired(["fields" : isRequiredErrorFields, "description" : "input can't be nil or empty"])
+        } else if isRequiredValidOnlyErrorFields.count > 0 {
+            return VGSTextFieldInputError.isRequiredValidOnly(["fields" : isRequiredValidOnlyErrorFields, "description" : "input should be valid only"])
+        }
+        return nil
+    }
+    
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric
     }
