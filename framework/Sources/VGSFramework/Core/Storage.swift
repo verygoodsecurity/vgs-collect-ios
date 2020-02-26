@@ -13,7 +13,7 @@ import UIKit
 
 class Storage {
     var elements = [VGSTextField]()
-    var files = BodyData()
+    var files = FileData()
     
     func addElement(_ element: VGSTextField) {
         if elements.filter({ $0 == element }).count == 0 {

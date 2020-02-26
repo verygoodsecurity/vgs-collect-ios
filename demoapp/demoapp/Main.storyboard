@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="afe-xS-bJP">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -23,6 +23,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2268" y="-271"/>
+        </scene>
+        <!--File-->
+        <scene sceneID="Fu8-wn-sbv">
+            <objects>
+                <viewController id="9Jh-bq-fKs" customClass="FilePickerViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZKQ-ah-6px">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPLOAD FILE WITH" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="knC-B8-EP7">
+                                <rect key="frame" x="8" y="77" width="398" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VGSFilePickerController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Iaf-fo-SXI">
+                                <rect key="frame" x="8" y="138" width="398" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dg-e3-nJp">
+                                <rect key="frame" x="40" y="229" width="334" height="26.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-Xe-N9g">
+                                <rect key="frame" x="20" y="653" width="374" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9K-QZ-hbQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="SELECT FILE">
+                                            <color key="titleColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="selectFileAction:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="9zq-ap-CHV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFm-4f-kTP">
+                                        <rect key="frame" x="197" y="0.0" width="177" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="UPLOAD"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitAction:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="Aca-a7-SYH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5cR-b5-ytJ"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Zv2-Xe-N9g" firstAttribute="leading" secondItem="5Qf-Hr-yH8" secondAttribute="leading" constant="20" id="6eR-VE-gaV"/>
+                            <constraint firstItem="knC-B8-EP7" firstAttribute="leading" secondItem="5Qf-Hr-yH8" secondAttribute="leading" constant="8" id="Ahg-Fz-neS"/>
+                            <constraint firstItem="knC-B8-EP7" firstAttribute="top" secondItem="5Qf-Hr-yH8" secondAttribute="top" constant="33" id="Ecr-oX-Ens"/>
+                            <constraint firstItem="5Qf-Hr-yH8" firstAttribute="trailing" secondItem="knC-B8-EP7" secondAttribute="trailing" constant="8" id="H6x-vd-kF1"/>
+                            <constraint firstItem="4Dg-e3-nJp" firstAttribute="leading" secondItem="5Qf-Hr-yH8" secondAttribute="leading" constant="40" id="ILN-Ia-uiR"/>
+                            <constraint firstItem="5Qf-Hr-yH8" firstAttribute="trailing" secondItem="4Dg-e3-nJp" secondAttribute="trailing" constant="40" id="NSu-RM-7gl"/>
+                            <constraint firstItem="5Qf-Hr-yH8" firstAttribute="trailing" secondItem="Zv2-Xe-N9g" secondAttribute="trailing" constant="20" id="QCK-z5-UAX"/>
+                            <constraint firstItem="Iaf-fo-SXI" firstAttribute="top" secondItem="knC-B8-EP7" secondAttribute="bottom" constant="20" id="ZOz-V9-1F0"/>
+                            <constraint firstItem="Iaf-fo-SXI" firstAttribute="trailing" secondItem="knC-B8-EP7" secondAttribute="trailing" id="bCD-wB-9ZF"/>
+                            <constraint firstItem="4Dg-e3-nJp" firstAttribute="top" secondItem="Iaf-fo-SXI" secondAttribute="bottom" constant="50" id="hKa-mp-f2i"/>
+                            <constraint firstItem="Iaf-fo-SXI" firstAttribute="leading" secondItem="knC-B8-EP7" secondAttribute="leading" id="l0o-JB-UuU"/>
+                            <constraint firstItem="5Qf-Hr-yH8" firstAttribute="bottom" secondItem="Zv2-Xe-N9g" secondAttribute="bottom" constant="100" id="tuo-Aj-4m2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Qf-Hr-yH8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="File" image="cloud-upload" id="rxi-rR-J3s"/>
+                    <connections>
+                        <outlet property="stateLabel" destination="4Dg-e3-nJp" id="cPE-R7-za5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tze-B5-UQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2289.8550724637685" y="429.24107142857139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BEG-Sr-Dkt">
@@ -36,6 +128,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="N9H-N5-RQR"/>
+                        <segue destination="9Jh-bq-fKs" kind="relationship" relationship="viewControllers" id="r8O-tg-y2k"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhk-cb-oLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,5 +138,6 @@
     </scenes>
     <resources>
         <image name="bank_card" width="25" height="25"/>
+        <image name="cloud-upload" width="25" height="25"/>
     </resources>
 </document>
