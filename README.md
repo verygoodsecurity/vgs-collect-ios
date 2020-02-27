@@ -68,7 +68,8 @@ class ViewController: UIViewController {
 
         // Configure Elements UI
         let cardConfig = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
-        cardConfig.isRequired = true
+        // Submit only if cardNumber input is valid
+        cardConfig.isRequiredValidOnly = true
         cardConfig.type = .cardNumber
 
         cardNumber.configuration = cardConfig
