@@ -19,4 +19,4 @@ public let VGSSDKErrorInputDataRequired: VGSErrorInfoKey = "VGSSDKErrorInputData
 public let VGSSDKErrorInputDataRequiredValid: VGSErrorInfoKey = "VGSSDKErrorInputDataRequiredValid"
 
 // Response errors
-public let VGSSDKErrorUnexpectedResposeDataFormat: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResposeDataFormat"
+public let VGSSDKErrorUnexpectedResponseDataFormat: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResponseDataFormat"
