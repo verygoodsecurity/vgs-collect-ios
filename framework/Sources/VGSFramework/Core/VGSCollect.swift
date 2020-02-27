@@ -90,15 +90,8 @@ extension VGSCollect {
             return
         }
 
-        var body = BodyData()
-        
-        let allKeys = elements.compactMap({ $0.fieldName })
-        allKeys.forEach { key in
-            if let value = elements.filter({ $0.fieldName == key }).first {
-                body[key] = value.rawText
-            } else {
-                fatalError("Wrong key: \(key)")
-            }
+        var body: BodyData = elements.reduce(into: BodyData()) { (dict, element) in
+            dict[element.fieldName] = element.rawText
         }
         
         if extraData?.count != 0 {
@@ -108,13 +101,11 @@ extension VGSCollect {
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
             
             if let error = error {
-                print("Error: \(String(describing: error.localizedDescription))")
                 block(json, error)
                 return
             } else {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
-                    
                     if let element = elements.filter({ $0.fieldName == key }).first {
                         element.token = json?[key] as? String
                     }

@@ -12,6 +12,9 @@ public enum VGSErrorType: Int {
     // TextField data errors
     case inputDataRequired = 1001
     case inputDataRequiredValidOnly = 1002
+    
+    // Response data errors
+    case unexpectedResponseDataFormat = 1401
 }
 
 public class VGSError: NSError {
