@@ -49,9 +49,7 @@ class CardTextFieldTests: XCTestCase {
         XCTAssertNotNil(SwiftLuhn.CardType.rupay.brandIcon)
     }
     
-    func testDynamicFormatPattren() {
-        cardTextField.textField.secureText = ""
-        
+    func testInput() {
         cardTextField.textField.secureText = "4"
         cardTextField.focusOn()
         cardTextField.textField.secureText! += "1"
@@ -62,5 +60,34 @@ class CardTextFieldTests: XCTestCase {
         } else {
             XCTFail("Failt state card text files")
         }
+    }
+    
+    func testInput16() {
+        let format14 = "#### ###### ####"
+        let format16 = "#### #### #### ####"
+        
+        cardTextField.textField.secureText = "1234"
+        cardTextField.focusOn()
+        
+        XCTAssertNotNil(cardTextField.textField.formatPattern)
+        XCTAssertTrue(cardTextField.textField.formatPattern == format14)
+        
+        cardTextField.textField.secureText! += "5678"
+        cardTextField.focusOn()
+        
+        XCTAssertNotNil(cardTextField.textField.formatPattern)
+        XCTAssertTrue(cardTextField.textField.formatPattern == format14)
+        
+        cardTextField.textField.secureText! += "9012"
+        cardTextField.focusOn()
+        
+        XCTAssertNotNil(cardTextField.textField.formatPattern)
+        XCTAssertTrue(cardTextField.textField.formatPattern == format14)
+        
+        cardTextField.textField.secureText! += "3456"
+        cardTextField.focusOn()
+        
+        XCTAssertNotNil(cardTextField.textField.formatPattern)
+        XCTAssertTrue(cardTextField.textField.formatPattern == format16)
     }
 }
