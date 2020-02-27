@@ -65,15 +65,15 @@ class APIClient {
                 
                 switch response.result {
                 case .success(let data):
-                    
                     guard let dict = data as? JsonData else {
-                        block(nil, nil)
+                        block(nil, VGSError(type: .unexpectedResponseDataFormat, userInfo: VGSErrorInfo(key: VGSSDKErrorUnexpectedResposeDataFormat, description: "Unexpected response format")))
                         return
                     }
                     block(dict, nil)
-                    
+                    return
                 case .failure(let error):
                     block(nil, error)
+                    return
                 }
         }
     }
