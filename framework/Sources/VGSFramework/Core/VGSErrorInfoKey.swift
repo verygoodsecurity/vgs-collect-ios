@@ -12,7 +12,7 @@ public typealias VGSErrorInfoKey = String
 
 public let VGSCollectSDKErrorDomain = "vgscollect.sdk"
 
-//MARK: -  VGSErrorInfoKeys
+// MARK: - VGSErrorInfoKeys
 
 public let VGSSDKErrorInputDataRequired: VGSErrorInfoKey = "VGSSDKErrorInputDataRequired"
 public let VGSSDKErrorInputDataRequiredValid: VGSErrorInfoKey = "VGSSDKErrorInputDataRequiredValid"
