@@ -8,21 +8,15 @@
 
 import Foundation
 
+public enum VGSErrorType: Int {
+    // TextField data errors
+    case inputDataRequired = 1001
+    case inputDataRequiredValidOnly = 1002
+}
+
 public class VGSError: NSError {
     
-    public enum ErrorType: Int {
-        // TextField data errors
-        case inputDataRequired = 1001
-        case inputDataRequiredValidOnly = 1002
-        
-        // File data errors
-        case inputFileSizeExceedsTheLimit = 1101
-        case inputFileTypeIsWrong = 1102
-        case inputFileTypeIsNotSupported = 1103
-        case inputFileNotFound = 1104
-    }
-
-    public let type: ErrorType!
+    public let type: VGSErrorType!
     
     override public var code: Int {
         return type.rawValue
@@ -32,8 +26,8 @@ public class VGSError: NSError {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal required init(type: ErrorType, userInfo dict: [String: Any]? = nil) {
+    internal required init(type: VGSErrorType, userInfo info: VGSErrorInfo? = nil) {
         self.type = type
-        super.init(domain: "vgscollectsdk", code: type.rawValue, userInfo: dict)
+        super.init(domain: VGSCollectSDKErrorDomain, code: type.rawValue, userInfo: info?.asDictionary)
     }
 }

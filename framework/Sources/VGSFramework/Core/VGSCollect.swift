@@ -12,7 +12,6 @@ import UIKit
 #endif
 import Alamofire
 
-
 /// The VGSForm class needed for collect all text filelds
 public class VGSCollect {
     internal let apiClient: APIClient
@@ -144,9 +143,9 @@ internal extension VGSCollect {
         }
         
         if isRequiredErrorFields.count > 0 {
-            return VGSTextFieldInputError.isRequired(["fields" : isRequiredErrorFields, "description" : "input can't be nil or empty"])
+            return VGSError(type: .inputDataRequired, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequired, description: "Input data can't be nil or empty", extraInfo: ["fields": isRequiredErrorFields]))
         } else if isRequiredValidOnlyErrorFields.count > 0 {
-            return VGSTextFieldInputError.isRequiredValidOnly(["fields" : isRequiredValidOnlyErrorFields, "description" : "input should be valid only"])
+            return VGSError(type: .inputDataRequiredValidOnly, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequiredValid, description: "Input data should be valid only", extraInfo: ["fields": isRequiredValidOnlyErrorFields]))
         }
         return nil
     }

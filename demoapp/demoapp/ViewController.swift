@@ -293,6 +293,11 @@ extension ViewController {
             if error == nil, let data = json?["json"] {
                 self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
             } else {
+                if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+                    if errorKey == VGSSDKErrorInputDataRequiredValid {
+                        print(errorKey)
+                    }
+                }
                 self?.consoleLabel.text = "Something went wrong!"
                 print("Error: \(String(describing: error))")
             }
