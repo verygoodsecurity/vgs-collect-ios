@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install cocoapods
-          command: sudo gem install cocoapods --verbose
+          command: sudo gem install cocoapods -v 1.8.4
       - run:
           name: Install pods
           command: cd framework; pod install

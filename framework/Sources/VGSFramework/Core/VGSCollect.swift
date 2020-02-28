@@ -84,33 +84,28 @@ extension VGSCollect {
 extension VGSCollect {
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
-        var body = BodyData()
-        
         let elements = storage.elements
-        
-        let allKeys = elements.compactMap({ $0.fieldName })
-        allKeys.forEach { key in
-            if let value = elements.filter({ $0.fieldName == key }).first {
-                body[key] = value.rawText
-            } else {
-                fatalError("Wrong key: \(key)")
-            }
+        if let error = validate(elements) {
+            block(nil, error)
+            return
+        }
+
+        var body: BodyData = elements.reduce(into: BodyData()) { (dict, element) in
+            dict[element.fieldName] = element.rawText
         }
         
         if extraData?.count != 0 {
             extraData?.forEach { (key, value) in body[key] = value }
         }
-        
+                
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
             
             if let error = error {
-                print("Error: \(String(describing: error.localizedDescription))")
                 block(json, error)
                 return
             } else {
                 let allKeys = json?.keys
                 allKeys?.forEach({ key in
-                    
                     if let element = elements.filter({ $0.fieldName == key }).first {
                         element.token = json?[key] as? String
                     }
@@ -124,7 +119,28 @@ extension VGSCollect {
 
 // MARK: - Validation
 internal extension VGSCollect {
-
+    
+    func validate(_ input: [VGSTextField]) -> Error? {
+        var isRequiredErrorFields = [String]()
+        var isRequiredValidOnlyErrorFields = [String]()
+        
+        for textField in input {
+            if textField.isRequired, textField.text.isNilOrEmpty {
+                isRequiredErrorFields.append(textField.fieldName)
+            }
+            if textField.isRequiredValidOnly && !textField.state.isValid {
+                isRequiredValidOnlyErrorFields.append(textField.fieldName)
+            }
+        }
+        
+        if isRequiredErrorFields.count > 0 {
+            return VGSError(type: .inputDataRequired, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequired, description: "Input data can't be nil or empty", extraInfo: ["fields": isRequiredErrorFields]))
+        } else if isRequiredValidOnlyErrorFields.count > 0 {
+            return VGSError(type: .inputDataRequiredValidOnly, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequiredValid, description: "Input data should be valid only", extraInfo: ["fields": isRequiredValidOnlyErrorFields]))
+        }
+        return nil
+    }
+    
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric
     }

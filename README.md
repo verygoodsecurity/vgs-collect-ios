@@ -68,7 +68,8 @@ class ViewController: UIViewController {
 
         // Configure Elements UI
         let cardConfig = VGSConfiguration(collector: vgsForm, fieldName: "cardNumber")
-        cardConfig.isRequired = true
+        // Submit only if cardNumber input is valid
+        cardConfig.isRequiredValidOnly = true
         cardConfig.type = .cardNumber
 
         cardNumber.configuration = cardConfig
@@ -115,7 +116,13 @@ func sendData() {
         if error == nil, let json = json {
             // parse response data
         } else {
-            // handle error
+            if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+                if errorKey == VGSSDKErrorInputDataRequiredValid {
+                    // handle VGSError error
+                }
+            } else {
+               // handle other errors 
+            }
         }
     })
 }
@@ -123,11 +130,11 @@ func sendData() {
 
 ### More useful UI component for bank cards
 
+VGSCardTextField automatically detects card provider and display card brand icon in the input field.
+
 <p align="center">
 	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
 </p>
-
-VGSCardTextField automatically detects card provider and display card brand icon in the input field.
 
 ````swift
 // create VGSCardTextField instance
@@ -201,6 +208,71 @@ extension ViewController: VGSCardIOScanControllerDelegate {
 
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
+
+### Scan Credit Card Data
+VGSCollect provide secure CardIO integration module for collecting and setting scaned data into VGSCollectTextFields.
+To start using CardIO as bank cards scanner you should install additional pod into your app:
+```ruby
+pod 'VGSCollectSDK'
+pod 'VGSCollectSDK/CardIO'
+```
+	
+In your ViewController create `VGSCardIOScanController` instance
+````swift
+class ViewController: UIViewController {
+
+var scanController = VGSCardIOScanController()
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // set preferred device camera
+    scanController.preferredCameraPosition = .front
+    
+    // set VGSCardIOScanDelegate
+    scanController.delegate = self
+}
+
+@objc
+func scanData(_ sender: UIButton) {
+    scanController.presentCardScanner(on: self, animated: true, completion: nil)
+}
+
+````
+Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `CradIODataType` to get available scand data types.
+
+````swift
+extension ViewController: VGSCardIOScanControllerDelegate {
+    
+    //When user press Done button on CardIO screen
+    func userDidFinishScan() {
+        scanController.dismissCardScanner(animated: true, completion: {
+            // add actions on scan controller dismiss completion
+        })
+    }
+    
+    //When user press Cancel button on CardIO screen
+    func userDidCancelScan() {
+        scanController.dismissCardScanner(animated: true, completion: nil)
+    }
+    
+    //Asks VGSTextField where scanned data with type need to be set.
+    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
+        switch type {
+        case .expirationDate:
+            return expCardDate
+        case .cvc:
+            return cvcCardNum
+        case .cardNumber:
+            return cardNumber
+        default:
+            return nil
+        }
+    }
+}
+````
+
+You should also add **NSCameraUsageDescription** key with description string into your App Info.plist.
 
 ### For more details check our documentation
 https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
