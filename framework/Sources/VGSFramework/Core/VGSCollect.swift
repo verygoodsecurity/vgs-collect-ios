@@ -104,13 +104,13 @@ extension VGSCollect {
         }
     }
     
-    public func submitFile(path: String, method: HTTPMethod = .post, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
-         var valueForSend = FileData()
+         var body = BodyData()
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
-            block(nil, VGSError(type: .inputFileNotFound, userInfo: ["key": "file_not_found_error",
-                                                                     "description": "File not selected or doesn't exists"]))
+            block(nil, VGSError(type: .inputFileNotFound, userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound, description: "File not selected or doesn't exists", extraInfo: [:])))
+            
             return
         }
 
@@ -119,23 +119,26 @@ extension VGSCollect {
         if let data = value as? Data {
             result = data
         } else {
-            block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: ["key": "not_supported_file_format",
-                                                                               "description": "File format is not supported"]))
+            block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File format is not supported. Can't convert to Data.", extraInfo: [:])))
             return
         }
-
         if result.count >= maxFileSizeInternalLimitInBytes {
-            block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: ["key": "file_size_too_large",
-                                                                                "description": "File size is too large: (\(result.count)) bytes. Max file size should be \(maxFileSizeInternalLimitInBytes) bytes"]))
+            block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File size is too large.", extraInfo: ["expectedSize": maxFileSizeInternalLimitInBytes, "fileSize": "\(result.count)", "sizeUnit": "byte"])))
             return
         }
-        valueForSend[key] = result.base64EncodedString()
+        
+        let encodedData = result.base64EncodedString()
 
-        if valueForSend.count == 0 {
-            block(nil,  VGSError(type: .inputFileTypeIsNotSupported, userInfo: ["key": "not_supported_file_format",
-                                                                                "description": "File format is not supported"]))
+        if encodedData.count == 0 {
+            block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File format is not supported. File is empty.", extraInfo: [:])))
             return
         }
-         apiClient.sendRequest(path: path, method: method, value: valueForSend, completion: block)
+        
+        body[key] = encodedData
+        if extraData?.count != 0 {
+            extraData?.forEach { (key, value) in body[key] = value }
+        }
+        
+         apiClient.sendRequest(path: path, method: method, value: body, completion: block)
     }
 }

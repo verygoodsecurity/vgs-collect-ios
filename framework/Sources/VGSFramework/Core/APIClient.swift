@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 public typealias JsonData = [String: Any]
-public typealias FileData = [String: Any]
+public typealias BodyData = [String: Any]
 public typealias HTTPHeaders = [String: String]
 
 class APIClient {
@@ -39,7 +39,7 @@ class APIClient {
         ]
     }()
     
-    func sendRequest(path: String, method: HTTPMethod = .post, value: FileData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"

@@ -29,12 +29,12 @@ class FilePickerViewController: UIViewController {
     
     @IBAction func submitAction(_ sender: Any) {
         stateLabel.text = "Uploading file..."
-        vgsForm.submitFile(path: "/post", method: .post) { [weak self](json, error) in
-            if error == nil, let json = json {
+        vgsForm.submitFile(path: "/post", method: .post, extraData: ["card_cvc": "1234"]) { [weak self](json, error) in
+            if error == nil, let json = json?["json"] {
                 self?.stateLabel.text = "Success!!!\n" + (String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8)!)
             } else {
                 print("Error: \(String(describing: error?.localizedDescription))")
-                self?.stateLabel.text = "Something when wrong!"
+                self?.stateLabel.text = "Something went wrong!"
             }
         }
     }
@@ -60,7 +60,7 @@ class FilePickerViewController: UIViewController {
     }
     
     func showPickerWithSource(_ source: VGSFileSource) {
-        let fieldName = source == .documentsDirectory ? "secred_doc" : "card_image"
+        let fieldName = source == .documentsDirectory ? "secret_doc" : "card_image"
         let filePickerConfig = VGSFilePickerConfiguration(collector: vgsForm, fieldName: fieldName, fileSource: source)
         pickerController = VGSFilePickerController(configuration: filePickerConfig)
         pickerController?.delegate = self
