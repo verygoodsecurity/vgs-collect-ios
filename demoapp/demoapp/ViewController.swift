@@ -295,7 +295,7 @@ extension ViewController {
             } else {
                 if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
                     if errorKey == VGSSDKErrorInputDataRequiredValid {
-                        print(errorKey)
+                        // Handle VGSError error
                     }
                 }
                 self?.consoleLabel.text = "Something went wrong!"

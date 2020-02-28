@@ -116,7 +116,13 @@ func sendData() {
         if error == nil, let json = json {
             // parse response data
         } else {
-            // handle error
+            if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+                if errorKey == VGSSDKErrorInputDataRequiredValid {
+                    // handle VGSError error
+                }
+            } else {
+               // handle other errors 
+            }
         }
     })
 }
@@ -124,11 +130,11 @@ func sendData() {
 
 ### More useful UI component for bank cards
 
+VGSCardTextField automatically detects card provider and display card brand icon in the input field.
+
 <p align="center">
 	<img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
 </p>
-
-VGSCardTextField automatically detects card provider and display card brand icon in the input field.
 
 ````swift
 // create VGSCardTextField instance
