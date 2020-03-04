@@ -23,5 +23,8 @@ public let VGSSDKErrorFileNotFound: VGSErrorInfoKey = "VGSSDKErrorFileNotFound"
 public let VGSSDKErrorFileTypeNotSupported: VGSErrorInfoKey = "VGSSDKErrorFileTypeNotSupported"
 public let VGSSDKErrorFileSizeExceedsTheLimit: VGSErrorInfoKey = "VGSSDKErrorFileSizeExceedsTheLimit"
 
+// Source errors(camera, photolibrary, etc.)
+public let VGSSDKErrorSourceNotAvailable: VGSErrorInfoKey = "VGSSDKErrorSourceNotAvailable"
+
 // Response errors
 public let VGSSDKErrorUnexpectedResponseDataFormat: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResponseDataFormat"

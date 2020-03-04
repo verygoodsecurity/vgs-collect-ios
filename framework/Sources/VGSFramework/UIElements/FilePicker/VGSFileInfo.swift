@@ -12,17 +12,17 @@ import Foundation
 public protocol VGSFileInfoProtocol {
     var fileExtension: String? { get }
     var size: Int { get }
-    var sizeUnit: String? { get }
+    var sizeUnits: String? { get }
 }
 
 public class VGSFileInfo: NSObject, VGSFileInfoProtocol {
     public let fileExtension: String?
     public let size: Int
-    public let sizeUnit: String?
+    public let sizeUnits: String?
     
-    required public init(fileExtension: String, size: Int, sizeUnit: String) {
+    required public init(fileExtension: String, size: Int, sizeUnits: String) {
         self.fileExtension = fileExtension
         self.size = size
-        self.sizeUnit = sizeUnit
+        self.sizeUnits = sizeUnits
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 public enum VGSFileSource: Int, CaseIterable {
-    case library
+    case photoLibrary
     case camera
     case documentsDirectory
 }

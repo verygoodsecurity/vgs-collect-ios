@@ -49,10 +49,10 @@ extension VGSDocumentPicker: UIDocumentPickerDelegate {
 
         if let url = urls.first, let fileData = try? Data(contentsOf: url) {
             vgsCollector?.storage.files[filename] = fileData
-            let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnit: "byte")
+            let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnits: "bytes")
             delegate?.userDidPickFileWithInfo(fileMetadata)
         } else {
-            delegate?.filePickingFailedWithError?("file_not_found_error")
+            delegate?.filePickingFailedWithError?(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Document File format is not supported. Can't convert to Data.", extraInfo: [:])))
         }
         return
     }

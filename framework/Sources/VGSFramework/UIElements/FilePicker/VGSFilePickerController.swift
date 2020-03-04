@@ -12,7 +12,7 @@ import Foundation
 public protocol VGSFilePickerControllerDelegate {
     func userDidPickFileWithInfo(_ info: VGSFileInfo)
     func userDidSCancelFilePicking()
-    @objc optional func filePickingFailedWithError(_ error: String)
+    @objc optional func filePickingFailedWithError(_ error: VGSError)
 }
 
 public class VGSFilePickerController {

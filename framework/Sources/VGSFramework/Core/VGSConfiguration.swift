@@ -24,6 +24,8 @@ protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
     
     var isRequired: Bool { get }
     
+    var isRequiredValidOnly: Bool { get }
+    
     var type: FieldType { get }
     
     var formatPattern: String { get set }

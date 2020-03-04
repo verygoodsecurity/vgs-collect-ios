@@ -26,7 +26,7 @@ internal class VGSImagePicker: NSObject, VGSFilePickerProtocol {
     
     func present(on viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         if !isSourceEnabled() {
-            delegate?.filePickingFailedWithError?("image_source_not_available_error")
+            delegate?.filePickingFailedWithError?(VGSError(type: .sourceNotAvailable, userInfo: VGSErrorInfo(key: VGSSDKErrorSourceNotAvailable, description: "Image source not available.", extraInfo: ["source": "\(picker.sourceType)"])))
             return
         }
         viewController.present(picker, animated: animated, completion: completion)
@@ -57,12 +57,29 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let imageData = image.jpegData(compressionQuality: 1) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            var data: Data?
+            var fileExtension = ""
+            if let jpegData = image.jpegData(compressionQuality: 1) {
+                data = jpegData
+                fileExtension = "jpeg"
+            } else if let pngData = image.pngData() {
+                data = pngData
+                fileExtension = "png"
+            }
+            
+            guard let imageData = data else {
+                delegate?.filePickingFailedWithError?(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Image File format is not supported. Can't convert to Data.", extraInfo: [:])))
+                return
+            }
+            
             vgsCollector?.storage.files[filename] = imageData
-            let imgMetadata = VGSFileInfo(fileExtension: "jpeg", size: imageData.count, sizeUnit: "byte")
+            let imgMetadata = VGSFileInfo(fileExtension: fileExtension, size: imageData.count, sizeUnits: "bytes")
             delegate?.userDidPickFileWithInfo(imgMetadata)
+            return
         } else {
-            delegate?.filePickingFailedWithError?("image_not_found_error")
+            delegate?.filePickingFailedWithError?(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Image File format is not supported.", extraInfo: [:])))
+            return
         }
     }
 }

@@ -20,7 +20,7 @@ internal extension VGSFilePickerController {
         switch fileSource {
         case .camera:
             return VGSImagePicker(configuration: configuration, sourceType: .camera)
-        case .library:
+        case .photoLibrary:
             return VGSImagePicker(configuration: configuration, sourceType: .photoLibrary)
         case .documentsDirectory:
             return VGSDocumentPicker(configuration: configuration)

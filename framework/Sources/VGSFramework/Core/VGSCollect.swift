@@ -61,6 +61,10 @@ public class VGSCollect {
             self?.storage.removeElement(tf)
         }
     }
+    
+    public func cleanFiles() {
+        storage.removeFiles()
+    }
 }
 
 extension VGSCollect {
@@ -123,7 +127,7 @@ extension VGSCollect {
             return
         }
         if result.count >= maxFileSizeInternalLimitInBytes {
-            block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File size is too large.", extraInfo: ["expectedSize": maxFileSizeInternalLimitInBytes, "fileSize": "\(result.count)", "sizeUnit": "byte"])))
+            block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: VGSErrorInfo(key: VGSSDKErrorFileSizeExceedsTheLimit, description: "File size is too large.", extraInfo: ["expectedSize": maxFileSizeInternalLimitInBytes, "fileSize": "\(result.count)", "sizeUnits": "bytes"])))
             return
         }
         
