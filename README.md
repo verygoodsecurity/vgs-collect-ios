@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev)
 [![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
-[![license](https://img.shields.io/github/license/verygoodsecurity/vgs-ios-sdk.svg)]()
+[![license](https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg)]()
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
 [![swift](https://img.shields.io/badge/swift-5-orange)]()
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat)](https://cocoapods.org/pods/VGSCollectSDK)
@@ -285,4 +285,4 @@ https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
 
 ## License
 
- VGSCollect iOS SDK is released under the MIT license. [See LICENSE](https://github.com/verygoodsecurity/vgs-ios-sdk/blob/master/LICENSE) for details.
+ VGSCollect iOS SDK is released under the MIT license. [See LICENSE](https://github.com/verygoodsecurity/vgs-collect-ios/blob/master/LICENSE) for details.
