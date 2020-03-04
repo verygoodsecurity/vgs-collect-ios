@@ -16,7 +16,7 @@ class FilePickerTests: XCTestCase {
     
     override func setUp() {
         vgsForm = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
-        let filePickerConfiguration = VGSFilePickerConfiguration(collector: vgsForm, fieldName: "image", fileSource: .library)
+        let filePickerConfiguration = VGSFilePickerConfiguration(collector: vgsForm, fieldName: "image", fileSource: .photoLibrary)
         filePicker = VGSFilePickerController(configuration: filePickerConfiguration)
     }
 
