@@ -90,15 +90,17 @@ extension VGSCollect {
             return
         }
 
-        var body: BodyData = elements.reduce(into: BodyData()) { (dict, element) in
+        let body: BodyData = elements.reduce(into: BodyData()) { (dict, element) in
             dict[element.fieldName] = element.rawText
         }
         
+        var mappedData = mapNestingObjects(body)
+        
         if extraData?.count != 0 {
-            extraData?.forEach { (key, value) in body[key] = value }
+            extraData?.forEach { (key, value) in mappedData[key] = value }
         }
                 
-        apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
+        apiClient.sendRequest(path: path, method: method, value: mappedData) { (json, error) in
             
             if let error = error {
                 block(json, error)
@@ -114,6 +116,31 @@ extension VGSCollect {
                 return
             }
         }
+    }
+    
+    private func mapNestingObjects(_ body: [String: Any]) -> [String: Any] {
+        
+        var resultDict = [String: Any]()
+        for (key, value) in body {
+            
+            let components = key.split(separator: ".").map{ String($0) }
+            var currentDict = [String: Any]()
+            
+            var i = components.count - 1
+            
+            while i >= 0 {
+                if i == components.count - 1 {
+                    currentDict[components[i]] = value
+                } else {
+                    let dict = [components[i] : currentDict]
+                    currentDict = dict
+                }
+                i -= 1
+            }
+            let newDict = deepMerge(resultDict, currentDict)
+            resultDict = newDict
+        }
+        return resultDict
     }
 }
 
@@ -144,4 +171,17 @@ internal extension VGSCollect {
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric
     }
+    
+    func deepMerge(_ d1: [String: Any], _ d2: [String:Any]) -> [String:Any] {
+        var result = d1
+        for (k2, v2) in d2 {
+            if let v2 = v2 as? [String:Any], let v1 = result[k2] as? [String:Any] {
+                result[k2] = deepMerge(v1, v2)
+            } else {
+                result[k2] = v2
+            }
+        }
+        return result
+    }
 }
+
