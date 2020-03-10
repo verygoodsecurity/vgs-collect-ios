@@ -40,3 +40,16 @@ func mapStringKVOToDictionary(key: String, value: Any, separator: String.Element
     }
     return dict
 }
+
+extension Dictionary {
+    /// Resturn JSON string  representation of dictionary with sorted keys
+    @available(iOS 11.0, *)
+    var jsonStringRepresentation: String? {
+        guard let theJSONData = try? JSONSerialization.data(withJSONObject: self,
+                                                            options: [.prettyPrinted, .sortedKeys]) else {
+            return nil
+        }
+
+        return String(data: theJSONData, encoding: .ascii)
+    }
+}
