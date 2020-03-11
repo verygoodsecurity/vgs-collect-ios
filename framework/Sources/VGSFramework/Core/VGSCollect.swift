@@ -84,34 +84,18 @@ extension VGSCollect {
 extension VGSCollect {
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
-        let elements = storage.elements
-        if let error = validate(elements) {
+        if let error = validateStoredInputData() {
             block(nil, error)
             return
         }
 
-        let textFieldsData: BodyData = elements.reduce(into: BodyData()) { (dict, element) in
-            dict[element.fieldName] = element.rawText
-        }
-        
-        var body = mapFieldsDataToDictionary(textFieldsData)
-        
-        if let customData = extraData, customData.count != 0 {
-            body = deepMerge(customData, body)
-        }
+        let body = mapStoredInputDataForSubmit(with: extraData)
                 
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
-            
             if let error = error {
                 block(json, error)
                 return
             } else {
-                let allKeys = json?.keys
-                allKeys?.forEach({ key in
-                    if let element = elements.filter({ $0.fieldName == key }).first {
-                        element.token = json?[key] as? String
-                    }
-                })
                 block(json, nil)
                 return
             }

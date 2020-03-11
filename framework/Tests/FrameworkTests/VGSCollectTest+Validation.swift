@@ -1,67 +1,41 @@
 //
-//  FormTests.swift
+//  VGSCollectTest+Validation.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 9/17/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
+//  Created by Dima on 11.03.2020.
+//  Copyright © 2020 VGS. All rights reserved.
 //
 
 import XCTest
 @testable import VGSFramework
 
-class CollectorTests: XCTestCase {
+class VGSCollectValidationTests: XCTestCase {
+    
     var collector: VGSCollect!
     
     override func setUp() {
         collector = VGSCollect(id: "tntva5wfdrp")
     }
-
+    
     override func tearDown() {
         collector = nil
     }
-
-    func testEnvByDefault() {
-        let host = collector.apiClient.baseURL.host ?? ""
-        XCTAssertTrue(host.contains("sandbox"))
+    
+    func testTenantIdValideReturnsFalse() {
+        XCTAssertFalse(VGSCollect.tenantIDValid(""))
+        XCTAssertFalse(VGSCollect.tenantIDValid(" "))
+        XCTAssertFalse(VGSCollect.tenantIDValid("tnt_123456789"))
+        XCTAssertFalse(VGSCollect.tenantIDValid("tnt 123456789"))
+        XCTAssertFalse(VGSCollect.tenantIDValid("tnt@123456789"))
+        XCTAssertFalse(VGSCollect.tenantIDValid("tenant/tenant"))
+        XCTAssertFalse(VGSCollect.tenantIDValid("tenant:tenant"))
     }
     
-    func testLiveEnvirinment() {
-        let liveForm = VGSCollect(id: "testID", environment: .live)
-        let host = liveForm.apiClient.baseURL.host ?? ""
-        XCTAssertTrue(host.contains("live"))
-    }
-    
-    func testCustomHeader() {
-        let headerKey = "costom-header"
-        let headerValue = "custom header value"
-        
-        collector.customHeaders = [
-            headerKey: headerValue
-        ]
-        
-        XCTAssertNotNil(collector.customHeaders)
-        XCTAssert(collector.customHeaders![headerKey] == headerValue)
-    }
-    
-    func testJail() {
-        XCTAssertFalse(VGSCollect.isJailbroken())
-    }
-    
-    func testCanOpen() {
-        let path = "."
-        XCTAssertTrue(VGSCollect.canOpen(path: path))
-    }
-    
-    func testRegistrationTextField() {
-        let config = VGSConfiguration(collector: collector, fieldName: "test")
-        let tf = VGSTextField()
-        tf.configuration = config
-        
-        XCTAssertTrue(collector.storage.elements.count == 1)
-        
-        collector.unregisterTextFields(textField: [tf])
-        
-        XCTAssertTrue(collector.storage.elements.count == 0)
+    func testTenantIdValideReturnsTrue() {
+        XCTAssertTrue(VGSCollect.tenantIDValid("1234567890"))
+        XCTAssertTrue(VGSCollect.tenantIDValid("abcdefghijklmnopqarstuvwxyz"))
+        XCTAssertTrue(VGSCollect.tenantIDValid("tnt1234567890"))
+        XCTAssertTrue(VGSCollect.tenantIDValid("1234567890tnt"))
     }
     
     func testSubmitValidRequiredFieldsReturnsNotNil() {

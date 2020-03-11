@@ -15,7 +15,12 @@ internal extension VGSCollect {
         return tenantId.isAlphaNumeric
     }
     
-    /// Validate textfields input data
+    /// Validate stored textfields input data
+    func validateStoredInputData() -> Error? {
+        return validate(storage.elements)
+    }
+    
+    /// Validate specific textfields input data
     func validate(_ input: [VGSTextField]) -> Error? {
         var isRequiredErrorFields = [String]()
         var isRequiredValidOnlyErrorFields = [String]()
@@ -37,7 +42,25 @@ internal extension VGSCollect {
         return nil
     }
     
-    func mapFieldsDataToDictionary(_ body: [String: Any]) -> [String: Any] {
+    /// Turns textfields data saved in Storage and extra data in format ready to submit
+    func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
+
+        let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
+           dict[element.fieldName] = element.rawText
+        }
+
+        var body = mapInputFieldsDataToDictionary(textFieldsData)
+
+        if let customData = extraData, customData.count != 0 {
+           // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
+           body = deepMerge(customData, body)
+        }
+
+        return body
+    }
+    
+    /// Maps textfield string key with separator  into nesting Dictionary
+    func mapInputFieldsDataToDictionary(_ body: [String: Any]) -> [String: Any] {
         var resultDict = [String: Any]()
         for (key, value) in body {
             let mappedDict = mapStringKVOToDictionary(key: key, value: value, separator: ".")
@@ -47,4 +70,3 @@ internal extension VGSCollect {
         return resultDict
     }
 }
-
