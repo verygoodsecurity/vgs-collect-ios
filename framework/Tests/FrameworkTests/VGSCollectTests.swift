@@ -120,13 +120,18 @@ class VGSCollectTests: XCTestCase {
         ssnTextField.configuration = ssnConfiguration
         ssnTextField.textField.text = "UA411111111111XZ"
         
+        let expDateConfiguration = VGSConfiguration(collector: collector, fieldName: "date")
+        let expDateTextField = VGSTextField()
+        expDateTextField.configuration = expDateConfiguration
+        expDateTextField.textField.text = "2030-03-30"
+        
         let extraData: [String: Any] = [
             "user": [
                 "id": 1234567890,
                 "name": "unknown"
             ],
             "ssn": "not valid",
-            "date": "05-05-1990"
+            "Date": "05-05-1990"
         ]
 
         let result = collector.mapStoredInputDataForSubmit(with: extraData)
@@ -141,7 +146,8 @@ class VGSCollectTests: XCTestCase {
                 "id": 1234567890
             ],
             "ssn": "UA411111111111XZ",
-            "date": "05-05-1990"
+            "date": "2030-03-30",
+            "Date": "05-05-1990"
         ]
         XCTAssertTrue(expectedResult.jsonStringRepresentation == result.jsonStringRepresentation)
     }

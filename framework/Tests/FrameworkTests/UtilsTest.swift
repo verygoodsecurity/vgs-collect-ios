@@ -92,7 +92,8 @@ class UtilsTest: XCTestCase {
         let d1 = [
            "user": [
                "data": [
-                   "card_number": "any"
+                "card_number": "any",
+                "Id": "CapitalId"
                ],
                "accountNumber": 1111
            ]
@@ -111,7 +112,8 @@ class UtilsTest: XCTestCase {
            "user": [
                 "data": [
                     "card_number": "any",
-                    "id": "anyId"
+                    "id": "anyId",
+                    "Id": "CapitalId"
                 ],
                 "accountNumber": 2222
            ]
