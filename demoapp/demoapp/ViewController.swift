@@ -227,7 +227,6 @@ class ViewController: UIViewController {
 
         let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
-
         cardConfiguration.isRequiredValidOnly = true
         
         cardNumber.configuration = cardConfiguration

@@ -587,8 +587,6 @@
 				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
 				FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */,
 				32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */,
-				FD05F94F2316CE5A000EAF52 /* VGSTextField.swift in Sources */,
-				FD05F9492316CE5A000EAF52 /* VGSCollect.swift in Sources */,
 				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD3C01C323AFC0980096B4A4 /* VGSTextField+patternFormat.swift in Sources */,
