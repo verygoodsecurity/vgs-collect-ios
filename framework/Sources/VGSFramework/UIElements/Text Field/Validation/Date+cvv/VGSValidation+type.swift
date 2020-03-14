@@ -56,6 +56,6 @@ extension VGSValidation {
     }
     
     private func validateCVC(txt: String) -> Bool {
-        return (txt.count >= 3 && txt.count < 5)
+        return (txt.count >= 3 && txt.count <= 4)
     }
 }

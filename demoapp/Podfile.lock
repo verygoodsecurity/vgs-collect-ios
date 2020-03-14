@@ -2,13 +2,13 @@ PODS:
   - Alamofire (4.9.1)
   - CardIOSDK (5.5.2)
   - SnapKit (5.0.1)
-  - VGSCollectSDK (1.2.1):
+  - VGSCollectSDK (1.2.3):
     - Alamofire (= 4.9.1)
-    - VGSCollectSDK/Core (= 1.2.1)
-  - VGSCollectSDK/CardIO (1.2.1):
+    - VGSCollectSDK/Core (= 1.2.3)
+  - VGSCollectSDK/CardIO (1.2.3):
     - Alamofire (= 4.9.1)
     - CardIOSDK (= 5.5.2)
-  - VGSCollectSDK/Core (1.2.1):
+  - VGSCollectSDK/Core (1.2.3):
     - Alamofire (= 4.9.1)
 
 DEPENDENCIES:
@@ -30,7 +30,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   CardIOSDK: 5a32e6122640db9595fc6c959c4f549e575700ff
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  VGSCollectSDK: a553fae3ea4e5e68df04caf692404be67a47831f
+  VGSCollectSDK: 629c8e28b971e260bdfd953d94c8de2eac6bb3c1
 
 PODFILE CHECKSUM: b69accf0b98c0efe9a1cb1a1a24f6349b1959fa7
 
