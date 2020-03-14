@@ -26,7 +26,7 @@ internal extension VGSCollect {
         var isRequiredValidOnlyErrorFields = [String]()
         
         for textField in input {
-            if textField.isRequired, textField.text.isNilOrEmpty {
+            if textField.isRequired, textField.textField.secureText.isNilOrEmpty {
                 isRequiredErrorFields.append(textField.fieldName)
             }
             if textField.isRequiredValidOnly && !textField.state.isValid {
@@ -46,7 +46,7 @@ internal extension VGSCollect {
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
-           dict[element.fieldName] = element.rawText
+            dict[element.fieldName] = element.textField.getSecureRawText
         }
 
         var body = mapInputFieldsDataToDictionary(textFieldsData)
