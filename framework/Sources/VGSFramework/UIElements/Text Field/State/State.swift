@@ -13,12 +13,14 @@ import UIKit
 public class State {
     private(set) open var fieldName: String!
     open var isRequired: Bool = false
+    open var isRequiredValidOnly: Bool = false
     open var isValid: Bool = false
     open var isEmpty: Bool = false
     
     init(tf: VGSTextField) {
         fieldName = tf.fieldName
         isRequired = tf.isRequired
+        isRequiredValidOnly = tf.isRequiredValidOnly
         isValid = tf.isValid
         isEmpty = (tf.textField.getSecureRawText?.count == 0)
     }
@@ -33,6 +35,7 @@ public class State {
         result = """
         "\(fieldName)": {
             "isRequired": \(isRequired),
+            "isRequiredValidOnly": \(isRequiredValidOnly),
             "isValid": \(isValid),
             "isEmpty": \(isEmpty)
         }

@@ -21,8 +21,11 @@ public class VGSConfiguration {
     /// Validation model
     var validationModel: VGSValidation?
     
-    /// Set this property if text filed is required
+    /// Set if text filed is required to be non-empty and non-nil on submit
     public var isRequired: Bool = false
+    
+    /// Set if text filed is required to be valid only on submit
+    public var isRequiredValidOnly: Bool = false
     
     /// Type of text filed. By default `none`
     public var type: FieldType = .none

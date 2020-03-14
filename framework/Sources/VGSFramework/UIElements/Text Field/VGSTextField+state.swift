@@ -11,9 +11,10 @@ import Foundation
 import UIKit
 #endif
 
-public extension VGSTextField {    
-    var isValid: Bool {
-        let str = textField.getSecureRawText ?? ""
+public extension VGSTextField {
+    
+    internal var isValid: Bool {
+        let str = textField.secureText ?? ""
         return validationModel.isValid(str, type: fieldType)
     }
     

@@ -94,48 +94,21 @@ extension VGSCollect {
 extension VGSCollect {
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
-        var body = BodyData()
-        
-        let elements = storage.elements
-        
-        let allKeys = elements.compactMap({ $0.fieldName })
-        allKeys.forEach { key in
-            if let value = elements.filter({ $0.fieldName == key }).first {
-                body[key] = value.textField.getSecureRawText
-            } else {
-                fatalError("Wrong key: \(key)")
-            }
+        if let error = validateStoredInputData() {
+            block(nil, error)
+            return
         }
-        
-        if extraData?.count != 0 {
-            extraData?.forEach { (key, value) in body[key] = value }
-        }
-        
+
+        let body = mapStoredInputDataForSubmit(with: extraData)
+                
         apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
-            
             if let error = error {
-                print("Error: \(String(describing: error.localizedDescription))")
                 block(json, error)
                 return
             } else {
-                let allKeys = json?.keys
-                allKeys?.forEach({ key in
-                    
-                    if let element = elements.filter({ $0.fieldName == key }).first {
-                        element.token = json?[key] as? String
-                    }
-                })
                 block(json, nil)
                 return
             }
         }
-    }
-}
-
-// MARK: - Validation
-internal extension VGSCollect {
-
-    class func tenantIDValid(_ tenantId: String) -> Bool {
-        return tenantId.isAlphaNumeric
     }
 }

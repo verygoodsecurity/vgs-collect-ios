@@ -12,10 +12,12 @@ import UIKit
 
 /// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
 public class VGSTextField: UIView {
+    
     private(set) weak var vgsCollector: VGSCollect?
     internal var textField = MaskedTextField(frame: .zero)
     internal var focusStatus: Bool = false
     internal var isRequired: Bool = false
+    internal var isRequiredValidOnly: Bool = false
     internal var fieldType: FieldType = .none
     internal var validationModel = VGSValidation()
     internal var fieldName: String!
@@ -44,6 +46,7 @@ public class VGSTextField: UIView {
             // config text field
             fieldName = configuration.fieldName
             isRequired = configuration.isRequired
+            isRequiredValidOnly = configuration.isRequiredValidOnly
             fieldType = configuration.type
             textField.isSecureTextEntry = configuration.type.isSecureDate
             textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType

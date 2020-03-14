@@ -226,9 +226,10 @@ class ViewController: UIViewController {
         let padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
         let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_number")
-        cardConfiguration.isRequired = true
         cardConfiguration.type = .cardNumber
 
+        cardConfiguration.isRequiredValidOnly = true
+        
         cardNumber.configuration = cardConfiguration
         cardNumber.textColor = textColor
         cardNumber.font = textFont
@@ -240,7 +241,7 @@ class ViewController: UIViewController {
         cardNumber.becomeFirstResponder()
 
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
-        expDateConfiguration.isRequired = true
+        expDateConfiguration.isRequiredValidOnly = true
         expDateConfiguration.type = .expDate
 
         expCardDate.configuration = expDateConfiguration
@@ -293,8 +294,13 @@ extension ViewController {
             if error == nil, let data = json?["json"] {
                 self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
             } else {
+                if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+                    if errorKey == VGSSDKErrorInputDataRequiredValid {
+                        // Handle VGSError error
+                    }
+                }
                 self?.consoleLabel.text = "Something went wrong!"
-                print("Error: \(String(describing: error?.localizedDescription))")
+                print("Error: \(String(describing: error))")
             }
         })
     }
