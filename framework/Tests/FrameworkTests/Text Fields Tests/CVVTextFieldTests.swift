@@ -74,4 +74,28 @@ class CVVTextFieldTests: XCTestCase {
         
         wait(for: [expectation], timeout: 5.0)
     }
+    
+    func testCVCFormat() {
+        let cardNumberAmex = "378282246310005"  // cvc format 4 digits (####)
+        let cardNumberVisa = "4111111111111111" // cvc general format 3 digits (###)
+        let cardNumberDiner = "30569309025904"  // cvc general format 3 digits (###)
+        
+        let cardNumberTextField = VGSCardTextField()
+        let cardConfig = VGSConfiguration(collector: collector, fieldName: "testCardNum")
+        cardConfig.type = .cardNumber
+        cardNumberTextField.configuration = cardConfig
+        
+        // set Amex card number
+        cardNumberTextField.textField.secureText = cardNumberAmex
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "####")
+        
+        cardNumberTextField.textField.secureText = cardNumberVisa
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "###")
+        
+        cardNumberTextField.textField.secureText = cardNumberDiner
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "###")
+    }
 }

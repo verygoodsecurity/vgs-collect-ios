@@ -62,7 +62,7 @@ class CardTextFieldTests: XCTestCase {
         }
     }
     
-    func __testInput16() {
+    func disable_testInput16() {
         let format14 = "#### ###### ####"
         let format16 = "#### #### #### ####"
         
