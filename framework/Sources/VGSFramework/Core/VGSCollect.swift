@@ -110,8 +110,6 @@ extension VGSCollect {
     
     public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
-         var body = BodyData()
-
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
             block(nil, VGSError(type: .inputFileNotFound, userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound, description: "File not selected or doesn't exists", extraInfo: [:])))
             
@@ -138,9 +136,11 @@ extension VGSCollect {
             return
         }
         
-        body[key] = encodedData
-        if extraData?.count != 0 {
-            extraData?.forEach { (key, value) in body[key] = value }
+        var body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
+
+        if let customData = extraData, customData.count != 0 {
+          // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
+          body = deepMerge(customData, body)
         }
         
          apiClient.sendRequest(path: path, method: method, value: body, completion: block)
