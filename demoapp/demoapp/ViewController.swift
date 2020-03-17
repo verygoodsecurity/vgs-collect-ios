@@ -9,6 +9,7 @@
 import UIKit
 import VGSCollectSDK
 
+/// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
 class ViewController: UIViewController {
     
     @IBOutlet weak var cardDataStackView: UIStackView!
@@ -16,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector
-    var vgsForm = VGSCollect(id: AppConfiguration.shared.vaultId, environment: AppConfiguration.shared.environment)
+    var vgsForm = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
