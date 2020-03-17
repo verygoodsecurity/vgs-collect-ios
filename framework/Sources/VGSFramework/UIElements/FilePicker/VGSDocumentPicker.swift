@@ -49,7 +49,7 @@ extension VGSDocumentPicker: UIDocumentPickerDelegate {
         }
 
         if let url = urls.first, let fileData = try? Data(contentsOf: url) {
-            vgsCollector?.storage.files[filename] = fileData
+            vgsCollector?.storage.files = [filename: fileData]
             let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnits: "bytes")
             delegate?.userDidPickFileWithInfo(fileMetadata)
         } else {

@@ -22,7 +22,7 @@ internal class VGSImagePicker: NSObject, VGSFilePickerProtocol {
         vgsCollector = configuration.vgsCollector
         filename = configuration.fieldName
         picker.sourceType = sourceType
-        picker.allowsEditing = true
+        picker.allowsEditing = false
         picker.delegate = self
     }
     
@@ -60,7 +60,7 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             var data: Data?
             var fileExtension = ""
             if let jpegData = image.jpegData(compressionQuality: 1) {
@@ -77,7 +77,7 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
                 return
             }
             
-            vgsCollector?.storage.files[filename] = imageData
+            vgsCollector?.storage.files = [filename: imageData]
             let imgMetadata = VGSFileInfo(fileExtension: fileExtension, size: imageData.count, sizeUnits: "bytes")
             delegate?.userDidPickFileWithInfo(imgMetadata)
             return
