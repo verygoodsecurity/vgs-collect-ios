@@ -16,6 +16,8 @@ import Alamofire
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
+    /// Max file size limit by proxy. Is static and can't be changed!
+    internal let maxFileSizeInternalLimitInBytes = 24_000_000
     
     /// Observing focused text field of state
     public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
@@ -59,6 +61,10 @@ public class VGSCollect {
             self?.storage.removeElement(tf)
         }
     }
+    
+    public func cleanFiles() {
+        storage.removeFiles()
+    }
 }
 
 extension VGSCollect {
@@ -100,5 +106,46 @@ extension VGSCollect {
                 return
             }
         }
+    }
+    
+    public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+
+         guard let key = storage.files.keys.first, let value = storage.files.values.first else {
+            block(nil, VGSError(type: .inputFileNotFound, userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound, description: "File not selected or doesn't exists", extraInfo: [:])))
+            
+            return
+        }
+
+        let result: Data
+ 
+        if let data = value as? Data {
+            result = data
+        } else {
+            // swiftlint:disable:next line_length
+            block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File format is not supported. Can't convert to Data.", extraInfo: [:])))
+            return
+        }
+        if result.count >= maxFileSizeInternalLimitInBytes {
+            // swiftlint:disable:next line_length
+            block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: VGSErrorInfo(key: VGSSDKErrorFileSizeExceedsTheLimit, description: "File size is too large.", extraInfo: ["expectedSize": maxFileSizeInternalLimitInBytes, "fileSize": "\(result.count)", "sizeUnits": "bytes"])))
+            return
+        }
+        
+        let encodedData = result.base64EncodedString()
+
+        if encodedData.count == 0 {
+            // swiftlint:disable:next line_length
+            block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File format is not supported. File is empty.", extraInfo: [:])))
+            return
+        }
+        
+        var body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
+
+        if let customData = extraData, customData.count != 0 {
+          // NOTE: If there are similar keys on same level, body values will override custom values values for that keys
+          body = deepMerge(customData, body)
+        }
+        
+         apiClient.sendRequest(path: path, method: method, value: body, completion: block)
     }
 }

@@ -13,6 +13,12 @@ public enum VGSErrorType: Int {
     case inputDataRequired = 1001
     case inputDataRequiredValidOnly = 1002
     
+    // Files data errors
+    case inputFileNotFound = 1101
+    case inputFileTypeIsNotSupported = 1102
+    case inputFileSizeExceedsTheLimit = 1103
+    case sourceNotAvailable = 1150
+    
     // Response data errors
     case unexpectedResponseDataFormat = 1401
 }
