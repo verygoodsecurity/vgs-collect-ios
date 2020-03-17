@@ -16,6 +16,7 @@ internal protocol VGSFilePickerProtocol {
 
 internal extension VGSFilePickerController {
     
+    /// Create specific type of picker instance
     func getFilePicker(_ fileSource: VGSFileSource) -> VGSFilePickerProtocol {
         switch fileSource {
         case .camera:

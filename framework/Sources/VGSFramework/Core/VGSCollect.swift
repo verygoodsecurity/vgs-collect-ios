@@ -121,10 +121,12 @@ extension VGSCollect {
         if let data = value as? Data {
             result = data
         } else {
+            // swiftlint:disable:next line_length
             block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File format is not supported. Can't convert to Data.", extraInfo: [:])))
             return
         }
         if result.count >= maxFileSizeInternalLimitInBytes {
+            // swiftlint:disable:next line_length
             block(nil, VGSError(type: .inputFileSizeExceedsTheLimit, userInfo: VGSErrorInfo(key: VGSSDKErrorFileSizeExceedsTheLimit, description: "File size is too large.", extraInfo: ["expectedSize": maxFileSizeInternalLimitInBytes, "fileSize": "\(result.count)", "sizeUnits": "bytes"])))
             return
         }
@@ -132,6 +134,7 @@ extension VGSCollect {
         let encodedData = result.base64EncodedString()
 
         if encodedData.count == 0 {
+            // swiftlint:disable:next line_length
             block(nil, VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "File format is not supported. File is empty.", extraInfo: [:])))
             return
         }
@@ -139,7 +142,7 @@ extension VGSCollect {
         var body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
 
         if let customData = extraData, customData.count != 0 {
-          // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
+          // NOTE: If there are similar keys on same level, body values will override custom values values for that keys
           body = deepMerge(customData, body)
         }
         

@@ -35,8 +35,10 @@ internal extension VGSCollect {
         }
         
         if isRequiredErrorFields.count > 0 {
+            // swiftlint:disable:next line_length
             return VGSError(type: .inputDataRequired, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequired, description: "Input data can't be nil or empty", extraInfo: ["fields": isRequiredErrorFields]))
         } else if isRequiredValidOnlyErrorFields.count > 0 {
+            // swiftlint:disable:next line_length
             return VGSError(type: .inputDataRequiredValidOnly, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequiredValid, description: "Input data should be valid only", extraInfo: ["fields": isRequiredValidOnlyErrorFields]))
         }
         return nil

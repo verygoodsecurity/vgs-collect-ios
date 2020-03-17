@@ -21,6 +21,7 @@ internal protocol VGSScanHandlerProtocol {
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)
 }
 
+/// Controller responsible for managing Card.io scanner
 public class VGSCardIOScanController {
     
     internal var scanHandler: VGSScanHandlerProtocol?
@@ -32,12 +33,17 @@ public class VGSCardIOScanController {
         }
     }
     
+    /// Define preferred AVCaptureDevice.Position
     public var preferredCameraPosition: AVCaptureDevice.Position? {
         didSet {
             scanHandler?.cameraPosition = preferredCameraPosition
         }
     }
     
+    /// Initialization
+    ///
+    /// - Parameters:
+    ///   - delegate: VGSCardIOScanControllerDelegate
     public required init(_ delegate: VGSCardIOScanControllerDelegate? = nil) {
         #if canImport(CardIO)
             self.scanHandler = VGSCardIOHandler()

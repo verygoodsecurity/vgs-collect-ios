@@ -35,15 +35,16 @@ protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
     var returnKeyType: UIReturnKeyType? { get set }
 }
 
-/// Class for configuration yout VGSTextField
+/// A class responsible for configuration VGSTextField
 public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
         
+    /// Collect form that will be assiciated with VGSTextField
     private(set) weak var vgsCollector: VGSCollect?
 
     /// Validation model
     internal var validationModel: VGSValidation?
     
-    /// Field name - actualy this is key for you JSON wich contains data
+    /// Name that will be used as a JSON key when submit textfield data to VGS
     public let fieldName: String
     
     /// Set if text filed is required to be non-empty and non-nil on submit
@@ -58,14 +59,16 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     /// Set your patter format. Exmp: `##/##` equela `12/23`
     public var formatPattern: String = ""
     
+    /// Set preferred UIKeyboardType for textfield
     public var keyboardType: UIKeyboardType?
     
+    /// Set preferred UIReturnKeyType for textfield
     public var returnKeyType: UIReturnKeyType?
         
     /// Initialization
     ///
     /// - Parameters:
-    ///   - vgs: VGSForm instance
+    ///   - vgs: VGSCollect instance
     ///   - fieldName: Name for your text field
     public init(collector vgs: VGSCollect, fieldName: String) {
         self.vgsCollector = vgs

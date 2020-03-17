@@ -8,8 +8,15 @@
 
 import Foundation
 
+/// VGS file source type
 public enum VGSFileSource: Int, CaseIterable {
+    
+    /// Device photo library
     case photoLibrary
+    
+    /// Device camera
     case camera
+    
+    /// Device documents directory
     case documentsDirectory
 }
