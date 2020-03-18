@@ -7,3 +7,4 @@ framework/docs
 
 .build/**
 framework/Podfile.lock
+demoapp/Podfile.lock
