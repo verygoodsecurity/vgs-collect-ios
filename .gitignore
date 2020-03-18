@@ -6,3 +6,4 @@ framework/build
 framework/docs
 
 .build/**
+framework/Podfile.lock
