@@ -55,6 +55,6 @@ extension VGSTextField {
                 return format3
             }
         }
-        return format3
+        return format4
     }
 }
