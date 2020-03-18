@@ -44,15 +44,17 @@ extension VGSTextField {
     }
     
     var formatPatternForCvc: String {
+        let format3 = "###"
+        let format4 = "####"
         if let state = state as? CardState {
             switch state.cardBrand {
-            case .amex:
-                return "####"
+            case .amex, .unknown:
+                return format4
                 
             default:
-                return "###"
+                return format3
             }
         }
-        return "###"
+        return format3
     }
 }
