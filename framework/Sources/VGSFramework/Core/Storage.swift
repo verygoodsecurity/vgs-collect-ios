@@ -26,4 +26,8 @@ class Storage {
             elements.remove(at: index)
         }
     }
+    
+    func removeFiles() {
+        files = BodyData()
+    }
 }

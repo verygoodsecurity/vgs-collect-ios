@@ -11,15 +11,41 @@ import Foundation
 import UIKit
 #endif
 
-/// Class for configuration yout VGSTextField
-public class VGSConfiguration {
+protocol VGSBaseConfigurationProtocol {
+    
+    var vgsCollector: VGSCollect? { get }
+    
+    var fieldName: String { get }
+}
+
+protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
+
+    var validationModel: VGSValidation? { get set }
+    
+    var isRequired: Bool { get }
+    
+    var isRequiredValidOnly: Bool { get }
+    
+    var type: FieldType { get }
+    
+    var formatPattern: String { get set }
+    
+    var keyboardType: UIKeyboardType? { get set }
+    
+    var returnKeyType: UIReturnKeyType? { get set }
+}
+
+/// A class responsible for configuration VGSTextField
+public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
+        
+    /// Collect form that will be assiciated with VGSTextField
     private(set) weak var vgsCollector: VGSCollect?
 
-    /// Field name - actualy this is key for you JSON wich contains data
-    public private(set) var fieldName: String!
-    
     /// Validation model
-    var validationModel: VGSValidation?
+    internal var validationModel: VGSValidation?
+    
+    /// Name that will be used as a JSON key when submit textfield data to VGS
+    public let fieldName: String
     
     /// Set if text filed is required to be non-empty and non-nil on submit
     public var isRequired: Bool = false
@@ -33,14 +59,16 @@ public class VGSConfiguration {
     /// Set your patter format. Exmp: `##/##` equela `12/23`
     public var formatPattern: String = ""
     
+    /// Set preferred UIKeyboardType for textfield
     public var keyboardType: UIKeyboardType?
     
+    /// Set preferred UIReturnKeyType for textfield
     public var returnKeyType: UIReturnKeyType?
         
     /// Initialization
     ///
     /// - Parameters:
-    ///   - vgs: VGSForm instance
+    ///   - vgs: VGSCollect instance
     ///   - fieldName: Name for your text field
     public init(collector vgs: VGSCollect, fieldName: String) {
         self.vgsCollector = vgs
