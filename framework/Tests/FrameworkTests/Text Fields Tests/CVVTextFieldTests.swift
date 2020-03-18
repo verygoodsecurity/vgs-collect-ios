@@ -97,5 +97,9 @@ class CVVTextFieldTests: XCTestCase {
         cardNumberTextField.textField.secureText = cardNumberDiner
         cardNumberTextField.focusOn()
         XCTAssert(cvvTextField.textField.formatPattern == "###")
+        
+        cardNumberTextField.textField.secureText = ""
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "####", "Default format is wrong. Should be ####")
     }
 }
