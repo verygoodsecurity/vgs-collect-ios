@@ -91,7 +91,6 @@
 		32130057241F9FFB0062FEF0 /* VGSCollectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectTests.swift; sourceTree = "<group>"; };
 		3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSCollectTest+Validation.swift"; sourceTree = "<group>"; };
 		3219D73C2404279700F4A7E5 /* VGSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSError.swift; sourceTree = "<group>"; };
-		3222A47A23CC6A4D00836A8D /* VGSCollectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectTests.swift; sourceTree = "<group>"; };
 		323105622417DF07009C3360 /* VGSCollect+internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+internal.swift"; sourceTree = "<group>"; };
 		324CDEE123FB12E200653890 /* FilePickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
 		325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerControllerDelegate.swift; sourceTree = "<group>"; };
@@ -176,7 +175,6 @@
 		32130050241F97800062FEF0 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				3222A47A23CC6A4D00836A8D /* VGSCollectTests.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
