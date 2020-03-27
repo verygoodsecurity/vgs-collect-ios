@@ -1,0 +1,418 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/APIClient.swift",
+      "line": 12,
+      "symbol": "JsonData",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/APIClient.swift",
+      "line": 13,
+      "symbol": "BodyData",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/APIClient.swift",
+      "line": 14,
+      "symbol": "HTTPHeaders",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/CharacterSet+extension.swift",
+      "line": 11,
+      "symbol": "CharacterSet.vgsAsciiDecimalDigits",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 18,
+      "symbol": "Environment.sandbox",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 19,
+      "symbol": "Environment.live",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 30,
+      "symbol": "FieldType.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 31,
+      "symbol": "FieldType.cardNumber",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 32,
+      "symbol": "FieldType.expDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 33,
+      "symbol": "FieldType.cvc",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 34,
+      "symbol": "FieldType.cardHolderName",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 65,
+      "symbol": "VGSCollect.cleanFiles()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 72,
+      "symbol": "VGSCollect.getTextField(fieldName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 91,
+      "symbol": "VGSCollect.submit(path:method:extraData:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 111,
+      "symbol": "VGSCollect.submitFile(path:method:extraData:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 11,
+      "symbol": "VGSErrorType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 26,
+      "symbol": "VGSError",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 11,
+      "symbol": "VGSErrorInfoKey",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 13,
+      "symbol": "VGSCollectSDKErrorDomain",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 18,
+      "symbol": "VGSSDKErrorInputDataRequired",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 19,
+      "symbol": "VGSSDKErrorInputDataRequiredValid",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 22,
+      "symbol": "VGSSDKErrorFileNotFound",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 23,
+      "symbol": "VGSSDKErrorFileTypeNotSupported",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 24,
+      "symbol": "VGSSDKErrorFileSizeExceedsTheLimit",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 27,
+      "symbol": "VGSSDKErrorSourceNotAvailable",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 30,
+      "symbol": "VGSSDKErrorUnexpectedResponseDataFormat",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 14,
+      "symbol": "CradIODataType.cardNumber",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 15,
+      "symbol": "CradIODataType.expirationDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 16,
+      "symbol": "CradIODataType.expirationMonth",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 17,
+      "symbol": "CradIODataType.expirationYear",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 18,
+      "symbol": "CradIODataType.cvc",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFileInfo.swift",
+      "line": 12,
+      "symbol": "VGSFileInfoProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField.swift",
+      "line": 13,
+      "symbol": "MaskedTextField",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 13,
+      "symbol": "State",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 47,
+      "symbol": "CardState",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSCardTextField.swift",
+      "line": 13,
+      "symbol": "VGSCardTextField",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 15,
+      "symbol": "VGSTextField.cornerRadius",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 24,
+      "symbol": "VGSTextField.borderWidth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 32,
+      "symbol": "VGSTextField.borderColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 43,
+      "symbol": "VGSTextField.font",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 51,
+      "symbol": "VGSTextField.textColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 60,
+      "symbol": "VGSTextField.prepareForInterfaceBuilder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+state.swift",
+      "line": 21,
+      "symbol": "VGSTextField.isFocused",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+state.swift",
+      "line": 25,
+      "symbol": "VGSTextField.state",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 13,
+      "symbol": "VGSTextFieldDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 182,
+      "symbol": "VGSTextField.textField(_:shouldChangeCharactersIn:replacementString:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 195,
+      "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 199,
+      "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 203,
+      "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 210,
+      "symbol": "VGSTextField.becomeFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 214,
+      "symbol": "VGSTextField.resignFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 218,
+      "symbol": "VGSTextField.isFirstResponder",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 12,
+      "symbol": "String.isValidCardNumber()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 16,
+      "symbol": "String.cardType()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 20,
+      "symbol": "String.suggestedCardType()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 25,
+      "symbol": "String.formattedCardNumber()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 14,
+      "symbol": "SwiftLuhn",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 14,
+      "symbol": "SwiftLuhn.CardType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 141,
+      "symbol": "SwiftLuhn.CardType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/vitaliioberynskyi/Development/_VGS/iOSSDK/vgs-collect-ios/framework"
+}
