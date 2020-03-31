@@ -10,8 +10,7 @@ import Foundation
 
 public enum VGSErrorType: Int {
     // TextField data errors
-    case inputDataRequired = 1001
-    case inputDataRequiredValidOnly = 1002
+    case inputDataIsNotValid = 1001
     
     // Files data errors
     case inputFileNotFound = 1101
