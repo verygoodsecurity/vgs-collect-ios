@@ -26,7 +26,7 @@ internal extension VGSCollect {
         var isRequiredValidOnlyErrorFields = [String]()
         
         for textField in input {
-            if textField.isRequired, textField.textField.secureText.isNilOrEmpty {
+            if textField.isRequired, textField.textField.getSecureRawText.isNilOrEmpty {
                 isRequiredErrorFields.append(textField.fieldName)
             }
             if textField.isRequiredValidOnly && !textField.state.isValid {

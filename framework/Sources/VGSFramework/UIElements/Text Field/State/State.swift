@@ -52,7 +52,7 @@ public class CardState: State {
     override public init(tf: VGSTextField) {
         super.init(tf: tf)
         
-        guard let originalText = tf.textField.secureText?.replacingOccurrences(of: " ", with: "") else {
+        guard let originalText = tf.textField.getSecureRawText else {
             return
         }
         

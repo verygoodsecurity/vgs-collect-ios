@@ -14,7 +14,7 @@ import UIKit
 public extension VGSTextField {
     
     internal var isValid: Bool {
-        let str = textField.secureText ?? ""
+        let str = textField.getSecureRawText ?? ""
         return validationModel.isValid(str, type: fieldType)
     }
     
