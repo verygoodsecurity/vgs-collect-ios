@@ -109,6 +109,7 @@ public class VGSTextField: UIView {
         NSLayoutConstraint.activate(verticalConstraint)
         
         //delegates
+        //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
         textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)        
         textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
@@ -126,10 +127,10 @@ public class VGSTextField: UIView {
     }
     
     /// Set textfield text. For internal use only! Not allowed to be public for PCI scope!
-    @available(*, deprecated, message: "Don't use this method")
     internal func setText(_ text: String?) {
         textField.secureText = text
-        vgsCollector?.updateStatus(for: self)
+        // this will update card textfield icons
+        textFieldValueChanged()
     }
 }
 
