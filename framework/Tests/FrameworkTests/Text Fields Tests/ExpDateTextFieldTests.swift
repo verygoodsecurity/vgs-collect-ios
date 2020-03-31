@@ -24,7 +24,7 @@ class ExpDateTextFieldTests: XCTestCase {
         
         expDateTextField.configuration = config
         
-        expDateTextField.textField.text = "1223"
+        expDateTextField.textField.secureText = "1223"
     }
     
     override func tearDown() {
@@ -38,7 +38,7 @@ class ExpDateTextFieldTests: XCTestCase {
     }
     
     func testWrongDate() {
-        expDateTextField.textField.text = "21/23"
+        expDateTextField.textField.secureText = "21/23"
         
         let state = expDateTextField.state
         

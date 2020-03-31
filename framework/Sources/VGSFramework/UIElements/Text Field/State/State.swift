@@ -22,7 +22,7 @@ public class State {
         isRequired = tf.isRequired
         isRequiredValidOnly = tf.isRequiredValidOnly
         isValid = tf.isValid
-        isEmpty = (tf.text?.count == 0)
+        isEmpty = (tf.textField.getSecureRawText?.count == 0)
     }
     
     public var description: String {
@@ -52,7 +52,7 @@ public class CardState: State {
     override public init(tf: VGSTextField) {
         super.init(tf: tf)
         
-        guard let originalText = tf.text?.replacingOccurrences(of: " ", with: "") else {
+        guard let originalText = tf.textField.getSecureRawText else {
             return
         }
         
@@ -69,7 +69,8 @@ public class CardState: State {
             , {
                 "bin": \(bin),
                 "last4": \(last4),
-                "cardBrand": \(cardBrand)
+                "cardBrand": \(cardBrand),
+                "cardBrandName": \(cardBrand.stringValue())
             }
             """)
         }

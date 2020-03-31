@@ -14,9 +14,7 @@ extension MaskedTextField {
     override open func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}
     
     override open var delegate: UITextFieldDelegate? {
-        get {
-            return nil
-        }
+        get { return nil }
         set {}
     }
     

@@ -21,7 +21,7 @@ class ApiClientTests: XCTestCase {
         let cardField = VGSTextField()
         cardField.configuration = config
         
-        cardField.textField.text = "4111 1111 1111 1111"
+        cardField.textField.secureText = "4111 1111 1111 1111"
     }
 
     override func tearDown() {

@@ -11,44 +11,39 @@ import UIKit
 #endif
 
 public class VGSCardTextField: VGSTextField {
-    
     /// card brand icon width
-    var iconWidth: CGFloat = 0
+    var iconWidth: CGFloat = 45
     
     /// callback for taking card brand icon
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
-    internal var cardIconView = UIImageView(frame: .zero)
+    internal lazy var cardIconView = self.makeCardIcon()
     
-    // MARK: - init
-    override func mainInitialization() {
-        super.mainInitialization()
-        iconWidth = 45
+    // override textFieldDidChange
+    override func textFieldValueChanged() {
+        super.textFieldValueChanged()
         
-        makeCardIcon()
-        
-        updateUI = { [weak self] in
-            if let state = self?.state as? CardState {
+        if let state = state as? CardState {
+            if cardsIconSource != nil {
+                let icon = cardsIconSource?(state.cardBrand)
+                cardIconView.image = icon
                 
-                if self?.cardsIconSource != nil {
-                    let icon = self?.cardsIconSource?(state.cardBrand)
-                    self?.cardIconView.image = icon
-                    
-                } else {
-                    self?.cardIconView.image = state.cardBrand.brandIcon
-                }
+            } else {
+                cardIconView.image = state.cardBrand.brandIcon
             }
         }
     }
     
-    private func makeCardIcon() {
+    // make image view for a card brand icon
+    private func makeCardIcon() -> UIImageView {
+        let result = UIImageView(frame: .zero)
         
-        cardIconView.contentMode = .scaleAspectFit
-        addSubview(cardIconView)
+        result.contentMode = .scaleAspectFit
+        addSubview(result)
         
         // make constraints
-        let views = ["view": cardIconView]
-        cardIconView.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["view": result]
+        result.translatesAutoresizingMaskIntoConstraints = false
         
         let width = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(==\(iconWidth))]",
                                                         options: .alignAllCenterY,
@@ -67,5 +62,7 @@ public class VGSCardTextField: VGSTextField {
                                                         metrics: nil,
                                                         views: views)
         NSLayoutConstraint.activate(horizontal)
+        
+        return result
     }
 }

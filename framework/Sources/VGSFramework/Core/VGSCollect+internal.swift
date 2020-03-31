@@ -26,7 +26,7 @@ internal extension VGSCollect {
         var isRequiredValidOnlyErrorFields = [String]()
         
         for textField in input {
-            if textField.isRequired, textField.text.isNilOrEmpty {
+            if textField.isRequired, textField.textField.getSecureRawText.isNilOrEmpty {
                 isRequiredErrorFields.append(textField.fieldName)
             }
             if textField.isRequiredValidOnly && !textField.state.isValid {
@@ -35,10 +35,8 @@ internal extension VGSCollect {
         }
         
         if isRequiredErrorFields.count > 0 {
-            // swiftlint:disable:next line_length
             return VGSError(type: .inputDataRequired, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequired, description: "Input data can't be nil or empty", extraInfo: ["fields": isRequiredErrorFields]))
         } else if isRequiredValidOnlyErrorFields.count > 0 {
-            // swiftlint:disable:next line_length
             return VGSError(type: .inputDataRequiredValidOnly, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequiredValid, description: "Input data should be valid only", extraInfo: ["fields": isRequiredValidOnlyErrorFields]))
         }
         return nil
@@ -48,7 +46,7 @@ internal extension VGSCollect {
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
-           dict[element.fieldName] = element.rawText
+            dict[element.fieldName] = element.textField.getSecureRawText
         }
 
         var body = mapInputFieldsDataToDictionary(textFieldsData)
@@ -70,5 +68,27 @@ internal extension VGSCollect {
             resultDict = newDict
         }
         return resultDict
+    }
+    
+    /// Update fields state
+    func updateStatus(for textField: VGSTextField) {
+        // reset all focus status
+        storage.elements.forEach { textField in
+            textField.focusStatus = false
+        }
+        // set focus for textField
+        textField.focusStatus = true
+
+        if textField.fieldType == .cardNumber {
+            // change cvc format pattern based on card brand
+            if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
+                cvcField.textField.formatPattern = textField.cvcFormatPatternForCardType
+                cvcField.validationModel.pattern = textField.cvcRegexForCardType
+            }
+        }
+        
+        // call observers ONLY after all internal updates done
+        observeStates?(storage.elements)
+        observeFieldState?(textField)
     }
 }

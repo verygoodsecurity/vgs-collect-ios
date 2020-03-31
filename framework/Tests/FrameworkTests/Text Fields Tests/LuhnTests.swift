@@ -46,10 +46,6 @@ class LuhnTests: XCTestCase {
     }
     
     func test6() {
-        XCTAssert(SwiftLuhn.CardType(string: "Visa") == .visa)
-    }
-    
-    func test7() {
         let formatedText = "4111 1111 1111 1111".formattedCardNumber()
         
         XCTAssert(formatedText == cardNumer)
