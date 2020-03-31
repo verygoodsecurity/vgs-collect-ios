@@ -13,7 +13,6 @@ extension VGSValidation {
         switch type {
         case .expDate:
             return validateExpDate(txt: txt)
-            
         case .cvc:
             return validateCVC(txt: txt)
         default:
