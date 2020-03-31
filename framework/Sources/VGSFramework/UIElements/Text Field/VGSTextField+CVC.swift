@@ -9,12 +9,7 @@
 import Foundation
 
 extension VGSTextField {
-    var formatPatternForCard: String {
-        let defPattern = "#### #### #### ####"
-        return defPattern
-    }
-    
-    var formatPatternForCvc: String {
+    var cvcFormatPattern: String {
         let format3 = "###"
         let format4 = "####"
         if let state = state as? CardState {

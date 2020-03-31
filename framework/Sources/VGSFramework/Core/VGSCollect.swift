@@ -80,19 +80,17 @@ extension VGSCollect {
         }
         // set focus for textField
         textField.focusStatus = true
-        // call observers
+
+        if textField.fieldType == .cardNumber {
+            // change cvc format pattern based on card brand
+            if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
+                cvcField.textField.formatPattern = textField.cvcFormatPattern
+            }
+        }
+        
+        // call observers ONLY after all internal updates done
         observeStates?(storage.elements)
         observeFieldState?(textField)
-        
-        if textField.fieldType == .cardNumber {
-            // cange card format
-            textField.textField.formatPattern = textField.formatPatternForCard
-            // change cvc format
-            if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
-                cvcField.textField.formatPattern = textField.formatPatternForCvc
-            }
-            // change date format here (if needs)
-        }
     }
 }
 
