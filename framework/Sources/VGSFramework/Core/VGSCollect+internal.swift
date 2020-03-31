@@ -34,10 +34,17 @@ internal extension VGSCollect {
             }
         }
         
+        var errorFields = [String: [String]]()
         if isRequiredErrorFields.count > 0 {
-            return VGSError(type: .inputDataRequired, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequired, description: "Input data can't be nil or empty", extraInfo: ["fields": isRequiredErrorFields]))
-        } else if isRequiredValidOnlyErrorFields.count > 0 {
-            return VGSError(type: .inputDataRequiredValidOnly, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataRequiredValid, description: "Input data should be valid only", extraInfo: ["fields": isRequiredValidOnlyErrorFields]))
+            errorFields[VGSSDKErrorInputDataRequired] = isRequiredErrorFields
+        }
+        if isRequiredValidOnlyErrorFields.count > 0 {
+            errorFields[VGSSDKErrorInputDataRequiredValid] = isRequiredValidOnlyErrorFields
+        }
+        
+        if errorFields.count > 0 {
+            // swiftlint:disable:next line_length
+            return VGSError(type: .inputDataIsNotValid, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataIsNotValid, description: "Input data is not valid", extraInfo: errorFields))
         }
         return nil
     }

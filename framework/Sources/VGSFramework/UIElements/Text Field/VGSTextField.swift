@@ -28,6 +28,13 @@ public class VGSTextField: UIView {
         didSet { textField.placeholder = placeholder }
     }
     
+    /// Textfield attributedPlaceholder string
+    public var attributedPlaceholder: NSAttributedString? {
+        didSet {
+            textField.attributedPlaceholder = attributedPlaceholder
+        }
+    }
+    
     /// You can set padding for text and placeholder
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet { textField.padding = padding }
@@ -51,6 +58,7 @@ public class VGSTextField: UIView {
             textField.isSecureTextEntry = configuration.type.isSecureDate
             textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
             textField.returnKeyType = configuration.returnKeyType ?? .default
+            textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
             
             if configuration.formatPattern.count != 0 {
                 textField.formatPattern = configuration.formatPattern

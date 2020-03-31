@@ -33,6 +33,8 @@ protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
     var keyboardType: UIKeyboardType? { get set }
     
     var returnKeyType: UIReturnKeyType? { get set }
+    
+    var keyboardAppearance: UIKeyboardAppearance? { get set }
 }
 
 /// A class responsible for configuration VGSTextField
@@ -64,6 +66,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Set preferred UIReturnKeyType for textfield
     public var returnKeyType: UIReturnKeyType?
+    
+    /// Set preferred UIKeyboardAppearance for textfield
+    public var keyboardAppearance: UIKeyboardAppearance?
         
     /// Initialization
     ///
