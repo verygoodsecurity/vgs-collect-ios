@@ -181,7 +181,7 @@ class ViewController: UIViewController {
                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
            } else {
                if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-                   if errorKey == VGSSDKErrorInputDataRequiredValid {
+                   if errorKey == VGSSDKErrorInputDataIsNotValid {
                        // Handle VGSError error
                    }
                }
