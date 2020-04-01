@@ -15,6 +15,7 @@ public let VGSCollectSDKErrorDomain = "vgscollect.sdk"
 // MARK: - VGSErrorInfoKeys
 
 // Input data errors
+public let VGSSDKErrorInputDataIsNotValid: VGSErrorInfoKey = "VGSSDKErrorInputDataIsNotValid"
 public let VGSSDKErrorInputDataRequired: VGSErrorInfoKey = "VGSSDKErrorInputDataRequired"
 public let VGSSDKErrorInputDataRequiredValid: VGSErrorInfoKey = "VGSSDKErrorInputDataRequiredValid"
 

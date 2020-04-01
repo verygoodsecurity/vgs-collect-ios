@@ -120,6 +120,8 @@ class ViewController: UIViewController {
         cardNumber.padding = padding
         cardNumber.placeholder = "Card Number"
         cardNumber.textAlignment = .natural
+        cardNumber.tintColor = .lightGray
+
         // To handle VGSTextFieldDelegate methods
         // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
@@ -133,6 +135,7 @@ class ViewController: UIViewController {
         expCardDate.font = textFont
         expCardDate.padding = padding
         expCardDate.placeholder = "MM/YY"
+        expCardDate.tintColor = .lightGray
 
         let cvcConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_cvc")
         cvcConfiguration.isRequired = true
@@ -143,12 +146,14 @@ class ViewController: UIViewController {
         cvcCardNum.font = textFont
         cvcCardNum.padding = padding
         cvcCardNum.placeholder = "CVC"
+        cvcCardNum.tintColor = .lightGray
 
         cardHolderName.layer.borderWidth = 1
         cardHolderName.layer.borderColor = UIColor.lightGray.cgColor
         cardHolderName.layer.cornerRadius = 4
         cardHolderName.placeholder = "Name"
         cardHolderName.font = textFont
+        cardHolderName.tintColor = .lightGray
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: cardHolderName.frame.height))
         cardHolderName.leftView = paddingView
         cardHolderName.leftViewMode = .always
@@ -176,7 +181,7 @@ class ViewController: UIViewController {
                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
            } else {
                if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-                   if errorKey == VGSSDKErrorInputDataRequiredValid {
+                   if errorKey == VGSSDKErrorInputDataIsNotValid {
                        // Handle VGSError error
                    }
                }

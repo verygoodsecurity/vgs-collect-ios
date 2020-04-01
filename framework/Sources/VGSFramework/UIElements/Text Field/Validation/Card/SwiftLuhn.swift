@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 public class SwiftLuhn {
-    public enum CardType: Int {
+    public enum CardType: CaseIterable {
         case amex
         case visa
         case mastercard
@@ -122,15 +122,13 @@ public class SwiftLuhn {
         
         var foundCardType: CardType = .unknown
         
-        for index in CardType.amex.rawValue...CardType.jcb.rawValue {
-            let cardType = CardType(rawValue: index)!
-            let regex = suggest ? suggestionRegularExpression(for: cardType) : regularExpression(for: cardType)
-            
+        let allCardBrand = CardType.allCases
+        
+        allCardBrand.forEach { type in
+            let regex = suggest ? suggestionRegularExpression(for: type) : regularExpression(for: type)
             let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-            
             if predicate.evaluate(with: cardNumber.formattedCardNumber()) == true {
-                foundCardType = cardType
-                break
+                foundCardType = type
             }
         }
         
@@ -161,31 +159,6 @@ public extension SwiftLuhn.CardType {
             return "Mir"
         default:
             return "unknown"
-        }
-    }
-    
-    init?(string: String) {
-        switch string.lowercased() {
-        case "american express":
-            self.init(rawValue: 0)
-        case "visa":
-            self.init(rawValue: 1)
-        case "mastercard":
-            self.init(rawValue: 2)
-        case "discover":
-            self.init(rawValue: 3)
-        case "diner's club":
-            self.init(rawValue: 4)
-        case "jcb":
-            self.init(rawValue: 5)
-        case "maestro":
-            self.init(rawValue: 6)
-        case "rupay":
-            self.init(rawValue: 7)
-        case "mir":
-            self.init(rawValue: 8)
-        default:
-            return nil
         }
     }
 }

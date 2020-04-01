@@ -69,20 +69,9 @@ public class VGSCollect {
 
 extension VGSCollect {
     
+    /// Returns VGSTextField with field name if exist in VGCollect storage
     public func getTextField(fieldName: String) -> VGSTextField? {
         return storage.elements.first(where: { $0.fieldName == fieldName })
-    }
-    
-    func updateStatus(for textField: VGSTextField) {
-        // reset all focus status
-        storage.elements.forEach { textField in
-            textField.focusStatus = false
-        }
-        // set focus for textField
-        textField.focusStatus = true
-        // call observers
-        observeStates?(storage.elements)
-        observeFieldState?(textField)
     }
 }
 

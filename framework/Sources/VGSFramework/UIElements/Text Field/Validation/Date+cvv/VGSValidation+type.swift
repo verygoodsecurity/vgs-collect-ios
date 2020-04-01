@@ -13,7 +13,6 @@ extension VGSValidation {
         switch type {
         case .expDate:
             return validateExpDate(txt: txt)
-            
         case .cvc:
             return validateCVC(txt: txt)
         default:
@@ -23,13 +22,11 @@ extension VGSValidation {
     
     // MARK: - Validate Date expiration
     private func validateExpDate(txt: String) -> Bool {
-        
-        let components = txt.components(separatedBy: "/")
-        
-        if components.count < 2 { return false }
-        
-        let mm = components.first ?? "0"
-        let yy = components.last ?? "0"
+                
+        guard txt.count == 4 else { return false }
+                
+        let mm = txt.prefix(2)
+        let yy = txt.suffix(2)
         
         if yy.count < 2 { return false }
         
@@ -56,6 +53,6 @@ extension VGSValidation {
     }
     
     private func validateCVC(txt: String) -> Bool {
-        return (txt.count >= 3 && txt.count < 5)
+        return (txt.count >= 3 && txt.count <= 4)
     }
 }

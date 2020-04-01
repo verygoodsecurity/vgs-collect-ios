@@ -11,7 +11,6 @@ import UIKit
 #endif
 
 internal class MaskedTextField: UITextField {
-
     enum MaskedTextReplacementChar: String {
         case lettersAndDigit = "*"
         case anyLetter = "@"
@@ -51,67 +50,34 @@ internal class MaskedTextField: UITextField {
      Overriding the var text from UITextField so if any text
      is applied programmatically by calling formatText
      */
+    @available(*, deprecated, message: "Don't use this method.")
     override var text: String? {
+        set {}
+        get { return nil }
+    }
+        
+    /// set/get text just for internal using
+    internal var secureText: String? {
         set {
             super.text = newValue
-            self.formatText()
-            self.editingChanged?()
+            self.updateTextFormat()
         }
         get {
-            return nil
+            return super.text
         }
-    }
-    
-    internal var editingChanged: (() -> Void)?
-    
-    /// setting text just for internal using
-    internal var secureText: String? {
-        return super.text
     }
     
     /// returns textfield text without mask
-    internal var secureRawText: String? {
+    internal var getSecureRawText: String? {
         return getRawText()
     }
     
     // MARK: - Text Padding
     var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
-    // MARK: - Constructor
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.setup()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setup()
-    }
-    
-    deinit {
-        self.deRegisterForNotifications()
-    }
-    
-    // MARK: - Private Methods
-    fileprivate func setup() {
-        self.registerForNotifications()
-    }
-    
-    fileprivate func registerForNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                             selector: #selector(textDidChange),
-                                             name: NSNotification.Name(rawValue: "UITextFieldTextDidChangeNotification"),
-                                             object: self)
-    }
-    
-    fileprivate func deRegisterForNotifications() {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc fileprivate func textDidChange() {
+    func updateTextFormat() {
         self.undoManager?.removeAllActions()
         self.formatText()
-        self.editingChanged?()
     }
     
     fileprivate func getOnlyDigitsString(_ string: String) -> String {
@@ -240,7 +206,7 @@ internal class MaskedTextField: UITextField {
                 super.text = finalText
             }
             
-            if let text = self.text {
+            if let text = self.secureText {
                 if text.count > self.maxLength {
                     super.text = String(text[text.index(text.startIndex, offsetBy: self.maxLength)])
                 }
