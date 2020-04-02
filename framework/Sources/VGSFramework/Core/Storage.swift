@@ -11,7 +11,9 @@ import Foundation
 import UIKit
 #endif
 
-class Storage {
+/// Class Responsible for storing elements registered with VGSCollect instance
+internal class Storage {
+    
     var elements = [VGSTextField]()
     var files = BodyData()
     

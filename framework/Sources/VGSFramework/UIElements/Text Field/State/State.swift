@@ -10,12 +10,23 @@ import Foundation
 import UIKit
 #endif
 
+/// An object that describes `VGSTextField` state.  State attributes are read-only.
 public class State {
-    private(set) open var fieldName: String!
-    open var isRequired: Bool = false
-    open var isRequiredValidOnly: Bool = false
-    open var isValid: Bool = false
-    open var isEmpty: Bool = false
+    
+    /// `VGSConfiguration.fieldName` associated  with `VGSTextField`
+    internal(set) open var fieldName: String!
+    
+    /// `VGSConfiguration.isRequired` attribute defined for `VGSTextField`
+    internal(set) open var isRequired: Bool = false
+    
+    /// `VGSConfiguration.isRequiredValidOnly` attribute defined for `VGSTextField`
+    internal(set) open var isRequiredValidOnly: Bool = false
+    
+    /// Contains current validation state for `VGSTextField`
+    internal(set) open var isValid: Bool = false
+    
+    /// Show if `VGSTextField` input is empty
+    internal(set) open var isEmpty: Bool = false
     
     init(tf: VGSTextField) {
         fieldName = tf.fieldName
@@ -25,6 +36,7 @@ public class State {
         isEmpty = (tf.textField.getSecureRawText?.count == 0)
     }
     
+    /// Message that contains `State` attributes and their values
     public var description: String {
         var result = ""
         
@@ -44,12 +56,19 @@ public class State {
     }
 }
 
+/// An object that describes `VGSCardTextField` state.  State attributes are read-only.
 public class CardState: State {
-    open var last4: String = ""
-    open var bin: String = ""
-    open var cardBrand: SwiftLuhn.CardType = .unknown
     
-    override public init(tf: VGSTextField) {
+    /// Last 4 digits of the valid card number from associated `VGSCardTextField`
+    internal(set) open var last4: String = ""
+    
+    /// Bin digits of the valid card number from associated `VGSCardTextField`
+    internal(set) open var bin: String = ""
+    
+    /// Credit Card Brand of the card number from associated `VGSCardTextField`
+    internal(set) open var cardBrand: SwiftLuhn.CardType = .unknown
+    
+    override init(tf: VGSTextField) {
         super.init(tf: tf)
         
         guard let originalText = tf.textField.getSecureRawText else {
@@ -62,6 +81,7 @@ public class CardState: State {
         self.cardBrand = originalText.suggestedCardType()
     }
     
+    /// Message that contains `CardState` attributes and their values
     override public var description: String {
         var result = super.description
         if isValid {

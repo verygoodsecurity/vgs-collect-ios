@@ -8,16 +8,24 @@
 
 import Foundation
 
-/// Handle VGSFilePickerController states, get picked file info
+/// Delegates produced by VGSFilePickerController
 @objc
 public protocol VGSFilePickerControllerDelegate {
     
-    /// On user select a file. `info` - an object that contains selected file metadata
+    // MARK: - Handle user ineraction with `Card.io`
+    
+    /// On user select a file
+    ///
+    /// - Parameters:
+    ///  - info: selected file metadata info
     func userDidPickFileWithInfo(_ info: VGSFileInfo)
     
     /// On user canceling file picking
     func userDidSCancelFilePicking()
     
-    /// On error occured when user pick a file. `error` - contains error details
+    /// On error occured when user pick a file.
+    ///
+    /// - Parameters:
+    ///  - error: contains `VGSError` details
     func filePickingFailedWithError(_ error: VGSError)
 }

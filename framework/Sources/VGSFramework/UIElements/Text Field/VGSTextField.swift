@@ -10,7 +10,7 @@
 import UIKit
 #endif
 
-/// VGSTextFiled - secure text field for getting user data and safety sending to VGS server
+/// An object that displays an editable text area in user interface.
 public class VGSTextField: UIView {
     
     private(set) weak var vgsCollector: VGSCollect?
@@ -35,7 +35,7 @@ public class VGSTextField: UIView {
         }
     }
     
-    /// You can set padding for text and placeholder
+    /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet { textField.padding = padding }
     }
@@ -45,7 +45,7 @@ public class VGSTextField: UIView {
         didSet { textField.textAlignment = textAlignment }
     }
     
-    /// Setup VGSTextField additional params. Default is nil
+    /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`
     public var configuration: VGSConfiguration? {
         didSet {
             guard let configuration = configuration else { return }
@@ -76,7 +76,7 @@ public class VGSTextField: UIView {
         }
     }
     
-    /// Delegates VGSTextField update events. Default is nil
+    /// Delegates `VGSTextField` editing events. Default is `nil`
     public weak var delegate: VGSTextFieldDelegate?
     
     // MARK: - init
@@ -93,8 +93,45 @@ public class VGSTextField: UIView {
     deinit {
         vgsCollector?.unregisterTextFields(textField: [self])
     }
+}
+
+// MARK: - UIResponder methods
+extension VGSTextField {
     
-    // MARK: - private API
+    /// Make `VGSTextField` focused
+    @discardableResult override public func becomeFirstResponder() -> Bool {
+        return textField.becomeFirstResponder()
+    }
+    
+    /// Remove  focus from `VGSTextField`
+    @discardableResult override public func resignFirstResponder() -> Bool {
+        return textField.resignFirstResponder()
+    }
+    
+    /// Check if `VGSTextField` is focused
+    override public var isFirstResponder: Bool {
+        return textField.isFirstResponder
+    }
+}
+
+// MARK: - Textfiled delegate
+extension VGSTextField: UITextFieldDelegate {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidBeginEditing?(self)
+    }
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidEndEditing?(self)
+    }
+    
+    @objc public func textFieldDidEndEditingOnExit(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidEndEditingOnReturn?(self)
+    }
+}
+
+// MARK: - private API
+internal extension VGSTextField {
+    
     func mainInitialization() {
         // set main style for view
         mainStyle()
@@ -118,7 +155,7 @@ public class VGSTextField: UIView {
         
         //delegates
         //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
-        textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)        
+        textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)
         textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
@@ -135,47 +172,15 @@ public class VGSTextField: UIView {
     }
     
     /// Set textfield text. For internal use only! Not allowed to be public for PCI scope!
-    internal func setText(_ text: String?) {
+    func setText(_ text: String?) {
         textField.secureText = text
         // this will update card textfield icons
         textFieldValueChanged()
     }
-}
-
-// MARK: - Textfiled delegate
-extension VGSTextField: UITextFieldDelegate {
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.vgsTextFieldDidBeginEditing?(self)
-    }
     
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.vgsTextFieldDidEndEditing?(self)
-    }
-    
-    @objc public func textFieldDidEndEditingOnExit(_ textField: UITextField) {
-        delegate?.vgsTextFieldDidEndEditingOnReturn?(self)
-    }
-}
-
-// MARK: - UIResponder methods
-extension VGSTextField {
-    @discardableResult override public func becomeFirstResponder() -> Bool {
-        return textField.becomeFirstResponder()
-    }
-    
-    @discardableResult override public func resignFirstResponder() -> Bool {
-        return textField.resignFirstResponder()
-    }
-    
-    override public var isFirstResponder: Bool {
-        return textField.isFirstResponder
-    }
-}
-
-// MARK: - change focus here
-extension VGSTextField {
+    // change focus here
     @objc
-    internal func focusOn() {
+    func focusOn() {
         // change status
         textField.becomeFirstResponder()
         textFieldValueChanged()

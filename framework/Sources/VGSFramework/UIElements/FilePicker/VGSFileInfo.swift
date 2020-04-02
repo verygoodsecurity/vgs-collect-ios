@@ -9,13 +9,13 @@
 import Foundation
 
 @objc
-public protocol VGSFileInfoProtocol {
+internal protocol VGSFileInfoProtocol {
     var fileExtension: String? { get }
     var size: Int { get }
     var sizeUnits: String? { get }
 }
 
-/// An object that can contain files' metadata
+/// An object that holds optional files' metadata on selecting file through `VGSFilePickerController`.
 public class VGSFileInfo: NSObject, VGSFileInfoProtocol {
     
     /// File extension, like "jpeg", "png", etc.

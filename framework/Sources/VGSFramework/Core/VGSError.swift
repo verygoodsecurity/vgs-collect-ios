@@ -8,24 +8,40 @@
 
 import Foundation
 
+/// Type of `VGSError`  and it status code.
 public enum VGSErrorType: Int {
-    // TextField data errors
+    
+    // MARK: - Text input data errors
+    
+    // When input data is not valid, but required to be valid
     case inputDataIsNotValid = 1001
     
-    // Files data errors
+    // MARK: - Files data errors
+    
+    // When can't find file on device
     case inputFileNotFound = 1101
+    
+    // When can't find file on device
     case inputFileTypeIsNotSupported = 1102
+    
+    // When file size is larger then allowed limit
     case inputFileSizeExceedsTheLimit = 1103
+    
+    // When can't get access to file source
     case sourceNotAvailable = 1150
     
+    // MARK: - Other errors
     // Response data errors
     case unexpectedResponseDataFormat = 1401
 }
 
+/// An error produced by `VGSCollectSDK`. Works similar to default `NSError` in iOS.
 public class VGSError: NSError {
     
+    /// `VGSErrorType `-  required for each `VGSError` instance
     public let type: VGSErrorType!
     
+    /// Code assiciated with `VGSErrorType`
     override public var code: Int {
         return type.rawValue
     }

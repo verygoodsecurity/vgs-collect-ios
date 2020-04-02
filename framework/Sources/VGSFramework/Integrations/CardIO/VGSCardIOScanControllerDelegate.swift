@@ -8,26 +8,40 @@
 
 import Foundation
 
-/// Supported field types by CardIO
+/// Supported scan data fields by Card.io
 @objc
 public enum CradIODataType: Int {
-    case cardNumber         // 16 digits string
-    case expirationDate     // "01/21"
-    case expirationMonth    // "01"
-    case expirationYear     // "21"
-    case cvc                // "123"
+    
+    /// Credit Card Number. 16 digits string
+    case cardNumber
+    
+    /// Credit Card Expiration Date. String in format "01/21"
+    case expirationDate
+    
+    /// Credit Card Expiration Month. String in format "01"
+    case expirationMonth
+    
+    /// Credit Card Expiration Year. String in format "21"
+    case expirationYear
+    
+    /// Credit Card CVC code. 3-4 digits string in format "123"
+    case cvc
 }
 
-/// Handle CardIO states, set VGSTextField with Scanned data
+/// Delegates produced by `VGSCardIOScanController` instance
 @objc
 public protocol VGSCardIOScanControllerDelegate {
     
-    /// On user confirm scanned data by selecting Done button on CardIO screen
+    // MARK: - Handle user ineraction with `Card.io`
+    
+    /// On user confirm scanned data by selecting Done button on `Card.io` screen
     @objc optional func userDidFinishScan()
     
-    /// On user pressing Cancel buttonn on CardIO screen
+    /// On user press Cancel buttonn on `Card.io` screen
     @objc optional func userDidCancelScan()
     
-    /// Asks VGSTextField where scanned data with type need to be set. Called after user select Done button, just before userDidFinishScan() delegate.
+    // MARK: - Manage scanned data
+    
+    /// Asks `VGSTextField` where scanned data with `VGSConfiguration.FieldType` need to be set. Called after user select Done button, just before userDidFinishScan() delegate.
     @objc func textFieldForScannedData(type: CradIODataType) -> VGSTextField?
 }
