@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Protocols  Reference</title>
+    <title>Type Aliases  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/Protocols" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/Type Aliases" class="dashAnchor"></a>
 
-    <a title="Protocols  Reference"></a>
+    <a title="Type Aliases  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">VGSFramework Reference</a>
       <img class="carat" src="img/carat.png" />
-      Protocols  Reference
+      Type Aliases  Reference
     </p>
 
     <div class="content-wrapper">
@@ -147,8 +147,8 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Protocols</h1>
-            <p>The following protocols are available globally.</p>
+            <h1>Type Aliases</h1>
+            <p>The following type aliases are available globally.</p>
 
           </div>
         </section>
@@ -160,9 +160,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/VGSCardIOScanControllerDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate">VGSCardIOScanControllerDelegate</a>
+                    <a name="/s:12VGSFramework8JsonDataa"></a>
+                    <a name="//apple_ref/swift/Alias/JsonData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework8JsonDataa">JsonData</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -170,21 +170,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Delegates produced by <code><a href="Classes/VGSCardIOScanController.html">VGSCardIOScanController</a></code> instance</p>
+                        <p>Key-value data type, usually used for response format</p>
 
-                        <a href="Protocols/VGSCardIOScanControllerDelegate.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">VGSCardIOScanControllerDelegate</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">JsonData</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift#L33-L47">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/APIClient.swift#L13">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -192,9 +190,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/VGSFilePickerControllerDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate">VGSFilePickerControllerDelegate</a>
+                    <a name="/s:12VGSFramework11HTTPHeadersa"></a>
+                    <a name="//apple_ref/swift/Alias/HTTPHeaders" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework11HTTPHeadersa">HTTPHeaders</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -202,53 +200,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Delegates produced by VGSFilePickerController</p>
+                        <p>Key-value data type, used in http request headers</p>
 
-                        <a href="Protocols/VGSFilePickerControllerDelegate.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">VGSFilePickerControllerDelegate</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">HTTPHeaders</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFilePickerControllerDelegate.swift#L13-L31">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/VGSTextFieldDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate">VGSTextFieldDelegate</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Delegates produced by <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> instance</p>
-
-                        <a href="Protocols/VGSTextFieldDelegate.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">VGSTextFieldDelegate</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextFieldDelegate.swift#L15-L27">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/APIClient.swift#L16">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

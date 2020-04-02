@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSFilePickerConfiguration Class Reference</title>
+    <title>VGSTextFieldDelegate Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/VGSFilePickerConfiguration" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/VGSTextFieldDelegate" class="dashAnchor"></a>
 
-    <a title="VGSFilePickerConfiguration Class Reference"></a>
+    <a title="VGSTextFieldDelegate Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSFramework Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSFilePickerConfiguration Class Reference
+      VGSTextFieldDelegate Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -147,14 +147,15 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSFilePickerConfiguration</h1>
+            <h1>VGSTextFieldDelegate</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSFilePickerConfiguration</span> <span class="p">:</span> <span class="kt">VGSFilePickerConfigurationProtocol</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">VGSTextFieldDelegate</span></code></pre>
 
                 </div>
               </div>
-            <p>A class responsible for configuration <code><a href="../Classes/VGSFilePickerController.html">VGSFilePickerController</a></code></p>
+            <p>Delegates produced by <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> instance</p>
 
           </div>
         </section>
@@ -162,13 +163,22 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Handle%20user%20ineraction%20with%20%60VGSTextField%60"></a>
+                <a name="//apple_ref/swift/Section/Handle user ineraction with `VGSTextField`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Handle%20user%20ineraction%20with%20%60VGSTextField%60"></a>
+                  <h3 class="section-name"><p>Handle user ineraction with <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code></p>
+</h3>
+                </div>
+              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12VGSFramework26VGSFilePickerConfigurationC9fieldNameSSvp"></a>
-                    <a name="//apple_ref/swift/Property/fieldName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12VGSFramework26VGSFilePickerConfigurationC9fieldNameSSvp">fieldName</a>
+                    <a name="/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidBeginEditing:"></a>
+                    <a name="//apple_ref/swift/Method/vgsTextFieldDidBeginEditing(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidBeginEditing:">vgsTextFieldDidBeginEditing(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -176,19 +186,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Name that will be associated with selected file by user. Used as a JSON key on submitting file data to your organozation vault</p>
+                        <p>VGSTextField did become first responder</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidBeginEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">textfield</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFilePickerConfiguration.swift#L23">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextFieldDelegate.swift#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -196,9 +207,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12VGSFramework26VGSFilePickerConfigurationC9collector9fieldName10fileSourceAcA10VGSCollectC_SSAA0bI0Otcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(collector:fieldName:fileSource:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12VGSFramework26VGSFilePickerConfigurationC9collector9fieldName10fileSourceAcA10VGSCollectC_SSAA0bI0Otcfc">init(collector:fieldName:fileSource:)</a>
+                    <a name="/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidEndEditing:"></a>
+                    <a name="//apple_ref/swift/Method/vgsTextFieldDidEndEditing(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidEndEditing:">vgsTextFieldDidEndEditing(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,62 +217,51 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialization</p>
+                        <p>VGSTextField did resign first responder</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">collector</span> <span class="nv">vgs</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSCollect.html">VGSCollect</a></span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">fileSource</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSFileSource.html">VGSFileSource</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidEndEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">textfield</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>vgs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> instance</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>fieldName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>name that should be associated with selected file</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>fileSource</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>type of <code><a href="../Enums/VGSFileSource.html">VGSFileSource</a></code> that should be provided to user</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextFieldDelegate.swift#L23">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidEndEditingOnReturn:"></a>
+                    <a name="//apple_ref/swift/Method/vgsTextFieldDidEndEditingOnReturn(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidEndEditingOnReturn:">vgsTextFieldDidEndEditingOnReturn(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>VGSTextField did resign first responder on Return button pressed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidEndEditingOnReturn</span><span class="p">(</span><span class="n">_</span> <span class="nv">textfield</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFilePickerConfiguration.swift#L31-L35">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextFieldDelegate.swift#L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

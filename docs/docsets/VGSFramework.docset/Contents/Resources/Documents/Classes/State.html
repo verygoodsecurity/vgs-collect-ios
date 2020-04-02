@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSCardIOScanControllerDelegate Protocol Reference</title>
+    <title>State Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/VGSCardIOScanControllerDelegate" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/State" class="dashAnchor"></a>
 
-    <a title="VGSCardIOScanControllerDelegate Protocol Reference"></a>
+    <a title="State Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSFramework Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSCardIOScanControllerDelegate Protocol Reference
+      State Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -147,15 +147,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSCardIOScanControllerDelegate</h1>
+            <h1>State</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">VGSCardIOScanControllerDelegate</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">State</span></code></pre>
 
                 </div>
               </div>
-            <p>Delegates produced by <code><a href="../Classes/VGSCardIOScanController.html">VGSCardIOScanController</a></code> instance</p>
+            <p>An object that describes <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> state.  State attributes are read-only.</p>
 
           </div>
         </section>
@@ -163,22 +162,13 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Handle%20user%20ineraction%20with%20%60Card.io%60"></a>
-                <a name="//apple_ref/swift/Section/Handle user ineraction with `Card.io`" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Handle%20user%20ineraction%20with%20%60Card.io%60"></a>
-                  <h3 class="section-name"><p>Handle user ineraction with <code>Card.io</code></p>
-</h3>
-                </div>
-              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate(im)userDidFinishScan"></a>
-                    <a name="//apple_ref/swift/Method/userDidFinishScan()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate(im)userDidFinishScan">userDidFinishScan()</a>
+                    <a name="/s:12VGSFramework5StateC9fieldNameSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/fieldName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework5StateC9fieldNameSSSgvp">fieldName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -186,20 +176,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>On user confirm scanned data by selecting Done button on <code>Card.io</code> screen</p>
+                        <p><code><a href="../Classes/VGSConfiguration.html#/s:12VGSFramework16VGSConfigurationC9fieldNameSSvp">VGSConfiguration.fieldName</a></code> associated  with <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">userDidFinishScan</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift#L38">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift#L17">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -207,9 +196,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate(im)userDidCancelScan"></a>
-                    <a name="//apple_ref/swift/Method/userDidCancelScan()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate(im)userDidCancelScan">userDidCancelScan()</a>
+                    <a name="/s:12VGSFramework5StateC10isRequiredSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework5StateC10isRequiredSbvp">isRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -217,43 +206,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>On user press Cancel buttonn on <code>Card.io</code> screen</p>
+                        <p><code><a href="../Classes/VGSConfiguration.html#/s:12VGSFramework16VGSConfigurationC10isRequiredSbvp">VGSConfiguration.isRequired</a></code> attribute defined for <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">userDidCancelScan</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">isRequired</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift#L41">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Manage%20scanned%20data"></a>
-                <a name="//apple_ref/swift/Section/Manage scanned data" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Manage%20scanned%20data"></a>
-                  <h3 class="section-name"><p>Manage scanned data</p>
-</h3>
-                </div>
-              </div>
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate(im)textFieldForScannedDataWithType:"></a>
-                    <a name="//apple_ref/swift/Method/textFieldForScannedData(type:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSCardIOScanControllerDelegate(im)textFieldForScannedDataWithType:">textFieldForScannedData(type:)</a>
+                    <a name="/s:12VGSFramework5StateC19isRequiredValidOnlySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isRequiredValidOnly" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework5StateC19isRequiredValidOnlySbvp">isRequiredValidOnly</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -261,20 +236,109 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Asks <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> where scanned data with <code>VGSConfiguration.FieldType</code> need to be set. Called after user select Done button, just before userDidFinishScan() delegate.</p>
+                        <p><code><a href="../Classes/VGSConfiguration.html#/s:12VGSFramework16VGSConfigurationC19isRequiredValidOnlySbvp">VGSConfiguration.isRequiredValidOnly</a></code> attribute defined for <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">func</span> <span class="nf">textFieldForScannedData</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/CradIODataType.html">CradIODataType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">isRequiredValidOnly</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift#L46">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift#L23">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework5StateC7isValidSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isValid" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework5StateC7isValidSbvp">isValid</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Contains current validation state for <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">isValid</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework5StateC7isEmptySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework5StateC7isEmptySbvp">isEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Show if <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> input is empty</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift#L29">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework5StateC11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework5StateC11descriptionSSvp">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Message that contains <code>State</code> attributes and their values</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift#L40-L56">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
