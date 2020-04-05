@@ -23,7 +23,7 @@ class CVVTextFieldTests: XCTestCase {
         config.isRequired = true
         cvvTextField.configuration = config
         
-        cvvTextField.textField.text = "123"
+        cvvTextField.textField.secureText = "123"
     }
     
     override func tearDown() {
@@ -36,7 +36,7 @@ class CVVTextFieldTests: XCTestCase {
     }
     
     func testContent() {
-        XCTAssertTrue(cvvTextField.text == "123")
+        XCTAssertTrue(cvvTextField.textField.secureText == "123")
     }
     
     func testStates() {
@@ -51,9 +51,7 @@ class CVVTextFieldTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update TF status.")
         
         collector.observeStates = { objects in
-            
-            expectation.fulfill()
-            
+                        
             XCTAssert(objects.count == 1)
             
             if let state = objects.first?.state {
@@ -63,12 +61,45 @@ class CVVTextFieldTests: XCTestCase {
             } else {
                 XCTFail("Text field state didn't received.")
             }
+            
+            expectation.fulfill()
         }
         
-        cvvTextField.textField.text = "123"
-        cvvTextField.textField.text = "123456"
-        cvvTextField.textField.text = "aaa1234qwwe"
+        cvvTextField.textField.secureText = "123"
+        cvvTextField.focusOn()
+        cvvTextField.textField.secureText = "123456"
+        cvvTextField.focusOn()
+        cvvTextField.textField.secureText = "aaa1234qwwe"
+        cvvTextField.focusOn()
         
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 5.0)
+    }
+    
+    func testCVCFormat() {
+        let cardNumberAmex = "378282246310005"  // cvc format 4 digits (####)
+        let cardNumberVisa = "4111111111111111" // cvc general format 3 digits (###)
+        let cardNumberDiner = "30569309025904"  // cvc general format 3 digits (###)
+        
+        let cardNumberTextField = VGSCardTextField()
+        let cardConfig = VGSConfiguration(collector: collector, fieldName: "testCardNum")
+        cardConfig.type = .cardNumber
+        cardNumberTextField.configuration = cardConfig
+        
+        // set Amex card number
+        cardNumberTextField.textField.secureText = cardNumberAmex
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "####")
+        
+        cardNumberTextField.textField.secureText = cardNumberVisa
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "###")
+        
+        cardNumberTextField.textField.secureText = cardNumberDiner
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "###")
+        
+        cardNumberTextField.textField.secureText = ""
+        cardNumberTextField.focusOn()
+        XCTAssert(cvvTextField.textField.formatPattern == "####", "Default format is wrong. Should be ####")
     }
 }

@@ -5,10 +5,12 @@
 ####################
 #names
 module: VGSFramework
+title: VGSCollectSDK
 author: Very Good Security
 author_url: https://verygoodsecurity.com
 github_url: https://github.com/verygoodsecurity/vgs-collect-ios
 github_file_prefix: https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework
+readme: ../README.md
 #output folder
 output: ../docs
 #path to project
@@ -21,3 +23,4 @@ skip_undocumented: true
 hide_documentation_coverage: true
 theme: fullwidth
 exclude:
+    Sources/VGSFramework/Core/Utils.swift

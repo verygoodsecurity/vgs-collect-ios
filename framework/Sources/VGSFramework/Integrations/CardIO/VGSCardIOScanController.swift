@@ -26,14 +26,14 @@ public class VGSCardIOScanController {
     
     internal var scanHandler: VGSScanHandlerProtocol?
     
-    /// VGSCardIOScanControllerDelegate - handle CardIO states
+    /// `VGSCardIOScanControllerDelegate` - handle user interaction with `Card.io` scanner
     public var delegate: VGSCardIOScanControllerDelegate? {
         didSet {
             scanHandler?.delegate = delegate
         }
     }
     
-    /// Define preferred AVCaptureDevice.Position
+    /// Defines preferred `AVCaptureDevice.Position`. Deault is `AVCaptureDevice.Position.unspecified`
     public var preferredCameraPosition: AVCaptureDevice.Position? {
         didSet {
             scanHandler?.cameraPosition = preferredCameraPosition
@@ -43,7 +43,7 @@ public class VGSCardIOScanController {
     /// Initialization
     ///
     /// - Parameters:
-    ///   - delegate: VGSCardIOScanControllerDelegate
+    ///   - delegate: `VGSCardIOScanControllerDelegate`. Default is `nil`.
     public required init(_ delegate: VGSCardIOScanControllerDelegate? = nil) {
         #if canImport(CardIO)
             self.scanHandler = VGSCardIOHandler()
@@ -54,12 +54,20 @@ public class VGSCardIOScanController {
         #endif
     }
     
-    /// Present CardIO scan controller
+    /// Present `Card.io` scan controller
+    /// - Parameters:
+    ///   - viewController: `UIViewController` that will present card scanner
+    ///   - animated: pass `true` to animate the presentation; otherwise, pass `false`
+    ///   - completion: the block to execute after the presentation finishes
     public func presentCardScanner(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         scanHandler?.presentScanVC(on: viewController, animated: animated, completion: completion)
     }
     
-    /// Dismiss CardIO scan controller
+    /// Dismiss `Card.io` scan controller
+    /// 
+    /// - Parameters:
+    ///   - animated: pass `true` to animate the dismiss of presented viewcontroller; otherwise, pass `false`
+    ///   - completion: the block to execute after the dismiss finishes
     public func dismissCardScanner(animated: Bool, completion: (() -> Void)?) {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
     }

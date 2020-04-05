@@ -30,92 +30,92 @@ class MaskedTextFieldTest: XCTestCase {
     func testDigitsMaskingText() {
         configuration.formatPattern = "#### ####-####.####"
         textfield.configuration = configuration
-        textfield.textField.text = "011122223333444455556"
-        XCTAssertTrue(textfield.text == "0111 2222-3333.4444")
+        textfield.textField.secureText = "011122223333444455556"
+        XCTAssertTrue(textfield.textField.secureText == "0111 2222-3333.4444")
         
         configuration.formatPattern = "#### ####_####?##+##"
         textfield.configuration = configuration
-        textfield.textField.text = " adf 01112222 333344445555sd"
-        XCTAssertTrue(textfield.text == "0111 2222_3333?44+44")
+        textfield.textField.secureText = " adf 01112222 333344445555sd"
+        XCTAssertTrue(textfield.textField.secureText == "0111 2222_3333?44+44")
     }
     
     func testLettersMaskingText() {
         configuration.formatPattern = "AAAA aaaa-aAaA.@@@@"
         textfield.configuration = configuration
-        textfield.textField.text = "TEST test-tEsT.tEsTu"
-        XCTAssertTrue(textfield.text == "TEST test-tEsT.tEsT")
+        textfield.textField.secureText = "TEST test-tEsT.tEsTu"
+        XCTAssertTrue(textfield.textField.secureText == "TEST test-tEsT.tEsT")
         
         configuration.formatPattern = "AAAA aaaa-aAaA.@@@@"
         textfield.configuration = configuration
-        textfield.textField.text = " 1234TEST test1tEsT1tEsT"
-        XCTAssertTrue(textfield.text == "TEST test-tEsT.tEsT")
+        textfield.textField.secureText = " 1234TEST test1tEsT1tEsT"
+        XCTAssertTrue(textfield.textField.secureText == "TEST test-tEsT.tEsT")
     }
     
     func testLettersAndDigitMaskingText() {
         configuration.formatPattern = ""
         textfield.configuration = configuration
-        textfield.textField.text = " Aa11_22:22/33+ 2s"
-        XCTAssertTrue(textfield.text == " Aa11_22:22/33+ 2s")
+        textfield.textField.secureText = " Aa11_22:22/33+ 2s"
+        XCTAssertTrue(textfield.textField.secureText == " Aa11_22:22/33+ 2s")
         
         configuration.formatPattern = "****"
         textfield.configuration = configuration
-        textfield.textField.text = "Aa1122223333444455556"
-        XCTAssertTrue(textfield.text == "Aa11")
+        textfield.textField.secureText = "Aa1122223333444455556"
+        XCTAssertTrue(textfield.textField.secureText == "Aa11")
 
         configuration.formatPattern = "**./_:+**"
         textfield.configuration = configuration
-        textfield.textField.text = " tE2 5test"
-        XCTAssertTrue(textfield.text == "tE./_:+25")
+        textfield.textField.secureText = " tE2 5test"
+        XCTAssertTrue(textfield.textField.secureText == "tE./_:+25")
     }
     
     func testGetRawDigitsText() {
         configuration.formatPattern = "#### #### #### ####"
         textfield.configuration = configuration
-        textfield.textField.text = "4111111111111111"
-        XCTAssertTrue(textfield.rawText == "4111111111111111")
+        textfield.textField.secureText = "4111111111111111"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "4111111111111111")
         
         configuration.formatPattern = " ####-####?####_####.#### "
         textfield.configuration = configuration
-        textfield.textField.text = "411122223333444455556"
-        XCTAssertTrue(textfield.rawText == "41112222333344445555")
+        textfield.textField.secureText = "411122223333444455556"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "41112222333344445555")
         
         configuration.formatPattern = " _##/## "
         textfield.configuration = configuration
-        textfield.textField.text = "012345678"
-        XCTAssertTrue(textfield.rawText == "0123")
+        textfield.textField.secureText = "012345678"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "0123")
         
         configuration.formatPattern = "####-"
         textfield.configuration = configuration
-        textfield.textField.text = "4111"
-        XCTAssertTrue(textfield.rawText == "4111")
+        textfield.textField.secureText = "4111"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "4111")
     }
     
     func testGetRawLettersText() {
         configuration.formatPattern = "AAAA aaaa-aAaA.@@@@"
         textfield.configuration = configuration
-        textfield.textField.text = "TESTtesttEsTtEsTu"
-        XCTAssertTrue(textfield.rawText == "TESTtesttEsTtEsT")
+        textfield.textField.secureText = "TESTtesttEsTtEsTu"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "TESTtesttEsTtEsT")
         
         configuration.formatPattern = "AAAA aaaa-aAaA.@@@@"
         textfield.configuration = configuration
-        textfield.textField.text = " 1234TEST test1tEsT1tEsT"
-        XCTAssertTrue(textfield.rawText == "TESTtesttEsTtEsT")
+        textfield.textField.secureText = " 1234TEST test1tEsT1tEsT"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "TESTtesttEsTtEsT")
     }
     
     func testGetRawLettersAndDigitsText() {
         configuration.formatPattern = ""
         textfield.configuration = configuration
-        textfield.textField.text = " Aa11_22:22/33+ 2s"
-        XCTAssertTrue(textfield.rawText == " Aa11_22:22/33+ 2s")
+        textfield.textField.secureText = " Aa11_22:22/33+ 2s"
+        XCTAssertTrue(textfield.textField.getSecureRawText == " Aa11_22:22/33+ 2s")
         
         configuration.formatPattern = "****"
         textfield.configuration = configuration
-        textfield.textField.text = "Aa1122223333444455556"
-        XCTAssertTrue(textfield.rawText == "Aa11")
+        textfield.textField.secureText = "Aa1122223333444455556"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "Aa11")
 
         configuration.formatPattern = "**./_:+**"
         textfield.configuration = configuration
-        textfield.textField.text = " tE2 5test"
-        XCTAssertTrue(textfield.rawText == "tE25")
+        textfield.textField.secureText = " tE2 5test"
+        XCTAssertTrue(textfield.textField.getSecureRawText == "tE25")
     }
 }

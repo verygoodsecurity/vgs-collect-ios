@@ -10,62 +10,64 @@
 import UIKit
 #endif
 
+/// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
 public class VGSCardTextField: VGSTextField {
-    
     /// card brand icon width
-    var iconWidth: CGFloat = 0
+    var iconWidth: CGFloat = 45
     
-    /// callback for taking card brand icon
+    internal lazy var cardIconView = self.makeCardIcon()
+
+    /// Takes provided image for specific Card Brand
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
+}
+
+// MARK: - Private API
+internal extension VGSCardTextField {
     
-    internal var cardIconView = UIImageView(frame: .zero)
-    
-    // MARK: - init
-    override func mainInitialization() {
-        super.mainInitialization()
-        iconWidth = 45
-        
-        makeCardIcon()
-        
-        updateUI = { [weak self] in
-            if let state = self?.state as? CardState {
-                
-                if self?.cardsIconSource != nil {
-                    let icon = self?.cardsIconSource?(state.cardBrand)
-                    self?.cardIconView.image = icon
-                    
-                } else {
-                    self?.cardIconView.image = state.cardBrand.brandIcon
-                }
-            }
-        }
-    }
-    
-    private func makeCardIcon() {
-        
-        cardIconView.contentMode = .scaleAspectFit
-        addSubview(cardIconView)
-        
-        // make constraints
-        let views = ["view": cardIconView]
-        cardIconView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let width = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(==\(iconWidth))]",
-                                                        options: .alignAllCenterY,
-                                                        metrics: nil,
-                                                        views: views)
-        NSLayoutConstraint.activate(width)
-        
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|",
-                                                      options: .alignAllCenterX,
-                                                      metrics: nil,
-                                                      views: views)
-        NSLayoutConstraint.activate(vertical)
-        
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-5-|",
-                                                        options: .alignAllCenterY,
-                                                        metrics: nil,
-                                                        views: views)
-        NSLayoutConstraint.activate(horizontal)
-    }
+       // override textFieldDidChange
+       override func textFieldValueChanged() {
+           super.textFieldValueChanged()
+           
+           if let state = state as? CardState {
+               if cardsIconSource != nil {
+                   let icon = cardsIconSource?(state.cardBrand)
+                   cardIconView.image = icon
+                   
+               } else {
+                   cardIconView.image = state.cardBrand.brandIcon
+               }
+           }
+       }
+       
+       // make image view for a card brand icon
+       private func makeCardIcon() -> UIImageView {
+           let result = UIImageView(frame: .zero)
+           
+           result.contentMode = .scaleAspectFit
+           addSubview(result)
+           
+           // make constraints
+           let views = ["view": result]
+           result.translatesAutoresizingMaskIntoConstraints = false
+           
+           let width = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(==\(iconWidth))]",
+                                                           options: .alignAllCenterY,
+                                                           metrics: nil,
+                                                           views: views)
+           NSLayoutConstraint.activate(width)
+           
+           let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|",
+                                                         options: .alignAllCenterX,
+                                                         metrics: nil,
+                                                         views: views)
+           NSLayoutConstraint.activate(vertical)
+           
+           let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-5-|",
+                                                           options: .alignAllCenterY,
+                                                           metrics: nil,
+                                                           views: views)
+           NSLayoutConstraint.activate(horizontal)
+           
+           return result
+       }
 }

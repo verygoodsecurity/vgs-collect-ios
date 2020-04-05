@@ -12,18 +12,14 @@ import UIKit
 #endif
 import Alamofire
 
-/// The VGSForm class needed for collect all text filelds
+/// An object you use for observing `VGSTextField` `State` and submit data to your organization vault.
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
     
-    /// Observing focused text field of state
-    public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
-    
-    /// Observing all text fields states
-    public var observeStates: ((_ form: [VGSTextField]) -> Void)?
+    // MARK: Custom HTTP Headers
     
     /// Set your custom HTTP headers
     public var customHeaders: [String: String]? {
@@ -34,13 +30,19 @@ public class VGSCollect {
         }
     }
     
-    // MARK: - Initialzation
+    // MARK: - Observe VGSTextField states
     
-    /// Init VGSForm instance
+    /// Observe only focused `VGSTextField` on editing events.
+    public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
+    
+    /// Observe  all `VGSTextField` on editing events.
+    public var observeStates: ((_ form: [VGSTextField]) -> Void)?
+    
+    /// Initialzation
     ///
     /// - Parameters:
-    ///   - id: Your tanent id value
-    ///   - environment: By default it's `sandbox`, better for testing. And `live` when you ready for prodaction.
+    ///   - id: your organization vault id
+    ///   - environment: your organization vault environment. By default `Environment.sandbox`.
     public init(id: String, environment: Environment = .sandbox) {
         assert(Self.tenantIDValid(id), "Error: vault id is not valid!")
         let strUrl = "https://" + id + "." + environment.rawValue + ".verygoodproxy.com"
@@ -50,44 +52,31 @@ public class VGSCollect {
         apiClient = APIClient(baseURL: url)
     }
     
-    func registerTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.addElement(tf)
-        }
-    }
+    // MARK: - Helper functions
     
-    func unregisterTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.removeElement(tf)
-        }
-    }
-    
+    /// Remove files for associated `VGSCollect` instance
     public func cleanFiles() {
         storage.removeFiles()
     }
-}
-
-extension VGSCollect {
     
+    /// Returns `VGSTextField` with `VGSConfiguration.fieldName` associated with `VGCollect` instance.
     public func getTextField(fieldName: String) -> VGSTextField? {
         return storage.elements.first(where: { $0.fieldName == fieldName })
     }
-    
-    func updateStatus(for textField: VGSTextField) {
-        // reset all focus status
-        storage.elements.forEach { textField in
-            textField.focusStatus = false
-        }
-        // set focus for textField
-        textField.focusStatus = true
-        // call observers
-        observeStates?(storage.elements)
-        observeFieldState?(textField)
-    }
 }
 
-// MARK: - sending data
+// MARK: - Send data to organization vault
 extension VGSCollect {
+    
+    /**
+     Send data from VGSTextFields to your organization vault
+     
+     - Parameters:
+        - path: Inbound rout path for your organization vault
+        - method: HTTPMethod, default is   `.post`
+        - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`
+        - completion: response completion block, returns `JsonData` or an `Error`
+    */
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
@@ -108,6 +97,15 @@ extension VGSCollect {
         }
     }
     
+    /**
+        Send file to your organization vault. Only send one file at a time.
+        
+        - Parameters:
+           - path: Inbound rout path for your organization vault
+           - method: HTTPMethod, default is   `.post`
+           - extraData: Any data you want to send together file , default is `nil`
+           - completion: response completion block, returns `JsonData` or an `Error`
+    */
     public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {

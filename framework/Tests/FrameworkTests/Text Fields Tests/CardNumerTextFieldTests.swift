@@ -35,7 +35,7 @@ class CardNumerTextFieldTests: XCTestCase {
     }
     
     func testCardNumberText() {
-        XCTAssertNotNil(cardNumerTextField.textField.text == cardNum)
+        XCTAssertNotNil(cardNumerTextField.textField.secureText == cardNum)
     }
     
     func testStates() {
@@ -52,7 +52,7 @@ class CardNumerTextFieldTests: XCTestCase {
             XCTAssert(false, "State not for card field")
         }
         
-        cardNumerTextField.textField.text = cardNum
+        cardNumerTextField.textField.secureText = cardNum
         
         state = cardNumerTextField.state
         

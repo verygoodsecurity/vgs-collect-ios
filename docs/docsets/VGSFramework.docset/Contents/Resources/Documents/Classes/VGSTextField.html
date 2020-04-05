@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          VGSFramework Docs
+          VGSCollectSDK
         </a>
         
       </p>
@@ -54,13 +54,25 @@
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CardState.html">CardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/VGSCardIOScanController.html">VGSCardIOScanController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSCardTextField.html">VGSCardTextField</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/VGSCollect.html">VGSCollect</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/VGSConfiguration.html">VGSConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSError.html">VGSError</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/VGSFileInfo.html">VGSFileInfo</a>
@@ -77,27 +89,30 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <a class="nav-group-name-link" href="../Global%20Variables.html">Global Variables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums.html#/c:@M@VGSFramework@E@CradIODataType">CradIODataType</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums.html#/s:12VGSFramework11EnvironmentO">Environment</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums.html#/s:12VGSFramework9FieldTypeO">FieldType</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/VGSFileSource.html">VGSFileSource</a>
+                <a class="nav-group-task-link" href="../Global%20Variables.html#/s:12VGSFramework24VGSCollectSDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions.html#/VGSCardIOHandler">VGSCardIOHandler</a>
+                <a class="nav-group-task-link" href="../Enums/CradIODataType.html">CradIODataType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FieldType.html">FieldType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums.html#/s:12VGSFramework12VGSErrorTypeO">VGSErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSFileSource.html">VGSFileSource</a>
               </li>
             </ul>
           </li>
@@ -109,6 +124,20 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/VGSFilePickerControllerDelegate.html">VGSFilePickerControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/VGSTextFieldDelegate.html">VGSTextFieldDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:12VGSFramework11HTTPHeadersa">HTTPHeaders</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:12VGSFramework8JsonDataa">JsonData</a>
               </li>
             </ul>
           </li>
@@ -126,7 +155,7 @@
 
                 </div>
               </div>
-            <p>VGSTextFiled - secure text field for getting user data and safety sending to VGS server</p>
+            <p>An object that displays an editable text area in user interface.</p>
 
           </div>
         </section>
@@ -160,7 +189,37 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L55-L59">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L27-L29">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework12VGSTextFieldC21attributedPlaceholderSo18NSAttributedStringCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/attributedPlaceholder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSTextFieldC21attributedPlaceholderSo18NSAttributedStringCSgvp">attributedPlaceholder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Textfield attributedPlaceholder string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">attributedPlaceholder</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L32-L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -178,7 +237,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>You can set padding for text and placeholder</p>
+                        <p><code>UIEdgeInsets</code> for text and placeholder inside <code>VGSTextField</code></p>
 
                       </div>
                       <div class="declaration">
@@ -190,7 +249,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L62-L66">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L39-L41">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -220,7 +279,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L69-L73">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L44-L46">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -238,7 +297,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Setup VGSTextField additional params. Default is nil</p>
+                        <p>Specifies <code>VGSTextField</code> configuration parameters to work with <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -250,7 +309,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L76-L108">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L49-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -268,19 +327,154 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Delegates VGSTextField update events. Default is nil</p>
+                        <p>Delegates <code>VGSTextField</code> editing events. Default is <code>nil</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt">VGSTextFieldDelegate</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/VGSTextFieldDelegate.html">VGSTextFieldDelegate</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L111">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L80">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework12VGSTextFieldC5stateAA5StateCvp"></a>
+                    <a name="//apple_ref/swift/Property/state" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSTextFieldC5stateAA5StateCvp">state</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Describes <code>VGSTextField</code> input   <code><a href="../Classes/State.html">State</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Classes/State.html">State</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+state.swift#L26-L36">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UIResponder%20methods"></a>
+                <a name="//apple_ref/swift/Section/UIResponder methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/UIResponder%20methods"></a>
+                  <h3 class="section-name"><p>UIResponder methods</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VGSFramework@objc(cs)VGSTextField(im)becomeFirstResponder"></a>
+                    <a name="//apple_ref/swift/Method/becomeFirstResponder()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VGSFramework@objc(cs)VGSTextField(im)becomeFirstResponder">becomeFirstResponder()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Make <code>VGSTextField</code> focused</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">becomeFirstResponder</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L102-L104">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VGSFramework@objc(cs)VGSTextField(im)resignFirstResponder"></a>
+                    <a name="//apple_ref/swift/Method/resignFirstResponder()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VGSFramework@objc(cs)VGSTextField(im)resignFirstResponder">resignFirstResponder()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove  focus from <code>VGSTextField</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">resignFirstResponder</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L107-L109">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VGSFramework@objc(cs)VGSTextField(py)isFirstResponder"></a>
+                    <a name="//apple_ref/swift/Property/isFirstResponder" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VGSFramework@objc(cs)VGSTextField(py)isFirstResponder">isFirstResponder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check if <code>VGSTextField</code> is focused</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">isFirstResponder</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift#L112-L114">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -293,7 +487,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-03-31)</p>
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-04-02)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

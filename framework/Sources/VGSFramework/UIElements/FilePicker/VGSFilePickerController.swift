@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Controller responsible for managing files import
+/// Controller responsible for importing files from device sources
 public class VGSFilePickerController {
     
     internal let configuration: VGSFilePickerConfiguration
@@ -17,7 +17,7 @@ public class VGSFilePickerController {
         return getFilePicker(configuration.fileSource)
     }()
     
-    /// VGSFilePickerControllerDelegate - handle states on file picking
+    /// `VGSFilePickerControllerDelegate` - handle user interaction on file picking
     public weak var delegate: VGSFilePickerControllerDelegate? {
         didSet {
             filePicker.delegate = delegate
@@ -27,17 +27,26 @@ public class VGSFilePickerController {
     /// Initialization
     ///
     /// - Parameters:
-    ///   - configuration: VGSFilePickerConfiguration
+    ///   - configuration: `VGSFilePickerConfiguration`
     public required init(configuration: VGSFilePickerConfiguration) {
         self.configuration = configuration
     }
     
     /// Present file picker view
+    ///
+    /// - Parameters:
+    ///   - viewController: `UIViewController` that will present card scanner
+    ///   - animated: pass `true` to animate the presentation; otherwise, pass `false`
+    ///   - completion: the block to execute after the presentation finishes
     public func presentFilePicker(on viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         filePicker.present(on: viewController, animated: animated, completion: completion)
     }
     
     /// Dismiss file picker view
+    ///
+    /// - Parameters:
+    ///   - animated: pass `true` to animate the dismiss of presented viewcontroller; otherwise, pass `false`
+    ///   - completion: the block to execute after the dismiss finishes
     public func dismissFilePicker(animated: Bool, completion: (() -> Void)? = nil) {
         filePicker.dismiss(animated: animated, completion: completion)
     }

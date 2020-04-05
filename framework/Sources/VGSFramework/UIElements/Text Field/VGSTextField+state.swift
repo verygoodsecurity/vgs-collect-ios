@@ -14,7 +14,7 @@ import UIKit
 public extension VGSTextField {
     
     internal var isValid: Bool {
-        let str = text ?? ""
+        let str = textField.getSecureRawText ?? ""
         return validationModel.isValid(str, type: fieldType)
     }
     
@@ -22,6 +22,7 @@ public extension VGSTextField {
         return focusStatus
     }
     
+    /// Describes `VGSTextField` input   `State`
     var state: State {
         var result: State
         
@@ -31,7 +32,6 @@ public extension VGSTextField {
         default:
             result = State(tf: self)
         }
-        
         return result
     }
 }

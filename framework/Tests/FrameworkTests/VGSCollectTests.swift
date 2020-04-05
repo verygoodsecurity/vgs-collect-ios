@@ -68,22 +68,22 @@ class VGSCollectTests: XCTestCase {
         let cardConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.card_number")
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = cardConfiguration
-        cardTextField.textField.text = "4111 1111 1111 1112"
+        cardTextField.textField.secureText = "4111 1111 1111 1112"
         
         let cvcConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.cvc")
         let cvcTextField = VGSTextField()
         cvcTextField.configuration = cvcConfiguration
-        cvcTextField.textField.text = "123"
+        cvcTextField.textField.secureText = "123"
         
         let nameConfiguration = VGSConfiguration(collector: collector, fieldName: "user.name")
         let nameTextField = VGSTextField()
         nameTextField.configuration = nameConfiguration
-        nameTextField.textField.text = "Joe Business"
+        nameTextField.textField.secureText = "Joe Business"
         
         let ssnConfiguration = VGSConfiguration(collector: collector, fieldName: "ssn")
         let ssnTextField = VGSTextField()
         ssnTextField.configuration = ssnConfiguration
-        ssnTextField.textField.text = "UA411111111111XZ"
+        ssnTextField.textField.secureText = "UA411111111111XZ"
         
         let result = collector.mapStoredInputDataForSubmit(with: nil)
         let expectedResult: [String: Any] = [
@@ -103,27 +103,27 @@ class VGSCollectTests: XCTestCase {
         let cardConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.card_number")
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = cardConfiguration
-        cardTextField.textField.text = "4111 1111 1111 1112"
+        cardTextField.textField.secureText = "4111 1111 1111 1112"
         
         let cvcConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.cvc")
         let cvcTextField = VGSTextField()
         cvcTextField.configuration = cvcConfiguration
-        cvcTextField.textField.text = "123"
+        cvcTextField.textField.secureText = "123"
         
         let nameConfiguration = VGSConfiguration(collector: collector, fieldName: "user.name")
         let nameTextField = VGSTextField()
         nameTextField.configuration = nameConfiguration
-        nameTextField.textField.text = "Joe Business"
+        nameTextField.textField.secureText = "Joe Business"
         
         let ssnConfiguration = VGSConfiguration(collector: collector, fieldName: "ssn")
         let ssnTextField = VGSTextField()
         ssnTextField.configuration = ssnConfiguration
-        ssnTextField.textField.text = "UA411111111111XZ"
+        ssnTextField.textField.secureText = "UA411111111111XZ"
         
         let expDateConfiguration = VGSConfiguration(collector: collector, fieldName: "date")
         let expDateTextField = VGSTextField()
         expDateTextField.configuration = expDateConfiguration
-        expDateTextField.textField.text = "2030-03-30"
+        expDateTextField.textField.secureText = "2030-03-30"
         
         let extraData: [String: Any] = [
             "user": [

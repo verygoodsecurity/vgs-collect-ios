@@ -23,7 +23,7 @@ class TextFieldSecurity: XCTestCase {
         config.isRequired = true
         textField.configuration = config
         
-        textField.textField.text = cardNum
+        textField.textField.secureText = cardNum
     }
 
     override func tearDown() {
@@ -49,7 +49,7 @@ class TextFieldSecurity: XCTestCase {
             }
         }
         
-        textField.textField.text = cardNum
+        textField.textField.secureText = cardNum
         
         textField.subviews.forEach { (view) in
             if let tf = view as? UITextField {

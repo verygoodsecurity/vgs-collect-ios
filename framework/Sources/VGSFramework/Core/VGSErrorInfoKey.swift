@@ -10,21 +10,23 @@ import Foundation
 
 public typealias VGSErrorInfoKey = String
 
+/// An error domain used to produce `VGSError` from `VGSCollectSDK`.
 public let VGSCollectSDKErrorDomain = "vgscollect.sdk"
 
 // MARK: - VGSErrorInfoKeys
 
-// Input data errors
+// MARK: - Input data errors
+public let VGSSDKErrorInputDataIsNotValid: VGSErrorInfoKey = "VGSSDKErrorInputDataIsNotValid"
 public let VGSSDKErrorInputDataRequired: VGSErrorInfoKey = "VGSSDKErrorInputDataRequired"
 public let VGSSDKErrorInputDataRequiredValid: VGSErrorInfoKey = "VGSSDKErrorInputDataRequiredValid"
 
-// File data errors
+// MARK: - File data errors
 public let VGSSDKErrorFileNotFound: VGSErrorInfoKey = "VGSSDKErrorFileNotFound"
 public let VGSSDKErrorFileTypeNotSupported: VGSErrorInfoKey = "VGSSDKErrorFileTypeNotSupported"
 public let VGSSDKErrorFileSizeExceedsTheLimit: VGSErrorInfoKey = "VGSSDKErrorFileSizeExceedsTheLimit"
 
-// Source errors(camera, photolibrary, etc.)
+// MARK: - Source errors
 public let VGSSDKErrorSourceNotAvailable: VGSErrorInfoKey = "VGSSDKErrorSourceNotAvailable"
 
-// Response errors
+// MARK: - Response errors
 public let VGSSDKErrorUnexpectedResponseDataFormat: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResponseDataFormat"

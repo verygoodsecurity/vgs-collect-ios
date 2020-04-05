@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// VGS file source type
+/// Available source types that `VGSFilePickerController` works with
 public enum VGSFileSource: Int, CaseIterable {
     
     /// Device photo library
