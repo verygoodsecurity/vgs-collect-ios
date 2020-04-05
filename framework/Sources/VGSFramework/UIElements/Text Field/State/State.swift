@@ -70,7 +70,7 @@ public class CardState: State {
                 "bin": \(bin),
                 "last4": \(last4),
                 "cardBrand": \(cardBrand),
-                "cardBrandName": \(cardBrand.stringValue())
+                "cardBrandName": \(cardBrand.stringValue)
             }
             """)
         }

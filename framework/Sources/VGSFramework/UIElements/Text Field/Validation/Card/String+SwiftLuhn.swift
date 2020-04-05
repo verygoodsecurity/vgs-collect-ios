@@ -18,7 +18,7 @@ public extension String {
         return cardType
     }
     func suggestedCardType() -> SwiftLuhn.CardType {
-        let cardType = SwiftLuhn.cardType(for: self, suggest: true)
+        let cardType = SwiftLuhn.cardType(for: self)
         return cardType
     }
     

@@ -14,8 +14,6 @@
 		321300172417F2B70062FEF0 /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9442316CE5A000EAF52 /* VGSTextField.swift */; };
 		321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */; };
 		321300192417F2E80062FEF0 /* VGSCollect+internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323105622417DF07009C3360 /* VGSCollect+internal.swift */; };
-		3213001B24190BE50062FEF0 /* VGSCollectTest+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213001A24190BE50062FEF0 /* VGSCollectTest+Validation.swift */; };
-		32130059241F9FFB0062FEF0 /* VGSCollectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32130057241F9FFB0062FEF0 /* VGSCollectTests.swift */; };
 		3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */; };
 		3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219D73C2404279700F4A7E5 /* VGSError.swift */; };
 		3219D73E2404279700F4A7E5 /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219D73C2404279700F4A7E5 /* VGSError.swift */; };
@@ -41,7 +39,6 @@
 		3C514B5FF66E3CC4BE524AC2 /* Pods_VGSFramework_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */; };
 		D06AC61B18447F6EC1968FDE /* Pods_VGSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
-		FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93A2316CE5A000EAF52 /* Enums.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1489FB232D4F6B00FD7781 /* APIClient.swift */; };
@@ -363,9 +360,9 @@
 		FD2495632330E313009024E6 /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				FD2495642330E313009024E6 /* SwiftLuhn.swift */,
-				FD2495652330E313009024E6 /* String+SwiftLuhn.swift */,
 				FD6F5656238E7FBB00C24123 /* CardType+icon.swift */,
+				FD2495652330E313009024E6 /* String+SwiftLuhn.swift */,
+				FD2495642330E313009024E6 /* SwiftLuhn.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -495,7 +492,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = VGS;
 				TargetAttributes = {
 					FD12B9AE2304619100B670DD = {
@@ -646,7 +643,6 @@
 				FD2495692330E313009024E6 /* SwiftLuhn.swift in Sources */,
 				FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */,
 				32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */,
-				FD05F9482316CE5A000EAF52 /* Enums.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD3C01C323AFC0980096B4A4 /* VGSTextField+CVC.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
@@ -691,16 +687,11 @@
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
-				3213001B24190BE50062FEF0 /* VGSCollectTest+Validation.swift in Sources */,
 				3219D73E2404279700F4A7E5 /* VGSError.swift in Sources */,
 				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
 				FD24955E2330CC62009024E6 /* VGSCollectTests.swift in Sources */,
 				3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */,
-				3219D73E2404279700F4A7E5 /* VGSError.swift in Sources */,
 				324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */,
-				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
-				3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */,
-				32130059241F9FFB0062FEF0 /* VGSCollectTests.swift in Sources */,
 				32059CD12417E02E003E9481 /* Utils.swift in Sources */,
 				327C9E182407FC62004C641C /* VGSErrorInfoKey.swift in Sources */,
 			);

@@ -42,7 +42,7 @@ class LuhnTests: XCTestCase {
     }
     
     func test5() {
-        XCTAssert(cardNumer.cardType().stringValue().lowercased() == "visa")
+        XCTAssert(cardNumer.cardType().stringValue.lowercased() == "visa")
     }
     
     func test6() {

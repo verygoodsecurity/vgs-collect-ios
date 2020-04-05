@@ -20,8 +20,6 @@ public class SwiftLuhn {
         case dinersClub
         case jcb
         case maestro
-        case rupay
-        case mir
         case unknown
     }
     
@@ -33,48 +31,26 @@ public class SwiftLuhn {
     fileprivate class func regularExpression(for cardType: CardType) -> String {
         switch cardType {
         case .amex:
-            return "^3[47][0-9]{5,}$"
+            return "^3[4,7][0-9]{13}$"
+            
         case .dinersClub:
-            return "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
+            return "^3(?:0[0-5]|[68][0-9])[0-9]{11}$"
+            
         case .discover:
-            return "^6(?:011|5[0-9]{2})[0-9]{3,}$"
+            return "^6(?:011|[4,5][0-9]{2})[0-9]{12}$"
+            
         case .jcb:
-            return "^(?:2131|1800|35[0-9]{3})[0-9]{3,}$"
+            return "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
+            
         case .mastercard:
-            return "^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$"
+            return "^((5[1,4,5][0-9]{14})|(222[0-9]{13})|(67[0-9]{14}))$"
+            
         case .visa:
-            return "^4[0-9]{6,}$"
+            return "^4[0,1,2,4,5,6,9][0-9]{14}$"
+            
         case .maestro:
-            return "^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}$"
-        case .rupay:
-            return "^6[0-9]{15}$"
-        case .mir:
-            return "^220[0-9]{13}$"
-        default:
-            return ""
-        }
-    }
-    
-    fileprivate class func suggestionRegularExpression(for cardType: CardType) -> String {
-        switch cardType {
-        case .amex:
-            return "^3[47][0-9]+$"
-        case .dinersClub:
-            return "^3(?:0[0-5]|[68][0-9])[0-9]+$"
-        case .discover:
-            return "^6(?:011|5[0-9]{2})[0-9]+$"
-        case .jcb:
-            return "^(?:2131|1800|35[0-9]{3})[0-9]+$"
-        case .mastercard:
-            return "^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$"
-        case .visa:
-            return "^4[0-9]+$"
-        case .maestro:
-            return "^(5018|5020|5038|6304|6759|6761|6763)[0-9]+$"
-        case .rupay:
-            return "^6[0-9]+$"
-        case .mir:
-            return "^220[0-9]+$"
+            return "^(50[18,20,38]|6304|67[59,61,63,71])[0-9]{13}$"
+
         default:
             return ""
         }
@@ -118,14 +94,14 @@ public class SwiftLuhn {
         return valid
     }
     
-    class func cardType(for cardNumber: String, suggest: Bool = false) -> CardType {
+    class func cardType(for cardNumber: String) -> CardType {
         
         var foundCardType: CardType = .unknown
         
         let allCardBrand = CardType.allCases
         
         allCardBrand.forEach { type in
-            let regex = suggest ? suggestionRegularExpression(for: type) : regularExpression(for: type)
+            let regex = regularExpression(for: type)
             let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
             if predicate.evaluate(with: cardNumber.formattedCardNumber()) == true {
                 foundCardType = type
@@ -137,7 +113,7 @@ public class SwiftLuhn {
 }
 
 public extension SwiftLuhn.CardType {
-    func stringValue() -> String {
+    var stringValue: String {
         switch self {
         case .amex:
             return "American Express"
@@ -153,10 +129,6 @@ public extension SwiftLuhn.CardType {
             return "JCB"
         case .maestro:
             return "Maestro"
-        case .rupay:
-            return "Rupay"
-        case .mir:
-            return "Mir"
         default:
             return "unknown"
         }
