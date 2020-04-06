@@ -9,48 +9,6 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
-      "line": 17,
-      "symbol": "VGSErrorType.inputDataIsNotValid",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
-      "line": 22,
-      "symbol": "VGSErrorType.inputFileNotFound",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
-      "line": 25,
-      "symbol": "VGSErrorType.inputFileTypeIsNotSupported",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
-      "line": 28,
-      "symbol": "VGSErrorType.inputFileSizeExceedsTheLimit",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
-      "line": 31,
-      "symbol": "VGSErrorType.sourceNotAvailable",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
-      "line": 35,
-      "symbol": "VGSErrorType.unexpectedResponseDataFormat",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
       "line": 49,
       "symbol": "VGSError.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
@@ -61,62 +19,6 @@
       "line": 11,
       "symbol": "VGSErrorInfoKey",
       "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 19,
-      "symbol": "VGSSDKErrorInputDataIsNotValid",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 20,
-      "symbol": "VGSSDKErrorInputDataRequired",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 21,
-      "symbol": "VGSSDKErrorInputDataRequiredValid",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 24,
-      "symbol": "VGSSDKErrorFileNotFound",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 25,
-      "symbol": "VGSSDKErrorFileTypeNotSupported",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 26,
-      "symbol": "VGSSDKErrorFileSizeExceedsTheLimit",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 29,
-      "symbol": "VGSSDKErrorSourceNotAvailable",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
-      "line": 32,
-      "symbol": "VGSSDKErrorUnexpectedResponseDataFormat",
-      "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
@@ -212,28 +114,28 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 119,
+      "line": 123,
       "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 123,
+      "line": 127,
       "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 127,
+      "line": 131,
       "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 192,
+      "line": 196,
       "symbol": "UIView.mainStyle()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

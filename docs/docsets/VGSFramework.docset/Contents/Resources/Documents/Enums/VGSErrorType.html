@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSError Class Reference</title>
+    <title>VGSErrorType Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/VGSError" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/VGSErrorType" class="dashAnchor"></a>
 
-    <a title="VGSError Class Reference"></a>
+    <a title="VGSErrorType Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSFramework Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSError Class Reference
+      VGSErrorType Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -181,14 +181,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSError</h1>
+            <h1>VGSErrorType</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSError</span> <span class="p">:</span> <span class="kt">NSError</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSErrorType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                 </div>
               </div>
-            <p>An error produced by <code>VGSCollectSDK</code>. Works similar to default <code>NSError</code> in iOS.</p>
+            <p>Type of <code><a href="../Classes/VGSError.html">VGSError</a></code>  and it status code.</p>
 
           </div>
         </section>
@@ -196,13 +196,22 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Text%20input%20data%20errors"></a>
+                <a name="//apple_ref/swift/Section/Text input data errors" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Text%20input%20data%20errors"></a>
+                  <h3 class="section-name"><p>Text input data errors</p>
+</h3>
+                </div>
+              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12VGSFramework8VGSErrorC4typeAA0B4TypeOSgvp"></a>
-                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12VGSFramework8VGSErrorC4typeAA0B4TypeOSgvp">type</a>
+                    <a name="/s:12VGSFramework12VGSErrorTypeO19inputDataIsNotValidyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/inputDataIsNotValid" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSErrorTypeO19inputDataIsNotValidyA2CmF">inputDataIsNotValid</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -210,19 +219,62 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code><a href="../Enums/VGSErrorType.html">VGSErrorType</a></code>-  required for each <code>VGSError</code> instance</p>
+                        <p>When input data is not valid, but required to be valid</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSErrorType.html">VGSErrorType</a></span><span class="o">!</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">inputDataIsNotValid</span> <span class="o">=</span> <span class="mi">1001</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L42">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L17">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Files%20data%20errors"></a>
+                <a name="//apple_ref/swift/Section/Files data errors" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Files%20data%20errors"></a>
+                  <h3 class="section-name"><p>Files data errors</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework12VGSErrorTypeO17inputFileNotFoundyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/inputFileNotFound" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSErrorTypeO17inputFileNotFoundyA2CmF">inputFileNotFound</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When can&rsquo;t find file on device</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">inputFileNotFound</span> <span class="o">=</span> <span class="mi">1101</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -230,9 +282,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(cs)VGSError(py)code"></a>
-                    <a name="//apple_ref/swift/Property/code" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(cs)VGSError(py)code">code</a>
+                    <a name="/s:12VGSFramework12VGSErrorTypeO09inputFileC14IsNotSupportedyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/inputFileTypeIsNotSupported" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSErrorTypeO09inputFileC14IsNotSupportedyA2CmF">inputFileTypeIsNotSupported</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -240,19 +292,122 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Code assiciated with <code><a href="../Enums/VGSErrorType.html">VGSErrorType</a></code></p>
+                        <p>When can&rsquo;t find file on device</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">code</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">inputFileTypeIsNotSupported</span> <span class="o">=</span> <span class="mi">1102</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L45-L47">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework12VGSErrorTypeO28inputFileSizeExceedsTheLimityA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/inputFileSizeExceedsTheLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSErrorTypeO28inputFileSizeExceedsTheLimityA2CmF">inputFileSizeExceedsTheLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When file size is larger then allowed limit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">inputFileSizeExceedsTheLimit</span> <span class="o">=</span> <span class="mi">1103</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L28">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework12VGSErrorTypeO18sourceNotAvailableyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/sourceNotAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSErrorTypeO18sourceNotAvailableyA2CmF">sourceNotAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When can&rsquo;t get access to file source</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">sourceNotAvailable</span> <span class="o">=</span> <span class="mi">1150</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L31">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Other%20errors"></a>
+                <a name="//apple_ref/swift/Section/Other errors" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Other%20errors"></a>
+                  <h3 class="section-name"><p>Other errors</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12VGSFramework12VGSErrorTypeO28unexpectedResponseDataFormatyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/unexpectedResponseDataFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework12VGSErrorTypeO28unexpectedResponseDataFormatyA2CmF">unexpectedResponseDataFormat</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Response data errors</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unexpectedResponseDataFormat</span> <span class="o">=</span> <span class="mi">1401</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/Core/VGSError.swift#L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
