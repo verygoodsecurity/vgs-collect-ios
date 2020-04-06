@@ -24,6 +24,8 @@ internal protocol VGSScanHandlerProtocol {
 /// Controller responsible for managing Card.io scanner
 public class VGSCardIOScanController {
     
+    // MARK: - Attributes
+    
     internal var scanHandler: VGSScanHandlerProtocol?
     
     /// `VGSCardIOScanControllerDelegate` - handle user interaction with `Card.io` scanner
@@ -40,6 +42,7 @@ public class VGSCardIOScanController {
         }
     }
     
+    // MARK: - Initialization
     /// Initialization
     ///
     /// - Parameters:
@@ -54,20 +57,22 @@ public class VGSCardIOScanController {
         #endif
     }
     
-    /// Present `Card.io` scan controller
+    // MARK: - Methods
+    
+    /// Present `Card.io` scanner.
     /// - Parameters:
-    ///   - viewController: `UIViewController` that will present card scanner
-    ///   - animated: pass `true` to animate the presentation; otherwise, pass `false`
-    ///   - completion: the block to execute after the presentation finishes
+    ///   - viewController: `UIViewController` that will present card scanner.
+    ///   - animated: pass `true` to animate the presentation; otherwise, pass `false`.
+    ///   - completion: the block to execute after the presentation finishes.
     public func presentCardScanner(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         scanHandler?.presentScanVC(on: viewController, animated: animated, completion: completion)
     }
     
-    /// Dismiss `Card.io` scan controller
+    /// Dismiss `Card.io` scanner.
     /// 
     /// - Parameters:
-    ///   - animated: pass `true` to animate the dismiss of presented viewcontroller; otherwise, pass `false`
-    ///   - completion: the block to execute after the dismiss finishes
+    ///   - animated: pass `true` to animate the dismiss of presented viewcontroller; otherwise, pass `false`.
+    ///   - completion: the block to execute after the dismiss finishes.
     public func dismissCardScanner(animated: Bool, completion: (() -> Void)?) {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
     }

@@ -8,22 +8,25 @@
 
 import Foundation
 
-/// Controller responsible for importing files from device sources
+/// Controller responsible for importing files from device sources.
 public class VGSFilePickerController {
     
+    // MARK: - Attributes
+
     internal let configuration: VGSFilePickerConfiguration
 
     internal lazy var filePicker: VGSFilePickerProtocol = {
         return getFilePicker(configuration.fileSource)
     }()
     
-    /// `VGSFilePickerControllerDelegate` - handle user interaction on file picking
+    /// `VGSFilePickerControllerDelegate` - handle user interaction on file picking.
     public weak var delegate: VGSFilePickerControllerDelegate? {
         didSet {
             filePicker.delegate = delegate
         }
     }
     
+    // MARK: - Initialization
     /// Initialization
     ///
     /// - Parameters:
@@ -31,6 +34,8 @@ public class VGSFilePickerController {
     public required init(configuration: VGSFilePickerConfiguration) {
         self.configuration = configuration
     }
+    
+    // MARK: - Methods
     
     /// Present file picker view
     ///

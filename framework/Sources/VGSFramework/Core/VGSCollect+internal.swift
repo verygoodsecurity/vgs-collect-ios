@@ -55,7 +55,6 @@ internal extension VGSCollect {
         }
         
         if errorFields.count > 0 {
-            // swiftlint:disable:next line_length
             return VGSError(type: .inputDataIsNotValid, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataIsNotValid, description: "Input data is not valid", extraInfo: errorFields))
         }
         return nil

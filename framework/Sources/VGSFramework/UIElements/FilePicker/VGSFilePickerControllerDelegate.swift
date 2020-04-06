@@ -8,16 +8,16 @@
 
 import Foundation
 
-/// Delegates produced by VGSFilePickerController
+/// Delegates produced by VGSFilePickerController.
 @objc
 public protocol VGSFilePickerControllerDelegate {
     
-    // MARK: - Handle user ineraction with `Card.io`
+    // MARK: - Handle user ineraction with `Card.io`.
     
     /// On user select a file
     ///
     /// - Parameters:
-    ///  - info: selected file metadata info
+    ///  - info: selected file metadata info.
     func userDidPickFileWithInfo(_ info: VGSFileInfo)
     
     /// On user canceling file picking
@@ -26,6 +26,6 @@ public protocol VGSFilePickerControllerDelegate {
     /// On error occured when user pick a file.
     ///
     /// - Parameters:
-    ///  - error: contains `VGSError` details
+    ///  - error: contains `VGSError` details.
     func filePickingFailedWithError(_ error: VGSError)
 }

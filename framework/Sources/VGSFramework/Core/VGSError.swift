@@ -13,25 +13,25 @@ public enum VGSErrorType: Int {
     
     // MARK: - Text input data errors
     
-    // When input data is not valid, but required to be valid
+    /// When input data is not valid, but required to be valid
     case inputDataIsNotValid = 1001
     
     // MARK: - Files data errors
     
-    // When can't find file on device
+    /// When can't find file on device
     case inputFileNotFound = 1101
     
-    // When can't find file on device
+    /// When can't find file on device
     case inputFileTypeIsNotSupported = 1102
     
-    // When file size is larger then allowed limit
+    /// When file size is larger then allowed limit
     case inputFileSizeExceedsTheLimit = 1103
     
-    // When can't get access to file source
+    /// When can't get access to file source
     case sourceNotAvailable = 1150
     
     // MARK: - Other errors
-    // Response data errors
+    /// Response data errors
     case unexpectedResponseDataFormat = 1401
 }
 

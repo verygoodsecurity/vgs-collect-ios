@@ -23,29 +23,33 @@ public class VGSTextField: UIView {
     internal var fieldName: String!
     internal var token: String?
     
-    /// Textfield placeholder string
+    // MARK: - UI Attributes
+    
+    /// Textfield placeholder string.
     public var placeholder: String? {
         didSet { textField.placeholder = placeholder }
     }
     
-    /// Textfield attributedPlaceholder string
+    /// Textfield attributedPlaceholder string.
     public var attributedPlaceholder: NSAttributedString? {
         didSet {
             textField.attributedPlaceholder = attributedPlaceholder
         }
     }
     
-    /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`
+    /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet { textField.padding = padding }
     }
     
-    /// The technique to use for aligning the text
+    /// The technique to use for aligning the text.
     public var textAlignment: NSTextAlignment = .natural {
         didSet { textField.textAlignment = textAlignment }
     }
     
-    /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`
+    // MARK: - Functional Attributes
+    
+    /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
     public var configuration: VGSConfiguration? {
         didSet {
             guard let configuration = configuration else { return }
@@ -76,7 +80,7 @@ public class VGSTextField: UIView {
         }
     }
     
-    /// Delegates `VGSTextField` editing events. Default is `nil`
+    /// Delegates `VGSTextField` editing events. Default is `nil`.
     public weak var delegate: VGSTextFieldDelegate?
     
     // MARK: - init
@@ -98,17 +102,17 @@ public class VGSTextField: UIView {
 // MARK: - UIResponder methods
 extension VGSTextField {
     
-    /// Make `VGSTextField` focused
+    /// Make `VGSTextField` focused.
     @discardableResult override public func becomeFirstResponder() -> Bool {
         return textField.becomeFirstResponder()
     }
     
-    /// Remove  focus from `VGSTextField`
+    /// Remove  focus from `VGSTextField`.
     @discardableResult override public func resignFirstResponder() -> Bool {
         return textField.resignFirstResponder()
     }
     
-    /// Check if `VGSTextField` is focused
+    /// Check if `VGSTextField` is focused.
     override public var isFirstResponder: Bool {
         return textField.isFirstResponder
     }
@@ -171,7 +175,7 @@ internal extension VGSTextField {
         vgsCollector?.updateStatus(for: self)
     }
     
-    /// Set textfield text. For internal use only! Not allowed to be public for PCI scope!
+    /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
     func setText(_ text: String?) {
         textField.secureText = text
         // this will update card textfield icons

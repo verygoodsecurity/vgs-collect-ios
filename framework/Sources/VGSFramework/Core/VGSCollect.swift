@@ -38,10 +38,12 @@ public class VGSCollect {
     /// Observe  all `VGSTextField` on editing events.
     public var observeStates: ((_ form: [VGSTextField]) -> Void)?
     
+    // MARK: - Initialzation
+    
     /// Initialzation
     ///
     /// - Parameters:
-    ///   - id: your organization vault id
+    ///   - id: your organization vault id.
     ///   - environment: your organization vault environment. By default `Environment.sandbox`.
     public init(id: String, environment: Environment = .sandbox) {
         assert(Self.tenantIDValid(id), "Error: vault id is not valid!")
@@ -54,7 +56,7 @@ public class VGSCollect {
     
     // MARK: - Helper functions
     
-    /// Remove files for associated `VGSCollect` instance
+    /// Detach files for associated `VGSCollect` instance.
     public func cleanFiles() {
         storage.removeFiles()
     }
@@ -69,13 +71,16 @@ public class VGSCollect {
 extension VGSCollect {
     
     /**
-     Send data from VGSTextFields to your organization vault
+     Send data from VGSTextFields to your organization vault.
      
      - Parameters:
-        - path: Inbound rout path for your organization vault
-        - method: HTTPMethod, default is   `.post`
-        - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`
-        - completion: response completion block, returns `JsonData` or an `Error`
+        - path: Inbound rout path for your organization vault.
+        - method: HTTPMethod, default is   `.post`.
+        - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
+        - completion: response completion block, returns `JsonData` or an `Error`.
+     
+     - Note:
+        If there are validation errors, SDK will return `VGSError` in **error** field.
     */
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
@@ -99,12 +104,15 @@ extension VGSCollect {
     
     /**
         Send file to your organization vault. Only send one file at a time.
-        
+     
         - Parameters:
-           - path: Inbound rout path for your organization vault
-           - method: HTTPMethod, default is   `.post`
-           - extraData: Any data you want to send together file , default is `nil`
-           - completion: response completion block, returns `JsonData` or an `Error`
+            - path: Inbound rout path for your organization vault.
+            - method: HTTPMethod, default is   `.post`.
+            - extraData: Any data you want to send together file , default is `nil`.
+            - completion: response completion block, returns `JsonData` or an `Error`.
+     
+        - Note:
+           If there are validation errors, SDK will return `VGSError` in **error** field.
     */
     public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 

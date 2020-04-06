@@ -8,15 +8,15 @@
 
 import Foundation
 
-/// Available source types that `VGSFilePickerController` works with
+/// Available file source destinations that `VGSFilePickerController` can work with.
 public enum VGSFileSource: Int, CaseIterable {
     
-    /// Device photo library
+    /// Device photo library.
     case photoLibrary
     
-    /// Device camera
+    /// Device camera.
     case camera
     
-    /// Device documents directory
+    /// Device documents directory.
     case documentsDirectory
 }

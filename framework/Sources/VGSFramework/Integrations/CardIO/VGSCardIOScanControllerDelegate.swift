@@ -12,32 +12,32 @@ import Foundation
 @objc
 public enum CradIODataType: Int {
     
-    /// Credit Card Number. 16 digits string
+    /// Credit Card Number. 16 digits string.
     case cardNumber
     
-    /// Credit Card Expiration Date. String in format "01/21"
+    /// Credit Card Expiration Date. String in format "01/21".
     case expirationDate
     
-    /// Credit Card Expiration Month. String in format "01"
+    /// Credit Card Expiration Month. String in format "01".
     case expirationMonth
     
-    /// Credit Card Expiration Year. String in format "21"
+    /// Credit Card Expiration Year. String in format "21".
     case expirationYear
     
-    /// Credit Card CVC code. 3-4 digits string in format "123"
+    /// Credit Card CVC code. 3-4 digits string in format "123".
     case cvc
 }
 
-/// Delegates produced by `VGSCardIOScanController` instance
+/// Delegates produced by `VGSCardIOScanController` instance.
 @objc
 public protocol VGSCardIOScanControllerDelegate {
     
     // MARK: - Handle user ineraction with `Card.io`
     
-    /// On user confirm scanned data by selecting Done button on `Card.io` screen
+    /// On user confirm scanned data by selecting Done button on `Card.io` screen.
     @objc optional func userDidFinishScan()
     
-    /// On user press Cancel buttonn on `Card.io` screen
+    /// On user press Cancel buttonn on `Card.io` screen.
     @objc optional func userDidCancelScan()
     
     // MARK: - Manage scanned data

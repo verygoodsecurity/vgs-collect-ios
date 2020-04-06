@@ -59,13 +59,13 @@ public class State {
 /// An object that describes `VGSCardTextField` state.  State attributes are read-only.
 public class CardState: State {
     
-    /// Last 4 digits of the valid card number from associated `VGSCardTextField`
+    /// Last 4 digits of the valid card number from associated `VGSTextField` with field configuration type `FieldType.cardNumber`.
     internal(set) open var last4: String = ""
     
-    /// Bin digits of the valid card number from associated `VGSCardTextField`
+    /// Bin digits of the valid card number from associated `VGSTextField` with field configuration type `FieldType.cardNumber`.
     internal(set) open var bin: String = ""
     
-    /// Credit Card Brand of the card number from associated `VGSCardTextField`
+    /// Credit Card Brand of the card number from associated `VGSTextField` with field configuration type `FieldType.cardNumber`.
     internal(set) open var cardBrand: SwiftLuhn.CardType = .unknown
     
     override init(tf: VGSTextField) {
@@ -81,7 +81,7 @@ public class CardState: State {
         self.cardBrand = originalText.suggestedCardType()
     }
     
-    /// Message that contains `CardState` attributes and their values
+    /// Message that contains `CardState` attributes and their values.
     override public var description: String {
         var result = super.description
         if isValid {

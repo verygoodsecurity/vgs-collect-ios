@@ -10,32 +10,32 @@
 import UIKit
 #endif
 
-/// Organization vault environment
+/// Organization vault environment.
 public enum Environment: String {
     
-    /// Should be used for development and testing purpose
+    /// Should be used for development and testing purpose.
     case sandbox
     
-    /// Should be used for production
+    /// Should be used for production.
     case live
 }
 
 /// Type of `VGSTextField` configuration.
 public enum FieldType: Int, CaseIterable {
     
-    /// Field type that doesn't require any input formatting and validation
+    /// Field type that doesn't require any input formatting and validation.
     case none
     
-    /// Field type that requires Credit Card Number input formatting and validation
+    /// Field type that requires Credit Card Number input formatting and validation.
     case cardNumber
     
-    /// Field type that requires Expiration Date input formatting and validation
+    /// Field type that requires Expiration Date input formatting and validation.
     case expDate
     
-    /// Field type that requires Credit Card CVC input formatting and validation
+    /// Field type that requires Credit Card CVC input formatting and validation.
     case cvc
     
-    /// Field type that requires Cardholder Name input formatting and validation
+    /// Field type that requires Cardholder Name input formatting and validation.
     case cardHolderName
 }
 
