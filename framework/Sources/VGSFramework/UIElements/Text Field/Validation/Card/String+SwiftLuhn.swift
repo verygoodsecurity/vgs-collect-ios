@@ -10,7 +10,9 @@ import Foundation
 
 public extension String {
     func isValidCardNumber() -> Bool {
-        return SwiftLuhn.performLuhnAlgorithm(with: self)
+        let isLuhnTrue = SwiftLuhn.performLuhnAlgorithm(with: self)
+        let isType = cardType() != .unknown
+        return isLuhnTrue && isType
     }
     
     func cardType() -> SwiftLuhn.CardType {
