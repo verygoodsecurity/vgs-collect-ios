@@ -101,7 +101,8 @@ extension SwiftLuhn.CardType {
             ]
         case .maestro:
             return [
-                "6771798021000008"
+                "6771798021000008",
+                "6771 7980 2500 0004"
             ]
         case .unknown:
             return []
