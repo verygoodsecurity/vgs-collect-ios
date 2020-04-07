@@ -22,32 +22,24 @@ class LuhnTests: XCTestCase {
     }
 
     func test0() {
-        XCTAssertTrue(cardNumer.isValidCardNumber())
+        XCTAssertTrue(SwiftLuhn.validateCardNumber(cardNumer))
     }
 
     func test1() {
-        XCTAssert(cardNumer.cardType() == .visa)
+        XCTAssert(SwiftLuhn.getCardType(from: cardNumer) == .visa)
     }
-    
-    func test2() {
-        XCTAssert(SwiftLuhn.cardType(for: cardNumer) == .visa)
-    }
-    
-    func test3() {
-        XCTAssert(cardNumer.suggestedCardType() == .visa)
-    }
-    
+
     func test4() {
         XCTAssertTrue(SwiftLuhn.performLuhnAlgorithm(with: cardNumer))
     }
     
     func test5() {
-        XCTAssert(cardNumer.cardType().stringValue.lowercased() == "visa")
+        let cardType = SwiftLuhn.getCardType(from: cardNumer)
+        XCTAssert(cardType.stringValue.lowercased() == "visa")
     }
     
     func test6() {
-        let formatedText = "4111 1111 1111 1111".formattedCardNumber()
-        
+        let formatedText = "4111 1111 1111 1111".numbersString
         XCTAssert(formatedText == cardNumer)
     }
 }

@@ -58,8 +58,8 @@ public class CardState: State {
         
         self.last4 = String(originalText.suffix(4))
         self.bin = String(originalText.prefix(6))
-        self.isValid = originalText.isValidCardNumber()
-        self.cardBrand = originalText.suggestedCardType()
+        self.isValid = SwiftLuhn.validateCardNumber(originalText)
+        self.cardBrand = SwiftLuhn.getCardType(from: originalText)
     }
     
     override public var description: String {

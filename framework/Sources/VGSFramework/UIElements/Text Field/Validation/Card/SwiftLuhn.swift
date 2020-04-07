@@ -12,6 +12,8 @@ import UIKit
 #endif
 
 public class SwiftLuhn {
+    
+    /// Supported card types
     public enum CardType: CaseIterable {
         case amex
         case visa
@@ -28,6 +30,26 @@ public class SwiftLuhn {
         case invalid
     }
     
+    /// Complete card number validation.
+    /// - Note: cardNumber string should not containt any non-number characters!
+    class func validateCardNumber(_ cardNumber: String) -> Bool {
+        
+        /// check supported card brand
+        let cardType = Self.getCardType(from: cardNumber)
+        if cardType == .unknown {
+            return false
+        }
+        
+        /// check if card number length is valid for specific brand
+        guard cardType.possibleLengths.contains(cardNumber.count) else {
+            return false
+        }
+        
+        /// perform Luhn Algorithm
+        return Self.performLuhnAlgorithm(with: cardNumber)
+    }
+    
+    /// Validate card number via LuhnAlgorithm algorithm.
     class func performLuhnAlgorithm(with cardNumber: String) -> Bool {
                         
         guard cardNumber.count >= 9 else {
@@ -57,10 +79,11 @@ public class SwiftLuhn {
         return valid
     }
     
-    class func getCardType(for cardNumber: String) -> CardType {
+    ///Returns card type from card number string.
+    class func getCardType(from cardNumber: String) -> CardType {
         for cardType in CardType.allCases {
             let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typeDetectRegex)
-            if predicate.evaluate(with: cardNumber.formattedCardNumber()) == true {
+            if predicate.evaluate(with: cardNumber) == true {
                 return cardType
             }
         }
