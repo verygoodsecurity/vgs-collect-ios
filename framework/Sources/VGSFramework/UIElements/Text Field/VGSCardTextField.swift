@@ -19,10 +19,18 @@ public class VGSCardTextField: VGSTextField {
     
     internal lazy var cardIconView = self.makeCardIcon()
     
+    public override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        updateCardIcon()
+    }
+    
     // override textFieldDidChange
     override func textFieldValueChanged() {
         super.textFieldValueChanged()
-        
+        updateCardIcon()
+    }
+    
+    internal func updateCardIcon() {
         if let state = state as? CardState {
             if cardsIconSource != nil {
                 let icon = cardsIconSource?(state.cardBrand)
@@ -31,6 +39,8 @@ public class VGSCardTextField: VGSTextField {
             } else {
                 cardIconView.image = state.cardBrand.brandIcon
             }
+        } else {
+            cardIconView.image = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
         }
     }
     
