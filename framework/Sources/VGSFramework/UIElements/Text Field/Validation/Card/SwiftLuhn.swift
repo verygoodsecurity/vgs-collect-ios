@@ -15,13 +15,14 @@ public class SwiftLuhn {
     
     /// Supported card types
     public enum CardType: CaseIterable {
-        case amex
+        case visaElectron
+        case maestro
         case visa
         case mastercard
-        case discover
+        case amex
         case dinersClub
+        case discover
         case jcb
-        case maestro
         case unknown
     }
     
@@ -99,6 +100,8 @@ extension SwiftLuhn.CardType {
             return "American Express"
         case .visa:
             return "Visa"
+        case .visaElectron:
+            return "Visa Electron"
         case .mastercard:
             return "Mastercard"
         case .discover:
@@ -109,7 +112,7 @@ extension SwiftLuhn.CardType {
             return "JCB"
         case .maestro:
             return "Maestro"
-        default:
+        case .unknown:
             return "unknown"
         }
     }
@@ -126,10 +129,12 @@ extension SwiftLuhn.CardType {
             return "^35\\d*$"
         case .mastercard:
             return "^(5[1-5][0-9]{4,}|677189)|^(222[1-9]|2[3-6]{2,}|27[0-1]|2720)([0-9]{2,})+$"
+        case .visaElectron:
+            return "^4(026|17500|405|508|844|91[3,7])\\d*$"
         case .visa:
             return "^4[0,1,2,4,5,6,9]\\d*$"
         case .maestro:
-            return "(5018|5020|5038|6304|6390[0-9]{2,}|67[0-9]{4,})\\d*$"
+            return "(5018|5020|5038|6304|6390[0-9]|67[0-9])\\d*$"
         case .unknown:
             return ""
         }
@@ -146,6 +151,8 @@ extension SwiftLuhn.CardType {
         case .jcb:
             return [16, 17, 18, 19]
         case .mastercard:
+            return [16]
+        case .visaElectron:
             return [16]
         case .visa:
             return [13, 16, 19]
