@@ -28,7 +28,7 @@ internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtoco
     
     var type: FieldType { get }
     
-    var formatPattern: String { get set }
+    var formatPattern: String? { get set }
     
     var keyboardType: UIKeyboardType? { get set }
     
@@ -62,6 +62,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
     public var formatPattern: String = ""
+
+    /// Type of text filed. By default `none`
+    public var type: FieldType = .none
     
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?

@@ -90,7 +90,7 @@ class VGSCollectValidationTests: XCTestCase {
         
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = cardConfiguration
-        cardTextField.textField.text = "4111 1111 1111 1112"
+        cardTextField.textField.secureText = "4111 1111 1111 1112"
         
         let nameConfiguration = VGSConfiguration(collector: collector, fieldName: "name")
         nameConfiguration.type = .none
@@ -98,7 +98,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let cardHolderField = VGSTextField()
         cardHolderField.configuration = nameConfiguration
-        cardHolderField.textField.text = nil
+        cardHolderField.textField.secureText = nil
 
         let expDateConfiguration = VGSConfiguration(collector: collector, fieldName: "expDate")
         expDateConfiguration.type = .expDate
@@ -106,7 +106,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let expDateField = VGSTextField()
         expDateField.configuration = expDateConfiguration
-        expDateField.textField.text = "1123456789"
+        expDateField.textField.secureText = "1123456789"
 
         let cvcConfiguration = VGSConfiguration(collector: collector, fieldName: "cvc")
         cvcConfiguration.type = .cvc
@@ -114,7 +114,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let cvcField = VGSTextField()
         cvcField.configuration = cvcConfiguration
-        cvcField.textField.text = "123456789"
+        cvcField.textField.secureText = "123456789"
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
@@ -135,7 +135,7 @@ class VGSCollectValidationTests: XCTestCase {
         
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = cardConfiguration
-        cardTextField.textField.text = "4111 1111 1111 1112"
+        cardTextField.textField.secureText = "4111 1111 1111 1112"
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
@@ -156,7 +156,7 @@ class VGSCollectValidationTests: XCTestCase {
         
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = cardConfiguration
-        cardTextField.textField.text = ""
+        cardTextField.textField.secureText = ""
         
         let nameConfiguration = VGSConfiguration(collector: collector, fieldName: "name")
         nameConfiguration.type = .none
@@ -164,7 +164,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let cardHolderField = VGSTextField()
         cardHolderField.configuration = nameConfiguration
-        cardHolderField.textField.text = nil
+        cardHolderField.textField.secureText = nil
 
         let expDateConfiguration = VGSConfiguration(collector: collector, fieldName: "expDate")
         expDateConfiguration.type = .expDate
@@ -172,7 +172,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let expDateField = VGSTextField()
         expDateField.configuration = expDateConfiguration
-        expDateField.textField.text = ""
+        expDateField.textField.secureText = ""
 
         let cvcConfiguration = VGSConfiguration(collector: collector, fieldName: "cvc")
         cvcConfiguration.type = .cvc
@@ -180,7 +180,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let cvcField = VGSTextField()
         cvcField.configuration = cvcConfiguration
-        cvcField.textField.text = ""
+        cvcField.textField.secureText = ""
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
@@ -201,7 +201,7 @@ class VGSCollectValidationTests: XCTestCase {
         
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = cardConfiguration
-        cardTextField.textField.text = ""
+        cardTextField.textField.secureText = ""
         
         let nameConfiguration = VGSConfiguration(collector: collector, fieldName: "name")
         nameConfiguration.type = .none
@@ -209,7 +209,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let cardHolderField = VGSTextField()
         cardHolderField.configuration = nameConfiguration
-        cardHolderField.textField.text = nil
+        cardHolderField.textField.secureText = nil
 
         let expDateConfiguration = VGSConfiguration(collector: collector, fieldName: "expDate")
         expDateConfiguration.type = .expDate
@@ -217,7 +217,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let expDateField = VGSTextField()
         expDateField.configuration = expDateConfiguration
-        expDateField.textField.text = ""
+        expDateField.textField.secureText = ""
 
         let cvcConfiguration = VGSConfiguration(collector: collector, fieldName: "cvc")
         cvcConfiguration.type = .cvc
@@ -225,7 +225,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let cvcField = VGSTextField()
         cvcField.configuration = cvcConfiguration
-        cvcField.textField.text = ""
+        cvcField.textField.secureText = ""
         
         let expectation = XCTestExpectation(description: "Sending data...")
                

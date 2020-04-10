@@ -53,6 +53,7 @@ extension VGSValidation {
     }
     
     private func validateCVC(txt: String) -> Bool {
-        return (txt.count >= 3 && txt.count <= 4)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
+        return predicate.evaluate(with: txt)
     }
 }

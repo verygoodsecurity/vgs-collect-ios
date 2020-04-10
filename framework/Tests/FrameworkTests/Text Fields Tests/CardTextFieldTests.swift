@@ -44,15 +44,13 @@ class CardTextFieldTests: XCTestCase {
         XCTAssertNotNil(SwiftLuhn.CardType.jcb.brandIcon)
         XCTAssertNotNil(SwiftLuhn.CardType.maestro.brandIcon)
         XCTAssertNotNil(SwiftLuhn.CardType.mastercard.brandIcon)
-        XCTAssertNotNil(SwiftLuhn.CardType.mir.brandIcon)
         XCTAssertNotNil(SwiftLuhn.CardType.visa.brandIcon)
-        XCTAssertNotNil(SwiftLuhn.CardType.rupay.brandIcon)
     }
     
     func testInput() {
         cardTextField.textField.secureText = "4"
         cardTextField.focusOn()
-        cardTextField.textField.secureText! += "1"
+        cardTextField.textField.secureText! += "111111111111111"
         cardTextField.focusOn()
         
         if let state = cardTextField.state as? CardState {

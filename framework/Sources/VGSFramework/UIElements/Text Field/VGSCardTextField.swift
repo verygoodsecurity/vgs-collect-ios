@@ -26,6 +26,31 @@ public class VGSCardTextField: VGSTextField {
 
 // MARK: - Private API
 internal extension VGSCardTextField {
+
+    public override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        updateCardIcon()
+    }
+    
+    // override textFieldDidChange
+    override func textFieldValueChanged() {
+        super.textFieldValueChanged()
+        updateCardIcon()
+    }
+    
+    internal func updateCardIcon() {
+        if let state = state as? CardState {
+            if cardsIconSource != nil {
+                let icon = cardsIconSource?(state.cardBrand)
+                cardIconView.image = icon
+                
+            } else {
+                cardIconView.image = state.cardBrand.brandIcon
+            }
+        } else {
+            cardIconView.image = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+        }
+    }
     
        // override textFieldDidChange
        override func textFieldValueChanged() {

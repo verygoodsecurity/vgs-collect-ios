@@ -64,8 +64,8 @@ public class VGSTextField: UIView {
             textField.returnKeyType = configuration.returnKeyType ?? .default
             textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
             
-            if configuration.formatPattern.count != 0 {
-                textField.formatPattern = configuration.formatPattern
+            if let pattern = configuration.formatPattern {
+                textField.formatPattern = pattern
             } else {
                 textField.formatPattern = configuration.type.formatPattern
             }

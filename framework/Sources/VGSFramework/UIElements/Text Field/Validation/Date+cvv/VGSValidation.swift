@@ -9,15 +9,15 @@
 import Foundation
 
 internal class VGSValidation {
-    var pattern: String?
+    var pattern: String = ""
     
     func isValid(_ txt: String, type: FieldType) -> Bool {
         if type == .none { return true }
         
-        guard txt.count != 0, let regex = pattern else {
+        guard txt.count != 0, pattern.count != 0 else {
             return false
         }
-        let resultRegEx = txt.matches(for: regex).count > 0
+        let resultRegEx = txt.matches(for: pattern).count > 0
         let resultType = validateType(txt: txt, for: type)
         
         return resultRegEx && resultType
