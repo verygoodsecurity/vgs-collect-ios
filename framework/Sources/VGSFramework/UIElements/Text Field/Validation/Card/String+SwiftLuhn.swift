@@ -10,7 +10,7 @@ import Foundation
 
 public extension String {
     
-    /// Returns string with only numbers
+    /// :nodoc:  Returns string with only numbers
     var numbersString: Self {
         let numbersOnlyEquivalent = replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression, range: nil)
         return numbersOnlyEquivalent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
