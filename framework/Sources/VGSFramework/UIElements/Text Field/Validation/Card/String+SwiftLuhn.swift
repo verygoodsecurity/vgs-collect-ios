@@ -9,20 +9,9 @@
 import Foundation
 
 public extension String {
-    func isValidCardNumber() -> Bool {
-        return SwiftLuhn.performLuhnAlgorithm(with: self)
-    }
     
-    func cardType() -> SwiftLuhn.CardType {
-        let cardType = SwiftLuhn.cardType(for: self)
-        return cardType
-    }
-    func suggestedCardType() -> SwiftLuhn.CardType {
-        let cardType = SwiftLuhn.cardType(for: self, suggest: true)
-        return cardType
-    }
-    
-    func formattedCardNumber() -> String {
+    /// Returns string with only numbers
+    var numbersString: Self {
         let numbersOnlyEquivalent = replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression, range: nil)
         return numbersOnlyEquivalent.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }

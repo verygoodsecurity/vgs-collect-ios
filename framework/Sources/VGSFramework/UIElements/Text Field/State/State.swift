@@ -56,10 +56,10 @@ public class CardState: State {
             return
         }
         
-        self.last4 = String(originalText.suffix(4))
-        self.bin = String(originalText.prefix(6))
-        self.isValid = originalText.isValidCardNumber()
-        self.cardBrand = originalText.suggestedCardType()
+        self.isValid = SwiftLuhn.validateCardNumber(originalText)
+        self.cardBrand = SwiftLuhn.getCardType(from: originalText)
+        self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
+        self.bin = self.isValid ? String(originalText.prefix(6)): ""
     }
     
     override public var description: String {
@@ -70,7 +70,7 @@ public class CardState: State {
                 "bin": \(bin),
                 "last4": \(last4),
                 "cardBrand": \(cardBrand),
-                "cardBrandName": \(cardBrand.stringValue())
+                "cardBrandName": \(cardBrand.stringValue)
             }
             """)
         }
