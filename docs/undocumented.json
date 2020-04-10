@@ -64,6 +64,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSCardTextField.swift",
+      "line": 23,
+      "symbol": "VGSCardTextField.didMoveToSuperview()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
       "line": 15,
       "symbol": "VGSTextField.cornerRadius",
@@ -141,52 +148,10 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
-      "line": 12,
-      "symbol": "String.isValidCardNumber()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/CardType+icon.swift",
       "line": 16,
-      "symbol": "String.cardType()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
-      "line": 21,
-      "symbol": "String.suggestedCardType()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
-      "line": 26,
-      "symbol": "String.formattedCardNumber()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
-      "line": 14,
-      "symbol": "SwiftLuhn",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
-      "line": 14,
-      "symbol": "SwiftLuhn.CardType",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
-      "line": 139,
-      "symbol": "SwiftLuhn.CardType",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "symbol": "SwiftLuhn.CardType.brandIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {

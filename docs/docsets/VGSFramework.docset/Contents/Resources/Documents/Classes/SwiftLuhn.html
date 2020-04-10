@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSFilePickerControllerDelegate Protocol Reference</title>
+    <title>SwiftLuhn Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/VGSFilePickerControllerDelegate" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/SwiftLuhn" class="dashAnchor"></a>
 
-    <a title="VGSFilePickerControllerDelegate Protocol Reference"></a>
+    <a title="SwiftLuhn Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSFramework Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSFilePickerControllerDelegate Protocol Reference
+      SwiftLuhn Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -187,15 +187,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSFilePickerControllerDelegate</h1>
+            <h1>SwiftLuhn</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">VGSFilePickerControllerDelegate</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SwiftLuhn</span></code></pre>
 
                 </div>
               </div>
-            <p>Delegates produced by VGSFilePickerController.</p>
+            <p>Class containing supported credit card types</p>
 
           </div>
         </section>
@@ -204,11 +203,11 @@
           <div class="section-content">
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Handle%20user%20ineraction%20with%20%60Card.io%60."></a>
-                <a name="//apple_ref/swift/Section/Handle user ineraction with `Card.io`." class="dashAnchor"></a>
+                <a name="/Enum%20Cases"></a>
+                <a name="//apple_ref/swift/Section/Enum Cases" class="dashAnchor"></a>
                 <div class="section-name-container">
-                  <a class="section-name-link" href="#/Handle%20user%20ineraction%20with%20%60Card.io%60."></a>
-                  <h3 class="section-name"><p>Handle user ineraction with <code>Card.io</code>.</p>
+                  <a class="section-name-link" href="#/Enum%20Cases"></a>
+                  <h3 class="section-name"><p>Enum Cases</p>
 </h3>
                 </div>
               </div>
@@ -216,9 +215,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate(im)userDidPickFileWithInfo:"></a>
-                    <a name="//apple_ref/swift/Method/userDidPickFileWithInfo(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate(im)userDidPickFileWithInfo:">userDidPickFileWithInfo(_:)</a>
+                    <a name="/s:12VGSFramework9SwiftLuhnC8CardTypeO"></a>
+                    <a name="//apple_ref/swift/Enum/CardType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12VGSFramework9SwiftLuhnC8CardTypeO">CardType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,79 +225,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>On user select a file</p>
+                        <p>Supported card types</p>
 
+                        <a href="../Classes/SwiftLuhn/CardType.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">userDidPickFileWithInfo</span><span class="p">(</span><span class="n">_</span> <span class="nv">info</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSFileInfo.html">VGSFileInfo</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CardType</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFilePickerControllerDelegate.swift#L21">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate(im)userDidSCancelFilePicking"></a>
-                    <a name="//apple_ref/swift/Method/userDidSCancelFilePicking()" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate(im)userDidSCancelFilePicking">userDidSCancelFilePicking()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>On user canceling file picking</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">userDidSCancelFilePicking</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFilePickerControllerDelegate.swift#L24">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate(im)filePickingFailedWithError:"></a>
-                    <a name="//apple_ref/swift/Method/filePickingFailedWithError(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSFramework@objc(pl)VGSFilePickerControllerDelegate(im)filePickingFailedWithError:">filePickingFailedWithError(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>On error occured when user pick a file.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">filePickingFailedWithError</span><span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSError.html">VGSError</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFilePickerControllerDelegate.swift#L30">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift#L20-L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
