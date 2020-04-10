@@ -28,7 +28,7 @@ protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
     
     var type: FieldType { get }
     
-    var formatPattern: String { get set }
+    var formatPattern: String? { get set }
     
     var keyboardType: UIKeyboardType? { get set }
     
@@ -59,7 +59,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     public var type: FieldType = .none
     
     /// Set your patter format. Exmp: `##/##` equela `12/23`
-    public var formatPattern: String = ""
+    public var formatPattern: String?
     
     /// Set preferred UIKeyboardType for textfield
     public var keyboardType: UIKeyboardType?

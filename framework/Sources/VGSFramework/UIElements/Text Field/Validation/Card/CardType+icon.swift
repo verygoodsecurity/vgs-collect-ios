@@ -20,6 +20,8 @@ extension SwiftLuhn.CardType {
         switch self {
         case .visa:
             resultIcon = UIImage(named: "visa", in: bundle, compatibleWith: nil)
+        case .visaElectron:
+            resultIcon = UIImage(named: "visaElectron", in: bundle, compatibleWith: nil)
         case .mastercard:
             resultIcon = UIImage(named: "mastercard", in: bundle, compatibleWith: nil)
         case .amex:
@@ -32,7 +34,7 @@ extension SwiftLuhn.CardType {
             resultIcon = UIImage(named: "dinersClub", in: bundle, compatibleWith: nil)
         case .jcb:
             resultIcon = UIImage(named: "jcb", in: bundle, compatibleWith: nil)
-        default:
+        case .unknown:
             resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
         }
         
