@@ -61,7 +61,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     public var isRequiredValidOnly: Bool = false
     
     /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
-    public var formatPattern: String? = ""
+    public var formatPattern: String?
 
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?
