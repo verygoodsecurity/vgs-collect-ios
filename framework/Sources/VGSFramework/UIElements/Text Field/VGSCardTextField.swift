@@ -10,6 +10,7 @@
 import UIKit
 #endif
 
+/// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
 public class VGSCardTextField: VGSTextField {
     /// card brand icon width
     var iconWidth: CGFloat = 45

@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension String {
+internal extension String {
     var isAlphaNumeric: Bool {
         return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
     }
 }
 
-extension Optional where Wrapped == String {
+internal extension Optional where Wrapped == String {
     var isNilOrEmpty: Bool {
         return self?.isEmpty ?? true
     }

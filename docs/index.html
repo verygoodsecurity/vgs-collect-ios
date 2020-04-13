@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VGSFramework  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="VGSFramework  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          VGSCollectSDK
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/verygoodsecurity/vgs-collect-ios">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">VGSFramework Reference</a>
+      <img class="carat" src="img/carat.png" />
+      VGSFramework  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="UI%20Elements.html">UI Elements</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSTextField.html">VGSTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSCardTextField.html">VGSCardTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSTextFieldDelegate.html">VGSTextFieldDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSConfiguration.html">VGSConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/FieldType.html">FieldType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SwiftLuhn.html">SwiftLuhn</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SwiftLuhn/CardType.html">– CardType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Card%20Scan.html">Card Scan</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSCardIOScanController.html">VGSCardIOScanController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSCardIOScanControllerDelegate.html">VGSCardIOScanControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/CradIODataType.html">CradIODataType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="File%20Picker.html">File Picker</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSFilePickerController.html">VGSFilePickerController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSFilePickerConfiguration.html">VGSFilePickerConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSFilePickerControllerDelegate.html">VGSFilePickerControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSFileSource.html">VGSFileSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSFileInfo.html">VGSFileInfo</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Observe%20State%20and%20Submit%20Data.html">Observe State and Submit Data</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSCollect.html">VGSCollect</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/CardState.html">CardState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Errors.html">Errors</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSError.html">VGSError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSErrorType.html">VGSErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Errors.html#/s:12VGSFramework24VGSCollectSDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Error%20Keys.html">Error Keys</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework30VGSSDKErrorInputDataIsNotValidSSvp">VGSSDKErrorInputDataIsNotValid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework28VGSSDKErrorInputDataRequiredSSvp">VGSSDKErrorInputDataRequired</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework33VGSSDKErrorInputDataRequiredValidSSvp">VGSSDKErrorInputDataRequiredValid</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework23VGSSDKErrorFileNotFoundSSvp">VGSSDKErrorFileNotFound</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework31VGSSDKErrorFileTypeNotSupportedSSvp">VGSSDKErrorFileTypeNotSupported</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework34VGSSDKErrorFileSizeExceedsTheLimitSSvp">VGSSDKErrorFileSizeExceedsTheLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework29VGSSDKErrorSourceNotAvailableSSvp">VGSSDKErrorSourceNotAvailable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:12VGSFramework39VGSSDKErrorUnexpectedResponseDataFormatSSvp">VGSSDKErrorUnexpectedResponseDataFormat</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Type%20Aliases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Type%20Aliases.html#/s:12VGSFramework11HTTPHeadersa">HTTPHeaders</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Type%20Aliases.html#/s:12VGSFramework8JsonDataa">JsonData</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <p><a href="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev"><img src="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52" alt="CircleCI"></a>
+<a href=""><img src="https://img.shields.io/badge/Unit_Test-pass-green" alt="UT"></a>
+<a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
+<a href="https://github.com/verygoodsecurity/vgs-collect-ios"><img src="https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat" alt="Platform"></a>
+<a href=""><img src="https://img.shields.io/badge/swift-5-orange" alt="swift"></a>
+<a href="https://cocoapods.org/pods/VGSCollectSDK"><img src="https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat" alt="Cocoapods Compatible"></a></p>
+<h1 id='vgs-collect-ios-sdk' class='heading'>VGS Collect iOS SDK</h1>
+
+<p>VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGSCollect iOS SDK  allows you to securely collect data from your users via forms without having to have that data pass through your systems. The form fields behave like traditional input fields while securing access to the unsecured data.</p>
+<h1 id='table-of-contents' class='heading'>Table of contents</h1>
+
+<!--ts-->
+
+<ul>
+<li><a href="#before-you-start">Before you start</a></li>
+<li><a href="#integration">Integration</a>
+
+<ul>
+<li><a href="#cocoapods">CocoaPods</a></li>
+</ul></li>
+<li><a href="#usage">Usage</a>
+
+<ul>
+<li><a href="#create-vgscollect-instance-and-vgs-ui-elements">Create VGSCollect instance and VGS UI Elements</a></li>
+<li><a href="#customize-ui-elements">Customize UI Elements</a></li>
+<li><a href="#observe-fields-state">Observe Fields State</a></li>
+<li><a href="#collect-and-send-your-data">Collect and Send Your Data</a></li>
+<li><a href="#scan-credit-card-cata">Scan Credit Card Data</a></li>
+<li><a href="#demo-application">Demo Application</a></li>
+<li><a href="#for-more-details-check-our-documentation">Documentation</a></li>
+</ul></li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#license">License</a>
+&lt;!&ndash;te&ndash;&gt;</li>
+</ul>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20">
+    <img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+</p>
+<h2 id='before-you-start' class='heading'>Before you start</h2>
+
+<p>You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your <code>&lt;vault-id&gt;</code> to start collecting data. Follow integration guide below.</p>
+<h1 id='integration' class='heading'>Integration</h1>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p><a href="https://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
+</code></pre>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='create-vgscollect-instance-and-vgs-ui-elements' class='heading'>Create VGSCollect instance and VGS UI Elements</h3>
+
+<p>Use your <code>&lt;vault-id&gt;</code> to initialize VGSCollect instance. You can get it in your <a href="https://dashboard.verygoodsecurity.com/">organisation dashboard</a>.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">VGSCollectSDK</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+  <span class="k">var</span> <span class="nv">vgsForm</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;vault-id&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
+
+  <span class="c1">// VGS UI Elements</span>
+  <span class="k">var</span> <span class="nv">cardNumber</span> <span class="o">=</span> <span class="kt">VGSTextField</span><span class="p">()</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="c1">// Configure Elements UI</span>
+        <span class="k">let</span> <span class="nv">cardConfig</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">vgsForm</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"cardNumber"</span><span class="p">)</span>
+        <span class="c1">// Submit only if cardNumber input is valid</span>
+        <span class="n">cardConfig</span><span class="o">.</span><span class="n">isRequiredValidOnly</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">cardConfig</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cardNumber</span>
+
+        <span class="n">cardNumber</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cardConfig</span>
+        <span class="n">cardNumber</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"card number"</span>
+
+        <span class="n">cardNumber</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">310</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">35</span><span class="p">)</span>
+        <span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">cardNumber</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='customize-ui-elements' class='heading'>Customize UI Elements</h3>
+
+<p>You can use general properties for styling your UI elements.</p>
+<pre class="highlight swift"><code><span class="c1">// UI Elements styling</span>
+<span class="n">cardNumber</span><span class="o">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">cardNumber</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">lightGray</span>
+<span class="n">cardNumber</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="kt">UIEdgeInsets</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nv">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">cardNumber</span><span class="o">.</span><span class="n">textColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">magenta</span>
+<span class="n">cardNumber</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="kt">UIFont</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Arial"</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">cardNumber</span><span class="o">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="o">.</span><span class="n">natural</span>
+</code></pre>
+<h3 id='observe-fields-state' class='heading'>Observe Fields State</h3>
+<pre class="highlight swift"><code><span class="c1">// Observing text fields</span>
+<span class="n">vgsForm</span><span class="o">.</span><span class="n">observeStates</span> <span class="o">=</span> <span class="p">{</span> <span class="n">textFields</span> <span class="k">in</span>
+    <span class="n">textFields</span><span class="o">.</span><span class="nf">forEach</span><span class="p">({</span> <span class="n">textField</span> <span class="k">in</span>
+           <span class="nf">print</span><span class="p">(</span><span class="n">textField</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='collect-and-send-your-data' class='heading'>Collect and Send Your Data</h3>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// extra information will be sent together with all sensitive card information</span>
+    <span class="k">var</span> <span class="nv">extraData</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]()</span>
+    <span class="n">extraData</span><span class="p">[</span><span class="s">"cardHolderName"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Joe Business"</span>
+
+    <span class="c1">// send data</span>
+    <span class="n">vgsForm</span><span class="o">.</span><span class="nf">submit</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="s">"/post"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="n">extraData</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+        <span class="k">if</span> <span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">,</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="n">json</span> <span class="p">{</span>
+            <span class="c1">// parse response data</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">error</span> <span class="o">=</span> <span class="n">error</span> <span class="k">as</span> <span class="kt">NSError</span><span class="p">?,</span> <span class="k">let</span> <span class="nv">errorKey</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">userInfo</span><span class="p">[</span><span class="s">"key"</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">String</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="n">errorKey</span> <span class="o">==</span> <span class="kt">VGSSDKErrorInputDataRequiredValid</span> <span class="p">{</span>
+                    <span class="c1">// handle VGSError error</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+               <span class="c1">// handle other errors </span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='more-useful-ui-component-for-bank-cards' class='heading'>More useful UI component for bank cards</h3>
+
+<p>VGSCardTextField automatically detects card provider and display card brand icon in the input field.</p>
+
+<p align="center">
+    <img  src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/cardTextField.gif" width=“344" height="50">
+</p>
+<pre class="highlight swift"><code><span class="c1">// create VGSCardTextField instance</span>
+<span class="k">var</span> <span class="nv">cardNumber</span> <span class="o">=</span> <span class="kt">VGSCardTextField</span><span class="p">()</span>
+</code></pre>
+<h3 id='scan-credit-card-data' class='heading'>Scan Credit Card Data</h3>
+
+<p>VGSCollect provide secure <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> integration for collecting and setting scanned data into <code>VGSTextFields</code>. 
+To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> with <strong>VGSCollectSDK</strong> you should add <strong>CardIO</strong> module alongside with core <strong>VGSCollectSDK</strong> module into your App Podfile:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
+<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardIO'</span>
+</code></pre>
+
+<p>Also you need to add <strong><NSCameraUsageDescription></strong> key with camera usage description into your App <code>Info.plist</code>.</p>
+
+<p>In your ViewController create <code><a href="Classes/VGSCardIOScanController.html">VGSCardIOScanController</a></code> instance</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+<span class="k">var</span> <span class="nv">scanController</span> <span class="o">=</span> <span class="kt">VGSCardIOScanController</span><span class="p">()</span>
+
+<span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+    <span class="c1">// set preferred device camera</span>
+    <span class="n">scanController</span><span class="o">.</span><span class="n">preferredCameraPosition</span> <span class="o">=</span> <span class="o">.</span><span class="n">front</span>
+
+    <span class="c1">// set VGSCardIOScanDelegate</span>
+    <span class="n">scanController</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+<span class="p">}</span>
+
+<span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">scanData</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">scanController</span><span class="o">.</span><span class="nf">presentCardScanner</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<p>Handle <code><a href="Protocols/VGSCardIOScanControllerDelegate.html">VGSCardIOScanControllerDelegate</a></code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code><a href="Enums/CradIODataType.html">CradIODataType</a></code> to get available scand data types.</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">VGSCardIOScanControllerDelegate</span> <span class="p">{</span>
+
+    <span class="c1">//When user press Done button on CardIO screen</span>
+    <span class="kd">func</span> <span class="nf">userDidFinishScan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">scanController</span><span class="o">.</span><span class="nf">dismissCardScanner</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">// add actions on scan controller dismiss completion</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="c1">//When user press Cancel button on CardIO screen</span>
+    <span class="kd">func</span> <span class="nf">userDidCancelScan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">scanController</span><span class="o">.</span><span class="nf">dismissCardScanner</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Asks VGSTextField where scanned data with type need to be set.</span>
+    <span class="kd">func</span> <span class="nf">textFieldForScannedData</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">CradIODataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">VGSTextField</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">type</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">expirationDate</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">expCardDate</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">cvc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cvcCardNum</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">cardNumber</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cardNumber</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='demo-application' class='heading'>Demo Application</h2>
+
+<p>Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.</p>
+<h3 id='scan-credit-card-data' class='heading'>Scan Credit Card Data</h3>
+
+<p>VGSCollect provide secure CardIO integration module for collecting and setting scaned data into VGSCollectTextFields.
+To start using CardIO as bank cards scanner you should install additional pod into your app:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
+<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardIO'</span>
+</code></pre>
+
+<p>In your ViewController create <code><a href="Classes/VGSCardIOScanController.html">VGSCardIOScanController</a></code> instance</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+<span class="k">var</span> <span class="nv">scanController</span> <span class="o">=</span> <span class="kt">VGSCardIOScanController</span><span class="p">()</span>
+
+<span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+    <span class="c1">// set preferred device camera</span>
+    <span class="n">scanController</span><span class="o">.</span><span class="n">preferredCameraPosition</span> <span class="o">=</span> <span class="o">.</span><span class="n">front</span>
+
+    <span class="c1">// set VGSCardIOScanDelegate</span>
+    <span class="n">scanController</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+<span class="p">}</span>
+
+<span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">scanData</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIButton</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">scanController</span><span class="o">.</span><span class="nf">presentCardScanner</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<p>Handle <code><a href="Protocols/VGSCardIOScanControllerDelegate.html">VGSCardIOScanControllerDelegate</a></code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code><a href="Enums/CradIODataType.html">CradIODataType</a></code> to get available scand data types.</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">VGSCardIOScanControllerDelegate</span> <span class="p">{</span>
+
+    <span class="c1">//When user press Done button on CardIO screen</span>
+    <span class="kd">func</span> <span class="nf">userDidFinishScan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">scanController</span><span class="o">.</span><span class="nf">dismissCardScanner</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">// add actions on scan controller dismiss completion</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="c1">//When user press Cancel button on CardIO screen</span>
+    <span class="kd">func</span> <span class="nf">userDidCancelScan</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">scanController</span><span class="o">.</span><span class="nf">dismissCardScanner</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Asks VGSTextField where scanned data with type need to be set.</span>
+    <span class="kd">func</span> <span class="nf">textFieldForScannedData</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">CradIODataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">VGSTextField</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">type</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">expirationDate</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">expCardDate</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">cvc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cvcCardNum</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">cardNumber</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cardNumber</span>
+        <span class="k">default</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>You should also add <strong>NSCameraUsageDescription</strong> key with description string into your App Info.plist.</p>
+<h3 id='for-more-details-check-our-documentation' class='heading'>For more details check our documentation</h3>
+
+<p><a href="https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk">https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk</a></p>
+<h2 id='dependencies' class='heading'>Dependencies</h2>
+
+<ul>
+<li>iOS 10+</li>
+<li>Swift 5</li>
+<li>3rd party libraries:
+
+<ul>
+<li>Alamofire</li>
+</ul></li>
+</ul>
+<h2 id='license' class='heading'>License</h2>
+
+<p>VGSCollect iOS SDK is released under the MIT license. <a href="https://github.com/verygoodsecurity/vgs-collect-ios/blob/master/LICENSE">See LICENSE</a> for details.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-04-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

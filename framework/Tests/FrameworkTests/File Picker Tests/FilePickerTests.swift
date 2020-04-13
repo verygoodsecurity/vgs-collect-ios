@@ -40,6 +40,6 @@ class FilePickerTests: XCTestCase {
             XCTAssertNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 30.0)
+        wait(for: [expectation], timeout: 60.0)
     }
 }

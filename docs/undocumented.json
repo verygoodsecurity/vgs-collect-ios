@@ -1,0 +1,173 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/CharacterSet+extension.swift",
+      "line": 11,
+      "symbol": "CharacterSet.vgsAsciiDecimalDigits",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 49,
+      "symbol": "VGSError.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 11,
+      "symbol": "VGSErrorInfoKey",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSDocumentPicker.swift",
+      "line": 46,
+      "symbol": "VGSDocumentPicker.documentPicker(_:didPickDocumentsAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSDocumentPicker.swift",
+      "line": 62,
+      "symbol": "VGSDocumentPicker.documentPickerWasCancelled(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSImagePicker.swift",
+      "line": 58,
+      "symbol": "VGSImagePicker.imagePickerControllerDidCancel(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSImagePicker.swift",
+      "line": 62,
+      "symbol": "VGSImagePicker.imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField.swift",
+      "line": 13,
+      "symbol": "MaskedTextField",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField.swift",
+      "line": 14,
+      "symbol": "MaskedTextField",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSCardTextField.swift",
+      "line": 23,
+      "symbol": "VGSCardTextField.didMoveToSuperview()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 15,
+      "symbol": "VGSTextField.cornerRadius",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 24,
+      "symbol": "VGSTextField.borderWidth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 32,
+      "symbol": "VGSTextField.borderColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 43,
+      "symbol": "VGSTextField.font",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 51,
+      "symbol": "VGSTextField.textColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 60,
+      "symbol": "VGSTextField.prepareForInterfaceBuilder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+state.swift",
+      "line": 21,
+      "symbol": "VGSTextField.isFocused",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 123,
+      "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 127,
+      "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 131,
+      "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 196,
+      "symbol": "UIView.mainStyle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 16,
+      "symbol": "SwiftLuhn.CardType.brandIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Date+cvv/VGSValidation.swift",
+      "line": 11,
+      "symbol": "VGSValidation",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Date+cvv/VGSValidation.swift",
+      "line": 28,
+      "symbol": "String.matches(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dima/vgs-collect-ios/framework"
+}
