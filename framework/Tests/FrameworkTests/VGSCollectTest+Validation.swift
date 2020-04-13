@@ -80,7 +80,7 @@ class VGSCollectValidationTests: XCTestCase {
            expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 30.0)
+        wait(for: [expectation], timeout: 60.0)
     }
     
      func testSubmitInvalidNotRequiredFieldsReturnsNotNil() {
@@ -125,7 +125,7 @@ class VGSCollectValidationTests: XCTestCase {
            expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 30.0)
+        wait(for: [expectation], timeout: 60.0)
     }
     
     func testSubmitInvalidRequiredFieldsReturnsNil() {
@@ -146,7 +146,7 @@ class VGSCollectValidationTests: XCTestCase {
            expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 60.0)
     }
     
      func testSubmitEmptyRequiredFieldsReturnsNil() {
@@ -191,7 +191,7 @@ class VGSCollectValidationTests: XCTestCase {
            expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 30.0)
+        wait(for: [expectation], timeout: 60.0)
     }
     
     func testSubmitEmptyNotRequiredFieldsReturnsNotNil() {
@@ -236,6 +236,6 @@ class VGSCollectValidationTests: XCTestCase {
            expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 30.0)
+        wait(for: [expectation], timeout: 60.0)
     }
 }

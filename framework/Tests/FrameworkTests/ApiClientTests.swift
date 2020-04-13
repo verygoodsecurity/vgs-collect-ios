@@ -39,7 +39,7 @@ class ApiClientTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 60.0)
     }
     
     func testCustomHeader() {
@@ -58,7 +58,7 @@ class ApiClientTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 60.0)
     }
     
     func testErrCase() {
@@ -73,6 +73,6 @@ class ApiClientTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 60.0)
     }
 }
