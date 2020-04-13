@@ -11,14 +11,14 @@ import Foundation
 import UIKit
 #endif
 
-protocol VGSBaseConfigurationProtocol {
+internal protocol VGSBaseConfigurationProtocol {
     
     var vgsCollector: VGSCollect? { get }
     
     var fieldName: String { get }
 }
 
-protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
+internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
 
     var validationModel: VGSValidation? { get set }
     
@@ -37,44 +37,48 @@ protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
     var keyboardAppearance: UIKeyboardAppearance? { get set }
 }
 
-/// A class responsible for configuration VGSTextField
+/// A class responsible for configuration VGSTextField.
 public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
-        
-    /// Collect form that will be assiciated with VGSTextField
+    
+    // MARK: - Attributes
+    
+    /// Collect form that will be assiciated with VGSTextField.
     private(set) weak var vgsCollector: VGSCollect?
 
-    /// Validation model
+    /// Internal Validation model.
     internal var validationModel: VGSValidation?
     
-    /// Name that will be used as a JSON key when submit textfield data to VGS
-    public let fieldName: String
-    
-    /// Set if text filed is required to be non-empty and non-nil on submit
-    public var isRequired: Bool = false
-    
-    /// Set if text filed is required to be valid only on submit
-    public var isRequiredValidOnly: Bool = false
-    
-    /// Type of text filed. By default `none`
+    /// Type of field congfiguration. Default is `FieldType.none`.
     public var type: FieldType = .none
     
-    /// Set your patter format. Exmp: `##/##` equela `12/23`
-    public var formatPattern: String?
+    /// Name that will be associated with `VGSTextField` and used as a JSON key on submitting textfield data to your organozation vault.
+    public let fieldName: String
     
-    /// Set preferred UIKeyboardType for textfield
+    /// Set if `VGSTextField` is required to be non-empty and non-nil on submit. Default is `false`.
+    public var isRequired: Bool = false
+    
+    /// Set if `VGSTextField` is required to be valid only on submit. Default is `false`.
+    public var isRequiredValidOnly: Bool = false
+    
+    /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
+    public var formatPattern: String?
+
+    /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?
     
-    /// Set preferred UIReturnKeyType for textfield
+    ///Preferred UIReturnKeyType for `VGSTextField`.
     public var returnKeyType: UIReturnKeyType?
     
-    /// Set preferred UIKeyboardAppearance for textfield
+    /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
     public var keyboardAppearance: UIKeyboardAppearance?
-        
+     
+    // MARK: - Initialization
+    
     /// Initialization
     ///
     /// - Parameters:
-    ///   - vgs: VGSCollect instance
-    ///   - fieldName: Name for your text field
+    ///   - vgs: `VGSCollect` instance.
+    ///   - fieldName: associated `fieldName`.
     public init(collector vgs: VGSCollect, fieldName: String) {
         self.vgsCollector = vgs
         self.fieldName = fieldName

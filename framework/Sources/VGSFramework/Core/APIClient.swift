@@ -9,9 +9,14 @@
 import Foundation
 import Alamofire
 
+/// Key-value data type, usually used for response format.
 public typealias JsonData = [String: Any]
-public typealias BodyData = [String: Any]
+
+/// Key-value data type, used in http request headers.
 public typealias HTTPHeaders = [String: String]
+
+/// Key-value data type, for internal use.
+internal typealias BodyData = [String: Any]
 
 class APIClient {
     let baseURL: URL!

@@ -10,6 +10,18 @@ import Foundation
 
 internal extension VGSCollect {
     
+    func registerTextFields(textField objects: [VGSTextField]) {
+        objects.forEach { [weak self] tf in
+            self?.storage.addElement(tf)
+        }
+    }
+    
+    func unregisterTextFields(textField objects: [VGSTextField]) {
+        objects.forEach { [weak self] tf in
+            self?.storage.removeElement(tf)
+        }
+    }
+    
     /// Validate tenant id
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric

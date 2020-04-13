@@ -1,16 +1,73 @@
-# Ordered by output of `jazzy --help config`
-output: ../docs
-clean: true
-objc: false
-# umbrella_header: 
-framework_root: framework/
-sdk: iphonesimulator
+####################
+# Comments
+# 1. pods should be installed/updated
+# 2. jazzy command should be running form framework root dir
+####################
+#names
+module: VGSFramework
+title: VGSCollectSDK
 author: Very Good Security
 author_url: https://verygoodsecurity.com
-module: VGSFramework
 github_url: https://github.com/verygoodsecurity/vgs-collect-ios
 github_file_prefix: https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework
+readme: ../README.md
+#output folder
+output: ../docs
+#path to project
+framework_root: framework/
+sdk: iphonesimulator
+#settings
+clean: true
+objc: false
 skip_undocumented: true
 hide_documentation_coverage: true
 theme: fullwidth
-exclude: 
+exclude:
+    Sources/VGSFramework/Core/Utils.swift
+custom_categories:
+- name: UI Elements
+  children:
+  - VGSTextField
+  - VGSCardTextField
+  - VGSTextFieldDelegate
+  - VGSConfiguration
+  - FieldType
+  - SwiftLuhn
+- name: Card Scan
+  children:
+  - VGSCardIOScanController
+  - VGSCardIOScanControllerDelegate
+  - CradIODataType
+- name: File Picker
+  children:
+  - VGSFilePickerController
+  - VGSFilePickerConfiguration
+  - VGSFilePickerControllerDelegate
+  - VGSFileSource
+  - VGSFileInfo
+- name: Observe State and Submit Data
+  children:
+  - VGSCollect
+  - Environment
+  - State
+  - CardState
+- name: Errors
+  children:
+  - VGSError
+  - VGSErrorType
+  - VGSCollectSDKErrorDomain
+- name: Error Keys
+  children:
+  - VGSSDKErrorInputDataIsNotValid
+  - VGSSDKErrorInputDataRequired
+  - VGSSDKErrorInputDataRequiredValid
+  - VGSSDKErrorFileNotFound
+  - VGSSDKErrorFileTypeNotSupported
+  - VGSSDKErrorFileSizeExceedsTheLimit
+  - VGSSDKErrorSourceNotAvailable
+  - VGSSDKErrorUnexpectedResponseDataFormat
+- name: Type Aliases
+  children:
+  - HTTPHeaders
+  - JsonData
+  

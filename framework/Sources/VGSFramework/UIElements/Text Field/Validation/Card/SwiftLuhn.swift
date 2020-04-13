@@ -11,21 +11,43 @@ import Foundation
 import UIKit
 #endif
 
+/// Class containing supported credit card types
 public class SwiftLuhn {
     
+    // MARK: - Enum Cases
+
     /// Supported card types
     public enum CardType: CaseIterable {
+        
+        /// Visa Electron
         case visaElectron
+        
+        /// Maestro
         case maestro
+        
+        /// Visa
         case visa
+        
+        /// Mastercard
         case mastercard
+        
+        /// American Express
         case amex
+        
+        /// Diner's Club
         case dinersClub
+        
+        /// Discover
         case discover
+        
+        /// JCB
         case jcb
+        
+        /// Not supported card type - "unknown"
         case unknown
     }
     
+    /// :nodoc:
     public enum CardError: Error {
         case unsupported
         case invalid
@@ -92,8 +114,10 @@ public class SwiftLuhn {
     }
 }
 
+// MARK: - Attributes
 extension SwiftLuhn.CardType {
     
+    /// String representation of `SwiftLuhn.CardType` enum values.
     public var stringValue: String {
         switch self {
         case .amex:

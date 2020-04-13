@@ -36,11 +36,15 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     }
 }
 
+/// :nodoc:
 extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
+    
+    /// :nodoc:
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
         delegate?.userDidCancelScan?()
     }
     
+    /// :nodoc:
     func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
         guard let cardInfo = cardInfo, let cardIOdelegate = delegate else {
             delegate?.userDidFinishScan?()
