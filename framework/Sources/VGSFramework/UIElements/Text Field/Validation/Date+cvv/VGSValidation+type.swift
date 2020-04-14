@@ -43,13 +43,13 @@ extension VGSValidation {
             return false
         }
         
-        if todayYY <= inputYY {
-            return true
-        } else if todayMM <= inputMM && todayYY <= inputYY {
-            return true
-        } else {
+        if inputYY < todayYY {
             return false
         }
+        if inputYY == todayYY && inputMM < todayMM {
+            return false
+        }
+        return true
     }
     
     private func validateCVC(txt: String) -> Bool {

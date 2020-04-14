@@ -20,8 +20,6 @@ class ExpDateTextFieldTests: XCTestCase {
         
         let config = VGSConfiguration(collector: collector, fieldName: "expDate")
         config.type = .expDate
-        config.formatPattern = "##/####"
-        
         expDateTextField.configuration = config
         
         expDateTextField.textField.secureText = "1223"
@@ -37,12 +35,69 @@ class ExpDateTextFieldTests: XCTestCase {
         XCTAssertTrue(expDateTextField.state.fieldName == "expDate")
     }
     
-    func testWrongDate() {
+    func testNotValidDateReturnsFalse() {
+        
         expDateTextField.textField.secureText = "21/23"
+        expDateTextField.focusOn()
+        XCTAssertFalse(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
         
-        let state = expDateTextField.state
+        expDateTextField.textField.secureText = "01/20"
+        expDateTextField.focusOn()
+        XCTAssertFalse(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
         
-        XCTAssertFalse(state.isValid)
-        XCTAssertFalse(state.isEmpty)
+        expDateTextField.textField.secureText = "01/01"
+        expDateTextField.focusOn()
+        XCTAssertFalse(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+        
+        expDateTextField.textField.secureText = "00/00"
+        expDateTextField.focusOn()
+        XCTAssertFalse(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+        
+        expDateTextField.textField.secureText = "20/12"
+        expDateTextField.focusOn()
+        XCTAssertFalse(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+    }
+    
+    func testValidDateReturnsTrue() {
+        
+        expDateTextField.textField.secureText = "01/21"
+        expDateTextField.focusOn()
+        XCTAssertTrue(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+        
+        expDateTextField.textField.secureText = "10/21"
+        expDateTextField.focusOn()
+        XCTAssertTrue(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+        
+        expDateTextField.textField.secureText = "12/22"
+        expDateTextField.focusOn()
+        XCTAssertTrue(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+        
+        expDateTextField.textField.secureText = "01/30"
+        expDateTextField.focusOn()
+        XCTAssertTrue(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
+        
+        /// Test today
+        let today = Date()
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "yy"
+        let todayYY = formatter.string(from: today)
+
+        formatter.dateFormat = "MM"
+        let todayMM = formatter.string(from: today)
+        
+        expDateTextField.textField.secureText = "\(todayMM)/\(todayYY)"
+        expDateTextField.focusOn()
+        XCTAssertTrue(expDateTextField.state.isValid)
+        XCTAssertFalse(expDateTextField.state.isEmpty)
     }
 }
