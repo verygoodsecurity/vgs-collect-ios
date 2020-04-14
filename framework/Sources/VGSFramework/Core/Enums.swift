@@ -62,6 +62,8 @@ internal extension FieldType {
             return VGSTextField.cvcRegexForAnyCardType
         case .expDate:
             return "^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$"
+        case .cardHolderName:
+            return "^([a-zA-Z0-9\\ \\,\\.\\-\\']{2,})$"
         default:
             return ""
         }
