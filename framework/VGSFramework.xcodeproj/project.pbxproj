@@ -17,6 +17,7 @@
 		3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */; };
 		3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219D73C2404279700F4A7E5 /* VGSError.swift */; };
 		3219D73E2404279700F4A7E5 /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219D73C2404279700F4A7E5 /* VGSError.swift */; };
+		32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32448008244606E4003A0676 /* CardHolderNameFieldTests.swift */; };
 		324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CDEE123FB12E200653890 /* FilePickerTests.swift */; };
 		325AB9CB2420C5410024134B /* VGSFilePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */; };
 		3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F723F5A32400D4A73D /* VGSFileSource.swift */; };
@@ -97,6 +98,7 @@
 		3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSCollectTest+Validation.swift"; sourceTree = "<group>"; };
 		3219D73C2404279700F4A7E5 /* VGSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSError.swift; sourceTree = "<group>"; };
 		323105622417DF07009C3360 /* VGSCollect+internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+internal.swift"; sourceTree = "<group>"; };
+		32448008244606E4003A0676 /* CardHolderNameFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHolderNameFieldTests.swift; sourceTree = "<group>"; };
 		324CDEE123FB12E200653890 /* FilePickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
 		325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		3262B2F723F5A32400D4A73D /* VGSFileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFileSource.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
 				FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */,
 				FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */,
+				32448008244606E4003A0676 /* CardHolderNameFieldTests.swift */,
 				FDF696E2234643F300063507 /* LuhnTests.swift */,
 				3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */,
 				FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */,
@@ -698,6 +701,7 @@
 				328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */,
 				3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */,
 				32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */,
+				32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */,
 				FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
