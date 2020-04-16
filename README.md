@@ -150,61 +150,73 @@ pod 'VGSCollectSDK/CardIO'
 ```
 
 Also you need to add **<NSCameraUsageDescription>** key with camera usage description into your App ``Info.plist``.
-	
-In your ViewController create `VGSCardIOScanController` instance
-````swift
-class ViewController: UIViewController {
 
-var scanController = VGSCardIOScanController()
 
-override func viewDidLoad() {
-    super.viewDidLoad()
+<table>
+  <tr>
+    <th width="30%">Here's an example</th>
+    <th width="30%">In Action</th>
+  </tr>
+  <tr>
+    <td>Setup  VGSCardIOScanController...</td>
+    <th rowspan="9"><img src="../../card_scan.gif"></th>
+  </tr>
+  <tr>
+    <td><div class="highlight highlight-source-swift"><pre>
     
-    // set preferred device camera
-    scanController.preferredCameraPosition = .front
-    
-    // set VGSCardIOScanDelegate
-    scanController.delegate = self
-}
+    class ViewController: UIViewController {
 
-@objc
-func scanData(_ sender: UIButton) {
-    scanController.presentCardScanner(on: self, animated: true, completion: nil)
-}
+        var scanController = VGSCardIOScanController()
+        var scanButton = UIButton()
 
-````
-Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `CradIODataType` to get available scand data types.
+        override func viewDidLoad() {
+            super.viewDidLoad()
+    
+            // set VGSCardIOScanDelegate
+                scanController.delegate = self
+        }
 
-````swift
-extension ViewController: VGSCardIOScanControllerDelegate {
+        @objc
+        func scanData(_ sender: UIButton) {
+            scanController.presentCardScanner(on: self, animated: true, completion: nil)
+        }
+  </pre></div></td>
+  </tr>
+  <tr>
+    <td>... handle VGSCardIOScanControllerDelegate</td>
+  </tr>
+  <tr>
+    <td width="30%"><div class="highlight highlight-source-swift"><pre>
     
-    //When user press Done button on CardIO screen
-    func userDidFinishScan() {
-        scanController.dismissCardScanner(animated: true, completion: {
-            // add actions on scan controller dismiss completion
-        })
-    }
-    
-    //When user press Cancel button on CardIO screen
-    func userDidCancelScan() {
-        scanController.dismissCardScanner(animated: true, completion: nil)
-    }
-    
-    //Asks VGSTextField where scanned data with type need to be set.
-    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
-        switch type {
-        case .expirationDate:
-            return expCardDate
-        case .cvc:
-            return cvcCardNum
-        case .cardNumber:
-            return cardNumber
-        default:
-            return nil
+    extension ViewController: VGSCardIOScanControllerDelegate {
+        
+        //Asks VGSTextField where scanned data with type need to be set.
+        func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
+            switch type {
+            case .expirationDate:
+                return expCardDate
+            case .cvc:
+                return cvcCardNum
+            case .cardNumber:
+                return cardNumber
+            default:
+                return nil
+            }
+        }
+        
+        //When user press Done button on CardIO screen
+        func userDidFinishScan() {
+            scanController.dismissCardScanner(animated: true, completion: {
+                // add actions on scan controller dismiss completion
+            })
         }
     }
-}
-````
+   </pre></div></td>
+  </tr>
+</table>
+
+
+Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `CradIODataType` to get available scand data types.
 
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
