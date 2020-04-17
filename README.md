@@ -141,6 +141,120 @@ VGSCardTextField automatically detects card provider and display card brand icon
 var cardNumber = VGSCardTextField()
 ````
 
+### Usage
+
+<table>
+  <tr">
+    <th >Here's an example</th>
+    <th width="27%">In Action</th>
+  </tr>
+  <tr>
+    <td>Customize  VGSTextFields...</td>
+     <th rowspan="2"><img src="add-card.gif"></th>
+  </tr>
+  <tr>
+    <td>
+        
+    import UIKit
+    import VGSCollectSDK
+
+    class ViewController: UIViewController {
+
+        var vgsForm = VGSCollect(id: "<vault-id>", environment: .sandbox)
+
+        // VGS UI Elements
+        var cardNumber = VGSTextField()
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            // Configure Elements UI
+            let cardConfig = VGSConfiguration(collector: vgsForm,
+                                              fieldName: "cardNumber")
+                                              
+            // Submit only if cardNumber input is valid
+            cardConfig.isRequiredValidOnly = true
+            cardConfig.type = .cardNumber
+            cardNumber.configuration = cardConfig
+            
+            // styling
+            cardNumber.placeholder = "card number"
+            cardNumber.borderWidth = 1
+            cardNumber.borderColor = .lightGray
+            cardNumber.padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+            cardNumber.textColor = .magenta
+            cardNumber.font = UIFont(name: "Arial", size: 22)
+            cardNumber.textAlignment = .natural
+
+            cardNumber.frame = CGRect(x: 10, y: 55, width: 310, height: 35)
+            view.addSubview(cardNumber)
+        }
+    }
+    ...
+  </td>
+  </tr>
+  <tr>
+    <td>... observe filed states </td>
+     <th rowspan="2"><img src="state.gif"></th>
+  </tr>
+  <tr>
+    <td>
+    
+    // ...  
+    
+    // Observing text fields
+    vgsForm.observeStates = { textFields in
+        textFields.forEach({ textField in
+               print(textField.state.description)
+               
+               if let cardState = textField.state as? CardState {
+                    print(cardState.bin)
+                    print(cardState.last4)
+                    print(cardState.brand)
+                    
+                    if !cardState.isValid {
+                        textField.borderColor = .red
+                    }   
+               }
+              
+        })
+    }
+   
+  </td>
+  </tr>
+  <tr>
+    <td colspan="2">... send a data</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+        
+    //....
+
+    // MARK: - Submit data    
+    func sendData() {
+        // extra information will be sent together with all sensitive card information
+        var extraData = [String: Any]()
+        extraData["cardHolderName"] = "Joe Business"
+
+        // send data
+        vgsForm.submit(path: "/post", extraData: extraData, completion: { (json, error) in
+            if error == nil, let json = json {
+                // parse response data
+            } else {
+                if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+                    if errorKey == VGSSDKErrorInputDataRequiredValid {
+                        // handle VGSError error
+                    }
+                } else {
+                   // handle other errors 
+                }
+            }
+        })
+    }
+  </td>
+  </tr>
+</table>
+
 ### Scan Credit Card Data
 VGSCollect provide secure [card.io](https://github.com/verygoodsecurity/CardIOSDK-iOS) integration for collecting and setting scanned data into ``VGSTextFields``. 
 To use [card.io](https://github.com/verygoodsecurity/CardIOSDK-iOS) with **VGSCollectSDK** you should add **CardIO** module alongside with core **VGSCollectSDK** module into your App Podfile:
