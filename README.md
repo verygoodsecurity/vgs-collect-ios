@@ -160,7 +160,7 @@ Also you need to add **<NSCameraUsageDescription>** key with camera usage descri
   </tr>
   <tr>
     <td>Setup  VGSCardIOScanController...</td>
-    <th rowspan="2"><img src="card_scan.gif"></th>
+    <th rowspan="2"><img src="card-scan.gif"></th>
   </tr>
   <tr>
     <td>
@@ -174,7 +174,7 @@ Also you need to add **<NSCameraUsageDescription>** key with camera usage descri
 		super.viewDidLoad()
 
 		// set VGSCardIOScanDelegate
-		    scanController.delegate = self
+		scanController.delegate = self
 	    }
 	    
 	    @objc func scanData(_ sender: UIButton) {
@@ -220,6 +220,119 @@ Also you need to add **<NSCameraUsageDescription>** key with camera usage descri
 </table>
 
 Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `CradIODataType` to get available scand data types.
+
+
+### Upload Files
+
+You can add a file uploading functionality to your application with **VGSFilePickerController**.
+
+#### Usage
+
+<table>
+  <tr">
+    <th  colspan="2>Here's an example</th>
+  </tr>
+  <tr>
+    <td colspan="2">Setup  VGSFilePickerController...</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+	    
+    class FilePickerViewController: UIViewController, VGSFilePickerControllerDelegate {
+
+	  // Create strong referrence of VGSFilePickerController
+	  var pickerController: VGSFilePickerController?
+
+	  // Collector vgs
+	  var vgsCollect = VGSCollect(id: "vailtId", environment: .sandbox)
+
+
+	  override func viewDidLoad() {
+	      super.viewDidLoad()
+
+	      // create picker configuration
+	      let filePickerConfig = VGSFilePickerConfiguration(collector: vgsCollect,
+	      							fieldName: "secret_doc",
+							       fileSource: .photoLibrary)
+
+	      // init picket controller with configuration
+	      pickerController = VGSFilePickerController(configuration: filePickerConfig)
+
+	      // handle picker delegates
+	      pickerController?.delegate = self
+	  }
+
+	  // Present picker controller
+	  private func selectFileFromSource() {
+	      pickerController?.presentFilePicker(on: self, animated: true, completion: nil)
+	  }
+	}
+	...
+  </td>
+  </tr>
+  <tr>
+    <td>... handle VGSFilePickerControllerDelegate</td>
+    <th width="27%">In Action</th>
+  </tr>
+  <tr>
+    <td>
+	
+	// ...  
+	
+	// Check file info, selected by user
+	func userDidPickFileWithInfo(_ info: VGSFileInfo) {
+		let fileInfo = """
+			    File info:
+			    - fileExtension: \(info.fileExtension ?? "unknown")
+			    - size: \(info.size)
+			    - sizeUnits: \(info.sizeUnits ?? "unknown")
+			    """
+		print(fileInfo)
+		pickerController?.dismissFilePicker(animated: true)
+	}
+
+	// Handle cancel file selection
+	func userDidSCancelFilePicking() {
+		pickerController?.dismissFilePicker(animated: true)
+	}
+
+	// Handle errors on picking the file
+	func filePickingFailedWithError(_ error: VGSError) {
+		pickerController?.dismissFilePicker(animated: true)
+	}
+   
+  </td>
+  <td><img src="file-picker.gif"></td>
+  </tr>
+  <tr>
+    <td colspan="2">... send a file</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+	    
+	//....
+
+	// MARK: - Submit File	
+	// Send file and extra data
+	func submitAction(_ sender: Any) {
+		let extraData = ["document_holder": "Joe B"]
+
+		// send file data to VGS
+		vgsCollect.submitFile(path: "/post", method: .post,
+						  extraData: extraData) { [weak self](json, error) in
+
+		    if error == nil, let json = json?["json"] {
+			// remove file from VGSCollect storage
+			self?.vgsCollect.cleanFiles()
+		    } else {
+			// handle the errors
+		    }
+		}
+	}
+  </td>
+  </tr>
+</table>
+
 
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
