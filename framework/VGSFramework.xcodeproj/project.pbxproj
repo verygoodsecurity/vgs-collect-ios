@@ -73,6 +73,7 @@
 		FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */; };
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
+		FDF813DC244E3259008FD934 /* FileInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF813DA244E31CE008FD934 /* FileInfoTest.swift */; };
 		FDFCA7FE233F7C1E00C81126 /* MaskedTextField+padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,7 @@
 		FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFielsStyleUI.swift; sourceTree = "<group>"; };
 		FDF696E2234643F300063507 /* LuhnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuhnTests.swift; sourceTree = "<group>"; };
 		FDF696E42346461D00063507 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
+		FDF813DA244E31CE008FD934 /* FileInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfoTest.swift; sourceTree = "<group>"; };
 		FDFCA7FD233F7C1E00C81126 /* MaskedTextField+padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+padding.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				324CDEE123FB12E200653890 /* FilePickerTests.swift */,
+				FDF813DA244E31CE008FD934 /* FileInfoTest.swift */,
 			);
 			path = "File Picker Tests";
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */,
 				FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
+				FDF813DC244E3259008FD934 /* FileInfoTest.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				3219D73E2404279700F4A7E5 /* VGSError.swift in Sources */,
