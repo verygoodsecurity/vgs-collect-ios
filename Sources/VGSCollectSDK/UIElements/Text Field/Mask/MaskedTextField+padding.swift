@@ -24,3 +24,27 @@ extension MaskedTextField {
         return bounds.inset(by: padding)
     }
 }
+
+// MARK: - Left & Right imageview offset
+extension MaskedTextField {
+    /*
+     - (CGRect) rightViewRectForBounds:(CGRect)bounds {
+
+         CGRect textRect = [super rightViewRectForBounds:bounds];
+         textRect.origin.x -= 10;
+         return textRect;
+     }
+     */
+    
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.rightViewRect(forBounds: bounds)
+        rect.origin.x -= 5
+        return rect
+    }
+    
+    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.leftViewRect(forBounds: bounds)
+        rect.origin.x += 5
+        return rect
+    }
+}

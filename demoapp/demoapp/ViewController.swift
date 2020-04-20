@@ -120,8 +120,8 @@ class ViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.tintColor = .lightGray
         
-        cardNumber.sideCardIcon = .right
-        cardNumber.iconWidth = 45
+        cardNumber.sideCardIcon = .left(width: 46)
+        cardNumber.sideCardIcon = .right(width: 46)
 
         // To handle VGSTextFieldDelegate methods
         // cardNumber.delegate = self

@@ -13,35 +13,52 @@ import UIKit
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
 public class VGSCardTextField: VGSTextField {
     public enum SideCardIcon {
-        case left
-        case right
+        case left(width: CGFloat)
+        case right(width: CGFloat)
     }
     
+    internal var originalLeftPadding: CGFloat = -1
+    
     /// card brand icon width
-    public var iconWidth: CGFloat = 45 {
-        didSet {
-            updateCardIcon()
-        }
-    }
+    internal var iconWidth: CGFloat = 45
     
     /// callback for taking card brand icon
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
     /// set side icon near text view. The right by default.
-    public var sideCardIcon: SideCardIcon = .right {
+    public var sideCardIcon: SideCardIcon = .right(width: 45) {
         didSet {
-            if sideCardIcon == .left {
+            switch sideCardIcon {
+            case .left(let width):
+                iconWidth = width
+                
                 textField.rightView = nil
                 textField.leftView = cardIconView
                 textField.leftViewMode = .always
                 
+                if originalLeftPadding < 0 {
+                    // save origibal left padding if property is < 0
+                    originalLeftPadding = padding.left
+                }
+                
                 var paddingCopy = padding
-                paddingCopy.left += iconWidth
+                paddingCopy.left += width
                 padding = paddingCopy
-            } else {
+                
+            case .right(let width):
+                iconWidth = width
+                
                 textField.leftView = nil
                 textField.rightView = cardIconView
                 textField.rightViewMode = .always
+                
+                if originalLeftPadding > 0 {
+                    // reset left padding if property > 0
+                    var paddingCopy = padding
+                    paddingCopy.left = originalLeftPadding
+                    padding = paddingCopy
+                    originalLeftPadding = -1
+                }
             }
             updateCardIcon()
         }
@@ -83,32 +100,8 @@ public class VGSCardTextField: VGSTextField {
     // make image view for a card brand icon
     private func makeCardIcon() -> UIImageView {
         let result = UIImageView(frame: .zero)
-        
         result.contentMode = .scaleAspectFit
         addSubview(result)
-        
-        // make constraints
-//        let views = ["view": result]
-//        result.translatesAutoresizingMaskIntoConstraints = false
-        
-//        let width = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(==\(iconWidth))]",
-//                                                        options: .alignAllCenterY,
-//                                                        metrics: nil,
-//                                                        views: views)
-//        NSLayoutConstraint.activate(width)
-//
-//        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|",
-//                                                      options: .alignAllCenterX,
-//                                                      metrics: nil,
-//                                                      views: views)
-//        NSLayoutConstraint.activate(vertical)
-//
-//        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-5-|",
-//                                                        options: .alignAllCenterY,
-//                                                        metrics: nil,
-//                                                        views: views)
-//        NSLayoutConstraint.activate(horizontal)
-        
         return result
     }
 }
