@@ -13,25 +13,25 @@ import UIKit
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
 public class VGSCardTextField: VGSTextField {
     public enum SideCardIcon {
-        case left(width: CGFloat)
-        case right(width: CGFloat)
+        case left(size: CGSize)
+        case right(size: CGSize)
     }
     
     internal var originalLeftPadding: CGFloat = -1
     internal var originalRightPadding: CGFloat = -1
     
     /// card brand icon width
-    internal var iconWidth: CGFloat = 45
+    internal var iconSize: CGSize = .zero
     
     /// callback for taking card brand icon
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
     /// set side icon near text view. The right by default.
-    public var sideCardIcon: SideCardIcon = .right(width: 45) {
+    public var sideCardIcon: SideCardIcon = .right(size: .zero) {
         didSet {
             switch sideCardIcon {
-            case .left(let width):
-                iconWidth = width
+            case .left(let size):
+                iconSize = size
                 
                 textField.rightView = nil
                 textField.leftView = cardIconView
@@ -43,7 +43,7 @@ public class VGSCardTextField: VGSTextField {
                 }
                 var paddingCopy = padding
                 // set left padding
-                paddingCopy.left = originalLeftPadding + width
+                paddingCopy.left = originalLeftPadding + size.width
                 // reset right padding
                 if originalRightPadding > 0 {
                     paddingCopy.right = originalRightPadding
@@ -52,8 +52,8 @@ public class VGSCardTextField: VGSTextField {
                 // set new padding value
                 padding = paddingCopy
                 
-            case .right(let width):
-                iconWidth = width
+            case .right(let size):
+                iconSize = size
                 
                 textField.leftView = nil
                 textField.rightView = cardIconView
@@ -65,7 +65,7 @@ public class VGSCardTextField: VGSTextField {
                 }
                 var paddingCopy = padding
                 // set right padding
-                paddingCopy.right = originalRightPadding + width
+                paddingCopy.right = originalRightPadding + size.width
                 // reset left padding
                 if originalLeftPadding > 0 {
                     paddingCopy.left = originalLeftPadding
@@ -91,6 +91,15 @@ public class VGSCardTextField: VGSTextField {
         updateCardIcon()
     }
     
+    private func updateImageViewSize() {
+        if let widthConstraint = cardIconView.constraints.filter({ $0.identifier == "widthConstraint" }).first {
+            widthConstraint.constant = iconSize.width
+        }
+        if let heightConstraint = cardIconView.constraints.filter({ $0.identifier == "heightConstraint" }).first {
+            heightConstraint.constant = iconSize.height
+        }
+    }
+    
     internal func updateCardIcon() {
         let resultIcon: UIImage?
         if let state = state as? CardState {
@@ -105,7 +114,8 @@ public class VGSCardTextField: VGSTextField {
         }
         
         if let ico = resultIcon {
-            cardIconView.image = ico.resizeImage(width: iconWidth)
+            updateImageViewSize()
+            cardIconView.image = ico//.resizeImage(icon: iconSize)
         } else {
             cardIconView.image = nil
         }
@@ -114,8 +124,26 @@ public class VGSCardTextField: VGSTextField {
     // make image view for a card brand icon
     private func makeCardIcon() -> UIImageView {
         let result = UIImageView(frame: .zero)
-        result.contentMode = .scaleAspectFit
-        addSubview(result)
-        return result
+        result.contentMode = .scaleAspectFit        
+        let newView = result
+        newView.translatesAutoresizingMaskIntoConstraints = false
+        let widthConstraint = NSLayoutConstraint(item: newView,
+                                                 attribute: .width,
+                                                 relatedBy: .equal,
+                                                 toItem: nil,
+                                                 attribute: .notAnAttribute,
+                                                 multiplier: 1,
+                                                 constant: iconSize.width)
+        widthConstraint.identifier = "widthConstraint"
+        let heightConstraint = NSLayoutConstraint(item: newView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .notAnAttribute,
+                                                  multiplier: 1,
+                                                  constant: iconSize.height)
+        heightConstraint.identifier = "heightConstraint"
+        newView.addConstraints([widthConstraint, heightConstraint])
+        return newView
     }
 }

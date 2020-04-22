@@ -61,27 +61,40 @@ class CardTextFieldTests: XCTestCase {
     }
     
     func testLeftRightIcon() {
-        let iconSize: CGFloat = 45
+        let iconSize = CGSize(width: 46, height: 46)
+        let padding = UIEdgeInsets(top: 0, left: 11, bottom: 0, right: 12)
+        
+        cardTextField.padding = padding
         
         // right icon
-        cardTextField.sideCardIcon = .right(width: iconSize)
+        cardTextField.sideCardIcon = .right(size: iconSize)
         
         XCTAssertNotNil(cardTextField.cardIconView)
-        XCTAssert(cardTextField.cardIconView.image?.size.width == iconSize)
-        XCTAssert(cardTextField.padding.left == 0)
+        XCTAssert(cardTextField.padding.left == padding.left)
+        XCTAssert(cardTextField.padding.right == padding.right + iconSize.width)
+        
+        XCTAssert(cardTextField.originalLeftPadding == -1)
+        XCTAssert(cardTextField.originalRightPadding == padding.right)
+        
         XCTAssertNil(cardTextField.textField.leftView)
         XCTAssertNotNil(cardTextField.textField.rightView)
+
+//        XCTAssert(cardTextField.cardIconView.frame.size == iconSize)
         
         // left icon
-        cardTextField.sideCardIcon = .left(width: iconSize)
+        cardTextField.sideCardIcon = .left(size: iconSize)
         
         XCTAssertNotNil(cardTextField.cardIconView)
-        XCTAssert(cardTextField.cardIconView.image?.size.width == iconSize)
-        XCTAssertFalse(cardTextField.padding.left == 0)
-        XCTAssertTrue(cardTextField.padding.left == iconSize)
-        XCTAssert(cardTextField.originalLeftPadding == 0)
+        XCTAssert(cardTextField.padding.left == padding.left + iconSize.width)
+        XCTAssert(cardTextField.padding.right == padding.right)
+        
+        XCTAssert(cardTextField.originalLeftPadding == padding.left)
+        XCTAssert(cardTextField.originalRightPadding == -1)
+        
         XCTAssertNotNil(cardTextField.textField.leftView)
         XCTAssertNil(cardTextField.textField.rightView)
+        
+//        XCTAssert(cardTextField.cardIconView.frame.size == iconSize)
     }
     
     func disable_testInput16() {

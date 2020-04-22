@@ -8,13 +8,11 @@
 
 import Foundation
 
+// unused extension and excluded from target
 internal extension UIImage {
-    func resizeImage(width: CGFloat) -> UIImage? {
-        let scale = width / size.width
-        let newHeight = size.height * scale
-       
-        UIGraphicsBeginImageContext(CGSize(width: width, height: newHeight))
-        draw(in: CGRect(x: 0, y: 0, width: width, height: newHeight))
+    func resizeImage(icon size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContext(size)
+        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

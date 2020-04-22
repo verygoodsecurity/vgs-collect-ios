@@ -53,7 +53,6 @@
 		FD24956A2330E313009024E6 /* String+SwiftLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495652330E313009024E6 /* String+SwiftLuhn.swift */; };
 		FD24956B2330E313009024E6 /* VGSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495672330E313009024E6 /* VGSValidation.swift */; };
 		FD24956C2330E313009024E6 /* VGSValidation+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2495682330E313009024E6 /* VGSValidation+type.swift */; };
-		FD2E1E98244DB4FA00D28D09 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2E1E97244DB4FA00D28D09 /* UIImage+resize.swift */; };
 		FD362EDF2401659100B4A640 /* VGSTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD362EDE2401659100B4A640 /* VGSTextFieldDelegate.swift */; };
 		FD3C01C323AFC0980096B4A4 /* VGSTextField+CVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */; };
 		FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93A2316CE5A000EAF52 /* Enums.swift */; };
@@ -564,7 +563,6 @@
 				321300172417F2B70062FEF0 /* VGSTextField.swift in Sources */,
 				328A574023FADC3500714675 /* VGSFilePickerConfiguration.swift in Sources */,
 				328A574223FADD3D00714675 /* VGSFilePickerController+internal.swift in Sources */,
-				FD2E1E98244DB4FA00D28D09 /* UIImage+resize.swift in Sources */,
 				FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */,
 				320E885323A94E1800A9C1FA /* CharacterSet+extension.swift in Sources */,
 				32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */,
