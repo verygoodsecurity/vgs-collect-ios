@@ -18,12 +18,10 @@ Table of contents
       * [CocoaPods](#cocoapods)
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
-      * [Customize UI Elements](#customize-ui-elements)
-      * [Observe Fields State](#observe-fields-state)
-      * [Collect and Send Your Data](#collect-and-send-your-data)
-      * [Scan Credit Card Data](#scan-credit-card-cata)
+      * [Scan Credit Card Data](#scan-credit-card-data)
+      * [Upload Files](#upload-files)
       * [Demo Application](#demo-application)
-      * [Documentation](#for-more-details-check-our-documentation)
+      * [Documentation](#documentation)
    * [Dependencies](#dependencies)
    * [License](#license)
 <!--te-->
@@ -35,7 +33,7 @@ Table of contents
 
 
 ## Before you start
-You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your `<vault-id>` to start collecting data. Follow integration guide below.
+You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your `<vaultId>` to start collecting data. Follow integration guide below.
 
 # Integration
 
@@ -49,10 +47,16 @@ pod 'VGSCollectSDK'
 
 ## Usage
 
-### Create VGSCollect instance and VGS UI Elements
-Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
+### Import SDK into your file
+```swift
 
-### Usage
+import VGSCollectSDK
+
+```
+### Create VGSCollect instance and VGS UI Elements
+Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [organisation dashboard](https://dashboard.verygoodsecurity.com/).
+
+### Code example
 
 <table>
   <tr">
@@ -65,39 +69,34 @@ Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your 
   </tr>
   <tr>
     <td>
-        
-    import UIKit
-    import VGSCollectSDK
 
-    class ViewController: UIViewController {
+    /// Initialize VGSCollect instance
+    var vgsCollect = VGSCollect(id: "vauiltId", environment: .sandbox)
 
-        var vgsForm = VGSCollect(id: "<vault-id>", environment: .sandbox)
+    /// VGS UI Elements
+    var cardNumberField = VGSCardTextField()
+    var cardHolderNameField = VGSTextField()
+    var expCardDateField = VGSTextField()
+    var cvcField = VGSTextField()
 
-        // VGS UI Elements
-        var cardNumber = VGSTextField()
+    /// Native UI Elements
+    @IBOutlet weak var stackView: UIStackView!
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-            // Configure Elements UI
-            let cardConfig = VGSConfiguration(collector: vgsForm,
-                                              fieldName: "cardNumber")
-                                              
-            // Submit only if cardNumber input is valid
-            cardConfig.isRequiredValidOnly = true
-            cardConfig.type = .cardNumber
-            cardNumber.configuration = cardConfig
-            
-            // styling
-            cardNumber.placeholder = "card number"
-            cardNumber.borderWidth = 1
-            cardNumber.borderColor = .lightGray
-            cardNumber.textColor = .magenta
-            cardNumber.font = UIFont(name: "Arial", size: 22)
-            cardNumber.textAlignment = .natural
+        /// Create card number field configuration
+        let cardConfiguration = VGSConfiguration(collector: vgsCollect,
+	                                         fieldName: "card_number")
+        cardConfiguration.type = .cardNumber
+        cardConfiguration.isRequiredValidOnly = true
 
-            view.addSubview(cardNumber)
-        }
+        /// Setup configuration to card number field
+        cardNumberField.configuration = cardConfiguration
+        cardNumberField.placeholder = "Card Number"
+        stackView.addArrangedSubview(cardNumberField)
+
+        /// Setup next textfields...
     }
     ...
   </td>
@@ -108,52 +107,60 @@ Use your `<vault-id>` to initialize VGSCollect instance. You can get it in your 
   </tr>
   <tr>
     <td>
-    
-    // ...  
-    
-    // Observing text fields
-    vgsForm.observeStates = { textFields in
-    
-        textFields.forEach({ textField in
-               print(textField.state.description)
-               
-               if let cardState = textField.state as? CardState {
-                    
-                    if !cardState.isValid {
-                        textField.borderColor = .red
-                    } else {
-		        print(cardState.bin)
-		        print(cardState.last4)
-		        print(cardState.brand.stringValue)
-		    }   
-               }
-              
-        })
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		
+        ...  
+		
+        /// Observing text fields
+        vgsCollect.observeStates = { textFields in
+
+            textFields.forEach({ textField in
+                if textdField.state.isValid {
+                    textField.borderColor = .grey
+                } else {
+                    textField.borderColor = .red
+                }
+
+                /// VGSCardTextField state
+                if let cardState = textField.state as? CardState {
+                    print(cardState.bin)
+                    print(cardState.last4)
+                    print(cardState.brand.stringValue)
+                }
+            })
+        }
     }
-   
   </td>
   </tr>
   <tr>
-    <td colspan="2">... send a data</td>
+    <td colspan="2">... send data to your Vault</td>
   </tr>
   <tr>
     <td colspan="2">
         
-    //....
+    // ...
 
     // MARK: - Submit data    
     func sendData() {
-        // extra information will be sent together with all sensitive card information
+    
+        /// handle fields validation before send data
+        guard cardNumberField.state.isValid else {
+		return
+        }
+	
+        /// extra information will be sent together with all sensitive card information
         var extraData = [String: Any]()
         extraData["cardHolderName"] = "Joe Business"
 
-        // send data
-        vgsForm.submit(path: "/post", extraData: extraData, completion: { (json, error) in
+        /// send data to your Vault
+        vgsCollect.submit(path: "/post", extraData: extraData, completion: { (json, error) in
             if error == nil, let json = json {
                 // parse response data
             } else {
                 if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-                    if errorKey == VGSSDKErrorInputDataRequiredValid {
+                    if errorKey == VGSSDKErrorInputDataIsNotValid {
                         // handle VGSError error
                     }
                 } else {
@@ -177,9 +184,7 @@ pod 'VGSCollectSDK'
 pod 'VGSCollectSDK/CardIO'
 ```
 
-Also you need to add **<NSCameraUsageDescription>** key with camera usage description into your App ``Info.plist``.
-
-#### Usage
+#### Code Example
 
 <table>
   <tr>
@@ -194,23 +199,35 @@ Also you need to add **<NSCameraUsageDescription>** key with camera usage descri
     <td>
     
     class ViewController: UIViewController {
+    	 
+        var vgsCollect = VGSCollect(id: "vauiltId", environment: .sandbox)
 
-	    var scanController = VGSCardIOScanController()
-	    var scanButton = UIButton()
+        /// Init VGSCardIOScanController
+        var scanController = VGSCardIOScanController()
 
-	    override func viewDidLoad() {
-		super.viewDidLoad()
+        /// Init VGSTextFields...
 
-		// set VGSCardIOScanDelegate
-		scanController.delegate = self
-	    }
-	    
-	    @objc func scanData(_ sender: UIButton) {
-		scanController.presentCardScanner(on: self,
-						animated: true,
-						completion: nil)
-	    }
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            /// set VGSCardIOScanDelegate
+            canController.delegate = self
+        }
+
+        /// Present scan controller 
+        func scanData() {
+            scanController.presentCardScanner(on: self,
+					animated: true,
+				      completion: nil)
+        }
+
+        // MARK: - Submit data  
+        func sendData() {
+            /// Send data from VGSTextFields to your Vault
+            vgsCollect.submit{...}
+        }
     }
+    ...
   </td>
   </tr>
   <tr>
@@ -219,26 +236,29 @@ Also you need to add **<NSCameraUsageDescription>** key with camera usage descri
   <tr>
     <td colspan="2">
 	    
+    // ...
+    
+    /// Implement VGSCardIOScanControllerDelegate methods
     extension ViewController: VGSCardIOScanControllerDelegate {
 
-	    //Asks VGSTextField where scanned data with type need to be set.
+	    ///Asks VGSTextField where scanned data with type need to be set.
 	    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
 		switch type {
 		case .expirationDate:
-		    return expCardDate
+		    return expCardDateField
 		case .cvc:
-		    return cvcCardNum
+		    return cvcField
 		case .cardNumber:
-		    return cardNumber
+		    return cardNumberField
 		default:
 		    return nil
 		}
 	    }
 
-	    //When user press Done button on CardIO screen
+	    /// When user press Done button on CardIO screen
 	    func userDidFinishScan() {
-		scanController.dismissCardScanner(animated: true, completion: {
-		    // add actions on scan controller dismiss completion
+		scanController.dismissCardScanner(animated: true, completion: { [weak self] in
+		    /// self?.sendData()
 		})
 	    }
     }
@@ -249,12 +269,13 @@ Also you need to add **<NSCameraUsageDescription>** key with camera usage descri
 
 Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `CradIODataType` to get available scand data types.
 
+Don't forget to add **NSCameraUsageDescription** key and description into your App ``Info.plist``.
 
 ### Upload Files
 
 You can add a file uploading functionality to your application with **VGSFilePickerController**.
 
-#### Usage
+#### Code Example
 
 <table>
   <tr">
@@ -268,30 +289,28 @@ You can add a file uploading functionality to your application with **VGSFilePic
 	    
     class FilePickerViewController: UIViewController, VGSFilePickerControllerDelegate {
 
-	  // Create strong referrence of VGSFilePickerController
-	  var pickerController: VGSFilePickerController?
-
-	  // Collector vgs
 	  var vgsCollect = VGSCollect(id: "vailtId", environment: .sandbox)
-
+	  
+	  /// Create strong referrence of VGSFilePickerController
+	  var pickerController: VGSFilePickerController?
 
 	  override func viewDidLoad() {
 	      super.viewDidLoad()
 
-	      // create picker configuration
+	      /// create picker configuration
 	      let filePickerConfig = VGSFilePickerConfiguration(collector: vgsCollect,
 	      							fieldName: "secret_doc",
 							       fileSource: .photoLibrary)
 
-	      // init picket controller with configuration
+	      /// init picket controller with configuration
 	      pickerController = VGSFilePickerController(configuration: filePickerConfig)
 
-	      // handle picker delegates
+	      /// handle picker delegates
 	      pickerController?.delegate = self
 	  }
 
-	  // Present picker controller
-	  private func selectFileFromSource() {
+	  /// Present picker controller
+	  func presentFilePicker() {
 	      pickerController?.presentFilePicker(on: self, animated: true, completion: nil)
 	  }
 	}
@@ -307,7 +326,8 @@ You can add a file uploading functionality to your application with **VGSFilePic
 	
 	// ...  
 	
-	// Check file info, selected by user
+	// MARK: - VGSFilePickerControllerDelegate
+	/// Check file info, selected by user
 	func userDidPickFileWithInfo(_ info: VGSFileInfo) {
 		let fileInfo = """
 			    File info:
@@ -316,7 +336,11 @@ You can add a file uploading functionality to your application with **VGSFilePic
 			    - sizeUnits: \(info.sizeUnits ?? "unknown")
 			    """
 		print(fileInfo)
-		pickerController?.dismissFilePicker(animated: true)
+		pickerController?.dismissFilePicker(animated: true,
+						  completion: { [weak self] in
+						  
+			self?.sendFile()
+		})
 	}
 
 	// Handle cancel file selection
@@ -333,27 +357,29 @@ You can add a file uploading functionality to your application with **VGSFilePic
   <td><img src="file-picker.gif"></td>
   </tr>
   <tr>
-    <td colspan="2">... send a file</td>
+    <td colspan="2">... send file to your Vault</td>
   </tr>
   <tr>
     <td colspan="2">
 	    
-	//....
+	// ...
 
 	// MARK: - Submit File	
-	// Send file and extra data
-	func submitAction(_ sender: Any) {
+	/// Send file and extra data
+	func sendFile() {
+	
+		/// add extra data to submit request	
 		let extraData = ["document_holder": "Joe B"]
 
-		// send file data to VGS
+		/// send file data to VGS
 		vgsCollect.submitFile(path: "/post", method: .post,
 						  extraData: extraData) { [weak self](json, error) in
 
 		    if error == nil, let json = json?["json"] {
-			// remove file from VGSCollect storage
+			/// remove file from VGSCollect storage
 			self?.vgsCollect.cleanFiles()
 		    } else {
-			// handle the errors
+			/// handle the errors
 		    }
 		}
 	}
@@ -361,12 +387,14 @@ You can add a file uploading functionality to your application with **VGSFilePic
   </tr>
 </table>
 
+Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.
 
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
 
-### For more details check our documentation
-https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
+### Documentation
+-  SDK Documentation: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
+-  API Documentation: https://verygoodsecurity.github.io/vgs-collect-ios/
 
 ## Dependencies
 - iOS 10+
