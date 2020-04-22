@@ -164,6 +164,8 @@ internal extension VGSTextField {
         // set main style for view
         mainStyle()
         // text view
+        textField.adjustsFontSizeToFitWidth = true
+        textField.minimumFontSize = 9.0
         textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
         
