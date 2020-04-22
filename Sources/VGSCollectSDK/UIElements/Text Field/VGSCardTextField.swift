@@ -18,6 +18,7 @@ public class VGSCardTextField: VGSTextField {
     }
     
     internal var originalLeftPadding: CGFloat = -1
+    internal var originalRightPadding: CGFloat = -1
     
     /// card brand icon width
     internal var iconWidth: CGFloat = 45
@@ -36,13 +37,19 @@ public class VGSCardTextField: VGSTextField {
                 textField.leftView = cardIconView
                 textField.leftViewMode = .always
                 
+                // save original left padding
                 if originalLeftPadding < 0 {
-                    // save origibal left padding if property is < 0
                     originalLeftPadding = padding.left
                 }
-                
                 var paddingCopy = padding
-                paddingCopy.left += width
+                // set left padding
+                paddingCopy.left = originalLeftPadding + width
+                // reset right padding
+                if originalRightPadding > 0 {
+                    paddingCopy.right = originalRightPadding
+                    originalRightPadding = -1
+                }
+                // set new padding value
                 padding = paddingCopy
                 
             case .right(let width):
@@ -52,13 +59,20 @@ public class VGSCardTextField: VGSTextField {
                 textField.rightView = cardIconView
                 textField.rightViewMode = .always
                 
+                // save original right padding
+                if originalRightPadding < 0 {
+                    originalRightPadding = padding.right
+                }
+                var paddingCopy = padding
+                // set right padding
+                paddingCopy.right = originalRightPadding + width
+                // reset left padding
                 if originalLeftPadding > 0 {
-                    // reset left padding if property > 0
-                    var paddingCopy = padding
                     paddingCopy.left = originalLeftPadding
-                    padding = paddingCopy
                     originalLeftPadding = -1
                 }
+                // set new padding value
+                padding = paddingCopy
             }
             updateCardIcon()
         }
