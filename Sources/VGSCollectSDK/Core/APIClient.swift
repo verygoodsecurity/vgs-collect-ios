@@ -44,6 +44,45 @@ class APIClient {
         ]
     }()
     
+    func sendRequest0(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+        // Add Headers
+        var headers = APIClient.defaultHttpHeaders
+        headers["Content-Type"] = "application/json"
+        // Add custom headers if need
+        if let customerHeaders = customHeader, customerHeaders.count > 0 {
+            customerHeaders.keys.forEach({ (key) in
+                headers[key] = customerHeaders[key]
+            })
+        }
+        
+        // JSON Body
+        let body: [String: Any] = value
+        // Path
+        let path = baseURL.appendingPathComponent(path)
+        // Fetch Request
+        Alamofire.request(path,
+                          method: .post,
+                          parameters: body,
+//                          encoding: DataEncoding.deferredToData,
+                          headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                
+                switch response.result {
+                case .success:
+                    
+//                    let requestBody = response.request?.httpBody
+//                    let requestHeader = response.request?.allHTTPHeaderFields
+                    
+                    block(response.data, nil)
+                    return
+                case .failure(let error):
+                    block(nil, error)
+                    return
+                }
+        }
+    }
+    
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
@@ -71,8 +110,10 @@ class APIClient {
                 switch response.result {
                 case .success(let data):
                     guard let dict = data as? JsonData else {
-                        // swiftlint:disable:next line_length
-                        block(nil, VGSError(type: .unexpectedResponseDataFormat, userInfo: VGSErrorInfo(key: VGSSDKErrorUnexpectedResponseDataFormat, description: "Unexpected response format")))
+                        let userInfo = VGSErrorInfo(key: VGSSDKErrorUnexpectedResponseDataFormat,
+                                                    description: "Unexpected response format")
+                        
+                        block(nil, VGSError(type: .unexpectedResponseDataFormat, userInfo: userInfo))
                         return
                     }
                     block(dict, nil)

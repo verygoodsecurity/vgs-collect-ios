@@ -28,6 +28,20 @@ class ApiClientTests: XCTestCase {
         apiClient = nil
     }
     
+    func testSendSimpleData() {
+        
+        let expectation = XCTestExpectation(description: "Sending data...")
+        
+        collector.submit0(path: "post") { (data, error) in
+            XCTAssertNotNil(data)
+            XCTAssertNil(error)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 60.0)
+    }
+    
     func testSendData() {
         
         let expectation = XCTestExpectation(description: "Sending data...")

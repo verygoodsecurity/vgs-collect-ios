@@ -70,6 +70,20 @@ public class VGSCollect {
 // MARK: - Send data to organization vault
 extension VGSCollect {
     
+    public func submit0(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping ( _ data: Data?, _ error: Error?) -> Void) {
+        
+        if let error = validateStoredInputData() {
+            block(nil, error)
+            return
+        }
+
+        let body = mapStoredInputDataForSubmit(with: extraData)
+                
+        apiClient.sendRequest0(path: path, method: method, value: body) { (data, error) in
+            block(data, error)
+        }
+    }
+    
     /**
      Send data from VGSTextFields to your organization vault.
      
