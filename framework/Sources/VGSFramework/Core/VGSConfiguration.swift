@@ -71,6 +71,8 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
     public var keyboardAppearance: UIKeyboardAppearance?
+    
+    public var devider: String? = nil
      
     // MARK: - Initialization
     

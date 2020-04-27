@@ -66,7 +66,7 @@ internal extension VGSCollect {
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
-            dict[element.fieldName] = element.textField.getSecureRawText
+            dict[element.fieldName] = element.textField.getSecureTextWithDevider
         }
 
         var body = mapInputFieldsDataToDictionary(textFieldsData)

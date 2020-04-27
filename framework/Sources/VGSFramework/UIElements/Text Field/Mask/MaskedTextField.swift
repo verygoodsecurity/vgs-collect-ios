@@ -11,7 +11,7 @@ import UIKit
 #endif
 
 internal class MaskedTextField: UITextField {
-    enum MaskedTextReplacementChar: String {
+    enum MaskedTextReplacementChar: String, CaseIterable {
         case lettersAndDigit = "*"
         case anyLetter = "@"
         case lowerCaseLetter = "a"
@@ -27,6 +27,14 @@ internal class MaskedTextField: UITextField {
      the textfield would behave like a normal one
      */
     var formatPattern: String = ""
+    
+    /**
+    Devider string used to replace symbols that not included in *MaskedTextReplacementChar* in masked textField text.
+     
+    If  devider is set to "" no devider would be applied and
+    the textfield would behave like a normal one
+    */
+    var devider: String = ""
     
     /**
      Var that holds the prefix to be added to the textfield
@@ -72,6 +80,16 @@ internal class MaskedTextField: UITextField {
         return getRawText()
     }
     
+    /// Check *formatPattern* and replace  symbols that not included in *MaskedTextReplacementChar* with Devider string in a raw text.
+    ///  Example:
+    ///  formatPattern: "#### #### #### ####"
+    ///  input: "4111 1111 1111 1111"
+    ///  devider: "-"
+    ///  output: "4111-1111-1111-1111"
+    internal var getSecureTextWithDevider: String? {
+        return getRawTextWithDevider()
+    }
+    
     // MARK: - Text Padding
     var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
@@ -110,6 +128,31 @@ internal class MaskedTextField: UITextField {
             return nil
         }
         return formatPattern.isEmpty ? secureText : getFilteredString(text)
+    }
+    
+    fileprivate func getRawTextWithDevider() -> String? {
+        guard let text = secureText else {
+            return nil
+        }
+        if formatPattern.isEmpty || devider.isEmpty {
+            return getRawText()
+        }
+        
+        let inputCharacters = Array(text).map { String($0) }
+        let formatPatternCharacters = Array(formatPattern).map { String($0) }
+        let availableFormatPatternChars = MaskedTextReplacementChar.allCases.map { $0.rawValue }
+        var result = [String]()
+        for index in 0..<inputCharacters.count {
+            if index == formatPatternCharacters.count {
+                return result.joined()
+            }
+            if !availableFormatPatternChars.contains(formatPatternCharacters[index]) {
+                result.append(devider)
+            } else {
+                result.append(inputCharacters[index])
+            }
+        }
+        return result.joined()
     }
     
     fileprivate func getStringWithoutPrefix(_ string: String) -> String {

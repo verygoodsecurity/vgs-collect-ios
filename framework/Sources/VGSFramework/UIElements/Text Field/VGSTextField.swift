@@ -67,7 +67,13 @@ public class VGSTextField: UIView {
             if let pattern = configuration.formatPattern {
                 textField.formatPattern = pattern
             } else {
-                textField.formatPattern = configuration.type.formatPattern
+                textField.formatPattern = configuration.type.defaultFormatPattern
+            }
+            
+            if let devider = configuration.devider {
+                textField.devider = devider
+            } else {
+                textField.devider = configuration.type.defaultDevider
             }
             
             // regex
