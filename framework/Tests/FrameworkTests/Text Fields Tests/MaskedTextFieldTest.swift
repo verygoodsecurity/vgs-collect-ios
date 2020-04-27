@@ -118,4 +118,60 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.textField.secureText = " tE2 5test"
         XCTAssertTrue(textfield.textField.getSecureRawText == "tE25")
     }
+    
+    func testAddDevider() {
+        configuration.formatPattern = "#### ####-####.####"
+        configuration.devider = "-"
+        textfield.configuration = configuration
+        textfield.textField.secureText = "5252525252525252"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "5252-5252-5252-5252")
+        
+        configuration.formatPattern = "-####-"
+        configuration.devider = "+"
+        textfield.configuration = configuration
+        textfield.textField.secureText = "5252525252525252"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "+5252+")
+        
+        configuration.formatPattern = " AAA/aaa/####"
+        configuration.devider = "__"
+        textfield.configuration = configuration
+        textfield.textField.secureText = "XYZxyz123456789wertert"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "__XYZ__xyz__1234")
+        
+        configuration.formatPattern = " #-#--#---#"
+        configuration.devider = "-"
+        textfield.configuration = configuration
+        textfield.textField.secureText = "12345678"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "-1-2--3---4")
+    }
+    
+    func testDefaultDevider() {
+        configuration.type = .cardNumber
+        configuration.devider = nil
+        configuration.formatPattern = "#### ####.####-####"
+        textfield.configuration = configuration
+        textfield.textField.secureText = "5252525252525252"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "5252525252525252")
+        
+        configuration.type = .expDate
+        configuration.devider = nil
+        configuration.formatPattern = nil
+        textfield.configuration = configuration
+        textfield.textField.secureText = "1234"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "12/34")
+        
+        configuration.type = .cardHolderName
+        configuration.devider = nil
+        configuration.formatPattern = nil
+        textfield.configuration = configuration
+        textfield.textField.secureText = "Joe's Business"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "Joe's Business")
+        
+        configuration.type = .cvc
+        configuration.formatPattern =  nil
+        configuration.devider = nil
+        textfield.configuration = configuration
+        textfield.textField.secureText = "1234"
+        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "1234")
+    }
 }
