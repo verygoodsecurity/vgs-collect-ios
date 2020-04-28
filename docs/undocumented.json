@@ -121,28 +121,28 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 123,
+      "line": 132,
       "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 127,
+      "line": 136,
       "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 131,
+      "line": 140,
       "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
-      "line": 196,
+      "line": 205,
       "symbol": "UIView.mainStyle()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -163,7 +163,7 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Date+cvv/VGSValidation.swift",
-      "line": 28,
+      "line": 29,
       "symbol": "String.matches(for:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

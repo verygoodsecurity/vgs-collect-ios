@@ -62,6 +62,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
     public var formatPattern: String?
+    
+    /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on submit request.
+    public var divider: String?
 
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?
@@ -71,7 +74,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
     public var keyboardAppearance: UIKeyboardAppearance?
-     
+         
     // MARK: - Initialization
     
     /// Initialization

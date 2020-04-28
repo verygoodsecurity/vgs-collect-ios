@@ -129,12 +129,14 @@ class ViewController: UIViewController {
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
         expDateConfiguration.isRequiredValidOnly = true
         expDateConfiguration.type = .expDate
-
+        /// Default .expDate format is "##/##"
+        expDateConfiguration.formatPattern = "##/####"
+        
         expCardDate.configuration = expDateConfiguration
         expCardDate.textColor = textColor
         expCardDate.font = textFont
         expCardDate.padding = padding
-        expCardDate.placeholder = "MM/YY"
+        expCardDate.placeholder = "MM/YYYY"
         expCardDate.tintColor = .lightGray
 
         let cvcConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_cvc")

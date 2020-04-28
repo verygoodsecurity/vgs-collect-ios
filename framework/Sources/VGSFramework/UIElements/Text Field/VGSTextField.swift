@@ -67,12 +67,21 @@ public class VGSTextField: UIView {
             if let pattern = configuration.formatPattern {
                 textField.formatPattern = pattern
             } else {
-                textField.formatPattern = configuration.type.formatPattern
+                textField.formatPattern = configuration.type.defaultFormatPattern
+            }
+            
+            if let divider = configuration.divider {
+                textField.divider = divider
+            } else {
+                textField.divider = configuration.type.defaultDivider
             }
             
             // regex
-            validationModel.pattern = configuration.type.regex
-            
+            validationModel.regex = configuration.type.regex
+            if fieldType == .expDate {
+                validationModel.isLongDateFormat = textField.formatPattern == DateFormatPattern.longYear.rawValue
+            }
+
             if let vgs = configuration.vgsCollector {
                 vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])

@@ -15,13 +15,7 @@ class ExpDateTextFieldTests: XCTestCase {
     
     override func setUp() {
         collector = VGSCollect(id: "tntva5wfdrp")
-        
         expDateTextField = VGSTextField()
-        
-        let config = VGSConfiguration(collector: collector, fieldName: "expDate")
-        config.type = .expDate
-        expDateTextField.configuration = config
-        
         expDateTextField.textField.secureText = "1223"
     }
     
@@ -32,58 +26,61 @@ class ExpDateTextFieldTests: XCTestCase {
     }
     
     func testAlias() {
+        let config = VGSConfiguration(collector: collector, fieldName: "expDate")
+        config.type = .expDate
+        expDateTextField.configuration = config
         XCTAssertTrue(expDateTextField.state.fieldName == "expDate")
     }
     
     func testNotValidDateReturnsFalse() {
         
-        expDateTextField.textField.secureText = "21/23"
-        expDateTextField.focusOn()
-        XCTAssertFalse(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
+        let notValidShortDates = [
+            "21/23", "01/20", "01/01", "00/00",
+            "20/12", "01/50", "1/25", "12/3"
+        ]
+
+        /// default configuration
+        let config = VGSConfiguration(collector: collector, fieldName: "expDate")
+        config.type = .expDate
+        expDateTextField.configuration = config
+
+        for date in notValidShortDates {
+            expDateTextField.textField.secureText = date
+            expDateTextField.focusOn()
+            XCTAssertFalse(expDateTextField.state.isValid)
+            XCTAssertFalse(expDateTextField.state.isEmpty)
+        }
+
+        /// short date format configuration
+        config.formatPattern = DateFormatPattern.shortYear.rawValue
+        expDateTextField.configuration = config
+
+        for date in notValidShortDates {
+            expDateTextField.textField.secureText = date
+            expDateTextField.focusOn()
+            XCTAssertFalse(expDateTextField.state.isValid)
+            XCTAssertFalse(expDateTextField.state.isEmpty)
+        }
+
+        let notValidLongDates = [
+            "21/2023", "01/2020", "01/2001", "00/0000",
+            "20/1212", "01/2050", "1/2025", "12/203"
+        ]
+
+        /// long date format configuration
+        config.formatPattern = DateFormatPattern.longYear.rawValue
+        expDateTextField.configuration = config
+
+        for date in notValidLongDates {
+          expDateTextField.textField.secureText = date
+          expDateTextField.focusOn()
+          XCTAssertFalse(expDateTextField.state.isValid)
+          XCTAssertFalse(expDateTextField.state.isEmpty)
+        }
         
-        expDateTextField.textField.secureText = "01/20"
-        expDateTextField.focusOn()
-        XCTAssertFalse(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
-        
-        expDateTextField.textField.secureText = "01/01"
-        expDateTextField.focusOn()
-        XCTAssertFalse(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
-        
-        expDateTextField.textField.secureText = "00/00"
-        expDateTextField.focusOn()
-        XCTAssertFalse(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
-        
-        expDateTextField.textField.secureText = "20/12"
-        expDateTextField.focusOn()
-        XCTAssertFalse(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
     }
     
     func testValidDateReturnsTrue() {
-        
-        expDateTextField.textField.secureText = "01/21"
-        expDateTextField.focusOn()
-        XCTAssertTrue(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
-        
-        expDateTextField.textField.secureText = "10/21"
-        expDateTextField.focusOn()
-        XCTAssertTrue(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
-        
-        expDateTextField.textField.secureText = "12/22"
-        expDateTextField.focusOn()
-        XCTAssertTrue(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
-        
-        expDateTextField.textField.secureText = "01/30"
-        expDateTextField.focusOn()
-        XCTAssertTrue(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
         
         /// Test today
         let today = Date()
@@ -91,13 +88,54 @@ class ExpDateTextFieldTests: XCTestCase {
 
         formatter.dateFormat = "yy"
         let todayYY = formatter.string(from: today)
+        
+        formatter.dateFormat = "yyyy"
+        let todayYYYY = formatter.string(from: today)
 
         formatter.dateFormat = "MM"
         let todayMM = formatter.string(from: today)
+        let todayShort = "\(todayMM)/\(todayYY)"
+        let todayLong = "\(todayMM)/\(todayYYYY)"
         
-        expDateTextField.textField.secureText = "\(todayMM)/\(todayYY)"
-        expDateTextField.focusOn()
-        XCTAssertTrue(expDateTextField.state.isValid)
-        XCTAssertFalse(expDateTextField.state.isEmpty)
+        let validShortDates = [
+            "01/23", "10/25", "12/40", "01/30", todayShort
+        ]
+        
+        /// default configuration
+        let config = VGSConfiguration(collector: collector, fieldName: "expDate")
+        expDateTextField.configuration = config
+        
+        for date in validShortDates {
+            expDateTextField.textField.secureText = date
+            expDateTextField.focusOn()
+            XCTAssertTrue(expDateTextField.state.isValid)
+            XCTAssertFalse(expDateTextField.state.isEmpty)
+        }
+        
+        /// short date format configuration
+        config.formatPattern = DateFormatPattern.shortYear.rawValue
+        expDateTextField.configuration = config
+        
+        for date in validShortDates {
+            expDateTextField.textField.secureText = date
+            expDateTextField.focusOn()
+            XCTAssertTrue(expDateTextField.state.isValid)
+            XCTAssertFalse(expDateTextField.state.isEmpty)
+        }
+        
+        let validLongDates = [
+            "01/2023", "10/2025", "12/2040", "01/2030", todayLong
+        ]
+        
+        /// long date format configuration
+        config.formatPattern = DateFormatPattern.longYear.rawValue
+        expDateTextField.configuration = config
+        
+        for date in validLongDates {
+            expDateTextField.textField.secureText = date
+            expDateTextField.focusOn()
+            XCTAssertTrue(expDateTextField.state.isValid)
+            XCTAssertFalse(expDateTextField.state.isEmpty)
+        }
     }
 }

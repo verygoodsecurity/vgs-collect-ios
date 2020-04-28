@@ -41,17 +41,24 @@ public enum FieldType: Int, CaseIterable {
 
 internal extension FieldType {
     
-    var formatPattern: String {
+    var defaultFormatPattern: String {
         switch self {
         case .cardNumber:
             return "#### #### #### ####"
         case .cvc:
             return "####"
         case .expDate:
-            return "##/##"
+            return DateFormatPattern.shortYear.rawValue
         default:
             return ""
         }
+    }
+    
+    var defaultDivider: String {
+        if self == .expDate {
+            return "/"
+        }
+        return ""
     }
     
    var regex: String {
@@ -86,4 +93,9 @@ internal extension FieldType {
             return .alphabet
         }
     }
+}
+
+internal enum DateFormatPattern: String {
+    case shortYear = "##/##"
+    case longYear = "##/####"
 }

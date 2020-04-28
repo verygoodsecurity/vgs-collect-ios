@@ -66,7 +66,7 @@ internal extension VGSCollect {
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
-            dict[element.fieldName] = element.textField.getSecureRawText
+            dict[element.fieldName] = element.textField.getSecureTextWithDivider
         }
 
         var body = mapInputFieldsDataToDictionary(textFieldsData)
@@ -103,7 +103,7 @@ internal extension VGSCollect {
             // change cvc format pattern based on card brand
             if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
                 cvcField.textField.formatPattern = textField.cvcFormatPatternForCardType
-                cvcField.validationModel.pattern = textField.cvcRegexForCardType
+                cvcField.validationModel.regex = textField.cvcRegexForCardType
             }
         }
         
