@@ -29,12 +29,12 @@ internal class MaskedTextField: UITextField {
     var formatPattern: String = ""
     
     /**
-    Devider string used to replace symbols that not included in *MaskedTextReplacementChar* in masked textField text.
+    Divider string used to replace symbols that not included in *MaskedTextReplacementChar* in masked textField text.
      
-    If  devider is set to "" no devider would be applied and
+    If  divider is set to "" no divider would be applied and
     the textfield would behave like a normal one
     */
-    var devider: String = ""
+    var divider: String = ""
     
     /**
      Var that holds the prefix to be added to the textfield
@@ -80,14 +80,14 @@ internal class MaskedTextField: UITextField {
         return getRawText()
     }
     
-    /// Check *formatPattern* and replace  symbols that not included in *MaskedTextReplacementChar* with Devider string in a raw text.
+    /// Check *formatPattern* and replace  symbols that not included in *MaskedTextReplacementChar* with Divider string in a raw text.
     ///  Example:
     ///  formatPattern: "#### #### #### ####"
     ///  input: "4111 1111 1111 1111"
-    ///  devider: "-"
+    ///  divider: "-"
     ///  output: "4111-1111-1111-1111"
-    internal var getSecureTextWithDevider: String? {
-        return getRawTextWithDevider()
+    internal var getSecureTextWithDivider: String? {
+        return getRawTextWithDivider()
     }
     
     // MARK: - Text Padding
@@ -130,11 +130,11 @@ internal class MaskedTextField: UITextField {
         return formatPattern.isEmpty ? secureText : getFilteredString(text)
     }
     
-    fileprivate func getRawTextWithDevider() -> String? {
+    fileprivate func getRawTextWithDivider() -> String? {
         guard let text = secureText else {
             return nil
         }
-        if formatPattern.isEmpty || devider.isEmpty {
+        if formatPattern.isEmpty || divider.isEmpty {
             return getRawText()
         }
         
@@ -147,7 +147,7 @@ internal class MaskedTextField: UITextField {
                 return result.joined()
             }
             if !availableFormatPatternChars.contains(formatPatternCharacters[index]) {
-                result.append(devider)
+                result.append(divider)
             } else {
                 result.append(inputCharacters[index])
             }

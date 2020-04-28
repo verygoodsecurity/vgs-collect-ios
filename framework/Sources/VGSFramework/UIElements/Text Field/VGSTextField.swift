@@ -70,10 +70,10 @@ public class VGSTextField: UIView {
                 textField.formatPattern = configuration.type.defaultFormatPattern
             }
             
-            if let devider = configuration.devider {
-                textField.devider = devider
+            if let divider = configuration.divider {
+                textField.divider = divider
             } else {
-                textField.devider = configuration.type.defaultDevider
+                textField.divider = configuration.type.defaultDivider
             }
             
             // regex

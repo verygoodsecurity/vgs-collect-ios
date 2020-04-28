@@ -119,59 +119,59 @@ class MaskedTextFieldTest: XCTestCase {
         XCTAssertTrue(textfield.textField.getSecureRawText == "tE25")
     }
     
-    func testAddDevider() {
+    func testAddDivider() {
         configuration.formatPattern = "#### ####-####.####"
-        configuration.devider = "-"
+        configuration.divider = "-"
         textfield.configuration = configuration
         textfield.textField.secureText = "5252525252525252"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "5252-5252-5252-5252")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "5252-5252-5252-5252")
         
         configuration.formatPattern = "-####-"
-        configuration.devider = "+"
+        configuration.divider = "+"
         textfield.configuration = configuration
         textfield.textField.secureText = "5252525252525252"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "+5252+")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "+5252+")
         
         configuration.formatPattern = " AAA/aaa/####"
-        configuration.devider = "__"
+        configuration.divider = "__"
         textfield.configuration = configuration
         textfield.textField.secureText = "XYZxyz123456789wertert"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "__XYZ__xyz__1234")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "__XYZ__xyz__1234")
         
         configuration.formatPattern = " #-#--#---#"
-        configuration.devider = "-"
+        configuration.divider = "-"
         textfield.configuration = configuration
         textfield.textField.secureText = "12345678"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "-1-2--3---4")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "-1-2--3---4")
     }
     
-    func testDefaultDevider() {
+    func testDefaultDivider() {
         configuration.type = .cardNumber
-        configuration.devider = nil
+        configuration.divider = nil
         configuration.formatPattern = "#### ####.####-####"
         textfield.configuration = configuration
         textfield.textField.secureText = "5252525252525252"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "5252525252525252")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "5252525252525252")
         
         configuration.type = .expDate
-        configuration.devider = nil
+        configuration.divider = nil
         configuration.formatPattern = nil
         textfield.configuration = configuration
         textfield.textField.secureText = "1234"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "12/34")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "12/34")
         
         configuration.type = .cardHolderName
-        configuration.devider = nil
+        configuration.divider = nil
         configuration.formatPattern = nil
         textfield.configuration = configuration
         textfield.textField.secureText = "Joe's Business"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "Joe's Business")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "Joe's Business")
         
         configuration.type = .cvc
         configuration.formatPattern =  nil
-        configuration.devider = nil
+        configuration.divider = nil
         textfield.configuration = configuration
         textfield.textField.secureText = "1234"
-        XCTAssertTrue(textfield.textField.getSecureTextWithDevider == "1234")
+        XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "1234")
     }
 }

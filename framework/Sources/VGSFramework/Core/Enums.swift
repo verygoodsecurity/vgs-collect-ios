@@ -54,7 +54,7 @@ internal extension FieldType {
         }
     }
     
-    var defaultDevider: String {
+    var defaultDivider: String {
         if self == .expDate {
             return "/"
         }
