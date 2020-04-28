@@ -52,7 +52,7 @@ class ExpDateTextFieldTests: XCTestCase {
         }
 
         /// short date format configuration
-        config.formatPattern = "##/##"
+        config.formatPattern = DateFormatPattern.shortYear.rawValue
         expDateTextField.configuration = config
 
         for date in notValidShortDates {
@@ -68,7 +68,7 @@ class ExpDateTextFieldTests: XCTestCase {
         ]
 
         /// long date format configuration
-        config.formatPattern = "##/####"
+        config.formatPattern = DateFormatPattern.longYear.rawValue
         expDateTextField.configuration = config
 
         for date in notValidLongDates {
@@ -113,7 +113,7 @@ class ExpDateTextFieldTests: XCTestCase {
         }
         
         /// short date format configuration
-        config.formatPattern = "##/##"
+        config.formatPattern = DateFormatPattern.shortYear.rawValue
         expDateTextField.configuration = config
         
         for date in validShortDates {
@@ -128,7 +128,7 @@ class ExpDateTextFieldTests: XCTestCase {
         ]
         
         /// long date format configuration
-        config.formatPattern = "##/####"
+        config.formatPattern = DateFormatPattern.longYear.rawValue
         expDateTextField.configuration = config
         
         for date in validLongDates {

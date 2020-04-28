@@ -48,7 +48,7 @@ internal extension FieldType {
         case .cvc:
             return "####"
         case .expDate:
-            return "##/##"
+            return DateFormatPattern.shortYear.rawValue
         default:
             return ""
         }
@@ -93,4 +93,9 @@ internal extension FieldType {
             return .alphabet
         }
     }
+}
+
+internal enum DateFormatPattern: String {
+    case shortYear = "##/##"
+    case longYear = "##/####"
 }
