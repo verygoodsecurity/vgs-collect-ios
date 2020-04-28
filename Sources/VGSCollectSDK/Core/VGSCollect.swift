@@ -70,18 +70,19 @@ public class VGSCollect {
 // MARK: - Send data to organization vault
 extension VGSCollect {
     
-    public func submit0(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping ( _ data: Data?, _ error: Error?) -> Void) {
+    public func submit(path: String,
+                       method: HTTPMethod = .post,
+                       extraData: [String: Any]? = nil,
+                       completion block:@escaping (_ success: Bool, _ data: Data?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
-            block(nil, error)
+            block(false, nil, error)
             return
         }
-
+        
         let body = mapStoredInputDataForSubmit(with: extraData)
-                
-        apiClient.sendRequest0(path: path, method: method, value: body) { (data, error) in
-            block(data, error)
-        }
+        
+        apiClient.simpleSendRequest(path: path, method: method, value: body, completion: block)
     }
     
     /**
@@ -96,6 +97,7 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `VGSError` in **error** field.
     */
+    @available(*, deprecated, message: "Use next method: -tadam")
     public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
@@ -105,15 +107,7 @@ extension VGSCollect {
 
         let body = mapStoredInputDataForSubmit(with: extraData)
                 
-        apiClient.sendRequest(path: path, method: method, value: body) { (json, error) in
-            if let error = error {
-                block(json, error)
-                return
-            } else {
-                block(json, nil)
-                return
-            }
-        }
+        apiClient.sendRequest(path: path, method: method, value: body, completion: block)
     }
     
     /**

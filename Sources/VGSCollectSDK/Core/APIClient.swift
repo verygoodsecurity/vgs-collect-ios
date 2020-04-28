@@ -44,7 +44,8 @@ class APIClient {
         ]
     }()
     
-    func sendRequest0(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+    
+    func simpleSendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ success: Bool, _ data: Data?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"
@@ -61,28 +62,25 @@ class APIClient {
         let path = baseURL.appendingPathComponent(path)
         // Fetch Request
         Alamofire.request(path,
-                          method: .post,
+                          method: method,
                           parameters: body,
-//                          encoding: DataEncoding.deferredToData,
                           headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 
                 switch response.result {
                 case .success:
-                    
-//                    let requestBody = response.request?.httpBody
-//                    let requestHeader = response.request?.allHTTPHeaderFields
-                    
-                    block(response.data, nil)
+                    let is200 = response.response?.statusCode == 200
+                    block(is200, response.data, nil)
                     return
                 case .failure(let error):
-                    block(nil, error)
+                    block(false, nil, error)
                     return
                 }
         }
     }
     
+    @available(*, deprecated, message: "use -simpleSendRequest:")
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
