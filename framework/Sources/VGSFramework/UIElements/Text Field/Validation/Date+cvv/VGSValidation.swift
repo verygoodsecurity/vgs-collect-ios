@@ -9,15 +9,16 @@
 import Foundation
 
 internal class VGSValidation {
-    var pattern: String = ""
+    var regex: String = ""
+    var isLongDateFormat = false
     
     func isValid(_ txt: String, type: FieldType) -> Bool {
         if type == .none { return true }
         
-        guard txt.count != 0, pattern.count != 0 else {
+        guard txt.count != 0, regex.count != 0 else {
             return false
         }
-        let resultRegEx = txt.matches(for: pattern).count > 0
+        let resultRegEx = txt.matches(for: regex).count > 0
         let resultType = validateType(txt: txt, for: type)
         
         return resultRegEx && resultType
@@ -26,7 +27,6 @@ internal class VGSValidation {
 
 extension String {
     func matches(for regex: String) -> [String] {
-        
         do {
             let regex = try NSRegularExpression(pattern: regex)
             let results = regex.matches(in: self, range: NSRange(self.startIndex..., in: self))

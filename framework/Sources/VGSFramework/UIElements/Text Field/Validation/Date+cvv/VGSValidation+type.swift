@@ -9,7 +9,7 @@
 import Foundation
 
 extension VGSValidation {
-    func validateType(txt: String, for type: FieldType) -> Bool {        
+    func validateType(txt: String, for type: FieldType) -> Bool {
         switch type {
         case .expDate:
             return validateExpDate(txt: txt)
@@ -22,18 +22,18 @@ extension VGSValidation {
     
     // MARK: - Validate Date expiration
     private func validateExpDate(txt: String) -> Bool {
-                
-        guard txt.count == 4 else { return false }
-                
-        let mm = txt.prefix(2)
-        let yy = txt.suffix(2)
         
-        if yy.count < 2 { return false }
-        
+        let mmChars = 2
+        let yyChars = self.isLongDateFormat ? 4 : 2
+        guard txt.count == mmChars + yyChars else { return false }
+                
+        let mm = txt.prefix(mmChars)
+        let yy = txt.suffix(yyChars)
+                
         let today = Date()
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "yy"
+        formatter.dateFormat = self.isLongDateFormat ? "yyyy" : "yy"
         let todayYY = Int(formatter.string(from: today)) ?? 0
         
         formatter.dateFormat = "MM"
@@ -43,9 +43,10 @@ extension VGSValidation {
             return false
         }
         
-        if inputYY < todayYY {
+        if inputYY < todayYY || inputYY > (todayYY + 20) {
             return false
         }
+        
         if inputYY == todayYY && inputMM < todayMM {
             return false
         }
@@ -53,7 +54,7 @@ extension VGSValidation {
     }
     
     private func validateCVC(txt: String) -> Bool {
-        let predicate = NSPredicate(format: "SELF MATCHES %@", pattern)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: txt)
     }
 }

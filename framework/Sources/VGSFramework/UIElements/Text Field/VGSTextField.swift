@@ -77,8 +77,11 @@ public class VGSTextField: UIView {
             }
             
             // regex
-            validationModel.pattern = configuration.type.regex
-            
+            validationModel.regex = configuration.type.regex
+            if fieldType == .expDate {
+                validationModel.isLongDateFormat = textField.formatPattern == "##/####"
+            }
+
             if let vgs = configuration.vgsCollector {
                 vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])
