@@ -117,13 +117,14 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
         vgsCollect.observeStates = { textFields in
 
             textFields.forEach({ textField in
+                print(textdField.state.description)
                 if textdField.state.isValid {
                     textField.borderColor = .grey
                 } else {
                     textField.borderColor = .red
                 }
 
-                /// VGSCardTextField state
+                /// CardState is available for VGSCardTextField
                 if let cardState = textField.state as? CardState {
                     print(cardState.bin)
                     print(cardState.last4)
@@ -152,12 +153,13 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
 	
         /// extra information will be sent together with all sensitive card information
         var extraData = [String: Any]()
-        extraData["cardHolderName"] = "Joe Business"
+        extraData["customKey"] = "Custom Value"
 
         /// send data to your Vault
-        vgsCollect.submit(path: "/post", extraData: extraData, completion: { (json, error) in
-            if error == nil, let json = json {
+        vgsCollect.submit(path: "/post", extraData: extraData, completion: { (response, error) in
+            if error == nil, let response = response {
                 // parse response data
+                print(response)
             } else {
                 if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
                     if errorKey == VGSSDKErrorInputDataIsNotValid {
