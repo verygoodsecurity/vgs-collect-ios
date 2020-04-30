@@ -10,7 +10,7 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 #endif
-import Alamofire
+//import Alamofire
 
 /// An object you use for observing `VGSTextField` `State` and submit data to your organization vault.
 public class VGSCollect {
@@ -82,7 +82,7 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func submit(path: String, method: String = "POST", extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
             block(nil, error)
@@ -114,7 +114,7 @@ extension VGSCollect {
         - Note:
            If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func submitFile(path: String, method: String = "POST", extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
             block(nil, VGSError(type: .inputFileNotFound, userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound, description: "File not selected or doesn't exists", extraInfo: [:])))
