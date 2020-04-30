@@ -10,7 +10,7 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 #endif
-import Alamofire
+//import Alamofire
 
 /// An object you use for observing `VGSTextField` `State` and submit data to your organization vault.
 public class VGSCollect {
@@ -70,19 +70,15 @@ public class VGSCollect {
 // MARK: - Send data to organization vault
 extension VGSCollect {
     
-    public func submit(path: String,
-                       method: HTTPMethod = .post,
-                       extraData: [String: Any]? = nil,
-                       completion block:@escaping (_ success: Bool, _ data: Data?, _ error: Error?) -> Void) {
+    public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ response: VGSResponse) -> Void) {
         
         if let error = validateStoredInputData() {
-            block(false, nil, error)
+            block(.failure(error))
             return
         }
         
         let body = mapStoredInputDataForSubmit(with: extraData)
-        
-        apiClient.simpleSendRequest(path: path, method: method, value: body, completion: block)
+        apiClient.sendRequest(path: path, method: method, value: body, completion: block)
     }
     
     /**

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 /// Key-value data type, usually used for response format.
 public typealias JsonData = [String: Any]
@@ -44,44 +43,49 @@ class APIClient {
         ]
     }()
     
-    
-    func simpleSendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ success: Bool, _ data: Data?, _ error: Error?) -> Void) {
-        // Add Headers
-        var headers = APIClient.defaultHttpHeaders
-        headers["Content-Type"] = "application/json"
-        // Add custom headers if need
-        if let customerHeaders = customHeader, customerHeaders.count > 0 {
-            customerHeaders.keys.forEach({ (key) in
-                headers[key] = customerHeaders[key]
-            })
-        }
-        
+    @available(*, deprecated, message: "use -sendRequest:")
+    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // JSON Body
         let body: [String: Any] = value
-        // Path
-        let path = baseURL.appendingPathComponent(path)
         // Fetch Request
-        Alamofire.request(path,
-                          method: method,
-                          parameters: body,
-                          headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
+        sendRequest(path: path, method: method, value: body) { VGSResponse in
+            switch VGSResponse {
+            case .success( _, let data):
                 
-                switch response.result {
-                case .success:
-                    let is200 = response.response?.statusCode == 200
-                    block(is200, response.data, nil)
-                    return
-                case .failure(let error):
-                    block(false, nil, error)
-                    return
+                var resultData: JsonData?
+                if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? JsonData {
+                    resultData = json
                 }
+                block(resultData, nil)
+                
+            case .failure(let error):
+                block(nil, error)
+            }
         }
     }
+}
+
+// MARK: - URLSession
+public enum VGSResponse {
+    case success(Bool, Data?)
+    case failure(Error?)
+}
+
+public enum HTTPMethod: String {
+    case options = "OPTIONS"
+    case get     = "GET"
+    case head    = "HEAD"
+    case post    = "POST"
+    case put     = "PUT"
+    case patch   = "PATCH"
+    case delete  = "DELETE"
+    case trace   = "TRACE"
+    case connect = "CONNECT"
+}
+
+extension APIClient {
     
-    @available(*, deprecated, message: "use -simpleSendRequest:")
-    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"
@@ -92,34 +96,32 @@ class APIClient {
             })
         }
         
-        // JSON Body
-        let body: [String: Any] = value
-        // Path
-        let path = baseURL.appendingPathComponent(path)
-        // Fetch Request
-        Alamofire.request(path,
-                          method: method,
-                          parameters: body,
-                          encoding: JSONEncoding.default,
-                          headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-
-                switch response.result {
-                case .success(let data):
-                    guard let dict = data as? JsonData else {
-                        let userInfo = VGSErrorInfo(key: VGSSDKErrorUnexpectedResponseDataFormat,
-                                                    description: "Unexpected response format")
-                        
-                        block(nil, VGSError(type: .unexpectedResponseDataFormat, userInfo: userInfo))
-                        return
-                    }
-                    block(dict, nil)
-                    return
-                case .failure(let error):
-                    block(nil, error)
-                    return
+        let url = baseURL.appendingPathComponent(path)
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = headers
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            var isSuccess = false
+            if let rr = response as? HTTPURLResponse {
+                switch rr.statusCode {
+                case 200..<300:
+                    isSuccess = true
+//                case 401:
+//                    isSuccess = false
+                    // make some login error
+                default:
+                    isSuccess = false
                 }
-        }
+            }
+            
+            if error != nil {
+                block?(.failure(error))
+                
+            } else {
+                block?(.success(isSuccess, data))
+            }
+        }.resume()
     }
 }
