@@ -69,18 +69,6 @@ public class VGSCollect {
 
 // MARK: - Send data to organization vault
 extension VGSCollect {
-    
-    public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ response: VGSResponse) -> Void) {
-        
-        if let error = validateStoredInputData() {
-            block(.failure(error))
-            return
-        }
-        
-        let body = mapStoredInputDataForSubmit(with: extraData)
-        apiClient.sendRequest(path: path, method: method, value: body, completion: block)
-    }
-    
     /**
      Send data from VGSTextFields to your organization vault.
      
@@ -118,6 +106,7 @@ extension VGSCollect {
         - Note:
            If there are validation errors, SDK will return `VGSError` in **error** field.
     */
+    @available(*, deprecated, message: "use -sendRequest:")
     public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
@@ -157,5 +146,18 @@ extension VGSCollect {
         }
         
          apiClient.sendRequest(path: path, method: method, value: body, completion: block)
+    }
+}
+
+// MARK: - Simple request w/out Alamofire
+extension VGSCollect {
+    public func submit0(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+        if let error = validateStoredInputData() {
+            block(.failure(error))
+            return
+        }
+
+        let body = mapStoredInputDataForSubmit(with: extraData)
+        apiClient.sendRequest(path: path, value: body, completion: block)
     }
 }

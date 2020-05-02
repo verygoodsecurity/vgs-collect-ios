@@ -33,7 +33,14 @@ class ApiClientTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Sending data...")
         
         collector.submit(path: "post") { result in
-//            XCTAssert(result == .success)
+            switch result {
+            case .success(let success, let data):
+                XCTAssertTrue(success)
+                XCTAssert(data)
+                
+            case .failure(let error):
+                XCTFail("Error: \(error?.localizedDescription)")
+            }
             expectation.fulfill()
         }
         

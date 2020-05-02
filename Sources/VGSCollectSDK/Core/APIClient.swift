@@ -51,13 +51,13 @@ class APIClient {
         sendRequest(path: path, method: method, value: body) { VGSResponse in
             switch VGSResponse {
             case .success( _, let data):
-                
+
                 var resultData: JsonData?
-                if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? JsonData {
+                if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? JsonData {
                     resultData = json
                 }
                 block(resultData, nil)
-                
+
             case .failure(let error):
                 block(nil, error)
             }
@@ -108,19 +108,18 @@ extension APIClient {
                 switch rr.statusCode {
                 case 200..<300:
                     isSuccess = true
-//                case 401:
-//                    isSuccess = false
-                    // make some login error
+                    
                 default:
                     isSuccess = false
                 }
             }
-            
-            if error != nil {
-                block?(.failure(error))
-                
-            } else {
-                block?(.success(isSuccess, data))
+            DispatchQueue.main.async {
+                if error != nil {
+                    block?(.failure(error))
+                    
+                } else {
+                    block?(.success(isSuccess, data))
+                }
             }
         }.resume()
     }

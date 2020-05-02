@@ -177,20 +177,36 @@ class ViewController: UIViewController {
         extraData["cardHolderName"] = cardHolderName.text
 
         // send data
-        vgsForm.submit(path: "post", extraData: extraData, completion: { [weak self] (json, error) in
-           self?.consoleStatusLabel.text = "RESPONSE"
-           if error == nil, let data = json?["json"] {
-               self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
-           } else {
-               if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-                   if errorKey == VGSSDKErrorInputDataIsNotValid {
-                       // Handle VGSError error
-                   }
-               }
-               self?.consoleLabel.text = "Something went wrong!"
-               print("Error: \(String(describing: error))")
-           }
-        })
+        
+        vgsForm.submit0(path: "post", extraData: extraData) { [weak self] result in
+            self?.consoleStatusLabel.text = "RESPONSE"
+            switch result {
+            case .success( _, let data):
+                let tmp = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                let txt = String(data:try! JSONSerialization.data(withJSONObject: tmp, options: .prettyPrinted), encoding: .utf8)!
+                self?.consoleLabel.text = txt
+                
+            case .failure(let error):
+                self?.consoleLabel.text = "Something went wrong!"
+                print("Error: \(String(describing: error))")
+            }
+        }
+        
+        
+//        vgsForm.submit(path: "post", extraData: extraData, completion: { [weak self] (json, error) in
+//           self?.consoleStatusLabel.text = "RESPONSE"
+//            if error == nil, let data = json?["json"] as? [String: Any] {
+//                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
+//           } else {
+//               if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+//                   if errorKey == VGSSDKErrorInputDataIsNotValid {
+//                       // Handle VGSError error
+//                   }
+//               }
+//               self?.consoleLabel.text = "Something went wrong!"
+//               print("Error: \(String(describing: error))")
+//           }
+//        })
     }
 }
 
