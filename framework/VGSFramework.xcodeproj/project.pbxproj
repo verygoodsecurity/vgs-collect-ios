@@ -451,6 +451,7 @@
 				FD12B9AC2304619100B670DD /* Frameworks */,
 				FD12B9AD2304619100B670DD /* Resources */,
 				FDB4C106237DF0FC00EA6D3C /* Run swiftlint */,
+				328D55202460366A0082E984 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -538,6 +539,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		328D55202460366A0082E984 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CardIO.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CardIO.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		FDB4C106237DF0FC00EA6D3C /* Run swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
