@@ -1,0 +1,782 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/APIClient.swift",
+      "line": 12,
+      "symbol": "JsonData",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/APIClient.swift",
+      "line": 13,
+      "symbol": "BodyData",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/APIClient.swift",
+      "line": 14,
+      "symbol": "HTTPHeaders",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/CharacterSet+extension.swift",
+      "line": 11,
+      "symbol": "CharacterSet.vgsAsciiDecimalDigits",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 18,
+      "symbol": "Environment.sandbox",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 19,
+      "symbol": "Environment.live",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 30,
+      "symbol": "FieldType.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 31,
+      "symbol": "FieldType.cardNumber",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 32,
+      "symbol": "FieldType.expDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 33,
+      "symbol": "FieldType.cvc",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/Enums.swift",
+      "line": 34,
+      "symbol": "FieldType.cardHolderName",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/String+extension.swift",
+      "line": 12,
+      "symbol": "String.isAlphaNumeric",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/String+extension.swift",
+      "line": 18,
+      "symbol": "Optional.isNilOrEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 65,
+      "symbol": "VGSCollect.cleanFiles()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 80,
+      "symbol": "VGSCollect.submit(path:method:extraData:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSCollect.swift",
+      "line": 100,
+      "symbol": "VGSCollect.submitFile(path:method:extraData:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 11,
+      "symbol": "VGSErrorType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 13,
+      "symbol": "VGSErrorType.inputDataIsNotValid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 16,
+      "symbol": "VGSErrorType.inputFileNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 17,
+      "symbol": "VGSErrorType.inputFileTypeIsNotSupported",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 18,
+      "symbol": "VGSErrorType.inputFileSizeExceedsTheLimit",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 19,
+      "symbol": "VGSErrorType.sourceNotAvailable",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 22,
+      "symbol": "VGSErrorType.unexpectedResponseDataFormat",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 25,
+      "symbol": "VGSError",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 27,
+      "symbol": "VGSError.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 29,
+      "symbol": "VGSError.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSError.swift",
+      "line": 33,
+      "symbol": "VGSError.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 11,
+      "symbol": "VGSErrorInfoKey",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 13,
+      "symbol": "VGSCollectSDKErrorDomain",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 18,
+      "symbol": "VGSSDKErrorInputDataIsNotValid",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 19,
+      "symbol": "VGSSDKErrorInputDataRequired",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 20,
+      "symbol": "VGSSDKErrorInputDataRequiredValid",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 23,
+      "symbol": "VGSSDKErrorFileNotFound",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 24,
+      "symbol": "VGSSDKErrorFileTypeNotSupported",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 25,
+      "symbol": "VGSSDKErrorFileSizeExceedsTheLimit",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 28,
+      "symbol": "VGSSDKErrorSourceNotAvailable",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Core/VGSErrorInfoKey.swift",
+      "line": 31,
+      "symbol": "VGSSDKErrorUnexpectedResponseDataFormat",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 14,
+      "symbol": "CradIODataType.cardNumber",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 15,
+      "symbol": "CradIODataType.expirationDate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 16,
+      "symbol": "CradIODataType.expirationMonth",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 17,
+      "symbol": "CradIODataType.expirationYear",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/Integrations/CardIO/VGSCardIOScanControllerDelegate.swift",
+      "line": 18,
+      "symbol": "CradIODataType.cvc",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSDocumentPicker.swift",
+      "line": 46,
+      "symbol": "VGSDocumentPicker.documentPicker(_:didPickDocumentsAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSDocumentPicker.swift",
+      "line": 62,
+      "symbol": "VGSDocumentPicker.documentPickerWasCancelled(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFileInfo.swift",
+      "line": 12,
+      "symbol": "VGSFileInfoProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFileInfo.swift",
+      "line": 13,
+      "symbol": "VGSFileInfoProtocol.fileExtension",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFileInfo.swift",
+      "line": 14,
+      "symbol": "VGSFileInfoProtocol.size",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSFileInfo.swift",
+      "line": 15,
+      "symbol": "VGSFileInfoProtocol.sizeUnits",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSImagePicker.swift",
+      "line": 58,
+      "symbol": "VGSImagePicker.imagePickerControllerDidCancel(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/FilePicker/VGSImagePicker.swift",
+      "line": 62,
+      "symbol": "VGSImagePicker.imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField+padding.swift",
+      "line": 15,
+      "symbol": "MaskedTextField.textRect(forBounds:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField+padding.swift",
+      "line": 19,
+      "symbol": "MaskedTextField.placeholderRect(forBounds:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField+padding.swift",
+      "line": 23,
+      "symbol": "MaskedTextField.editingRect(forBounds:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField+security.swift",
+      "line": 14,
+      "symbol": "MaskedTextField.addTarget(_:action:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField+security.swift",
+      "line": 16,
+      "symbol": "MaskedTextField.delegate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Mask/MaskedTextField+security.swift",
+      "line": 21,
+      "symbol": "MaskedTextField.addSomeTarget(_:action:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 13,
+      "symbol": "State",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 14,
+      "symbol": "State.fieldName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 15,
+      "symbol": "State.isRequired",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 16,
+      "symbol": "State.isRequiredValidOnly",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 17,
+      "symbol": "State.isValid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 18,
+      "symbol": "State.isEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 28,
+      "symbol": "State.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 47,
+      "symbol": "CardState",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 48,
+      "symbol": "CardState.last4",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 49,
+      "symbol": "CardState.bin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 50,
+      "symbol": "CardState.cardBrand",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 52,
+      "symbol": "CardState.init(tf:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/State/State.swift",
+      "line": 65,
+      "symbol": "CardState.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSCardTextField.swift",
+      "line": 13,
+      "symbol": "VGSCardTextField",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 15,
+      "symbol": "VGSTextField.cornerRadius",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 24,
+      "symbol": "VGSTextField.borderWidth",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 32,
+      "symbol": "VGSTextField.borderColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 43,
+      "symbol": "VGSTextField.font",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 51,
+      "symbol": "VGSTextField.textColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+UIBuilder.swift",
+      "line": 60,
+      "symbol": "VGSTextField.prepareForInterfaceBuilder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+state.swift",
+      "line": 21,
+      "symbol": "VGSTextField.isFocused",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField+state.swift",
+      "line": 25,
+      "symbol": "VGSTextField.state",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 147,
+      "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 151,
+      "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 155,
+      "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 162,
+      "symbol": "VGSTextField.becomeFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 166,
+      "symbol": "VGSTextField.resignFirstResponder()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 170,
+      "symbol": "VGSTextField.isFirstResponder",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextField.swift",
+      "line": 187,
+      "symbol": "UIView.mainStyle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/VGSTextFieldDelegate.swift",
+      "line": 14,
+      "symbol": "VGSTextFieldDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 16,
+      "symbol": "SwiftLuhn.CardType.brandIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 12,
+      "symbol": "String.isValidCardNumber()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 16,
+      "symbol": "String.cardType()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 20,
+      "symbol": "String.suggestedCardType()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/String+SwiftLuhn.swift",
+      "line": 25,
+      "symbol": "String.formattedCardNumber()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 14,
+      "symbol": "SwiftLuhn",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 14,
+      "symbol": "SwiftLuhn.CardType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 15,
+      "symbol": "SwiftLuhn.CardType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 16,
+      "symbol": "SwiftLuhn.CardType.amex",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 17,
+      "symbol": "SwiftLuhn.CardType.visa",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 18,
+      "symbol": "SwiftLuhn.CardType.mastercard",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 19,
+      "symbol": "SwiftLuhn.CardType.discover",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 20,
+      "symbol": "SwiftLuhn.CardType.dinersClub",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 21,
+      "symbol": "SwiftLuhn.CardType.jcb",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 22,
+      "symbol": "SwiftLuhn.CardType.maestro",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 23,
+      "symbol": "SwiftLuhn.CardType.rupay",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 24,
+      "symbol": "SwiftLuhn.CardType.mir",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 25,
+      "symbol": "SwiftLuhn.CardType.unknown",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 28,
+      "symbol": "SwiftLuhn.CardError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 29,
+      "symbol": "SwiftLuhn.CardError.unsupported",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 30,
+      "symbol": "SwiftLuhn.CardError.invalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 139,
+      "symbol": "SwiftLuhn.CardType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Card/SwiftLuhn.swift",
+      "line": 140,
+      "symbol": "SwiftLuhn.CardType.stringValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Date+cvv/VGSValidation+type.swift",
+      "line": 12,
+      "symbol": "VGSValidation.validateType(txt:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/framework/Sources/VGSFramework/UIElements/Text Field/Validation/Date+cvv/VGSValidation.swift",
+      "line": 28,
+      "symbol": "String.matches(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dima/vgs-collect-ios/framework"
+}
