@@ -2,7 +2,7 @@ platform :ios, '10.0'
 
 workspace 'VGSCollectSDK'
 
-target 'VGSFramework' do
+target 'VGSCollectSDK' do
   use_frameworks!
   pod 'Alamofire', "4.9.1"
 
@@ -13,7 +13,7 @@ end
 
 
 # The workaround starts here !!!!!
-targetWorkaround = "Pods-VGSFrameworkTests"
+targetWorkaround = "Pods-FrameworkTests"
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -27,4 +27,3 @@ post_install do |installer|
     end
   end
 end
-
