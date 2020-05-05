@@ -16,6 +16,7 @@ Table of contents
    * [Before you start](#before-you-start)
    * [Integration](#integration)
       * [CocoaPods](#cocoapods)
+      * [Carthage](#carthage)
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Scan Credit Card Data](#scan-credit-card-data)
@@ -44,6 +45,24 @@ You should have your organization registered at <a href="https://dashboard.veryg
 ```ruby
 pod 'VGSCollectSDK'
 ```
+
+### Carthage
+
+VGCollectSDK is also available through [Carthage](https://github.com/Carthage/Carthage).
+Add the following line  to your `Cartfile`:
+
+```ruby
+github "verygoodsecurity/vgs-collect-ios"
+```
+
+then run:
+
+```ruby
+carthage update --platform iOS
+```
+
+Note that `VGCollectSDK` use `Alamofire` and `CardIO` as dependencies. You should also link them to your project. Follow the [Carthage instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
+
 
 ## Usage
 
