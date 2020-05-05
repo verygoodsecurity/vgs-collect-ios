@@ -4,17 +4,17 @@
 # 2. jazzy command should be running form framework root dir
 ####################
 #names
-module: VGSFramework
+module: VGSCollectSDK
 title: VGSCollectSDK
 author: Very Good Security
 author_url: https://verygoodsecurity.com
 github_url: https://github.com/verygoodsecurity/vgs-collect-ios
-github_file_prefix: https://github.com/verygoodsecurity/vgs-collect-ios/tree/dev/framework
-readme: ../README.md
+github_file_prefix: https://github.com/verygoodsecurity/vgs-collect-ios/tree/master
+readme: README.md
 #output folder
-output: ../docs
+output: docs
 #path to project
-framework_root: framework/
+framework_root: ../
 sdk: iphonesimulator
 #settings
 clean: true
@@ -23,7 +23,7 @@ skip_undocumented: true
 hide_documentation_coverage: true
 theme: fullwidth
 exclude:
-    Sources/VGSFramework/Core/Utils.swift
+    Sources/VGSCollectSDK/Core/Utils.swift
 custom_categories:
 - name: UI Elements
   children:
