@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.3.5'
+  spec.version = '1.4.0'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -16,9 +16,9 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "10.0"
   spec.ios.deployment_target = "10.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
-  spec.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{swift}"
+  spec.source_files  = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}"
   spec.resource_bundles = {
-    'CardIcon' => ['framework/Resources/*']
+    'CardIcon' => ['Resources/*']
   }
   spec.frameworks = "Alamofire"
   spec.requires_arc = true
@@ -30,7 +30,7 @@ Pod::Spec.new do |spec|
   end
   
   spec.subspec 'CardIO' do |cardio|
-    cardio.source_files  = "framework/Sources/VGSFramework", "framework/Sources/VGSFramework/**/*.{h, m}"
+    cardio.source_files  = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{h, m}"
     cardio.dependency "CardIOSDK", "5.5.2"
   end
 end

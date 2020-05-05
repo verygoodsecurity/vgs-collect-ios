@@ -2,9 +2,9 @@
 **.xcworkspace
 **/Pods
 demoapp/build
-framework/build
-framework/docs
+build
 
 .build/**
-framework/Podfile.lock
+Podfile.lock
 demoapp/Podfile.lock
+Carthage
