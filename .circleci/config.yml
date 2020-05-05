@@ -10,13 +10,13 @@ jobs:
           command: sudo gem install cocoapods -v 1.8.4
       - run:
           name: Install pods
-          command: cd framework; pod install
+          command: pod install
       - run:
           name: Run Tests
-          command: cd framework; fastlane scan
+          command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: VGSFramework
+            SCAN_SCHEME: VGSCollectSDK
 
 workflows:
   version: 2
