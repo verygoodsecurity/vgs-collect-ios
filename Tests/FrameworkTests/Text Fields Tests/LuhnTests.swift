@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import VGSFramework
+@testable import VGSCollectSDK
 
 class LuhnTests: XCTestCase {
     var textField: VGSTextField!

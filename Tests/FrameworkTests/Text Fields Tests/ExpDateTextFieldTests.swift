@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import VGSFramework
+@testable import VGSCollectSDK
 
 class ExpDateTextFieldTests: XCTestCase {
     var collector: VGSCollect!
