@@ -11,18 +11,18 @@ jobs:
       - run:
           name: Install pods
           command: pod install
-          
-    run-tests:
-    - checkout
-           - run:
-    - run:
-    name: Run Tests
-    command: fastlane scan
-    environment:
-      SCAN_DEVICE: iPhone 8
-      SCAN_SCHEME: VGSCollectSDK
-            
-    build-carthage:
+
+  run-unit-tests:
+    steps:
+      - checkout
+      - run:
+          name: Run Unit Tests
+          command: fastlane scan
+          environment:
+            SCAN_DEVICE: iPhone 8
+            SCAN_SCHEME: VGSCollectSDK
+
+    build-carthage-dependencies:
       macos:
         xcode: "11.0"
       steps:
@@ -36,6 +36,10 @@ jobs:
 
 workflows:
   version: 2
-  build-and-test:
+  build-and-test-with-cocoapods:
     jobs:
-      - build-and-test
+      - build-cocoapods
+      - run-unit-tests
+  build-with-carthage:
+    jobs:
+      - build-carthage-dependencies
