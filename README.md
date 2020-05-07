@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master)
 [![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg)]()
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
@@ -22,6 +23,7 @@ Table of contents
       * [Upload Files](#upload-files)
       * [Demo Application](#demo-application)
       * [Documentation](#documentation)
+      * [Releases](#releases)
    * [Dependencies](#dependencies)
    * [License](#license)
 <!--te-->
@@ -415,6 +417,9 @@ Demo application for collecting card data on iOS is <a href="https://github.com/
 ### Documentation
 -  SDK Documentation: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
 -  API Documentation: https://verygoodsecurity.github.io/vgs-collect-ios/
+
+### Releases
+To follow `VGSCollectSDK` updates and changes check the [releases](https://github.com/verygoodsecurity/vgs-collect-ios/releases) page.
 
 ## Dependencies
 - iOS 10+
