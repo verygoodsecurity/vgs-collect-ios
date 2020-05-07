@@ -82,6 +82,5 @@ class APIClient {
                     return
                 }
         }
-        block(nil, nil)
     }
 }
