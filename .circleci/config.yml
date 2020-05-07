@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build-and-test:
+  build-cocoapods:
     macos:
       xcode: "11.0"
     steps:
@@ -11,12 +11,28 @@ jobs:
       - run:
           name: Install pods
           command: pod install
-      - run:
-          name: Run Tests
-          command: fastlane scan
-          environment:
-            SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: VGSCollectSDK
+          
+    run-tests:
+    - checkout
+           - run:
+    - run:
+    name: Run Tests
+    command: fastlane scan
+    environment:
+      SCAN_DEVICE: iPhone 8
+      SCAN_SCHEME: VGSCollectSDK
+            
+    build-carthage:
+      macos:
+        xcode: "11.0"
+      steps:
+        - checkout
+        - run:
+            name: Install Сarthage
+            command: brew install carthage
+        - run:
+            name: Build Dependencies
+            command: carthage update --platform iOS
 
 workflows:
   version: 2
