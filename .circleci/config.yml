@@ -23,15 +23,24 @@ jobs:
       xcode: "11.0"
     steps:
       - checkout
-      - brew update
-      - brew upgrade
-      - brew install carthage
-      - carthage updade --platform iOS
-          
+      - run:
+        name: brew update
+        command: brew update
+      - run:
+        name: brew upgrade
+        command: brew upgrade
+      - run:
+        name: install carthage
+        command: install carthage
+      - run:
+        name: carthage bootstrap
+        command: carthage bootstrap --no-use-binaries
+
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - pods-install-and-test
       - carthage-install
+      # - pods-install-and-test
+
 
