@@ -14,11 +14,11 @@ jobs:
   run-unit-tests:
     steps:
       - run:
-        name: Run Unit Tests
-        command: fastlane scan
-        environment:
-          SCAN_DEVICE: iPhone 8
-          SCAN_SCHEME: VGSCollectSDK
+          name: Run Unit Tests
+          command: fastlane scan
+          environment:
+            SCAN_DEVICE: iPhone 8
+            SCAN_SCHEME: VGSCollectSDK
           
 workflows:
   version: 2
