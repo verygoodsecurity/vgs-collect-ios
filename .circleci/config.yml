@@ -11,7 +11,10 @@ jobs:
       - run:
           name: Install pods
           command: pod install
+          
   run-unit-tests:
+    macos:
+      xcode: "11.0"
     steps:
       - run:
           name: Run Unit Tests
