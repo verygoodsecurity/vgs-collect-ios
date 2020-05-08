@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  install-cocoapods-and-test:
+  pods-install-and-test:
     macos:
       xcode: "11.0"
     steps:
@@ -17,10 +17,21 @@ jobs:
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: VGSCollectSDK
+  
+  carthage-install:
+    macos:
+      xcode: "11.0"
+    steps:
+      - checkout
+      - brew update
+      - brew upgrade
+      - brew install carthage
+      - carthage updade --platform iOS
           
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - install-cocoapods-and-test
+      - pods-install-and-test
+      - carthage-install
 
