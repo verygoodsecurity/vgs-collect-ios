@@ -14,12 +14,12 @@ class ZeroDependencyApiClientTests: XCTestCase {
     var collector: VGSCollect!
     var apiClient: APIClient!
     
-    override func setUpWithError() throws {
+    override func setUp() {
         collector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
         apiClient = collector.apiClient
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         collector = nil
         apiClient = nil
     }
