@@ -43,13 +43,13 @@ class APIClient {
         ]
     }()
     
-    @available(*, deprecated, message: "use -sendRequest:")
+    @available(*, deprecated, message: "use zero dependency method -sendRequest:... VGSResponse")
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // JSON Body
         let body: [String: Any] = value
         // Fetch Request
-        sendRequest(path: path, method: method, value: body) { VGSResponse in
-            switch VGSResponse {
+        sendRequest(path: path, method: method, value: body) { response in
+            switch response {
             case .success( _, let data):
 
                 var resultData: JsonData?
@@ -58,17 +58,11 @@ class APIClient {
                 }
                 block(resultData, nil)
 
-            case .failure(let error):
+            case .failure( _, let error):
                 block(nil, error)
             }
         }
     }
-}
-
-// MARK: - URLSession
-public enum VGSResponse {
-    case success(Bool, Data?)
-    case failure(Error?)
 }
 
 public enum HTTPMethod: String {
@@ -83,8 +77,12 @@ public enum HTTPMethod: String {
     case connect = "CONNECT"
 }
 
+public enum VGSResponse {
+    case success(_ statusCode:Int, _ data:Data?)
+    case failure(_ statusCode:Int, _ error:Error?)
+}
+
 extension APIClient {
-    
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
@@ -102,23 +100,14 @@ extension APIClient {
         request.allHTTPHeaderFields = headers
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            var isSuccess = false
-            if let rr = response as? HTTPURLResponse {
-                switch rr.statusCode {
+            let statusCode = (response as! HTTPURLResponse).statusCode
+            DispatchQueue.main.async {
+                switch statusCode {
                 case 200..<300:
-                    isSuccess = true
+                    block?(.success(statusCode, data))
                     
                 default:
-                    isSuccess = false
-                }
-            }
-            DispatchQueue.main.async {
-                if error != nil {
-                    block?(.failure(error))
-                    
-                } else {
-                    block?(.success(isSuccess, data))
+                    block?(.failure(statusCode, error))
                 }
             }
         }.resume()

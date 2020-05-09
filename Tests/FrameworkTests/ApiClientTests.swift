@@ -32,19 +32,20 @@ class ApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        collector.submit(path: "post") { result in
+        collector.submit0(path: "post") { result  in
             switch result {
-            case .success(let success, let data):
-                XCTAssertTrue(success)
-                XCTAssert(data)
+            case .success(let code, let data):
+                XCTAssertTrue(code == 200)
+                XCTAssert(data != nil)
                 
-            case .failure(let error):
-                XCTFail("Error: \(error?.localizedDescription)")
+            case .failure( _, let error):
+                XCTAssertNotNil(error)
+                XCTAssertNotNil(error, "Error: \(String(describing: error?.localizedDescription))")
             }
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 60.0)
+        wait(for: [expectation], timeout: 30.0)
     }
     
     func testSendData() {
