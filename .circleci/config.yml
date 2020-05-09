@@ -2,15 +2,9 @@ version: 2
 jobs:
   build-and-test:
     macos:
-      xcode: "11.0"
+      xcode: "11.4"
     steps:
       - checkout
-      # - run:
-      #     name: Install cocoapods
-      #     command: sudo gem install cocoapods -v 1.8.4
-      # - run:
-      #     name: Install pods
-      #     command: pod install
       - run:
           name: Run Tests
           command: fastlane scan
