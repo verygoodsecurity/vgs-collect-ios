@@ -28,26 +28,6 @@ class ApiClientTests: XCTestCase {
         apiClient = nil
     }
     
-    func testSendSimpleData() {
-        
-        let expectation = XCTestExpectation(description: "Sending data...")
-        
-        collector.submit0(path: "post") { result  in
-            switch result {
-            case .success(let code, let data):
-                XCTAssertTrue(code == 200)
-                XCTAssert(data != nil)
-                
-            case .failure( _, let error):
-                XCTAssertNotNil(error)
-                XCTAssertNotNil(error, "Error: \(String(describing: error?.localizedDescription))")
-            }
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 30.0)
-    }
-    
     func testSendData() {
         
         let expectation = XCTestExpectation(description: "Sending data...")
