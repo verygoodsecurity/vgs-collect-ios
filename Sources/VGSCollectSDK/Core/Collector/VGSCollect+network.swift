@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Alamofire
 // MARK: - Zero dependency
 extension VGSCollect {
     /**
@@ -106,8 +106,8 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    @available(*, deprecated, message:"This will be removed in v 1.5.0, use to a submitFieldsData(path: method: extraData: completion block:(VGSresponse))")
-    public func submit(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    @available(*, deprecated, message:"This will be removed in v 1.5.0, use submitFieldsData(path: method: extraData: completion block:(VGSresponse))")
+    public func submit(path: String, method: Alamofire.HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
             block(nil, error)
@@ -132,7 +132,7 @@ extension VGSCollect {
            If there are validation errors, SDK will return `VGSError` in **error** field.
     */
     @available(*, deprecated, message:"This will be removed in v 1.5.0, use to a submitFiles(path: method: extraData: completion block:(VGSresponse))")
-    public func submitFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    public func submitFile(path: String, method: Alamofire.HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
             block(nil, VGSError(type: .inputFileNotFound, userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound, description: "File not selected or doesn't exists", extraInfo: [:])))
