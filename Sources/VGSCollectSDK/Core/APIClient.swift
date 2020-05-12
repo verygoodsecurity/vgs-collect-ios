@@ -99,8 +99,8 @@ public enum HTTPMethod: String {
 }
 
 public enum VGSResponse {
-    case success(_ statusCode:Int, _ data:Data?)
-    case failure(_ statusCode:Int, _ error:Error?)
+  case success(_ statusCode:Int, _ data:Data?, _ response: URLResponse?)
+  case failure(_ statusCode:Int, _ error:Error?, _ response: URLResponse?)
 }
 
 extension APIClient {
@@ -114,9 +114,11 @@ extension APIClient {
                 headers[key] = customerHeaders[key]
             })
         }
-        
+        let jsonData = try? JSONSerialization.data(withJSONObject: value)
+
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)
+        request.httpBody = jsonData
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         
@@ -125,10 +127,9 @@ extension APIClient {
             DispatchQueue.main.async {
                 switch statusCode {
                 case 200..<300:
-                    block?(.success(statusCode, data))
-                    
+                    block?(.success(statusCode, data, response))
                 default:
-                    block?(.failure(statusCode, error))
+                    block?(.failure(statusCode, error, response))
                 }
             }
         }.resume()
