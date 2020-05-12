@@ -123,14 +123,21 @@ extension APIClient {
         request.allHTTPHeaderFields = headers
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            let statusCode = (response as! HTTPURLResponse).statusCode
             DispatchQueue.main.async {
-                switch statusCode {
-                case 200..<300:
-                    block?(.success(statusCode, data, response))
-                default:
-                    block?(.failure(statusCode, error, response))
-                }
+              if let error = error as NSError? {
+                block?(.failure(error.code, error, response))
+                return
+              }
+              let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+
+              switch statusCode {
+              case 200..<300:
+                block?(.success(statusCode, data, response))
+                return
+              default:
+                block?(.failure(statusCode, error, response))
+                return
+              }
             }
         }.resume()
     }

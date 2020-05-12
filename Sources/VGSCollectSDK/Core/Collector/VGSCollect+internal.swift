@@ -28,12 +28,12 @@ internal extension VGSCollect {
     }
     
     /// Validate stored textfields input data
-    func validateStoredInputData() -> Error? {
+    func validateStoredInputData() -> VGSError? {
         return validate(storage.elements)
     }
     
     /// Validate specific textfields input data
-    func validate(_ input: [VGSTextField]) -> Error? {
+    func validate(_ input: [VGSTextField]) -> VGSError? {
         var isRequiredErrorFields = [String]()
         var isRequiredValidOnlyErrorFields = [String]()
         
