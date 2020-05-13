@@ -13,7 +13,7 @@ jobs:
          command: pod install
       - run:
           name: Run Tests
-          command: fastlane test
+          command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: VGSCollectSDK
