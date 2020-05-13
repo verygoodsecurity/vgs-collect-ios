@@ -54,4 +54,25 @@ public class VGSError: NSError {
         self.type = type
         super.init(domain: VGSCollectSDKErrorDomain, code: type.rawValue, userInfo: info?.asDictionary)
     }
+    
+    internal required init(code: Int, rawData data: Data) {
+        self.type = .none
+        
+        var info: VGSErrorInfo? = nil
+        let errorMessage = String(data: data, encoding: .utf8) ?? ""
+        if errorMessage.lowercased().contains("html") {
+            // if error message is html
+            do {
+                let tmp = try? NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
+                if let errorMessage = tmp?.string {
+                    info = VGSErrorInfo(key: "error", description: errorMessage)
+                }
+            } catch {
+                info = VGSErrorInfo(key: "error", description: errorMessage)
+            }
+        } else {
+            info = VGSErrorInfo(key: "error", description: errorMessage)
+        }
+        super.init(domain: VGSCollectSDKErrorDomain, code: code, userInfo: info?.asDictionary)
+    }
 }

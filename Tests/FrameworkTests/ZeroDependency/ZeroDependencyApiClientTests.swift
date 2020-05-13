@@ -12,44 +12,86 @@ import XCTest
 class ZeroDependencyApiClientTests: XCTestCase {
 
     var collector: VGSCollect!
-    var apiClient: APIClient!
     
     override func setUp() {
         collector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
-        apiClient = collector.apiClient
     }
 
     override func tearDown() {
         collector = nil
-        apiClient = nil
     }
 
     func testSendCardForm() {
         let cardNum = "4111111111111111"
-        let cardField = VGSTextField(frame: .zero)
-
         let conf = VGSConfiguration(collector: collector, fieldName: "cardNumber")
         conf.type = .cardNumber
-
-        cardField.configuration = conf
-        cardField.textField.secureText = cardNum
+        let field = VGSTextField(frame: .zero)
+        field.configuration = conf
+        field.textField.secureText = cardNum
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
         collector.submitFieldsData(path: "post") { result in
             switch result {
-            case .success(let code, let data):
+            case .success(let code, let data, _):
                 XCTAssertTrue(code == 200)
                 XCTAssert((data != nil))
                 
-            case .failure(let code, let error):
+            case .failure(let code, _, let error, _):
                 XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
             }
-            
             expectation.fulfill()
         }
-        
         wait(for: [expectation], timeout: 60.0)
     }
 
+    func testWrongTanentId() {
+        let form = VGSCollect(id: "wrongId")
+        let conf = VGSConfiguration(collector: form, fieldName: "cardField")
+        conf.type = .cardNumber
+        let field = VGSTextField(frame: .zero)
+        field.configuration = conf
+        field.textField.secureText = "5252"
+        
+        let expectation = XCTestExpectation(description: "Sending data...")
+        
+        form.submitFieldsData(path: "post") { result in
+            switch result {
+            case .success:
+                break
+                
+            case .failure(let code, let data, let error, _):
+                let errMsg = String(data: data!, encoding: .utf8)
+                XCTAssertTrue(errMsg == error?.localizedDescription)
+                XCTAssert(error != nil)
+                XCTAssertTrue(code >= 400)
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 60.0)
+    }
+    
+    func testWrongPath() {
+        let conf = VGSConfiguration(collector: collector, fieldName: "cardField")
+        conf.type = .cardNumber
+        let field = VGSTextField(frame: .zero)
+        field.configuration = conf
+        field.textField.secureText = "5252"
+        
+        let expectation = XCTestExpectation(description: "Sending data...")
+        
+        collector.submitFieldsData(path: "wrongPath") { result in
+            switch result {
+            case .success:
+                break
+                
+            case .failure(let code, _, let error, _):
+                XCTAssertNotNil(error?.localizedDescription)
+                XCTAssert(error != nil)
+                XCTAssertTrue(code >= 400)
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 60.0)
+    }
 }

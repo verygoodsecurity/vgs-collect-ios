@@ -24,7 +24,7 @@ extension VGSCollect {
     */
     public func submitFieldsData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
         if let error = validateStoredInputData() {
-          block(.failure(error.code, error, nil))
+          block(.failure(error.code, nil, error, nil))
             return
         }
         let body = mapStoredInputDataForSubmit(with: extraData)
@@ -50,7 +50,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exists",
                                                         extraInfo: [:]))
-            block(.failure(error.code, error, nil))
+            block(.failure(error.code, nil, error, nil))
             return
         }
         // check if file converted to Data
@@ -60,7 +60,7 @@ extension VGSCollect {
                                                         description: "File format is not supported. Can't convert to Data.",
                                                         extraInfo: [:]))
             
-            block(.failure(error.code, error, nil))
+            block(.failure(error.code, nil, error, nil))
             return
         }
         // check mac file size
@@ -71,7 +71,7 @@ extension VGSCollect {
                                                         extraInfo: [
                                                             "expectedSize": maxFileSizeInternalLimitInBytes,
                                                             "fileSize": "\(result.count)", "sizeUnits": "bytes"]))
-            block(.failure(error.code, error, nil))
+            block(.failure(error.code, nil, error, nil))
             return
         }
         // encode file
@@ -81,7 +81,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          block(.failure(error.code, error, nil))
+          block(.failure(error.code, nil, error, nil))
             return
         }
         // make body

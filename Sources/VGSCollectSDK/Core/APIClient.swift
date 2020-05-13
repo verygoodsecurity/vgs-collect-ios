@@ -34,8 +34,8 @@ class APIClient {
         let vgsCollectVersion: String = {
             guard let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
                 let build = vgsInfo["CFBundleShortVersionString"]
-            else {
-                return "Unknown"
+                else {
+                    return "Unknown"
             }
             return "\(build)"
         }()
@@ -68,7 +68,7 @@ class APIClient {
                           headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-
+                
                 switch response.result {
                 case .success(let data):
                     guard let dict = data as? JsonData else {
@@ -87,20 +87,14 @@ class APIClient {
 }
 
 public enum HTTPMethod: String {
-    case options = "OPTIONS"
     case get     = "GET"
-    case head    = "HEAD"
     case post    = "POST"
     case put     = "PUT"
-    case patch   = "PATCH"
-    case delete  = "DELETE"
-    case trace   = "TRACE"
-    case connect = "CONNECT"
 }
 
 public enum VGSResponse {
-  case success(_ statusCode:Int, _ data:Data?, _ response: URLResponse?)
-  case failure(_ statusCode:Int, _ error:Error?, _ response: URLResponse?)
+    case success(_ statusCode:Int, _ data:Data?, _ response: URLResponse?)
+    case failure(_ statusCode:Int, _ data:Data?, _ error:Error?, _ response: URLResponse?)
 }
 
 extension APIClient {
@@ -115,7 +109,7 @@ extension APIClient {
             })
         }
         let jsonData = try? JSONSerialization.data(withJSONObject: value)
-
+        
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)
         request.httpBody = jsonData
@@ -124,20 +118,26 @@ extension APIClient {
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
-              if let error = error as NSError? {
-                block?(.failure(error.code, error, response))
-                return
-              }
-              let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                if let error = error as NSError? {
+                    block?(.failure(error.code, data, error, response))
+                    return
+                }
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                
+                switch statusCode {
+                case 200..<300:
+                    block?(.success(statusCode, data, response))
+                    return
 
-              switch statusCode {
-              case 200..<300:
-                block?(.success(statusCode, data, response))
-                return
-              default:
-                block?(.failure(statusCode, error, response))
-                return
-              }
+                default:
+                    if error == nil, data != nil {
+                        let vgsErr = VGSError(code: statusCode, rawData: data!)
+                        block?(.failure(statusCode, data, vgsErr, response))
+                    
+                    } else {
+                        block?(.failure(statusCode, data, error, response))
+                    }
+                }
             }
         }.resume()
     }
