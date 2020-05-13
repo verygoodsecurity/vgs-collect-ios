@@ -130,13 +130,7 @@ extension APIClient {
                     return
 
                 default:
-                    if error == nil, data != nil {
-                        let vgsErr = VGSError(code: statusCode, rawData: data!)
-                        block?(.failure(statusCode, data, vgsErr, response))
-                    
-                    } else {
-                        block?(.failure(statusCode, data, error, response))
-                    }
+                    block?(.failure(statusCode, data, error, response))
                 }
             }
         }.resume()

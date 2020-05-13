@@ -60,10 +60,9 @@ class ZeroDependencyApiClientTests: XCTestCase {
             case .success:
                 break
                 
-            case .failure( _, let data, let error, _):
+            case .failure(let code, let data, _, _):
                 XCTAssertNotNil(data)
-                XCTAssertNotNil(error?.localizedDescription)
-                XCTAssert(error != nil)
+                XCTAssertTrue(code >= 400)
             }
             expectation.fulfill()
         }
@@ -84,10 +83,9 @@ class ZeroDependencyApiClientTests: XCTestCase {
             case .success:
                 break
                 
-            case .failure( _, let data, let error, _):
+            case .failure(let code, let data, _, _):
                 XCTAssertNotNil(data)
-                XCTAssertNotNil(error?.localizedDescription)
-                XCTAssert(error != nil)
+                XCTAssertTrue(code >= 400)
             }
             expectation.fulfill()
         }
