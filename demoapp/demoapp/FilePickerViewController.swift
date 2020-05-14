@@ -36,15 +36,41 @@ class FilePickerViewController: UIViewController {
         stateLabel.text = "Uploading file..."
         let extraData = ["document_holder": "Joe Business"]
         
-        vgsForm.submitFile(path: "/post", method: .post, extraData: extraData) { [weak self](json, error) in
-            if error == nil, let json = json?["json"] {
-                self?.stateLabel.text = "Success!!!\n" + (String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8)!)
-                self?.vgsForm.cleanFiles()
-            } else {
-                print("Error: \(String(describing: error?.localizedDescription))")
-                self?.stateLabel.text = "Something went wrong!"
-            }
+     /// New send file  request func
+      vgsForm.sendFileRequest(path: "/post", extraData: extraData) { [weak self](response) in
+        switch response {
+          case .success(_, let data, _):
+            if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+              self?.stateLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              }
+              return
+          case .failure(let code, _, _, let error):
+            switch code {
+            case 400..<499:
+              // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+              self?.stateLabel.text = "Wrong Request Error: \(code)"
+            case VGSErrorType.inputFileSizeExceedsTheLimit.rawValue:
+              if let error = error as? VGSError {
+                self?.stateLabel.text = "Input file size exceeds the limits. Details:\n \(error)"
+              }
+          default:
+            self?.stateLabel.text = "Something went wrong. Code: \(code)"
+          }
+          print("Submit request error: \(code), \(String(describing: error))")
+          return
         }
+      }
+      
+      /// Deprecated
+//        vgsForm.submitFile(path: "/post", method: .post, extraData: extraData) { [weak self](json, error) in
+//            if error == nil, let json = json?["json"] {
+//                self?.stateLabel.text = "Success!!!\n" + (String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8)!)
+//                self?.vgsForm.cleanFiles()
+//            } else {
+//                print("Error: \(String(describing: error?.localizedDescription))")
+//                self?.stateLabel.text = "Something went wrong!"
+//            }
+//        }
     }
     
     // Show file picker for specific source type
