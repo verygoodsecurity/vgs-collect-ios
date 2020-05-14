@@ -18,6 +18,24 @@ public typealias HTTPHeaders = [String: String]
 /// Key-value data type, for internal use.
 internal typealias BodyData = [String: Any]
 
+/// HTTP request methods
+public enum HTTPMethod: String {
+    /// GET method
+    case get     = "GET"
+    /// POST method
+    case post    = "POST"
+    /// PUT method
+    case put     = "PUT"
+}
+
+/// Response enum cases for SDK requests
+@frozen public enum VGSResponse {
+    /// Success response case
+    case success(_ code:Int, _ data:Data?, _ response: URLResponse?)
+    /// Failure response case
+    case failure(_ code:Int, _ data:Data?, _ response: URLResponse?, _ error:Error?)
+}
+
 class APIClient {
     let baseURL: URL!
     
@@ -84,20 +102,7 @@ class APIClient {
                 }
         }
     }
-}
 
-public enum HTTPMethod: String {
-    case get     = "GET"
-    case post    = "POST"
-    case put     = "PUT"
-}
-
-public enum VGSResponse {
-    case success(_ statusCode:Int, _ data:Data?, _ response: URLResponse?)
-    case failure(_ statusCode:Int, _ data:Data?, _ error:Error?, _ response: URLResponse?)
-}
-
-extension APIClient {
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
@@ -108,29 +113,29 @@ extension APIClient {
                 headers[key] = customerHeaders[key]
             })
         }
+        // Setup URLRequest
         let jsonData = try? JSONSerialization.data(withJSONObject: value)
-        
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)
         request.httpBody = jsonData
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        
+        // Send data
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error as NSError? {
-                    block?(.failure(error.code, data, error, response))
+                    block?(.failure(error.code, data, response, error))
                     return
                 }
-                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+              let statusCode = (response as? HTTPURLResponse)?.statusCode ?? VGSErrorType.unexpectedResponseType.rawValue
                 
                 switch statusCode {
                 case 200..<300:
                     block?(.success(statusCode, data, response))
                     return
-
                 default:
-                    block?(.failure(statusCode, data, error, response))
+                    block?(.failure(statusCode, data, response, error))
+                    return
                 }
             }
         }.resume()

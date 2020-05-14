@@ -37,7 +37,7 @@ class ZeroDependencyApiClientTests: XCTestCase {
                 XCTAssertTrue(code == 200)
                 XCTAssert((data != nil))
                 
-            case .failure(let code, _, let error, _):
+            case .failure(let code, _, _, let error):
                 XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
             }
             expectation.fulfill()

@@ -8,7 +8,8 @@
 
 import Foundation
 import Alamofire
-// MARK: - Zero dependency
+
+// MARK: - Send data
 extension VGSCollect {
     /**
      Send data from VGSTextFields to your organization vault.
@@ -24,7 +25,7 @@ extension VGSCollect {
     */
     public func submitFieldsData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
         if let error = validateStoredInputData() {
-          block(.failure(error.code, nil, error, nil))
+          block(.failure(error.code, nil, nil, error))
             return
         }
         let body = mapStoredInputDataForSubmit(with: extraData)
@@ -50,7 +51,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exists",
                                                         extraInfo: [:]))
-            block(.failure(error.code, nil, error, nil))
+            block(.failure(error.code, nil, nil, error))
             return
         }
         // check if file converted to Data
@@ -60,7 +61,7 @@ extension VGSCollect {
                                                         description: "File format is not supported. Can't convert to Data.",
                                                         extraInfo: [:]))
             
-            block(.failure(error.code, nil, error, nil))
+            block(.failure(error.code, nil, nil, error))
             return
         }
         // check mac file size
@@ -71,7 +72,7 @@ extension VGSCollect {
                                                         extraInfo: [
                                                             "expectedSize": maxFileSizeInternalLimitInBytes,
                                                             "fileSize": "\(result.count)", "sizeUnits": "bytes"]))
-            block(.failure(error.code, nil, error, nil))
+            block(.failure(error.code, nil, nil, error))
             return
         }
         // encode file
@@ -81,7 +82,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          block(.failure(error.code, nil, error, nil))
+          block(.failure(error.code, nil, nil, error))
             return
         }
         // make body
@@ -91,7 +92,7 @@ extension VGSCollect {
     }
 }
 
-// MARK: - Old version of submit
+// MARK: - Deprecated version of submit requests
 // - Send data to organization vault
 extension VGSCollect {
     /**
@@ -106,7 +107,7 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    @available(*, deprecated, message:"This will be removed in v 1.5.0, use submitFieldsData(path: method: extraData: completion block:(VGSresponse))")
+    @available(*, deprecated, message:"Will be removed in v1.5.0, use submitFieldsData(path: method: extraData: completion block:(VGSResponse))")
     public func submit(path: String, method: Alamofire.HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
@@ -115,7 +116,6 @@ extension VGSCollect {
         }
 
         let body = mapStoredInputDataForSubmit(with: extraData)
-                
         apiClient.sendRequest(path: path, method: method, value: body, completion: block)
     }
     
@@ -131,7 +131,7 @@ extension VGSCollect {
         - Note:
            If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    @available(*, deprecated, message:"This will be removed in v 1.5.0, use to a submitFiles(path: method: extraData: completion block:(VGSresponse))")
+    @available(*, deprecated, message:"This will be removed in v1.5.0, use to a submitFiles(path: method: extraData: completion block:(VGSresponse))")
     public func submitFile(path: String, method: Alamofire.HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {
