@@ -62,7 +62,7 @@ internal extension VGSCollect {
         return nil
     }
     
-    /// Turns textfields data saved in Storage and extra data in format ready to submit
+    /// Turns textfields data saved in Storage and extra data in format ready to send
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in

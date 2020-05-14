@@ -12,7 +12,7 @@ import UIKit
 #endif
 //import Alamofire
 
-/// An object you use for observing `VGSTextField` `State` and submit data to your organization vault.
+/// An object you use for observing `VGSTextField` `State` and send data to your organization vault.
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
