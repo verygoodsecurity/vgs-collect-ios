@@ -38,6 +38,7 @@ func mapStringKVOToDictionary(key: String, value: Any, separator: String.Element
         }
         i -= 1
     }
+    // swiftlint:enable identifier_name
     return dict
 }
 

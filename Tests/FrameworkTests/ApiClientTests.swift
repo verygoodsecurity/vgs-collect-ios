@@ -32,7 +32,7 @@ class ApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        collector.submit(path: "post") { (data, error) in 
+        collector.submit(path: "post") { (data, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(error)
             
@@ -67,8 +67,9 @@ class ApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending wrong data...")
         
-        collector.submit(path: "/wrongPath") { (data, _) in
+        collector.submit(path: "/wrongPath") { (data, error) in
             XCTAssertNil(data)
+            XCTAssertNotNil(error)
             
             expectation.fulfill()
         }

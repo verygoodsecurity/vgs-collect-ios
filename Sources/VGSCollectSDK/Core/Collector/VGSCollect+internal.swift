@@ -28,12 +28,12 @@ internal extension VGSCollect {
     }
     
     /// Validate stored textfields input data
-    func validateStoredInputData() -> Error? {
+    func validateStoredInputData() -> VGSError? {
         return validate(storage.elements)
     }
     
     /// Validate specific textfields input data
-    func validate(_ input: [VGSTextField]) -> Error? {
+    func validate(_ input: [VGSTextField]) -> VGSError? {
         var isRequiredErrorFields = [String]()
         var isRequiredValidOnlyErrorFields = [String]()
         
@@ -62,7 +62,7 @@ internal extension VGSCollect {
         return nil
     }
     
-    /// Turns textfields data saved in Storage and extra data in format ready to submit
+    /// Turns textfields data saved in Storage and extra data in format ready to send
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in

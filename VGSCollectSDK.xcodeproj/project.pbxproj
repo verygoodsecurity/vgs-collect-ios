@@ -37,6 +37,8 @@
 		32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */; };
 		32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */; };
 		32FD980E23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */; };
+		C1241095AB7FF64608923867 /* Pods_VGSCollectSDK_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D531C38A2BB063A6C3A5422F /* Pods_VGSCollectSDK_FrameworkTests.framework */; };
+		E4CE7FAE922EB6DEDC533A6F /* Pods_VGSCollectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28612629312735CABB52C2C /* Pods_VGSCollectSDK.framework */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSCollectSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,9 +67,11 @@
 		FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */; };
 		FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA680DE239844FC00372817 /* CardTextFieldTests.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
+		FDE247CD2467439D008D75B0 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
+		FDE247CF246749C3008D75B0 /* VGSCollect+network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */; };
+		FDE247D324674F64008D75B0 /* ZeroDependencyApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE247D224674F64008D75B0 /* ZeroDependencyApiClientTests.swift */; };
 		FDE7447D238A5C96003AA46B /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FDE7447F238AF13F003AA46B /* VGSCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7447E238AF13F003AA46B /* VGSCardTextField.swift */; };
-		FDE890822333AC6D00FA170D /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
 		FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */; };
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
@@ -86,6 +90,7 @@
 
 /* Begin PBXFileReference section */
 		0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28A1A4BB14A845ECC2C36C7B /* Pods-VGSCollectSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK.debug.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK/Pods-VGSCollectSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+extension.swift"; sourceTree = "<group>"; };
@@ -112,7 +117,12 @@
 		32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOHandler.swift; sourceTree = "<group>"; };
 		32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanControllerDelegate.swift; sourceTree = "<group>"; };
 		3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		421DB42C1602977444FB3837 /* Pods-VGSCollectSDK-FrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK-FrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
 		A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSFramework_FrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAC5695701D221652D4CEDF1 /* Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF143E3E362572459EC78186 /* Pods-VGSCollectSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK.release.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK/Pods-VGSCollectSDK.release.xcconfig"; sourceTree = "<group>"; };
+		D531C38A2BB063A6C3A5422F /* Pods_VGSCollectSDK_FrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSCollectSDK_FrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F28612629312735CABB52C2C /* Pods_VGSCollectSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSCollectSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollect.swift; sourceTree = "<group>"; };
@@ -143,6 +153,8 @@
 		FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CardBrandDataSource.swift; sourceTree = "<group>"; };
 		FDA680DE239844FC00372817 /* CardTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldTests.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
+		FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+network.swift"; sourceTree = "<group>"; };
+		FDE247D224674F64008D75B0 /* ZeroDependencyApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroDependencyApiClientTests.swift; sourceTree = "<group>"; };
 		FDE7447C238A5C96003AA46B /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FDE7447E238AF13F003AA46B /* VGSCardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
 		FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextFieldTests.swift; sourceTree = "<group>"; };
@@ -159,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CE7FAE922EB6DEDC533A6F /* Pods_VGSCollectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,19 +180,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD24955F2330DA39009024E6 /* VGSCollectSDK.framework in Frameworks */,
+				C1241095AB7FF64608923867 /* Pods_VGSCollectSDK_FrameworkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		32130050241F97800062FEF0 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		324CDEE023FB12E200653890 /* File Picker Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,12 +228,26 @@
 			path = CardIO;
 			sourceTree = "<group>";
 		};
+		BD20DC0347ED79E7C4472953 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				28A1A4BB14A845ECC2C36C7B /* Pods-VGSCollectSDK.debug.xcconfig */,
+				CF143E3E362572459EC78186 /* Pods-VGSCollectSDK.release.xcconfig */,
+				CAC5695701D221652D4CEDF1 /* Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig */,
+				421DB42C1602977444FB3837 /* Pods-VGSCollectSDK-FrameworkTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C3997B777D76689537B200F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				0F581972075FB28A79E9D585 /* Pods_VGSFramework.framework */,
 				3A48B7ABDDE4E25468A3F77B /* Pods_VGSFrameworkTests.framework */,
 				A740A88CAAE48B864A452F49 /* Pods_VGSFramework_FrameworkTests.framework */,
+				F28612629312735CABB52C2C /* Pods_VGSCollectSDK.framework */,
+				D531C38A2BB063A6C3A5422F /* Pods_VGSCollectSDK_FrameworkTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -248,17 +269,15 @@
 			children = (
 				FD1489FB232D4F6B00FD7781 /* APIClient.swift */,
 				320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */,
+				FDE247D024674AA7008D75B0 /* Collector */,
 				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
 				FD05F9392316CE5A000EAF52 /* Storage.swift */,
 				328B5C6F23C8DA2600A39515 /* String+extension.swift */,
+				32059CCF2417E02E003E9481 /* Utils.swift */,
 				FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */,
-				FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */,
-				FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */,
-				323105622417DF07009C3360 /* VGSCollect+internal.swift */,
 				3219D73C2404279700F4A7E5 /* VGSError.swift */,
 				327C9E132407EF92004C641C /* VGSErrorInfo.swift */,
 				327C9E152407F43A004C641C /* VGSErrorInfoKey.swift */,
-				32059CCF2417E02E003E9481 /* Utils.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -280,7 +299,7 @@
 				FD8A9723233CF6470079FA32 /* Tests */,
 				C3997B777D76689537B200F8 /* Frameworks */,
 				FD12B9B02304619100B670DD /* Products */,
-				32130050241F97800062FEF0 /* Recovered References */,
+				BD20DC0347ED79E7C4472953 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -314,6 +333,7 @@
 		FD2495522330CB49009024E6 /* FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				FDE247D124674F37008D75B0 /* ZeroDependency */,
 				FD790B95243BB3D1006A30CB /* Card Brand Tests */,
 				324CDEE023FB12E200653890 /* File Picker Tests */,
 				FDE890802333A75800FA170D /* Text Fields Tests */,
@@ -382,6 +402,25 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		FDE247D024674AA7008D75B0 /* Collector */ = {
+			isa = PBXGroup;
+			children = (
+				FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */,
+				FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */,
+				FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */,
+				323105622417DF07009C3360 /* VGSCollect+internal.swift */,
+			);
+			path = Collector;
+			sourceTree = "<group>";
+		};
+		FDE247D124674F37008D75B0 /* ZeroDependency */ = {
+			isa = PBXGroup;
+			children = (
+				FDE247D224674F64008D75B0 /* ZeroDependencyApiClientTests.swift */,
+			);
+			path = ZeroDependency;
+			sourceTree = "<group>";
+		};
 		FDE7447B238A5C79003AA46B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +479,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD12B9C32304619200B670DD /* Build configuration list for PBXNativeTarget "VGSCollectSDK" */;
 			buildPhases = (
+				811FDA600F3B184D6221A7D0 /* [CP] Check Pods Manifest.lock */,
 				FD12B9AA2304619100B670DD /* Headers */,
 				FD12B9AB2304619100B670DD /* Sources */,
 				FD12B9AC2304619100B670DD /* Frameworks */,
@@ -458,9 +498,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD2495592330CB49009024E6 /* Build configuration list for PBXNativeTarget "FrameworkTests" */;
 			buildPhases = (
+				00F729394624E5BF12D2C995 /* [CP] Check Pods Manifest.lock */,
 				FD24954D2330CB49009024E6 /* Sources */,
 				FD24954E2330CB49009024E6 /* Frameworks */,
 				FD24954F2330CB49009024E6 /* Resources */,
+				88CB67E99C1D181E674C2EF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -530,6 +572,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00F729394624E5BF12D2C995 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VGSCollectSDK-FrameworkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		811FDA600F3B184D6221A7D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VGSCollectSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88CB67E99C1D181E674C2EF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FD12B9AB2304619100B670DD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -557,6 +663,7 @@
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
+				FDE247CF246749C3008D75B0 /* VGSCollect+network.swift in Sources */,
 				FD362EDF2401659100B4A640 /* VGSTextFieldDelegate.swift in Sources */,
 				321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */,
 				FDE7447F238AF13F003AA46B /* VGSCardTextField.swift in Sources */,
@@ -581,16 +688,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDE890822333AC6D00FA170D /* ApiClientTests.swift in Sources */,
 				FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */,
 				FD1BE48923462F21006D8658 /* CVVTextFieldTests.swift in Sources */,
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
+				FDE247D324674F64008D75B0 /* ZeroDependencyApiClientTests.swift in Sources */,
 				328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */,
 				3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */,
 				32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */,
 				32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */,
+				FDE247CD2467439D008D75B0 /* ApiClientTests.swift in Sources */,
 				FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
@@ -745,6 +853,7 @@
 		};
 		FD12B9C42304619200B670DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28A1A4BB14A845ECC2C36C7B /* Pods-VGSCollectSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -754,10 +863,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Sources/VGSCollectSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -781,6 +887,7 @@
 		};
 		FD12B9C52304619200B670DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF143E3E362572459EC78186 /* Pods-VGSCollectSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -790,10 +897,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Sources/VGSCollectSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -816,6 +920,7 @@
 		};
 		FD24955A2330CB49009024E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAC5695701D221652D4CEDF1 /* Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -836,6 +941,7 @@
 		};
 		FD24955B2330CB49009024E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 421DB42C1602977444FB3837 /* Pods-VGSCollectSDK-FrameworkTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
