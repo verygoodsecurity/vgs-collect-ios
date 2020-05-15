@@ -156,7 +156,6 @@ class ViewController: UIViewController {
         cardHolderName.padding = padding
         cardHolderName.placeholder = "Cardholder Name"
         cardHolderName.tintColor = .lightGray
-        
     }
     
     // Start CardIO scanning
@@ -174,7 +173,7 @@ class ViewController: UIViewController {
       extraData["customKey"] = "Custom Value"
 
       /// New sendRequest func
-      vgsForm.sendRequest(path: "/post", extraData: extraData) { [weak self](response) in
+      vgsForm.sendData(path: "/post", extraData: extraData) { [weak self](response) in
         
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {

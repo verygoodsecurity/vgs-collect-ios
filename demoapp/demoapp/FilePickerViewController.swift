@@ -37,7 +37,7 @@ class FilePickerViewController: UIViewController {
         let extraData = ["document_holder": "Joe Business"]
         
      /// New send file  request func
-      vgsForm.sendFileRequest(path: "/post", extraData: extraData) { [weak self](response) in
+      vgsForm.sendFile(path: "/post", extraData: extraData) { [weak self](response) in
         switch response {
           case .success(_, let data, _):
             if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
