@@ -23,7 +23,7 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `Error` in **error** case block.
     */
-    public func sendRequest(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+    public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
         if let error = validateStoredInputData() {
           block(.failure(error.code, nil, nil, error))
             return
@@ -33,7 +33,7 @@ extension VGSCollect {
     }
     
     /**
-     Send data from VGSTextFields to your organization vault.
+     Send file to your organization vault. Only send one file at a time.
      
      - Parameters:
         - path: Inbound rout path for your organization vault.
@@ -44,7 +44,7 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `Error` in **error** case block.
     */
-    public func sendFileRequest(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+    public func sendFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
         // check if file is exist
         guard let key = storage.files.keys.first, let value = storage.files.values.first else {
             let error = VGSError(type: .inputFileNotFound,
@@ -107,7 +107,7 @@ extension VGSCollect {
      - Note:
         If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    @available(*, deprecated, message:"Will be removed in v1.5.0, use sendRequest(path: method: extraData: completion block:(VGSResponse))")
+    @available(*, deprecated, message:"Will be removed in v1.5.0, use sendData(path: method: extraData: completion block:(VGSResponse))")
     public func submit(path: String, method: Alamofire.HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         
         if let error = validateStoredInputData() {
@@ -131,7 +131,7 @@ extension VGSCollect {
         - Note:
            If there are validation errors, SDK will return `VGSError` in **error** field.
     */
-    @available(*, deprecated, message:"This will be removed in v1.5.0, use to a sendFileRequest(path: method: extraData: completion block:(VGSResponse))")
+    @available(*, deprecated, message:"This will be removed in v1.5.0, use to a sendFile(path: method: extraData: completion block:(VGSResponse))")
     public func submitFile(path: String, method: Alamofire.HTTPMethod = .post, extraData: [String: Any]? = nil, completion block:@escaping (_ data: JsonData?, _ error: Error?) -> Void) {
 
          guard let key = storage.files.keys.first, let value = storage.files.values.first else {

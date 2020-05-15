@@ -31,7 +31,7 @@ class ZeroDependencyApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        collector.sendRequest(path: "post") { result in
+        collector.sendData(path: "post") { result in
             switch result {
             case .success(let code, let data, _):
                 XCTAssertTrue(code == 200)
@@ -55,7 +55,7 @@ class ZeroDependencyApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        form.sendRequest(path: "post") { result in
+        form.sendData(path: "post") { result in
             switch result {
             case .success:
                 break
@@ -78,7 +78,7 @@ class ZeroDependencyApiClientTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        collector.sendRequest(path: "wrongPath") { result in
+        collector.sendData(path: "wrongPath") { result in
             switch result {
             case .success:
                 break
