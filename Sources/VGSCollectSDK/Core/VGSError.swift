@@ -31,7 +31,11 @@ public enum VGSErrorType: Int {
     case sourceNotAvailable = 1150
     
     // MARK: - Other errors
-    /// Response data errors
+  
+    /// When response type is not supported
+    case unexpectedResponseType = 1400
+    
+    /// When reponse data format is not supported
     case unexpectedResponseDataFormat = 1401
 }
 

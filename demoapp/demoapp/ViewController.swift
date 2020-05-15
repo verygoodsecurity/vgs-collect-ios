@@ -23,9 +23,7 @@ class ViewController: UIViewController {
     var cardNumber = VGSCardTextField()
     var expCardDate = VGSTextField()
     var cvcCardNum = VGSTextField()
-    
-    // Native UI Elements
-    var cardHolderName = UITextField()
+    var cardHolderName = VGSTextField()
     
     var consoleMessage: String = "" {
         didSet { consoleLabel.text = consoleMessage }
@@ -118,7 +116,7 @@ class ViewController: UIViewController {
         cardNumber.textColor = textColor
         cardNumber.font = textFont
         cardNumber.padding = padding
-        cardNumber.placeholder = "Card Number"
+        cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
         cardNumber.tintColor = .lightGray
 
@@ -150,16 +148,14 @@ class ViewController: UIViewController {
         cvcCardNum.placeholder = "CVC"
         cvcCardNum.tintColor = .lightGray
 
-        cardHolderName.layer.borderWidth = 1
-        cardHolderName.layer.borderColor = UIColor.lightGray.cgColor
-        cardHolderName.layer.cornerRadius = 4
-        cardHolderName.placeholder = "Name"
+        let holderConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cardHolder_name")
+        holderConfiguration.type = .cardHolderName
+        cardHolderName.configuration = holderConfiguration
+        cardHolderName.textColor = textColor
         cardHolderName.font = textFont
+        cardHolderName.padding = padding
+        cardHolderName.placeholder = "Cardholder Name"
         cardHolderName.tintColor = .lightGray
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: cardHolderName.frame.height))
-        cardHolderName.leftView = paddingView
-        cardHolderName.leftViewMode = .always
-        
     }
     
     // Start CardIO scanning
@@ -169,28 +165,55 @@ class ViewController: UIViewController {
     
     // Upload data from TextFields to VGS
     @IBAction func uploadAction(_ sender: Any) {
-        // hide kayboard
-        hideKeyboard()
+      // hide kayboard
+      hideKeyboard()
 
-        // send extra data
-        var extraData = [String: Any]()
-        extraData["cardHolderName"] = cardHolderName.text
+      // send extra data
+      var extraData = [String: Any]()
+      extraData["customKey"] = "Custom Value"
 
-        // send data
-        vgsForm.submit(path: "post", extraData: extraData, completion: { [weak self] (json, error) in
-           self?.consoleStatusLabel.text = "RESPONSE"
-           if error == nil, let data = json?["json"] {
-               self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
-           } else {
-               if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-                   if errorKey == VGSSDKErrorInputDataIsNotValid {
-                       // Handle VGSError error
-                   }
-               }
-               self?.consoleLabel.text = "Something went wrong!"
-               print("Error: \(String(describing: error))")
-           }
-        })
+      /// New sendRequest func
+      vgsForm.sendData(path: "/post", extraData: extraData) { [weak self](response) in
+        
+        self?.consoleStatusLabel.text = "RESPONSE"
+        switch response {
+          case .success(_, let data, _):
+            if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+              self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              }
+              return
+          case .failure(let code, _, _, let error):
+            switch code {
+            case 400..<499:
+              // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+              self?.consoleLabel.text = "Wrong Request Error: \(code)"
+            case VGSErrorType.inputDataIsNotValid.rawValue:
+              if let error = error as? VGSError {
+                self?.consoleLabel.text = "Input data is not valid. Details:\n \(error)"
+              }
+          default:
+            self?.consoleLabel.text = "Something went wrong. Code: \(code)"
+          }
+          print("Submit request error: \(code), \(String(describing: error))")
+          return
+        }
+      }
+      
+      /// Deprecated
+//        vgsForm.submit(path: "/post", extraData: extraData, completion: { [weak self] (json, error) in
+//           self?.consoleStatusLabel.text = "RESPONSE"
+//            if error == nil, let data = json?["json"] as? [String: Any] {
+//                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
+//           } else {
+//               if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
+//                   if errorKey == VGSSDKErrorInputDataIsNotValid {
+//                       // Handle VGSError error
+//                   }
+//               }
+//               self?.consoleLabel.text = "Something went wrong!"
+//               print("Error: \(String(describing: error))")
+//           }
+//        })
     }
 }
 
