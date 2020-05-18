@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSError Class Reference</title>
+    <title>HTTPMethod Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/VGSError" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/HTTPMethod" class="dashAnchor"></a>
 
-    <a title="VGSError Class Reference"></a>
+    <a title="HTTPMethod Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSError Class Reference
+      HTTPMethod Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -193,14 +193,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSError</h1>
+            <h1>HTTPMethod</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSError</span> <span class="p">:</span> <span class="kt">NSError</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">HTTPMethod</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
 
                 </div>
               </div>
-            <p>An error produced by <code>VGSCollectSDK</code>. Works similar to default <code>NSError</code> in iOS.</p>
+            <p>HTTP request methods</p>
 
           </div>
         </section>
@@ -212,9 +212,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK8VGSErrorC4typeAA0C4TypeOSgvp"></a>
-                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK8VGSErrorC4typeAA0C4TypeOSgvp">type</a>
+                    <a name="/s:13VGSCollectSDK10HTTPMethodO3getyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/get" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO3getyA2CmF">get</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -222,19 +222,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code><a href="../Enums/VGSErrorType.html">VGSErrorType</a></code>-  required for each <code>VGSError</code> instance</p>
+                        <p>GET method</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSErrorType.html">VGSErrorType</a></span><span class="o">!</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="k">get</span> <span class="o">=</span> <span class="s">"GET"</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L46">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -242,9 +242,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@VGSCollectSDK@objc(cs)VGSError(py)code"></a>
-                    <a name="//apple_ref/swift/Property/code" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@VGSCollectSDK@objc(cs)VGSError(py)code">code</a>
+                    <a name="/s:13VGSCollectSDK10HTTPMethodO4postyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/post" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO4postyA2CmF">post</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -252,19 +252,49 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Code assiciated with <code><a href="../Enums/VGSErrorType.html">VGSErrorType</a></code></p>
+                        <p>POST method</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">code</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">post</span> <span class="o">=</span> <span class="s">"POST"</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L49-L51">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK10HTTPMethodO3putyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/put" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO3putyA2CmF">put</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>PUT method</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">put</span> <span class="o">=</span> <span class="s">"PUT"</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L28">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

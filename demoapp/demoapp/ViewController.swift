@@ -191,11 +191,11 @@ class ViewController: UIViewController {
               if let error = error as? VGSError {
                 self?.consoleLabel.text = "Input data is not valid. Details:\n \(error)"
               }
-          default:
-            self?.consoleLabel.text = "Something went wrong. Code: \(code)"
-          }
-          print("Submit request error: \(code), \(String(describing: error))")
-          return
+            default:
+              self?.consoleLabel.text = "Something went wrong. Code: \(code)"
+            }
+            print("Submit request error: \(code), \(String(describing: error))")
+            return
         }
       }
       

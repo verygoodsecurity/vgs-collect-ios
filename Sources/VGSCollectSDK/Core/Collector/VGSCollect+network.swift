@@ -21,7 +21,7 @@ extension VGSCollect {
         - completion: response completion block, returns `VGSResponse`.
      
      - Note:
-        If there are validation errors, SDK will return `Error` in **error** case block.
+        Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
     public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
         if let error = validateStoredInputData() {
@@ -42,7 +42,7 @@ extension VGSCollect {
         - completion: response completion block, returns `VGSResponse`.
      
      - Note:
-        If there are validation errors, SDK will return `Error` in **error** case block.
+        Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
     public func sendFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
         // check if file is exist

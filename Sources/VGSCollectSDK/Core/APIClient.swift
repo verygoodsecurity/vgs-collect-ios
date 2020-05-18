@@ -30,9 +30,25 @@ public enum HTTPMethod: String {
 
 /// Response enum cases for SDK requests
 @frozen public enum VGSResponse {
-    /// Success response case
+    /**
+     Success response case
+     
+     - Parameters:
+        - code: response status code.
+        - data: response **data** object.
+        - response: URLResponse object represents a URL load response.
+    */
     case success(_ code:Int, _ data:Data?, _ response: URLResponse?)
-    /// Failure response case
+    
+    /**
+     Failed response case
+     
+     - Parameters:
+        - code: response status code.
+        - data: response **Data** object.
+        - response: `URLResponse` object represents a URL load response.
+        - error: `Error` object.
+    */
     case failure(_ code:Int, _ data:Data?, _ response: URLResponse?, _ error:Error?)
 }
 

@@ -42,7 +42,9 @@ class FilePickerViewController: UIViewController {
           case .success(_, let data, _):
             if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
               self?.stateLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              print(String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
               }
+              
               return
           case .failure(let code, _, _, let error):
             switch code {
