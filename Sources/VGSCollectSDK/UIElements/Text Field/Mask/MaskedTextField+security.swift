@@ -1,6 +1,5 @@
 //
 //  MaskedTextField+security.swift
-//  Alamofire
 //
 //  Created by Vitalii Obertynskyi on 06.11.2019.
 //

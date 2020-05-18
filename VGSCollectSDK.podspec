@@ -17,12 +17,10 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "10.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.source_files  = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}"
-  spec.resource_bundles = {
+  spec.resource_bundles 
     'CardIcon' => ['Resources/*']
   }
-  spec.frameworks = "Alamofire"
   spec.requires_arc = true
-  spec.dependency "Alamofire", "4.9.1"
   
   spec.default_subspec = 'Core'
   spec.subspec 'Core' do |core|
