@@ -45,12 +45,14 @@ custom_categories:
   - VGSFilePickerControllerDelegate
   - VGSFileSource
   - VGSFileInfo
-- name: Observe State and Submit Data
+- name: Observe State and Send Data
   children:
   - VGSCollect
   - Environment
   - State
   - CardState
+  - VGSResponse
+  - HTTPMethod
 - name: Errors
   children:
   - VGSError

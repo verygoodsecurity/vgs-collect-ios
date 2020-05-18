@@ -110,7 +110,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Observe%20State%20and%20Submit%20Data.html">Observe State and Submit Data</a>
+            <a class="nav-group-name-link" href="Observe%20State%20and%20Send%20Data.html">Observe State and Send Data</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/VGSCollect.html">VGSCollect</a>
@@ -123,6 +123,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/CardState.html">CardState</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSResponse.html">VGSResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/HTTPMethod.html">HTTPMethod</a>
               </li>
             </ul>
           </li>
@@ -187,7 +193,7 @@
         <section class="section">
           <div class="section-content top-matter">
             
-            <p><a href="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/dev"><img src="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52" alt="CircleCI"></a>
+            <p><a href="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master"><img src="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52" alt="CircleCI"></a>
 <a href=""><img src="https://img.shields.io/badge/Unit_Test-pass-green" alt="UT"></a>
 <a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
 <a href="https://github.com/verygoodsecurity/vgs-collect-ios"><img src="https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat" alt="Platform"></a>
@@ -216,6 +222,7 @@
 <li><a href="#upload-files">Upload Files</a></li>
 <li><a href="#demo-application">Demo Application</a></li>
 <li><a href="#documentation">Documentation</a></li>
+<li><a href="#releases">Releases</a></li>
 </ul></li>
 <li><a href="#dependencies">Dependencies</a></li>
 <li><a href="#license">License</a>
@@ -230,6 +237,8 @@
 
 <p>You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your <code>&lt;vaultId&gt;</code> to start collecting data. Follow integration guide below.</p>
 <h1 id='integration' class='heading'>Integration</h1>
+
+<p>VGSCollectSDK is available through <a href="https://cocoapods.org">CocoaPods</a> and <a href="https://github.com/Carthage/Carthage">Carthage</a>.</p>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p><a href="https://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
@@ -246,7 +255,7 @@ Add the following line  to your <code>Cartfile</code>:</p>
 <pre class="highlight ruby"><code><span class="n">carthage</span> <span class="n">update</span> <span class="o">--</span><span class="n">platform</span> <span class="n">iOS</span>
 </code></pre>
 
-<p>Note that <code>VGCollectSDK</code> use <code>Alamofire</code> and <code>CardIO</code> as dependencies. You should also link them to your project. Follow the <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Carthage instructions</a></p>
+<p>Note that <code>VGSCollectSDK</code> use <code>Alamofire</code> and <code>CardIO</code> as dependencies. You should also link them to your project. Follow the <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Carthage instructions</a></p>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='import-sdk-into-your-file' class='heading'>Import SDK into your file</h3>
 <pre class="highlight swift"><code>
@@ -343,12 +352,12 @@ Add the following line  to your <code>Cartfile</code>:</p>
         
     // &hellip;
 
-    // MARK: - Submit data    
+    // MARK: - Send data    
     func sendData() {
     
         /// handle fields validation before send data
         guard cardNumberField.state.isValid else {
-        return
+        print(&ldquo;cardNumberField input is not valid&rdquo;)
         }
     
         /// extra information will be sent together with all sensitive card information
@@ -356,20 +365,17 @@ Add the following line  to your <code>Cartfile</code>:</p>
         extraData[&ldquo;customKey&rdquo;] = &ldquo;Custom Value&rdquo;
 
         /// send data to your Vault
-        vgsCollect.submit(path: &ldquo;/post&rdquo;, extraData: extraData, completion: { (response, error) in
-            if error == nil, let response = response {
-                // parse response data
-                print(response)
-            } else {
-                if let error = error as NSError?, let errorKey = error.userInfo[&ldquo;key&rdquo;] as? String {
-                    if errorKey == VGSSDKErrorInputDataIsNotValid {
-                        // handle VGSError error
-                    }
-                } else {
-                   // handle other errors 
-                }
-            }
-        })
+        vgsCollect.sendData(path: &ldquo;/post&rdquo;, extraData: extraData) { [weak self](response) in
+          switch response {
+            case .success(let code, let data, let response):
+              // parse data
+            case .failure(let code, let data, let response, let error):
+              // handle failed request
+              switch code {
+                // handle error codes
+              }
+          }
+        }
     }
   </td>
   </tr>
@@ -420,10 +426,10 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
                       completion: nil)
         }
 
-        // MARK: - Submit data  
+        // MARK: - Send data  
         func sendData() {
             /// Send data from VGSTextFields to your Vault
-            vgsCollect.submit{&hellip;}
+            vgsCollect.sendData{&hellip;}
         }
     }
     &hellip;
@@ -561,24 +567,26 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
         
     // &hellip;
 
-    // MARK: - Submit File  
+    // MARK: - Send File    
     /// Send file and extra data
     func sendFile() {
     
-        /// add extra data to submit request    
+        /// add extra data to send request  
         let extraData = [&quot;document_holder&rdquo;: &ldquo;Joe B&rdquo;]
-
-        /// send file data to VGS
-        vgsCollect.submitFile(path: &ldquo;/post&rdquo;, method: .post,
-                          extraData: extraData) { [weak self](json, error) in
-
-            if error == nil, let json = json?[&ldquo;json&rdquo;] {
+    
+      /// send file to your Vault
+      vgsCollect.sendFile(path: &ldquo;/post&rdquo;, extraData: extraData) { [weak self](response) in
+        switch response {
+          case .success(let code, let data, let response):
             /// remove file from VGSCollect storage
             self?.vgsCollect.cleanFiles()
-            } else {
-            /// handle the errors
+          case .failure(let code, let data, let response, let error):
+            // handle failed request
+            switch code {
+              // handle error codes
             }
         }
+      }
     }
   </td>
   </tr>
@@ -594,6 +602,9 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
 <li>SDK Documentation: <a href="https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk">https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk</a></li>
 <li>API Documentation: <a href="https://verygoodsecurity.github.io/vgs-collect-ios/">https://verygoodsecurity.github.io/vgs-collect-ios/</a></li>
 </ul>
+<h3 id='releases' class='heading'>Releases</h3>
+
+<p>To follow <code>VGSCollectSDK</code> updates and changes check the <a href="https://github.com/verygoodsecurity/vgs-collect-ios/releases">releases</a> page.</p>
 <h2 id='dependencies' class='heading'>Dependencies</h2>
 
 <ul>
@@ -616,7 +627,7 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-05-05)</p>
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-05-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

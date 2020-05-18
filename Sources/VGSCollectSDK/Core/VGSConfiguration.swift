@@ -51,19 +51,19 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     /// Type of field congfiguration. Default is `FieldType.none`.
     public var type: FieldType = .none
     
-    /// Name that will be associated with `VGSTextField` and used as a JSON key on submitting textfield data to your organozation vault.
+    /// Name that will be associated with `VGSTextField` and used as a JSON key on send request with textfield data to your organozation vault.
     public let fieldName: String
     
-    /// Set if `VGSTextField` is required to be non-empty and non-nil on submit. Default is `false`.
+    /// Set if `VGSTextField` is required to be non-empty and non-nil on send request. Default is `false`.
     public var isRequired: Bool = false
     
-    /// Set if `VGSTextField` is required to be valid only on submit. Default is `false`.
+    /// Set if `VGSTextField` is required to be valid only on send request. Default is `false`.
     public var isRequiredValidOnly: Bool = false
     
     /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
     public var formatPattern: String?
     
-    /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on submit request.
+    /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on send request.
     public var divider: String?
 
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.

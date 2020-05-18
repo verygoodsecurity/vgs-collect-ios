@@ -9,7 +9,7 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSError.swift",
-      "line": 49,
+      "line": 53,
       "symbol": "VGSError.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

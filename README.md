@@ -39,6 +39,8 @@ You should have your organization registered at <a href="https://dashboard.veryg
 
 # Integration
 
+VGSCollectSDK is available through [CocoaPods](https://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
+
 ### CocoaPods
 
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
@@ -163,12 +165,12 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
         
     // ...
 
-    // MARK: - Submit data    
+    // MARK: - Send data    
     func sendData() {
     
         /// handle fields validation before send data
         guard cardNumberField.state.isValid else {
-		return
+		print("cardNumberField input is not valid")
         }
 	
         /// extra information will be sent together with all sensitive card information
@@ -176,20 +178,17 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
         extraData["customKey"] = "Custom Value"
 
         /// send data to your Vault
-        vgsCollect.submit(path: "/post", extraData: extraData, completion: { (response, error) in
-            if error == nil, let response = response {
-                // parse response data
-                print(response)
-            } else {
-                if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-                    if errorKey == VGSSDKErrorInputDataIsNotValid {
-                        // handle VGSError error
-                    }
-                } else {
-                   // handle other errors 
-                }
-            }
-        })
+        vgsCollect.sendData(path: "/post", extraData: extraData) { [weak self](response) in
+          switch response {
+            case .success(let code, let data, let response):
+              // parse data
+            case .failure(let code, let data, let response, let error):
+              // handle failed request
+              switch code {
+                // handle error codes
+              }
+          }
+        }
     }
   </td>
   </tr>
@@ -243,10 +242,10 @@ pod 'VGSCollectSDK/CardIO'
 				      completion: nil)
         }
 
-        // MARK: - Submit data  
+        // MARK: - Send data  
         func sendData() {
             /// Send data from VGSTextFields to your Vault
-            vgsCollect.submit{...}
+            vgsCollect.sendData{...}
         }
     }
     ...
@@ -386,24 +385,26 @@ You can add a file uploading functionality to your application with **VGSFilePic
 	    
 	// ...
 
-	// MARK: - Submit File	
+	// MARK: - Send File	
 	/// Send file and extra data
 	func sendFile() {
 	
-		/// add extra data to submit request	
+		/// add extra data to send request	
 		let extraData = ["document_holder": "Joe B"]
-
-		/// send file data to VGS
-		vgsCollect.submitFile(path: "/post", method: .post,
-						  extraData: extraData) { [weak self](json, error) in
-
-		    if error == nil, let json = json?["json"] {
-			/// remove file from VGSCollect storage
-			self?.vgsCollect.cleanFiles()
-		    } else {
-			/// handle the errors
-		    }
-		}
+    
+      /// send file to your Vault
+      vgsCollect.sendFile(path: "/post", extraData: extraData) { [weak self](response) in
+        switch response {
+          case .success(let code, let data, let response):
+            /// remove file from VGSCollect storage
+            self?.vgsCollect.cleanFiles()
+          case .failure(let code, let data, let response, let error):
+            // handle failed request
+            switch code {
+              // handle error codes
+            }
+        }
+      }
 	}
   </td>
   </tr>

@@ -18,6 +18,40 @@ public typealias HTTPHeaders = [String: String]
 /// Key-value data type, for internal use.
 internal typealias BodyData = [String: Any]
 
+/// HTTP request methods
+public enum HTTPMethod: String {
+    /// GET method
+    case get     = "GET"
+    /// POST method
+    case post    = "POST"
+    /// PUT method
+    case put     = "PUT"
+}
+
+/// Response enum cases for SDK requests
+@frozen public enum VGSResponse {
+    /**
+     Success response case
+     
+     - Parameters:
+        - code: response status code.
+        - data: response **data** object.
+        - response: URLResponse object represents a URL load response.
+    */
+    case success(_ code:Int, _ data:Data?, _ response: URLResponse?)
+    
+    /**
+     Failed response case
+     
+     - Parameters:
+        - code: response status code.
+        - data: response **Data** object.
+        - response: `URLResponse` object represents a URL load response.
+        - error: `Error` object.
+    */
+    case failure(_ code:Int, _ data:Data?, _ response: URLResponse?, _ error:Error?)
+}
+
 class APIClient {
     let baseURL: URL!
     
@@ -34,8 +68,8 @@ class APIClient {
         let vgsCollectVersion: String = {
             guard let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
                 let build = vgsInfo["CFBundleShortVersionString"]
-            else {
-                return "Unknown"
+                else {
+                    return "Unknown"
             }
             return "\(build)"
         }()
@@ -44,7 +78,8 @@ class APIClient {
         ]
     }()
     
-    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
+    @available(*, deprecated, message: "use zero dependency method -sendRequest:... VGSResponse")
+    func sendRequest(path: String, method: Alamofire.HTTPMethod = .post, value: BodyData, completion block: @escaping (_ data: JsonData?, _ error: Error?) -> Void) {
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"
@@ -67,7 +102,7 @@ class APIClient {
                           headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-
+                
                 switch response.result {
                 case .success(let data):
                     guard let dict = data as? JsonData else {
@@ -82,5 +117,43 @@ class APIClient {
                     return
                 }
         }
+    }
+
+    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+        // Add Headers
+        var headers = APIClient.defaultHttpHeaders
+        headers["Content-Type"] = "application/json"
+        // Add custom headers if need
+        if let customerHeaders = customHeader, customerHeaders.count > 0 {
+            customerHeaders.keys.forEach({ (key) in
+                headers[key] = customerHeaders[key]
+            })
+        }
+        // Setup URLRequest
+        let jsonData = try? JSONSerialization.data(withJSONObject: value)
+        let url = baseURL.appendingPathComponent(path)
+        var request = URLRequest(url: url)
+        request.httpBody = jsonData
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = headers
+        // Send data
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let error = error as NSError? {
+                    block?(.failure(error.code, data, response, error))
+                    return
+                }
+              let statusCode = (response as? HTTPURLResponse)?.statusCode ?? VGSErrorType.unexpectedResponseType.rawValue
+                
+                switch statusCode {
+                case 200..<300:
+                    block?(.success(statusCode, data, response))
+                    return
+                default:
+                    block?(.failure(statusCode, data, response, error))
+                    return
+                }
+            }
+        }.resume()
     }
 }
