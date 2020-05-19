@@ -1,40 +1,121 @@
-version: 2
+version: 2.1
+aliases:
+  - &restore_gem_cache
+    name: Restore gem cache
+    keys:
+    - gem-cache-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+    - gem-cache-v1-{{ .Branch }}
+    # Fall back to using the latest cache if no exact match is found.
+    - gem-cache-v1
+
+  - &save_gem_cache
+    name: Save gem cache
+    key: gem-cache-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+    paths:
+      - vendor/bundle
+
+  - &bundle_install
+    name: Install Gems via Bundler
+    command: bundle config set path 'vendor'; bundle install --path vendor/bundle
+
+  - &restore_pods_cache
+    name: Restore pods cache
+    key: 1-pods-{{ checksum "Podfile.lock" }}
+
+  - &save_pods_cache
+    name: Save pods cache
+    key: 1-pods-{{ checksum "Podfile.lock" }}
+    paths: ["./Pods"]
+
+  - &pod_install
+    name: Install Pods
+    command: |
+      if [ ! -d "Pods" ]
+      then
+         curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+        bundle exec pod install
+      fi
+
+  - &restore_git_cache
+    name: Restore GIT cache
+    keys:
+      - source-v1-{{ .Branch }}-{{ .Revision }}
+      - source-v1-{{ .Branch }}-
+      # Fall back to using the latest cache if no exact match is found.
+      - source-v1-
+
+  - &save_git_cache
+    name: Save GIT cache
+    key: source-v1-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - .git
+
+  - &build_for_testing
+      name: Build
+      command: xcodebuild -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4.1" build-for-testing
+
+  - &unittest
+      name: Unit Test
+      command: xcodebuild -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4.1" test-without-building
+
+  - &demo_install_carthage
+      name: Install carthage for the demo
+      command: cd /demoapp; carthage update --platform iOS
+
 jobs:
-  build-and-test:
+  build_and_test:
     macos:
       xcode: "11.4"
+    working_directory: ~/project
     steps:
+      - restore_cache: *restore_git_cache
       - checkout
-      - run:
-         name: Install cocoapods
-         command: sudo gem install cocoapods -v 1.8.4
-      - run:
-         name: Install pods
-         command: pod install
-      - run:
-          name: Run Tests
-          command: fastlane scan
-          environment:
-            SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: VGSCollectSDK
-jobs:
-  carthage-test:
+      - save_cache: *save_git_cache
+
+      - restore_cache: *restore_gem_cache
+      - run: *bundle_install
+      - save_cache: *save_gem_cache
+
+      - run: *build_for_testing
+      - run: *unittest
+      
+      - store_artifacts:
+          path: output
+          destination: output
+  
+  carthage_update:
     macos:
       xcode: "11.4"
+    working_directory: ~/project_demo_carthage
     steps:
       - checkout
-      -run:
-        name: Carthage update iOS
-        command: cd demoapp/; carthage update --platform iOS
-      -run:
-        name: Build
-        command: cd demoapp/; xcodebuild -project demoapp.xcodeproj -target demoapp -configuration Release
+      - run: *demo_install_carthage
+      - run: ls -la        
+    
+  pod_update:
+    macos:
+      xcode: "11.4"
+    working_directory: ~/project_demo_cocoapods
+    steps:
+      - checkout
+      - run: 
+          name: Dir list
+          command: ls -la
+      - run:
+          name: Pod install
+          command: cd demoapp; pod install
+
 
 workflows:
-  version: 2
-  build-and-test:
+  version: 2.1
+  build_and_test:
     jobs:
-      - build-and-test
-  carthage-test:
-    job:
-      - carthage-test
+      - build_and_test
+
+  # carthage_update:
+  #   jobs:
+  #     - carthage_update
+  
+  #✅pod_update:
+  #   jobs:
+  #     - pod_update
