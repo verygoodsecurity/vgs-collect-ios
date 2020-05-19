@@ -16,10 +16,6 @@ class ApiClientTests: XCTestCase {
         collector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
     }
 
-    override func tearDown() {
-        collector = nil
-    }
-
     func testSendCardToEchoServer() {
         /// this test require setting proper inbound routs
       

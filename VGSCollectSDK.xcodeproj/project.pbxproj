@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B9981A0AFE6A50AB9B831E7 /* Pods_VGSCollectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613E56923A730B08A974EBEA /* Pods_VGSCollectSDK.framework */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD12417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
@@ -36,6 +37,7 @@
 		32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */; };
 		32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */; };
 		32FD980E23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */; };
+		5C3F04F1401503695F6D39EF /* Pods_VGSCollectSDK_FrameworkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B094432F3D23EC7C313A4C3 /* Pods_VGSCollectSDK_FrameworkTests.framework */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSCollectSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -85,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A1002C3B93F0B5E972E2BD9 /* Pods-VGSCollectSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK.release.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK/Pods-VGSCollectSDK.release.xcconfig"; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+extension.swift"; sourceTree = "<group>"; };
@@ -110,6 +113,11 @@
 		32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanController.swift; sourceTree = "<group>"; };
 		32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOHandler.swift; sourceTree = "<group>"; };
 		32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanControllerDelegate.swift; sourceTree = "<group>"; };
+		4EBCD1C68CE08328D298BF90 /* Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		613E56923A730B08A974EBEA /* Pods_VGSCollectSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSCollectSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B094432F3D23EC7C313A4C3 /* Pods_VGSCollectSDK_FrameworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VGSCollectSDK_FrameworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B85F0FEF77A5D6D540A673EF /* Pods-VGSCollectSDK-FrameworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK-FrameworkTests.release.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		E0C8046434A4558C3B7BB5C1 /* Pods-VGSCollectSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VGSCollectSDK.debug.xcconfig"; path = "Target Support Files/Pods-VGSCollectSDK/Pods-VGSCollectSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollect.swift; sourceTree = "<group>"; };
@@ -157,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9981A0AFE6A50AB9B831E7 /* Pods_VGSCollectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD24955F2330DA39009024E6 /* VGSCollectSDK.framework in Frameworks */,
+				5C3F04F1401503695F6D39EF /* Pods_VGSCollectSDK_FrameworkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +446,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD12B9C32304619200B670DD /* Build configuration list for PBXNativeTarget "VGSCollectSDK" */;
 			buildPhases = (
+				1070334A4BD8447C03425646 /* [CP] Check Pods Manifest.lock */,
 				FD12B9AA2304619100B670DD /* Headers */,
 				FD12B9AB2304619100B670DD /* Sources */,
 				FD12B9AC2304619100B670DD /* Frameworks */,
@@ -454,9 +465,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD2495592330CB49009024E6 /* Build configuration list for PBXNativeTarget "FrameworkTests" */;
 			buildPhases = (
+				2FCB4D451F87B69CB86AF620 /* [CP] Check Pods Manifest.lock */,
 				FD24954D2330CB49009024E6 /* Sources */,
 				FD24954E2330CB49009024E6 /* Frameworks */,
 				FD24954F2330CB49009024E6 /* Resources */,
+				D3928320E2CA70CC6094B8DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -525,6 +538,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1070334A4BD8447C03425646 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VGSCollectSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FCB4D451F87B69CB86AF620 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VGSCollectSDK-FrameworkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3928320E2CA70CC6094B8DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VGSCollectSDK-FrameworkTests/Pods-VGSCollectSDK-FrameworkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FD12B9AB2304619100B670DD /* Sources */ = {
@@ -741,6 +818,7 @@
 		};
 		FD12B9C42304619200B670DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0C8046434A4558C3B7BB5C1 /* Pods-VGSCollectSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -777,6 +855,7 @@
 		};
 		FD12B9C52304619200B670DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A1002C3B93F0B5E972E2BD9 /* Pods-VGSCollectSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -812,6 +891,7 @@
 		};
 		FD24955A2330CB49009024E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EBCD1C68CE08328D298BF90 /* Pods-VGSCollectSDK-FrameworkTests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -832,6 +912,7 @@
 		};
 		FD24955B2330CB49009024E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B85F0FEF77A5D6D540A673EF /* Pods-VGSCollectSDK-FrameworkTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
