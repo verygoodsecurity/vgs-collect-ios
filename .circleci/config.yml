@@ -17,9 +17,24 @@ jobs:
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: VGSCollectSDK
+jobs:
+  carthage-test:
+    macos:
+      xcode: "11.4"
+    steps:
+      - checkout
+      -run:
+        name: Carthage update iOS
+        command: cd demoapp/; carthage update --platform iOS
+      -run:
+        name: Build
+        command: cd demoapp/; xcodebuild -project demoapp.xcodeproj -target demoapp -configuration Release
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - build-and-test
+  carthage-test:
+    job:
+      - carthage-test
