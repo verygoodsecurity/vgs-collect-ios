@@ -16,15 +16,16 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "10.0"
   spec.ios.deployment_target = "10.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
-  spec.source_files  = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}"
-  spec.resource_bundles 
-    'CardIcon' => ['Resources/*']
-  }
   spec.requires_arc = true
   
   spec.default_subspec = 'Core'
+  
   spec.subspec 'Core' do |core|
   #set as default podspec to prevent from downloading additional modules
+    core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}"
+    core.resource_bundles = {
+      'CardIcon' => ['Resources/*']
+    }
   end
   
   spec.subspec 'CardIO' do |cardio|
