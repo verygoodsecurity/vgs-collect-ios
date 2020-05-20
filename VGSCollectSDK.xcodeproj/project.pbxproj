@@ -212,13 +212,6 @@
 			path = CardIO;
 			sourceTree = "<group>";
 		};
-		33F91F2D2DF81289BA0FA0E7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		FD05F9372316CE5A000EAF52 /* VGSCollectSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,8 +257,7 @@
 				FDE7447B238A5C79003AA46B /* Resources */,
 				FD8A9722233CF63D0079FA32 /* Sources */,
 				FD8A9723233CF6470079FA32 /* Tests */,
-				FD12B9B02304619100B670DD /* Products */,
-				33F91F2D2DF81289BA0FA0E7 /* Pods */,
+				FD12B9B02304619100B670DD /* Products */
 			);
 			sourceTree = "<group>";
 		};
