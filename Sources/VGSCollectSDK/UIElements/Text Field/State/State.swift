@@ -1,6 +1,5 @@
 //
 //  State.swift
-//  Alamofire
 //
 //  Created by Vitalii Obertynskyi on 9/15/19.
 //

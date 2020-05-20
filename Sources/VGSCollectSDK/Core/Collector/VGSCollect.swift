@@ -10,7 +10,6 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 #endif
-//import Alamofire
 
 /// An object you use for observing `VGSTextField` `State` and send data to your organization vault.
 public class VGSCollect {
