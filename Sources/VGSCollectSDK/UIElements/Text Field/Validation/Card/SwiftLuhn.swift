@@ -64,7 +64,7 @@ public class SwiftLuhn {
         }
         
         /// check if card number length is valid for specific brand
-        guard cardType.possibleLengths.contains(cardNumber.count) else {
+        guard cardType.cardLengths.contains(cardNumber.count) else {
             return false
         }
         
@@ -141,30 +141,8 @@ extension SwiftLuhn.CardType {
         }
     }
     
-    internal var typeDetectRegex: String {
-        switch self {
-        case .amex:
-            return "^3[4,7]\\d*$"
-        case .dinersClub:
-            return "^(36|38|30[0-5])\\d*$"
-        case .discover:
-            return "^(6011|65|64[4-9]|622)\\d*$"
-        case .jcb:
-            return "^35\\d*$"
-        case .mastercard:
-            return "^(5[1-5][0-9]{4,}|677189)|^(222[1-9]|2[3-6]{2,}|27[0-1]|2720)([0-9]{2,})+$"
-        case .visaElectron:
-            return "^4(026|17500|405|508|844|91[3,7])\\d*$"
-        case .visa:
-            return "^4[0,1,2,4,5,6,9]\\d*$"
-        case .maestro:
-            return "(5018|5020|5038|6304|6390[0-9]|67[0-9])\\d*$"
-        case .unknown:
-            return ""
-        }
-    }
-    
-    internal var possibleLengths: [Int] {
+    /// Returns array with valid card number lengths for specific `SwiftLuhn.CardType`
+    public var cardLengths: [Int] {
         switch self {
         case .amex:
             return [15]
@@ -186,4 +164,31 @@ extension SwiftLuhn.CardType {
             return []
         }
     }
+}
+
+internal extension SwiftLuhn.CardType {
+  
+  /// Returns regex for specific card brand detection
+  var typeDetectRegex: String {
+      switch self {
+      case .amex:
+          return "^3[4,7]\\d*$"
+      case .dinersClub:
+          return "^(36|38|30[0-5])\\d*$"
+      case .discover:
+          return "^(6011|65|64[4-9]|622)\\d*$"
+      case .jcb:
+          return "^35\\d*$"
+      case .mastercard:
+          return "^(5[1-5][0-9]{4,}|677189)|^(222[1-9]|2[3-6]{2,}|27[0-1]|2720)([0-9]{2,})+$"
+      case .visaElectron:
+          return "^4(026|17500|405|508|844|91[3,7])\\d*$"
+      case .visa:
+          return "^4[0,1,2,4,5,6,9]\\d*$"
+      case .maestro:
+          return "(5018|5020|5038|6304|6390[0-9]|67[0-9])\\d*$"
+      case .unknown:
+          return ""
+      }
+  }
 }

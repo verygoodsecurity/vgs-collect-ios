@@ -73,11 +73,15 @@ class VGSCollectValidationTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
-        collector.submit(path: "post") { (data, error) in
-           XCTAssertNotNil(data)
-           XCTAssertNil(error)
-           
-           expectation.fulfill()
+        collector.sendData(path: "post") { (response) in
+          switch response {
+            case .success(let code, let data, _):
+              XCTAssertTrue(code == 200)
+              XCTAssertNotNil(data)
+            case .failure(let code, _, _, let error):
+              XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+          }
+          expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 60.0)
@@ -118,11 +122,15 @@ class VGSCollectValidationTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
-        collector.submit(path: "post") { (data, error) in
-           XCTAssertNotNil(data)
-           XCTAssertNil(error)
-           
-           expectation.fulfill()
+        collector.sendData(path: "post") { (response) in
+          switch response {
+            case .success(let code, let data, _):
+              XCTAssertTrue(code == 200)
+              XCTAssertNotNil(data)
+            case .failure(let code, _, _, let error):
+              XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+          }
+          expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 60.0)
@@ -139,11 +147,16 @@ class VGSCollectValidationTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
-        collector.submit(path: "post") { (data, error) in
-           XCTAssertNil(data)
-           XCTAssertNotNil(error)
-           
-           expectation.fulfill()
+        collector.sendData(path: "post") { (response) in
+          switch response {
+            case .success(let code, _, _):
+              XCTFail("Error: code=\(code): Send not valid data - returns success response")
+            case .failure(let code, _, _, let error):
+              let vgsError = error as? VGSError
+              XCTAssertNotNil(vgsError)
+              XCTAssertTrue(code == VGSErrorType.inputDataIsNotValid.rawValue)
+          }
+          expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 60.0)
@@ -184,11 +197,16 @@ class VGSCollectValidationTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
-        collector.submit(path: "post") { (data, error) in
-           XCTAssertNil(data)
-           XCTAssertNotNil(error)
-           
-           expectation.fulfill()
+        collector.sendData(path: "post") { (response) in
+          switch response {
+            case .success(let code, _, _):
+              XCTFail("Error: code=\(code): Send not valid data - returns success response")
+            case .failure(let code, _, _, let error):
+              let vgsError = error as? VGSError
+              XCTAssertNotNil(vgsError)
+              XCTAssertTrue(code == VGSErrorType.inputDataIsNotValid.rawValue)
+          }
+          expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 60.0)
@@ -229,11 +247,15 @@ class VGSCollectValidationTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Sending data...")
                
-        collector.submit(path: "post") { (data, error) in
-           XCTAssertNotNil(data)
-           XCTAssertNil(error)
-           
-           expectation.fulfill()
+        collector.sendData(path: "post") { (response) in
+          switch response {
+            case .success(let code, let data, _):
+              XCTAssertTrue(code == 200)
+              XCTAssertNotNil(data)
+            case .failure(let code, _, _, let error):
+              XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+          }
+          expectation.fulfill()
         }
 
         wait(for: [expectation], timeout: 60.0)

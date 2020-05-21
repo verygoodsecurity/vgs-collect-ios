@@ -35,10 +35,16 @@ class FilePickerTests: XCTestCase {
         vgsForm.storage.files["image"] = testImage
         
         let expectation = XCTestExpectation(description: "Upload file...")
-        vgsForm.submitFile(path: "/post", method: .post) { result, error in
-            XCTAssertNotNil(result)
-            XCTAssertNil(error)
-            expectation.fulfill()
+      
+        vgsForm.sendData(path: "post") { (response) in
+          switch response {
+            case .success(let code, let data, _):
+              XCTAssertTrue(code == 200)
+              XCTAssertNotNil(data)
+            case .failure(let code, _, _, let error):
+              XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+          }
+          expectation.fulfill()
         }
         wait(for: [expectation], timeout: 60.0)
     }

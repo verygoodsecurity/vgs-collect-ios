@@ -64,7 +64,7 @@ then run:
 carthage update --platform iOS
 ```
 
-Note that `VGSCollectSDK` use `Alamofire` and `CardIO` as dependencies. You should also link them to your project. Follow the [Carthage instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
+Note that `VGSCollectSDK` includes [CardIO](https://github.com/verygoodsecurity/card.io-iOS-source) as dependency for scanning card numbers. You should also link it to your project. Follow the [Carthage instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
 
 
 ## Usage
@@ -426,7 +426,7 @@ To follow `VGSCollectSDK` updates and changes check the [releases](https://githu
 - iOS 10+
 - Swift 5
 - 3rd party libraries:
-    - Alamofire
+  - CardIO(optional)
 
 ## License
 

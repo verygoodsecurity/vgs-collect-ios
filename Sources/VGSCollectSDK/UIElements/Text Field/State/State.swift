@@ -1,6 +1,5 @@
 //
 //  State.swift
-//  Alamofire
 //
 //  Created by Vitalii Obertynskyi on 9/15/19.
 //
@@ -27,6 +26,10 @@ public class State {
     
     /// Show if `VGSTextField` input is empty
     internal(set) open var isEmpty: Bool = false
+  
+    /// Input data length in `VGSTextField`
+    internal(set) open var inputLength: Int = 0
+
     
     init(tf: VGSTextField) {
         fieldName = tf.fieldName
@@ -34,6 +37,7 @@ public class State {
         isRequiredValidOnly = tf.isRequiredValidOnly
         isValid = tf.isValid
         isEmpty = (tf.textField.getSecureRawText?.count == 0)
+        inputLength = tf.textField.getSecureRawText?.count ?? 0
     }
     
     /// Message that contains `State` attributes and their values
@@ -49,7 +53,8 @@ public class State {
             "isRequired": \(isRequired),
             "isRequiredValidOnly": \(isRequiredValidOnly),
             "isValid": \(isValid),
-            "isEmpty": \(isEmpty)
+            "isEmpty": \(isEmpty),
+            "inputLength": \(inputLength)
         }
         """
         return result
@@ -67,7 +72,7 @@ public class CardState: State {
     
     /// Credit Card Brand of the card number from associated `VGSTextField` with field configuration type `FieldType.cardNumber`.
     internal(set) open var cardBrand: SwiftLuhn.CardType = .unknown
-    
+        
     override init(tf: VGSTextField) {
         super.init(tf: tf)
         

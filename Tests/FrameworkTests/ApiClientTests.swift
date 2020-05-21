@@ -11,69 +11,135 @@ import XCTest
 
 class ApiClientTests: XCTestCase {
     var collector: VGSCollect!
-    var apiClient: APIClient!
-    
+        
     override func setUp() {
-        collector = VGSCollect(id: "tntva5wfdrp")
-        apiClient = collector.apiClient
-        
-        let config = VGSConfiguration(collector: collector, fieldName: "cardNumber")
-        let cardField = VGSTextField()
-        cardField.configuration = config
-        
-        cardField.textField.secureText = "4111 1111 1111 1111"
+        collector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
     }
 
-    override func tearDown() {
-        apiClient = nil
-    }
-    
-    func testSendData() {
-        
-        let expectation = XCTestExpectation(description: "Sending data...")
-        
-        collector.submit(path: "post") { (data, error) in
-            XCTAssertNotNil(data)
-            XCTAssertNil(error)
-            
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 60.0)
-    }
-    
-    func testCustomHeader() {
-        let customKey = "sdfhksdfgjsdhfgjh"
-        let customHeader = "djfhdkjsfhksdjhgf"
+    func testSendCardToEchoServer() {
+        /// this test require setting proper inbound routs
+      
+        let cardNum = "4111111111111111"
+        let cardConfig = VGSConfiguration(collector: collector, fieldName: "cardNumber")
+        cardConfig.type = .cardNumber
+        let cardTextField = VGSCardTextField(frame: .zero)
+        cardTextField.configuration = cardConfig
+        cardTextField.textField.secureText = cardNum
+      
+        let someNumber = "1234567890"
+        let someNumberConfig = VGSConfiguration(collector: collector, fieldName: "not_secured_some_number")
+        someNumberConfig.type = .none
+        someNumberConfig.divider = "-"
+        someNumberConfig.formatPattern = "### #### ##"
+        let someNumberTextField = VGSCardTextField(frame: .zero)
+        someNumberTextField.configuration = someNumberConfig
+        someNumberTextField.textField.secureText = someNumber
+      
+        let expDate = "1122"
+        let expDateConfig = VGSConfiguration(collector: collector, fieldName: "expDate")
+        expDateConfig.type = .expDate
+        let expDatTextField = VGSTextField(frame: .zero)
+        expDatTextField.configuration = expDateConfig
+        expDatTextField.textField.secureText = expDate
+      
+        let cardHolder = "Joe Business"
+        let cardHolderConfig = VGSConfiguration(collector: collector, fieldName: "not_secured_cardHolder")
+        cardHolderConfig.type = .cardHolderName
+        let cardHolderTextField = VGSTextField(frame: .zero)
+        cardHolderTextField.configuration = cardHolderConfig
+        cardHolderTextField.textField.secureText = cardHolder
+          
+        let customHeaderKey = "Customheaderkey"
+        let customHeaderValue = "CustomHeaderValue"
         collector.customHeaders = [
-            customKey: customHeader
+            customHeaderKey: customHeaderValue
         ]
         
+        let extraDataKey = "extraKey"
+        let extraDataValue = "extraValue"
+        let extraData = [extraDataKey: extraDataValue]
+      
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        collector.submit(path: "post") { (data, error) in
-            XCTAssertNotNil(data)
-            XCTAssertNil(error)
-            
+        collector.sendData(path: "post", method: .post, extraData: extraData) { result in
+              switch result {
+              case .success(let code, let data, let response):
+                XCTAssertTrue(code == 200)
+                XCTAssertNotNil(data)
+                XCTAssertNotNil(response)
+                
+                guard let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+                    XCTFail("Error: code=\(code): wrong data format")
+                    expectation.fulfill()
+                    return
+                }
+                
+                if let json = jsonData["json"] as? [String: String] {
+                  XCTAssertTrue(json[extraDataKey] == extraDataValue)
+                  XCTAssertNotNil(json["cardNumber"])
+                  XCTAssertTrue(json["cardNumber"] != cardNum)
+                  XCTAssertTrue(json["expDate"] != "11/22")
+                  XCTAssertTrue(json["not_secured_cardHolder"] == cardHolder)
+                  XCTAssertTrue(json["not_secured_some_number"] == "123-4567-89")
+                } else {
+                  XCTFail("Error: code=\(code): wrong json format")
+                }
+                
+                if let headers = jsonData["headers"] as? [String: String]{
+                  XCTAssertTrue(headers[customHeaderKey] == customHeaderValue)
+                } else {
+                  XCTFail("Error: code=\(code): wrong json format")
+                }
+              case .failure(let code, _, _, let error):
+                  XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+              }
+              expectation.fulfill()
+          }
+          wait(for: [expectation], timeout: 60.0)
+    }
+
+    func testWrongTanentId() {
+        let form = VGSCollect(id: "wrongId")
+        let conf = VGSConfiguration(collector: form, fieldName: "cardField")
+        conf.type = .cardNumber
+        let field = VGSTextField(frame: .zero)
+        field.configuration = conf
+        field.textField.secureText = "5252"
+        
+        let expectation = XCTestExpectation(description: "Sending data...")
+        
+        form.sendData(path: "post") { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let code, let data, _, _):
+                XCTAssertNotNil(data)
+                XCTAssertTrue(code >= 400)
+            }
             expectation.fulfill()
         }
-        
         wait(for: [expectation], timeout: 60.0)
     }
     
-    func testErrCase() {
+    func testWrongPath() {
+        let conf = VGSConfiguration(collector: collector, fieldName: "cardField")
+        conf.type = .cardNumber
+        let field = VGSTextField(frame: .zero)
+        field.configuration = conf
+        field.textField.secureText = "5252"
         
-        collector.customHeaders = nil
+        let expectation = XCTestExpectation(description: "Sending data...")
         
-        let expectation = XCTestExpectation(description: "Sending wrong data...")
-        
-        collector.submit(path: "/wrongPath") { (data, error) in
-            XCTAssertNil(data)
-            XCTAssertNotNil(error)
-            
+        collector.sendData(path: "wrongPath") { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let code, let data, _, _):
+                XCTAssertNotNil(data)
+                XCTAssertTrue(code >= 400)
+            }
             expectation.fulfill()
         }
-        
         wait(for: [expectation], timeout: 60.0)
     }
 }
