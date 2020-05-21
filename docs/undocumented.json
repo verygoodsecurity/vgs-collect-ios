@@ -51,7 +51,7 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Mask/MaskedTextField.swift",
-      "line": 13,
+      "line": 12,
       "symbol": "MaskedTextField",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
