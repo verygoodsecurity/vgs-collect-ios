@@ -24,4 +24,7 @@ public protocol VGSTextFieldDelegate {
     
     /// VGSTextField did resign first responder on Return button pressed.
     @objc optional func vgsTextFieldDidEndEditingOnReturn(_ textfield: VGSTextField)
+    
+    /// VGSTextField on editing.
+    @objc optional func vgsTextFieldOnEditing(_ textfield: VGSTextField)
 }

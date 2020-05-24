@@ -182,6 +182,7 @@ internal extension VGSTextField {
         // update status
         textField.updateTextFormat()
         vgsCollector?.updateStatus(for: self)
+        delegate?.vgsTextFieldOnEditing?(self)
     }
     
     /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
