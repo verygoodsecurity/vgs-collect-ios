@@ -60,7 +60,9 @@ internal class MaskedTextField: UITextField {
      */
     @available(*, deprecated, message: "Don't use this method.")
     override var text: String? {
-        set {}
+        set {
+          super.text = nil
+        }
         get { return nil }
     }
         
