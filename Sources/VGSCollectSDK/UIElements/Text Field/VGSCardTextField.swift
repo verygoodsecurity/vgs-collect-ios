@@ -80,6 +80,16 @@ public class VGSCardTextField: VGSTextField {
     
     internal lazy var cardIconView = self.makeCardIcon()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        textField.semanticContentAttribute = .forceLeftToRight
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        textField.semanticContentAttribute = .forceLeftToRight
+    }
+    
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         updateCardIcon()
