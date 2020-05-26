@@ -62,39 +62,23 @@ class CardTextFieldTests: XCTestCase {
     
     func testLeftRightIcon() {
         let iconSize = CGSize(width: 46, height: 46)
-        let padding = UIEdgeInsets(top: 0, left: 11, bottom: 0, right: 12)
+        let cardNum = "41111 1111 1111 1111"
         
-        cardTextField.padding = padding
+        cardTextField.textField.secureText = cardNum
+        cardTextField.focusOn()
+        cardTextField.cardIconView.layoutSubviews()
         
         // right icon
         cardTextField.sideCardIcon = .right(size: iconSize)
-        
         XCTAssertNotNil(cardTextField.cardIconView)
-        XCTAssert(cardTextField.padding.left == padding.left)
-        XCTAssert(cardTextField.padding.right == padding.right + iconSize.width)
-        
-        XCTAssert(cardTextField.originalLeftPadding == -1)
-        XCTAssert(cardTextField.originalRightPadding == padding.right)
-        
-        XCTAssertNil(cardTextField.textField.leftView)
-        XCTAssertNotNil(cardTextField.textField.rightView)
-
-//        XCTAssert(cardTextField.cardIconView.frame.size == iconSize)
+        XCTAssertNotNil(cardTextField.stackView.arrangedSubviews.count > 1)
+        XCTAssertTrue(cardTextField.stackView.arrangedSubviews.firstIndex(of: cardTextField.cardIconView) == 1)
         
         // left icon
         cardTextField.sideCardIcon = .left(size: iconSize)
-        
         XCTAssertNotNil(cardTextField.cardIconView)
-        XCTAssert(cardTextField.padding.left == padding.left + iconSize.width)
-        XCTAssert(cardTextField.padding.right == padding.right)
-        
-        XCTAssert(cardTextField.originalLeftPadding == padding.left)
-        XCTAssert(cardTextField.originalRightPadding == -1)
-        
-        XCTAssertNotNil(cardTextField.textField.leftView)
-        XCTAssertNil(cardTextField.textField.rightView)
-        
-//        XCTAssert(cardTextField.cardIconView.frame.size == iconSize)
+        XCTAssertNotNil(cardTextField.stackView.arrangedSubviews.count > 1)
+        XCTAssertTrue(cardTextField.stackView.arrangedSubviews.firstIndex(of: cardTextField.cardIconView) == 0)
     }
     
     func disable_testInput16() {
