@@ -145,6 +145,7 @@ extension VGSTextField: UITextFieldDelegate {
 // MARK: - private API
 internal extension VGSTextField {
     
+    @objc
     func mainInitialization() {
         // set main style for view
         mainStyle()

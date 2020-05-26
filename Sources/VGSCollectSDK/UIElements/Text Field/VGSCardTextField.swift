@@ -80,19 +80,17 @@ public class VGSCardTextField: VGSTextField {
     
     internal lazy var cardIconView = self.makeCardIcon()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        textField.semanticContentAttribute = .forceLeftToRight
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        textField.semanticContentAttribute = .forceLeftToRight
-    }
-    
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         updateCardIcon()
+    }
+    
+    override func mainInitialization() {
+        super.mainInitialization()
+        // icon size default
+        iconSize = CGSize(width: 42, height: 42)
+        // force L-to-R
+        textField.semanticContentAttribute = .forceLeftToRight
     }
     
     // override textFieldDidChange
@@ -125,7 +123,7 @@ public class VGSCardTextField: VGSTextField {
         
         if let ico = resultIcon {
             updateImageViewSize()
-            cardIconView.image = ico//.resizeImage(icon: iconSize)
+            cardIconView.image = ico
         } else {
             cardIconView.image = nil
         }
