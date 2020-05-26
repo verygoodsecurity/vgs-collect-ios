@@ -17,80 +17,79 @@ public class VGSCardTextField: VGSTextField {
         case right(size: CGSize)
     }
     
-    internal var originalLeftPadding: CGFloat = -1
-    internal var originalRightPadding: CGFloat = -1
-    
     /// card brand icon width
-    internal var iconSize: CGSize = .zero
+    internal var iconSize: CGSize = .zero {
+        didSet {
+            updateImageViewSize()
+        }
+    }
     
     /// callback for taking card brand icon
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
     /// set side icon near text view. The right by default.
-    public var sideCardIcon: SideCardIcon = .right(size: .zero) {
+    public var sideCardIcon: SideCardIcon = .right(size: CGSize(width: 42, height: 42)) {
         didSet {
+            cardIconView.removeFromSuperview()
+            
             switch sideCardIcon {
             case .left(let size):
                 iconSize = size
-                
-                textField.rightView = nil
-                textField.leftView = cardIconView
-                textField.leftViewMode = .always
-                
-                // save original left padding
-                if originalLeftPadding < 0 {
-                    originalLeftPadding = padding.left
-                }
-                var paddingCopy = padding
-                // set left padding
-                paddingCopy.left = originalLeftPadding + size.width
-                // reset right padding
-                if originalRightPadding > 0 {
-                    paddingCopy.right = originalRightPadding
-                    originalRightPadding = -1
-                }
-                // set new padding value
-                padding = paddingCopy
+                stackView.insertArrangedSubview(cardIconView, at: 0)
                 
             case .right(let size):
                 iconSize = size
-                
-                textField.leftView = nil
-                textField.rightView = cardIconView
-                textField.rightViewMode = .always
-                
-                // save original right padding
-                if originalRightPadding < 0 {
-                    originalRightPadding = padding.right
-                }
-                var paddingCopy = padding
-                // set right padding
-                paddingCopy.right = originalRightPadding + size.width
-                // reset left padding
-                if originalLeftPadding > 0 {
-                    paddingCopy.left = originalLeftPadding
-                    originalLeftPadding = -1
-                }
-                // set new padding value
-                padding = paddingCopy
+                stackView.addArrangedSubview(cardIconView)
             }
             updateCardIcon()
         }
     }
     
     internal lazy var cardIconView = self.makeCardIcon()
+    internal lazy var stackView = self.makeStackView()
+    
+    // MARK: - Initialization
+    override func mainInitialization() {
+        // set main style for view
+        mainStyle()
+        // stack view
+        addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views = ["view": self, "stackView": stackView]
+        
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]-0-|",
+                                                                   options: .alignAllCenterY,
+                                                                   metrics: nil,
+                                                                   views: views)
+        NSLayoutConstraint.activate(horizontalConstraints)
+        
+        let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|",
+                                                                options: .alignAllCenterX,
+                                                                metrics: nil,
+                                                                views: views)
+        NSLayoutConstraint.activate(verticalConstraint)
+        
+        // text field
+        textField.translatesAutoresizingMaskIntoConstraints = true
+        textField.adjustsFontSizeToFitWidth = true
+        textField.minimumFontSize = 9.0
+        stackView.addArrangedSubview(textField)
+        
+        //delegates
+        //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
+        textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)
+        textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
+        textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
+        textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
+        // tap gesture for update focus state
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
+        textField.addGestureRecognizer(tapGesture)
+    }
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         updateCardIcon()
-    }
-    
-    override func mainInitialization() {
-        super.mainInitialization()
-        // icon size default
-        iconSize = CGSize(width: 42, height: 42)
-        // force L-to-R
-        textField.semanticContentAttribute = .forceLeftToRight
     }
     
     // override textFieldDidChange
@@ -122,7 +121,6 @@ public class VGSCardTextField: VGSTextField {
         }
         
         if let ico = resultIcon {
-            updateImageViewSize()
             cardIconView.image = ico
         } else {
             cardIconView.image = nil
@@ -152,6 +150,16 @@ public class VGSCardTextField: VGSTextField {
                                                   constant: iconSize.height)
         heightConstraint.identifier = "heightConstraint"
         newView.addConstraints([widthConstraint, heightConstraint])
+        
         return newView
+    }
+    
+    private func makeStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.axis = .horizontal
+        stack.distribution = .fillProportionally
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }
 }

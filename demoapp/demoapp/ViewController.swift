@@ -122,7 +122,7 @@ class ViewController: UIViewController {
         
         let iconSize = CGSize(width: 44, height: 44)
         cardNumber.sideCardIcon = .left(size: iconSize)
-        cardNumber.sideCardIcon = .right(size: iconSize)
+//        cardNumber.sideCardIcon = .right(size: iconSize)
 
         // To handle VGSTextFieldDelegate methods
         // cardNumber.delegate = self

@@ -93,6 +93,10 @@
             argument = "-AppleLanguages (Arabic)"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-AppLocale ae_AE"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
