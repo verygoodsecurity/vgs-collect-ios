@@ -120,6 +120,8 @@ class ViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.tintColor = .lightGray
 
+        // To handle fields editing events implement `VGSTextFieldDelegate` methods
+        // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
 
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
