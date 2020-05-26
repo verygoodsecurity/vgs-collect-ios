@@ -131,7 +131,6 @@
 		FD2495672330E313009024E6 /* VGSValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSValidation.swift; sourceTree = "<group>"; };
 		FD2495682330E313009024E6 /* VGSValidation+type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSValidation+type.swift"; sourceTree = "<group>"; };
 		FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumerTextFieldTests.swift; sourceTree = "<group>"; };
-		FD2E1E97244DB4FA00D28D09 /* UIImage+resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
 		FD362EDE2401659100B4A640 /* VGSTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldDelegate.swift; sourceTree = "<group>"; };
 		FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+CVC.swift"; sourceTree = "<group>"; };
 		FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+security.swift"; sourceTree = "<group>"; };
@@ -216,7 +215,6 @@
 		FD05F9372316CE5A000EAF52 /* VGSCollectSDK */ = {
 			isa = PBXGroup;
 			children = (
-				FD2E1E96244DB4E900D28D09 /* Extension */,
 				FD05F9382316CE5A000EAF52 /* Core */,
 				32FD980523D1FA48005FA989 /* Integrations */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
@@ -334,14 +332,6 @@
 				FD2495682330E313009024E6 /* VGSValidation+type.swift */,
 			);
 			path = "Date+cvv";
-			sourceTree = "<group>";
-		};
-		FD2E1E96244DB4E900D28D09 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				FD2E1E97244DB4FA00D28D09 /* UIImage+resize.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		FD790B95243BB3D1006A30CB /* Card Brand Tests */ = {
