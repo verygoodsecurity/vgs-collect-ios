@@ -61,6 +61,7 @@ internal class MaskedTextField: UITextField {
     @available(*, deprecated, message: "Don't use this method.")
     override var text: String? {
         set {
+          // This fixes issue when clear button don't remove content on not activ textfield form first touch
           super.text = nil
         }
         get { return nil }

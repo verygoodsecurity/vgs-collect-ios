@@ -47,7 +47,7 @@ public class VGSTextField: UIView {
         didSet { textField.textAlignment = textAlignment }
     }
     
-    /// Sets when the clear button shows up. default is `UITextField.ViewMode.never`
+    /// Sets when the clear button shows up. Default is `UITextField.ViewMode.never`
     public var clearButtonMode: UITextField.ViewMode = .never {
       didSet { textField.clearButtonMode = clearButtonMode }
     }
