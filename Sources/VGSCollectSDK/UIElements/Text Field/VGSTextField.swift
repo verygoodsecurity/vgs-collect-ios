@@ -105,6 +105,7 @@ public class VGSTextField: UIView {
     
     deinit {
         vgsCollector?.unregisterTextFields(textField: [self])
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -132,12 +133,16 @@ extension VGSTextField: UITextFieldDelegate {
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.vgsTextFieldDidBeginEditing?(self)
     }
+  
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        delegate?.vgsTextFieldDidChange?(self)
+    }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.vgsTextFieldDidEndEditing?(self)
     }
     
-    @objc public func textFieldDidEndEditingOnExit(_ textField: UITextField) {
+    @objc func textFieldDidEndEditingOnExit(_ textField: UITextField) {
         delegate?.vgsTextFieldDidEndEditingOnReturn?(self)
     }
 }
@@ -167,11 +172,12 @@ internal extension VGSTextField {
         NSLayoutConstraint.activate(verticalConstraint)
         
         //delegates
+        textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
         textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)
-        textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
         textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: UITextField.textDidChangeNotification, object: textField)
         // tap gesture for update focus state
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
         textField.addGestureRecognizer(tapGesture)
@@ -182,7 +188,6 @@ internal extension VGSTextField {
         // update status
         textField.updateTextFormat()
         vgsCollector?.updateStatus(for: self)
-        delegate?.vgsTextFieldOnEditing?(self)
     }
     
     /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
