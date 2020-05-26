@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.tintColor = .lightGray
 
-        // To handle VGSTextFieldDelegate methods
+        // To handle fields editing events implement `VGSTextFieldDelegate` methods
         // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
 
