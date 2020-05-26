@@ -120,8 +120,6 @@ class ViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.tintColor = .lightGray
 
-        // To handle VGSTextFieldDelegate methods
-        cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
 
         let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
@@ -243,13 +241,5 @@ extension ViewController: VGSCardIOScanControllerDelegate {
         default:
             return nil
         }
-    }
-}
-
-// Card text field delegate
-extension ViewController: VGSTextFieldDelegate {
-    // Observing states of card text field
-    func vgsTextFieldOnEditing(_ textfield: VGSTextField) {
-        print(textfield.state.description)
     }
 }
