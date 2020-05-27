@@ -69,13 +69,15 @@ class CardTextFieldTests: XCTestCase {
         cardTextField.cardIconView.layoutSubviews()
         
         // right icon
-        cardTextField.sideCardIcon = .right(size: iconSize)
+        cardTextField.cardIconLocation = .right
+        cardTextField.cardIconSize = iconSize
         XCTAssertNotNil(cardTextField.cardIconView)
         XCTAssertNotNil(cardTextField.stackView.arrangedSubviews.count > 1)
         XCTAssertTrue(cardTextField.stackView.arrangedSubviews.firstIndex(of: cardTextField.cardIconView) == 1)
         
         // left icon
-        cardTextField.sideCardIcon = .left(size: iconSize)
+        cardTextField.cardIconLocation = .left
+        cardTextField.cardIconSize = iconSize
         XCTAssertNotNil(cardTextField.cardIconView)
         XCTAssertNotNil(cardTextField.stackView.arrangedSubviews.count > 1)
         XCTAssertTrue(cardTextField.stackView.arrangedSubviews.firstIndex(of: cardTextField.cardIconView) == 0)

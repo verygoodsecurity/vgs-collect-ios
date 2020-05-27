@@ -48,25 +48,6 @@ class TextFielsStyleUI: XCTestCase {
         XCTAssert(textField.layer.masksToBounds == true)
     }
     
-    func testPadding() {
-        var newRect: CGRect = .zero
-        let value: CGFloat = 15
-        let padding = UIEdgeInsets(top: 0, left: value, bottom: 0, right: value)
-        textField.padding = padding
-        
-        newRect = textField.textField.textRect(forBounds: .zero)
-        XCTAssert(newRect.origin.x == value)
-        XCTAssert(newRect.size.width == value*(-2))
-        
-        newRect = textField.textField.placeholderRect(forBounds: .zero)
-        XCTAssert(newRect.origin.x == value)
-        XCTAssert(newRect.size.width == value*(-2))
-        
-        newRect = textField.textField.editingRect(forBounds: .zero)
-        XCTAssert(newRect.origin.x == value)
-        XCTAssert(newRect.size.width == value*(-2))
-    }
-    
     func testFont() {
         let font = UIFont(name: "Arial", size: 22)
         textField.font = font
