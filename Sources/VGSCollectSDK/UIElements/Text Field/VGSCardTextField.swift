@@ -58,7 +58,7 @@ public class VGSCardTextField: VGSTextField {
         
         let views = ["view": self, "stackView": stackView]
         
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]-0-|",
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(8)-[stackView]-(8)-|",
                                                                    options: .alignAllCenterY,
                                                                    metrics: nil,
                                                                    views: views)
