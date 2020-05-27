@@ -20,13 +20,18 @@ public class VGSCardTextField: VGSTextField {
       return UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
     }()
   
-    /// Card brand icon location.
+    // MARK: - Enum cases
+    /// Available Card brand icon positions enum.
     public enum CardIconLocation {
+        /// Card brand icon at left side of `VGSCardTextField`.
         case left
+      
+        /// Card brand icon at right side of `VGSCardTextField`.
         case right
     }
-  
-    /// Card brand icon position.
+    
+    // MARK: Attributes
+    /// Card brand icon position inside `VGSCardTextField`.
     public var cardIconLocation = CardIconLocation.right {
       didSet {
         setCardIconAtLocation(cardIconLocation)
@@ -39,8 +44,9 @@ public class VGSCardTextField: VGSTextField {
             updateCardIconViewSize()
         }
     }
-      
-    /// Callback that asks custom image for specific `SwiftLuhn.CardType`
+    
+    // MARK: Custom card brand images
+    /// Asks custom image for specific `SwiftLuhn.CardType`
     public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
     
     /// :nodoc:

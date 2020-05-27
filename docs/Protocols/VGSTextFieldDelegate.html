@@ -60,6 +60,9 @@
                 <a class="nav-group-task-link" href="../Classes/VGSCardTextField.html">VGSCardTextField</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSCardTextField/CardIconLocation.html">– CardIconLocation</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/VGSTextFieldDelegate.html">VGSTextFieldDelegate</a>
               </li>
               <li class="nav-group-task">
@@ -232,7 +235,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>VGSTextField did become first responder.</p>
+                        <p><code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> did become first responder.</p>
 
                       </div>
                       <div class="declaration">
@@ -240,7 +243,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidBeginEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">textfield</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidBeginEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -263,7 +266,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>VGSTextField did resign first responder.</p>
+                        <p><code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> did resign first responder.</p>
 
                       </div>
                       <div class="declaration">
@@ -271,7 +274,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidEndEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">textfield</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidEndEditing</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -294,7 +297,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>VGSTextField did resign first responder on Return button pressed.</p>
+                        <p><code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> did resign first responder on Return button pressed.</p>
 
                       </div>
                       <div class="declaration">
@@ -302,12 +305,43 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidEndEditingOnReturn</span><span class="p">(</span><span class="n">_</span> <span class="nv">textfield</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidEndEditingOnReturn</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextFieldDelegate.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VGSCollectSDK@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidChange:"></a>
+                    <a name="//apple_ref/swift/Method/vgsTextFieldDidChange(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VGSCollectSDK@objc(pl)VGSTextFieldDelegate(im)vgsTextFieldDidChange:">vgsTextFieldDidChange(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> input changed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">vgsTextFieldDidChange</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextFieldDelegate.swift#L29">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -320,7 +354,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-05-21)</p>
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-05-27)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

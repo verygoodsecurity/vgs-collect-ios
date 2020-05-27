@@ -214,7 +214,6 @@ internal extension VGSTextField {
       self.layoutIfNeeded()
     }
 
-    
     @objc
     func textFieldValueChanged() {
         // update status
