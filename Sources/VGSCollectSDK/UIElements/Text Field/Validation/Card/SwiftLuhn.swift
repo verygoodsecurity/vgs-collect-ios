@@ -147,7 +147,7 @@ extension SwiftLuhn.CardType {
         case .amex:
             return [15]
         case .dinersClub:
-            return [14]
+            return [14, 16]
         case .discover:
             return [16]
         case .jcb:
@@ -174,7 +174,7 @@ internal extension SwiftLuhn.CardType {
       case .amex:
           return "^3[4,7]\\d*$"
       case .dinersClub:
-          return "^(36|38|30[0-5])\\d*$"
+          return "^3(?:[6,8,9]|(?:0[0,5,9]+))\\d*$"
       case .discover:
           return "^(6011|65|64[4-9]|622)\\d*$"
       case .jcb:
