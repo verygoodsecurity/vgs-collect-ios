@@ -52,6 +52,11 @@ public class VGSTextField: UIView {
       didSet { textField.clearButtonMode = clearButtonMode }
     }
   
+    /// Indicates whether `VGSTextField ` should automatically update its font when the device’s `UIContentSizeCategory` is changed.
+    public var adjustsFontForContentSizeCategory: Bool = false {
+      didSet { textField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory }
+    }
+  
     // MARK: - Functional Attributes
     
     /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
