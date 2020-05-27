@@ -63,8 +63,7 @@ internal extension VGSCardTextField {
   
     override func buildTextFieldUI() {
         addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        textField.translatesAutoresizingMaskIntoConstraints = true
+        textField.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(textField)
         setMainPaddings()
     }
