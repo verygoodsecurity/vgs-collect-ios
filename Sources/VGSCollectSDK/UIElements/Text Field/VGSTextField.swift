@@ -182,11 +182,12 @@ internal extension VGSTextField {
     @objc
     func addTextFieldObservers() {
       //delegates
+      textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
       //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
       textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)
-      textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
+      NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: UITextField.textDidChangeNotification, object: textField)
       // tap gesture for update focus state
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
       textField.addGestureRecognizer(tapGesture)
@@ -226,6 +227,7 @@ internal extension VGSTextField {
         textField.secureText = text
         // this will update card textfield icons
         textFieldValueChanged()
+        textFieldDidChange(textField)
     }
     
     // change focus here
