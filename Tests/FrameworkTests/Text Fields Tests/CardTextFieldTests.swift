@@ -60,6 +60,29 @@ class CardTextFieldTests: XCTestCase {
         }
     }
     
+    func testLeftRightIcon() {
+        let iconSize = CGSize(width: 46, height: 46)
+        let cardNum = "41111 1111 1111 1111"
+        
+        cardTextField.textField.secureText = cardNum
+        cardTextField.focusOn()
+        cardTextField.cardIconView.layoutSubviews()
+        
+        // right icon
+        cardTextField.cardIconLocation = .right
+        cardTextField.cardIconSize = iconSize
+        XCTAssertNotNil(cardTextField.cardIconView)
+        XCTAssertNotNil(cardTextField.stackView.arrangedSubviews.count > 1)
+        XCTAssertTrue(cardTextField.stackView.arrangedSubviews.firstIndex(of: cardTextField.cardIconView) == 1)
+        
+        // left icon
+        cardTextField.cardIconLocation = .left
+        cardTextField.cardIconSize = iconSize
+        XCTAssertNotNil(cardTextField.cardIconView)
+        XCTAssertNotNil(cardTextField.stackView.arrangedSubviews.count > 1)
+        XCTAssertTrue(cardTextField.stackView.arrangedSubviews.firstIndex(of: cardTextField.cardIconView) == 0)
+    }
+    
     func disable_testInput16() {
         let format14 = "#### ###### ####"
         let format16 = "#### #### #### ####"

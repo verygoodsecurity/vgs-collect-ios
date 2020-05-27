@@ -119,7 +119,8 @@ class ViewController: UIViewController {
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
         cardNumber.tintColor = .lightGray
-
+        cardNumber.cardIconLocation = .right
+      
         // To handle VGSTextFieldDelegate methods
         // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
