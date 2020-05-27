@@ -34,7 +34,7 @@ public class VGSCardTextField: VGSTextField {
     }
   
     /// Card brand icon size.
-    public var cardIconSize: CGSize = CGSize(width: 42, height: 42) {
+    public var cardIconSize: CGSize = CGSize(width: 45, height: 45) {
         didSet {
             updateCardIconViewSize()
         }
