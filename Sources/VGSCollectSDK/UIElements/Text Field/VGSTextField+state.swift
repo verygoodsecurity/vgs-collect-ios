@@ -29,6 +29,8 @@ public extension VGSTextField {
         switch fieldType {
         case .cardNumber:
             result = CardState(tf: self)
+        case .ssn:
+            result = SSNState(tf: self)
         default:
             result = State(tf: self)
         }

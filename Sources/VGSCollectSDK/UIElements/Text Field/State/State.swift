@@ -61,7 +61,7 @@ public class State {
     }
 }
 
-/// An object that describes `VGSCardTextField` state.  State attributes are read-only.
+/// An object that describes `VGSTextField` state with configuration `FieldType.cardNumber` .  State attributes are read-only.
 public class CardState: State {
     
     /// Last 4 digits of the valid card number from associated `VGSTextField` with field configuration type `FieldType.cardNumber`.
@@ -96,6 +96,35 @@ public class CardState: State {
                 "last4": \(last4),
                 "cardBrand": \(cardBrand),
                 "cardBrandName": \(cardBrand.stringValue)
+            }
+            """)
+        }
+        return result
+    }
+}
+
+/// An object that describes `VGSTextField` state with configuration `FieldType.ssn` .  State attributes are read-only.
+public class SSNState: State {
+    
+    /// Last 4 digits of the valid ssn from associated `VGSTextField` with field configuration type `FieldType.ssn`.
+    internal(set) open var last4: String = ""
+    
+    override init(tf: VGSTextField) {
+        super.init(tf: tf)
+        
+        guard let originalText = tf.textField.getSecureRawText else {
+            return
+        }
+        self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
+    }
+  
+    /// Message that contains `CardState` attributes and their values.
+    override public var description: String {
+        var result = super.description
+        if isValid {
+            result.append("""
+            , {
+                "last4": \(last4)
             }
             """)
         }
