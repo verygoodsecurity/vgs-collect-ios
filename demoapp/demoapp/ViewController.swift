@@ -143,6 +143,7 @@ class ViewController: UIViewController {
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
+        cvcCardNum.isSecureTextEntry = true
         cvcCardNum.textColor = textColor
         cvcCardNum.font = textFont
         cvcCardNum.padding = padding

@@ -88,15 +88,6 @@ internal extension FieldType {
         }
     }
     
-    var isSecureDate: Bool {
-        switch self {
-        case .cvc:
-            return true
-        default:
-            return false
-        }
-    }
-    
     var keyboardType: UIKeyboardType {
         switch self {
         case .cardNumber, .cvc, .expDate, .ssn:

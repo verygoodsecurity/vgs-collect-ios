@@ -54,6 +54,11 @@ public class VGSTextField: UIView {
       didSet { textField.clearButtonMode = clearButtonMode }
     }
   
+    /// Identifies whether the text object should disable text copying and in some cases hide the text being entered. Default is false.
+    public var isSecureTextEntry: Bool = false {
+        didSet { textField.isSecureTextEntry = isSecureTextEntry }
+    }
+  
     /// Indicates whether `VGSTextField ` should automatically update its font when the device’s `UIContentSizeCategory` is changed.
     public var adjustsFontForContentSizeCategory: Bool = false {
       didSet { textField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory }
@@ -71,7 +76,6 @@ public class VGSTextField: UIView {
             isRequired = configuration.isRequired
             isRequiredValidOnly = configuration.isRequiredValidOnly
             fieldType = configuration.type
-            textField.isSecureTextEntry = configuration.type.isSecureDate
             textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
             textField.returnKeyType = configuration.returnKeyType ?? .default
             textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
