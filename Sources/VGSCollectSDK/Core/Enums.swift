@@ -37,6 +37,9 @@ public enum FieldType: Int, CaseIterable {
     
     /// Field type that requires Cardholder Name input formatting and validation.
     case cardHolderName
+  
+    /// Field type that requires US Social Security Number input formatting and validation.
+    case ssn
 }
 
 internal extension FieldType {
@@ -49,16 +52,22 @@ internal extension FieldType {
             return "####"
         case .expDate:
             return DateFormatPattern.shortYear.rawValue
+        case .ssn:
+            return "###-##-####"
         default:
             return ""
         }
     }
     
     var defaultDivider: String {
-        if self == .expDate {
-            return "/"
-        }
+      switch self {
+      case .expDate:
+        return "/"
+      case .ssn:
+        return "-"
+      default:
         return ""
+      }
     }
     
    var regex: String {
@@ -71,6 +80,9 @@ internal extension FieldType {
             return "^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$"
         case .cardHolderName:
             return "^([a-zA-Z0-9\\ \\,\\.\\-\\']{2,})$"
+        case .ssn:
+            return
+          "^(?!\\b(\\d)\\1+\\b)(?!(123456789|219099999|078051120|457555462))(?!(000|666|9))(\\d{3}-?(?!(00))\\d{2}-?(?!(0000))\\d{4})$"
         default:
             return ""
         }
@@ -87,7 +99,7 @@ internal extension FieldType {
     
     var keyboardType: UIKeyboardType {
         switch self {
-        case .cardNumber, .cvc, .expDate:
+        case .cardNumber, .cvc, .expDate, .ssn:
             return .asciiCapableNumberPad
         default:
             return .alphabet
