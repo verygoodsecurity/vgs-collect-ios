@@ -22,8 +22,8 @@ class SSNTextFieldTests: XCTestCase {
         config.type = .ssn
         config.isRequired = true
         ssnTextField.configuration = config
-        
-        ssnTextField.textField.secureText = "123-44-5555"
+
+      ssnTextField.textField.secureText = "123-44-5555"
     }
     
     override func tearDown() {
@@ -49,13 +49,18 @@ class SSNTextFieldTests: XCTestCase {
     }
   
     func testNotValidSSNReturnsFalse() {
+      let config = VGSConfiguration(collector: collector, fieldName: "ssn")
+      config.type = .ssn
+      config.formatPattern = ""
+      ssnTextField.configuration = config
+      
       let notValidSSN = [
         "111111111", "222222222", "555555555",
         "666666666", "999999999", "000000000",
         "000123456", "143004563", "235230000",
         "923423423", "666123456", "123456789",
         "219099999", "078051120", "457555462",
-        "22334455",  "3434343"
+        "22334455",  "3434343", "11111111222"
       ]
       
       for ssn in notValidSSN {
@@ -63,9 +68,6 @@ class SSNTextFieldTests: XCTestCase {
         ssnTextField.focusOn()
         XCTAssertFalse(ssnTextField.state.isValid)
         XCTAssertFalse(ssnTextField.state.isEmpty)
-        if ssnTextField.state.isValid {
-          print(ssn)
-        }
         if let state = ssnTextField.state as? SSNState {
           XCTAssertTrue(state.last4 == "")
         }
@@ -73,12 +75,18 @@ class SSNTextFieldTests: XCTestCase {
     }
   
     func testValidSSNReturnsTrue() {
+      let config = VGSConfiguration(collector: collector, fieldName: "ssn")
+      config.type = .ssn
+      ssnTextField.configuration = config
+      
       let validSSN = [
         "111111112", "222232222", "455555555",
         "166666666", "899999999", "001010001",
         "100123456", "143104563", "235231000",
         "823423423", "665123455", "123456780",
-        "219099998", "078051125", "457555465"
+        "219099998", "078051125", "457555465",
+        /// mask should cut extra symbols
+        "234567890123456789"
       ]
       
       for ssn in validSSN {
