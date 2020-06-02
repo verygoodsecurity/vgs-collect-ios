@@ -102,13 +102,13 @@ jobs:
 
 workflows:
   version: 2.1
-  #✅ build_and_test:
-  #   jobs:
-  #     - build_and_test
+  ✅ build_and_test:
+    jobs:
+      - build_and_test
 
-  # ✅carthage_update:
-  #   jobs:
-  #     - carthage_update
+  ✅carthage_update:
+    jobs:
+      - carthage_update
   
   ✅pod_update:
     jobs:
