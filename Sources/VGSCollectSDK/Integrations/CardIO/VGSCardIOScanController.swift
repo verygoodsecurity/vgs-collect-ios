@@ -30,8 +30,11 @@ public class VGSCardIOScanController {
     
     /// `VGSCardIOScanControllerDelegate` - handle user interaction with `Card.io` scanner
     public var delegate: VGSCardIOScanControllerDelegate? {
-        didSet {
-            scanHandler?.delegate = delegate
+        set {
+          scanHandler?.delegate = newValue
+        }
+        get {
+          return scanHandler?.delegate
         }
     }
     

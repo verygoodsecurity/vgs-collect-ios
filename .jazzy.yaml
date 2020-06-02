@@ -50,6 +50,7 @@ custom_categories:
   - VGSCollect
   - Environment
   - State
+  - SSNState
   - CardState
   - VGSResponse
   - HTTPMethod

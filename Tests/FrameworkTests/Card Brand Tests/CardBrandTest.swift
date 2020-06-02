@@ -82,13 +82,12 @@ class CardBrandTest: XCTestCase {
         allBrands.forEach { brand in
             let numbers = brand.cardNumbers
             for number in numbers {
+                /// there are 19 digits numbers that detected as valid by Luhn algorithms when there are 16-19 digits
                 if number.count > 16 {
                     continue
                 }
-                
-                let digitsCount = Int.random(in: 1...6)
-                
-                let input = String(number.prefix(number.count - digitsCount))
+                                
+                let input = String(number.prefix(number.count - 1))
                 cardTextField.textField.secureText = input
                 guard let state = cardTextField.state as? CardState else {
                     XCTFail("Guard fail")

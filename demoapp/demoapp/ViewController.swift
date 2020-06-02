@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector
-    var vgsForm = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         }
 
         // set custom headers
-        vgsForm.customHeaders = [
+        vgsCollect.customHeaders = [
             "my custome header": "some custom data"
         ]
 
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         scanController.delegate = self
 
         // Observing text fields
-        vgsForm.observeStates = { [weak self] form in
+        vgsCollect.observeStates = { [weak self] form in
 
             self?.consoleMessage = ""
             self?.consoleStatusLabel.text = "STATE"
@@ -79,7 +79,6 @@ class ViewController: UIViewController {
 //                return nil
 //            }
 //        }
-        setupElementsConfiguration()
     }
     
     // MARK: - Init UI
@@ -103,60 +102,52 @@ class ViewController: UIViewController {
     }
 
     private func setupElementsConfiguration() {
-        
-        let textColor = UIColor.darkText
-        let textFont = UIFont.systemFont(ofSize: 22)
-        let padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
-        let cardConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_number")
+        let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
         cardConfiguration.isRequiredValidOnly = true
         
         cardNumber.configuration = cardConfiguration
-        cardNumber.textColor = textColor
-        cardNumber.font = textFont
-        cardNumber.padding = padding
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
-        cardNumber.tintColor = .lightGray
         cardNumber.cardIconLocation = .right
       
         // To handle VGSTextFieldDelegate methods
         // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
 
-        let expDateConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_expirationDate")
+        let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.isRequiredValidOnly = true
         expDateConfiguration.type = .expDate
         /// Default .expDate format is "##/##"
         expDateConfiguration.formatPattern = "##/####"
         
         expCardDate.configuration = expDateConfiguration
-        expCardDate.textColor = textColor
-        expCardDate.font = textFont
-        expCardDate.padding = padding
         expCardDate.placeholder = "MM/YYYY"
-        expCardDate.tintColor = .lightGray
 
-        let cvcConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "card_cvc")
+        let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.isRequired = true
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
-        cvcCardNum.textColor = textColor
-        cvcCardNum.font = textFont
-        cvcCardNum.padding = padding
+        cvcCardNum.isSecureTextEntry = true
         cvcCardNum.placeholder = "CVC"
         cvcCardNum.tintColor = .lightGray
 
-        let holderConfiguration = VGSConfiguration(collector: vgsForm, fieldName: "cardHolder_name")
+        let holderConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
         holderConfiguration.type = .cardHolderName
+        holderConfiguration.keyboardType = .namePhonePad
+      
+        cardHolderName.textAlignment = .natural
         cardHolderName.configuration = holderConfiguration
-        cardHolderName.textColor = textColor
-        cardHolderName.font = textFont
-        cardHolderName.padding = padding
         cardHolderName.placeholder = "Cardholder Name"
-        cardHolderName.tintColor = .lightGray
+      
+        vgsCollect.textFields.forEach { textField in
+          textField.textColor = .darkText
+          textField.font = .systemFont(ofSize: 22)
+          textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+          textField.tintColor = .lightGray
+        }
     }
     
     // Start CardIO scanning
@@ -169,12 +160,17 @@ class ViewController: UIViewController {
       // hide kayboard
       hideKeyboard()
 
+      // check if textfields are valid
+      vgsCollect.textFields.forEach { textField in
+        textField.borderColor = textField.state.isValid ? .lightGray : .red
+      }
+
       // send extra data
       var extraData = [String: Any]()
       extraData["customKey"] = "Custom Value"
 
       /// New sendRequest func
-      vgsForm.sendData(path: "/post", extraData: extraData) { [weak self](response) in
+      vgsCollect.sendData(path: "/post", extraData: extraData) { [weak self](response) in
         
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
@@ -199,22 +195,6 @@ class ViewController: UIViewController {
             return
         }
       }
-      
-      /// Deprecated
-//        vgsForm.submit(path: "/post", extraData: extraData, completion: { [weak self] (json, error) in
-//           self?.consoleStatusLabel.text = "RESPONSE"
-//            if error == nil, let data = json?["json"] as? [String: Any] {
-//                self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted), encoding: .utf8)!)
-//           } else {
-//               if let error = error as NSError?, let errorKey = error.userInfo["key"] as? String {
-//                   if errorKey == VGSSDKErrorInputDataIsNotValid {
-//                       // Handle VGSError error
-//                   }
-//               }
-//               self?.consoleLabel.text = "Something went wrong!"
-//               print("Error: \(String(describing: error))")
-//           }
-//        })
     }
 }
 
