@@ -79,7 +79,6 @@ class ViewController: UIViewController {
 //                return nil
 //            }
 //        }
-        setupElementsConfiguration()
     }
     
     // MARK: - Init UI

@@ -118,7 +118,7 @@ public class SSNState: State {
         self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
     }
   
-    /// Message that contains `CardState` attributes and their values.
+    /// Message that contains `SSNState` attributes and their values.
     override public var description: String {
         var result = super.description
         if isValid {

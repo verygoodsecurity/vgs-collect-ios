@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HTTPMethod Enumeration Reference</title>
+    <title>SSNState Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/HTTPMethod" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/SSNState" class="dashAnchor"></a>
 
-    <a title="HTTPMethod Enumeration Reference"></a>
+    <a title="SSNState Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      HTTPMethod Enumeration Reference
+      SSNState Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -199,14 +199,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>HTTPMethod</h1>
+            <h1>SSNState</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">HTTPMethod</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SSNState</span> <span class="p">:</span> <span class="kt"><a href="../Classes/State.html">State</a></span></code></pre>
 
                 </div>
               </div>
-            <p>HTTP request methods</p>
+            <p>An object that describes <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> state with configuration <code><a href="../Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO3ssnyA2CmF">FieldType.ssn</a></code> .  State attributes are read-only.</p>
 
           </div>
         </section>
@@ -218,9 +218,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK10HTTPMethodO3getyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/get" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO3getyA2CmF">get</a>
+                    <a name="/s:13VGSCollectSDK8SSNStateC5last4SSvp"></a>
+                    <a name="//apple_ref/swift/Property/last4" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK8SSNStateC5last4SSvp">last4</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -228,19 +228,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>GET method</p>
+                        <p>Last 4 digits of the valid ssn from associated <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> with field configuration type <code><a href="../Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO3ssnyA2CmF">FieldType.ssn</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="k">get</span> <span class="o">=</span> <span class="s">"GET"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">open</span> <span class="k">var</span> <span class="nv">last4</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L23">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/State/State.swift#L110">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -248,9 +248,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK10HTTPMethodO4postyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/post" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO4postyA2CmF">post</a>
+                    <a name="/s:13VGSCollectSDK8SSNStateC11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK8SSNStateC11descriptionSSvp">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -258,49 +258,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>POST method</p>
+                        <p>Message that contains <code>SSNState</code> attributes and their values.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">post</span> <span class="o">=</span> <span class="s">"POST"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L25">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK10HTTPMethodO3putyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/put" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO3putyA2CmF">put</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>PUT method</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">put</span> <span class="o">=</span> <span class="s">"PUT"</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/State/State.swift#L122-L132">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
