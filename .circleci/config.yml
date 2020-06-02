@@ -85,7 +85,9 @@ jobs:
     working_directory: ~/project_demo_carthage
     steps:
       - checkout
-      - run: cd demoapp; fastlane run carthage command:update
+      - run: 
+          name: Run carthage update by fastlane
+          command: cd demoapp; fastlane run carthage command:update
     
   pod_update:
     macos:
@@ -93,12 +95,9 @@ jobs:
     working_directory: ~/project_demo_cocoapods
     steps:
       - checkout
-      - run: 
-          name: Dir list
-          command: ls -la
       - run:
           name: Pod install
-          command: cd demoapp; pod install
+          command: cd demoapp; fastlane run cocoapods clean_install:true
 
 
 workflows:
@@ -107,10 +106,10 @@ workflows:
   #   jobs:
   #     - build_and_test
 
-  carthage_update:
-    jobs:
-      - carthage_update
-  
-  #✅pod_update:
+  # ✅carthage_update:
   #   jobs:
-  #     - pod_update
+  #     - carthage_update
+  
+  ✅pod_update:
+    jobs:
+      - pod_update
