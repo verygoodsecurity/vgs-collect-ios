@@ -52,17 +52,40 @@ class VGSCollectTests: XCTestCase {
         XCTAssertTrue(VGSCollect.canOpen(path: path))
     }
     
-    func testRegistrationTextField() {
+    func testRegistrationSingleTextField() {
         let config = VGSConfiguration(collector: collector, fieldName: "test")
-        let tf = VGSTextField()
+        let tf = VGSCardTextField()
         tf.configuration = config
         
         XCTAssertTrue(collector.storage.elements.count == 1)
-        
+        XCTAssertTrue(collector.textFields.count == 1)
+      
         collector.unregisterTextFields(textField: [tf])
         
         XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.textFields.count == 0)
     }
+  
+    func testRegistrationMultipleTextFields() {
+      
+      let fieldsCount = 5
+
+      collector = VGSCollect(id: "tntva5wfdrp")
+      
+      for _ in 0..<fieldsCount {
+        let config = VGSConfiguration(collector: collector, fieldName: "test")
+        let tf = VGSTextField()
+        tf.configuration = config
+      }
+    
+      XCTAssertTrue(collector.storage.elements.count == fieldsCount)
+      XCTAssertTrue(collector.textFields.count == fieldsCount)
+      
+      collector.unregisterTextFields(textField: collector.textFields)
+      
+      XCTAssertTrue(collector.storage.elements.count == 0)
+      XCTAssertTrue(collector.textFields.count == 0)
+  }
     
     func testCustomJsonMapping() {
         let cardConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.card_number")

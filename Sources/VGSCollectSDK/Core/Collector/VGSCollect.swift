@@ -17,7 +17,7 @@ public class VGSCollect {
     internal let storage = Storage()
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
-    
+  
     // MARK: Custom HTTP Headers
     
     /// Set your custom HTTP headers
@@ -29,7 +29,7 @@ public class VGSCollect {
         }
     }
     
-    // MARK: - Observe VGSTextField states
+    // MARK: Observe VGSTextField states
     
     /// Observe only focused `VGSTextField` on editing events.
     public var observeFieldState: ((_ textField: VGSTextField) -> Void)?
@@ -37,6 +37,14 @@ public class VGSCollect {
     /// Observe  all `VGSTextField` on editing events.
     public var observeStates: ((_ form: [VGSTextField]) -> Void)?
     
+  
+    // MARK: Get Registered VGSTextFields
+    
+    /// Returns array of `VGSTextField`s associated with `VGSCollect` instance.
+    public var textFields: [VGSTextField] {
+      return storage.elements
+    }
+  
     // MARK: - Initialzation
     
     /// Initialzation
