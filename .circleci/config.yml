@@ -58,10 +58,6 @@ aliases:
       name: Unit Test
       command: xcodebuild -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11 Pro Max,OS=13.4.1" test-without-building
 
-  - &demo_install_carthage
-      name: Install carthage for the demo
-      command: cd /demoapp; carthage update --platform iOS
-
 jobs:
   build_and_test:
     macos:
@@ -89,8 +85,7 @@ jobs:
     working_directory: ~/project_demo_carthage
     steps:
       - checkout
-      - run: *demo_install_carthage
-      - run: ls -la        
+      - run: cd demoapp; fastlane run carthage command:update
     
   pod_update:
     macos:
@@ -108,13 +103,13 @@ jobs:
 
 workflows:
   version: 2.1
-  build_and_test:
-    jobs:
-      - build_and_test
-
-  # carthage_update:
+  #✅ build_and_test:
   #   jobs:
-  #     - carthage_update
+  #     - build_and_test
+
+  carthage_update:
+    jobs:
+      - carthage_update
   
   #✅pod_update:
   #   jobs:
