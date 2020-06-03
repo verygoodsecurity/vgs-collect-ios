@@ -46,17 +46,14 @@ class CardBrandTest: XCTestCase {
     func testCardBrandDetectionByFirstDigitsReturnsTrue() {
         let allBrands = SwiftLuhn.CardType.allCases
         allBrands.forEach { brand in
-            let numbers = brand.cardNumbers
+            let numbers = brand.firsDigitsInCardNumber
             numbers.forEach { number in
-                let startIndex = (brand == .mastercard || brand == .maestro) ? 7 : 4
-                let digitsCount = Int.random(in: startIndex...11)
-                let input = String(number.prefix(digitsCount))
-                cardTextField.textField.secureText = input
+                cardTextField.textField.secureText = number
                 guard let state = cardTextField.state as? CardState else {
                     XCTFail("Guard fail")
                     return
                 }
-                XCTAssert(state.cardBrand == brand, "Card number \(number), first digits \(input), for brand \(brand) fail")
+                XCTAssert(state.cardBrand == brand, "First digits \(number), for brand \(brand) fail")
             }
         }
     }
