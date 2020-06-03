@@ -186,7 +186,8 @@ internal extension SwiftLuhn.CardType {
       case .visa:
           return "^4\\d*$"
       case .maestro:
-          return "(5018|5020|5038|6304|6390[0-9]|67[0-9])\\d*$"
+          return "^(5(018|0[23]|[68])|6(39|7))\\d*$"
+
       case .unknown:
           return ""
       }
