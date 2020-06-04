@@ -172,21 +172,22 @@ internal extension SwiftLuhn.CardType {
   var typeDetectRegex: String {
       switch self {
       case .amex:
-          return "^3[4,7]\\d*$"
+          return "^3[47]\\d*$"
       case .dinersClub:
-          return "^3(?:[6,8,9]|(?:0[0,5,9]+))\\d*$"
+          return "^3(?:[689]|(?:0[059]+))\\d*$"
       case .discover:
           return "^(6011|65|64[4-9]|622)\\d*$"
       case .jcb:
           return "^35\\d*$"
       case .mastercard:
-          return "^(5[1-5][0-9]{4,}|677189)|^(222[1-9]|2[3-6]{2,}|27[0-1]|2720)([0-9]{2,})+$"
+          return "^(5[1-5]|2[2-7])\\d*$"
       case .visaElectron:
-          return "^4(026|17500|405|508|844|91[3,7])\\d*$"
+          return "^4(026|17500|405|508|844|91[37])\\d*$"
       case .visa:
           return "^4\\d*$"
       case .maestro:
-          return "(5018|5020|5038|6304|6390[0-9]|67[0-9])\\d*$"
+          return "^(5(018|0[23]|[68])|6(39|7))\\d*$"
+
       case .unknown:
           return ""
       }
