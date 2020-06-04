@@ -53,19 +53,29 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             textfield.setText(cardInfo.cardNumber)
         }
-        if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020,
-            let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {
+        if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020 {
+          let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
+          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {
             let yy = "\(cardInfo.expiryYear)".suffix(2)
-            let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
             textfield.setText("\(monthString)\(yy)")
+          }
+          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDateLong) {
+            textfield.setText("\(monthString)\(cardInfo.expiryYear)")
+          }
         }
         if 1...12 ~= Int(cardInfo.expiryMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationMonth) {
             let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
             textfield.setText(monthString)
         }
-        if cardInfo.expiryYear >= 2020, let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYear) {
+      if cardInfo.expiryYear >= 2020 {
+          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYear) {
             let yy = String("\(cardInfo.expiryYear)".suffix(2))
             textfield.setText(yy)
+          }
+          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYearLong) {
+            let yy = String("\(cardInfo.expiryYear)")
+            textfield.setText(yy)
+          }
         }
         if let cvc = cardInfo.cvv, !cvc.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cvc) {
             textfield.setText(cvc)

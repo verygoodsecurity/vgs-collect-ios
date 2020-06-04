@@ -26,6 +26,12 @@ public enum CradIODataType: Int {
     
     /// Credit Card CVC code. 3-4 digits string in format "123".
     case cvc
+  
+    /// Credit Card Expiration Date. String in format "01/2021".
+    case expirationDateLong
+  
+    /// Credit Card Expiration Year. String in format "2021".
+    case expirationYearLong
 }
 
 /// Delegates produced by `VGSCardIOScanController` instance.
