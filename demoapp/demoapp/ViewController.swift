@@ -215,7 +215,7 @@ extension ViewController: VGSCardIOScanControllerDelegate {
     //Asks VGSTextField where scanned data with type need to be set.
     func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
         switch type {
-        case .expirationDate:
+        case .expirationDateLong:
             return expCardDate
         case .cvc:
             return cvcCardNum
