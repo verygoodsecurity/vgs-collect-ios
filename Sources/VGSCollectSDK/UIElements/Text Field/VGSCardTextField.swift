@@ -157,6 +157,8 @@ internal extension VGSCardTextField {
                                                   multiplier: 1,
                                                   constant: cardIconSize.height)
         heightConstraint.identifier = "heightConstraint"
+        // fix conflict with textfield height constraint when card icon more higher then textfield
+        heightConstraint.priority = UILayoutPriority(rawValue: 999)
         cardIconView.addConstraints([widthConstraint, heightConstraint])
     }
 }
