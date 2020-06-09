@@ -35,17 +35,37 @@ class CardNumerTextFieldTests: XCTestCase {
     }
     
     func testCardNumberText() {
-        XCTAssertTrue(cardNumerTextField.textField.secureText == "")
+      XCTAssertTrue(cardNumerTextField.textField.secureText == "")
     }
 
+  func testInitialTextfieldState() {
+    
+      let state = cardNumerTextField.state
+      
+      if let st = state as? CardState {
+          XCTAssertTrue(st.isEmpty)
+          XCTAssertFalse(st.isDirty)
+          XCTAssertFalse(st.isValid)
+          XCTAssertTrue(st.isRequired)
+          XCTAssertTrue(st.isRequiredValidOnly)
+          XCTAssertTrue(st.inputLength == 0)
+          XCTAssertTrue(st.bin == "")
+          XCTAssertTrue(st.last4 == "")
+          XCTAssertTrue(st.cardBrand == .unknown)
+      } else {
+          XCTAssert(false, "CardState not valid")
+      }
+  }
+  
     func testEmptyTextfieldState() {
         
-        cardNumerTextField.textField.secureText = ""
+        cardNumerTextField.setText("")
       
         let state = cardNumerTextField.state
         
         if let st = state as? CardState {
             XCTAssertTrue(st.isEmpty)
+            XCTAssertTrue(st.isDirty)
             XCTAssertFalse(st.isValid)
             XCTAssertTrue(st.isRequired)
             XCTAssertTrue(st.isRequiredValidOnly)
@@ -60,13 +80,15 @@ class CardNumerTextFieldTests: XCTestCase {
   
     func testValidCardNumberState() {
       
-      cardNumerTextField.textField.secureText = "4111 1111 1111 1111"
+      cardNumerTextField.setText("4111 1111 1111 1111")
            
       var state = cardNumerTextField.state
 
       if let st = state as? CardState {
          XCTAssertFalse(st.isEmpty)
+         XCTAssertTrue(st.isDirty)
          XCTAssertTrue(st.isValid)
+         XCTAssertTrue(st.isDirty)
          XCTAssertTrue(st.isRequired)
          XCTAssertTrue(st.isRequiredValidOnly)
          XCTAssertTrue(st.inputLength == 16)
@@ -77,12 +99,13 @@ class CardNumerTextFieldTests: XCTestCase {
          XCTAssert(false, "CardState not valid")
       }
       
-      cardNumerTextField.textField.secureText = "3400 0009 9900 036"
+      cardNumerTextField.setText("3400 0009 9900 036")
       
       state = cardNumerTextField.state
       
       if let st = state as? CardState {
           XCTAssertFalse(st.isEmpty)
+          XCTAssertTrue(st.isDirty)
           XCTAssertTrue(st.isValid)
           XCTAssertTrue(st.isRequired)
           XCTAssertTrue(st.isRequiredValidOnly)
@@ -95,12 +118,13 @@ class CardNumerTextFieldTests: XCTestCase {
       }
       
       /// test with mask
-      cardNumerTextField.textField.secureText = "4111 1111 1111 1111 5555 5555"
+      cardNumerTextField.setText("4111 1111 1111 1111 5555 5555")
            
       state = cardNumerTextField.state
 
       if let st = state as? CardState {
          XCTAssertFalse(st.isEmpty)
+         XCTAssertTrue(st.isDirty)
          XCTAssertTrue(st.isValid)
          XCTAssertTrue(st.isRequired)
          XCTAssertTrue(st.isRequiredValidOnly)
@@ -114,12 +138,13 @@ class CardNumerTextFieldTests: XCTestCase {
     }
   
     func testNotValidCardNumberState() {
-      cardNumerTextField.textField.secureText = "4111 1111 1111 1234"
+      cardNumerTextField.setText("4111 1111 1111 1234")
       
       var state = cardNumerTextField.state
       
       if let st = state as? CardState {
           XCTAssertFalse(st.isEmpty)
+          XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
           XCTAssertTrue(st.isRequired)
           XCTAssertTrue(st.isRequiredValidOnly)
@@ -131,12 +156,13 @@ class CardNumerTextFieldTests: XCTestCase {
           XCTAssert(false, "State not for card field")
       }
       
-      cardNumerTextField.textField.secureText = "4111 1111 1"
+      cardNumerTextField.setText("4111 1111 1")
       
       state = cardNumerTextField.state
       
       if let st = state as? CardState {
           XCTAssertFalse(st.isEmpty)
+          XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
           XCTAssertTrue(st.isRequired)
           XCTAssertTrue(st.isRequiredValidOnly)
@@ -148,12 +174,14 @@ class CardNumerTextFieldTests: XCTestCase {
           XCTAssert(false, "CardState not valid")
       }
       
-      cardNumerTextField.textField.secureText! += "111"
+      let newValue = cardNumerTextField.textField.secureText! + "111"
+      cardNumerTextField.setText(newValue)
       
       state = cardNumerTextField.state
       
       if let st = state as? CardState {
           XCTAssertFalse(st.isEmpty)
+          XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
           XCTAssertTrue(st.isRequired)
           XCTAssertTrue(st.isRequiredValidOnly)
@@ -164,5 +192,118 @@ class CardNumerTextFieldTests: XCTestCase {
       } else {
           XCTAssert(false, "CardState not valid")
       }
+      
+      cardNumerTextField.setText("")
+      
+      state = cardNumerTextField.state
+      
+      if let st = state as? CardState {
+          XCTAssertTrue(st.isEmpty)
+          XCTAssertTrue(st.isDirty)
+          XCTAssertFalse(st.isValid)
+          XCTAssertTrue(st.isRequired)
+          XCTAssertTrue(st.isRequiredValidOnly)
+          XCTAssertTrue(st.inputLength == 0)
+          XCTAssertTrue(st.bin == "")
+          XCTAssertTrue(st.last4 == "")
+          XCTAssertTrue(st.cardBrand == .unknown)
+      } else {
+          XCTAssert(false, "CardState not valid")
+      }
     }
+  
+    func testCardNumberStateWithoutEditingOnFirstResponderChange() {
+      
+      cardNumerTextField.becomeFirstResponder()
+      var state = cardNumerTextField.state
+      
+      if let st = state as? CardState {
+          XCTAssertTrue(st.isEmpty)
+          XCTAssertFalse(st.isDirty)
+          XCTAssertFalse(st.isValid)
+          XCTAssertTrue(st.isRequired)
+          XCTAssertTrue(st.isRequiredValidOnly)
+          XCTAssertTrue(st.inputLength == 0)
+          XCTAssertTrue(st.bin == "")
+          XCTAssertTrue(st.last4 == "")
+          XCTAssertTrue(st.cardBrand == .unknown)
+      } else {
+          XCTAssert(false, "CardState not valid")
+      }
+      
+      cardNumerTextField.resignFirstResponder()
+      state = cardNumerTextField.state
+      
+      if let st = state as? CardState {
+          XCTAssertTrue(st.isEmpty)
+          XCTAssertFalse(st.isDirty)
+          XCTAssertFalse(st.isValid)
+          XCTAssertTrue(st.isRequired)
+          XCTAssertTrue(st.isRequiredValidOnly)
+          XCTAssertTrue(st.inputLength == 0)
+          XCTAssertTrue(st.bin == "")
+          XCTAssertTrue(st.last4 == "")
+          XCTAssertTrue(st.cardBrand == .unknown)
+      } else {
+          XCTAssert(false, "CardState not valid")
+      }
+      
+      func testCardNumberStateWithEditingOnFirstResponderChange() {
+        
+        cardNumerTextField.becomeFirstResponder()
+        cardNumerTextField.setText("4111 1111 1")
+
+        var state = cardNumerTextField.state
+
+        if let st = state as? CardState {
+           XCTAssertFalse(st.isEmpty)
+           XCTAssertTrue(st.isDirty)
+           XCTAssertFalse(st.isValid)
+           XCTAssertTrue(st.isRequired)
+           XCTAssertTrue(st.isRequiredValidOnly)
+           XCTAssertTrue(st.inputLength == 9)
+           XCTAssertTrue(st.bin == "")
+           XCTAssertTrue(st.last4 == "")
+           XCTAssertTrue(st.cardBrand == .visa)
+        } else {
+           XCTAssert(false, "CardState not valid")
+        }
+        
+        cardNumerTextField.resignFirstResponder()
+        
+        state = cardNumerTextField.state
+
+        if let st = state as? CardState {
+           XCTAssertFalse(st.isEmpty)
+           XCTAssertTrue(st.isDirty)
+           XCTAssertFalse(st.isValid)
+           XCTAssertTrue(st.isRequired)
+           XCTAssertTrue(st.isRequiredValidOnly)
+           XCTAssertTrue(st.inputLength == 9)
+           XCTAssertTrue(st.bin == "")
+           XCTAssertTrue(st.last4 == "")
+           XCTAssertTrue(st.cardBrand == .visa)
+        } else {
+           XCTAssert(false, "CardState not valid")
+        }
+        
+        cardNumerTextField.becomeFirstResponder()
+
+        state = cardNumerTextField.state
+
+        if let st = state as? CardState {
+           XCTAssertFalse(st.isEmpty)
+           XCTAssertTrue(st.isDirty)
+           XCTAssertFalse(st.isValid)
+           XCTAssertTrue(st.isRequired)
+           XCTAssertTrue(st.isRequiredValidOnly)
+           XCTAssertTrue(st.inputLength == 9)
+           XCTAssertTrue(st.bin == "")
+           XCTAssertTrue(st.last4 == "")
+           XCTAssertTrue(st.cardBrand == .visa)
+        } else {
+           XCTAssert(false, "CardState not valid")
+        }
+      }
+  }
 }
