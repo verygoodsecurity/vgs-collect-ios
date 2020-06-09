@@ -26,6 +26,7 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
             print("This device is not compatible with CardIO")
             return
         }
+        vc.hideCardIOLogo = true
         vc.modalPresentationStyle = .overCurrentContext
         self.view = vc
         viewController.present(vc, animated: animated, completion: completion)
