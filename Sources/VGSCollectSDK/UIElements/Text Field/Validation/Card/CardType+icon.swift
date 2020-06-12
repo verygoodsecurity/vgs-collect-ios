@@ -32,12 +32,21 @@ extension SwiftLuhn.CardType {
             resultIcon = UIImage(named: "discover", in: bundle, compatibleWith: nil)
         case .dinersClub:
             resultIcon = UIImage(named: "dinersClub", in: bundle, compatibleWith: nil)
+        case .unionpay:
+            resultIcon = UIImage(named: "unionPay", in: bundle, compatibleWith: nil)
         case .jcb:
             resultIcon = UIImage(named: "jcb", in: bundle, compatibleWith: nil)
+        case .elo:
+            resultIcon = UIImage(named: "elo", in: bundle, compatibleWith: nil)
+        case .forbrugsforeningen:
+          resultIcon = UIImage(named: "forbrugsforeningen", in: bundle, compatibleWith: nil)
+        case .dankort:
+          resultIcon = UIImage(named: "dankort", in: bundle, compatibleWith: nil)
+        case .hipercard:
+          resultIcon = UIImage(named: "hipercard", in: bundle, compatibleWith: nil)
         case .unknown:
             resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
         }
-        
         return resultIcon
     }
 }

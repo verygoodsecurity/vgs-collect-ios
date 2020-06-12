@@ -19,7 +19,7 @@ class CardBrandTest: XCTestCase {
         
         let config = VGSConfiguration(collector: storage, fieldName: "cardNum")
         config.type = .cardNumber
-        config.formatPattern = nil
+        config.formatPattern = ""
         cardTextField.configuration = config
     }
 
@@ -96,7 +96,8 @@ class CardBrandTest: XCTestCase {
     }
     
     func testNotValidCardsValidationReturnsFalse() {
-        let allBrands = SwiftLuhn.CardType.allCases
+      let allBrands = SwiftLuhn.CardType.allCases.filter { $0 != .unionpay }
+        
         allBrands.forEach { brand in
             let numbers = brand.cardNumbers
             numbers.forEach { number in
