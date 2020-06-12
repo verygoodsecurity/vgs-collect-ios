@@ -27,6 +27,9 @@ public class State {
     /// Show if `VGSTextField` input is empty
     internal(set) open var isEmpty: Bool = false
   
+    /// Show if `VGSTextField` was edited
+    internal(set) open var isDirty: Bool = false
+  
     /// Input data length in `VGSTextField`
     internal(set) open var inputLength: Int = 0
 
@@ -37,6 +40,7 @@ public class State {
         isRequiredValidOnly = tf.isRequiredValidOnly
         isValid = tf.isValid
         isEmpty = (tf.textField.getSecureRawText?.count == 0)
+        isDirty = tf.isDirty
         inputLength = tf.textField.getSecureRawText?.count ?? 0
     }
     
@@ -54,6 +58,7 @@ public class State {
             "isRequiredValidOnly": \(isRequiredValidOnly),
             "isValid": \(isValid),
             "isEmpty": \(isEmpty),
+            "isDirty": \(isDirty),
             "inputLength": \(inputLength)
         }
         """

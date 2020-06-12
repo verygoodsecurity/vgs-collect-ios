@@ -18,6 +18,7 @@ public class VGSTextField: UIView {
     internal var focusStatus: Bool = false
     internal var isRequired: Bool = false
     internal var isRequiredValidOnly: Bool = false
+    internal var isDirty: Bool = false
     internal var fieldType: FieldType = .none
     internal var validationModel = VGSValidation()
     internal var fieldName: String!
@@ -147,18 +148,23 @@ extension VGSTextField {
 // MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
     public func textFieldDidBeginEditing(_ textField: UITextField) {
+        textFieldValueChanged()
         delegate?.vgsTextFieldDidBeginEditing?(self)
     }
   
     @objc func textFieldDidChange(_ textField: UITextField) {
+        isDirty = true
+        textFieldValueChanged()
         delegate?.vgsTextFieldDidChange?(self)
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldValueChanged()
         delegate?.vgsTextFieldDidEndEditing?(self)
     }
     
     @objc func textFieldDidEndEditingOnExit(_ textField: UITextField) {
+        textFieldValueChanged()
         delegate?.vgsTextFieldDidEndEditingOnReturn?(self)
     }
 }
@@ -188,7 +194,6 @@ internal extension VGSTextField {
       //delegates
       textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
       //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
-      textField.addSomeTarget(self, action: #selector(textFieldValueChanged), for: .allEditingEvents)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
       NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: UITextField.textDidChangeNotification, object: textField)
@@ -227,6 +232,7 @@ internal extension VGSTextField {
     
     /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
     func setText(_ text: String?) {
+        isDirty = true
         textField.secureText = text
         // this will update card textfield icons
         textFieldValueChanged()

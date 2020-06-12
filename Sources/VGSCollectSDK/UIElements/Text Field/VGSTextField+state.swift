@@ -22,6 +22,8 @@ public extension VGSTextField {
         return focusStatus
     }
     
+    // MARK: - State
+  
     /// Describes `VGSTextField` input   `State`
     var state: State {
         var result: State
