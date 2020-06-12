@@ -12,6 +12,32 @@ import UIKit
 #endif
 
 public extension VGSTextField {
+  
+    // MARK: - Text Attribute
+  
+    /// `VGSTextField` text font
+    var font: UIFont? {
+        get {
+            return textField.font
+        }
+        set {
+            textField.font = newValue
+        }
+    }
+  
+    /// `VGSTextField` text color
+    @IBInspectable var textColor: UIColor? {
+        get {
+            return textField.textColor
+        }
+        set {
+            textField.textColor = newValue
+        }
+    }
+  
+    // MARK: - UI Layer Attribute
+  
+    /// `VGSTextField` layer corner radius
     @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -21,6 +47,8 @@ public extension VGSTextField {
             layer.masksToBounds = newValue > 0
         }
     }
+  
+    /// `VGSTextField` layer borderWidth
     @IBInspectable var borderWidth: CGFloat {
         get {
             return layer.borderWidth
@@ -29,6 +57,8 @@ public extension VGSTextField {
             layer.borderWidth = newValue
         }
     }
+  
+    /// `VGSTextField` layer borderColor
     @IBInspectable var borderColor: UIColor? {
         get {
             guard let cgcolor = layer.borderColor else {
@@ -38,22 +68,6 @@ public extension VGSTextField {
         }
         set {
             layer.borderColor = newValue?.cgColor
-        }
-    }
-    var font: UIFont? {
-        get {
-            return textField.font
-        }
-        set {
-            textField.font = newValue
-        }
-    }
-    @IBInspectable var textColor: UIColor? {
-        get {
-            return textField.textColor
-        }
-        set {
-            textField.textColor = newValue
         }
     }
     

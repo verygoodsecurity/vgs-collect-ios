@@ -49,11 +49,11 @@ custom_categories:
   children:
   - VGSCollect
   - Environment
+  - VGSResponse
+  - HTTPMethod
   - State
   - SSNState
   - CardState
-  - VGSResponse
-  - HTTPMethod
 - name: Errors
   children:
   - VGSError
