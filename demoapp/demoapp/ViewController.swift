@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
-    var expCardDate = VGSTextField()
+    var expCardDate = VGSExpDateTextField()
     var cvcCardNum = VGSTextField()
     var cardHolderName = VGSTextField()
     

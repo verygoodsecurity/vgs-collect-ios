@@ -75,6 +75,7 @@
 		FD7503B223F4934900591668 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B96243BB403006A30CB /* CardBrandTest.swift */; };
 		FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */; };
+		FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */; };
 		FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA680DE239844FC00372817 /* CardTextFieldTests.swift */; };
 		FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAB6AC249A9257001F5C1A /* FileInfoTest.swift */; };
 		FDD398EE247D776600B55057 /* VGSCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD398ED247D776600B55057 /* VGSCardTextField.swift */; };
@@ -164,6 +165,7 @@
 		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
 		FD790B96243BB403006A30CB /* CardBrandTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTest.swift; sourceTree = "<group>"; };
 		FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CardBrandDataSource.swift; sourceTree = "<group>"; };
+		FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTextField.swift; sourceTree = "<group>"; };
 		FDA680DE239844FC00372817 /* CardTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldTests.swift; sourceTree = "<group>"; };
 		FDAAB6AC249A9257001F5C1A /* FileInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfoTest.swift; sourceTree = "<group>"; };
 		FDD398ED247D776600B55057 /* VGSCardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				FD148A05232EC53600FD7781 /* State */,
 				FD2495622330E313009024E6 /* Validation */,
 				FDD398ED247D776600B55057 /* VGSCardTextField.swift */,
+				FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */,
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
 				FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
@@ -599,6 +602,7 @@
 				32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD3C01C323AFC0980096B4A4 /* VGSTextField+CVC.swift in Sources */,
+				FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */,
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
