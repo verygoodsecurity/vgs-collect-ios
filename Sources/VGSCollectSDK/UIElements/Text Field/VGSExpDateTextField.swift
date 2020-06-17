@@ -13,8 +13,6 @@ public final class VGSExpDateTextField: VGSTextField {
     internal lazy var picker = self.makePicker()
     internal lazy var topView = self.makeTopView()
     
-    public var minimumYearForPicker: Int = 2020
-    
     internal lazy var monthsSymbol: [String] = {
         var result = [String]()
         (1...12).forEach { num in
@@ -39,6 +37,9 @@ public final class VGSExpDateTextField: VGSTextField {
         return cashedYearsSymbols!
     }
     
+    public var minimumYearForPicker: Int = 2020
+    
+    // MARK: -
     override func mainInitialization() {
         super.mainInitialization()
         textField.inputView = picker
@@ -62,10 +63,10 @@ public final class VGSExpDateTextField: VGSTextField {
         let calendar = Calendar.current
         let currentMonth = calendar.component(Calendar.Component.month, from: Date())
         let currentYear = calendar.component(Calendar.Component.year, from: Date())
-        let selectedMonth = picker.selectedRow(inComponent: 0)
+        let selectedMonth = picker.selectedRow(inComponent: 0) + 1
         let selectedYear = picker.selectedRow(inComponent: 1) + 2020
         
-        if selectedMonth < currentYear && currentYear == selectedYear {
+        if selectedMonth < currentMonth && selectedYear == currentYear {
             picker.selectRow(currentMonth - 1, inComponent: 0, animated: true)
         }
     }
