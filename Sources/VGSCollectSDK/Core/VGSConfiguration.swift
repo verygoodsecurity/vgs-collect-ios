@@ -47,6 +47,8 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
 
     /// Internal Validation model.
     internal var validationModel: VGSValidation?
+  
+    public var validation: VGSValidationModelProtocol?
     
     /// Type of field congfiguration. Default is `FieldType.none`.
     public var type: FieldType = .none

@@ -13,11 +13,6 @@ import UIKit
 
 public extension VGSTextField {
     
-    internal var isValid: Bool {
-        let str = textField.getSecureRawText ?? ""
-        return validationModel.isValid(str, type: fieldType)
-    }
-    
     override var isFocused: Bool {
         return focusStatus
     }

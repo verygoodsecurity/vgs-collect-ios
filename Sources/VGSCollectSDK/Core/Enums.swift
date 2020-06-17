@@ -96,6 +96,19 @@ internal extension FieldType {
             return .alphabet
         }
     }
+  
+  var defaultValidationModel: VGSValidationModelProtocol {
+    switch self {
+    case .cardNumber:
+      return VGSCardNumberValidation()
+    case .expDate:
+      return VGSDateValidation()
+    default:
+      let validator = VGSBaseValidation()
+      validator.regex = self.regex
+      return validator
+    }
+  }
 }
 
 internal enum DateFormatPattern: String {
