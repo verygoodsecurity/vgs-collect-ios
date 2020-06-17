@@ -50,6 +50,7 @@ public final class VGSExpDateTextField: VGSTextField {
     public override var configuration: VGSConfiguration? {
         didSet {
             cashedYearsSymbols = nil
+            fieldType = .expDate
             updateTextField()
         }
     }

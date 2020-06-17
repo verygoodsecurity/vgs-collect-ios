@@ -78,6 +78,7 @@
 		FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */; };
 		FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA680DE239844FC00372817 /* CardTextFieldTests.swift */; };
 		FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAB6AC249A9257001F5C1A /* FileInfoTest.swift */; };
+		FDAAB6AB249A8844001F5C1A /* ExpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAB6AA249A8844001F5C1A /* ExpDateTextField.swift */; };
 		FDD398EE247D776600B55057 /* VGSCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD398ED247D776600B55057 /* VGSCardTextField.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDE247CD2467439D008D75B0 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
@@ -168,6 +169,7 @@
 		FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTextField.swift; sourceTree = "<group>"; };
 		FDA680DE239844FC00372817 /* CardTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldTests.swift; sourceTree = "<group>"; };
 		FDAAB6AC249A9257001F5C1A /* FileInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfoTest.swift; sourceTree = "<group>"; };
+		FDAAB6AA249A8844001F5C1A /* ExpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextField.swift; sourceTree = "<group>"; };
 		FDD398ED247D776600B55057 /* VGSCardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
 		FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+network.swift"; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
+				FDAAB6AA249A8844001F5C1A /* ExpDateTextField.swift */,
 				FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */,
 				3270D3F0248155B200004E3B /* SSNTextFieldTests.swift */,
 				FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */,
@@ -653,6 +656,7 @@
 				32F23A7924B752E200E389F7 /* PaymentCardsTest.swift in Sources */,
 				FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
+				FDAAB6AB249A8844001F5C1A /* ExpDateTextField.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */,
