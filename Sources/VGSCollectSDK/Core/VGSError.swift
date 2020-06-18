@@ -19,14 +19,14 @@ public enum VGSErrorType: Int {
     /// When input data doesn't match regex
     case inputDontMatchPattern = 1010
   
-    /// When can't recognize card brand
-    case notValidCardBrand = 1011
+    /// When card number doesn't match algorithm check (Luhn , etc)
+    case cardAlgorithmCheckFailed = 1011
+  
+    /// When can't detect card brand
+    case notValidCardBrand = 1012
   
     /// When card number length is not valid for specific card brand
-    case notValidCardLength = 1012
-  
-    /// When card number doesn't match algorithm check (Luhn , etc)
-    case cardAlgorithmCheckFailed = 1013
+    case notValidCardLength = 1013
   
     /// When the date is before min possible date
     case dateBeforeMinDate = 1015
