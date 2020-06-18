@@ -62,21 +62,21 @@ internal class VGSValidation {
       /// check supported card brand
     if validationModel.isBrandValidationOn {
         if cardType == .unknown {
-          errors.append(VGSError.init(type: .inputDataIsNotValid))
+          errors.append(VGSError.init(type: .notValidCardBrand))
         }
       }
       
       /// check if card number length is valid for specific brand
     if validationModel.isLengthValidationOn {
         if !cardType.cardLengths.contains(value.count) {
-            errors.append(VGSError.init(type: .inputDataIsNotValid))
+            errors.append(VGSError.init(type: .notValidCardLength))
         }
       }
       
       /// perform Luhn Algorithm check
     if validationModel.isAlgorithmValidationOn {
         if !SwiftLuhn.performLuhnAlgorithm(with: value) {
-          errors.append(VGSError.init(type: .inputDataIsNotValid))
+          errors.append(VGSError.init(type: .cardAlgorithmCheckFailed))
         }
       }
       return errors
@@ -86,18 +86,18 @@ internal class VGSValidation {
       if value.matches(for: validationModel.regex).count > 0 {
         return [VGSError]()
       }
-      return [VGSError.init(type: .inputDataIsNotValid)]
+      return [VGSError.init(type: .inputDontMatchPattern)]
     }
   
     class func validate(value: String, validationModel: VGSDateValidation) -> [VGSError] {
 
       guard value.matches(for: validationModel.regex).count > 0 else {
-        return [VGSError.init(type: .inputDataIsNotValid)]
+        return [VGSError.init(type: .inputDontMatchPattern)]
       }
       let mmChars = 2
       let yyChars = validationModel.isLongDateFormat ? 4 : 2
       guard value.count == mmChars + yyChars else {
-        return [VGSError.init(type: .inputDataIsNotValid)]
+        return [VGSError.init(type: .inputDontMatchPattern)]
       }
 
       let mm = value.prefix(mmChars)
@@ -113,15 +113,19 @@ internal class VGSValidation {
       let todayMM = Int(formatter.string(from: today)) ?? 0
 
       guard let inputMM = Int(mm), let inputYY = Int(yy) else {
-          return [VGSError.init(type: .inputDataIsNotValid)]
+          return [VGSError.init(type: .inputDontMatchPattern)]
       }
 
-      if inputYY < todayYY || inputYY > (todayYY + 20) {
-          return [VGSError.init(type: .inputDataIsNotValid)]
+      if inputYY < todayYY {
+          return [VGSError.init(type: .dateBeforeMinDate)]
+      }
+      
+      if inputYY > (todayYY + 20) {
+        return [VGSError.init(type: .dateAfterMaxDate)]
       }
 
       if inputYY == todayYY && inputMM < todayMM {
-          return [VGSError.init(type: .inputDataIsNotValid)]
+          return [VGSError.init(type: .dateBeforeMinDate)]
       }
       return [VGSError]()
     }

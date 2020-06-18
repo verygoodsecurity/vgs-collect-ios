@@ -94,7 +94,7 @@ public class VGSTextField: UIView {
                 textField.divider = configuration.type.defaultDivider
             }
           
-            validator =  configuration.validation ?? configuration.type.defaultValidationModel
+            validator =  configuration.validationModel ?? configuration.type.defaultValidationModel
             // regex
 //            validationModel.regex = configuration.type.regex
             if fieldType == .expDate {
