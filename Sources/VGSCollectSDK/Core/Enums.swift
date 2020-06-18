@@ -97,17 +97,17 @@ internal extension FieldType {
         }
     }
   
-  var defaultValidationModel: VGSValidationModelProtocol {
-    switch self {
-    case .cardNumber:
-      return VGSCardNumberValidation()
-    case .expDate:
-      return VGSDateValidation()
-    default:
-      let validator = VGSBaseValidation()
-      validator.regex = self.regex
-      return validator
-    }
+    var defaultValidationModel: VGSValidationModelProtocol {
+      switch self {
+      case .cardNumber:
+        return VGSCardNumberValidation()
+      case .expDate:
+        return VGSDateValidation()
+      default:
+        let validator = VGSBaseValidation()
+        validator.regex = self.regex
+        return validator
+      }
   }
 }
 

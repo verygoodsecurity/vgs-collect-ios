@@ -10,12 +10,6 @@ import Foundation
 
 public protocol VGSValidationModelProtocol {
   
-  var regex: String{ get set }
-  func validate(_ text: String) -> [VGSError]
-  
-}
-
-public protocol VGSValidationProtocol {
   
 }
 
@@ -24,20 +18,10 @@ public class VGSBaseValidation: VGSValidationModelProtocol {
   public var regex: String = ""
   
   public init() {}
-  
-  public func validate(_ text: String) -> [VGSError] {
-    var errors = [VGSError]()
-    if text.matches(for: regex).count == 0 {
-      errors.append(VGSError(type: .inputDataIsNotValid, userInfo: nil))
-    }
-    return errors
-  }
 }
 
-
-
 public class VGSDateValidation: VGSValidationModelProtocol {
-
+  
   public var regex: String = FieldType.expDate.regex
   var minDate = ""
   var maxDate = ""
@@ -46,99 +30,100 @@ public class VGSDateValidation: VGSValidationModelProtocol {
   var isLongDateFormat = false
 
   public init() {}
-  
-  public func validate(_ txt: String) -> [VGSError] {
-    
-    let mmChars = 2
-    let yyChars = self.isLongDateFormat ? 4 : 2
-    if txt.count != mmChars + yyChars  {
-      return [VGSError(type: .inputDataIsNotValid)]
-    }
-            
-    let mm = txt.prefix(mmChars)
-    let yy = txt.suffix(yyChars)
-            
-    let today = Date()
-    let formatter = DateFormatter()
-    
-    formatter.dateFormat = self.isLongDateFormat ? "yyyy" : "yy"
-    let todayYY = Int(formatter.string(from: today)) ?? 0
-    
-    formatter.dateFormat = "MM"
-    let todayMM = Int(formatter.string(from: today)) ?? 0
-    
-    guard let inputMM = Int(mm), let inputYY = Int(yy) else {
-      return [VGSError(type: .inputDataIsNotValid)]
-    }
-    
-    if inputYY < todayYY || inputYY > (todayYY + 20) {
-        return [VGSError(type: .inputDataIsNotValid)]
-    }
-    
-    if inputYY == todayYY && inputMM < todayMM {
-      return [VGSError(type: .inputDataIsNotValid)]
-    }
-    return [VGSError]()
-  }
 }
 
-public class VGSCardNumberValidation: VGSValidationProtocol  {
-  public var regex: String = ""
-
+public class VGSCardNumberValidation: VGSValidationModelProtocol  {
   public var isLengthValidationOn: Bool = true
   public var isBrandValidationOn: Bool = true
   public var isAlgorithmValidationOn: Bool = true
-  
-  public init() {}
-  
-}
- 
-extension VGSCardNumberValidation: VGSValidationModelProtocol {
-  
-  
-  public func validate(_ cardNumber: String) -> [VGSError] {
-    
-    var errors = [VGSError]()
-    let cardType =  SwiftLuhn.getCardType(from: cardNumber)
-    
-    /// check supported card brand
-    if isBrandValidationOn {
-      if cardType == .unknown {
-        errors.append(VGSError.init(type: .inputDataIsNotValid))
-      }
-    }
-    
-    /// check if card number length is valid for specific brand
-    if isLengthValidationOn {
-      if !cardType.cardLengths.contains(cardNumber.count) {
-          errors.append(VGSError.init(type: .inputDataIsNotValid))
-      }
-    }
-    
-    /// perform Luhn Algorithm check
-    if isAlgorithmValidationOn {
-      if !SwiftLuhn.performLuhnAlgorithm(with: cardNumber) {
-        errors.append(VGSError.init(type: .inputDataIsNotValid))
-      }
-    }
-    return errors
-  }
 }
 
 internal class VGSValidation {
-    var regex: String = ""
-    var isLongDateFormat = false
-    
-    func isValid(_ txt: String, type: FieldType) -> Bool {
-        if type == .none { return true }
-
-        guard txt.count != 0, regex.count != 0 else {
-            return false
+  
+  class func validate(value: String, validationModel: VGSValidationModelProtocol) -> [VGSError] {
+    if let validationModel = validationModel as? VGSBaseValidation {
+      return Self.validate(value: value, validationModel: validationModel)
+    }
+    else if let validationModel = validationModel as? VGSCardNumberValidation {
+      return Self.validate(value: value, validationModel: validationModel)
+    }
+    else if let validationModel = validationModel as? VGSDateValidation {
+      return Self.validate(value: value, validationModel: validationModel)
+    }
+    print("ERROR: VGSValidation.validate function doesn't support \(validationModel)")
+    return [VGSError]()
+  }
+  
+  class func validate(value: String, validationModel: VGSCardNumberValidation) -> [VGSError] {
+      
+      var errors = [VGSError]()
+      let cardType =  SwiftLuhn.getCardType(from: value)
+      
+      /// check supported card brand
+    if validationModel.isBrandValidationOn {
+        if cardType == .unknown {
+          errors.append(VGSError.init(type: .inputDataIsNotValid))
         }
-        let resultRegEx = txt.matches(for: regex).count > 0
-        let resultType = validateType(txt: txt, for: type)
+      }
+      
+      /// check if card number length is valid for specific brand
+    if validationModel.isLengthValidationOn {
+        if !cardType.cardLengths.contains(value.count) {
+            errors.append(VGSError.init(type: .inputDataIsNotValid))
+        }
+      }
+      
+      /// perform Luhn Algorithm check
+    if validationModel.isAlgorithmValidationOn {
+        if !SwiftLuhn.performLuhnAlgorithm(with: value) {
+          errors.append(VGSError.init(type: .inputDataIsNotValid))
+        }
+      }
+      return errors
+    }
+  
+    class func validate(value: String, validationModel: VGSBaseValidation) -> [VGSError] {
+      if value.matches(for: validationModel.regex).count > 0 {
+        return [VGSError]()
+      }
+      return [VGSError.init(type: .inputDataIsNotValid)]
+    }
+  
+    class func validate(value: String, validationModel: VGSDateValidation) -> [VGSError] {
 
-        return resultRegEx && resultType
+      guard value.matches(for: validationModel.regex).count > 0 else {
+        return [VGSError.init(type: .inputDataIsNotValid)]
+      }
+      let mmChars = 2
+      let yyChars = validationModel.isLongDateFormat ? 4 : 2
+      guard value.count == mmChars + yyChars else {
+        return [VGSError.init(type: .inputDataIsNotValid)]
+      }
+
+      let mm = value.prefix(mmChars)
+      let yy = value.suffix(yyChars)
+
+      let today = Date()
+      let formatter = DateFormatter()
+
+      formatter.dateFormat = validationModel.isLongDateFormat ? "yyyy" : "yy"
+      let todayYY = Int(formatter.string(from: today)) ?? 0
+
+      formatter.dateFormat = "MM"
+      let todayMM = Int(formatter.string(from: today)) ?? 0
+
+      guard let inputMM = Int(mm), let inputYY = Int(yy) else {
+          return [VGSError.init(type: .inputDataIsNotValid)]
+      }
+
+      if inputYY < todayYY || inputYY > (todayYY + 20) {
+          return [VGSError.init(type: .inputDataIsNotValid)]
+      }
+
+      if inputYY == todayYY && inputMM < todayMM {
+          return [VGSError.init(type: .inputDataIsNotValid)]
+      }
+      return [VGSError]()
     }
 }
 

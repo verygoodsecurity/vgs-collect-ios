@@ -40,7 +40,8 @@ public class State {
         fieldName = tf.fieldName
         isRequired = tf.isRequired
         isRequiredValidOnly = tf.isRequiredValidOnly
-        validationErrors = tf.validator?.validate(tf.textField.getSecureRawText ?? "") ?? []
+      
+      validationErrors = VGSValidation.validate(value: tf.textField.getSecureRawText ?? "", validationModel: tf.validator)
         isValid = validationErrors.count == 0
         isEmpty = (tf.textField.getSecureRawText?.count == 0)
         isDirty = tf.isDirty
@@ -88,8 +89,8 @@ public class CardState: State {
         guard let originalText = tf.textField.getSecureRawText else {
             return
         }
-        
-        validationErrors = tf.validator?.validate(tf.textField.getSecureRawText ?? "") ?? []
+      
+        validationErrors = VGSValidation.validate(value: tf.textField.getSecureRawText ?? "", validationModel: tf.validator)
         self.cardBrand = SwiftLuhn.getCardType(from: originalText)
         self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
         self.bin = self.isValid ? String(originalText.prefix(6)): ""

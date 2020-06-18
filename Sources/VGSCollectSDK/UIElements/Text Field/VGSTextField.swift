@@ -21,7 +21,7 @@ public class VGSTextField: UIView {
     internal var isDirty: Bool = false
     internal var fieldType: FieldType = .none
 //    internal var validationModel = VGSValidation()
-    internal var validator: VGSValidationModelProtocol?
+    internal var validator: VGSValidationModelProtocol = VGSBaseValidation()
     internal var fieldName: String!
     internal var token: String?
     internal var horizontalConstraints = [NSLayoutConstraint]()
@@ -258,4 +258,11 @@ extension UIView {
         layer.borderWidth = 1
         layer.cornerRadius = 4
     }
+}
+
+internal extension VGSTextField {
+  
+  func validate() -> [VGSError] {
+    return VGSValidation.validate(value: textField.getSecureRawText ?? "", validationModel: validator)
+  }
 }
