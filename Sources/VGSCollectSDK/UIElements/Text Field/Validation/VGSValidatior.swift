@@ -1,0 +1,28 @@
+//
+//  VGSValidatior.swift
+//  VGSCollectSDK
+//
+//  Created by Dima on 23.06.2020.
+//  Copyright © 2020 VGS. All rights reserved.
+//
+
+import Foundation
+
+internal struct VGSValidator {
+  
+  internal static func validate<Rule: VGSValidationRule>(input: Rule.InputType?, rule: Rule) -> [VGSValidationError] {
+      
+      var ruleSet = VGSValidationRuleSet<Rule.InputType>()
+      ruleSet.add(rule: rule)
+      return VGSValidator.validate(input: input, rules: ruleSet)
+  }
+  
+  internal static func validate<Input>(input: Input?, rules: VGSValidationRuleSet<Input>) -> [VGSValidationError]  {
+
+      let errors = rules.rules
+          .filter { !$0.validate(input: input) }
+          .map { $0.error }
+      
+      return errors.isEmpty ? [VGSValidationError]() : errors
+  }
+}

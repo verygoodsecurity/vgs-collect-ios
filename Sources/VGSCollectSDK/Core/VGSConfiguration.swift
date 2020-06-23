@@ -19,9 +19,9 @@ internal protocol VGSBaseConfigurationProtocol {
 }
 
 internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtocol {
-
-    var validationModel: VGSValidation? { get set }
     
+    var validationRules: VGSValidationRuleSet<String>? { get }
+  
     var isRequired: Bool { get }
     
     var isRequiredValidOnly: Bool { get }
@@ -45,9 +45,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     /// Collect form that will be assiciated with VGSTextField.
     private(set) weak var vgsCollector: VGSCollect?
 
-    /// Internal Validation model.
-    internal var validationModel: VGSValidation?
-    
+    /// Validation rules for field input. Defines `State.isValide` result.
+    public var validationRules: VGSValidationRuleSet<String>?
+  
     /// Type of field congfiguration. Default is `FieldType.none`.
     public var type: FieldType = .none
     

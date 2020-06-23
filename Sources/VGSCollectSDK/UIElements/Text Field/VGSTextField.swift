@@ -20,11 +20,11 @@ public class VGSTextField: UIView {
     internal var isRequiredValidOnly: Bool = false
     internal var isDirty: Bool = false
     internal var fieldType: FieldType = .none
-    internal var validationModel = VGSValidation()
     internal var fieldName: String!
     internal var token: String?
     internal var horizontalConstraints = [NSLayoutConstraint]()
     internal var verticalConstraint = [NSLayoutConstraint]()
+    internal var validationRules: VGSValidationRuleSet<String>!
 
     // MARK: - UI Attributes
     
@@ -94,11 +94,14 @@ public class VGSTextField: UIView {
             }
             
             // regex
-            validationModel.regex = configuration.type.regex
-            if fieldType == .expDate {
-                validationModel.isLongDateFormat = textField.formatPattern == DateFormatPattern.longYear.rawValue
-            }
-
+//            validationModel.regex = configuration.type.regex
+//            if fieldType == .expDate {
+//                validationModel.isLongDateFormat = textField.formatPattern == DateFormatPattern.longYear.rawValue
+//            }
+          
+            /// Validation
+          validationRules = (configuration.validationRules != nil) ? configuration.validationRules : fieldType.defaultValidation
+          
             if let vgs = configuration.vgsCollector {
                 vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])

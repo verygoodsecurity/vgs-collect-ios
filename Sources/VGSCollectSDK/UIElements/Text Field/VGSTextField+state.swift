@@ -13,11 +13,6 @@ import UIKit
 
 public extension VGSTextField {
     
-    internal var isValid: Bool {
-        let str = textField.getSecureRawText ?? ""
-        return validationModel.isValid(str, type: fieldType)
-    }
-    
     override var isFocused: Bool {
         return focusStatus
     }
@@ -38,4 +33,15 @@ public extension VGSTextField {
         }
         return result
     }
+}
+
+internal extension VGSTextField {
+  func validate() -> [VGSValidationError] {
+    let str = textField.getSecureRawText ?? ""
+    
+    guard validationRules != nil else {
+      return [VGSValidationError]()
+    }
+    return VGSValidator.validate(input: str, rules: validationRules)
+  }
 }

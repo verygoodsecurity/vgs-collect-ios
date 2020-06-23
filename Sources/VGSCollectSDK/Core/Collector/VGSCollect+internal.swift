@@ -103,7 +103,9 @@ internal extension VGSCollect {
             // change cvc format pattern based on card brand
             if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
                 cvcField.textField.formatPattern = textField.cvcFormatPatternForCardType
-                cvcField.validationModel.regex = textField.cvcRegexForCardType
+                var validationRules = VGSValidationRuleSet<String>()
+                validationRules.add(rule: textField.cvcRegexForCardType)
+                cvcField.validationRules = validationRules
             }
         }
         
