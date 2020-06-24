@@ -10,14 +10,14 @@ import Foundation
 
 internal struct VGSValidator {
   
-  internal static func validate<Rule: VGSValidationRule>(input: Rule.InputType?, rule: Rule) -> [VGSValidationError] {
+  internal static func validate(input: String?, rule: VGSValidationRule) -> [VGSValidationError] {
       
-      var ruleSet = VGSValidationRuleSet<Rule.InputType>()
+      var ruleSet = VGSValidationRuleSet()
       ruleSet.add(rule: rule)
       return VGSValidator.validate(input: input, rules: ruleSet)
   }
   
-  internal static func validate<Input>(input: Input?, rules: VGSValidationRuleSet<Input>) -> [VGSValidationError]  {
+  internal static func validate(input: String?, rules: VGSValidationRuleSet) -> [VGSValidationError]  {
 
       let errors = rules.rules
           .filter { !$0.validate(input: input) }

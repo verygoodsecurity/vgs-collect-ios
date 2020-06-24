@@ -19,12 +19,14 @@ public struct VGSValidationRuleLength: VGSValidationRule {
         self.max = max
         self.error = error
     }
-    
-    public func validate(input: String?) -> Bool {
+}
 
-        guard let input = input else {
-            return false
-        }
-        return input.count >= min && input.count <= max
-    }
+extension VGSValidationRuleLength: VGSRuleValidator {
+  internal func validate(input: String?) -> Bool {
+
+      guard let input = input else {
+          return false
+      }
+      return input.count >= min && input.count <= max
+  }
 }

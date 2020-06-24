@@ -9,7 +9,8 @@
 import Foundation
 
 public struct VGSValidationRulePattern: VGSValidationRule {
-    
+  
+//    public let validationType: ValidationType = .pattern
     public let pattern: String
     public let error: VGSValidationError
     
@@ -23,8 +24,12 @@ public struct VGSValidationRulePattern: VGSValidationRule {
 //        self.init(pattern: pattern.pattern, error: error)
 //    }
 
-    public func validate(input: String?) -> Bool {
 
-        return NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: input)
-    }
+}
+
+extension VGSValidationRulePattern: VGSRuleValidator {
+  internal func validate(input: String?) -> Bool {
+
+      return NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: input)
+  }
 }

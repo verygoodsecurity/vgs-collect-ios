@@ -9,13 +9,17 @@
 import Foundation
 
 public struct VGSValidationRuleLuhnCheck: VGSValidationRule {
+    
   public var error: VGSValidationError
 
   public init(error: VGSValidationError) {
     self.error = error
   }
+}
+
+extension VGSValidationRuleLuhnCheck: VGSRuleValidator {
   
-  public func validate(input: String?) -> Bool {
+  internal func validate(input: String?) -> Bool {
     
     guard let input = input else {
       return false

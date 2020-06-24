@@ -9,46 +9,48 @@
 import Foundation
 
 public protocol VGSValidationRule {
-    
-    associatedtype InputType
-    
-    func validate(input: InputType?) -> Bool
-    
+  
     var error: VGSValidationError { get }
+  
 }
 
-public struct VGSValidationRuleSet<InputType> {
+internal protocol VGSRuleValidator {
     
-    internal var rules = [AnyValidationRule<InputType>]()
+    func validate(input: String?) -> Bool
+}
+
+public struct VGSValidationRuleSet {
+    
+    internal var rules = [AnyValidationRule]()
     
     public init() { }
     
-    public init<Rule: VGSValidationRule>(rules: [Rule]) where Rule.InputType == InputType {
+    public init(rules: [VGSValidationRule]) {
         
         self.rules = rules.map(AnyValidationRule.init)
     }
     
-    public mutating func add<Rule: VGSValidationRule>(rule: Rule) where Rule.InputType == InputType {
+    public mutating func add(rule: VGSValidationRule) {
      
         let anyRule = AnyValidationRule(base: rule)
         rules.append(anyRule)
     }
 }
 
-internal struct AnyValidationRule<InputType>: VGSValidationRule {
+internal struct AnyValidationRule: VGSValidationRule {
     
     let error: VGSValidationError
     
-    private let baseValidateInput: (InputType?) -> Bool
-    
-    init<Rule: VGSValidationRule>(base: Rule) where Rule.InputType == InputType {
+    private let baseValidateInput: ((String?) -> Bool)?
+
+    init(base: VGSValidationRule) {
         
-        baseValidateInput = base.validate
-        error = base.error
+      baseValidateInput = (base as? VGSRuleValidator)?.validate ?? nil
+      error = base.error
     }
     
-    func validate(input: InputType?) -> Bool {
+    func validate(input: String?) -> Bool {
         
-        return baseValidateInput(input)
+      return baseValidateInput?(input) ?? true
     }
 }

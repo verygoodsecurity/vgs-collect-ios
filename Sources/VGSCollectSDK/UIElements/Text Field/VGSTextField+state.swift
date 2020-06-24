@@ -38,10 +38,6 @@ public extension VGSTextField {
 internal extension VGSTextField {
   func validate() -> [VGSValidationError] {
     let str = textField.getSecureRawText ?? ""
-    
-    guard validationRules != nil else {
-      return [VGSValidationError]()
-    }
     return VGSValidator.validate(input: str, rules: validationRules)
   }
 }

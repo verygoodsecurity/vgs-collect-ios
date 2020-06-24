@@ -11,13 +11,16 @@ import Foundation
 public struct VGSValidationRuleCreditCard: VGSValidationRule {
   
   public var error: VGSValidationError
-  public var validationRulesForUndefinedBrand = VGSValidationRuleSet<String>()
+  public var validationRulesForUndefinedBrand = VGSValidationRuleSet()
   
   public init(error: VGSValidationError) {
     self.error = error
   }
+}
+
+ extension VGSValidationRuleCreditCard: VGSRuleValidator {
   
-  public func validate(input: String?) -> Bool {
+  internal func validate(input: String?) -> Bool {
     
     guard let input = input else {
       return false

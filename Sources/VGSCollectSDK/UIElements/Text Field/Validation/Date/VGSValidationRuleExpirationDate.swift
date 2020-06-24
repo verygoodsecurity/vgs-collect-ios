@@ -8,31 +8,37 @@
 
 import Foundation
 
-public struct VGSValidationRuleCardExpirationDate: VGSValidationRule {
-    
-  public enum ExpDateFormat {
-    case shortYear
-    case longYear
-    
-    var yearCharacters: Int {
-      switch self {
-      case .shortYear:
-        return 2
-      case .longYear:
-        return 4
-      }
+public enum CardExpDateFormat {
+  
+  /// Exp.Date in format mm/yy: 01/22
+  case shortYear
+  
+  /// Exp.Date in format mm/yyyy: 01/2022
+  case longYear
+  
+  var yearCharacters: Int {
+    switch self {
+    case .shortYear:
+      return 2
+    case .longYear:
+      return 4
     }
   }
+}
 
-  public let dateFormat: ExpDateFormat
+public struct VGSValidationRuleCardExpirationDate: VGSValidationRule {
+
+  public let dateFormat: CardExpDateFormat
   public let error: VGSValidationError
 
-  public init(dateFormat: ExpDateFormat = .shortYear, error: VGSValidationError) {
+  public init(dateFormat: CardExpDateFormat = .shortYear, error: VGSValidationError) {
         self.dateFormat = dateFormat
         self.error = error
     }
-    
-  public func validate(input: String?) -> Bool {
+}
+
+extension VGSValidationRuleCardExpirationDate: VGSRuleValidator {
+  internal func validate(input: String?) -> Bool {
 
         guard let input = input else {
             return false

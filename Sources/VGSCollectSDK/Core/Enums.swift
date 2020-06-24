@@ -97,16 +97,18 @@ internal extension FieldType {
         }
     }
   
-  var defaultValidation: VGSValidationRuleSet<String>? {
-    var rules = VGSValidationRuleSet<String>()
+  var defaultValidation: VGSValidationRuleSet {
+    var rules = VGSValidationRuleSet()
     switch self {
     case .cardHolderName, .ssn, .cvc:
-      rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationError(errorMessage: "wrong input")))
+      rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationError(errorMessage: "PATTERN_VALIDATION_ERROR")))
     case .expDate:
-      rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationError(errorMessage: "wrong input")))
-      rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationError(errorMessage: "wrong input")))
-    default:
-      rules.add(rule: VGSValidationRuleLength(min: 5, max: 244, error: VGSValidationError(errorMessage: "wrong input")))
+      rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationError(errorMessage: "PATTERN_VALIDATION_ERROR")))
+      rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationError(errorMessage: "DATE_VALIDATION_ERROR")))
+    case .cardNumber:
+      rules.add(rule: VGSValidationRuleCreditCard(error: VGSValidationError(errorMessage: "CARD_VALIDATION_ERROR")))
+    case .none:
+      rules = VGSValidationRuleSet()
     }
     return rules
   }
