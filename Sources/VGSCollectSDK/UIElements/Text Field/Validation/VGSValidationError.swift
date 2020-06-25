@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct VGSValidationError {
   let errorMessage: String
   
