@@ -92,16 +92,7 @@ public class CardState: State {
         self.cardBrand = SwiftLuhn.getCardType(from: input)
         if self.isValid {
           self.bin = String(input.prefix(6))
-          let minSensitiveNumberIndex = 12
-          switch input.count {
-          case minSensitiveNumberIndex...14:
-            let lastDigitsCount = input.count - minSensitiveNumberIndex + 1
-            self.last4 = String(input.suffix(lastDigitsCount))
-          case 15...:
-            self.last4 = String(input.suffix(4))
-          default:
-            self.last4 = ""
-          }
+          self.last4 = (input.count) >= 12 ? String(input.suffix(4)) : ""
         }
     }
     
@@ -134,7 +125,9 @@ public class SSNState: State {
         guard let originalText = tf.textField.getSecureRawText else {
             return
         }
-        self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
+        if self.isValid {
+          self.last4 = originalText.count == 9 ? String(originalText.suffix(4)) : ""
+        }
     }
   
     /// Message that contains `SSNState` attributes and their values.
