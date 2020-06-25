@@ -21,8 +21,8 @@ public struct VGSValidationRuleCreditCard: VGSValidationRule {
     self.error = error
   }
   
-  public mutating func addUndefinedBrandValidation(minLength: UInt, maxLength: UInt, algorithm: CheckSumAlgorithmType? = nil) {
-    self.undefinedBrandValidationRules = UndefinedBrandValidationRules(minLength: minLength, maxLength: maxLength, algorithm: algorithm)
+  public mutating func addUdefinedBrandValidation(lengths: [Int], algorithm: CheckSumAlgorithmType? = nil) {
+    self.undefinedBrandValidationRules = UndefinedBrandValidationRules(lengths: lengths, algorithm: algorithm)
   }
 }
 
@@ -60,15 +60,11 @@ extension VGSValidationRuleCreditCard: VGSRuleValidator {
 
 internal struct UndefinedBrandValidationRules {
   
-  var minLength: UInt
-  var maxLength:UInt
+  var lengths: [Int]
   var algorithm: CheckSumAlgorithmType? = nil
   
   func validate(input: String) -> Bool {
-     if input.count < minLength {
-          return false
-     }
-     if input.count > maxLength {
+     if !lengths.contains(input.count)  {
        return false
      }
      if let alg = algorithm {
