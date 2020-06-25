@@ -29,7 +29,7 @@ internal extension VGSTextField {
         return format4
     }
     
-    var cvcRegexForCardType: VGSValidationRulePattern {
+    var cvcValidationRule: VGSValidationRulePattern {
         let format3 = "^([0-9]{3})$"
         let format4 = "^([0-9]{4})$"
         var regex = ""
@@ -45,6 +45,6 @@ internal extension VGSTextField {
         } else {
           regex = Self.cvcRegexForAnyCardType
       }
-      return VGSValidationRulePattern(pattern: regex, error: VGSValidationError(errorMessage: "wrong input"))
+      return VGSValidationRulePattern(pattern: regex, error: VGSValidationErrorType.pattern.rawValue)
     }
 }

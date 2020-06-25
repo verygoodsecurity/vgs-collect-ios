@@ -25,6 +25,7 @@
 		324B5E7324A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E7224A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift */; };
 		324B5E7524A23FA60036867E /* VGSValidationRuleExpirationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E7424A23FA60036867E /* VGSValidationRuleExpirationDate.swift */; };
 		324B5E7724A23FF90036867E /* VGSValidationRuleCreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E7624A23FF90036867E /* VGSValidationRuleCreditCard.swift */; };
+		324B5E7B24A3A5880036867E /* ValidationRulesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */; };
 		324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CDEE123FB12E200653890 /* FilePickerTests.swift */; };
 		325AB9CB2420C5410024134B /* VGSFilePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */; };
 		3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F723F5A32400D4A73D /* VGSFileSource.swift */; };
@@ -108,6 +109,7 @@
 		324B5E7224A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRuleLuhnCheck.swift; sourceTree = "<group>"; };
 		324B5E7424A23FA60036867E /* VGSValidationRuleExpirationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRuleExpirationDate.swift; sourceTree = "<group>"; };
 		324B5E7624A23FF90036867E /* VGSValidationRuleCreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRuleCreditCard.swift; sourceTree = "<group>"; };
+		324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationRulesTest.swift; sourceTree = "<group>"; };
 		324CDEE123FB12E200653890 /* FilePickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
 		325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		3262B2F723F5A32400D4A73D /* VGSFileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFileSource.swift; sourceTree = "<group>"; };
@@ -187,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				324B5E7424A23FA60036867E /* VGSValidationRuleExpirationDate.swift */,
-				324B5E7624A23FF90036867E /* VGSValidationRuleCreditCard.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -353,6 +354,7 @@
 			children = (
 				FD6F5656238E7FBB00C24123 /* CardType+icon.swift */,
 				324B5E7224A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift */,
+				324B5E7624A23FF90036867E /* VGSValidationRuleCreditCard.swift */,
 				FD2495652330E313009024E6 /* String+SwiftLuhn.swift */,
 				FD2495642330E313009024E6 /* SwiftLuhn.swift */,
 			);
@@ -416,6 +418,7 @@
 				FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */,
 				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
 				FDA680DE239844FC00372817 /* CardTextFieldTests.swift */,
+				324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */,
 			);
 			path = "Text Fields Tests";
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */,
 				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
 				FD24955E2330CC62009024E6 /* VGSCollectTests.swift in Sources */,
+				324B5E7B24A3A5880036867E /* ValidationRulesTest.swift in Sources */,
 				3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */,
 				324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */,
 				32059CD12417E02E003E9481 /* Utils.swift in Sources */,

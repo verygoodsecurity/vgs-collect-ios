@@ -8,10 +8,11 @@
 
 import Foundation
 
-public struct VGSValidationError {
-  let errorMessage: String
-  
-  public init(errorMessage: String) {
-    self.errorMessage = errorMessage
-  }
+public typealias VGSValidationError = String
+
+public enum VGSValidationErrorType: String {
+  case pattern = "PATTERN_VALIDATION_ERROR"
+  case length = "LENGTH_VALIDATION_ERROR"
+  case expDate = "EXPIRATION_DATE_VALIDATION_ERROR"
+  case cardNumber = "CARD_NUMBER_VALIDATION_ERROR"
 }

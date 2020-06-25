@@ -101,12 +101,12 @@ internal extension FieldType {
     var rules = VGSValidationRuleSet()
     switch self {
       case .cardHolderName, .ssn, .cvc:
-        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationError(errorMessage: "PATTERN_VALIDATION_ERROR")))
+        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
       case .expDate:
-        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationError(errorMessage: "PATTERN_VALIDATION_ERROR")))
-        rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationError(errorMessage: "DATE_VALIDATION_ERROR")))
+        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
+        rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
       case .cardNumber:
-        rules.add(rule: VGSValidationRuleCreditCard(error: VGSValidationError(errorMessage: "CARD_VALIDATION_ERROR")))
+        rules.add(rule: VGSValidationRuleCreditCard(error: VGSValidationErrorType.cardNumber.rawValue))
       case .none:
         rules = VGSValidationRuleSet()
     }

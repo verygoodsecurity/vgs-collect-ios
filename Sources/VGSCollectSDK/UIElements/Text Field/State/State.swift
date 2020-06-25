@@ -60,7 +60,7 @@ public class State {
             "isRequired": \(isRequired),
             "isRequiredValidOnly": \(isRequiredValidOnly),
             "isValid": \(isValid),
-            "validationErrors": \(validationErrors.map{$0.errorMessage}),
+            "validationErrors": \(validationErrors),
             "isEmpty": \(isEmpty),
             "isDirty": \(isDirty),
             "inputLength": \(inputLength)
