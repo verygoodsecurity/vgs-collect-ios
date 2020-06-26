@@ -8,12 +8,26 @@
 
 import Foundation
 
-public struct VGSValidationRuleLength: VGSValidationRule {
+/**
+Validate input in scope of length.
+*/
+public struct VGSValidationRuleLength: VGSValidationRuleProtocol {
     
+    /// Min input  length required
     public let min: Int
+  
+    /// Max input  length required
     public let max: Int
+  
+    /// Validation Error
     public let error: VGSValidationError
 
+    /// Initialzation
+    ///
+    /// - Parameters:
+    ///   - error:`VGSValidationError` - error on failed validation relust.
+    ///   - min: min input  length required
+    ///   - max: max input  length required
     public init(min: Int = 0, max: Int = Int.max, error: VGSValidationError) {
         self.min = min
         self.max = max

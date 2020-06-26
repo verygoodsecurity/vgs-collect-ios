@@ -8,9 +8,14 @@
 
 import Foundation
 
+internal protocol VGSRuleValidator {
+    
+    func validate(input: String?) -> Bool
+}
+
 internal struct VGSValidator {
   
-  internal static func validate(input: String?, rule: VGSValidationRule) -> [VGSValidationError] {
+  internal static func validate(input: String?, rule: VGSValidationRuleProtocol) -> [VGSValidationError] {
       
       var ruleSet = VGSValidationRuleSet()
       ruleSet.add(rule: rule)

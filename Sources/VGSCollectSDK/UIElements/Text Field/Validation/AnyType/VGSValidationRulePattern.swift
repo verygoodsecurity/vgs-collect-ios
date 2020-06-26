@@ -8,11 +8,22 @@
 
 import Foundation
 
-public struct VGSValidationRulePattern: VGSValidationRule {
+/**
+Validate input in scope of matching the pattern(regex).
+*/
+public struct VGSValidationRulePattern: VGSValidationRuleProtocol {
   
+    /// Regex pattern
     public let pattern: String
+  
+    /// Validation Error
     public let error: VGSValidationError
     
+    /// Initialzation
+    ///
+    /// - Parameters:
+    ///   - error:`VGSValidationError` - error on failed validation relust.
+    ///   - pattern: regex pattern
     public init(pattern: String, error: VGSValidationError) {
         self.pattern = pattern
         self.error = error

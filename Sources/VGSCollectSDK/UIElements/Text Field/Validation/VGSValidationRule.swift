@@ -8,42 +8,45 @@
 
 import Foundation
 
-public protocol VGSValidationRule {
+/// Protocol describing validation rule object
+public protocol VGSValidationRuleProtocol {
   
+    /// Validation Error
     var error: VGSValidationError { get }
-  
 }
 
-internal protocol VGSRuleValidator {
-    
-    func validate(input: String?) -> Bool
-}
-
+/// Set of validation rules
 public struct VGSValidationRuleSet {
     
     internal var rules = [AnyValidationRule]()
     
+    /// Initialzation
     public init() { }
     
-    public init(rules: [VGSValidationRule]) {
+    /// Initialzation
+    ///
+    /// - Parameters:
+    ///   - rules: array of validation rules
+    public init(rules: [VGSValidationRuleProtocol]) {
         
         self.rules = rules.map(AnyValidationRule.init)
     }
     
-    public mutating func add(rule: VGSValidationRule) {
+    /// Add validation rule
+    public mutating func add(rule: VGSValidationRuleProtocol) {
      
         let anyRule = AnyValidationRule(base: rule)
         rules.append(anyRule)
     }
 }
 
-internal struct AnyValidationRule: VGSValidationRule {
+internal struct AnyValidationRule: VGSValidationRuleProtocol {
     
     let error: VGSValidationError
     
     private let baseValidateInput: ((String?) -> Bool)?
 
-    init(base: VGSValidationRule) {
+    init(base: VGSValidationRuleProtocol) {
         
       baseValidateInput = (base as? VGSRuleValidator)?.validate ?? nil
       error = base.error

@@ -8,19 +8,38 @@
 
 import Foundation
 
+/// Check Sum Algorithm Types
 public enum CheckSumAlgorithmType {
+  
+  /// Luhn Algorithm
   case luhn
 }
 
-public struct VGSValidationRulePaymentCard: VGSValidationRule {
+/**
+ Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
+ Supports optional validation of cards that are not defined in SDK - `CardType.unknown`.
+ */
+public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
 
+  /// Validation Error
   public var error: VGSValidationError
+  
+  /// Turn on/off validation of cards that are not defined in SDK - `CardType.unknown`
   public var validateUnknownCardType = false
 
+  /// Initialzation
+  ///
+  /// - Parameters:
+  ///   - error:`VGSValidationError` - error on failed validation relust.
   public init(error: VGSValidationError) {
     self.error = error
   }
 
+  /// Initialzation
+  ///
+  /// - Parameters:
+  ///   - error:`VGSValidationError` - error on failed validation relust.
+  ///   - validateUnknownCardType: flag that turn on/off validation `CardType.unknown`cards.
   public init(error: VGSValidationError, validateUnknownCardType: Bool) {
     self.error = error
     self.validateUnknownCardType = validateUnknownCardType

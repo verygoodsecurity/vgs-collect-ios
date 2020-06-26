@@ -8,11 +8,24 @@
 
 import Foundation
 
+/// VGS Validation Error object type
 public typealias VGSValidationError = String
 
+/// Defined validation error types from VGSCollectSDK
 public enum VGSValidationErrorType: String {
+  
+  /// Default Validation error for `VGSValidationRulePattern`
   case pattern = "PATTERN_VALIDATION_ERROR"
+  
+  /// Default Validation error for `VGSValidationRuleLength`
   case length = "LENGTH_VALIDATION_ERROR"
+  
+  /// Default Validation error for `VGSValidationRuleCardExpirationDate`
   case expDate = "EXPIRATION_DATE_VALIDATION_ERROR"
+  
+  /// Default Validation error for `VGSValidationRulePaymentCard`
   case cardNumber = "CARD_NUMBER_VALIDATION_ERROR"
+  
+  /// Default Validation error for `VGSValidationRuleLuhnCheck`
+  case luhnCheck = "LUHN_ALGORITHM_CHECK_ERROR"
 }

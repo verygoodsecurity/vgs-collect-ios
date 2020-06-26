@@ -8,10 +8,18 @@
 
 import Foundation
 
-public struct VGSValidationRuleLuhnCheck: VGSValidationRule {
-    
+/**
+Validate input in scope of matching Luhn algorithm.
+*/
+public struct VGSValidationRuleLuhnCheck: VGSValidationRuleProtocol {
+  
+  /// Validation Error
   public var error: VGSValidationError
 
+  /// Initialzation
+  ///
+  /// - Parameters:
+  ///   - error:`VGSValidationError` - error on failed validation relust.
   public init(error: VGSValidationError) {
     self.error = error
   }
