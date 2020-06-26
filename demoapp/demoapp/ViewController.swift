@@ -106,7 +106,6 @@ class ViewController: UIViewController {
         let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
         cardConfiguration.isRequiredValidOnly = true
-        
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
@@ -124,9 +123,9 @@ class ViewController: UIViewController {
         expDateConfiguration.formatPattern = "##/####"
         
         /// Update validation rules
-        let expDateRule = VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: VGSValidationError.init(errorMessage: "wrong date format"))
-        let expDateRulesSet = VGSValidationRuleSet(rules: [expDateRule])
-        expDateConfiguration.validationRules = expDateRulesSet
+        expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
+          VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: VGSValidationErrorType.expDate.rawValue)
+        ])
       
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YYYY"

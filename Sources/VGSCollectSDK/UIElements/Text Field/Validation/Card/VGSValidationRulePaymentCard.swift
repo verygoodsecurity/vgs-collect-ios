@@ -84,10 +84,10 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
   }
   
   internal func validateUndefinedCardType(number: String) -> Bool {
-    if !NSPredicate(format: "SELF MATCHES %@", "[0-9]{6,}").evaluate(with: number) {
+    if !NSPredicate(format: "SELF MATCHES %@", "\\d*$").evaluate(with: number) {
         return false
     }
-    if ![12, 13, 14, 15, 16, 19].contains(number.count) {
+    if !Array(12...19).contains(number.count) {
       return false
     }
     return SwiftLuhn.performLuhnAlgorithm(with: number)
