@@ -10,7 +10,6 @@ import Foundation
 
 public struct VGSValidationRulePattern: VGSValidationRule {
   
-//    public let validationType: ValidationType = .pattern
     public let pattern: String
     public let error: VGSValidationError
     
@@ -18,13 +17,6 @@ public struct VGSValidationRulePattern: VGSValidationRule {
         self.pattern = pattern
         self.error = error
     }
-    
-//    public init(pattern: ValidationPattern, error: VGSError) {
-//
-//        self.init(pattern: pattern.pattern, error: error)
-//    }
-
-
 }
 
 extension VGSValidationRulePattern: VGSRuleValidator {

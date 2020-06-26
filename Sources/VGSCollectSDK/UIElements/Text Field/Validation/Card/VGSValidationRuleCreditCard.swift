@@ -15,14 +15,15 @@ public enum CheckSumAlgorithmType {
 public struct VGSValidationRuleCreditCard: VGSValidationRule {
 
   public var error: VGSValidationError
-  internal var undefinedBrandValidationRules: UndefinedBrandValidationRules?
-  
+  public var validateUnknownCardType = false
+
   public init(error: VGSValidationError) {
     self.error = error
   }
-  
-  public mutating func addUdefinedBrandValidation(lengths: [Int], algorithm: CheckSumAlgorithmType? = nil) {
-    self.undefinedBrandValidationRules = UndefinedBrandValidationRules(lengths: lengths, algorithm: algorithm)
+
+  public init(error: VGSValidationError, validateUnknownCardType: Bool) {
+    self.error = error
+    self.validateUnknownCardType = validateUnknownCardType
   }
 }
 
@@ -44,18 +45,34 @@ extension VGSValidationRuleCreditCard: VGSRuleValidator {
           return false
        }
        return cardType == .unionpay ? true : SwiftLuhn.performLuhnAlgorithm(with: input)
-    } else if let undefinedBrandRules = undefinedBrandValidationRules {
+    } else if  cardType == .unknown && validateUnknownCardType {
       
       /// validate .unknown brands if there are specific validation rules for undefined brands
       
-      return undefinedBrandRules.validate(input: input)
-    } else {
+      return validateUndefinedCardType(number: input)
+    }
       
-      /// brand is not valid if it's type is .unknown and there are no specific validation rules for .unknown cards
+    /// brand is not valid if it's type is .unknown and there are no specific validation rules for .unknown cards
+    
+    return false
+  }
+  
+  internal func validateDefinedCardType(type: SwiftLuhn.CardType, number: String) -> Bool {
+    guard type.cardLengths.contains(number.count) else {
+       return false
+    }
+    return type == .unionpay ? true : SwiftLuhn.performLuhnAlgorithm(with: number)
+  }
+  
+  internal func validateUndefinedCardType(number: String) -> Bool {
+    if !NSPredicate(format: "SELF MATCHES %@", "[0-9]{6,}").evaluate(with: number) {
+        return false
+    }
+    if ![12, 13, 14, 15, 16, 19].contains(number.count) {
       return false
     }
-    return true
-  }
+    return SwiftLuhn.performLuhnAlgorithm(with: number)
+   }
 }
 
 internal struct UndefinedBrandValidationRules {
