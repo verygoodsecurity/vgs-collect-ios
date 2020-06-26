@@ -28,7 +28,7 @@ class ValidationRulesTest: XCTestCase {
       var config = VGSConfiguration.init(collector: form, fieldName: "test_field")
       config.type = .none
       config.validationRules = VGSValidationRuleSet(rules: [
-        VGSValidationRuleCreditCard(error: "card error")
+        VGSValidationRulePaymentCard(error: "card error")
       ])
     }
   

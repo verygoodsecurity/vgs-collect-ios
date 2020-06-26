@@ -106,7 +106,7 @@ internal extension FieldType {
         rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
         rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
       case .cardNumber:
-        rules.add(rule: VGSValidationRuleCreditCard(error: VGSValidationErrorType.cardNumber.rawValue))
+        rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
       case .none:
         rules = VGSValidationRuleSet()
     }

@@ -1,8 +1,8 @@
 //
-//  VGSValidationRuleCreditCard.swift
+//  VGSValidationRulePaymentCard.swift
 //  VGSCollectSDK
 //
-//  Created by Dima on 23.06.2020.
+//  Created by Dima on 26.06.2020.
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ public enum CheckSumAlgorithmType {
   case luhn
 }
 
-public struct VGSValidationRuleCreditCard: VGSValidationRule {
+public struct VGSValidationRulePaymentCard: VGSValidationRule {
 
   public var error: VGSValidationError
   public var validateUnknownCardType = false
@@ -27,7 +27,7 @@ public struct VGSValidationRuleCreditCard: VGSValidationRule {
   }
 }
 
-extension VGSValidationRuleCreditCard: VGSRuleValidator {
+extension VGSValidationRulePaymentCard: VGSRuleValidator {
   
   internal func validate(input: String?) -> Bool {
     
@@ -98,3 +98,4 @@ internal struct UndefinedBrandValidationRules {
     return true
   }
 }
+
