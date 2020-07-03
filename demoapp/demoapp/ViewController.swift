@@ -106,7 +106,6 @@ class ViewController: UIViewController {
         let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
         cardConfiguration.isRequiredValidOnly = true
-        
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
@@ -119,9 +118,15 @@ class ViewController: UIViewController {
         let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.isRequiredValidOnly = true
         expDateConfiguration.type = .expDate
+      
         /// Default .expDate format is "##/##"
         expDateConfiguration.formatPattern = "##/####"
         
+        /// Update validation rules
+        expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
+          VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: VGSValidationErrorType.expDate.rawValue)
+        ])
+      
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YYYY"
 
@@ -147,6 +152,7 @@ class ViewController: UIViewController {
           textField.font = .systemFont(ofSize: 22)
           textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
           textField.tintColor = .lightGray
+          textField.delegate = self
         }
     }
     
@@ -225,4 +231,10 @@ extension ViewController: VGSCardIOScanControllerDelegate {
             return nil
         }
     }
+}
+
+extension ViewController: VGSTextFieldDelegate {
+  func vgsTextFieldDidChange(_ textField: VGSTextField) {
+    textField.borderColor = textField.state.isValid  ? .gray : .red
+  }
 }

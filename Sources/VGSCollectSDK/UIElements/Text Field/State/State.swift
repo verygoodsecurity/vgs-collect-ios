@@ -33,12 +33,15 @@ public class State {
     /// Input data length in `VGSTextField`
     internal(set) open var inputLength: Int = 0
 
+    /// Array of `VGSValidationError`. Should be empty when textfield input is valid.
+    internal(set) open var validationErrors =  [VGSValidationError]()
     
     init(tf: VGSTextField) {
         fieldName = tf.fieldName
         isRequired = tf.isRequired
         isRequiredValidOnly = tf.isRequiredValidOnly
-        isValid = tf.isValid
+        validationErrors = tf.validate()
+        isValid = validationErrors.count == 0
         isEmpty = (tf.textField.getSecureRawText?.count == 0)
         isDirty = tf.isDirty
         inputLength = tf.textField.getSecureRawText?.count ?? 0
@@ -57,6 +60,7 @@ public class State {
             "isRequired": \(isRequired),
             "isRequiredValidOnly": \(isRequiredValidOnly),
             "isValid": \(isValid),
+            "validationErrors": \(validationErrors),
             "isEmpty": \(isEmpty),
             "isDirty": \(isDirty),
             "inputLength": \(inputLength)
@@ -81,14 +85,15 @@ public class CardState: State {
     override init(tf: VGSTextField) {
         super.init(tf: tf)
         
-        guard let originalText = tf.textField.getSecureRawText else {
+        guard let input = tf.textField.getSecureRawText else {
             return
         }
         
-        self.isValid = SwiftLuhn.validateCardNumber(originalText)
-        self.cardBrand = SwiftLuhn.getCardType(from: originalText)
-        self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
-        self.bin = self.isValid ? String(originalText.prefix(6)): ""
+        self.cardBrand = SwiftLuhn.getCardType(from: input)
+        if self.isValid {
+          self.bin = String(input.prefix(6))
+          self.last4 = (input.count) >= 12 ? String(input.suffix(4)) : ""
+        }
     }
     
     /// Message that contains `CardState` attributes and their values.
@@ -120,7 +125,9 @@ public class SSNState: State {
         guard let originalText = tf.textField.getSecureRawText else {
             return
         }
-        self.last4 = self.isValid ? String(originalText.suffix(4)) : ""
+        if self.isValid {
+          self.last4 = originalText.count == 9 ? String(originalText.suffix(4)) : ""
+        }
     }
   
     /// Message that contains `SSNState` attributes and their values.

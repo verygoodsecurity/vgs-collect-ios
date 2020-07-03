@@ -65,42 +65,42 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+state.swift",
-      "line": 21,
+      "line": 16,
       "symbol": "VGSTextField.isFocused",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 150,
+      "line": 151,
       "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 155,
+      "line": 156,
       "symbol": "VGSTextField.textFieldDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 161,
+      "line": 162,
       "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 166,
+      "line": 167,
       "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 253,
+      "line": 254,
       "symbol": "UIView.mainStyle()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -110,20 +110,6 @@
       "line": 16,
       "symbol": "SwiftLuhn.CardType.brandIcon",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date+cvv/VGSValidation.swift",
-      "line": 11,
-      "symbol": "VGSValidation",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date+cvv/VGSValidation.swift",
-      "line": 29,
-      "symbol": "String.matches(for:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],

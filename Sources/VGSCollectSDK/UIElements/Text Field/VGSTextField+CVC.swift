@@ -29,19 +29,22 @@ internal extension VGSTextField {
         return format4
     }
     
-    var cvcRegexForCardType: String {
+    var cvcValidationRule: VGSValidationRulePattern {
         let format3 = "^([0-9]{3})$"
         let format4 = "^([0-9]{4})$"
+        var regex = ""
         if let state = state as? CardState {
             switch state.cardBrand {
             case .amex:
-                return format4
+                regex = format4
             case .unknown:
-                return Self.cvcRegexForAnyCardType
+                regex = Self.cvcRegexForAnyCardType
             default:
-                return format3
+                regex = format3
             }
-        }
-        return Self.cvcRegexForAnyCardType
+        } else {
+          regex = Self.cvcRegexForAnyCardType
+      }
+      return VGSValidationRulePattern(pattern: regex, error: VGSValidationErrorType.pattern.rawValue)
     }
 }
