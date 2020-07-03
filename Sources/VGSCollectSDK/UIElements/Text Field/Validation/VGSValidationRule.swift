@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Protocol describing validation rule object
+/// :nodoc: Protocol describing validation rule object
 public protocol VGSValidationRuleProtocol {
   
     /// Validation Error

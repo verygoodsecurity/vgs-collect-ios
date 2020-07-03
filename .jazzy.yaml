@@ -49,16 +49,29 @@ custom_categories:
   children:
   - VGSCollect
   - Environment
-  - VGSResponse
-  - HTTPMethod
   - State
   - SSNState
   - CardState
+  - VGSResponse
+  - HTTPMethod
+  - HTTPHeaders
+- name: Validation Rules
+  children:
+  - VGSValidationRuleSet
+  - VGSValidationRuleLength
+  - VGSValidationRulePattern
+  - VGSValidationRulePaymentCard
+  - VGSValidationRuleLuhnCheck
+  - VGSValidationRuleCardExpirationDate
+  - CheckSumAlgorithmType
+  - CardExpDateFormat
 - name: Errors
   children:
   - VGSError
   - VGSErrorType
   - VGSCollectSDKErrorDomain
+  - VGSValidationError
+  - VGSValidationErrorType
 - name: Error Keys
   children:
   - VGSSDKErrorInputDataIsNotValid
@@ -69,8 +82,3 @@ custom_categories:
   - VGSSDKErrorFileSizeExceedsTheLimit
   - VGSSDKErrorSourceNotAvailable
   - VGSSDKErrorUnexpectedResponseDataFormat
-- name: Type Aliases
-  children:
-  - HTTPHeaders
-  - JsonData
-  

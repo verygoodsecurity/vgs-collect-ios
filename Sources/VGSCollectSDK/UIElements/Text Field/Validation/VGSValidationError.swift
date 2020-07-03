@@ -11,9 +11,8 @@ import Foundation
 /// VGS Validation Error object type
 public typealias VGSValidationError = String
 
-/// Defined validation error types from VGSCollectSDK
+/// Default validation error types
 public enum VGSValidationErrorType: String {
-  
   /// Default Validation error for `VGSValidationRulePattern`
   case pattern = "PATTERN_VALIDATION_ERROR"
   
@@ -27,5 +26,5 @@ public enum VGSValidationErrorType: String {
   case cardNumber = "CARD_NUMBER_VALIDATION_ERROR"
   
   /// Default Validation error for `VGSValidationRuleLuhnCheck`
-  case luhnCheck = "LUHN_ALGORITHM_CHECK_ERROR"
+  case luhnCheck = "LUHN_ALGORITHM_CHECK_VALIDATION_ERROR"
 }

@@ -44,9 +44,6 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Collect form that will be assiciated with VGSTextField.
     private(set) weak var vgsCollector: VGSCollect?
-
-    /// Validation rules for field input. Defines `State.isValide` result.
-    public var validationRules: VGSValidationRuleSet?
   
     /// Type of field congfiguration. Default is `FieldType.none`.
     public var type: FieldType = .none
@@ -74,6 +71,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
     public var keyboardAppearance: UIKeyboardAppearance?
+  
+    /// Validation rules for field input. Defines `State.isValide` result.
+    public var validationRules: VGSValidationRuleSet?
          
     // MARK: - Initialization
     

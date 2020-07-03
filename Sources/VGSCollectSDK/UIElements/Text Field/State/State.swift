@@ -33,7 +33,7 @@ public class State {
     /// Input data length in `VGSTextField`
     internal(set) open var inputLength: Int = 0
 
-    /// Input data length in `VGSTextField`
+    /// Array of `VGSValidationError`. Should be empty when textfield input is valid.
     internal(set) open var validationErrors =  [VGSValidationError]()
     
     init(tf: VGSTextField) {
