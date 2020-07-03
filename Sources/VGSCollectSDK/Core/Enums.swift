@@ -96,6 +96,22 @@ internal extension FieldType {
             return .alphabet
         }
     }
+  
+  var defaultValidation: VGSValidationRuleSet {
+    var rules = VGSValidationRuleSet()
+    switch self {
+      case .cardHolderName, .ssn, .cvc:
+        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
+      case .expDate:
+        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
+        rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
+      case .cardNumber:
+        rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
+      case .none:
+        rules = VGSValidationRuleSet()
+    }
+    return rules
+  }
 }
 
 internal enum DateFormatPattern: String {
