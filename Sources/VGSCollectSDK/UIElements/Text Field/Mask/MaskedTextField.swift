@@ -259,3 +259,9 @@ internal class MaskedTextField: UITextField {
         }
     }
 }
+
+extension MaskedTextField {
+    override var description: String {
+        return NSStringFromClass(self.classForCoder)
+    }
+}

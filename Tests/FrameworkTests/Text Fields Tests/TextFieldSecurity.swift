@@ -18,7 +18,7 @@ class TextFieldSecurity: XCTestCase {
         collector = VGSCollect(id: "id")
         textField = VGSTextField()
         
-        let config = VGSConfiguration(collector: collector, fieldName: "cardNumber")
+        let config = VGSConfiguration(collector: collector, fieldName: "testField")
         config.type = .cardNumber
         config.isRequired = true
         textField.configuration = config
@@ -31,6 +31,29 @@ class TextFieldSecurity: XCTestCase {
         textField = nil
     }
 
+    // MARK: - Tests
+    func testDescription() {
+        let cleanCardNum = cardNum.replacingOccurrences(of: " ", with: "")
+        
+        textField.frame = CGRect(x: 0, y: 0, width: 300, height: 45)
+        textField.textField.secureText = cardNum
+        
+        let txt1 = textField.description
+        let txt2 = textField.debugDescription
+        let txt3 = textField.textField.description
+        let txt4 = textField.textField.debugDescription
+        
+        XCTAssertFalse(txt1.contains(cardNum))
+        XCTAssertFalse(txt2.contains(cardNum))
+        XCTAssertFalse(txt3.contains(cardNum))
+        XCTAssertFalse(txt4.contains(cardNum))
+        
+        XCTAssertFalse(txt1.contains(cleanCardNum))
+        XCTAssertFalse(txt2.contains(cleanCardNum))
+        XCTAssertFalse(txt3.contains(cleanCardNum))
+        XCTAssertFalse(txt4.contains(cleanCardNum))
+    }
+    
     func testSetDelegate() {
         textField.subviews.forEach { (view) in
             if let tf = view as? UITextField {

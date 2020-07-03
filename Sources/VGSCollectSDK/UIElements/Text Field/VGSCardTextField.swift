@@ -11,7 +11,7 @@ import UIKit
 #endif
 
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
-public class VGSCardTextField: VGSTextField {
+public final class VGSCardTextField: VGSTextField {
   
     internal let cardIconView = UIImageView()
     internal lazy var stackView = self.makeStackView()

@@ -10,9 +10,9 @@ import UIKit
 #endif
 
 extension MaskedTextField {
-    override open func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}
+    override public func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}
     
-    override open var delegate: UITextFieldDelegate? {
+    override public var delegate: UITextFieldDelegate? {
         get { return nil }
         set {}
     }
