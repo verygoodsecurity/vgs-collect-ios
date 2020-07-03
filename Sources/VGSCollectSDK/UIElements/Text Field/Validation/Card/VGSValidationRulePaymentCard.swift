@@ -87,7 +87,7 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     if !NSPredicate(format: "SELF MATCHES %@", "\\d*$").evaluate(with: number) {
         return false
     }
-    if !Array(12...19).contains(number.count) {
+    if !Array(16...19).contains(number.count) {
       return false
     }
     return SwiftLuhn.performLuhnAlgorithm(with: number)
