@@ -14,7 +14,7 @@ import UIKit
 extension SwiftLuhn.CardType {
     
     var brandIcon: UIImage? {
-      return SwiftLuhn.availableCardTypes.first(where: { $0.type == self })?.icon ?? UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+      return SwiftLuhn.availableCardTypes.first(where: { $0.type == self })?.brandIcon ?? UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
     }
   
     var defaultBrandIcon: UIImage? {
@@ -49,7 +49,9 @@ extension SwiftLuhn.CardType {
         case .hipercard:
           resultIcon = UIImage(named: "hipercard", in: bundle, compatibleWith: nil)
         case .unknown:
-            resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
+          resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
+        case .custom(type: _):
+          resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
         }
         return resultIcon
     }

@@ -159,7 +159,8 @@ extension SwiftLuhn.CardType {
                 "6062828888666688"]
         case .unknown:
             return []
-
+        case .custom(type:_):
+          return []
       }
     }
   
@@ -228,6 +229,8 @@ extension SwiftLuhn.CardType {
       case .hipercard:
         return ["384100", "3841009", "606282", "6062820", "637568"]
       case .unknown:
+          return []
+      case .custom(type: _):
           return []
     }
   }
