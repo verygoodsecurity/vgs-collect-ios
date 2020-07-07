@@ -54,7 +54,7 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
       return false
     }
     
-    let cardType = SwiftLuhn.getCardType(from: input)
+    let cardType = SwiftLuhn.getCardType(input: input)
     
     if cardType != .unknown {
       

@@ -13,11 +13,37 @@ import UIKit
 
 /// Class containing supported credit card types
 public class SwiftLuhn {
+  
+    public static var visaModel = PaymentCardModel(type: .visa)
+  
+    public static var masterCardModel = PaymentCardModel(type: .mastercard)
+  
+    public static var availableCardTypes = [visaModel,
+                                            masterCardModel]
+  
+    static var defaultCardModels: [PaymentCardModel] = {
+      return SwiftLuhn.CardType.allCases.map({ SwiftLuhn.getDefaultCardModel(cardType: $0) })
+    }()
+    
+    static func getDefaultCardModel(cardType: SwiftLuhn.CardType) -> PaymentCardModel {
+      return PaymentCardModel(type: cardType)
+    }
+  
+    internal static func getCardType(input: String) -> SwiftLuhn.CardType {
+      for cardType in availableCardTypes {
+        let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typePattern)
+        if predicate.evaluate(with: input) == true {
+          return cardType.type
+        }
+      }
+      return .unknown
+    }
+    
     
     // MARK: - Enum Cases
 
     /// Supported card types
-    public enum CardType: CaseIterable {
+    public enum CardType: CaseIterable, Equatable {
         
         /// ELO
         case elo
@@ -60,32 +86,22 @@ public class SwiftLuhn {
         
         /// Not supported card type - "unknown"
         case unknown
+      
+//        case custom
+//        case custom(type: String)
+      
+//      public static func ==(lhs: CardType, rhs: CardType) -> Bool {
+//        switch (lhs, rhs) {
+//        case (.unknown, .unknown):
+//          return true
+//        case (.custom(let lhsString), .custom(let rhsString)):
+//          return lhsString == rhsString
+//        default:
+//          return false
+//        }
+//      }
     }
     
-    /// :nodoc:
-    public enum CardError: Error {
-        case unsupported
-        case invalid
-    }
-    
-    /// Complete card number validation.
-    /// - Note: cardNumber string should not containt any non-number characters!
-    class func validateCardNumber(_ cardNumber: String) -> Bool {
-        
-        /// check supported card brand
-        let cardType = Self.getCardType(from: cardNumber)
-        if cardType == .unknown {
-            return false
-        }
-        
-        /// check if card number length is valid for specific brand
-        guard cardType.cardLengths.contains(cardNumber.count) else {
-            return false
-        }
-        
-        /// perform Luhn Algorithm
-        return cardType == .unionpay ? true : Self.performLuhnAlgorithm(with: cardNumber)
-    }
     
     /// Validate card number via LuhnAlgorithm algorithm.
     class func performLuhnAlgorithm(with cardNumber: String) -> Bool {
@@ -117,16 +133,16 @@ public class SwiftLuhn {
         return valid
     }
     
-    ///Returns card type from card number string.
-    class func getCardType(from cardNumber: String) -> CardType {
-        for cardType in CardType.allCases {
-            let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typeDetectRegex)
-            if predicate.evaluate(with: cardNumber) == true {
-                return cardType
-            }
-        }
-        return .unknown
-    }
+//    ///Returns card type from card number string.
+//    class func getCardType(from cardNumber: String) -> CardType {
+//        for cardType in CardType.allCases {
+//            let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typeDetectRegex)
+//            if predicate.evaluate(with: cardNumber) == true {
+//                return cardType
+//            }
+//        }
+//        return .unknown
+//    }
 }
 
 // MARK: - Attributes
@@ -134,6 +150,10 @@ extension SwiftLuhn.CardType {
     
     /// String representation of `SwiftLuhn.CardType` enum values.
     public var stringValue: String {
+        return SwiftLuhn.availableCardTypes.first(where: { $0.type == self })?.name ?? ""
+    }
+  
+    internal var defaultName: String {
         switch self {
         case .amex:
             return "American Express"
@@ -168,6 +188,10 @@ extension SwiftLuhn.CardType {
     
     /// Returns array with valid card number lengths for specific `SwiftLuhn.CardType`
     public var cardLengths: [Int] {
+      return SwiftLuhn.availableCardTypes.first(where: { $0.type == self })?.cardNumberLengths ?? []
+    }
+  
+    internal var defaultCardLengths: [Int] {
         switch self {
         case .amex:
             return [15]
@@ -204,7 +228,7 @@ extension SwiftLuhn.CardType {
 internal extension SwiftLuhn.CardType {
   
   /// Returns regex for specific card brand detection
-  var typeDetectRegex: String {
+  var defaultTypeDetectRegex: String {
       switch self {
       case .amex:
           return "^3[47]\\d*$"
@@ -235,5 +259,27 @@ internal extension SwiftLuhn.CardType {
       case .unknown:
           return ""
       }
+  }
+}
+
+
+public struct PaymentCardModel {
+  public let type: SwiftLuhn.CardType
+  public var name: String
+  public var typePattern: String
+  public var cardNumberLengths: [Int]
+  public var cvcLength: [Int]
+  public var checkSumAlgorithm: CheckSumAlgorithmType
+//  let format: String = "#### #### #### ####"
+  public var icon: UIImage?
+  
+  init(type: SwiftLuhn.CardType) {
+    self.type = type
+    self.name = type.defaultName
+    self.typePattern = type.defaultTypeDetectRegex
+    self.cardNumberLengths = type.defaultCardLengths
+    self.cvcLength = [3]
+    self.checkSumAlgorithm = .luhn
+    self.icon = type.defaultBrandIcon
   }
 }

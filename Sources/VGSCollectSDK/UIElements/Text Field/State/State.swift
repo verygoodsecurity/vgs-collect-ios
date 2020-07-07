@@ -89,7 +89,7 @@ public class CardState: State {
             return
         }
         
-        self.cardBrand = SwiftLuhn.getCardType(from: input)
+        self.cardBrand = SwiftLuhn.getCardType(input: input)
         if self.isValid {
           self.bin = String(input.prefix(6))
           self.last4 = (input.count) >= 12 ? String(input.suffix(4)) : ""

@@ -14,6 +14,10 @@ import UIKit
 extension SwiftLuhn.CardType {
     
     var brandIcon: UIImage? {
+      return SwiftLuhn.availableCardTypes.first(where: { $0.type == self })?.icon ?? UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+    }
+  
+    var defaultBrandIcon: UIImage? {
         let bundle = AssetsBundle.main.iconBundle
         
         var resultIcon: UIImage?
