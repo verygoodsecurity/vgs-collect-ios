@@ -11,38 +11,40 @@ import Foundation
 import UIKit
 #endif
 
+
 /// Class containing supported credit card types
 public class SwiftLuhn {
-  
-    public static var eloModel = PaymentCardModel(type: .elo)
-    public static var visaElectronModel = PaymentCardModel(type: .visaElectron)
-    public static var maestroModel = PaymentCardModel(type: .maestro)
-    public static var forbrugsforeningenModel = PaymentCardModel(type: .forbrugsforeningen)
-    public static var dankortModel = PaymentCardModel(type: .dankort)
-    public static var visaModel = PaymentCardModel(type: .visa)
+    
+    public static var eloCardModel = PaymentCardModel(type: .elo)
+    public static var visaElectronCardModel = PaymentCardModel(type: .visaElectron)
+    public static var maestroCardModel = PaymentCardModel(type: .maestro)
+    public static var forbrugsforeningenCardModel = PaymentCardModel(type: .forbrugsforeningen)
+    public static var dankortCardModel = PaymentCardModel(type: .dankort)
+    public static var visaCardModel = PaymentCardModel(type: .visa)
     public static var masterCardModel = PaymentCardModel(type: .mastercard)
-    public static var amexModel = PaymentCardModel(type: .amex)
-    public static var hipercardModel = PaymentCardModel(type: .hipercard)
-    public static var discoverModel = PaymentCardModel(type: .discover)
-    public static var unionpayModel = PaymentCardModel(type: .unionpay)
-    public static var jcbModel = PaymentCardModel(type: .jcb)
+    public static var amexCardModel = PaymentCardModel(type: .amex)
+    public static var hipercardCardModel = PaymentCardModel(type: .hipercard)
+    public static var discoverCardModel = PaymentCardModel(type: .discover)
+    public static var unionpayCardModel = PaymentCardModel(type: .unionpay)
+    public static var jcbCardModel = PaymentCardModel(type: .jcb)
   
     public static var unknownPaymentCardBrandModel = UnknownPaymentCardModel()
   
+    /// Array of Available Card Types. Note: the order have impact on which card type should be detected first by  `PaymentCardModel.typePattern`
     public static var availableCardTypes: [PaymentCardModelProtocol] =
                                             [
-                                              SwiftLuhn.eloModel,
-                                              SwiftLuhn.visaElectronModel,
-                                              SwiftLuhn.maestroModel,
-                                              SwiftLuhn.forbrugsforeningenModel,
-                                              SwiftLuhn.dankortModel,
-                                              SwiftLuhn.visaModel,
+                                              SwiftLuhn.eloCardModel,
+                                              SwiftLuhn.visaElectronCardModel,
+                                              SwiftLuhn.maestroCardModel,
+                                              SwiftLuhn.forbrugsforeningenCardModel,
+                                              SwiftLuhn.dankortCardModel,
+                                              SwiftLuhn.visaCardModel,
                                               SwiftLuhn.masterCardModel,
-                                              SwiftLuhn.amexModel,
-                                              SwiftLuhn.hipercardModel,
-                                              SwiftLuhn.discoverModel,
-                                              SwiftLuhn.unionpayModel,
-                                              SwiftLuhn.jcbModel]
+                                              SwiftLuhn.amexCardModel,
+                                              SwiftLuhn.hipercardCardModel,
+                                              SwiftLuhn.discoverCardModel,
+                                              SwiftLuhn.unionpayCardModel,
+                                              SwiftLuhn.jcbCardModel]
   
 //    static var defaultCardModels: [PaymentCardModel] = {
 //      return SwiftLuhn.CardType.allCases.map({ SwiftLuhn.getDefaultCardModel(cardType: $0) })
@@ -52,7 +54,11 @@ public class SwiftLuhn {
 //      return PaymentCardModel(type: cardType)
 //    }
   
-    internal static func getCardType(input: String) -> SwiftLuhn.CardType {
+  static func getCardModel(type: SwiftLuhn.CardType) -> PaymentCardModelProtocol? {
+    return availableCardTypes.first(where: { $0.type == type})
+  }
+
+  internal static func getCardType(input: String) -> SwiftLuhn.CardType {
       for cardType in availableCardTypes {
         let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typePattern)
         if predicate.evaluate(with: input) == true {
@@ -219,6 +225,16 @@ extension SwiftLuhn.CardType {
           return []
         }
     }
+  
+    internal var cvcFormatPattern: String {
+      var maxLength = 0
+      if let cardType = SwiftLuhn.availableCardTypes.first(where: { $0.type == self }) {
+        maxLength = cardType.cvcLengths.max() ?? 0
+      } else {
+        maxLength = SwiftLuhn.unknownPaymentCardBrandModel.cvcLengths.max() ?? 0
+      }
+      return String(repeating: "#", count: maxLength)
+    }
 }
 
 internal extension SwiftLuhn.CardType {
@@ -260,6 +276,7 @@ internal extension SwiftLuhn.CardType {
   }
 }
 
+
 public protocol PaymentCardModelProtocol {
   var type: SwiftLuhn.CardType { get }
   var name: String { get set }
@@ -285,7 +302,7 @@ public struct PaymentCardModel: PaymentCardModelProtocol {
     self.name = type.defaultName
     self.typePattern = type.defaultTypeDetectRegex
     self.cardNumberLengths = type.defaultCardLengths
-    self.cvcLengths = [3]
+    self.cvcLengths = type == .amex ? [4] : [3]
     self.checkSumAlgorithm = .luhn
     self.brandIcon = type.defaultBrandIcon
   }
@@ -314,16 +331,9 @@ public struct CustomPaymentCardModel: PaymentCardModelProtocol {
 public struct UnknownPaymentCardModel {
   internal var typePattern: String = "\\d*$"
   public var cardNumberLengths: [Int] = Array(16...19)
-  public var cvcLengths: [Int] = [3]
+  public var cvcLengths: [Int] = [3, 4]
   public var checkSumAlgorithm: CheckSumAlgorithmType? = .luhn
   public var brandIcon: UIImage? = SwiftLuhn.CardType.unknown.brandIcon
   
   public init() {}
-  
-  public init(cardNumberLengths: [Int], cvcLengths: [Int], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
-    self.cardNumberLengths = cardNumberLengths
-    self.cvcLengths = cvcLengths
-    self.checkSumAlgorithm = checkSumAlgorithm
-    self.brandIcon = brandIcon
-  }
 }

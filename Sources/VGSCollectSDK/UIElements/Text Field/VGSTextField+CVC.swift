@@ -11,40 +11,16 @@ import Foundation
 /// Handle cvc field type
 internal extension VGSTextField {
     
-    static var cvcRegexForAnyCardType: String {
-       return "^([0-9]{3,4})$"
-    }
-    
-    var cvcFormatPatternForCardType: String {
-        let format3 = "###"
-        let format4 = "####"
-        if let state = state as? CardState {
-            switch state.cardBrand {
-            case .amex, .unknown:
-                return format4
-            default:
-                return format3
-            }
-        }
-        return format4
-    }
-    
-    var cvcValidationRule: VGSValidationRulePattern {
-        let format3 = "^([0-9]{3})$"
-        let format4 = "^([0-9]{4})$"
-        var regex = ""
-        if let state = state as? CardState {
-            switch state.cardBrand {
-            case .amex:
-                regex = format4
-            case .unknown:
-                regex = Self.cvcRegexForAnyCardType
-            default:
-                regex = format3
-            }
-        } else {
-          regex = Self.cvcRegexForAnyCardType
+  func getCVCValidationRules(cardType: SwiftLuhn.CardType) -> VGSValidationRuleSet {
+      var cvcLengths = [Int]()
+      if let cardModel = SwiftLuhn.getCardModel(type: cardType) {
+        cvcLengths = cardModel.cvcLengths
+      } else {
+        cvcLengths = SwiftLuhn.unknownPaymentCardBrandModel.cvcLengths
       }
-      return VGSValidationRulePattern(pattern: regex, error: VGSValidationErrorType.pattern.rawValue)
+      return VGSValidationRuleSet(rules: [
+        VGSValidationRulePattern(pattern: "\\d*$", error: VGSValidationErrorType.pattern.rawValue),
+        VGSValidationRuleLengthMatch(lengths: cvcLengths, error: VGSValidationErrorType.range.rawValue)
+      ])
     }
 }
