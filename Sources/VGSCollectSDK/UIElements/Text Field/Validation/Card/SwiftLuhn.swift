@@ -27,6 +27,8 @@ public class SwiftLuhn {
     public static var unionpayModel = PaymentCardModel(type: .unionpay)
     public static var jcbModel = PaymentCardModel(type: .jcb)
   
+    public static var unknownPaymentCardBrandModel = UnknownPaymentCardModel()
+  
     public static var availableCardTypes: [PaymentCardModelProtocol] =
                                             [
                                               SwiftLuhn.eloModel,
@@ -133,48 +135,6 @@ public class SwiftLuhn {
           }
         }
     }
-    
-    
-    /// Validate card number via LuhnAlgorithm algorithm.
-    class func performLuhnAlgorithm(with cardNumber: String) -> Bool {
-                        
-        guard cardNumber.count >= 9 else {
-            return false
-        }
-        
-        var sum = 0
-        let digitStrings = cardNumber.reversed().map { String($0) }
-
-        for tuple in digitStrings.enumerated() {
-            if let digit = Int(tuple.element) {
-                let odd = tuple.offset % 2 == 1
-
-                switch (odd, digit) {
-                case (true, 9):
-                    sum += 9
-                case (true, 0...8):
-                    sum += (digit * 2) % 9
-                default:
-                    sum += digit
-                }
-            } else {
-                return false
-            }
-        }
-        let valid = sum % 10 == 0
-        return valid
-    }
-    
-//    ///Returns card type from card number string.
-//    class func getCardType(from cardNumber: String) -> CardType {
-//        for cardType in CardType.allCases {
-//            let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typeDetectRegex)
-//            if predicate.evaluate(with: cardNumber) == true {
-//                return cardType
-//            }
-//        }
-//        return .unknown
-//    }
 }
 
 // MARK: - Attributes
@@ -300,7 +260,6 @@ internal extension SwiftLuhn.CardType {
   }
 }
 
-
 public protocol PaymentCardModelProtocol {
   var type: SwiftLuhn.CardType { get }
   var name: String { get set }
@@ -345,6 +304,23 @@ public struct CustomPaymentCardModel: PaymentCardModelProtocol {
     self.type = .custom(type: name)
     self.name = name
     self.typePattern = typePattern
+    self.cardNumberLengths = cardNumberLengths
+    self.cvcLengths = cvcLengths
+    self.checkSumAlgorithm = checkSumAlgorithm
+    self.brandIcon = brandIcon
+  }
+}
+
+public struct UnknownPaymentCardModel {
+  internal var typePattern: String = "\\d*$"
+  public var cardNumberLengths: [Int] = Array(16...19)
+  public var cvcLengths: [Int] = [3]
+  public var checkSumAlgorithm: CheckSumAlgorithmType? = .luhn
+  public var brandIcon: UIImage? = SwiftLuhn.CardType.unknown.brandIcon
+  
+  public init() {}
+  
+  public init(cardNumberLengths: [Int], cvcLengths: [Int], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
     self.cardNumberLengths = cardNumberLengths
     self.cvcLengths = cvcLengths
     self.checkSumAlgorithm = checkSumAlgorithm

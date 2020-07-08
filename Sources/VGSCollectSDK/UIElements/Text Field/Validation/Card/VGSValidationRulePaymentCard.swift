@@ -15,6 +15,49 @@ public enum CheckSumAlgorithmType {
   case luhn
 }
 
+extension CheckSumAlgorithmType {
+  
+  func validate(_ input: String) -> Bool {
+    switch self {
+    case .luhn:
+      return Self.performLuhnAlgorithm(with: input)
+    }
+  }
+}
+
+extension CheckSumAlgorithmType {
+  
+  /// Validate input number via LuhnAlgorithm algorithm.
+  static func performLuhnAlgorithm(with cardNumber: String) -> Bool {
+                      
+      guard cardNumber.count >= 9 else {
+          return false
+      }
+      
+      var sum = 0
+      let digitStrings = cardNumber.reversed().map { String($0) }
+
+      for tuple in digitStrings.enumerated() {
+          if let digit = Int(tuple.element) {
+              let odd = tuple.offset % 2 == 1
+
+              switch (odd, digit) {
+              case (true, 9):
+                  sum += 9
+              case (true, 0...8):
+                  sum += (digit * 2) % 9
+              default:
+                  sum += digit
+              }
+          } else {
+              return false
+          }
+      }
+      let valid = sum % 10 == 0
+      return valid
+  }
+}
+
 /**
  Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
  Supports optional validation of cards that are not defined in SDK - `CardType.unknown`.
@@ -58,17 +101,15 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     
     if cardType != .unknown {
       
-      /// validate defined brands
-
-       guard cardType.cardLengths.contains(input.count) else {
-          return false
-       }
-       return cardType == .unionpay ? true : SwiftLuhn.performLuhnAlgorithm(with: input)
+      /// validate known card brands
+      
+      return validateCardNumberWithType(cardType: cardType, number: input)
+      
     } else if  cardType == .unknown && validateUnknownCardType {
       
       /// validate .unknown brands if there are specific validation rules for undefined brands
       
-      return validateUndefinedCardType(number: input)
+      return validateCardNumberWithUnknownType(number: input)
     }
       
     /// brand is not valid if it's type is .unknown and there are no specific validation rules for .unknown cards
@@ -76,45 +117,29 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     return false
   }
   
-  internal func validateDefinedCardType(type: SwiftLuhn.CardType, number: String) -> Bool {
-    guard type.cardLengths.contains(number.count) else {
-       return false
-    }
-    return type == .unionpay ? true : SwiftLuhn.performLuhnAlgorithm(with: number)
-  }
-  
-  internal func validateUndefinedCardType(number: String) -> Bool {
-    if !NSPredicate(format: "SELF MATCHES %@", "\\d*$").evaluate(with: number) {
-        return false
-    }
-    if !Array(16...19).contains(number.count) {
+  internal func validateCardNumberWithType(cardType: SwiftLuhn.CardType, number: String) -> Bool {
+    
+    /// Check if card brand in available card brands
+    guard let cardModel = SwiftLuhn.availableCardTypes.first(where: { $0.type == cardType}) else {
       return false
     }
-    return SwiftLuhn.performLuhnAlgorithm(with: number)
-   }
-}
 
-internal struct UndefinedBrandValidationRules {
-  
-  var lengths: [Int]
-  var algorithm: CheckSumAlgorithmType? = nil
-  
-  func validate(input: String) -> Bool {
-     if !lengths.contains(input.count)  {
-       return false
-     }
-     if let alg = algorithm {
-      let isValid: Bool
-      
-      switch alg {
-      case .luhn:
-        isValid = SwiftLuhn.performLuhnAlgorithm(with: input)
-      }
-      if !isValid {
-        return false
-      }
-     }
-    return true
+    /// Validate defined brands
+    guard cardModel.cardNumberLengths.contains(number.count) else {
+      return false
+    }
+    return cardModel.checkSumAlgorithm?.validate(number) ?? true
   }
+  
+  internal func validateCardNumberWithUnknownType(number: String) -> Bool {
+    let unknownBrandModel = SwiftLuhn.unknownPaymentCardBrandModel
+    if !NSPredicate(format: "SELF MATCHES %@", unknownBrandModel.typePattern).evaluate(with: number) {
+        return false
+    }
+    if !(unknownBrandModel.cardNumberLengths.contains(number.count)) {
+      return false
+    }
+    return unknownBrandModel.checkSumAlgorithm?.validate(number) ?? true
+   }
 }
 

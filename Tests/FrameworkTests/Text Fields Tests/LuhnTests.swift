@@ -26,7 +26,7 @@ class LuhnTests: XCTestCase {
     }
 
     func test4() {
-        XCTAssertTrue(SwiftLuhn.performLuhnAlgorithm(with: cardNumer))
+      XCTAssertTrue(CheckSumAlgorithmType.luhn.validate(cardNumer))
     }
     
     func test5() {
