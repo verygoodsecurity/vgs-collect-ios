@@ -20,7 +20,7 @@ internal extension VGSTextField {
       }
       return VGSValidationRuleSet(rules: [
         VGSValidationRulePattern(pattern: "\\d*$", error: VGSValidationErrorType.pattern.rawValue),
-        VGSValidationRuleLengthMatch(lengths: cvcLengths, error: VGSValidationErrorType.range.rawValue)
+        VGSValidationRuleLengthMatch(lengths: cvcLengths, error: VGSValidationErrorType.lengthMathes.rawValue)
       ])
     }
 }

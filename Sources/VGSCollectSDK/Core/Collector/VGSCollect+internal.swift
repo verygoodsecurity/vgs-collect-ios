@@ -100,7 +100,12 @@ internal extension VGSCollect {
         textField.focusStatus = true
 
       if textField.fieldType == .cardNumber, let cardState = textField.state as? CardState {
-        
+            
+            if let cardModel = SwiftLuhn.getCardModel(type: cardState.cardBrand) {
+              textField.textField.formatPattern = cardModel.formatPattern
+            } else {
+              textField.textField.formatPattern = SwiftLuhn.unknownPaymentCardBrandModel.formatPattern
+            }
             // change cvc format pattern and validation rules based on card brand
             if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
               cvcField.textField.formatPattern = cardState.cardBrand.cvcFormatPattern

@@ -24,6 +24,7 @@ public class SwiftLuhn {
     public static var masterCardModel = PaymentCardModel(type: .mastercard)
     public static var amexCardModel = PaymentCardModel(type: .amex)
     public static var hipercardCardModel = PaymentCardModel(type: .hipercard)
+    public static var dinersClubCardModel = PaymentCardModel(type: .dinersClub)
     public static var discoverCardModel = PaymentCardModel(type: .discover)
     public static var unionpayCardModel = PaymentCardModel(type: .unionpay)
     public static var jcbCardModel = PaymentCardModel(type: .jcb)
@@ -42,6 +43,7 @@ public class SwiftLuhn {
                                               SwiftLuhn.masterCardModel,
                                               SwiftLuhn.amexCardModel,
                                               SwiftLuhn.hipercardCardModel,
+                                              SwiftLuhn.dinersClubCardModel,
                                               SwiftLuhn.discoverCardModel,
                                               SwiftLuhn.unionpayCardModel,
                                               SwiftLuhn.jcbCardModel]
@@ -235,6 +237,17 @@ extension SwiftLuhn.CardType {
       }
       return String(repeating: "#", count: maxLength)
     }
+  
+    internal var defaultFormatPattern: String {
+      switch self {
+      case .amex:
+        return "#### ###### #####"
+      case .dinersClub:
+        return "#### ###### ######"
+      default:
+        return "#### #### #### #### ###"
+      }
+    }
 }
 
 internal extension SwiftLuhn.CardType {
@@ -281,6 +294,7 @@ public protocol PaymentCardModelProtocol {
   var type: SwiftLuhn.CardType { get }
   var name: String { get set }
   var typePattern: String { get set }
+  var formatPattern: String { get set }
   var cardNumberLengths: [Int] { get set }
   var cvcLengths: [Int] { get set }
   var checkSumAlgorithm: CheckSumAlgorithmType? { get set }
@@ -295,6 +309,7 @@ public struct PaymentCardModel: PaymentCardModelProtocol {
   public var cardNumberLengths: [Int]
   public var cvcLengths: [Int]
   public var checkSumAlgorithm: CheckSumAlgorithmType?
+  public var formatPattern: String
   public var brandIcon: UIImage?
   
   init(type: SwiftLuhn.CardType) {
@@ -305,22 +320,26 @@ public struct PaymentCardModel: PaymentCardModelProtocol {
     self.cvcLengths = type == .amex ? [4] : [3]
     self.checkSumAlgorithm = .luhn
     self.brandIcon = type.defaultBrandIcon
+    self.formatPattern = type.defaultFormatPattern
   }
 }
 
 public struct CustomPaymentCardModel: PaymentCardModelProtocol {
+  
   public let type: SwiftLuhn.CardType
   public var name: String
   public var typePattern: String
+  public var formatPattern: String
   public var cardNumberLengths: [Int]
   public var cvcLengths: [Int]
   public var checkSumAlgorithm: CheckSumAlgorithmType?
   public var brandIcon: UIImage?
   
-  public init(name: String, typePattern: String, cardNumberLengths: [Int], cvcLengths: [Int], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
+  public init(name: String, typePattern: String, formatPattern: String, cardNumberLengths: [Int], cvcLengths: [Int], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
     self.type = .custom(type: name)
     self.name = name
     self.typePattern = typePattern
+    self.formatPattern = formatPattern
     self.cardNumberLengths = cardNumberLengths
     self.cvcLengths = cvcLengths
     self.checkSumAlgorithm = checkSumAlgorithm
@@ -329,7 +348,8 @@ public struct CustomPaymentCardModel: PaymentCardModelProtocol {
 }
 
 public struct UnknownPaymentCardModel {
-  internal var typePattern: String = "\\d*$"
+  internal var typePattern: String = "^[0-9]+$"
+  public var formatPattern: String = SwiftLuhn.CardType.unknown.defaultFormatPattern
   public var cardNumberLengths: [Int] = Array(16...19)
   public var cvcLengths: [Int] = [3, 4]
   public var checkSumAlgorithm: CheckSumAlgorithmType? = .luhn
