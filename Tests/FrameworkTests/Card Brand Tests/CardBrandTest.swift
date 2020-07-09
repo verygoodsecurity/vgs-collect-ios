@@ -29,7 +29,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testCardBrandDetectionReturnsTrue() {
-        let allBrands = VGSPaymentCards.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCards
         allBrands.forEach { brand in
           let numbers = brand.type.cardNumbers
             numbers.forEach { number in
@@ -44,7 +44,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testCardBrandDetectionByFirstDigitsReturnsTrue() {
-        let allBrands = VGSPaymentCards.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCards
         allBrands.forEach { brand in
           let numbers = brand.type.firsDigitsInCardNumber
             numbers.forEach { number in
@@ -59,7 +59,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testValidCardsValidationReturnsTrue() {
-        let allBrands = VGSPaymentCards.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCards
         allBrands.forEach { brand in
             let numbers = brand.type.cardNumbers
             numbers.forEach { number in
@@ -75,7 +75,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testNotFullCardsValidationReturnsFalse() {
-        let allBrands = VGSPaymentCards.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCards
         allBrands.forEach { brand in
           let numbers = brand.type.cardNumbers
             for number in numbers {
@@ -96,7 +96,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testNotValidCardsValidationReturnsFalse() {
-        let allBrands = VGSPaymentCards.availableCardTypes.filter { $0.type != .unionpay }
+        let allBrands = VGSPaymentCards.availableCards.filter { $0.type != .unionpay }
         
         allBrands.forEach { brand in
             let numbers = brand.type.cardNumbers
