@@ -120,7 +120,7 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
   internal func validateCardNumberWithType(cardType: VGSPaymentCards.CardType, number: String) -> Bool {
     
     /// Check if card brand in available card brands
-    guard let cardModel = VGSPaymentCards.availableCardTypes.first(where: { $0.type == cardType}) else {
+    guard let cardModel = VGSPaymentCards.availableCards.first(where: { $0.type == cardType}) else {
       return false
     }
 

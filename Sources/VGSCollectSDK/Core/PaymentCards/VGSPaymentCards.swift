@@ -11,7 +11,7 @@ import Foundation
 /// Class containing supported credit card types
 public class VGSPaymentCards {
     
-  // MARK: - Enum Cases
+  // MARK: - CardType Enum Cases
 
   /// Supported card types
   public enum CardType: Equatable {
@@ -59,6 +59,7 @@ public class VGSPaymentCards {
       case unknown
     
       case custom(type: String)
+      /// `VGSCustomPaymentCardModel` model
     
       /// :nodoc:  Equatable protocol
       public static func ==(lhs: CardType, rhs: CardType) -> Bool {
@@ -85,24 +86,46 @@ public class VGSPaymentCards {
       }
   }
   
+    // MARK: - Payment Card Models
+  
+    ///  Elo Payment Card Model
     public static var eloCardModel = VGSPaymentCardModel(type: .elo)
+    ///  Visa Electron Payment Card Model
     public static var visaElectronCardModel = VGSPaymentCardModel(type: .visaElectron)
+    ///  Maestro Payment Card Model
     public static var maestroCardModel = VGSPaymentCardModel(type: .maestro)
+    ///  Forbrugsforeningen Payment Card Model
     public static var forbrugsforeningenCardModel = VGSPaymentCardModel(type: .forbrugsforeningen)
+    ///  Dankort Payment Card Model
     public static var dankortCardModel = VGSPaymentCardModel(type: .dankort)
+    ///  Elo Payment Card Model
     public static var visaCardModel = VGSPaymentCardModel(type: .visa)
+    ///  Master Card Payment Card Model
     public static var masterCardModel = VGSPaymentCardModel(type: .mastercard)
+    ///  Amex Payment Card Model
     public static var amexCardModel = VGSPaymentCardModel(type: .amex)
+    ///  Hipercard Payment Card Model
     public static var hipercardCardModel = VGSPaymentCardModel(type: .hipercard)
+    ///  DinersClub Payment Card Model
     public static var dinersClubCardModel = VGSPaymentCardModel(type: .dinersClub)
+    ///  Discover Payment Card Model
     public static var discoverCardModel = VGSPaymentCardModel(type: .discover)
+    ///  UnionPay Payment Card Model
     public static var unionpayCardModel = VGSPaymentCardModel(type: .unionpay)
+    ///  JCB Payment Card Model
     public static var jcbCardModel = VGSPaymentCardModel(type: .jcb)
   
+  
+    // MARK: - Unknown Card Type Model
+  
+    ///  Unknown Brand Payment Card Model.  Can be used for specifing cards details when `VGSValidationRulePaymentCard` requires validating `CardType.unknown` cards.
     public static var unknownPaymentCardBrandModel = VGSUnknownPaymentCardModel()
   
-    /// Array of Available Card Types. Note: the order have impact on which card type should be detected first by  `PaymentCardModel.typePattern`
-    public static var availableCardTypes: [VGSPaymentCardModelProtocol] =
+  
+    // MARK: - Availeble Cards
+  
+    /// Array of Available Cards. Note: the order have impact on which card type should be detected first by  `VGSPaymentCardModel.typePattern`
+    public static var availableCards: [VGSPaymentCardModelProtocol] =
                                             [ VGSPaymentCards.eloCardModel,
                                               VGSPaymentCards.visaElectronCardModel,
                                               VGSPaymentCards.maestroCardModel,
@@ -124,12 +147,12 @@ public extension VGSPaymentCards.CardType {
     
     /// String representation of `SwiftLuhn.CardType` enum values.
     var stringValue: String {
-        return VGSPaymentCards.availableCardTypes.first(where: { $0.type == self })?.name ?? "unknown"
+        return VGSPaymentCards.availableCards.first(where: { $0.type == self })?.name ?? "unknown"
     }
     
     /// Returns array with valid card number lengths for specific `SwiftLuhn.CardType`
     var cardLengths: [Int] {
-      return VGSPaymentCards.availableCardTypes.first(where: { $0.type == self })?.cardNumberLengths ?? VGSPaymentCards.unknownPaymentCardBrandModel.cardNumberLengths
+      return VGSPaymentCards.availableCards.first(where: { $0.type == self })?.cardNumberLengths ?? VGSPaymentCards.unknownPaymentCardBrandModel.cardNumberLengths
     }
   
 }
@@ -209,7 +232,7 @@ internal extension VGSPaymentCards.CardType {
   
     var cvcFormatPattern: String {
       var maxLength = 0
-      if let cardType = VGSPaymentCards.availableCardTypes.first(where: { $0.type == self }) {
+      if let cardType = VGSPaymentCards.availableCards.first(where: { $0.type == self }) {
         maxLength = cardType.cvcLengths.max() ?? 0
       } else {
         maxLength = VGSPaymentCards.unknownPaymentCardBrandModel.cvcLengths.max() ?? 0
@@ -266,20 +289,12 @@ internal extension VGSPaymentCards.CardType {
 
 internal extension VGSPaymentCards {
     
-  //    static var defaultCardModels: [PaymentCardModel] = {
-  //      return SwiftLuhn.CardType.allCases.map({ SwiftLuhn.getDefaultCardModel(cardType: $0) })
-  //    }()
-  //
-  //    static func getDefaultCardModel(cardType: SwiftLuhn.CardType) -> PaymentCardModel {
-  //      return PaymentCardModel(type: cardType)
-  //    }
-    
     static func getCardModel(type: VGSPaymentCards.CardType) -> VGSPaymentCardModelProtocol? {
-      return availableCardTypes.first(where: { $0.type == type})
+      return availableCards.first(where: { $0.type == type})
     }
 
     static func getCardType(input: String) -> VGSPaymentCards.CardType {
-        for cardType in availableCardTypes {
+        for cardType in availableCards {
           let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typePattern)
           if predicate.evaluate(with: input) == true {
             return cardType.type

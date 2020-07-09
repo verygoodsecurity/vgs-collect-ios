@@ -14,7 +14,7 @@ import UIKit
 extension VGSPaymentCards.CardType {
     
     var brandIcon: UIImage? {
-      return VGSPaymentCards.availableCardTypes.first(where: { $0.type == self })?.brandIcon ?? UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+      return VGSPaymentCards.availableCards.first(where: { $0.type == self })?.brandIcon ?? VGSPaymentCards.unknownPaymentCardBrandModel.brandIcon
     }
   
     var defaultBrandIcon: UIImage? {

@@ -14,7 +14,5 @@ public struct VGSUnknownPaymentCardModel {
   public var cardNumberLengths: [Int] = Array(16...19)
   public var cvcLengths: [Int] = [3, 4]
   public var checkSumAlgorithm: CheckSumAlgorithmType? = .luhn
-  public var brandIcon: UIImage? = VGSPaymentCards.CardType.unknown.brandIcon
-  
-  public init() {}
+  public var brandIcon: UIImage? = VGSPaymentCards.CardType.unknown.defaultBrandIcon
 }
