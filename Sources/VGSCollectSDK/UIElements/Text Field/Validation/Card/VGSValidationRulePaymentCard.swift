@@ -20,7 +20,7 @@ extension CheckSumAlgorithmType {
   func validate(_ input: String) -> Bool {
     switch self {
     case .luhn:
-      return Self.performLuhnAlgorithm(with: input)
+      return Self.validateWithLuhnAlgorithm(with: input)
     }
   }
 }
@@ -28,7 +28,7 @@ extension CheckSumAlgorithmType {
 extension CheckSumAlgorithmType {
   
   /// Validate input number via LuhnAlgorithm algorithm.
-  static func performLuhnAlgorithm(with cardNumber: String) -> Bool {
+  static func validateWithLuhnAlgorithm(with cardNumber: String) -> Bool {
                       
       guard cardNumber.count >= 9 else {
           return false
@@ -97,7 +97,7 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
       return false
     }
     
-    let cardType = SwiftLuhn.getCardType(input: input)
+    let cardType = VGSPaymentCards.getCardType(input: input)
     
     if cardType != .unknown {
       
@@ -117,10 +117,10 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     return false
   }
   
-  internal func validateCardNumberWithType(cardType: SwiftLuhn.CardType, number: String) -> Bool {
+  internal func validateCardNumberWithType(cardType: VGSPaymentCards.CardType, number: String) -> Bool {
     
     /// Check if card brand in available card brands
-    guard let cardModel = SwiftLuhn.availableCardTypes.first(where: { $0.type == cardType}) else {
+    guard let cardModel = VGSPaymentCards.availableCardTypes.first(where: { $0.type == cardType}) else {
       return false
     }
 
@@ -132,7 +132,7 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
   }
   
   internal func validateCardNumberWithUnknownType(number: String) -> Bool {
-    let unknownBrandModel = SwiftLuhn.unknownPaymentCardBrandModel
+    let unknownBrandModel = VGSPaymentCards.unknownPaymentCardBrandModel
     if !NSPredicate(format: "SELF MATCHES %@", unknownBrandModel.typePattern).evaluate(with: number) {
         return false
     }

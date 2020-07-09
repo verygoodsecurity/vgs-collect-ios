@@ -47,7 +47,7 @@ public final class VGSCardTextField: VGSTextField {
     
     // MARK: Custom card brand images
     /// Asks custom image for specific `SwiftLuhn.CardType`
-    public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
+    public var cardsIconSource: ((VGSPaymentCards.CardType) -> UIImage?)?
     
     /// :nodoc:
     public override func didMoveToSuperview() {

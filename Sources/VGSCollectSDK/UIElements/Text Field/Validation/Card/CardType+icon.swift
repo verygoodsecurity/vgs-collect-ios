@@ -11,10 +11,10 @@ import Foundation
 import UIKit
 #endif
 
-extension SwiftLuhn.CardType {
+extension VGSPaymentCards.CardType {
     
     var brandIcon: UIImage? {
-      return SwiftLuhn.availableCardTypes.first(where: { $0.type == self })?.brandIcon ?? UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+      return VGSPaymentCards.availableCardTypes.first(where: { $0.type == self })?.brandIcon ?? UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
     }
   
     var defaultBrandIcon: UIImage? {

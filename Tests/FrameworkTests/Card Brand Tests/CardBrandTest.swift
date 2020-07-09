@@ -29,7 +29,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testCardBrandDetectionReturnsTrue() {
-        let allBrands = SwiftLuhn.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCardTypes
         allBrands.forEach { brand in
           let numbers = brand.type.cardNumbers
             numbers.forEach { number in
@@ -44,7 +44,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testCardBrandDetectionByFirstDigitsReturnsTrue() {
-        let allBrands = SwiftLuhn.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCardTypes
         allBrands.forEach { brand in
           let numbers = brand.type.firsDigitsInCardNumber
             numbers.forEach { number in
@@ -59,7 +59,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testValidCardsValidationReturnsTrue() {
-        let allBrands = SwiftLuhn.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCardTypes
         allBrands.forEach { brand in
             let numbers = brand.type.cardNumbers
             numbers.forEach { number in
@@ -75,7 +75,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testNotFullCardsValidationReturnsFalse() {
-        let allBrands = SwiftLuhn.availableCardTypes
+        let allBrands = VGSPaymentCards.availableCardTypes
         allBrands.forEach { brand in
           let numbers = brand.type.cardNumbers
             for number in numbers {
@@ -96,7 +96,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testNotValidCardsValidationReturnsFalse() {
-        let allBrands = SwiftLuhn.availableCardTypes.filter { $0.type != .unionpay }
+        let allBrands = VGSPaymentCards.availableCardTypes.filter { $0.type != .unionpay }
         
         allBrands.forEach { brand in
             let numbers = brand.type.cardNumbers
@@ -121,7 +121,7 @@ class CardBrandTest: XCTestCase {
     }
     
     func testSpecificNotValidCardsValidationReturnsFalse() {
-        let numbers = SwiftLuhn.specificNotValidCardNumbers
+        let numbers = VGSPaymentCards.specificNotValidCardNumbers
         numbers.forEach { number in
             cardTextField.textField.secureText = number
             guard let state = cardTextField.state as? CardState else {

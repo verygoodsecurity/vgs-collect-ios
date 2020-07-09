@@ -24,6 +24,7 @@ class CVVTextFieldTests: XCTestCase {
         cvvTextField.configuration = config
         
         cvvTextField.textField.secureText = "123"
+        cvvTextField.focusOn()
     }
     
     override func tearDown() {
@@ -40,6 +41,7 @@ class CVVTextFieldTests: XCTestCase {
     }
     
     func testStates() {
+        cvvTextField.textField.secureText = "123"
         let state = cvvTextField.state
         XCTAssertFalse(state.isEmpty)
         XCTAssertTrue(state.isValid)

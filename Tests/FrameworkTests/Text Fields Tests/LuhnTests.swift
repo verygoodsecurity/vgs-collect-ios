@@ -22,7 +22,7 @@ class LuhnTests: XCTestCase {
     }
 
     func test1() {
-        XCTAssert(SwiftLuhn.getCardType(input: cardNumer) == .visa)
+        XCTAssert(VGSPaymentCards.getCardType(input: cardNumer) == .visa)
     }
 
     func test4() {
@@ -30,12 +30,7 @@ class LuhnTests: XCTestCase {
     }
     
     func test5() {
-        let cardType = SwiftLuhn.getCardType(input: cardNumer)
+        let cardType = VGSPaymentCards.getCardType(input: cardNumer)
         XCTAssert(cardType.stringValue.lowercased() == "visa")
-    }
-    
-    func test6() {
-        let formatedText = "4111 1111 1111 1111".numbersString
-        XCTAssert(formatedText == cardNumer)
     }
 }

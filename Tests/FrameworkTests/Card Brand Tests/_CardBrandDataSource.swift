@@ -9,7 +9,7 @@
 import Foundation
 @testable import VGSCollectSDK
 
-extension SwiftLuhn.CardType {
+extension VGSPaymentCards.CardType {
     
     var cardNumbers: [String] {
         switch self {
@@ -236,7 +236,7 @@ extension SwiftLuhn.CardType {
   }
 }
 
-extension SwiftLuhn {
+extension VGSPaymentCards {
     
     static var specificNotValidCardNumbers: [String] {
         return [
