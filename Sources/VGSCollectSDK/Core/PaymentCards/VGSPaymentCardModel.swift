@@ -8,10 +8,11 @@
 
 import Foundation
 
+/// :nodoc:
 public protocol VGSPaymentCardModelProtocol {
-  var type: VGSPaymentCards.CardType { get }
+  var brand: VGSPaymentCards.CardBrand { get }
   var name: String { get set }
-  var typePattern: String { get set }
+  var regex: String { get set }
   var formatPattern: String { get set }
   var cardNumberLengths: [Int] { get set }
   var cvcLengths: [Int] { get set }
@@ -21,23 +22,23 @@ public protocol VGSPaymentCardModelProtocol {
 
 public struct VGSPaymentCardModel: VGSPaymentCardModelProtocol {
   
-  public let type: VGSPaymentCards.CardType
+  public let brand: VGSPaymentCards.CardBrand
   public var name: String
-  public var typePattern: String
+  public var regex: String
   public var cardNumberLengths: [Int]
   public var cvcLengths: [Int]
   public var checkSumAlgorithm: CheckSumAlgorithmType?
   public var formatPattern: String
   public var brandIcon: UIImage?
   
-  init(type: VGSPaymentCards.CardType) {
-    self.type = type
-    self.name = type.defaultName
-    self.typePattern = type.defaultTypeDetectRegex
-    self.cardNumberLengths = type.defaultCardLengths
-    self.cvcLengths = type == .amex ? [4] : [3]
-    self.checkSumAlgorithm = .luhn
-    self.brandIcon = type.defaultBrandIcon
-    self.formatPattern = type.defaultFormatPattern
+  init(brand: VGSPaymentCards.CardBrand) {
+    self.brand = brand
+    self.name = brand.defaultName
+    self.regex = brand.defaultRegex
+    self.cardNumberLengths = brand.defaultCardLengths
+    self.cvcLengths = brand.defaultCVCLengths
+    self.checkSumAlgorithm = brand.defaultCheckSumAlgorithm
+    self.brandIcon = brand.defaultBrandIcon
+    self.formatPattern = brand.defaultFormatPattern
   }
 }

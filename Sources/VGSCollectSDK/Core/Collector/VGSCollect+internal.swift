@@ -101,15 +101,15 @@ internal extension VGSCollect {
 
       if textField.fieldType == .cardNumber, let cardState = textField.state as? CardState {
             
-            if let cardModel = VGSPaymentCards.getCardModel(type: cardState.cardBrand) {
+        if let cardModel = VGSPaymentCards.getCardModelFromAvailableModels(brand: cardState.cardBrand) {
               textField.textField.formatPattern = cardModel.formatPattern
             } else {
-              textField.textField.formatPattern = VGSPaymentCards.unknownPaymentCardBrandModel.formatPattern
+              textField.textField.formatPattern = VGSPaymentCards.unknown.formatPattern
             }
             // change cvc format pattern and validation rules based on card brand
             if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
               cvcField.textField.formatPattern = cardState.cardBrand.cvcFormatPattern
-              cvcField.validationRules = textField.getCVCValidationRules(cardType:cardState.cardBrand)
+              cvcField.validationRules = textField.getCVCValidationRules(cardBrand:cardState.cardBrand)
             }
         }
         

@@ -9,7 +9,7 @@
 import Foundation
 @testable import VGSCollectSDK
 
-extension VGSPaymentCards.CardType {
+extension VGSPaymentCards.CardBrand {
     
     var cardNumbers: [String] {
         switch self {
@@ -159,7 +159,7 @@ extension VGSPaymentCards.CardType {
                 "6062828888666688"]
         case .unknown:
             return []
-        case .custom(type:_):
+        case .custom(brandName:_):
           return []
       }
     }
@@ -230,7 +230,7 @@ extension VGSPaymentCards.CardType {
         return ["384100", "3841009", "606282", "6062820", "637568"]
       case .unknown:
           return []
-      case .custom(type: _):
+      case .custom(brandName: _):
           return []
     }
   }

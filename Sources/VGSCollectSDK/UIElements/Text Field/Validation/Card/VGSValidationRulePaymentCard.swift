@@ -60,15 +60,15 @@ extension CheckSumAlgorithmType {
 
 /**
  Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
- Supports optional validation of cards that are not defined in SDK - `CardType.unknown`.
+ Supports optional validation of cards that are not defined in SDK - `CardBrand.unknown`.
  */
 public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
 
   /// Validation Error
   public var error: VGSValidationError
   
-  /// Turn on/off validation of cards that are not defined in SDK - `CardType.unknown`
-  public var validateUnknownCardType = false
+  /// Turn on/off validation of cards that are not defined in SDK - `CardBrand.unknown`
+  public var validateUnknownCardBrand = false
 
   /// Initialzation
   ///
@@ -82,10 +82,10 @@ public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
   ///
   /// - Parameters:
   ///   - error:`VGSValidationError` - error on failed validation relust.
-  ///   - validateUnknownCardType: flag that turn on/off validation `CardType.unknown`cards.
-  public init(error: VGSValidationError, validateUnknownCardType: Bool) {
+  ///   - validateUnknownCardBrand: flag that turn on/off validation `CardBrand.unknown`cards.
+  public init(error: VGSValidationError, validateUnknownCardBrand: Bool) {
     self.error = error
-    self.validateUnknownCardType = validateUnknownCardType
+    self.validateUnknownCardBrand = validateUnknownCardBrand
   }
 }
 
@@ -97,19 +97,19 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
       return false
     }
     
-    let cardType = VGSPaymentCards.getCardType(input: input)
+    let cardBrand = VGSPaymentCards.detectCardBrandFromAvailableCards(input: input)
     
-    if cardType != .unknown {
+    if cardBrand != .unknown {
       
       /// validate known card brands
       
-      return validateCardNumberWithType(cardType: cardType, number: input)
+      return validateCardNumberAsCardBrand(cardBrand, number: input)
       
-    } else if  cardType == .unknown && validateUnknownCardType {
+    } else if  cardBrand == .unknown && validateUnknownCardBrand {
       
       /// validate .unknown brands if there are specific validation rules for undefined brands
       
-      return validateCardNumberWithUnknownType(number: input)
+      return validateCardNumberAsUnknownBrand(number: input)
     }
       
     /// brand is not valid if it's type is .unknown and there are no specific validation rules for .unknown cards
@@ -117,10 +117,10 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     return false
   }
   
-  internal func validateCardNumberWithType(cardType: VGSPaymentCards.CardType, number: String) -> Bool {
+  internal func validateCardNumberAsCardBrand(_ cardBrand: VGSPaymentCards.CardBrand, number: String) -> Bool {
     
     /// Check if card brand in available card brands
-    guard let cardModel = VGSPaymentCards.availableCards.first(where: { $0.type == cardType}) else {
+    guard let cardModel = VGSPaymentCards.getCardModelFromAvailableModels(brand: cardBrand) else {
       return false
     }
 
@@ -131,9 +131,9 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     return cardModel.checkSumAlgorithm?.validate(number) ?? true
   }
   
-  internal func validateCardNumberWithUnknownType(number: String) -> Bool {
-    let unknownBrandModel = VGSPaymentCards.unknownPaymentCardBrandModel
-    if !NSPredicate(format: "SELF MATCHES %@", unknownBrandModel.typePattern).evaluate(with: number) {
+  internal func validateCardNumberAsUnknownBrand(number: String) -> Bool {
+    let unknownBrandModel = VGSPaymentCards.unknown
+    if !NSPredicate(format: "SELF MATCHES %@", unknownBrandModel.regex).evaluate(with: number) {
         return false
     }
     if !(unknownBrandModel.cardNumberLengths.contains(number.count)) {

@@ -10,19 +10,19 @@ import Foundation
 
 public struct VGSCustomPaymentCardModel: VGSPaymentCardModelProtocol {
   
-  public let type: VGSPaymentCards.CardType
+  public let brand: VGSPaymentCards.CardBrand
   public var name: String
-  public var typePattern: String
+  public var regex: String
   public var formatPattern: String
   public var cardNumberLengths: [Int]
   public var cvcLengths: [Int]
   public var checkSumAlgorithm: CheckSumAlgorithmType?
   public var brandIcon: UIImage?
   
-  public init(name: String, typePattern: String, formatPattern: String, cardNumberLengths: [Int], cvcLengths: [Int], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
-    self.type = .custom(type: name)
+  public init(name: String, regex: String, formatPattern: String, cardNumberLengths: [Int], cvcLengths: [Int], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
+    self.brand = .custom(brandName: name)
     self.name = name
-    self.typePattern = typePattern
+    self.regex = regex
     self.formatPattern = formatPattern
     self.cardNumberLengths = cardNumberLengths
     self.cvcLengths = cvcLengths

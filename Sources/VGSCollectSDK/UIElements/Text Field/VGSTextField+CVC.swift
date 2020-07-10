@@ -11,12 +11,12 @@ import Foundation
 /// Handle cvc field type
 internal extension VGSTextField {
     
-  func getCVCValidationRules(cardType: VGSPaymentCards.CardType) -> VGSValidationRuleSet {
+  func getCVCValidationRules(cardBrand: VGSPaymentCards.CardBrand) -> VGSValidationRuleSet {
       var cvcLengths = [Int]()
-      if let cardModel = VGSPaymentCards.getCardModel(type: cardType) {
+    if let cardModel = VGSPaymentCards.getCardModelFromAvailableModels(brand: cardBrand) {
         cvcLengths = cardModel.cvcLengths
       } else {
-        cvcLengths = VGSPaymentCards.unknownPaymentCardBrandModel.cvcLengths
+        cvcLengths = VGSPaymentCards.unknown.cvcLengths
       }
       return VGSValidationRuleSet(rules: [
         VGSValidationRulePattern(pattern: "\\d*$", error: VGSValidationErrorType.pattern.rawValue),

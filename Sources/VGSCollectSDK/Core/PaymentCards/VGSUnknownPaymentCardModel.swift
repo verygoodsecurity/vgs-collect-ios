@@ -9,10 +9,11 @@
 import Foundation
 
 public struct VGSUnknownPaymentCardModel {
-  internal var typePattern: String = "^[0-9]+$"
-  public var formatPattern: String = VGSPaymentCards.CardType.unknown.defaultFormatPattern
-  public var cardNumberLengths: [Int] = Array(16...19)
-  public var cvcLengths: [Int] = [3, 4]
-  public var checkSumAlgorithm: CheckSumAlgorithmType? = .luhn
-  public var brandIcon: UIImage? = VGSPaymentCards.CardType.unknown.defaultBrandIcon
+  internal let name = VGSPaymentCards.CardBrand.unknown.defaultName
+  internal var regex: String = VGSPaymentCards.CardBrand.unknown.defaultRegex
+  public var formatPattern: String = VGSPaymentCards.CardBrand.unknown.defaultFormatPattern
+  public var cardNumberLengths: [Int] = VGSPaymentCards.CardBrand.unknown.defaultCardLengths
+  public var cvcLengths: [Int] = VGSPaymentCards.CardBrand.unknown.defaultCVCLengths
+  public var checkSumAlgorithm: CheckSumAlgorithmType? = VGSPaymentCards.CardBrand.unknown.defaultCheckSumAlgorithm
+  public var brandIcon: UIImage? = VGSPaymentCards.CardBrand.unknown.defaultBrandIcon
 }

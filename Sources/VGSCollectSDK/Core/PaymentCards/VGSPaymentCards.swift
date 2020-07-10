@@ -8,13 +8,13 @@
 
 import Foundation
 
-/// Class containing supported credit card types
+/// Class containing supported payment cards and card brands
 public class VGSPaymentCards {
     
-  // MARK: - CardType Enum Cases
+  // MARK: - CardBrand Enum Cases
 
-  /// Supported card types
-  public enum CardType: Equatable {
+  /// Supported card brands
+  public enum CardBrand: Equatable {
       
       /// ELO
       case elo
@@ -55,249 +55,118 @@ public class VGSPaymentCards {
       /// JCB
       case jcb
       
-      /// Not supported card type - "unknown"
+      /// Not supported card brand - "unknown"
       case unknown
     
-      case custom(type: String)
-      /// `VGSCustomPaymentCardModel` model
-    
-      /// :nodoc:  Equatable protocol
-      public static func ==(lhs: CardType, rhs: CardType) -> Bool {
-        switch (lhs, rhs) {
-        case (.visa, .visa),
-             (.elo, .elo),
-             (.visaElectron, .visaElectron),
-             (.maestro, .maestro),
-             (.forbrugsforeningen, .forbrugsforeningen),
-             (.dankort, .dankort),
-             (.mastercard, .mastercard),
-             (.amex, .amex),
-             (.hipercard, .hipercard),
-             (.dinersClub, .dinersClub),
-             (.discover, .discover),
-             (.unionpay, .unionpay),
-             (.jcb, .jcb),
-             (.unknown, .unknown): return true
-        case (.custom(let lhsString), .custom(let rhsString)):
-          return lhsString == rhsString
-        default:
-          return false
-        }
-      }
+      /// Custom Card Brand
+      case custom(brandName: String)
   }
   
     // MARK: - Payment Card Models
   
     ///  Elo Payment Card Model
-    public static var eloCardModel = VGSPaymentCardModel(type: .elo)
+    public static var elo = VGSPaymentCardModel(brand: .elo)
     ///  Visa Electron Payment Card Model
-    public static var visaElectronCardModel = VGSPaymentCardModel(type: .visaElectron)
+    public static var visaElectron = VGSPaymentCardModel(brand: .visaElectron)
     ///  Maestro Payment Card Model
-    public static var maestroCardModel = VGSPaymentCardModel(type: .maestro)
+    public static var maestro = VGSPaymentCardModel(brand: .maestro)
     ///  Forbrugsforeningen Payment Card Model
-    public static var forbrugsforeningenCardModel = VGSPaymentCardModel(type: .forbrugsforeningen)
+    public static var forbrugsforeningen = VGSPaymentCardModel(brand: .forbrugsforeningen)
     ///  Dankort Payment Card Model
-    public static var dankortCardModel = VGSPaymentCardModel(type: .dankort)
+    public static var dankort = VGSPaymentCardModel(brand: .dankort)
     ///  Elo Payment Card Model
-    public static var visaCardModel = VGSPaymentCardModel(type: .visa)
+    public static var visa = VGSPaymentCardModel(brand: .visa)
     ///  Master Card Payment Card Model
-    public static var masterCardModel = VGSPaymentCardModel(type: .mastercard)
+    public static var masterCard = VGSPaymentCardModel(brand: .mastercard)
     ///  Amex Payment Card Model
-    public static var amexCardModel = VGSPaymentCardModel(type: .amex)
+    public static var amex = VGSPaymentCardModel(brand: .amex)
     ///  Hipercard Payment Card Model
-    public static var hipercardCardModel = VGSPaymentCardModel(type: .hipercard)
+    public static var hipercard = VGSPaymentCardModel(brand: .hipercard)
     ///  DinersClub Payment Card Model
-    public static var dinersClubCardModel = VGSPaymentCardModel(type: .dinersClub)
+    public static var dinersClub = VGSPaymentCardModel(brand: .dinersClub)
     ///  Discover Payment Card Model
-    public static var discoverCardModel = VGSPaymentCardModel(type: .discover)
+    public static var discover = VGSPaymentCardModel(brand: .discover)
     ///  UnionPay Payment Card Model
-    public static var unionpayCardModel = VGSPaymentCardModel(type: .unionpay)
+    public static var unionpay = VGSPaymentCardModel(brand: .unionpay)
     ///  JCB Payment Card Model
-    public static var jcbCardModel = VGSPaymentCardModel(type: .jcb)
+    public static var jcb = VGSPaymentCardModel(brand: .jcb)
   
+    // MARK: - Unknown Card Brand Model
   
-    // MARK: - Unknown Card Type Model
-  
-    ///  Unknown Brand Payment Card Model.  Can be used for specifing cards details when `VGSValidationRulePaymentCard` requires validating `CardType.unknown` cards.
-    public static var unknownPaymentCardBrandModel = VGSUnknownPaymentCardModel()
+    ///  Unknown Brand Payment Card Model.  Can be used for specifing cards details when `VGSValidationRulePaymentCard` requires validating `CardBrand.unknown` cards.
+    public static var unknown = VGSUnknownPaymentCardModel()
   
   
     // MARK: - Availeble Cards
   
-    /// Array of Available Cards. Note: the order have impact on which card type should be detected first by  `VGSPaymentCardModel.typePattern`
+    /// Array of Available Cards. Note: the order have impact on which card brand should be detected first by  `VGSPaymentCardModel.regex`
     public static var availableCards: [VGSPaymentCardModelProtocol] =
-                                            [ VGSPaymentCards.eloCardModel,
-                                              VGSPaymentCards.visaElectronCardModel,
-                                              VGSPaymentCards.maestroCardModel,
-                                              VGSPaymentCards.forbrugsforeningenCardModel,
-                                              VGSPaymentCards.dankortCardModel,
-                                              VGSPaymentCards.visaCardModel,
-                                              VGSPaymentCards.masterCardModel,
-                                              VGSPaymentCards.amexCardModel,
-                                              VGSPaymentCards.hipercardCardModel,
-                                              VGSPaymentCards.dinersClubCardModel,
-                                              VGSPaymentCards.discoverCardModel,
-                                              VGSPaymentCards.unionpayCardModel,
-                                              VGSPaymentCards.jcbCardModel ]
+                                            [ VGSPaymentCards.elo,
+                                              VGSPaymentCards.visaElectron,
+                                              VGSPaymentCards.maestro,
+                                              VGSPaymentCards.forbrugsforeningen,
+                                              VGSPaymentCards.dankort,
+                                              VGSPaymentCards.visa,
+                                              VGSPaymentCards.masterCard,
+                                              VGSPaymentCards.amex,
+                                              VGSPaymentCards.hipercard,
+                                              VGSPaymentCards.dinersClub,
+                                              VGSPaymentCards.discover,
+                                              VGSPaymentCards.unionpay,
+                                              VGSPaymentCards.jcb ]
     
 }
 
 // MARK: - Attributes
-public extension VGSPaymentCards.CardType {
-    
-    /// String representation of `SwiftLuhn.CardType` enum values.
+public extension VGSPaymentCards.CardBrand {
+  
+    /// String representation of `VGSPaymentCards.CardBrand` enum values.
     var stringValue: String {
-        return VGSPaymentCards.availableCards.first(where: { $0.type == self })?.name ?? "unknown"
+      return VGSPaymentCards.getCardModelFromAvailableModels(brand: self)?.name ?? VGSPaymentCards.unknown.name
     }
     
-    /// Returns array with valid card number lengths for specific `SwiftLuhn.CardType`
+    /// Returns array with valid card number lengths for specific `VGSPaymentCards.CardBrand`
     var cardLengths: [Int] {
-      return VGSPaymentCards.availableCards.first(where: { $0.type == self })?.cardNumberLengths ?? VGSPaymentCards.unknownPaymentCardBrandModel.cardNumberLengths
+      return VGSPaymentCards.getCardModelFromAvailableModels(brand: self)?.cardNumberLengths ?? VGSPaymentCards.unknown.cardNumberLengths
     }
   
+    /// :nodoc:  Equatable protocol
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+      switch (lhs, rhs) {
+      case (.visa, .visa),
+           (.elo, .elo),
+           (.visaElectron, .visaElectron),
+           (.maestro, .maestro),
+           (.forbrugsforeningen, .forbrugsforeningen),
+           (.dankort, .dankort),
+           (.mastercard, .mastercard),
+           (.amex, .amex),
+           (.hipercard, .hipercard),
+           (.dinersClub, .dinersClub),
+           (.discover, .discover),
+           (.unionpay, .unionpay),
+           (.jcb, .jcb),
+           (.unknown, .unknown): return true
+      case (.custom(let lhsString), .custom(let rhsString)):
+        return lhsString == rhsString
+      default:
+        return false
+      }
+    }
 }
 
-internal extension VGSPaymentCards.CardType {
-  
-  /// Returns regex for specific card brand detection
-  var defaultTypeDetectRegex: String {
-      switch self {
-      case .amex:
-          return "^3[47]\\d*$"
-      case .dinersClub:
-          return "^3(?:[689]|(?:0[059]+))\\d*$"
-      case .discover:
-          return "^(6011|65|64[4-9]|622)\\d*$"
-      case .unionpay:
-          return "^62\\d*$"
-      case .jcb:
-          return "^35\\d*$"
-      case .mastercard:
-          return  "^(5[1-5]|677189)\\d*$|^(222[1-9]|2[3-6]\\d{2,}|27[0-1]\\d|2720)([0-9]{2,})\\d*$"
-      case .visaElectron:
-          return "^4(026|17500|405|508|844|91[37])\\d*$"
-      case .visa:
-          return "^4\\d*$"
-      case .maestro:
-          return "^(5018|5020|5038|6304|6390[0-9]{2,}|67[0-9]{4,})\\d*$"
-      case .forbrugsforeningen:
-        return "^600\\d*$"
-      case .dankort:
-        return "^5019\\d*$"
-      case .elo:
-        return "^(4011(78|79)|43(1274|8935)|45(1416|7393|763(1|2))|50(4175|6699|67[0-7][0-9]|9000)|627780|63(6297|6368)|650(03([^4])|04([0-9])|05(0|1)|4(0[5-9]|3[0-9]|8[5-9]|9[0-9])|5([0-2][0-9]|3[0-8])|9([2-6][0-9]|7[0-8])|541|700|720|901)|651652|655000|655021)\\d*$"
-      case .hipercard:
-        return "^(384100|384140|384160|606282|637095|637568|60(?!11))\\d*$"
-      case .unknown:
-         return "^\\d*$"
-      case .custom(type: _):
-          return ""
-      }
-  }
-  
-  var defaultCardLengths: [Int] {
-        switch self {
-        case .amex:
-            return [15]
-        case .dinersClub:
-            return [14, 16]
-        case .discover:
-            return [16]
-        case .unionpay:
-            return [16, 17, 18, 19]
-        case .jcb:
-            return [16, 17, 18, 19]
-        case .mastercard:
-            return [16]
-        case .visaElectron:
-            return [16]
-        case .visa:
-            return [13, 16, 19]
-        case .maestro:
-            return [12, 13, 14, 15, 16, 17, 18, 19]
-        case .elo:
-          return [16]
-        case .forbrugsforeningen:
-          return [16]
-        case .dankort:
-          return [16]
-        case .hipercard:
-          return [14, 15, 16, 17, 18, 19]
-        case .unknown:
-            return []
-        case .custom(type: _):
-          return []
-        }
-    }
-  
-    var cvcFormatPattern: String {
-      var maxLength = 0
-      if let cardType = VGSPaymentCards.availableCards.first(where: { $0.type == self }) {
-        maxLength = cardType.cvcLengths.max() ?? 0
-      } else {
-        maxLength = VGSPaymentCards.unknownPaymentCardBrandModel.cvcLengths.max() ?? 0
-      }
-      return String(repeating: "#", count: maxLength)
-    }
-  
-    var defaultFormatPattern: String {
-      switch self {
-      case .amex:
-        return "#### ###### #####"
-      case .dinersClub:
-        return "#### ###### ######"
-      default:
-        return "#### #### #### #### ###"
-      }
-    }
-  
-    var defaultName: String {
-        switch self {
-        case .amex:
-            return "American Express"
-        case .visa:
-            return "Visa"
-        case .visaElectron:
-            return "Visa Electron"
-        case .mastercard:
-            return "Mastercard"
-        case .discover:
-            return "Discover"
-        case .dinersClub:
-            return "Diners Club"
-        case .unionpay:
-            return "UnionPay"
-        case .jcb:
-            return "JCB"
-        case .maestro:
-            return "Maestro"
-        case .elo:
-          return "ELO"
-        case .forbrugsforeningen:
-          return "Forbrugsforeningen"
-        case .dankort:
-          return "Dankort"
-        case .hipercard:
-          return "HiperCard"
-        case .unknown:
-          return "unknown"
-        case .custom(type: _):
-          return ""
-        }
-    }
-}
 
 internal extension VGSPaymentCards {
     
-    static func getCardModel(type: VGSPaymentCards.CardType) -> VGSPaymentCardModelProtocol? {
-      return availableCards.first(where: { $0.type == type})
+    static func getCardModelFromAvailableModels(brand: VGSPaymentCards.CardBrand) -> VGSPaymentCardModelProtocol? {
+      return availableCards.first(where: { $0.brand == brand})
     }
 
-    static func getCardType(input: String) -> VGSPaymentCards.CardType {
-        for cardType in availableCards {
-          let predicate = NSPredicate(format: "SELF MATCHES %@", cardType.typePattern)
+    static func detectCardBrandFromAvailableCards(input: String) -> VGSPaymentCards.CardBrand {
+        for cardModel in availableCards {
+          let predicate = NSPredicate(format: "SELF MATCHES %@", cardModel.regex)
           if predicate.evaluate(with: input) == true {
-            return cardType.type
+            return cardModel.brand
           }
         }
         return .unknown

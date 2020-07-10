@@ -1,5 +1,5 @@
 //
-//  CardType+icon.swift
+//  CardBrand+icon.swift
 //  VGSCollectSDK
 //
 //  Created by Vitalii Obertynskyi on 27.11.2019.
@@ -11,10 +11,10 @@ import Foundation
 import UIKit
 #endif
 
-extension VGSPaymentCards.CardType {
+extension VGSPaymentCards.CardBrand {
     
     var brandIcon: UIImage? {
-      return VGSPaymentCards.availableCards.first(where: { $0.type == self })?.brandIcon ?? VGSPaymentCards.unknownPaymentCardBrandModel.brandIcon
+      return VGSPaymentCards.availableCards.first(where: { $0.brand == self })?.brandIcon ?? VGSPaymentCards.unknown.brandIcon
     }
   
     var defaultBrandIcon: UIImage? {
@@ -49,12 +49,14 @@ extension VGSPaymentCards.CardType {
         case .hipercard:
           resultIcon = UIImage(named: "hipercard", in: bundle, compatibleWith: nil)
         case .unknown:
-          resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
-        case .custom(type: _):
-          resultIcon = UIImage(named: "unknown", in: bundle, compatibleWith: nil)
+          resultIcon = Self.defaultUnknownBrandIcon
+        case .custom(brandName: _):
+          resultIcon = Self.defaultUnknownBrandIcon
         }
         return resultIcon
     }
+  
+    static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
 }
 
 class AssetsBundle {
