@@ -98,14 +98,6 @@ internal extension VGSCollect {
         }
         // set focus for textField
         textField.focusStatus = true
-
-        if textField.fieldType == .cardNumber {
-            // change cvc format pattern based on card brand
-            if let cvcField = storage.elements.filter({ $0.fieldType == .cvc }).first {
-                cvcField.textField.formatPattern = textField.cvcFormatPatternForCardType
-              cvcField.validationRules = VGSValidationRuleSet(rules: [textField.cvcValidationRule])
-            }
-        }
         
         // call observers ONLY after all internal updates done
         observeStates?(storage.elements)

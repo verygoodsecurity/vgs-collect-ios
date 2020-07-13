@@ -19,6 +19,9 @@ public enum VGSValidationErrorType: String {
   /// Default Validation error for `VGSValidationRuleLength`
   case length = "LENGTH_VALIDATION_ERROR"
   
+  /// Default Validation error for `VGSValidationRuleLength`
+  case lengthMathes = "LENGTH_RANGE_MATCH_VALIDATION_ERROR"
+  
   /// Default Validation error for `VGSValidationRuleCardExpirationDate`
   case expDate = "EXPIRATION_DATE_VALIDATION_ERROR"
   

@@ -226,19 +226,44 @@ internal extension VGSTextField {
 
     @objc
     func textFieldValueChanged() {
+        // update format pattern after field input changed
+        updateFormatPattern()
         // update status
-        textField.updateTextFormat()
         vgsCollector?.updateStatus(for: self)
     }
     
     /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
     func setText(_ text: String?) {
         isDirty = true
+      
+        /// clean previous format pattern and add new  based on content after text is set
+        if self.fieldType == .cardNumber {
+          textField.formatPattern = ""
+        }
         textField.secureText = text
-        // this will update card textfield icons
+
+        // this will update card textfield icons and dynamic format pattern
         textFieldValueChanged()
         textFieldDidChange(textField)
     }
+  
+  func updateFormatPattern() {
+    // update card number and cvc format dynamically based on card brand
+    if self.fieldType == .cardNumber, let cardState = self.state as? CardState {
+        
+      if let cardModel = VGSPaymentCards.getCardModelFromAvailableModels(brand: cardState.cardBrand) {
+        self.textField.formatPattern = cardModel.formatPattern
+      } else {
+        self.textField.formatPattern = VGSPaymentCards.unknown.formatPattern
+      }
+      // change cvc format pattern and validation rules based on card brand
+      if let cvcField = self.vgsCollector?.storage.elements.filter({ $0.fieldType == .cvc }).first {
+        cvcField.textField.formatPattern = cardState.cardBrand.cvcFormatPattern
+        cvcField.validationRules = self.getCVCValidationRules(cardBrand:cardState.cardBrand)
+      }
+    }
+    textField.updateTextFormat()
+  }
     
     // change focus here
     @objc

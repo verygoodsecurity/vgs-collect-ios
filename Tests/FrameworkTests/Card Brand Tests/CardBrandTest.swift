@@ -29,39 +29,39 @@ class CardBrandTest: XCTestCase {
     }
     
     func testCardBrandDetectionReturnsTrue() {
-        let allBrands = SwiftLuhn.CardType.allCases
-        allBrands.forEach { brand in
-            let numbers = brand.cardNumbers
+        let allBrands = VGSPaymentCards.availableCards
+        allBrands.forEach { card in
+          let numbers = card.brand.cardNumbers
             numbers.forEach { number in
                 cardTextField.textField.secureText = number
                 guard let state = cardTextField.state as? CardState else {
                     XCTFail("Guard fail")
                     return
                 }
-                XCTAssert(state.cardBrand == brand, "Card number \(number) for brand \(brand) fail")
+              XCTAssert(state.cardBrand == card.brand, "Card number \(number) for brand \(card.brand) fail")
             }
         }
     }
     
     func testCardBrandDetectionByFirstDigitsReturnsTrue() {
-        let allBrands = SwiftLuhn.CardType.allCases
-        allBrands.forEach { brand in
-            let numbers = brand.firsDigitsInCardNumber
+        let allBrands = VGSPaymentCards.availableCards
+        allBrands.forEach { card in
+          let numbers = card.brand.firsDigitsInCardNumber
             numbers.forEach { number in
                 cardTextField.textField.secureText = number
                 guard let state = cardTextField.state as? CardState else {
                     XCTFail("Guard fail")
                     return
                 }
-                XCTAssert(state.cardBrand == brand, "First digits \(number), for brand \(brand) fail")
+              XCTAssert(state.cardBrand == card.brand, "First digits \(number), for brand \(card.brand) fail")
             }
         }
     }
     
     func testValidCardsValidationReturnsTrue() {
-        let allBrands = SwiftLuhn.CardType.allCases
-        allBrands.forEach { brand in
-            let numbers = brand.cardNumbers
+        let allBrands = VGSPaymentCards.availableCards
+        allBrands.forEach { card in
+            let numbers = card.brand.cardNumbers
             numbers.forEach { number in
                 cardTextField.textField.secureText = number
                 guard let state = cardTextField.state as? CardState else {
@@ -69,15 +69,15 @@ class CardBrandTest: XCTestCase {
                     return
                 }
 
-                XCTAssert(state.isValid == true, "Card number \(number) for brand \(brand) fail")
+                XCTAssert(state.isValid == true, "Card number \(number) for brand \(card.brand) fail")
             }
         }
     }
     
     func testNotFullCardsValidationReturnsFalse() {
-        let allBrands = SwiftLuhn.CardType.allCases
-        allBrands.forEach { brand in
-            let numbers = brand.cardNumbers
+        let allBrands = VGSPaymentCards.availableCards
+        allBrands.forEach { card in
+          let numbers = card.brand.cardNumbers
             for number in numbers {
                 /// there are 19 digits numbers that detected as valid by Luhn algorithms when there are 16-19 digits
                 if number.count > 16 {
@@ -90,16 +90,16 @@ class CardBrandTest: XCTestCase {
                     XCTFail("Guard fail")
                     return
                 }
-                XCTAssert(state.isValid == false, "Card number \(number), first digits \(input), for brand \(brand) fail")
+                XCTAssert(state.isValid == false, "Card number \(number), first digits \(input), for brand \(card.brand) fail")
             }
         }
     }
     
     func testNotValidCardsValidationReturnsFalse() {
-      let allBrands = SwiftLuhn.CardType.allCases.filter { $0 != .unionpay }
+        let allBrands = VGSPaymentCards.availableCards.filter { $0.brand != .unionpay }
         
-        allBrands.forEach { brand in
-            let numbers = brand.cardNumbers
+        allBrands.forEach { card in
+            let numbers = card.brand.cardNumbers
             numbers.forEach { number in
                 /// replace rendom number in card. We skip first digits that detect brand since brand used for validation too.
                 let lastIndex = number.count > 16 ? 16 : number.count
@@ -115,13 +115,13 @@ class CardBrandTest: XCTestCase {
                     XCTFail("Guard fail")
                     return
                 }
-                XCTAssert(state.isValid == false, "Not Valid Card number \(number), first digits \(input), for brand \(brand) fail")
+              XCTAssert(state.isValid == false, "Not Valid Card number \(number), first digits \(input), for brand \(card.brand) fail")
             }
         }
     }
     
     func testSpecificNotValidCardsValidationReturnsFalse() {
-        let numbers = SwiftLuhn.specificNotValidCardNumbers
+        let numbers = VGSPaymentCards.specificNotValidCardNumbers
         numbers.forEach { number in
             cardTextField.textField.secureText = number
             guard let state = cardTextField.state as? CardState else {

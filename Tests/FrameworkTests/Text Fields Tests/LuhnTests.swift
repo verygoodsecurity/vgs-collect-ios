@@ -21,25 +21,16 @@ class LuhnTests: XCTestCase {
         textField = nil
     }
 
-    func test0() {
-        XCTAssertTrue(SwiftLuhn.validateCardNumber(cardNumer))
-    }
-
     func test1() {
-        XCTAssert(SwiftLuhn.getCardType(from: cardNumer) == .visa)
+        XCTAssert(VGSPaymentCards.detectCardBrandFromAvailableCards(input: cardNumer) == .visa)
     }
 
     func test4() {
-        XCTAssertTrue(SwiftLuhn.performLuhnAlgorithm(with: cardNumer))
+      XCTAssertTrue(CheckSumAlgorithmType.luhn.validate(cardNumer))
     }
     
     func test5() {
-        let cardType = SwiftLuhn.getCardType(from: cardNumer)
-        XCTAssert(cardType.stringValue.lowercased() == "visa")
-    }
-    
-    func test6() {
-        let formatedText = "4111 1111 1111 1111".numbersString
-        XCTAssert(formatedText == cardNumer)
+        let cardBrand = VGSPaymentCards.detectCardBrandFromAvailableCards(input: cardNumer)
+        XCTAssert(cardBrand.stringValue.lowercased() == "visa")
     }
 }

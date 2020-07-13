@@ -32,6 +32,6 @@ extension VGSValidationRuleLuhnCheck: VGSRuleValidator {
     guard let input = input else {
       return false
     }
-    return SwiftLuhn.performLuhnAlgorithm(with: input)
+    return CheckSumAlgorithmType.luhn.validate(input)
   }
 }

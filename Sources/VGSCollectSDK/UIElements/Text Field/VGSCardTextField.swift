@@ -46,8 +46,8 @@ public final class VGSCardTextField: VGSTextField {
     }
     
     // MARK: Custom card brand images
-    /// Asks custom image for specific `SwiftLuhn.CardType`
-    public var cardsIconSource: ((SwiftLuhn.CardType) -> UIImage?)?
+    /// Asks custom image for specific `VGSPaymentCards.CardBrand`
+    public var cardsIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
     
     /// :nodoc:
     public override func didMoveToSuperview() {
@@ -114,7 +114,7 @@ internal extension VGSCardTextField {
        if let state = state as? CardState {
           cardIconView.image = (cardsIconSource == nil) ? state.cardBrand.brandIcon :  cardsIconSource?(state.cardBrand)
        } else {
-          cardIconView.image = defaultUnknowBrandImage
+        cardIconView.image = VGSPaymentCards.unknown.brandIcon
        }
     }
   
