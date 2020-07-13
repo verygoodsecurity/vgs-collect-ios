@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Environment Enumeration Reference</title>
+    <title>VGSPaymentCardModel Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/Environment" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/VGSPaymentCardModel" class="dashAnchor"></a>
 
-    <a title="Environment Enumeration Reference"></a>
+    <a title="VGSPaymentCardModel Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Environment Enumeration Reference
+      VGSPaymentCardModel Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -248,14 +248,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Environment</h1>
+            <h1>VGSPaymentCardModel</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Environment</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSPaymentCardModel</span> <span class="p">:</span> <span class="kt">VGSPaymentCardModelProtocol</span></code></pre>
 
                 </div>
               </div>
-            <p>Organization vault environment.</p>
+            <p>An object representing Payment Card</p>
 
           </div>
         </section>
@@ -267,9 +267,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK11EnvironmentO7sandboxyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/sandbox" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11EnvironmentO7sandboxyA2CmF">sandbox</a>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV5brandAA0C5CardsC0D5BrandOvp"></a>
+                    <a name="//apple_ref/swift/Property/brand" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV5brandAA0C5CardsC0D5BrandOvp">brand</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -277,19 +277,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Should be used for development and testing purpose.</p>
+                        <p>Payment Card Brand</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">sandbox</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">brand</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSPaymentCards.html">VGSPaymentCards</a></span><span class="o">.</span><span class="kt">CardBrand</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L17">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L27">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -297,9 +297,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK11EnvironmentO4liveyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/live" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11EnvironmentO4liveyA2CmF">live</a>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV4nameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV4nameSSvp">name</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,19 +307,204 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Should be used for production.</p>
+                        <p>Payment Card Name</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">live</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L20">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L30">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV5regexSSvp"></a>
+                    <a name="//apple_ref/swift/Property/regex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV5regexSSvp">regex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Regex Pattern required to detect Payment Card Brand</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">regex</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L33">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV17cardNumberLengthsSaySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/cardNumberLengths" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV17cardNumberLengthsSaySiGvp">cardNumberLengths</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Valid Card Number Lengths</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cardNumberLengths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L36">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV10cvcLengthsSaySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/cvcLengths" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV10cvcLengthsSaySiGvp">cvcLengths</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Valid Card CVC/CVV Lengths. For most brands valid cvc lengths is [3], while for Amex is [4].  For unknown brands can be set as [3, 4]</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cvcLengths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV17checkSumAlgorithmAA05CheckgH4TypeOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/checkSumAlgorithm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV17checkSumAlgorithmAA05CheckgH4TypeOSgvp">checkSumAlgorithm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check sum validation algorithm. For most brands  card number can be validated by <code><a href="../Enums/CheckSumAlgorithmType.html#/s:13VGSCollectSDK21CheckSumAlgorithmTypeO4luhnyA2CmF">CheckSumAlgorithmType.luhn</a></code> algorithm. If <code>none</code> - result of Checksum Algorithm validation will be <code>true</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">checkSumAlgorithm</span><span class="p">:</span> <span class="kt"><a href="../Enums/CheckSumAlgorithmType.html">CheckSumAlgorithmType</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV13formatPatternSSvp"></a>
+                    <a name="//apple_ref/swift/Property/formatPattern" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV13formatPatternSSvp">formatPattern</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Payment Card Number visual format pattern.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    format pattern length limits input length.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">formatPattern</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L46">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV9brandIconSo7UIImageCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/brandIcon" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV9brandIconSo7UIImageCSgvp">brandIcon</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Image, associated with Payment Card Brand.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">brandIcon</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

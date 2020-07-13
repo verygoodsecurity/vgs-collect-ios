@@ -71,12 +71,6 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/FieldType.html">FieldType</a>
               </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/SwiftLuhn.html">SwiftLuhn</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/SwiftLuhn/CardType.html">– CardType</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -143,6 +137,23 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Payment%20Cards.html">Payment Cards</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSPaymentCards.html">VGSPaymentCards</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSPaymentCards/CardBrand.html">– CardBrand</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/VGSPaymentCardModel.html">VGSPaymentCardModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/VGSUnknownPaymentCardModel.html">VGSUnknownPaymentCardModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Validation%20Rules.html">Validation Rules</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -150,6 +161,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSValidationRuleLength.html">VGSValidationRuleLength</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/VGSValidationRuleLengthMatch.html">VGSValidationRuleLengthMatch</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSValidationRulePattern.html">VGSValidationRulePattern</a>
@@ -421,9 +435,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK0A0C2id11environmentACSS_AA11EnvironmentOtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(id:environment:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A0C2id11environmentACSS_AA11EnvironmentOtcfc">init(id:environment:)</a>
+                    <a name="/s:13VGSCollectSDK0A0C2id11environment10dataRegionACSS_AA11EnvironmentOSSSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:environment:dataRegion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C2id11environment10dataRegionACSS_AA11EnvironmentOSSSgtcfc">init(id:environment:dataRegion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -438,7 +452,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="../Enums/Environment.html">Environment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="../Enums/Environment.html">Environment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -470,11 +484,23 @@
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataRegion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>id of data storage region (e.g. &ldquo;eu-123&rdquo;). Effects ONLY <code><a href="../Enums/Environment.html#/s:13VGSCollectSDK11EnvironmentO4liveyA2CmF">Environment.live</a></code> vaults.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L55-L62">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L56-L59">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -517,7 +543,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L67-L69">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L64-L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -547,7 +573,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L72-L74">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L69-L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -783,7 +809,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-07-03)</p>
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-07-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Observe State and Send Data  Reference</title>
+    <title>Payment Cards  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/Observe State and Send Data" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/Payment Cards" class="dashAnchor"></a>
 
-    <a title="Observe State and Send Data  Reference"></a>
+    <a title="Payment Cards  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="img/carat.png" />
-      Observe State and Send Data  Reference
+      Payment Cards  Reference
     </p>
 
     <div class="content-wrapper">
@@ -248,7 +248,7 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Observe State and Send Data</h1>
+            <h1>Payment Cards</h1>
             
           </div>
         </section>
@@ -260,9 +260,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK0A0C"></a>
-                    <a name="//apple_ref/swift/Class/VGSCollect" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A0C">VGSCollect</a>
+                    <a name="/s:13VGSCollectSDK15VGSPaymentCardsC"></a>
+                    <a name="//apple_ref/swift/Class/VGSPaymentCards" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK15VGSPaymentCardsC">VGSPaymentCards</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -270,20 +270,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An object you use for observing <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> <code><a href="Classes/State.html">State</a></code> and send data to your organization vault.</p>
+                        <p>Class responsible for storing and managing Payment Cards in SDK.</p>
 
-                        <a href="Classes/VGSCollect.html" class="slightly-smaller">See more</a>
+<ul>
+<li>Contains editable defined Payment Cards Models</li>
+<li>Allows to add Custom Payment Cards Models</li>
+<li>Allows to edit Unknown Payment Cards Models(brands not defined by SDK and Developer)</li>
+</ul>
+
+                        <a href="Classes/VGSPaymentCards.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSCollect</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSPaymentCards</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L15-L72">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCards.swift#L15-L115">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -291,9 +297,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK11EnvironmentO"></a>
-                    <a name="//apple_ref/swift/Enum/Environment" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11EnvironmentO">Environment</a>
+                    <a name="/s:13VGSCollectSDK19VGSPaymentCardModelV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSPaymentCardModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSPaymentCardModelV">VGSPaymentCardModel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -301,20 +307,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Organization vault environment.</p>
+                        <p>An object representing Payment Card</p>
 
-                        <a href="Enums/Environment.html" class="slightly-smaller">See more</a>
+                        <a href="Structs/VGSPaymentCardModel.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Environment</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSPaymentCardModel</span> <span class="p">:</span> <span class="kt">VGSPaymentCardModelProtocol</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L14-L21">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSPaymentCardModel.swift#L24-L61">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -322,9 +328,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK5StateC"></a>
-                    <a name="//apple_ref/swift/Class/State" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK5StateC">State</a>
+                    <a name="/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSUnknownPaymentCardModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV">VGSUnknownPaymentCardModel</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -332,175 +338,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An object that describes <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> state.  State attributes are read-only.</p>
+                        <p>An object representing Unknown Payment Cards - cards not defined in the SDK. Object is used when validation for<code>CardBrand.unknown</code> is set as <code>true</code>. Check <code><a href="Structs/VGSValidationRulePaymentCard.html">VGSValidationRulePaymentCard</a></code> for more details. Validation attributes can be edited through `<code><a href="Classes/VGSPaymentCards.html#/s:13VGSCollectSDK15VGSPaymentCardsC7unknownAA26VGSUnknownPaymentCardModelVvpZ">VGSPaymentCards.unknown</a></code> model.</p>
 
-                        <a href="Classes/State.html" class="slightly-smaller">See more</a>
+                        <a href="Structs/VGSUnknownPaymentCardModel.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">State</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSUnknownPaymentCardModel</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/State/State.swift#L13-L71">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK8SSNStateC"></a>
-                    <a name="//apple_ref/swift/Class/SSNState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK8SSNStateC">SSNState</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An object that describes <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> state with configuration <code><a href="Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO3ssnyA2CmF">FieldType.ssn</a></code> .  State attributes are read-only.</p>
-
-                        <a href="Classes/SSNState.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SSNState</span> <span class="p">:</span> <span class="kt"><a href="Classes/State.html">State</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/State/State.swift#L117-L145">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK9CardStateC"></a>
-                    <a name="//apple_ref/swift/Class/CardState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9CardStateC">CardState</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An object that describes <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> state with configuration <code><a href="Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO10cardNumberyA2CmF">FieldType.cardNumber</a></code> .  State attributes are read-only.</p>
-
-                        <a href="Classes/CardState.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CardState</span> <span class="p">:</span> <span class="kt"><a href="Classes/State.html">State</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/State/State.swift#L74-L114">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK11VGSResponseO"></a>
-                    <a name="//apple_ref/swift/Enum/VGSResponse" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11VGSResponseO">VGSResponse</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Response enum cases for SDK requests</p>
-
-                        <a href="Enums/VGSResponse.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSResponse</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L31-L52">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK10HTTPMethodO"></a>
-                    <a name="//apple_ref/swift/Enum/HTTPMethod" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK10HTTPMethodO">HTTPMethod</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>HTTP request methods</p>
-
-                        <a href="Enums/HTTPMethod.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">HTTPMethod</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L21-L28">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK11HTTPHeadersa"></a>
-                    <a name="//apple_ref/swift/Alias/HTTPHeaders" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11HTTPHeadersa">HTTPHeaders</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Key-value data type, used in http request headers.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">HTTPHeaders</span> <span class="o">=</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/APIClient.swift#L15">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSUnknownPaymentCardModel.swift#L13-L33">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

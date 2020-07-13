@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Environment Enumeration Reference</title>
+    <title>VGSValidationRuleLengthMatch Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/Environment" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/VGSValidationRuleLengthMatch" class="dashAnchor"></a>
 
-    <a title="Environment Enumeration Reference"></a>
+    <a title="VGSValidationRuleLengthMatch Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Environment Enumeration Reference
+      VGSValidationRuleLengthMatch Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -248,14 +248,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>Environment</h1>
+            <h1>VGSValidationRuleLengthMatch</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Environment</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSValidationRuleLengthMatch</span> <span class="p">:</span> <span class="kt">VGSValidationRuleProtocol</span></code></pre>
 
                 </div>
               </div>
-            <p>Organization vault environment.</p>
+            <p>Validate input in scope of multiple lengths, e.x.: [16, 19].</p>
 
           </div>
         </section>
@@ -267,9 +267,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK11EnvironmentO7sandboxyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/sandbox" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11EnvironmentO7sandboxyA2CmF">sandbox</a>
+                    <a name="/s:13VGSCollectSDK28VGSValidationRuleLengthMatchV7lengthsSaySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/lengths" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRuleLengthMatchV7lengthsSaySiGvp">lengths</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -277,19 +277,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Should be used for development and testing purpose.</p>
+                        <p>Array of valid length ranges</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">sandbox</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lengths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L17">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLengthMatch.swift#L17">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -297,9 +297,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK11EnvironmentO4liveyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/live" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK11EnvironmentO4liveyA2CmF">live</a>
+                    <a name="/s:13VGSCollectSDK28VGSValidationRuleLengthMatchV5errorSSvp"></a>
+                    <a name="//apple_ref/swift/Property/error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRuleLengthMatchV5errorSSvp">error</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,19 +307,80 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Should be used for production.</p>
+                        <p>Validation Error</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">live</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L20">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLengthMatch.swift#L20">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK28VGSValidationRuleLengthMatchV7lengths5errorACSaySiG_SStcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(lengths:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRuleLengthMatchV7lengths5errorACSaySiG_SStcfc">init(lengths:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialzation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">lengths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></code> - error on failed validation relust.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lengths</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>array of valid lengths</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLengthMatch.swift#L27-L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
