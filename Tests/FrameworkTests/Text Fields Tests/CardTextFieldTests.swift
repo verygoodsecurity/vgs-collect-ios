@@ -37,14 +37,14 @@ class CardTextFieldTests: XCTestCase {
     }
     
     func testIconPresent() {
-        XCTAssertNotNil(VGSPaymentCards.CardType.unknown.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.amex.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.dinersClub.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.discover.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.jcb.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.maestro.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.mastercard.brandIcon)
-        XCTAssertNotNil(VGSPaymentCards.CardType.visa.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.unknown.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.amex.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.dinersClub.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.discover.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.jcb.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.maestro.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.mastercard.brandIcon)
+        XCTAssertNotNil(VGSPaymentCards.CardBrand.visa.brandIcon)
     }
     
     func testInput() {

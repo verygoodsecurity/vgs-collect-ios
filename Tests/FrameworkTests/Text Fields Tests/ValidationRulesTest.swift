@@ -42,7 +42,7 @@ class ValidationRulesTest: XCTestCase {
       XCTAssertTrue(textfield.state.validationErrors.first == error)
       
       config.validationRules = VGSValidationRuleSet(rules: [
-        VGSValidationRulePaymentCard(error: error, validateUnknownCardType: true)
+        VGSValidationRulePaymentCard(error: error, validateUnknownCardBrand: true)
       ])
       textfield.configuration = config
       textfield.textField.secureText = "4111111111111111"

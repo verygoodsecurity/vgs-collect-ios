@@ -61,6 +61,7 @@ extension CheckSumAlgorithmType {
 /**
  Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
  Supports optional validation of cards that are not defined in SDK - `CardBrand.unknown`.
+ To edit validation requirments for `CardBrand.unknown` cards in SDK, setup  `VGSPaymentCards.unknown` model attributes.
  */
 public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
 

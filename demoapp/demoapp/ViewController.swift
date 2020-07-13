@@ -66,19 +66,34 @@ class ViewController: UIViewController {
                 self?.consoleMessage.append("\n")
             })
         }
-        
-        // use the closure below if you need to set your own card brand icons
-//        cardNumber.cardsIconSource = { cardType in
-//            switch cardType {
-//            case .mastercard:
-//                return UIImage(named: "your mastercard icon")
-//            case .visa:
-//                return UIImage(named: "your visa icon")
+      
+      
+//      // If you need to set your own card brand icons
 //
-//            default:
+//      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
+//      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
+//
+//      //OR
+//
+//        // use the closure below
+//        cardNumber.cardsIconSource = { cardBrand in
+//            switch cardBrand {
+//            case .mastercard:
+//                return UIImage(named: "bank_card")
+//            case .custom(brandName: let name):
+//              switch name {
+//              case "Visa2":
+//                return UIImage(named: "bank_card")
+//              default:
 //                return nil
+//              }
+//            default:
+//                return UIImage(named: "cloud-upload")
+//
 //            }
 //        }
+//
+      
     }
     
     // MARK: - Init UI
@@ -102,7 +117,7 @@ class ViewController: UIViewController {
     }
 
     private func setupElementsConfiguration() {
-
+      
         let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
         cardConfiguration.isRequiredValidOnly = true

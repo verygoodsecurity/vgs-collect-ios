@@ -22,7 +22,7 @@ class LuhnTests: XCTestCase {
     }
 
     func test1() {
-        XCTAssert(VGSPaymentCards.getCardType(input: cardNumer) == .visa)
+        XCTAssert(VGSPaymentCards.detectCardBrandFromAvailableCards(input: cardNumer) == .visa)
     }
 
     func test4() {
@@ -30,7 +30,7 @@ class LuhnTests: XCTestCase {
     }
     
     func test5() {
-        let cardType = VGSPaymentCards.getCardType(input: cardNumer)
-        XCTAssert(cardType.stringValue.lowercased() == "visa")
+        let cardBrand = VGSPaymentCards.detectCardBrandFromAvailableCards(input: cardNumer)
+        XCTAssert(cardBrand.stringValue.lowercased() == "visa")
     }
 }
