@@ -70,12 +70,10 @@ internal extension FieldType {
       }
     }
     
-   var regex: String {
+   var defaultRegex: String {
         switch self {
         case .cardNumber:
             return "^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$"
-        case .cvc:
-            return VGSTextField.cvcRegexForAnyCardType
         case .expDate:
             return "^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$"
         case .cardHolderName:
@@ -83,9 +81,11 @@ internal extension FieldType {
         case .ssn:
             return
           "^(?!\\b(\\d)\\1+\\b)(?!(123456789|219099999|078051120|457555462))(?!(000|666|9))(\\d{3}-?(?!(00))\\d{2}-?(?!(0000))\\d{4})$"
-        default:
-            return ""
-        }
+        case .cvc:
+          return "\\d*$"
+        case .none:
+          return ""
+      }
     }
     
     var keyboardType: UIKeyboardType {
@@ -97,21 +97,24 @@ internal extension FieldType {
         }
     }
   
-  var defaultValidation: VGSValidationRuleSet {
-    var rules = VGSValidationRuleSet()
-    switch self {
-      case .cardHolderName, .ssn, .cvc:
-        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
-      case .expDate:
-        rules.add(rule: VGSValidationRulePattern(pattern: self.regex, error: VGSValidationErrorType.pattern.rawValue))
-        rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
-      case .cardNumber:
-        rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
-      case .none:
-        rules = VGSValidationRuleSet()
+    var defaultValidation: VGSValidationRuleSet {
+      var rules = VGSValidationRuleSet()
+      switch self {
+        case .cardHolderName, .ssn:
+          rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+        case .expDate:
+          rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+          rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
+        case .cardNumber:
+          rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
+        case .cvc:
+          rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+          rules.add(rule: VGSValidationRuleLengthMatch(lengths: [3, 4], error: VGSValidationErrorType.lengthMathes.rawValue))
+        case .none:
+          rules = VGSValidationRuleSet()
+      }
+      return rules
     }
-    return rules
-  }
 }
 
 internal enum DateFormatPattern: String {

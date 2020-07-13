@@ -118,8 +118,7 @@ class CardNumerTextFieldTests: XCTestCase {
       }
       
       /// test with mask
-      cardNumerTextField.setText("4111 1111 1111 1111 5555 5555")
-           
+      cardNumerTextField.setText("4111 1111 1111 1111")
       state = cardNumerTextField.state
 
       if let st = state as? CardState {

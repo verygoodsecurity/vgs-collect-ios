@@ -24,6 +24,7 @@ class CVVTextFieldTests: XCTestCase {
         cvvTextField.configuration = config
         
         cvvTextField.textField.secureText = "123"
+        cvvTextField.focusOn()
     }
     
     override func tearDown() {
@@ -40,15 +41,16 @@ class CVVTextFieldTests: XCTestCase {
     }
     
     func testStates() {
+        cvvTextField.textField.secureText = "123"
         let state = cvvTextField.state
         XCTAssertFalse(state.isEmpty)
         XCTAssertTrue(state.isValid)
         XCTAssertTrue(state.isRequired)
         XCTAssertNotNil(state.description)
       
-      if let _ = state as? CardState {
-          XCTFail("CardState shouldn't be available for .cvc configuration")
-      }
+        if let _ = state as? CardState {
+            XCTFail("CardState shouldn't be available for .cvc configuration")
+        }
     }
     
     func testStateDescription() {
@@ -62,6 +64,7 @@ class CVVTextFieldTests: XCTestCase {
                 XCTAssertFalse(state.isEmpty)
                 XCTAssertTrue(state.isValid)
                 XCTAssertTrue(state.isRequired)
+                XCTAssertTrue(state.isDirty)
             } else {
                 XCTFail("Text field state didn't received.")
             }
@@ -69,12 +72,9 @@ class CVVTextFieldTests: XCTestCase {
             expectation.fulfill()
         }
         
-        cvvTextField.textField.secureText = "123"
-        cvvTextField.focusOn()
-        cvvTextField.textField.secureText = "123456"
-        cvvTextField.focusOn()
-        cvvTextField.textField.secureText = "aaa1234qwwe"
-        cvvTextField.focusOn()
+        cvvTextField.setText("123")
+        cvvTextField.setText("123456")
+        cvvTextField.setText("aaa1234qwwe")
         
         wait(for: [expectation], timeout: 5.0)
     }

@@ -55,10 +55,16 @@ custom_categories:
   - VGSResponse
   - HTTPMethod
   - HTTPHeaders
+- name: Payment Cards
+  children:
+  - VGSPaymentCards
+  - VGSPaymentCardModel
+  - VGSUnknownPaymentCardModel
 - name: Validation Rules
   children:
   - VGSValidationRuleSet
   - VGSValidationRuleLength
+  - VGSValidationRuleLengthMatch
   - VGSValidationRulePattern
   - VGSValidationRulePaymentCard
   - VGSValidationRuleLuhnCheck

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SwiftLuhn Class Reference</title>
+    <title>VGSUnknownPaymentCardModel Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/SwiftLuhn" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/VGSUnknownPaymentCardModel" class="dashAnchor"></a>
 
-    <a title="SwiftLuhn Class Reference"></a>
+    <a title="VGSUnknownPaymentCardModel Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      SwiftLuhn Class Reference
+      VGSUnknownPaymentCardModel Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -70,12 +70,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/FieldType.html">FieldType</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/SwiftLuhn.html">SwiftLuhn</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/SwiftLuhn/CardType.html">– CardType</a>
               </li>
             </ul>
           </li>
@@ -143,6 +137,23 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Payment%20Cards.html">Payment Cards</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSPaymentCards.html">VGSPaymentCards</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/VGSPaymentCards/CardBrand.html">– CardBrand</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/VGSPaymentCardModel.html">VGSPaymentCardModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/VGSUnknownPaymentCardModel.html">VGSUnknownPaymentCardModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Validation%20Rules.html">Validation Rules</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -150,6 +161,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSValidationRuleLength.html">VGSValidationRuleLength</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/VGSValidationRuleLengthMatch.html">VGSValidationRuleLengthMatch</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSValidationRulePattern.html">VGSValidationRulePattern</a>
@@ -234,14 +248,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>SwiftLuhn</h1>
+            <h1>VGSUnknownPaymentCardModel</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SwiftLuhn</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSUnknownPaymentCardModel</span></code></pre>
 
                 </div>
               </div>
-            <p>Class containing supported credit card types</p>
+            <p>An object representing Unknown Payment Cards - cards not defined in the SDK. Object is used when validation for<code>CardBrand.unknown</code> is set as <code>true</code>. Check <code><a href="../Structs/VGSValidationRulePaymentCard.html">VGSValidationRulePaymentCard</a></code> for more details. Validation attributes can be edited through `<code><a href="../Classes/VGSPaymentCards.html#/s:13VGSCollectSDK15VGSPaymentCardsC7unknownAA26VGSUnknownPaymentCardModelVvpZ">VGSPaymentCards.unknown</a></code> model.</p>
 
           </div>
         </section>
@@ -249,22 +263,13 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Enum%20Cases"></a>
-                <a name="//apple_ref/swift/Section/Enum Cases" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Enum%20Cases"></a>
-                  <h3 class="section-name"><p>Enum Cases</p>
-</h3>
-                </div>
-              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK9SwiftLuhnC8CardTypeO"></a>
-                    <a name="//apple_ref/swift/Enum/CardType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9SwiftLuhnC8CardTypeO">CardType</a>
+                    <a name="/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV17cardNumberLengthsSaySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/cardNumberLengths" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV17cardNumberLengthsSaySiGvp">cardNumberLengths</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -272,20 +277,139 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Supported card types</p>
+                        <p>Valid Unknown Card Numbers Lengths</p>
 
-                        <a href="../Classes/SwiftLuhn/CardType.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CardType</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cardNumberLengths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/SwiftLuhn.swift#L20-L63">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSUnknownPaymentCardModel.swift#L20">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV10cvcLengthsSaySiGvp"></a>
+                    <a name="//apple_ref/swift/Property/cvcLengths" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV10cvcLengthsSaySiGvp">cvcLengths</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Valid Unknown Card CVC/CVV Lengths. For most brands valid cvc lengths is [3], while for Amex is [4].  For unknown brands can be set as [3, 4]</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cvcLengths</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSUnknownPaymentCardModel.swift#L23">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV17checkSumAlgorithmAA05CheckhI4TypeOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/checkSumAlgorithm" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV17checkSumAlgorithmAA05CheckhI4TypeOSgvp">checkSumAlgorithm</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check sum validation algorithm. For most brands  card number can be validated by <code><a href="../Enums/CheckSumAlgorithmType.html#/s:13VGSCollectSDK21CheckSumAlgorithmTypeO4luhnyA2CmF">CheckSumAlgorithmType.luhn</a></code> algorithm. If <code>none</code> - result of Checksum Algorithm validation will be <code>true</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">checkSumAlgorithm</span><span class="p">:</span> <span class="kt"><a href="../Enums/CheckSumAlgorithmType.html">CheckSumAlgorithmType</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSUnknownPaymentCardModel.swift#L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV13formatPatternSSvp"></a>
+                    <a name="//apple_ref/swift/Property/formatPattern" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV13formatPatternSSvp">formatPattern</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unknown Payment Card Numbers visual format pattern. NOTE: format pattern length limits input length.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">formatPattern</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSUnknownPaymentCardModel.swift#L29">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV9brandIconSo7UIImageCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/brandIcon" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK26VGSUnknownPaymentCardModelV9brandIconSo7UIImageCSgvp">brandIcon</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Image, associated with Unknown Payment Card Brands.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">brandIcon</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/PaymentCards/VGSUnknownPaymentCardModel.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -298,7 +422,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-07-03)</p>
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-07-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -183,25 +183,25 @@ class MaskedTextFieldTest: XCTestCase {
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "+5252+")
         XCTAssertTrue(textfield.state.inputLength == 4)
       
-        textfield.textField.secureText = ""
+        textfield.setText("")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "")
         XCTAssertTrue(textfield.state.inputLength == 0)
         
         configuration.formatPattern = " AAA/aaa/####"
         configuration.divider = "__"
         textfield.configuration = configuration
-        textfield.textField.secureText = "XYZxyz123456789wertert"
+        textfield.setText("XYZxyz123456789wertert")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "__XYZ__xyz__1234")
         XCTAssertTrue(textfield.state.inputLength == 10)
       
-        textfield.textField.secureText = "XYZxyz"
+        textfield.setText("XYZxyz")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "__XYZ__xyz")
         XCTAssertTrue(textfield.state.inputLength == 6)
         
         configuration.formatPattern = " #-#--#---#"
         configuration.divider = "-"
         textfield.configuration = configuration
-        textfield.textField.secureText = "12345678"
+        textfield.setText("12345678")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "-1-2--3---4")
         XCTAssertTrue(textfield.state.inputLength == 4)
     }
@@ -211,7 +211,7 @@ class MaskedTextFieldTest: XCTestCase {
         configuration.divider = nil
         configuration.formatPattern = "#### ####.####-####"
         textfield.configuration = configuration
-        textfield.textField.secureText = "5252525252525252"
+        textfield.setText("5252525252525252")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "5252525252525252")
         XCTAssertTrue(textfield.state.inputLength == 16)
         
@@ -219,7 +219,7 @@ class MaskedTextFieldTest: XCTestCase {
         configuration.divider = nil
         configuration.formatPattern = nil
         textfield.configuration = configuration
-        textfield.textField.secureText = "1234"
+        textfield.setText("1234")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "12/34")
         XCTAssertTrue(textfield.state.inputLength == 4)
         
@@ -228,7 +228,7 @@ class MaskedTextFieldTest: XCTestCase {
         configuration.divider = nil
         configuration.formatPattern = nil
         textfield.configuration = configuration
-        textfield.textField.secureText = nameInput
+        textfield.setText(nameInput)
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == nameInput)
         XCTAssertTrue(textfield.state.inputLength == nameInput.count)
         
@@ -236,7 +236,7 @@ class MaskedTextFieldTest: XCTestCase {
         configuration.formatPattern =  nil
         configuration.divider = nil
         textfield.configuration = configuration
-        textfield.textField.secureText = "1234"
+        textfield.setText("1234")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "1234")
         XCTAssertTrue(textfield.state.inputLength == 4)
     }

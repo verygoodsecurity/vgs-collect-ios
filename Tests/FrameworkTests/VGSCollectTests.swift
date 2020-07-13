@@ -24,11 +24,44 @@ class VGSCollectTests: XCTestCase {
         let host = collector.apiClient.baseURL.host ?? ""
         XCTAssertTrue(host.contains("sandbox"))
     }
+  
+    func testSandboxEnvirinmentReturnsTrue() {
+      var liveForm = VGSCollect(id: "testID", environment: .sandbox)
+      var host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
     
-    func testLiveEnvirinment() {
-        let liveForm = VGSCollect(id: "testID", environment: .live)
-        let host = liveForm.apiClient.baseURL.host ?? ""
-        XCTAssertTrue(host.contains("live"))
+      liveForm = VGSCollect(id: "testID", environment: .sandbox, dataRegion: "")
+      host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: .sandbox, dataRegion: "ua-0505")
+      host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
+    }
+    
+    func testLiveEnvirinmentReturnsTrue() {
+      var liveForm = VGSCollect(id: "testID", environment: .live)
+      var host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.live.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: .live, dataRegion: "")
+      host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.live.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: .live, dataRegion: "ua-0505")
+      host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.live-ua-0505.verygoodproxy.com")
+    }
+  
+    func testRegionStringValidation() {
+      XCTAssertTrue(VGSCollect.regionValid("ua-0505"))
+      XCTAssertTrue(VGSCollect.regionValid("ua0505"))
+      
+      XCTAssertFalse(VGSCollect.regionValid("ua_0505"))
+      XCTAssertFalse(VGSCollect.regionValid("ua:0505"))
+      XCTAssertFalse(VGSCollect.regionValid("ua-0505/verygoodsecurity.com"))
+      XCTAssertFalse(VGSCollect.regionValid("ua-0505?param=val"))
+      XCTAssertFalse(VGSCollect.regionValid("ua-0505#val,id=ua-0505&env=1"))
     }
     
     func testCustomHeader() {
