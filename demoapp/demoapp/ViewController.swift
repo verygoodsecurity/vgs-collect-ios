@@ -141,10 +141,11 @@ class ViewController: UIViewController {
         expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
           VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: VGSValidationErrorType.expDate.rawValue)
         ])
-      
+
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YYYY"
-
+        expCardDate.monthPickerFormat = .longSymbols
+      
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.isRequired = true
         cvcConfiguration.type = .cvc
@@ -161,7 +162,7 @@ class ViewController: UIViewController {
         cardHolderName.textAlignment = .natural
         cardHolderName.configuration = holderConfiguration
         cardHolderName.placeholder = "Cardholder Name"
-      
+        
         vgsCollect.textFields.forEach { textField in
           textField.textColor = .darkText
           textField.font = .systemFont(ofSize: 22)
