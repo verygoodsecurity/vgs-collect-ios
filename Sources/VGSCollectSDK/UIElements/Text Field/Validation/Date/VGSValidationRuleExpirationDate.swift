@@ -62,20 +62,15 @@ extension VGSValidationRuleCardExpirationDate: VGSRuleValidator {
                 
         let mm = input.prefix(mmChars)
         let yy = input.suffix(yyChars)
-                
-        let today = Date()
-        let formatter = DateFormatter()
+                        
+        let todayYY = Calendar(identifier: .gregorian).component(.year, from: Date())
+        let todayMM = Calendar(identifier: .gregorian).component(.month, from: Date())
         
-        formatter.dateFormat = self.dateFormat == .longYear ? "yyyy" : "yy"
-        let todayYY = Int(formatter.string(from: today)) ?? 0
-        
-        formatter.dateFormat = "MM"
-        let todayMM = Int(formatter.string(from: today)) ?? 0
-        
-        guard let inputMM = Int(mm), let inputYY = Int(yy) else {
+        guard let inputMM = Int(mm), var inputYY = Int(yy) else {
             return false
         }
-        
+        ///convert input year to long format if needed
+        inputYY = self.dateFormat.yearCharacters == 2 ? (inputYY + 2000) : inputYY
         if inputYY < todayYY || inputYY > (todayYY + 20) {
             return false
         }
