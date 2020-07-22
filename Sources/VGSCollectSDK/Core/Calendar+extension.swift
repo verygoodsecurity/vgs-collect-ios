@@ -10,6 +10,7 @@ import Foundation
 
 internal extension Calendar {
   
+  /// For card numbers we should use `gregorian` calendar. Note: Callendar.current could retern different calendars!!!
   static var currentMonth: Int {
     return Calendar(identifier: .gregorian).component(.month, from: Date())
   }

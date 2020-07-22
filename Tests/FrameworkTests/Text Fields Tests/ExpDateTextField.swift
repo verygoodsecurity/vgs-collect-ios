@@ -15,8 +15,7 @@ class ExpDateTextField: XCTestCase {
     var textField: VGSExpDateTextField!
     
     override func setUp() {
-        collector = VGSCollect(id: "tntva5wfdrp")
-        
+        collector = VGSCollect(id: "any")
         textField = VGSExpDateTextField()
         let config = VGSConfiguration(collector: collector, fieldName: "textField")
         config.formatPattern = "##/####"
@@ -27,82 +26,51 @@ class ExpDateTextField: XCTestCase {
         collector = nil
         textField = nil
     }
-
-    func testType() {
-        XCTAssertTrue(textField.fieldType == .expDate)
-        
-        let newConfig = VGSConfiguration(collector: collector, fieldName: "some_name")
-        newConfig.type = .cvc
-        
-        
-        XCTAssertTrue(textField.fieldType == .expDate)
-    }
     
     func testMonthFormat() {
-        let firstSymbol = textField.monthsSymbol.first
-        let lastSymbol = textField.monthsSymbol.last
-        
-        XCTAssertTrue(firstSymbol == "01")
-        XCTAssertTrue(lastSymbol == "12")
+        textField.monthPickerFormat = .longSymbols
+        XCTAssertTrue(textField.monthsDataSource.first == "January")
+        textField.monthPickerFormat = .shortSymbols
+        XCTAssertTrue(textField.monthsDataSource.first == "Jan")
+        textField.monthPickerFormat = .numbers
+        XCTAssertTrue(textField.monthsDataSource.last == "12")
     }
 
     func testYearFormat() {
-        // TBD: Needs improve this test with dynamic year
-        
-        var firstSymbol: String?
-        var lastSymbol: String?
-        
-        var newConfig = VGSConfiguration(collector: collector, fieldName: "test_field1")
-        newConfig.formatPattern = "##/####"
-        
-        textField.configuration = newConfig
-        
-        firstSymbol = textField.yearsSymbol.first
-        lastSymbol = textField.yearsSymbol.last
-        
-        XCTAssertTrue(firstSymbol == "2020")
-        XCTAssertTrue(lastSymbol == "2070")
-        
-        // Test default format "##/##"
-        newConfig = VGSConfiguration(collector: collector, fieldName: "test_field2")
-        
-        textField.configuration = newConfig
-        
-        firstSymbol = textField.yearsSymbol.first
-        lastSymbol = textField.yearsSymbol.last
-        
-        XCTAssertTrue(firstSymbol == "20")
-        XCTAssertTrue(lastSymbol == "70")
+        textField.yearPickerDateFormat = .long
+        XCTAssertTrue(textField.yearsDataSource.first == String(Calendar.currentYear))
+        textField.yearPickerDateFormat = .short
+        XCTAssertTrue(textField.yearsDataSource.first == String(Calendar.currentYear - 2000))
     }
     
-    func testMinimumSelectedDate() {
+    func testSelectDate() {
+        let monthSelected = 10
+        let yearSelected = 5
+        textField.picker.selectRow(monthSelected, inComponent: 0, animated: false)
+        textField.pickerView(textField.picker, didSelectRow: monthSelected, inComponent: 0)
+        textField.picker.selectRow(yearSelected, inComponent: 1, animated: false)
+        textField.pickerView(textField.picker, didSelectRow: yearSelected, inComponent: 1)
+
         let currentValue = textField.textField.secureText
-        
-        let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: Date())
-        let currentYear = calendar.component(.year, from: Date())
-        
         let monthComponent = currentValue?.components(separatedBy: "/").first ?? "0"
         let yearComponent = currentValue?.components(separatedBy: "/").last ?? "0"
         
-        let selectedMonth = Int(monthComponent)
-        let selectedYear = Int(yearComponent)
-        
-        XCTAssertTrue(selectedMonth == currentMonth)
-        XCTAssertTrue(selectedYear == currentYear)
+        XCTAssertTrue(Int(monthComponent) == monthSelected + 1)
+        XCTAssertTrue(Int(yearComponent) == Calendar.currentYear + yearSelected)
     }
     
     func testSelectWrongDate() {
-        // not shure if it's working correctlly
+        textField.picker.selectRow(0, inComponent: 1, animated: false)
         textField.picker.selectRow(0, inComponent: 0, animated: false)
-        
+        textField.pickerView(textField.picker, didSelectRow: 0, inComponent: 0)
         let currentValue = textField.textField.secureText
         
-        let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: Date())
+        let currentMonth = Calendar.currentMonth
+        let currentYear = Calendar.currentYear
         let monthComponent = currentValue?.components(separatedBy: "/").first ?? "0"
-        let selectedMonth = Int(monthComponent)
+        let yearComponent = currentValue?.components(separatedBy: "/").last ?? "0"
         
-        XCTAssertTrue(selectedMonth == currentMonth)
+        XCTAssertTrue(Int(monthComponent) == currentMonth)
+        XCTAssertTrue(Int(yearComponent) == currentYear)
     }
 }
