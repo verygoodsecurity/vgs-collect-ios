@@ -64,6 +64,11 @@ public class VGSTextField: UIView {
     public var adjustsFontForContentSizeCategory: Bool = false {
       didSet { textField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory }
     }
+    
+    /// Input Accessory View
+    public var keyboardAccessoryView: UIView? {
+      didSet { textField.inputAccessoryView = keyboardAccessoryView }
+    }
   
     // MARK: - Functional Attributes
     
