@@ -5,24 +5,24 @@
 import Foundation
 import UIKit
 
-/// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show picker view with Card Number expiration month and year.
+/// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show picker view with Card Number Expiration Month and Year.
 public final class VGSExpDateTextField: VGSTextField {
     
-    /// Available Month Label formats in UIPickerView
+    /// Available Month Label formats in `UIPickerView`
     public enum MonthFormat {
-      /// Shot month name, ex: Jan
+      /// Short month name, e.g.: `Jan`
       case shortSymbols
-      /// Long month name, ex: January
+      /// Long month name, e.g.: `January`
       case longSymbols
-      /// Month number: 01
+      /// Month number: e.g.: `01`
       case numbers
     }
   
-    /// Available Year Label formats in UIPickerView
+    /// Available Year Label formats in `UIPickerView`
     public enum YearFormat {
-      /// Two digits year format: 21
+      /// Two digits year format: `21`
       case short
-      /// Four digits year format: 2021
+      /// Four digits year format: `2021`
       case long
     }
     
@@ -108,7 +108,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      /// check that date is not before current date
+      /// check that date is not before current month
       let currentMonthIndex = Calendar(identifier: .gregorian).component(.month, from: Date()) - 1
       if pickerView.selectedRow(inComponent: yearPickerComponent) == 0 && pickerView.selectedRow(inComponent: monthPickerComponent) < currentMonthIndex {
         pickerView.selectRow(currentMonthIndex, inComponent: monthPickerComponent, animated: true)
