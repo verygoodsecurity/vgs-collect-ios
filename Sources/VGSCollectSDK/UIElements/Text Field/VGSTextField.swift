@@ -70,6 +70,13 @@ public class VGSTextField: UIView {
       didSet { textField.inputAccessoryView = keyboardAccessoryView }
     }
   
+    /// Determines whether autocorrection is enabled or disabled during typing.
+    public var autocorrectionType: UITextAutocorrectionType = .default {
+      didSet {
+        textField.autocorrectionType = autocorrectionType
+      }
+    }
+  
     // MARK: - Functional Attributes
     
     /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
