@@ -37,9 +37,9 @@ class ExpDateTextField: XCTestCase {
     }
 
     func testYearFormat() {
-        textField.yearPickerDateFormat = .long
+        textField.yearPickeFormat = .long
         XCTAssertTrue(textField.yearsDataSource.first == String(Calendar.currentYear))
-        textField.yearPickerDateFormat = .short
+        textField.yearPickeFormat = .short
         XCTAssertTrue(textField.yearsDataSource.first == String(Calendar.currentYear - 2000))
     }
     

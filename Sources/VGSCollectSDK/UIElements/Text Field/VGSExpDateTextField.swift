@@ -34,7 +34,7 @@ public final class VGSExpDateTextField: VGSTextField {
     }
   
     /// UIPickerView Year Label format
-    public var yearPickerDateFormat: YearFormat = .long {
+    public var yearPickeFormat: YearFormat = .long {
         didSet {
           updateYearsDataSource()
         }
@@ -137,7 +137,7 @@ private extension VGSExpDateTextField {
     }
     
     func updateYearsDataSource() {
-      let suffixLength = yearPickerDateFormat == .short ? 2 : 4
+      let suffixLength = yearPickeFormat == .short ? 2 : 4
       yearsDataSource = years.map{ String(String($0).suffix(suffixLength))}
     }
   
