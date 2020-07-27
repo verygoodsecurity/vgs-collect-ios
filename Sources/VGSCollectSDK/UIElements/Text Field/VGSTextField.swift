@@ -64,6 +64,18 @@ public class VGSTextField: UIView {
     public var adjustsFontForContentSizeCategory: Bool = false {
       didSet { textField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory }
     }
+    
+    /// Input Accessory View
+    public var keyboardAccessoryView: UIView? {
+      didSet { textField.inputAccessoryView = keyboardAccessoryView }
+    }
+  
+    /// Determines whether autocorrection is enabled or disabled during typing.
+    public var autocorrectionType: UITextAutocorrectionType = .default {
+      didSet {
+        textField.autocorrectionType = autocorrectionType
+      }
+    }
   
     // MARK: - Functional Attributes
     

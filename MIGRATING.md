@@ -1,5 +1,35 @@
 ## Migration Guides
 
+### Migrating from versions < v1.6.0
+#### Updated namings
+
+`SwiftLuhn` -> `VGSPaymentCards`
+`SwiftLuhn.CardType`  -> `VGSPaymentCards.CardBrand`
+
+#### Setup card number format pattern for each specific CardBrand
+From now `.formatPattern` that was defined through `VGSConfiguration` will be ignored for fields with type `.cardNumber`. To be more flexible we released dynamic format patterns for each Payment Card Brand. Check our default format patterns in `VGSPaymentCards.swift` file, and update it if needed for each specific Card Model:
+
+Before:
+```
+let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
+cardConfiguration.type = .cardNumber
+cardConfiguration.formatPattern = "#### #### #### ####"
+```
+
+Now:
+```
+VGSPaymentCards.amex.formatPattern = "#### ###### #####"
+VGSPaymentCards.visa.formatPattern = "#### #### #### ####"
+```
+
+### Migrating from versions < v1.5.2
+#### Is Secure field default attribute for CVC FieldType
+Now default  `.isSecureTextEntry` value for `.cvc` field type is `false`. If you need secure entry, you can set it via `VGSTextField` attribute:
+
+```
+cvcTextField.isSecureTextEntry = true
+```
+
 ### Migrating from versions < v1.5.0
 #### Removed `Alamofire` dependecy, changed API methods
 
