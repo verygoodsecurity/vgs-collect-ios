@@ -50,6 +50,7 @@
 		32F23A7624B72C5D00E389F7 /* VGSUnknownPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A7524B72C5D00E389F7 /* VGSUnknownPaymentCardModel.swift */; };
 		32F23A7924B752E200E389F7 /* PaymentCardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A7724B7522000E389F7 /* PaymentCardsTest.swift */; };
 		32F23A7B24B8713A00E389F7 /* CardBrand+default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A7A24B8713900E389F7 /* CardBrand+default.swift */; };
+		32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4B7F324C881FA006086F3 /* Calendar+extension.swift */; };
 		32FD980823D1FAF9005FA989 /* VGSCardIOScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */; };
 		32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */; };
 		32FD980E23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */; };
@@ -75,7 +76,9 @@
 		FD7503B223F4934900591668 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B96243BB403006A30CB /* CardBrandTest.swift */; };
 		FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */; };
+		FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */; };
 		FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA680DE239844FC00372817 /* CardTextFieldTests.swift */; };
+		FDAAB6AB249A8844001F5C1A /* ExpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAB6AA249A8844001F5C1A /* ExpDateTextField.swift */; };
 		FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAAB6AC249A9257001F5C1A /* FileInfoTest.swift */; };
 		FDD398EE247D776600B55057 /* VGSCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD398ED247D776600B55057 /* VGSCardTextField.swift */; };
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
@@ -137,6 +140,7 @@
 		32F23A7524B72C5D00E389F7 /* VGSUnknownPaymentCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSUnknownPaymentCardModel.swift; sourceTree = "<group>"; };
 		32F23A7724B7522000E389F7 /* PaymentCardsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardsTest.swift; sourceTree = "<group>"; };
 		32F23A7A24B8713900E389F7 /* CardBrand+default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+default.swift"; sourceTree = "<group>"; };
+		32F4B7F324C881FA006086F3 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
 		32FD980723D1FAF9005FA989 /* VGSCardIOScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanController.swift; sourceTree = "<group>"; };
 		32FD980B23D20E11005FA989 /* VGSCardIOHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOHandler.swift; sourceTree = "<group>"; };
 		32FD980D23D5E3A9005FA989 /* VGSCardIOScanControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanControllerDelegate.swift; sourceTree = "<group>"; };
@@ -164,7 +168,9 @@
 		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
 		FD790B96243BB403006A30CB /* CardBrandTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTest.swift; sourceTree = "<group>"; };
 		FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CardBrandDataSource.swift; sourceTree = "<group>"; };
+		FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTextField.swift; sourceTree = "<group>"; };
 		FDA680DE239844FC00372817 /* CardTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldTests.swift; sourceTree = "<group>"; };
+		FDAAB6AA249A8844001F5C1A /* ExpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextField.swift; sourceTree = "<group>"; };
 		FDAAB6AC249A9257001F5C1A /* FileInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfoTest.swift; sourceTree = "<group>"; };
 		FDD398ED247D776600B55057 /* VGSCardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
@@ -286,6 +292,7 @@
 			children = (
 				FD1489FB232D4F6B00FD7781 /* APIClient.swift */,
 				320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */,
+				32F4B7F324C881FA006086F3 /* Calendar+extension.swift */,
 				FDE247D024674AA7008D75B0 /* Collector */,
 				32F23A6E24B72B6A00E389F7 /* PaymentCards */,
 				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
@@ -435,6 +442,7 @@
 			isa = PBXGroup;
 			children = (
 				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
+				FDAAB6AA249A8844001F5C1A /* ExpDateTextField.swift */,
 				FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */,
 				3270D3F0248155B200004E3B /* SSNTextFieldTests.swift */,
 				FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */,
@@ -456,6 +464,7 @@
 				FD148A05232EC53600FD7781 /* State */,
 				FD2495622330E313009024E6 /* Validation */,
 				FDD398ED247D776600B55057 /* VGSCardTextField.swift */,
+				FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */,
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
 				FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
@@ -599,6 +608,7 @@
 				32FD980C23D20E11005FA989 /* VGSCardIOHandler.swift in Sources */,
 				FD1489FC232D4F6B00FD7781 /* APIClient.swift in Sources */,
 				FD3C01C323AFC0980096B4A4 /* VGSTextField+CVC.swift in Sources */,
+				FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */,
 				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */,
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
@@ -611,6 +621,7 @@
 				324B5E6B24A23C2D0036867E /* VGSValidationRulePattern.swift in Sources */,
 				324B5E9D24A64A600036867E /* VGSValidationRulePaymentCard.swift in Sources */,
 				327C9E142407EF92004C641C /* VGSErrorInfo.swift in Sources */,
+				32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */,
 				32F23A6D24B60E1100E389F7 /* VGSValidationRuleLengthMatch.swift in Sources */,
 				321300172417F2B70062FEF0 /* VGSTextField.swift in Sources */,
 				328A574023FADC3500714675 /* VGSFilePickerConfiguration.swift in Sources */,
@@ -649,6 +660,7 @@
 				32F23A7924B752E200E389F7 /* PaymentCardsTest.swift in Sources */,
 				FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
+				FDAAB6AB249A8844001F5C1A /* ExpDateTextField.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */,
