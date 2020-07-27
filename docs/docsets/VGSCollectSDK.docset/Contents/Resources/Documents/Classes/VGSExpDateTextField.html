@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSValidationRuleLength Structure Reference</title>
+    <title>VGSExpDateTextField Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/VGSValidationRuleLength" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/VGSExpDateTextField" class="dashAnchor"></a>
 
-    <a title="VGSValidationRuleLength Structure Reference"></a>
+    <a title="VGSExpDateTextField Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSValidationRuleLength Structure Reference
+      VGSExpDateTextField Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -257,14 +257,15 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSValidationRuleLength</h1>
+            <h1>VGSExpDateTextField</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSValidationRuleLength</span> <span class="p">:</span> <span class="kt">VGSValidationRuleProtocol</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">VGSExpDateTextField</span> <span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">VGSExpDateTextField</span><span class="p">:</span> <span class="kt">UIPickerViewDelegate</span><span class="p">,</span> <span class="kt">UIPickerViewDataSource</span></code></pre>
 
                 </div>
               </div>
-            <p>Validate input in scope of length.</p>
+            <p>An object that displays an editable text area. Can be use instead of a <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> when need to show picker view with Card Number Expiration Month and Year.</p>
 
           </div>
         </section>
@@ -272,13 +273,22 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Enums"></a>
+                <a name="//apple_ref/swift/Section/Enums" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Enums"></a>
+                  <h3 class="section-name"><p>Enums</p>
+</h3>
+                </div>
+              </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK23VGSValidationRuleLengthV3minSivp"></a>
-                    <a name="//apple_ref/swift/Property/min" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK23VGSValidationRuleLengthV3minSivp">min</a>
+                    <a name="/s:13VGSCollectSDK19VGSExpDateTextFieldC11MonthFormatO"></a>
+                    <a name="//apple_ref/swift/Enum/MonthFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSExpDateTextFieldC11MonthFormatO">MonthFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -286,19 +296,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Min input  length required</p>
+                        <p>Available Month Label formats in <code>UIPickerView</code></p>
 
+                        <a href="../Classes/VGSExpDateTextField/MonthFormat.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">MonthFormat</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLength.swift#L17">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSExpDateTextField.swift#L13-L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -306,9 +317,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK23VGSValidationRuleLengthV3maxSivp"></a>
-                    <a name="//apple_ref/swift/Property/max" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK23VGSValidationRuleLengthV3maxSivp">max</a>
+                    <a name="/s:13VGSCollectSDK19VGSExpDateTextFieldC10YearFormatO"></a>
+                    <a name="//apple_ref/swift/Enum/YearFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSExpDateTextFieldC10YearFormatO">YearFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -316,19 +327,63 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Max input  length required</p>
+                        <p>Available Year Label formats in <code>UIPickerView</code></p>
+
+                        <a href="../Classes/VGSExpDateTextField/YearFormat.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">YearFormat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSExpDateTextField.swift#L23-L28">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Attributes"></a>
+                <a name="//apple_ref/swift/Section/Attributes" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Attributes"></a>
+                  <h3 class="section-name"><p>Attributes</p>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK19VGSExpDateTextFieldC17monthPickerFormatAC05MonthI0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/monthPickerFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSExpDateTextFieldC17monthPickerFormatAC05MonthI0Ovp">monthPickerFormat</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>UIPickerView Month Label format</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">monthPickerFormat</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSExpDateTextField/MonthFormat.html">MonthFormat</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLength.swift#L20">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSExpDateTextField.swift#L32-L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -336,9 +391,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK23VGSValidationRuleLengthV5errorSSvp"></a>
-                    <a name="//apple_ref/swift/Property/error" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK23VGSValidationRuleLengthV5errorSSvp">error</a>
+                    <a name="/s:13VGSCollectSDK19VGSExpDateTextFieldC15yearPickeFormatAC04YearI0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/yearPickeFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK19VGSExpDateTextFieldC15yearPickeFormatAC04YearI0Ovp">yearPickeFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -346,92 +401,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Validation Error</p>
+                        <p>UIPickerView Year Label format</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">yearPickeFormat</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSExpDateTextField/YearFormat.html">YearFormat</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLength.swift#L23">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK23VGSValidationRuleLengthV3min3max5errorACSi_SiSStcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(min:max:error:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK23VGSValidationRuleLengthV3min3max5errorACSi_SiSStcfc">init(min:max:error:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialzation</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n"><a href="../Structs/VGSValidationRuleLength.html#/s:13VGSCollectSDK23VGSValidationRuleLengthV3maxSivp">max</a></span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>error</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></code> - error on failed validation relust.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>min</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>min input  length required</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>max</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>max input  length required</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/AnyType/VGSValidationRuleLength.swift#L31-L35">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSExpDateTextField.swift#L39-L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

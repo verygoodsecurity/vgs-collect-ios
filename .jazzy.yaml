@@ -29,6 +29,7 @@ custom_categories:
   children:
   - VGSTextField
   - VGSCardTextField
+  - VGSExpDateTextField
   - VGSTextFieldDelegate
   - VGSConfiguration
   - FieldType

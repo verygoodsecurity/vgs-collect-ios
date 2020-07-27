@@ -8,6 +8,7 @@ import UIKit
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show picker view with Card Number Expiration Month and Year.
 public final class VGSExpDateTextField: VGSTextField {
     
+    // MARK: - Enums
     /// Available Month Label formats in `UIPickerView`
     public enum MonthFormat {
       /// Short month name, e.g.: `Jan`
@@ -20,12 +21,13 @@ public final class VGSExpDateTextField: VGSTextField {
   
     /// Available Year Label formats in `UIPickerView`
     public enum YearFormat {
-      /// Two digits year format: `21`
+      /// Two digits year format, e.g.: `21`
       case short
-      /// Four digits year format: `2021`
+      /// Four digits year format:, e.g.:`2021`
       case long
     }
     
+    // MARK: - Attributes
     /// UIPickerView Month Label format
     public var monthPickerFormat: MonthFormat = .longSymbols {
       didSet {
