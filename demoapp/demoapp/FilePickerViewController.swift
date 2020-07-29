@@ -3,7 +3,7 @@
 //  demoapp
 //
 //  Created by Vitalii Obertynskyi on 12.02.2020.
-//  Copyright © 2020 Vitalii Obertynskyi. All rights reserved.
+//  Copyright © 2020 Very Good Security. All rights reserved.
 //
 
 import UIKit

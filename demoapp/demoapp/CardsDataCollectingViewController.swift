@@ -1,16 +1,16 @@
 //
-//  ViewController.swift
+//  CardsDataCollectingViewController.swift
 //  demoapp
 //
-//  Created by Vitalii Obertynskyi on 8/14/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
+//  Created by Dima on 29.07.2020.
+//  Copyright © 2020 Very Good Security. All rights reserved.
 //
 
 import UIKit
 import VGSCollectSDK
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
-class ViewController: UIViewController {
+class CardsDataCollectingViewController: UIViewController {
     
     @IBOutlet weak var cardDataStackView: UIStackView!
     @IBOutlet weak var consoleStatusLabel: UILabel!
@@ -220,7 +220,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: VGSCardIOScanControllerDelegate {
+extension CardsDataCollectingViewController: VGSCardIOScanControllerDelegate {
     
     //When user press Done button on CardIO screen
     func userDidFinishScan() {
@@ -249,7 +249,7 @@ extension ViewController: VGSCardIOScanControllerDelegate {
     }
 }
 
-extension ViewController: VGSTextFieldDelegate {
+extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
     textField.borderColor = textField.state.isValid  ? .gray : .red
   }
