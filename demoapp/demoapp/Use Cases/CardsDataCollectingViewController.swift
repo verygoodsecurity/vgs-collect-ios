@@ -198,20 +198,21 @@ class CardsDataCollectingViewController: UIViewController {
         switch response {
           case .success(_, let data, _):
             if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-              self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              self?.consoleLabel.text = "Success: \n\(response)"
               }
               return
           case .failure(let code, _, _, let error):
             switch code {
             case 400..<499:
               // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-              self?.consoleLabel.text = "Wrong Request Error: \(code)"
+              self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
             case VGSErrorType.inputDataIsNotValid.rawValue:
               if let error = error as? VGSError {
-                self?.consoleLabel.text = "Input data is not valid. Details:\n \(error)"
+                self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
               }
             default:
-              self?.consoleLabel.text = "Something went wrong. Code: \(code)"
+              self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
             }
             print("Submit request error: \(code), \(String(describing: error))")
             return
