@@ -10,15 +10,14 @@ target 'demoapp' do
   pod 'VGSCollectSDK', :path => "../"
   pod 'VGSCollectSDK/CardIO', :path => "../"
 
+end
 
-  target 'demoappTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+target 'demoappTests' do
+  inherit! :search_paths
+  # Pods for testing
+end
 
-  target 'demoappUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+target 'demoappUITests' do
+  inherit! :search_paths
+  # Pods for testing
 end

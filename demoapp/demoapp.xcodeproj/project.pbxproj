@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20722FCEBA769EE29D84F662 /* Pods_demoappUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC460B610888B5F6FA5483D /* Pods_demoappUITests.framework */; };
+		00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */; };
 		322196DC24D1918600A66EC9 /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DB24D1918600A66EC9 /* CardsDataCollectingViewController.swift */; };
 		322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DD24D19CE900A66EC9 /* InitialViewController.swift */; };
 		3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */; };
@@ -15,8 +15,10 @@
 		3258CB4124D1C32500C0CC8D /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */; };
 		3258CB4324D1C34100C0CC8D /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */; };
 		325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */; };
+		32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */; };
+		32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */; };
+		36854589CD95C20D0657DAE4 /* libPods-demoappUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9EC63EB636126947A436E7 /* libPods-demoappUITests.a */; };
 		C8CBAAC0A0A75BF9CF5A7FA4 /* Pods_demoapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */; };
-		CECF70B15309512825C99D0F /* Pods_demoappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEF2E7A76B14B812BB6AE8A0 /* Pods_demoappTests.framework */; };
 		FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9772304616C00B670DD /* AppDelegate.swift */; };
 		FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD12B97E2304616E00B670DD /* Assets.xcassets */; };
 		FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD12B9802304616E00B670DD /* LaunchScreen.storyboard */; };
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		322196DB24D1918600A66EC9 /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
 		322196DD24D19CE900A66EC9 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataFlow.swift; sourceTree = "<group>"; };
@@ -50,15 +53,16 @@
 		3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
 		3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataCollectingViewController.swift; sourceTree = "<group>"; };
 		325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectorConfiguration.swift; sourceTree = "<group>"; };
+		32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCustomDataFlow.swift; sourceTree = "<group>"; };
+		32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectSSNDataFlow.swift; sourceTree = "<group>"; };
 		5FB2107869E88DC903D1C009 /* Pods-demoappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.release.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.release.xcconfig"; sourceTree = "<group>"; };
 		67F5FCBA93936AD73802D53D /* Pods-demoappUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappUITests.debug.xcconfig"; path = "Target Support Files/Pods-demoappUITests/Pods-demoappUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		75E4290F89651AA85405A739 /* Pods-demoappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.debug.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D9EC63EB636126947A436E7 /* libPods-demoappUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoappUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		971F95F0CD23156BC2F071A3 /* Pods-demoappUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappUITests.release.xcconfig"; path = "Target Support Files/Pods-demoappUITests/Pods-demoappUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E14BE9AC3107988B3A45EBF /* Pods-demoapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.release.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.release.xcconfig"; sourceTree = "<group>"; };
 		B96EAC87AAF5BF889451003A /* Pods-demoapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.debug.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.debug.xcconfig"; sourceTree = "<group>"; };
-		BFC460B610888B5F6FA5483D /* Pods_demoappUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoappUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEF2E7A76B14B812BB6AE8A0 /* Pods_demoappTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoappTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9742304616C00B670DD /* demoapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demoapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9772304616C00B670DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD12B97E2304616E00B670DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CECF70B15309512825C99D0F /* Pods_demoappTests.framework in Frameworks */,
+				00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20722FCEBA769EE29D84F662 /* Pods_demoappUITests.framework in Frameworks */,
+				36854589CD95C20D0657DAE4 /* libPods-demoappUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,8 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */,
-				DEF2E7A76B14B812BB6AE8A0 /* Pods_demoappTests.framework */,
-				BFC460B610888B5F6FA5483D /* Pods_demoappUITests.framework */,
+				218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */,
+				7D9EC63EB636126947A436E7 /* libPods-demoappUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */,
+				32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */,
+				32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */,
 				FD12B9992304616E00B670DD /* Info.plist */,
 			);
 			path = demoappUITests;
@@ -439,6 +445,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */,
+				32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */,
+				32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +689,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "\"${PODS_CONFIGURATION_BUILD_DIR}/VGSCollectSDK\"";
 				INFOPLIST_FILE = demoappUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -701,6 +710,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "\"${PODS_CONFIGURATION_BUILD_DIR}/VGSCollectSDK\"";
 				INFOPLIST_FILE = demoappUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

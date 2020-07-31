@@ -55,7 +55,7 @@ class CardsDataCollectingViewController: UIViewController {
         // set VGSCardIOScanDelegate
         scanController.delegate = self
 
-        // Observing text fields
+        // Observing text fields. The call back return all textfields with updated states. You also can you VGSTextFieldDelegate
         vgsCollect.observeStates = { [weak self] form in
 
             self?.consoleMessage = ""
@@ -253,5 +253,20 @@ extension CardsDataCollectingViewController: VGSCardIOScanControllerDelegate {
 extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
     textField.borderColor = textField.state.isValid  ? .gray : .red
+    
+    /// Update CVC field UI in case if valid cvc digits change, e.g.: input card number brand changed form Visa(3 digints CVC) to Amex(4 digits CVC) )
+    if textField == cardNumber, cvcCardNum.state.isDirty {
+      cvcCardNum.borderColor =  cvcCardNum.state.isValid  ? .gray : .red
+    }
+
+    /// Check Card Number Field State with addition attributes
+    if let cardState = textField.state as? CardState, cardState.isValid {
+        print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
+    }
+    
+    if let cardState = textField.state as? CardState, cardState.isValid {
+      let cardBrandName = cardState.cardBrand.stringValue
+    }
+
   }
 }

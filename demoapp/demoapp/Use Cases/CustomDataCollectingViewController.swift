@@ -6,7 +6,6 @@
 //  Copyright © 2020 Very Good Security. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import VGSCollectSDK
 
@@ -84,8 +83,8 @@ class CustomDataCollectingViewController: UIViewController {
         /// Add custom validation rules to be sure that input data is valid
         /// For this demo, the valid will be any number starting on 555 and 6-9 digits long
         customDataFieldConfiguration.validationRules = VGSValidationRuleSet(rules: [
-          VGSValidationRulePattern(pattern: "^555\\d*$", error: VGSValidationErrorType.pattern.rawValue),
-          VGSValidationRuleLengthMatch(lengths: Array(6...9), error: "Not valid length error")
+          VGSValidationRulePattern(pattern: "^555\\d*$", error: "Not Valid! The code should start on 555"),
+          VGSValidationRuleLengthMatch(lengths: Array(6...9), error: VGSValidationErrorType.lengthMathes.rawValue)
         ])
       
         customDataField.configuration = customDataFieldConfiguration

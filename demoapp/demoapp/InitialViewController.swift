@@ -16,6 +16,7 @@ class InitialViewController: UITableViewController {
     
     let alert = UIAlertController(title: "Set <vault id>", message: "Add your organization valut id here", preferredStyle: UIAlertController.Style.alert)
     alert.addTextField { (textField) in
+      textField.clearButtonMode = .always
       textField.text = AppCollectorConfiguration.shared.vaultId
     }
         

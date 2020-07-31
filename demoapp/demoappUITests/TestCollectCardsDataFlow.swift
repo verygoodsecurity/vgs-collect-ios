@@ -31,10 +31,10 @@ class TestCollectCardsDataFlow: XCTestCase {
     
     func testPutCorrectData() {
       
-      let app = XCUIApplication()
-      app.launch()
-      
-      app.navigationBars["Select a Demo"].buttons["VaultID"].tap()
+      let app = XCUIApplication()            
+      app.navigationBars["Choose a Demo"].buttons["VaultID"].tap()
+      app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
+      app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
       app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
       app.alerts["Set <vault id>"].scrollViews.otherElements.buttons["Save"].tap()
       app.tables.staticTexts["Collect Payment Cards Data"].tap()
@@ -42,9 +42,9 @@ class TestCollectCardsDataFlow: XCTestCase {
       let cardHolderNameField = app.textFields["Cardholder Name"]
       let cardNumberField = app.textFields["4111 1111 1111 1111"]
       let expDateField = app.textFields["MM/YYYY"]
-      let cvcField = app.textFields["CVC"]
+      let cvcField = app.secureTextFields["CVC"]
       let consoleLabel = app.staticTexts.matching(identifier: "ConsoleLabelIdentifire")
-      let navigationBar = app.tables.staticTexts["Collect Payment Cards Data"]
+      let navigationBar = app.navigationBars["Collect Payment Cards"].staticTexts["Collect Payment Cards"]
       
       cardHolderNameField.tap()
       cardHolderNameField.typeText("Joe B")
@@ -53,18 +53,20 @@ class TestCollectCardsDataFlow: XCTestCase {
       cardNumberField.typeText("378282246310005")
 
       expDateField.tap()
-      app.pickerWheels["December"].tap()
-      app.pickerWheels["2027"].tap()
+      
+      app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "March")
+      app.pickerWheels.element(boundBy: 0).tap()
+      
+      app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "2027")
+      app.pickerWheels.element(boundBy: 1).tap()
 
       cvcField.tap()
       cvcField.typeText("1234")
       
-      navigationBar.tap()
-
-      app.buttons["UPLOAD"].tap()
+      app.navigationBars["Collect Payment Cards"].tap()
       
-     
+//      app.buttons["UPLOAD"].tap()
+      
     }
-
 }
 
