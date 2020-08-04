@@ -3,7 +3,7 @@
 //  demoapp
 //
 //  Created by Dima on 04.03.2020.
-//  Copyright © 2020 Vitalii Obertynskyi. All rights reserved.
+//  Copyright © 2020 Very Good Security. All rights reserved.
 //
 
 import Foundation
@@ -15,8 +15,8 @@ class AppCollectorConfiguration {
     static let shared = AppCollectorConfiguration()
     
     /// Set your vault id here https://www.verygoodsecurity.com/terminology/nomenclature#vault
-    let vaultId = "vaultId"
+    var vaultId = "vaultId"
     
     ///  Set environment - `.sandbox` for testing or `.live` for production
-    let environment = Environment.sandbox
+    var environment = Environment.sandbox
 }

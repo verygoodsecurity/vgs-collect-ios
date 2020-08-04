@@ -3,11 +3,10 @@
 //  demoappTests
 //
 //  Created by Vitalii Obertynskyi on 8/14/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
+//  Copyright © 2019 Very Good Security. All rights reserved.
 //
 
 import XCTest
-@testable import demoapp
 
 class demoappTests: XCTestCase {
 
