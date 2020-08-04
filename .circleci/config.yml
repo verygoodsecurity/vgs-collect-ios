@@ -11,28 +11,9 @@ jobs:
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: VGSCollectSDK
-  run-ui-test:
-    workspace: ./"demoapp.xcworkspace"
-    macos:
-      xcode: "11.4"
-    steps:
-      - checkout
-      - run:
-         name: Install cocoapods
-         command: sudo gem install cocoapods -v 1.8.4
-      - run:
-         name: Install pods
-         command: pod install
-      - run:
-          name: Run UITests
-          command: fastlane scan
-          environment:
-            SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: demoapp
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - build-and-test-sdk
-      - run-ui-test
