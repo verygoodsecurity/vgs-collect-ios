@@ -14,7 +14,7 @@ jobs:
   run-ui-test:
     macos:
       xcode: "11.4"
-    working_directory: /demoapp
+    working_directory: ~/demoapp
     steps:
       - checkout
       - run:
