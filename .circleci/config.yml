@@ -12,9 +12,9 @@ jobs:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: VGSCollectSDK
   run-ui-test:
+    workspace: ./"demoapp.xcworkspace"
     macos:
       xcode: "11.4"
-    working_directory: ./demoapp
     steps:
       - checkout
       - run:
@@ -29,7 +29,6 @@ jobs:
           environment:
             SCAN_DEVICE: iPhone 8
             SCAN_SCHEME: demoapp
-
 
 workflows:
   version: 2
