@@ -16,7 +16,6 @@ jobs:
           command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 8
-            SCAN_SCHEME: VGSCollectSDK
 
 workflows:
   version: 2
