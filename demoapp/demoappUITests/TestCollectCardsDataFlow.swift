@@ -27,12 +27,11 @@ class TestCollectCardsDataFlow: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-  
     
     func testPutCorrectData() {
       
       let app = XCUIApplication()            
-      app.navigationBars["Choose a Demo"].buttons["VaultID"].tap()
+      app.navigationBars["Demo"].buttons["VaultID"].tap()
       app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
       app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
       app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
@@ -63,9 +62,15 @@ class TestCollectCardsDataFlow: XCTestCase {
       cvcField.tap()
       cvcField.typeText("1234")
       
-      app.navigationBars["Collect Payment Cards"].tap()
+      app.staticTexts["STATE"].tap()
       
-//      app.buttons["UPLOAD"].tap()
+      app.buttons["UPLOAD"].tap()
+      let responseLabel = app.staticTexts["RESPONSE"]
+      responseLabel.waitForExistence(timeout: 30)
+      
+      let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
+      let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
+      XCTAssert(successResponseLabel.exists)
       
     }
 }

@@ -15,6 +15,7 @@
 		3258CB4124D1C32500C0CC8D /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */; };
 		3258CB4324D1C34100C0CC8D /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */; };
 		325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */; };
+		326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */; };
 		32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */; };
 		32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */; };
 		36854589CD95C20D0657DAE4 /* libPods-demoappUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9EC63EB636126947A436E7 /* libPods-demoappUITests.a */; };
@@ -53,6 +54,7 @@
 		3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
 		3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataCollectingViewController.swift; sourceTree = "<group>"; };
 		325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectorConfiguration.swift; sourceTree = "<group>"; };
+		326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCustomCardNumbersDataFlow.swift; sourceTree = "<group>"; };
 		32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCustomDataFlow.swift; sourceTree = "<group>"; };
 		32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectSSNDataFlow.swift; sourceTree = "<group>"; };
 		5FB2107869E88DC903D1C009 /* Pods-demoappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.release.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */,
 				32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */,
 				32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */,
+				326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */,
 				FD12B9992304616E00B670DD /* Info.plist */,
 			);
 			path = demoappUITests;
@@ -445,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */,
+				326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */,
 				32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */,
 				32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */,
 			);

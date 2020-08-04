@@ -55,7 +55,7 @@ class CardsDataCollectingViewController: UIViewController {
         // set VGSCardIOScanDelegate
         scanController.delegate = self
 
-        // Observing text fields. The call back return all textfields with updated states. You also can you VGSTextFieldDelegate
+        // Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
         vgsCollect.observeStates = { [weak self] form in
 
             self?.consoleMessage = ""
@@ -147,7 +147,7 @@ class CardsDataCollectingViewController: UIViewController {
         expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
-        cvcConfiguration.isRequired = true
+        cvcConfiguration.isRequiredValidOnly = true
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
@@ -158,6 +158,8 @@ class CardsDataCollectingViewController: UIViewController {
         let holderConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
         holderConfiguration.type = .cardHolderName
         holderConfiguration.keyboardType = .namePhonePad
+        /// Required to be not empty
+        holderConfiguration.isRequired = true
       
         cardHolderName.textAlignment = .natural
         cardHolderName.configuration = holderConfiguration
@@ -200,6 +202,7 @@ class CardsDataCollectingViewController: UIViewController {
             if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
               let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
               self?.consoleLabel.text = "Success: \n\(response)"
+              print(response)
               }
               return
           case .failure(let code, _, _, let error):
@@ -252,6 +255,7 @@ extension CardsDataCollectingViewController: VGSCardIOScanControllerDelegate {
 
 extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
+    print(textField.state.description)
     textField.borderColor = textField.state.isValid  ? .gray : .red
     
     /// Update CVC field UI in case if valid cvc digits change, e.g.: input card number brand changed form Visa(3 digints CVC) to Amex(4 digits CVC) )
@@ -263,10 +267,5 @@ extension CardsDataCollectingViewController: VGSTextFieldDelegate {
     if let cardState = textField.state as? CardState, cardState.isValid {
         print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
     }
-    
-    if let cardState = textField.state as? CardState, cardState.isValid {
-      let cardBrandName = cardState.cardBrand.stringValue
-    }
-
   }
 }

@@ -29,7 +29,7 @@ class TestCollectCustomDataFlow: XCTestCase {
      func testPutCorrectData() {
           
         let app = XCUIApplication()
-        app.navigationBars["Choose a Demo"].buttons["VaultID"].tap()
+        app.navigationBars["Demo"].buttons["VaultID"].tap()
         app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
         app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
         app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
@@ -38,21 +38,15 @@ class TestCollectCustomDataFlow: XCTestCase {
 
         let ssnField = app.textFields["XXX-XX-XXXX"]
         ssnField.tap()
-        ssnField.typeText("111558899")
+        ssnField.typeText("123448899")
     
         app.staticTexts["SSN: XXX-XX-8899"].tap()
-//        app.buttons["UPLOAD"].tap()
-      
-      
-      let app = app2
-      let tablesQuery = app.tables
-      tablesQuery.staticTexts["Collect Social Security Number"].tap()
-      app.navigationBars["Collect Custom Data"].buttons["Choose a Demo"].tap()
-      tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Collect Custom Data"]/*[[".cells.staticTexts[\"Collect Custom Data\"]",".staticTexts[\"Collect Custom Data\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-      app.textFields["XXX XXX XXX"].tap()
-      
-      app.staticTexts["Very Secret Code"].tap()
-      app.buttons["UPLOAD"].tap()
-      
+        app.buttons["UPLOAD"].tap()
+        let responseLabel = app.staticTexts["RESPONSE"]
+        responseLabel.waitForExistence(timeout: 30)
+        
+        let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
+        let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
+        XCTAssert(successResponseLabel.exists)
   }
 }

@@ -29,7 +29,7 @@ class TestCollectSSNDataFlow: XCTestCase {
      func testPutCorrectData() {
           
         let app = XCUIApplication()
-        app.navigationBars["Choose a Demo"].buttons["VaultID"].tap()
+        app.navigationBars["Demo"].buttons["VaultID"].tap()
         app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
         app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
         app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
@@ -41,7 +41,14 @@ class TestCollectSSNDataFlow: XCTestCase {
         ssnField.typeText("111558899")
     
         app.staticTexts["SSN: XXX-XX-8899"].tap()
-//        app.buttons["UPLOAD"].tap()
+        app.buttons["UPLOAD"].tap()
+        
+        let responseLabel = app.staticTexts["RESPONSE"]
+        responseLabel.waitForExistence(timeout: 30)
+        
+        let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
+        let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
+        XCTAssert(successResponseLabel.exists)
   }
 }
 
