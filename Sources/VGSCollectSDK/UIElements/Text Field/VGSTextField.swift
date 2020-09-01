@@ -138,19 +138,16 @@ public class VGSTextField: UIView {
         NotificationCenter.default.removeObserver(self)
     }
   
+    /// Set textfield default text.
+    /// - Note: This will not change `isDirty` attribute.
+    public func setDefaultValue(_ text: String?) {
+      updateTextFieldInput(text)
+    }
+  
     /// :nodoc: Set textfield text.
     public func setText(_ text: String?) {
         isDirty = true
-      
-        /// clean previous format pattern and add new  based on content after text is set
-        if self.fieldType == .cardNumber {
-          textField.formatPattern = ""
-        }
-        textField.secureText = text
-
-        // this will update card textfield icons and dynamic format pattern
-        textFieldValueChanged()
-        textFieldDidChange(textField)
+        updateTextFieldInput(text)
     }
 }
 
@@ -284,6 +281,18 @@ internal extension VGSTextField {
         textField.becomeFirstResponder()
         textFieldValueChanged()
     }
+  
+  func updateTextFieldInput(_ text: String?) {
+    /// clean previous format pattern and add new  based on content after text is set
+    if self.fieldType == .cardNumber {
+      textField.formatPattern = ""
+    }
+    textField.secureText = text
+
+    // this will update card textfield icons and dynamic format pattern
+    textFieldValueChanged()
+    textFieldDidChange(textField)
+  }
 }
 
 // MARK: - Main style for text field
