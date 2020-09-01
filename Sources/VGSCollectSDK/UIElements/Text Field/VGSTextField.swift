@@ -137,6 +137,21 @@ public class VGSTextField: UIView {
         vgsCollector?.unregisterTextFields(textField: [self])
         NotificationCenter.default.removeObserver(self)
     }
+  
+    /// :nodoc: Set textfield text.
+    public func setText(_ text: String?) {
+        isDirty = true
+      
+        /// clean previous format pattern and add new  based on content after text is set
+        if self.fieldType == .cardNumber {
+          textField.formatPattern = ""
+        }
+        textField.secureText = text
+
+        // this will update card textfield icons and dynamic format pattern
+        textFieldValueChanged()
+        textFieldDidChange(textField)
+    }
 }
 
 // MARK: - UIResponder methods
@@ -242,21 +257,6 @@ internal extension VGSTextField {
         updateFormatPattern()
         // update status
         vgsCollector?.updateStatus(for: self)
-    }
-    
-    /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
-    func setText(_ text: String?) {
-        isDirty = true
-      
-        /// clean previous format pattern and add new  based on content after text is set
-        if self.fieldType == .cardNumber {
-          textField.formatPattern = ""
-        }
-        textField.secureText = text
-
-        // this will update card textfield icons and dynamic format pattern
-        textFieldValueChanged()
-        textFieldDidChange(textField)
     }
   
   func updateFormatPattern() {
