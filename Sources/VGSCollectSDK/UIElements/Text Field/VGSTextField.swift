@@ -149,6 +149,11 @@ public class VGSTextField: UIView {
       isDirty = true
       updateTextFieldInput(text)
     }
+
+      /// Removes input from field.
+    public func cleanText() {
+      setText("")
+    }
 }
 
 // MARK: - UIResponder methods
