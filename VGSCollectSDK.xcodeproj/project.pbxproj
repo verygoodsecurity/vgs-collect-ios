@@ -42,6 +42,7 @@
 		328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */; };
+		32AFB93724FFD218007FFCAE /* VGSTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */; };
 		32E4989C23FAEF8300863E61 /* VGSFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */; };
 		32F23A6D24B60E1100E389F7 /* VGSValidationRuleLengthMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A6C24B60E1100E389F7 /* VGSValidationRuleLengthMatch.swift */; };
 		32F23A7024B72B7B00E389F7 /* VGSPaymentCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A6F24B72B7B00E389F7 /* VGSPaymentCards.swift */; };
@@ -132,6 +133,7 @@
 		328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePickerController+internal.swift"; sourceTree = "<group>"; };
 		328B5C6F23C8DA2600A39515 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldTest.swift; sourceTree = "<group>"; };
+		32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTests.swift; sourceTree = "<group>"; };
 		32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFileInfo.swift; sourceTree = "<group>"; };
 		32F23A6C24B60E1100E389F7 /* VGSValidationRuleLengthMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRuleLengthMatch.swift; sourceTree = "<group>"; };
 		32F23A6F24B72B7B00E389F7 /* VGSPaymentCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSPaymentCards.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
 				FDA680DE239844FC00372817 /* CardTextFieldTests.swift */,
 				324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */,
+				32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */,
 			);
 			path = "Text Fields Tests";
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */,
+				32AFB93724FFD218007FFCAE /* VGSTextFieldTests.swift in Sources */,
 				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
 				FD24955E2330CC62009024E6 /* VGSCollectTests.swift in Sources */,
 				324B5E7B24A3A5880036867E /* ValidationRulesTest.swift in Sources */,
@@ -834,7 +838,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -870,7 +874,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

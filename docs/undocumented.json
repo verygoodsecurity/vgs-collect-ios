@@ -114,35 +114,35 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 163,
+      "line": 182,
       "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 168,
+      "line": 187,
       "symbol": "VGSTextField.textFieldDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 174,
+      "line": 193,
       "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 179,
+      "line": 198,
       "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 291,
+      "line": 308,
       "symbol": "UIView.mainStyle()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

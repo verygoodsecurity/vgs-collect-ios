@@ -1,16 +1,16 @@
 //
-//  ViewController.swift
+//  CustomPaymentCardsViewController.swift
 //  demoapp
 //
-//  Created by Vitalii Obertynskyi on 8/14/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
+//  Created by Dima on 29.07.2020.
+//  Copyright © 2020 Very Good Security. All rights reserved.
 //
 
 import UIKit
 import VGSCollectSDK
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
-class ViewController: UIViewController {
+class CustomPaymentCardsViewController: UIViewController {
     
     @IBOutlet weak var cardDataStackView: UIStackView!
     @IBOutlet weak var consoleStatusLabel: UILabel!
@@ -49,13 +49,10 @@ class ViewController: UIViewController {
             "my custome header": "some custom data"
         ]
 
-        
-        // set preferred device camera
-//        scanController.preferredCameraPosition = .front
         // set VGSCardIOScanDelegate
         scanController.delegate = self
 
-        // Observing text fields
+        // Observing text fields. The call back return all textfields with updated states. You also can you VGSTextFieldDelegate
         vgsCollect.observeStates = { [weak self] form in
 
             self?.consoleMessage = ""
@@ -67,34 +64,48 @@ class ViewController: UIViewController {
             })
         }
       
-      
-//      // If you need to set your own card brand icons
-//
-//      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
-//      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
-//
-//      //OR
-//
-//        // use the closure below
-//        cardNumber.cardsIconSource = { cardBrand in
-//            switch cardBrand {
-//            case .mastercard:
-//                return UIImage(named: "bank_card")
-//            case .custom(brandName: let name):
-//              switch name {
-//              case "Visa2":
-//                return UIImage(named: "bank_card")
-//              default:
-//                return nil
-//              }
-//            default:
-//                return UIImage(named: "cloud-upload")
-//
-//            }
-//        }
-//
-      
+        customizeCardBrands()
     }
+  
+  
+  /// Customize VGS Payment Cards. Note: VGSPaymentCards are static, that means you also can customize card brands once per Application runtime.
+  func customizeCardBrands() {
+    /// Edit default card brand
+
+    /// Change default card brand icon
+    VGSPaymentCards.visa.brandIcon = UIImage(named: "visa_custom")
+    /// Change default valid card number lengthes
+    VGSPaymentCards.visa.cardNumberLengths = [16]
+    /// Change default format pattern
+    VGSPaymentCards.visa.formatPattern = "#### #### #### ####"
+    
+    /// Add Custom Card Brand
+
+    /// New payment card prand - VGS Platinum
+    /// Will be detected for any card numer starting from 41. You can test this one: 41111111111111111
+    /// Card will be valid when it pass Luhn Check and is 16 digits long
+    /// NOTE: Custome brands have priority on default brands. Since by default all Visa card number starts on 4 and our custom brand starts on 41, all card numbers starting on 41 will be detected as our Custom Brand
+    let customBrand = VGSCustomPaymentCardModel(name: "VGS Platinum",
+                                                regex: "^41\\d*$",
+                                                formatPattern: "## ### #### #######",
+                                                cardNumberLengths: [16],
+                                                cvcLengths: [3],
+                                                checkSumAlgorithm: .luhn,
+                                                brandIcon: UIImage(named: "vgs platinum"))
+    
+    VGSPaymentCards.cutomPaymentCardModels = [ customBrand ]
+
+    
+    /// Edit unknown card brand
+    /// These are all card numbers that not don't match known card brand regex pattern
+    VGSPaymentCards.unknown.brandIcon = UIImage(named: "bank_card")
+    
+    /// Edit unknow card brand length and check sum algorithm.
+    /// This can be used if card brand not detected by you still want to validate and collect it. You also need to  enable unknown brand vlidation through card number field counfiguration. Check VGSValidationRulePaymentCard in "cardNumber" field configuration below. You can test this with the number that pass luhn check but is nut actually a real card brand: 911111111111111
+    VGSPaymentCards.unknown.cardNumberLengths = Array(15...19)
+    VGSPaymentCards.unknown.cvcLengths = [3, 4]
+    VGSPaymentCards.unknown.checkSumAlgorithm = .luhn
+  }
     
     // MARK: - Init UI
     private func setupUI() {
@@ -121,11 +132,16 @@ class ViewController: UIViewController {
         let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
         cardConfiguration.isRequiredValidOnly = true
+      
+        /// Enable validation of unknown card brand if needed
+        cardConfiguration.validationRules = VGSValidationRuleSet(rules:[
+          VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue, validateUnknownCardBrand: true)
+        ])
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
         cardNumber.cardIconLocation = .right
-      
+            
         // To handle VGSTextFieldDelegate methods
         // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
@@ -198,20 +214,21 @@ class ViewController: UIViewController {
         switch response {
           case .success(_, let data, _):
             if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-              self?.consoleLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+              self?.consoleLabel.text = "Success: \n\(response)"
               }
               return
           case .failure(let code, _, _, let error):
             switch code {
             case 400..<499:
               // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-              self?.consoleLabel.text = "Wrong Request Error: \(code)"
+              self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
             case VGSErrorType.inputDataIsNotValid.rawValue:
               if let error = error as? VGSError {
-                self?.consoleLabel.text = "Input data is not valid. Details:\n \(error)"
+                self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
               }
             default:
-              self?.consoleLabel.text = "Something went wrong. Code: \(code)"
+              self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
             }
             print("Submit request error: \(code), \(String(describing: error))")
             return
@@ -220,7 +237,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: VGSCardIOScanControllerDelegate {
+extension CustomPaymentCardsViewController: VGSCardIOScanControllerDelegate {
     
     //When user press Done button on CardIO screen
     func userDidFinishScan() {
@@ -249,8 +266,18 @@ extension ViewController: VGSCardIOScanControllerDelegate {
     }
 }
 
-extension ViewController: VGSTextFieldDelegate {
+extension CustomPaymentCardsViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
     textField.borderColor = textField.state.isValid  ? .gray : .red
+    
+    if let cardState = textField.state as? CardState {
+      if cardState.isValid {
+        print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
+        
+        if cardState.cardBrand == .custom(brandName: "VGS Platinum") {
+          print("🥳🥳🥳🥳🥳🥳🥳🥳")
+        }
+      }
+    }
   }
 }

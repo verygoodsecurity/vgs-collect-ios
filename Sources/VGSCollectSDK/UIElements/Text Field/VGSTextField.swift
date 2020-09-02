@@ -122,7 +122,7 @@ public class VGSTextField: UIView {
     /// Delegates `VGSTextField` editing events. Default is `nil`.
     public weak var delegate: VGSTextFieldDelegate?
     
-    // MARK: - init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         mainInitialization()
@@ -136,6 +136,25 @@ public class VGSTextField: UIView {
     deinit {
         vgsCollector?.unregisterTextFields(textField: [self])
         NotificationCenter.default.removeObserver(self)
+    }
+  
+    // MARK: - Manage input
+    /// Set textfield default text.
+    /// - Note: This will not change `State.isDirty` attribute.
+    /// - Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.
+    public func setDefaultText(_ text: String?) {
+      updateTextFieldInput(text)
+    }
+  
+    /// :nodoc: Set textfield text.
+    public func setText(_ text: String?) {
+      isDirty = true
+      updateTextFieldInput(text)
+    }
+
+      /// Removes input from field.
+    public func cleanText() {
+      updateTextFieldInput("")
     }
 }
 
@@ -243,21 +262,6 @@ internal extension VGSTextField {
         // update status
         vgsCollector?.updateStatus(for: self)
     }
-    
-    /// :nodoc: Set textfield text. For internal use only! Not allowed to be public for PCI scope!
-    func setText(_ text: String?) {
-        isDirty = true
-      
-        /// clean previous format pattern and add new  based on content after text is set
-        if self.fieldType == .cardNumber {
-          textField.formatPattern = ""
-        }
-        textField.secureText = text
-
-        // this will update card textfield icons and dynamic format pattern
-        textFieldValueChanged()
-        textFieldDidChange(textField)
-    }
   
   func updateFormatPattern() {
     // update card number and cvc format dynamically based on card brand
@@ -284,6 +288,19 @@ internal extension VGSTextField {
         textField.becomeFirstResponder()
         textFieldValueChanged()
     }
+  
+  /// This will update format pattern and notify about the change
+  func updateTextFieldInput(_ text: String?) {
+    /// clean previous format pattern and add new  based on content after text is set
+    if self.fieldType == .cardNumber {
+      textField.formatPattern = ""
+    }
+    textField.secureText = text
+
+    // this will update card textfield icons and dynamic format pattern
+    textFieldValueChanged()
+    delegate?.vgsTextFieldDidChange?(self)
+  }
 }
 
 // MARK: - Main style for text field
