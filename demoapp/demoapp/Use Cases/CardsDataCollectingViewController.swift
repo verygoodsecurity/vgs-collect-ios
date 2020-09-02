@@ -126,8 +126,6 @@ class CardsDataCollectingViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.cardIconLocation = .right
       
-        // To handle VGSTextFieldDelegate methods
-        // cardNumber.delegate = self
         cardNumber.becomeFirstResponder()
 
         let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
@@ -170,6 +168,7 @@ class CardsDataCollectingViewController: UIViewController {
           textField.font = .systemFont(ofSize: 22)
           textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
           textField.tintColor = .lightGray
+          /// Implement VGSTextFieldDelegate methods
           textField.delegate = self
         }
     }
