@@ -140,14 +140,14 @@ public class VGSTextField: UIView {
   
     /// Set textfield default text.
     /// - Note: This will not change `isDirty` attribute.
-    public func setDefaultValue(_ text: String?) {
+    public func setDefaultText(_ text: String?) {
       updateTextFieldInput(text)
     }
   
     /// :nodoc: Set textfield text.
     public func setText(_ text: String?) {
-        isDirty = true
-        updateTextFieldInput(text)
+      isDirty = true
+      updateTextFieldInput(text)
     }
 }
 
@@ -282,6 +282,7 @@ internal extension VGSTextField {
         textFieldValueChanged()
     }
   
+  /// This will update format pattern and notify about the change
   func updateTextFieldInput(_ text: String?) {
     /// clean previous format pattern and add new  based on content after text is set
     if self.fieldType == .cardNumber {
@@ -291,7 +292,7 @@ internal extension VGSTextField {
 
     // this will update card textfield icons and dynamic format pattern
     textFieldValueChanged()
-    textFieldDidChange(textField)
+    delegate?.vgsTextFieldDidChange?(self)
   }
 }
 
