@@ -33,7 +33,6 @@ custom_categories:
   - VGSTextFieldDelegate
   - VGSConfiguration
   - FieldType
-  - SwiftLuhn
 - name: Card Scan
   children:
   - VGSCardIOScanController

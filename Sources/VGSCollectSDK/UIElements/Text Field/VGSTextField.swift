@@ -122,7 +122,7 @@ public class VGSTextField: UIView {
     /// Delegates `VGSTextField` editing events. Default is `nil`.
     public weak var delegate: VGSTextFieldDelegate?
     
-    // MARK: - init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         mainInitialization()
@@ -138,8 +138,9 @@ public class VGSTextField: UIView {
         NotificationCenter.default.removeObserver(self)
     }
   
+    // MARK: - Manage input
     /// Set textfield default text.
-    /// - Note: This will not change `isDirty` attribute.
+    /// - Note: This will not change `State.isDirty` attribute.
     /// - Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.
     public func setDefaultText(_ text: String?) {
       updateTextFieldInput(text)
