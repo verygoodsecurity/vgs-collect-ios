@@ -140,6 +140,7 @@ public class VGSTextField: UIView {
   
     /// Set textfield default text.
     /// - Note: This will not change `isDirty` attribute.
+    /// - Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.
     public func setDefaultText(_ text: String?) {
       updateTextFieldInput(text)
     }
@@ -152,7 +153,7 @@ public class VGSTextField: UIView {
 
       /// Removes input from field.
     public func cleanText() {
-      setText("")
+      updateTextFieldInput("")
     }
 }
 

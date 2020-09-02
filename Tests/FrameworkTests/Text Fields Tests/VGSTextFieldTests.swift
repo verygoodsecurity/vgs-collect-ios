@@ -48,6 +48,26 @@ class VGSTextFieldTests: XCTestCase {
       XCTAssertTrue(textfield.state.isEmpty == false)
       XCTAssertTrue(textfield.state.isValid == true)
   }
+  
+  func testCleanText() {
+      configuration.type = .cardNumber
+      textfield.configuration = configuration
+      textfield.setDefaultText("4111111111111111")
+      textfield.cleanText()
+      XCTAssertTrue(textfield.textField.secureText == "")
+      XCTAssertTrue(textfield.state.inputLength == 0)
+      XCTAssertTrue(textfield.state.isDirty == false)
+      XCTAssertTrue(textfield.state.isEmpty == true)
+      XCTAssertTrue(textfield.state.isValid == false)
+    
+      textfield.setText("4111111111111111")
+      textfield.cleanText()
+      XCTAssertTrue(textfield.textField.secureText == "")
+      XCTAssertTrue(textfield.state.inputLength == 0)
+      XCTAssertTrue(textfield.state.isDirty == true)
+      XCTAssertTrue(textfield.state.isEmpty == true)
+      XCTAssertTrue(textfield.state.isValid == false)
+   }
 }
       
        
