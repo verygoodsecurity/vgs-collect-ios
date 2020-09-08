@@ -115,9 +115,7 @@ public class VGSTextField: UIView {
             if let vgs = configuration.vgsCollector {
                 vgsCollector = vgs
                 vgs.registerTextFields(textField: [self])
-              
-              VGSAnalyticsClient.shared.trackFormEvent(vgs, details: ["type": "Init",
-                                                                      "status": "Ok"])
+                VGSAnalyticsClient.shared.trackFormEvent(vgs, type: "Init", extraData: ["field": fieldType.stringIdentifier])
             }
         }
     }

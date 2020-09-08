@@ -8,44 +8,18 @@
 
 import Foundation
 
-protocol BaseAnalyticsEventProtocol {
-  var formID: String { get }
-  var tnt: String { get }
-  var env: String { get }
-  var type: String { get }
-}
-
-struct AnyTrackingEvent: BaseAnalyticsEventProtocol {
-  
-  let formID: String
-  let tnt: String
-  let env: String
-  let type: String
-  
-  var optionalInfo: [String: Any]?
-  
-  func map() {}
-  
-}
-
+/// :nodoc: Client responsably for managing and sending analytics events.
 public class VGSAnalyticsClient {
+  
+  public enum AnalyticEventStatus: String {
+    case success = "Ok"
+    case failed = "Failed"
+  }
+  
   public static let shared = VGSAnalyticsClient()
   public var shouldCollectAnalytics = true
   
-  public func trackFormEvent(_ form: VGSCollect, details: [String: Any]) {
-    let env = (form.dataRegion != nil) ? "\(form.environment.rawValue)-\(form.dataRegion ?? "")" : form.environment.rawValue
-    let formDetails = ["formId": form.formId,
-                       "tnt": form.tenantId,
-                       "env": env
-                      ]
-    let data = deepMerge(formDetails, details)
-    sendAnalyticsRequest(data: data)
-  }
-  
-  public func trackEvent(_ details: [String: Any]) {
-      sendAnalyticsRequest(data: details)
-  }
-  
+  private init() {}
   
   internal let baseURL = "https://vgs-collect-keeper.verygoodsecurity.io"
   
@@ -55,15 +29,13 @@ public class VGSAnalyticsClient {
   }()
   
   internal static let userAgentData: [String: Any] = {
-      // Add Headers
       let version = ProcessInfo.processInfo.operatingSystemVersion
       let osVersion = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
-      return [ "ua" : [
-                  "platform": UIDevice.current.systemName,
-                  "device" : UIDevice.current.model,
-                  "versionOS": osVersion ]
-              ]
-  }()
+      return [
+              "platform": UIDevice.current.systemName,
+              "device" : UIDevice.current.model,
+              "versionOS": osVersion ]
+      }()
   
   internal let vgsCollectVersion: String = {
       guard let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
@@ -74,9 +46,42 @@ public class VGSAnalyticsClient {
       return "\(build)"
   }()
 
+  /// :nodoc: Track events related to specific VGSCollect instance
+  public func trackFormEvent(_ form: VGSCollect, type: String, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+    let env = (form.dataRegion != nil) ? "\(form.environment.rawValue)-\(form.dataRegion ?? "")" : form.environment.rawValue
+    let formDetails = ["formId": form.formId,
+                       "tnt": form.tenantId,
+                       "env": env
+                      ]
+    let data: [String: Any]
+    if let extraData = extraData {
+      data = deepMerge(formDetails, extraData)
+    } else {
+      data = formDetails
+    }
+    trackEvent(type, status: status, extraData: data)
+  }
+  
+  /// :nodoc: Base function to Track analytics event
+  public func trackEvent(_ type: String, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+      var data = [String: Any]()
+      if let extraData = extraData {
+        data = extraData
+      }
+      data["type"] = type
+      data["status"] = status.rawValue
+      data["ua"] = VGSAnalyticsClient.userAgentData
+      data["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
+      sendAnalyticsRequest(data: data)
+  }
 
-  public func  sendAnalyticsRequest(method: HTTPMethod = .post, path: String = "vgs", data: [String: Any] ) {
-      
+  internal func sendAnalyticsRequest(method: HTTPMethod = .post, path: String = "vgs", data: [String: Any] ) {
+    
+      // Check if tracking events enabled
+      guard shouldCollectAnalytics else {
+        return
+      }
+    
       // Setup URLRequest
       guard let url = URL(string: baseURL)?.appendingPathComponent(path) else {
         return
@@ -85,10 +90,7 @@ public class VGSAnalyticsClient {
       request.httpMethod = method.rawValue
       request.allHTTPHeaderFields = VGSAnalyticsClient.shared.defaultHttpHeaders
 
-      // Add User Agent data
-      var resultDict = deepMerge(data, VGSAnalyticsClient.userAgentData)
-      resultDict["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
-      let jsonData = try? JSONSerialization.data(withJSONObject: resultDict, options: .prettyPrinted)
+      let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
       let encodedJSON = jsonData?.base64EncodedData()
       request.httpBody = encodedJSON
     

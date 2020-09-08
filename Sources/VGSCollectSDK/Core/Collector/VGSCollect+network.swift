@@ -23,12 +23,29 @@ extension VGSCollect {
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
     public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+      
+        VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", extraData: ["status": "Ok"])
+
         if let error = validateStoredInputData() {
+          VGSAnalyticsClient.shared.trackFormEvent(self, type: "Submit", extraData: [ "code": error.code])
           block(.failure(error.code, nil, nil, error))
             return
         }
         let body = mapStoredInputDataForSubmit(with: extraData)
-        apiClient.sendRequest(path: path, method: method, value: body, completion: block)
+        apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
+          if let strongSelf = self {
+            let statusCode: Int
+            
+            switch response {
+            case .success(let code, _, _):
+              statusCode = code
+            case .failure(let code, _, _, _):
+              statusCode = code
+            }
+            VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["code": statusCode])
+        }
+        block(response)
+      }
     }
     
     /**

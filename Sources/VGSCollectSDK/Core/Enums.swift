@@ -115,6 +115,24 @@ internal extension FieldType {
       }
       return rules
     }
+  
+    // String idetifier for each  field type. Can be used for ananlytics, etc.
+    var stringIdentifier:String {
+      switch self {
+      case .cardHolderName:
+        return "cardHolderName"
+      case .cardNumber:
+         return "cardNumber"
+      case .cvc:
+         return "cvc"
+      case .expDate:
+         return "expDate"
+      case .ssn:
+         return "ssn"
+      case .none:
+         return "info"
+      }
+    }
 }
 
 internal enum DateFormatPattern: String {
