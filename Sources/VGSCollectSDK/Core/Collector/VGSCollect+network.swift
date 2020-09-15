@@ -25,7 +25,7 @@ extension VGSCollect {
     public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
       
         if let error = validateStoredInputData() {
-          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "code": error.code])
+          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
           block(.failure(error.code, nil, nil, error))
             return
         }
@@ -43,7 +43,7 @@ extension VGSCollect {
             case .failure(let code, _, _, _):
               statusCode = code
             }
-            VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["code": statusCode])
+            VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["errorCode": statusCode])
         }
         block(response)
       }
@@ -69,7 +69,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exists",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "code": error.code])
+            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -79,7 +79,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. Can't convert to Data.",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "code": error.code])
+            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -91,7 +91,7 @@ extension VGSCollect {
                                                         extraInfo: [
                                                             "expectedSize": maxFileSizeInternalLimitInBytes,
                                                             "fileSize": "\(result.count)", "sizeUnits": "bytes"]))
-            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "code": error.code])
+            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -102,7 +102,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "code": error.code])
+          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
           block(.failure(error.code, nil, nil, error))
             return
         }
@@ -122,7 +122,7 @@ extension VGSCollect {
               case .failure(let code, _, _, _):
                 statusCode = code
               }
-              VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["code": statusCode])
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["errorCode": statusCode])
           }
           block(response)
         }

@@ -21,7 +21,7 @@ public class VGSAnalyticsClient {
   
   private init() {}
   
-  internal let baseURL = "https://vgs-collect-keeper.verygoodsecurity.io"
+  internal let baseURL = "https://5072a069c86f.ngrok.io"
   
   internal let defaultHttpHeaders: HTTPHeaders = {
     return [ "Origin": "https://js.verygoodvault.io",
@@ -34,7 +34,7 @@ public class VGSAnalyticsClient {
       return [
               "platform": UIDevice.current.systemName,
               "device" : UIDevice.current.model,
-              "versionOS": osVersion ]
+              "osVersion": osVersion ]
       }()
   
   internal let vgsCollectVersion: String = {
@@ -72,6 +72,7 @@ public class VGSAnalyticsClient {
       data["status"] = status.rawValue
       data["ua"] = VGSAnalyticsClient.userAgentData
       data["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
+      data["source"] = "iosSDK"
       sendAnalyticsRequest(data: data)
   }
 
