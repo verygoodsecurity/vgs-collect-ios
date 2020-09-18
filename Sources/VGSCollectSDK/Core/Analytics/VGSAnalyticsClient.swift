@@ -21,6 +21,9 @@ public class VGSAnalyticsClient {
   
   private init() {}
   
+  /// Uniq id that should stay the same during application rintime
+  internal let runtimeId = UUID().uuidString
+  
   internal let baseURL = "https://5072a069c86f.ngrok.io"
   
   internal let defaultHttpHeaders: HTTPHeaders = {
@@ -73,6 +76,7 @@ public class VGSAnalyticsClient {
       data["ua"] = VGSAnalyticsClient.userAgentData
       data["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
       data["source"] = "iosSDK"
+      data["localTimestamp"] = Date().timeIntervalSince1970
       sendAnalyticsRequest(data: data)
   }
 
