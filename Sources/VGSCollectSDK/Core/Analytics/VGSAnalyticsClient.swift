@@ -76,7 +76,7 @@ public class VGSAnalyticsClient {
       data["ua"] = VGSAnalyticsClient.userAgentData
       data["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
       data["source"] = "iosSDK"
-      data["localTimestamp"] = Date().timeIntervalSince1970
+      data["localTimestamp"] = Int(Date().timeIntervalSince1970 * 1000)
       sendAnalyticsRequest(data: data)
   }
 
