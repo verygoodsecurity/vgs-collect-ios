@@ -6,7 +6,7 @@
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 /// An object representing Unknown Payment Cards - cards not defined in the SDK. Object is used when validation for`CardBrand.unknown` is set as `true`. Check `VGSValidationRulePaymentCard` for more details. Validation attributes can be edited through ``VGSPaymentCards.unknown` model.

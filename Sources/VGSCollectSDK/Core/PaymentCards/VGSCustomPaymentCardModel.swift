@@ -6,7 +6,7 @@
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct VGSCustomPaymentCardModel: VGSPaymentCardModelProtocol {
   

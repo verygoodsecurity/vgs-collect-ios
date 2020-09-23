@@ -6,7 +6,7 @@
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// :nodoc: Payment Card Model Protocol
 public protocol VGSPaymentCardModelProtocol {

@@ -6,7 +6,7 @@
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Controller responsible for importing files from device sources.
 public class VGSFilePickerController {
