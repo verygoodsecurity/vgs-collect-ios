@@ -25,25 +25,23 @@ extension VGSCollect {
     public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
       
         if let error = validateStoredInputData() {
-          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
+          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "statusCode": error.code])
           block(.failure(error.code, nil, nil, error))
             return
         }
         let body = mapStoredInputDataForSubmit(with: extraData)
-        VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .success)
+        VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .success, extraData: [ "statusCode": "200"])
         apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
           
           // Analytics
           if let strongSelf = self {
-            let statusCode: Int
-            
             switch response {
             case .success(let code, _, _):
-              statusCode = code
-            case .failure(let code, _, _, _):
-              statusCode = code
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["statusCode": code])
+            case .failure(let code, _, _, let error):
+              let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", status: .failed, extraData: ["statusCode": code, "error": errorMessage])
             }
-            VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["errorCode": statusCode])
         }
         block(response)
       }
@@ -69,7 +67,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exists",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
+            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "statusCode": error.code])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -79,7 +77,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. Can't convert to Data.",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
+            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "statusCode": error.code])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -91,7 +89,7 @@ extension VGSCollect {
                                                         extraInfo: [
                                                             "expectedSize": maxFileSizeInternalLimitInBytes,
                                                             "fileSize": "\(result.count)", "sizeUnits": "bytes"]))
-            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
+            VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "statusCode": error.code])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -102,27 +100,25 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "errorCode": error.code])
+          VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .failed, extraData: [ "statusCode": error.code])
           block(.failure(error.code, nil, nil, error))
             return
         }
         // make body
         let body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
         // senf request
-        VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .success)
+        VGSAnalyticsClient.shared.trackFormEvent(self, type: "BeforeSubmit", status: .success, extraData: [ "statusCode": "200"])
         apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
             
             // Analytics
             if let strongSelf = self {
-              let statusCode: Int
-              
               switch response {
               case .success(let code, _, _):
-                statusCode = code
-              case .failure(let code, _, _, _):
-                statusCode = code
+                VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["statusCode": code])
+              case .failure(let code, _, _, let error):
+                let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+                VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", status: .failed, extraData: ["statusCode": code, "error": errorMessage])
               }
-              VGSAnalyticsClient.shared.trackFormEvent(strongSelf, type: "Submit", extraData: ["errorCode": statusCode])
           }
           block(response)
         }

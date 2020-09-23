@@ -130,7 +130,7 @@ internal extension FieldType {
       case .ssn:
          return "ssn"
       case .none:
-         return "info"
+         return "text"
       }
     }
 }

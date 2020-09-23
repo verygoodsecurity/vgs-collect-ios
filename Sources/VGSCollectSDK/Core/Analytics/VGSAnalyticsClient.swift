@@ -20,15 +20,14 @@ public class VGSAnalyticsClient {
   public var shouldCollectAnalytics = true
   
   private init() {}
-  
+
   /// Uniq id that should stay the same during application rintime
-  internal let runtimeId = UUID().uuidString
-  
-  internal let baseURL = "https://5072a069c86f.ngrok.io"
+  public let vgsCollectSessionId = UUID().uuidString
+
+  internal let baseURL = "https://b84ae8eee264.ngrok.io"
   
   internal let defaultHttpHeaders: HTTPHeaders = {
-    return [ "Origin": "https://js.verygoodvault.io",
-             "Content-Type": "application/x-www-form-urlencoded" ]
+    return ["Content-Type": "application/x-www-form-urlencoded" ]
   }()
   
   internal static let userAgentData: [String: Any] = {
@@ -77,6 +76,7 @@ public class VGSAnalyticsClient {
       data["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
       data["source"] = "iosSDK"
       data["localTimestamp"] = Int(Date().timeIntervalSince1970 * 1000)
+      data["vgsCollectSessionId"] = vgsCollectSessionId
       sendAnalyticsRequest(data: data)
   }
 
