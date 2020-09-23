@@ -53,9 +53,17 @@ public class VGSCollect {
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment. By default `Environment.sandbox`.
     ///   - dataRegion: id of data storage region (e.g. "eu-123"). Effects ONLY `Environment.live` vaults.
-    public init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
+    public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
       let url = Self.generateVaultURL(tenantId: id, environment: environment, region: dataRegion)
-      apiClient = APIClient(baseURL: url)
+      self.init(baseURL: url)
+    }
+    
+    /// Initialzation
+    ///
+    /// - Parameters:
+    ///   - baseURL: your organization vault base url.
+    public init(baseURL: URL) {
+      apiClient = APIClient(baseURL: baseURL)
     }
   
     // MARK: - Helper functions
