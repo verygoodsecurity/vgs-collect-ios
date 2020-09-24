@@ -78,7 +78,7 @@ public class VGSAnalyticsClient {
       data["type"] = type.rawValue
       data["status"] = status.rawValue
       data["ua"] = VGSAnalyticsClient.userAgentData
-      data["version"] = vgsCollectVersion
+      data["version"] = Utils.vgsCollectVersion
       data["source"] = "iosSDK"
       data["localTimestamp"] = Int(Date().timeIntervalSince1970 * 1000)
       data["vgsCollectSessionId"] = vgsCollectSessionId
@@ -102,23 +102,13 @@ internal extension VGSAnalyticsClient {
       }
       var request = URLRequest(url: url)
       request.httpMethod = method.rawValue
-      request.allHTTPHeaderFields = VGSAnalyticsClient.shared.defaultHttpHeaders
+      request.allHTTPHeaderFields = defaultHttpHeaders
 
       let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
       let encodedJSON = jsonData?.base64EncodedData()
       request.httpBody = encodedJSON
     
       // Send data
-      URLSession.shared.dataTask(with: request) { (data, response, error) in
-
-          let statusCode = (response as? HTTPURLResponse)?.statusCode ?? VGSErrorType.unexpectedResponseType.rawValue
-
-          switch statusCode {
-          case 200..<300:
-              return
-          default:
-              return
-          }
-      }.resume()
+      URLSession.shared.dataTask(with: request).resume()
   }
 }
