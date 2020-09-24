@@ -64,14 +64,6 @@ class APIClient {
         // Add Headers
         let version = ProcessInfo.processInfo.operatingSystemVersion
         let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
-        let vgsCollectVersion: String = {
-            guard let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
-                let build = vgsInfo["CFBundleShortVersionString"]
-                else {
-                    return "Unknown"
-            }
-            return "\(build)"
-        }()
         return [
             "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(vgsCollectVersion)&osVersion=\(versionString)"
         ]

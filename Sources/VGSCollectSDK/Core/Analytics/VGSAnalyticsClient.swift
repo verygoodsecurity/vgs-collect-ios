@@ -7,8 +7,19 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
-/// :nodoc: Client responsably for managing and sending analytics events.
+/// :nodoc: VGS Analytics event type
+public enum VGSAnalyticsEventType: String {
+  case fieldInit = "Init"
+  case beforeSubmit = "BeforeSubmit"
+  case submit = "Submit"
+}
+
+/// Client responsably for managing and sending VGS Collect SDK analytics events.
+/// Note: we track only VGSCollectSDK usage and features statistics.
 public class VGSAnalyticsClient {
   
   public enum AnalyticEventStatus: String {
@@ -16,15 +27,18 @@ public class VGSAnalyticsClient {
     case failed = "Failed"
   }
   
+  /// Shared `VGSAnalyticsClient` instance
   public static let shared = VGSAnalyticsClient()
+  
+  /// Enable or disable VGS analytics tracking
   public var shouldCollectAnalytics = true
   
-  private init() {}
-
   /// Uniq id that should stay the same during application rintime
   public let vgsCollectSessionId = UUID().uuidString
-
-  internal let baseURL = "https://b84ae8eee264.ngrok.io"
+  
+  private init() {}
+  
+  internal let baseURL = "https://vgs-collect-keeper.apps.verygood.systems/"
   
   internal let defaultHttpHeaders: HTTPHeaders = {
     return ["Content-Type": "application/x-www-form-urlencoded" ]
@@ -38,18 +52,9 @@ public class VGSAnalyticsClient {
               "device" : UIDevice.current.model,
               "osVersion": osVersion ]
       }()
-  
-  internal let vgsCollectVersion: String = {
-      guard let vgsInfo = Bundle(for: APIClient.self).infoDictionary,
-          let build = vgsInfo["CFBundleShortVersionString"]
-          else {
-              return "Unknown"
-      }
-      return "\(build)"
-  }()
 
   /// :nodoc: Track events related to specific VGSCollect instance
-  public func trackFormEvent(_ form: VGSCollect, type: String, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+  public func trackFormEvent(_ form: VGSCollect, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
     let env = (form.dataRegion != nil) ? "\(form.environment.rawValue)-\(form.dataRegion ?? "")" : form.environment.rawValue
     let formDetails = ["formId": form.formId,
                        "tnt": form.tenantId,
@@ -65,22 +70,26 @@ public class VGSAnalyticsClient {
   }
   
   /// :nodoc: Base function to Track analytics event
-  public func trackEvent(_ type: String, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+  public func trackEvent(_ type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       var data = [String: Any]()
       if let extraData = extraData {
         data = extraData
       }
-      data["type"] = type
+      data["type"] = type.rawValue
       data["status"] = status.rawValue
       data["ua"] = VGSAnalyticsClient.userAgentData
-      data["version"] = VGSAnalyticsClient.shared.vgsCollectVersion
+      data["version"] = vgsCollectVersion
       data["source"] = "iosSDK"
       data["localTimestamp"] = Int(Date().timeIntervalSince1970 * 1000)
       data["vgsCollectSessionId"] = vgsCollectSessionId
       sendAnalyticsRequest(data: data)
   }
+}
 
-  internal func sendAnalyticsRequest(method: HTTPMethod = .post, path: String = "vgs", data: [String: Any] ) {
+internal extension VGSAnalyticsClient {
+  
+  // send events
+  func sendAnalyticsRequest(method: HTTPMethod = .post, path: String = "vgs", data: [String: Any] ) {
     
       // Check if tracking events enabled
       guard shouldCollectAnalytics else {

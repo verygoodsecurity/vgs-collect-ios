@@ -120,13 +120,13 @@ internal extension FieldType {
     var stringIdentifier:String {
       switch self {
       case .cardHolderName:
-        return "cardHolderName"
+        return "card-holder-name"
       case .cardNumber:
-         return "cardNumber"
+         return "card-number"
       case .cvc:
-         return "cvc"
+         return "card-security-code"
       case .expDate:
-         return "expDate"
+         return "card-expiration-date"
       case .ssn:
          return "ssn"
       case .none:
