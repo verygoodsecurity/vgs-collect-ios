@@ -16,11 +16,17 @@ let package = Package(
     targets: [
         .target(
             name: "VGSCollectSDK",
-            dependencies: []
+            exclude: [
+                "Info.plist",
+                "VGSCollectSDK.h"
+            ]
         ),
         .testTarget(
             name: "FrameworkTests",
-            dependencies: ["VGSCollectSDK"]
+            dependencies: ["VGSCollectSDK"],
+            exclude: [
+                "Info.plist"
+            ]
         )
     ]
 )
