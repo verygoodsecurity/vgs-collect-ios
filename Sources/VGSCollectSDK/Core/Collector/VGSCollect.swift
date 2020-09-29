@@ -23,10 +23,7 @@ public class VGSCollect {
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
     /// Unique form identifier
     internal let formId = UUID().uuidString
-    
-    /// Identifire that can be used for cross-debugging
-    public var vgsCollectSessionId = UUID().uuidString
-  
+      
     // MARK: Custom HTTP Headers
     
     /// Set your custom HTTP headers
