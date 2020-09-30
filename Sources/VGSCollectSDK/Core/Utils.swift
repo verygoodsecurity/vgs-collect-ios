@@ -42,6 +42,20 @@ func mapStringKVOToDictionary(key: String, value: Any, separator: String.Element
     return dict
 }
 
+internal class Utils {
+  
+  /// VGS Collect SDK Version
+  static let vgsCollectVersion: String = {
+      guard let vgsInfo = Bundle(for: Utils.self).infoDictionary,
+          let build = vgsInfo["CFBundleShortVersionString"]
+          else {
+              return "Unknown"
+      }
+      return "\(build)"
+  }()
+}
+
+
 extension Dictionary {
     /// Resturn JSON string  representation of dictionary with sorted keys
     @available(iOS 11.0, *)

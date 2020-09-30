@@ -15,9 +15,15 @@ import UIKit
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
+    internal let environment: Environment
+    internal let dataRegion: String?
+    internal let tenantId: String
+  
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
-  
+    /// Unique form identifier
+    internal let formId = UUID().uuidString
+      
     // MARK: Custom HTTP Headers
     
     /// Set your custom HTTP headers
@@ -56,6 +62,9 @@ public class VGSCollect {
     public init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
       let url = Self.generateVaultURL(tenantId: id, environment: environment, region: dataRegion)
       apiClient = APIClient(baseURL: url)
+      self.tenantId = id
+      self.environment = environment
+      self.dataRegion = dataRegion
     }
   
     // MARK: - Helper functions
