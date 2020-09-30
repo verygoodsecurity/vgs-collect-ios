@@ -20,6 +20,7 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     weak var delegate: VGSCardIOScanControllerDelegate?
     weak var view: UIViewController?
     var cameraPosition: AVCaptureDevice.Position?
+    var suppressScanConfirmation = false
     
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true, preferredDevicePosition: cameraPosition ?? .unspecified) else {
@@ -27,6 +28,7 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
             return
         }
         vc.hideCardIOLogo = true
+        vc.suppressScanConfirmation = suppressScanConfirmation
         vc.modalPresentationStyle = .overCurrentContext
         self.view = vc
         viewController.present(vc, animated: animated, completion: completion)

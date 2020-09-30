@@ -16,6 +16,7 @@ import UIKit
 internal protocol VGSScanHandlerProtocol {
     var delegate: VGSCardIOScanControllerDelegate? { get set }
     var cameraPosition: AVCaptureDevice.Position? { get set }
+    var suppressScanConfirmation: Bool { get set }
     
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)
@@ -43,6 +44,14 @@ public class VGSCardIOScanController {
         didSet {
             scanHandler?.cameraPosition = preferredCameraPosition
         }
+    }
+
+    /// If `true`, user don't have to confirm the scanned card, just return the results immediately.
+    /// Defaults is `false`.
+    public var suppressScanConfirmation: Bool = false {
+      didSet {
+          scanHandler?.suppressScanConfirmation = suppressScanConfirmation
+      }
     }
     
     // MARK: - Initialization
