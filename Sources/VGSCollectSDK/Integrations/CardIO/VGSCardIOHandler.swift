@@ -21,7 +21,9 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     weak var view: UIViewController?
     var cameraPosition: AVCaptureDevice.Position?
     var suppressScanConfirmation = false
-    
+    var disableManualEntryButtons = false
+    var languageOrLocale: String?
+  
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true, preferredDevicePosition: cameraPosition ?? .unspecified) else {
             print("This device is not compatible with CardIO")
@@ -29,6 +31,8 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
         }
         vc.hideCardIOLogo = true
         vc.suppressScanConfirmation = suppressScanConfirmation
+        vc.disableManualEntryButtons = disableManualEntryButtons
+        vc.languageOrLocale = languageOrLocale
         vc.modalPresentationStyle = .overCurrentContext
         self.view = vc
         viewController.present(vc, animated: animated, completion: completion)
