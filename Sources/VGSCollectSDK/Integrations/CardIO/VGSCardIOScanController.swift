@@ -16,6 +16,8 @@ import UIKit
 internal protocol VGSScanHandlerProtocol {
     var delegate: VGSCardIOScanControllerDelegate? { get set }
     var cameraPosition: AVCaptureDevice.Position? { get set }
+    var languageOrLocale: String? { get set }
+    var disableManualEntryButtons: Bool { get set }
     var suppressScanConfirmation: Bool { get set }
     
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
@@ -52,6 +54,21 @@ public class VGSCardIOScanController {
       didSet {
           scanHandler?.suppressScanConfirmation = suppressScanConfirmation
       }
+    }
+  
+    /// Defines preferred language for all strings appearing in the CardIO user interface.
+    /// If not set, or if set to nil, defaults to the device's current language setting.
+    public var languageOrLocale: String? = nil {
+        didSet {
+            scanHandler?.languageOrLocale = languageOrLocale
+        }
+    }
+  
+    /// Set to `true` to prevent CardIO from showing its "Enter Manually" button. Defaults to `false`.
+    public var disableManualEntryButtons: Bool = false {
+        didSet {
+            scanHandler?.disableManualEntryButtons = disableManualEntryButtons
+        }
     }
     
     // MARK: - Initialization
