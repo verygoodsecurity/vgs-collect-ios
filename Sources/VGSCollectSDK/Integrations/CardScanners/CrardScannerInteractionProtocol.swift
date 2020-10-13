@@ -7,10 +7,12 @@
 //
 
 import Foundation
+
+#if canImport(UIKit)
+import UIKit
+#endif
+
 public protocol VGSScanHandlerProtocol {
-//    var delegate: VGSCardScanControllerDelegate? { get set }
-//    var cameraPosition: AVCaptureDevice.Position? { get set }
-    
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)
 }

@@ -39,8 +39,6 @@ You should have your organization registered at <a href="https://dashboard.veryg
 
 # Integration
 
-VGSCollectSDK is available through [CocoaPods](https://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage).
-
 ### CocoaPods
 
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
@@ -66,7 +64,6 @@ carthage update --platform iOS
 
 If you don't need additional features like card scanning, you should add into your project only `VGSCollectSDK`. Other submodules can safely be deleted from Carthage Build folder.
 
-
 Check VGSCollecSDK submodules and required frameworks:
 
 | Build Frameworks | Core SDK  | CardIO | Card Scan   |
@@ -80,6 +77,19 @@ Check VGSCollecSDK submodules and required frameworks:
 Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files where you use scan modules.
 
 > NOTE: At this time **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
+
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
+
+Once you have your Swift package set up, add VGSCollectSDK dependency.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/verygoodsecurity/vgs-collect-ios", .upToNextMajor(from: "1.7.0"))
+]
+```
 
 ## Usage
 
