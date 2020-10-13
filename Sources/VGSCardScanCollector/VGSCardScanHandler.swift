@@ -44,6 +44,7 @@ internal class VGSCardScanHandler: NSObject, VGSScanHandlerProtocol {
 /// :nodoc:
 extension VGSCardScanHandler: ScanDelegate {
   func userDidCancel(_ scanViewController: ScanViewController) {
+    VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "Bouncer"])
     delegate?.userDidCancelScan()
   }
   
@@ -52,9 +53,13 @@ extension VGSCardScanHandler: ScanDelegate {
     guard let cardScanDelegate = delegate else {
       return
     }
-
+    
     if !creditCard.number.isEmpty, let textfield = cardScanDelegate.textFieldForScannedData(type: .cardNumber) {
-       textfield.setText(creditCard.number)
+    
+      if let form = textfield.vgsCollector {
+        VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "Bouncer"])
+      }
+      textfield.setText(creditCard.number)
     }
     if let name = creditCard.name, !name.isEmpty, let textfield =
       cardScanDelegate.textFieldForScannedData(type: .name) {

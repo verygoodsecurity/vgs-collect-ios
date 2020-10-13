@@ -49,6 +49,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     
     /// :nodoc:
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
+      VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "CardIO"])
         delegate?.userDidCancelScan()
     }
     
@@ -59,6 +60,9 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
             return
         }
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
+            if let form = textfield.vgsCollector {
+              VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+            }
             textfield.setText(cardInfo.cardNumber)
         }
         if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020 {
