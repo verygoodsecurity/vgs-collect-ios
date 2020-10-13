@@ -22,14 +22,21 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'Core' do |core|
   #set as default podspec to prevent from downloading additional modules
-    core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}"
+    core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}", "Sources/VGSCollectSDK/**/*.{h, m}"
     core.resource_bundles = {
       'CardIcon' => ['Resources/*']
     }
   end
   
-  spec.subspec 'CardIO' do |cardio|
-    cardio.source_files  = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{h, m}"
-    cardio.dependency "CardIOSDK", "5.5.4"
+  spec.subspec 'CardScan' do |cardscan|
+    cardscan.source_files  = "Sources/VGSCardScanCollector", "Sources/VGSCardScanCollector/**/*.{swift}"
+    cardscan.dependency "VGSCollectSDK/Core"
+    cardscan.dependency "CardScan", "1.0.5045"
+  end
+  
+  spec.subspec 'CardIO' do |cardIO|
+    cardIO.source_files  = "Sources/VGSCardIOCollector", "Sources/VGSCardIOCollector/**/*.{swift}", "Sources/VGSCardIOCollector/**/*.{h, m}"
+    cardIO.dependency "VGSCollectSDK/Core"
+    cardIO.dependency "CardIOSDK", "5.5.4"
   end
 end

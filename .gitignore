@@ -8,3 +8,4 @@ build
 Podfile.lock
 demoapp/Podfile.lock
 Carthage
+Cartfile.resolved
