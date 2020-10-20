@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 internal protocol VGSFilePickerProtocol {
     var delegate: VGSFilePickerControllerDelegate? { get set }
