@@ -8,6 +8,7 @@ target 'demoapp' do
 
 #  pod 'VGSCollectSDK'
   pod 'VGSCollectSDK', :path => "../"
+  pod 'VGSCollectSDK/CardScan', :path => "../"
   pod 'VGSCollectSDK/CardIO', :path => "../"
 
 end

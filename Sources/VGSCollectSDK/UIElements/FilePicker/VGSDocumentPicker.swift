@@ -7,7 +7,10 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
 import MobileCoreServices
+#endif
 
 /// A class that manage UIDocumentPickerViewController
 internal class VGSDocumentPicker: NSObject, VGSFilePickerProtocol {

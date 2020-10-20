@@ -10,7 +10,8 @@ import XCTest
 @testable import demoapp
 
 class TestCollectCardsDataFlow: XCTestCase {
-
+    let flowType = "Collect Payment Cards"
+  
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -73,47 +74,22 @@ class TestCollectCardsDataFlow: XCTestCase {
       XCTAssert(successResponseLabel.exists)
     }
   
-  
-  func testValidInputThroughCardIO() {
-      let app = XCUIApplication()
-      app.navigationBars["Demo"].buttons["VaultID"].tap()
-      app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
-      app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-      app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
-      app.alerts["Set <vault id>"].scrollViews.otherElements.buttons["Save"].tap()
-      app.tables.staticTexts["Collect Payment Cards Data"].tap()
+  func testCardScan() {
+    let app = XCUIApplication()
+    app.navigationBars["Demo"].buttons["VaultID"].tap()
+    app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
+    app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+    app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
+    app.alerts["Set <vault id>"].scrollViews.otherElements.buttons["Save"].tap()
+    app.tables.staticTexts["Collect Payment Cards Data"].tap()
+    app.staticTexts["STATE"].tap()
     
-      let cardHolderNameField = app.textFields["Cardholder Name"]
-      
-      cardHolderNameField.tap()
-      cardHolderNameField.typeText("Joe B")
-
-      app.staticTexts["STATE"].tap()
-    
-      app.buttons["SCAN"].tap()
-      let cardIOCardNumField =  app.tables.textFields["Card Number"]
-      let cardIOExpDateField =  app.tables.textFields["MM / YY"]
-      let cardIOCVVField =  app.tables.textFields["CVV"]
-     
-
-      cardIOCardNumField.tap()
-      cardIOCardNumField.typeText("4111111111111111")
-    
-      cardIOExpDateField.tap()
-      cardIOExpDateField.typeText("0130")
-
-      cardIOCVVField.tap()
-      cardIOCVVField.typeText("123")
-    
-      app.navigationBars["Card"].buttons["Done"].tap()
-            
-      app.buttons["UPLOAD"].tap()
-      let responseLabel = app.staticTexts["RESPONSE"]
-      responseLabel.waitForExistence(timeout: 30)
-      
-      let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
-      let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
-      XCTAssert(successResponseLabel.exists)
+    app.buttons["SCAN"].tap()
+    let popup = app.alerts["“demoapp” Would Like to Access the Camera"]
+    if popup.exists {
+      popup.buttons["OK"].tap()
+    }
+    app.buttons["Back"].tap()
   }
 }
 

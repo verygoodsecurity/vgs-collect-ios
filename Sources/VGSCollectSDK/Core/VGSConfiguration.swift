@@ -7,7 +7,7 @@
 //
 
 import Foundation
-#if canImport(UIKit)
+#if os(iOS)
 import UIKit
 #endif
 
@@ -43,7 +43,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     // MARK: - Attributes
     
     /// Collect form that will be assiciated with VGSTextField.
-    private(set) weak var vgsCollector: VGSCollect?
+    public private(set) weak var vgsCollector: VGSCollect?
   
     /// Type of field congfiguration. Default is `FieldType.none`.
     public var type: FieldType = .none

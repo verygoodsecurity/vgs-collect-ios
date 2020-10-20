@@ -7,13 +7,14 @@
 //
 
 import Foundation
-#if canImport(UIKit)
+import CardIO
 import UIKit
+import AVFoundation.AVCaptureDevice
+
+#if !COCOAPODS
+import VGSCollectSDK
 #endif
 
-#if canImport(CardIO)
-import CardIO
-import AVFoundation.AVCaptureDevice
 
 internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     
@@ -21,7 +22,9 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     weak var view: UIViewController?
     var cameraPosition: AVCaptureDevice.Position?
     var suppressScanConfirmation = false
-    
+    var disableManualEntryButtons = false
+    var languageOrLocale: String?
+  
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         guard let vc = CardIOPaymentViewController(paymentDelegate: self, scanningEnabled: true, preferredDevicePosition: cameraPosition ?? .unspecified) else {
             print("This device is not compatible with CardIO")
@@ -29,6 +32,8 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
         }
         vc.hideCardIOLogo = true
         vc.suppressScanConfirmation = suppressScanConfirmation
+        vc.disableManualEntryButtons = disableManualEntryButtons
+        vc.languageOrLocale = languageOrLocale
         vc.modalPresentationStyle = .overCurrentContext
         self.view = vc
         viewController.present(vc, animated: animated, completion: completion)
@@ -44,16 +49,20 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     
     /// :nodoc:
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
-        delegate?.userDidCancelScan?()
+      VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "CardIO"])
+        delegate?.userDidCancelScan()
     }
     
     /// :nodoc:
     func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
         guard let cardInfo = cardInfo, let cardIOdelegate = delegate else {
-            delegate?.userDidFinishScan?()
+            delegate?.userDidFinishScan()
             return
         }
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
+            if let form = textfield.configuration?.vgsCollector {
+              VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+            }
             textfield.setText(cardInfo.cardNumber)
         }
         if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020 {
@@ -83,7 +92,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         if let cvc = cardInfo.cvv, !cvc.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cvc) {
             textfield.setText(cvc)
         }
-        cardIOdelegate.userDidFinishScan?()
+        cardIOdelegate.userDidFinishScan()
     }
 }
-#endif
+

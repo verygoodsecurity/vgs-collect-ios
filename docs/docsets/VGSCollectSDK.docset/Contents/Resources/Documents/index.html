@@ -82,20 +82,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Card%20Scan.html">Card Scan</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/VGSCardIOScanController.html">VGSCardIOScanController</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/VGSCardIOScanControllerDelegate.html">VGSCardIOScanControllerDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Enums/CradIODataType.html">CradIODataType</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="File%20Picker.html">File Picker</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -301,8 +287,6 @@
 
 <p>You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your <code>&lt;vaultId&gt;</code> to start collecting data. Follow integration guide below.</p>
 <h1 id='integration' class='heading'>Integration</h1>
-
-<p>VGSCollectSDK is available through <a href="https://cocoapods.org">CocoaPods</a> and <a href="https://github.com/Carthage/Carthage">Carthage</a>.</p>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p><a href="https://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
@@ -319,7 +303,64 @@ Add the following line  to your <code>Cartfile</code>:</p>
 <pre class="highlight ruby"><code><span class="n">carthage</span> <span class="n">update</span> <span class="o">--</span><span class="n">platform</span> <span class="n">iOS</span>
 </code></pre>
 
-<p>Note that <code>VGSCollectSDK</code> includes <a href="https://github.com/verygoodsecurity/card.io-iOS-source">CardIO</a> as dependency for scanning card numbers. You should also link it to your project. Follow the <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">Carthage instructions</a></p>
+<p>If you don&rsquo;t need additional features like card scanning, you should add into your project only <code>VGSCollectSDK</code>. Other submodules can safely be deleted from Carthage Build folder.</p>
+
+<p>Check VGSCollecSDK submodules and required frameworks:</p>
+
+<table><thead>
+<tr>
+<th>Build Frameworks</th>
+<th>Core SDK</th>
+<th>CardIO</th>
+<th>Card Scan</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>VGSCollectSDK</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>CardIO</td>
+<td></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>VGSCardIOCollector</td>
+<td></td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>CardScan</td>
+<td></td>
+<td></td>
+<td>✔</td>
+</tr>
+<tr>
+<td>VGSCardScanCollector</td>
+<td></td>
+<td></td>
+<td>✔</td>
+</tr>
+</tbody></table>
+
+<p>Don&rsquo;t forget to import <code>VGSCardIOCollector</code> or <code>VGSCardScanCollector</code> in files where you use scan modules.</p>
+
+<blockquote>
+<p>NOTE: At this time <strong>Carthage</strong> does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.</p>
+</blockquote>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>The <a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for automating the distribution of Swift code and is integrated into the <code>swift</code> compiler.</p>
+
+<p>Once you have your Swift package set up, add VGSCollectSDK dependency.</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/verygoodsecurity/vgs-collect-ios"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMajor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"1.7.0"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='import-sdk-into-your-file' class='heading'>Import SDK into your file</h3>
 <pre class="highlight swift"><code>
@@ -448,11 +489,32 @@ Add the following line  to your <code>Cartfile</code>:</p>
 <p><strong>VGSCardTextField</strong> automatically detects card provider and display card brand icon in the input field.</p>
 <h3 id='scan-credit-card-data' class='heading'>Scan Credit Card Data</h3>
 
-<p>VGSCollect provide secure <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> integration for collecting and setting scanned data into <code>VGSTextFields</code>. 
-To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> with <strong>VGSCollectSDK</strong> you should add <strong>CardIO</strong> module alongside with core <strong>VGSCollectSDK</strong> module into your App Podfile:</p>
+<p>VGS Collect SDK provides several card scan solutions for the Payment Card Industry to help protect your businesses and the sensitive information of your consumers. It&rsquo;s required to use only Scan modules provided by VGS, which are audited by VGS PCI requirements.</p>
+<h4 id='integrate-with-cocoapods' class='heading'>Integrate with Cocoapods</h4>
+
+<p>Add &lsquo;VGSCollectSDK&rsquo; alongside with one of scan modules pod:</p>
 <pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
-<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardIO'</span>
+
+<span class="c1"># Add CardIO module to use Card.io as scan provider</span>
+<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardIO'</span> 
+
+<span class="c1"># Add CardScan module to use CardScan(Bouncer) as scan provider</span>
+<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardScan'</span> 
 </code></pre>
+<h4 id='integrate-with-carthage' class='heading'>Integrate with Carthage</h4>
+
+<p>Carthage users should point to <code>VGSCollectSDK</code> repository and use next generated framework:</p>
+
+<ul>
+<li>To use <strong>Card.io</strong>: <code>VGSCollectSDK</code>, <code>VGSCardIOCollector</code>, and <code>CardIO</code>. In your file add <code>import VGSCardIOCollector</code>.</li>
+<li>To use <strong>Card Scan</strong>: <code>VGSCollectSDK</code>, <code>VGSCardScanCollector</code>, and <code>CardScan</code>. In your file add <code>import VGSCardScanCollector</code>.</li>
+</ul>
+
+<p>Other submodules can safely be deleted from Carthage Build folder.</p>
+
+<blockquote>
+<p>NOTE: At this time, <strong>Carthage</strong> does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.</p>
+</blockquote>
 <h4 id='code-example' class='heading'>Code Example</h4>
 
 <table>
@@ -536,7 +598,7 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
   </tr>
 </table>
 
-<p>Handle <code><a href="Protocols/VGSCardIOScanControllerDelegate.html">VGSCardIOScanControllerDelegate</a></code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code><a href="Enums/CradIODataType.html">CradIODataType</a></code> to get available scand data types.</p>
+<p>Handle <code>VGSCardIOScanControllerDelegate</code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code>CradIODataType</code> to get available scand data types.</p>
 
 <p>Don&rsquo;t forget to add <strong>NSCameraUsageDescription</strong> key and description into your App <code>Info.plist</code>.</p>
 <h3 id='upload-files' class='heading'>Upload Files</h3>
@@ -674,10 +736,11 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
 <ul>
 <li>iOS 10+</li>
 <li>Swift 5</li>
-<li>3rd party libraries:
+<li>Optional 3rd party libraries:
 
 <ul>
-<li>CardIO(optional)</li>
+<li><a href="https://github.com/card-io/card.io-iOS-SDK">CardIO</a></li>
+<li><a href="https://github.com/getbouncer/cardscan-ios">Card Scan(Bouncer)</a></li>
 </ul></li>
 </ul>
 <h2 id='license' class='heading'>License</h2>
@@ -691,7 +754,7 @@ To use <a href="https://github.com/verygoodsecurity/CardIOSDK-iOS">card.io</a> w
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-09-30)</p>
+      <p>&copy; 2020 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2020-10-20)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

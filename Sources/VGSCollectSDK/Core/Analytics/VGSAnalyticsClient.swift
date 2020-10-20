@@ -7,12 +7,16 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// :nodoc: VGS Analytics event type
 public enum VGSAnalyticsEventType: String {
   case fieldInit = "Init"
   case beforeSubmit = "BeforeSubmit"
   case submit = "Submit"
+  case scan = "Scan"
 }
 
 /// Client responsably for managing and sending VGS Collect SDK analytics events.
@@ -23,6 +27,7 @@ public class VGSAnalyticsClient {
   public enum AnalyticEventStatus: String {
     case success = "Ok"
     case failed = "Failed"
+    case cancel = "Cancel"
   }
   
   /// Shared `VGSAnalyticsClient` instance

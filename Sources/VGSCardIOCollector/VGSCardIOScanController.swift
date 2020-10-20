@@ -7,27 +7,21 @@
 //
 
 import Foundation
-import AVFoundation.AVCaptureDevice
 
-#if canImport(UIKit)
-import UIKit
+#if !COCOAPODS
+import VGSCollectSDK
 #endif
 
-internal protocol VGSScanHandlerProtocol {
-    var delegate: VGSCardIOScanControllerDelegate? { get set }
-    var cameraPosition: AVCaptureDevice.Position? { get set }
-    var suppressScanConfirmation: Bool { get set }
-    
-    func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
-    func dismissScanVC(animated: Bool, completion: (() -> Void)?)
-}
+#if os(iOS)
+import UIKit
+import AVFoundation.AVCaptureDevice
 
 /// Controller responsible for managing Card.io scanner
 public class VGSCardIOScanController {
     
     // MARK: - Attributes
     
-    internal var scanHandler: VGSScanHandlerProtocol?
+    internal var scanHandler: VGSCardIOHandler?
     
     /// `VGSCardIOScanControllerDelegate` - handle user interaction with `Card.io` scanner
     public var delegate: VGSCardIOScanControllerDelegate? {
@@ -53,6 +47,21 @@ public class VGSCardIOScanController {
           scanHandler?.suppressScanConfirmation = suppressScanConfirmation
       }
     }
+  
+    /// Defines preferred language for all strings appearing in the CardIO user interface.
+    /// If not set, or if set to nil, defaults to the device's current language setting.
+    public var languageOrLocale: String? = nil {
+        didSet {
+            scanHandler?.languageOrLocale = languageOrLocale
+        }
+    }
+  
+    /// Set to `true` to prevent CardIO from showing its "Enter Manually" button. Defaults to `false`.
+    public var disableManualEntryButtons: Bool = false {
+        didSet {
+            scanHandler?.disableManualEntryButtons = disableManualEntryButtons
+        }
+    }
     
     // MARK: - Initialization
     /// Initialization
@@ -60,13 +69,8 @@ public class VGSCardIOScanController {
     /// - Parameters:
     ///   - delegate: `VGSCardIOScanControllerDelegate`. Default is `nil`.
     public required init(_ delegate: VGSCardIOScanControllerDelegate? = nil) {
-        #if canImport(CardIO)
             self.scanHandler = VGSCardIOHandler()
             self.delegate = delegate
-        #else
-            print("Can't import CardIO. Please check that CardIO submodule is installed")
-            return
-        #endif
     }
     
     // MARK: - Methods
@@ -89,3 +93,4 @@ public class VGSCardIOScanController {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
     }
 }
+#endif

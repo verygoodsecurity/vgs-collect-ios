@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// :nodoc: Payment Card Model Protocol
 public protocol VGSPaymentCardModelProtocol {
