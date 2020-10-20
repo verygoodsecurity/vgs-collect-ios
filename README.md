@@ -17,7 +17,7 @@ Table of contents
    * [Integration](#integration)
       * [CocoaPods](#cocoapods)
       * [Carthage](#carthage)
-      * [Swift Package Manager](swift-package-manager-beta) 
+      * [Swift Package Manager](#swift-package-manager-beta) 
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Scan Credit Card Data](#scan-credit-card-data)
