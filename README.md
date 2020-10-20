@@ -17,6 +17,7 @@ Table of contents
    * [Integration](#integration)
       * [CocoaPods](#cocoapods)
       * [Carthage](#carthage)
+      * [Swift Package Manager](swift-package-manager-beta) 
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Scan Credit Card Data](#scan-credit-card-data)
@@ -79,7 +80,7 @@ Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files w
 > NOTE: At this time **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
 
 
-### Swift Package Manager
+### Swift Package Manager (beta)
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
 
@@ -90,6 +91,8 @@ dependencies: [
     .package(url: "https://github.com/verygoodsecurity/vgs-collect-ios", .upToNextMajor(from: "1.7.0"))
 ]
 ```
+
+> NOTE: At this time we support Swift Package Manager only for core `VGSCollectSDK` module. If you need to integrate Card Scanning solutions you should use other integration method. We will extend support of 3d party Card Scanning SDKs after they will become available to integrate via Swift Package Manager.
 
 ## Usage
 
@@ -458,7 +461,7 @@ You can add a file uploading functionality to your application with **VGSFilePic
 Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.
 
 ## Demo Application
-Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
+Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food">here</a>.
 
 ### Documentation
 -  SDK Documentation: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
