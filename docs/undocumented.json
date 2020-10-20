@@ -9,7 +9,7 @@
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/Core/PaymentCards/VGSCustomPaymentCardModel.swift",
-      "line": 11,
+      "line": 14,
       "symbol": "VGSCustomPaymentCardModel",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
@@ -29,29 +29,36 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/Integrations/CardScanners/CrardScannerInteractionProtocol.swift",
+      "line": 15,
+      "symbol": "VGSScanHandlerProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSDocumentPicker.swift",
-      "line": 46,
+      "line": 49,
       "symbol": "VGSDocumentPicker.documentPicker(_:didPickDocumentsAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSDocumentPicker.swift",
-      "line": 62,
+      "line": 65,
       "symbol": "VGSDocumentPicker.documentPickerWasCancelled(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSImagePicker.swift",
-      "line": 58,
+      "line": 61,
       "symbol": "VGSImagePicker.imagePickerControllerDidCancel(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSImagePicker.swift",
-      "line": 62,
+      "line": 65,
       "symbol": "VGSImagePicker.imagePickerController(_:didFinishPickingMediaWithInfo:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
