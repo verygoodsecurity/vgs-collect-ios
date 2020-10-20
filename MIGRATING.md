@@ -1,5 +1,32 @@
 ## Migration Guides
 
+### Migrating from versions < v1.7.0
+#### Carthage build modules changed for CardIO 
+If you use CardIO and integrate with Carthage, from now it's required to import `VGSCardIOCollector.framework` build in your application Target `Build Phases` and `Linkend Frameworks` settings.
+
+Before:
+
+Input Files
+```
+$(SRCROOT)/Carthage/Build/iOS/VGSCollectSDK.framework
+$(SRCROOT)/Carthage/Build/iOS/CardIO.framework
+```
+
+Now:
+```
+$(SRCROOT)/Carthage/Build/iOS/VGSCollectSDK.framework
+$(SRCROOT)/Carthage/Build/iOS/CardIO.framework
+$(SRCROOT)/Carthage/Build/iOS/VGSCardIOCollector.framework
+```
+
+Same updates should be made for `Output Files`
+
+Also in you project file where you use CardIO, you should import `VGSCardIOCollector` module:
+```
+import VGSCollectSDK
+import VGSCardIOCollector
+```
+
 ### Migrating from versions < v1.6.0
 #### Updated namings
 
