@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// :nodoc: VGS Analytics event type
 public enum VGSAnalyticsEventType: String {

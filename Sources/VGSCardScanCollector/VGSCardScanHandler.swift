@@ -56,7 +56,7 @@ extension VGSCardScanHandler: ScanDelegate {
     
     if !creditCard.number.isEmpty, let textfield = cardScanDelegate.textFieldForScannedData(type: .cardNumber) {
     
-      if let form = textfield.vgsCollector {
+      if let form = textfield.configuration?.vgsCollector {
         VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "Bouncer"])
       }
       textfield.setText(creditCard.number)
