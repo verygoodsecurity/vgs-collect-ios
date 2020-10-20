@@ -311,14 +311,6 @@
 			path = FilePicker;
 			sourceTree = "<group>";
 		};
-		3281541125013E96004E9AD4 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				3281541225013EA1004E9AD4 /* VGSAnalyticsClient.swift */,
-			);
-			path = Analytics;
-			sourceTree = "<group>";
-		};
 		326FFAF324F904430024A4F9 /* VGSCardIOCollector */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +344,14 @@
 				326FFB0324F90B940024A4F9 /* CrardScannerInteractionProtocol.swift */,
 			);
 			path = CardScanners;
+			sourceTree = "<group>";
+		};
+		3281541125013E96004E9AD4 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				3281541225013EA1004E9AD4 /* VGSAnalyticsClient.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		32CFC70824EBEEB300457B17 /* VGSCardScanCollector */ = {
@@ -1322,7 +1322,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1358,7 +1358,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
