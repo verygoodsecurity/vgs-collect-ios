@@ -6,7 +6,7 @@
 //  Copyright © 2020 VGS. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if os(iOS)
 import UIKit
 #endif
 

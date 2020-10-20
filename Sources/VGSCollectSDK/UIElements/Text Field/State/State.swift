@@ -5,7 +5,7 @@
 //
 
 import Foundation
-#if canImport(UIKit)
+#if os(iOS)
 import UIKit
 #endif
 

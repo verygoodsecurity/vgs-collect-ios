@@ -7,13 +7,14 @@
 //
 
 import Foundation
-#if canImport(UIKit)
+import CardIO
 import UIKit
+import AVFoundation.AVCaptureDevice
+
+#if !COCOAPODS
+import VGSCollectSDK
 #endif
 
-#if canImport(CardIO)
-import CardIO
-import AVFoundation.AVCaptureDevice
 
 internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     
@@ -48,16 +49,20 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     
     /// :nodoc:
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
-        delegate?.userDidCancelScan?()
+      VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "CardIO"])
+        delegate?.userDidCancelScan()
     }
     
     /// :nodoc:
     func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
         guard let cardInfo = cardInfo, let cardIOdelegate = delegate else {
-            delegate?.userDidFinishScan?()
+            delegate?.userDidFinishScan()
             return
         }
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
+            if let form = textfield.vgsCollector {
+              VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+            }
             textfield.setText(cardInfo.cardNumber)
         }
         if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020 {
@@ -87,7 +92,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         if let cvc = cardInfo.cvv, !cvc.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cvc) {
             textfield.setText(cvc)
         }
-        cardIOdelegate.userDidFinishScan?()
+        cardIOdelegate.userDidFinishScan()
     }
 }
-#endif
+

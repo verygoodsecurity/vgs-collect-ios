@@ -12,7 +12,7 @@ import Foundation
 @objc
 public protocol VGSFilePickerControllerDelegate {
     
-    // MARK: - Handle user ineraction with `Card.io`.
+    // MARK: - Handle user ineraction.
     
     /// On user select a file
     ///
