@@ -64,7 +64,7 @@ class AssetsBundle {
     var iconBundle: Bundle?
     
     init() {
-        let containingBundle = Bundle(for: AssetsBundle.self)
+        let containingBundle = Bundle.module
         if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
             iconBundle = Bundle(url: bundleURL)
         } else {
