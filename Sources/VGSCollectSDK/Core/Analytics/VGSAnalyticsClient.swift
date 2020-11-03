@@ -58,10 +58,9 @@ public class VGSAnalyticsClient {
 
   /// :nodoc: Track events related to specific VGSCollect instance
   public func trackFormEvent(_ form: VGSCollect, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
-    let env = (form.dataRegion != nil) ? "\(form.environment.rawValue)-\(form.dataRegion ?? "")" : form.environment.rawValue
-    let formDetails = ["formId": form.formId,
-                       "tnt": form.tenantId,
-                       "env": env
+      let formDetails = ["formId": form.formId,
+                         "tnt": form.tenantId,
+                         "env": form.regionalEnvironment
                       ]
     let data: [String: Any]
     if let extraData = extraData {

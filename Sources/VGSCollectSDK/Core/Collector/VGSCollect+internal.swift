@@ -27,9 +27,14 @@ internal extension VGSCollect {
         return tenantId.isAlphaNumeric
     }
     
-  /// Validate data region id
+    /// Validate data region id
     class func regionValid(_ region: String) -> Bool {
       return !region.isEmpty && region.range(of: ".*[^a-zA-Z0-9-].*", options: .regularExpression) == nil
+    }
+  
+    /// Validate string representing environment and data region
+    class func regionalEnironmentStringValid(_ enironment: String) -> Bool {
+      return !enironment.isEmpty && NSPredicate(format: "SELF MATCHES %@", "^(live|sandbox|LIVE|SANDBOX)+((-)+([a-zA-Z0-9]+)|)+\\d*$").evaluate(with: enironment)
     }
   
     /// Validate stored textfields input data
@@ -109,24 +114,25 @@ internal extension VGSCollect {
         observeFieldState?(textField)
     }
   
-  class func generateVaultURL(tenantId: String, environment: Environment, region: String?) -> URL {
-        
-      var environmentString = environment.rawValue
-    
-      if let region = region, !region.isEmpty {
-        if environment == .live {
-          assert(Self.regionValid(region), "ERROR: DATA REGION IS NOT VALID!!!")
-          environmentString += "-" + region
-        } else {
-          print("NOTE: DATA REGION SHOULD BE USED WITH LIVE ENVIRONMENT ONLY!!!")
-        }
-      }
+  /// Generates API String with environment and data region.
+  class func generateRegionalEnvironmentString(_ environment: Environment, region: String?) -> String {
+    var environmentString = environment.rawValue
+    if let region = region, !region.isEmpty {
+        assert(Self.regionValid(region), "ERROR: REGION IS NOT VALID!!!")
+        environmentString += "-" + region
+    }
+    return environmentString
+  }
+  
+  /// Generates API URL with vault id, environment and data region.
+  class func generateVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
+      assert(Self.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRIN IS NOT VALID!!!")
       assert(Self.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
-
-      let strUrl = "https://" + tenantId + "." + environmentString + ".verygoodproxy.com"
+    
+      let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
       guard let url = URL(string: strUrl) else {
           fatalError("ERROR: NOT VALID ORGANIZATION PARAMETERS!!!")
       }
       return url
-    }
+  }
 }

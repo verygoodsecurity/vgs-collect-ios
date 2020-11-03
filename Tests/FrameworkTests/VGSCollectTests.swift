@@ -25,7 +25,7 @@ class VGSCollectTests: XCTestCase {
         XCTAssertTrue(host.contains("sandbox"))
     }
   
-    func testSandboxEnvirinmentReturnsTrue() {
+    func testSandboxEnvironmentReturnsTrue() {
       var liveForm = VGSCollect(id: "testID", environment: .sandbox)
       var host = liveForm.apiClient.baseURL.host ?? ""
       XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
@@ -36,10 +36,10 @@ class VGSCollectTests: XCTestCase {
     
       liveForm = VGSCollect(id: "testID", environment: .sandbox, dataRegion: "ua-0505")
       host = liveForm.apiClient.baseURL.host ?? ""
-      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
+      XCTAssertTrue(host == "testID.sandbox-ua-0505.verygoodproxy.com")
     }
     
-    func testLiveEnvirinmentReturnsTrue() {
+    func testLiveEnvironmentReturnsTrue() {
       var liveForm = VGSCollect(id: "testID", environment: .live)
       var host = liveForm.apiClient.baseURL.host ?? ""
       XCTAssertTrue(host == "testID.live.verygoodproxy.com")
@@ -51,6 +51,43 @@ class VGSCollectTests: XCTestCase {
       liveForm = VGSCollect(id: "testID", environment: .live, dataRegion: "ua-0505")
       host = liveForm.apiClient.baseURL.host ?? ""
       XCTAssertTrue(host == "testID.live-ua-0505.verygoodproxy.com")
+    }
+  
+    func testRegionalEnvironmentReturnsTrue() {
+      var liveForm = VGSCollect(id: "testID", environment: "live")
+      var host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.live.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: "live-eu1")
+      host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.live-eu1.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: "live-ua-0505")
+      host = liveForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.live-ua-0505.verygoodproxy.com")
+      
+      
+      var sandboxForm = VGSCollect(id: "testID", environment: "sandbox")
+      host = sandboxForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
+      
+      sandboxForm = VGSCollect(id: "testID", environment: "sandbox-ua5")
+      host = sandboxForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox-ua5.verygoodproxy.com")
+    
+      sandboxForm = VGSCollect(id: "testID", environment: "sandbox-ua-0505")
+      host = sandboxForm.apiClient.baseURL.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox-ua-0505.verygoodproxy.com")
+    }
+  
+    func testGenerateRegionalEnvironmentStringReturnsFalse() {
+      let notValidEnvStrings = ["liv", "random-ua1", "random-ua-0505",
+                                "live-", "live.com", "live/eu",
+                                "sandox/us-5050", "sanbox?web=google.com", "", " "]
+      
+      for env in notValidEnvStrings {
+        XCTAssertFalse(VGSCollect.regionalEnironmentStringValid(env))
+      }
     }
   
     func testRegionStringValidation() {
