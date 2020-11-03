@@ -15,8 +15,7 @@ import UIKit
 public class VGSCollect {
     internal let apiClient: APIClient
     internal let storage = Storage()
-    internal let environment: Environment
-    internal let dataRegion: String?
+    internal let regionalEnvironment: String
     internal let tenantId: String
   
     /// Max file size limit by proxy. Is static and can't be changed!
@@ -57,16 +56,27 @@ public class VGSCollect {
     ///
     /// - Parameters:
     ///   - id: your organization vault id.
-    ///   - environment: your organization vault environment. By default `Environment.sandbox`.
-    ///   - dataRegion: id of data storage region (e.g. "eu-123"). Effects ONLY `Environment.live` vaults.
-    public init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
-      let url = Self.generateVaultURL(tenantId: id, environment: environment, region: dataRegion)
+    ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sanbox").
+    public init(id: String, environment: String) {
+      let url = Self.generateVaultURL(tenantId: id, regionalEnvironment: environment)
       apiClient = APIClient(baseURL: url)
       self.tenantId = id
-      self.environment = environment
-      self.dataRegion = dataRegion
+      self.regionalEnvironment = environment
     }
   
+    // MARK: - Initialzation
+    
+    /// Initialzation
+    ///
+    /// - Parameters:
+    ///   - id: your organization vault id.
+    ///   - environment: your organization vault environment. By default `Environment.sandbox`.
+    ///   - dataRegion: id of data storage region (e.g. "eu-123").
+    public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
+      let env = Self.generateRegionalEnvironmentString(environment, region: dataRegion)
+      self.init(id: id, environment: env)
+    }
+
     // MARK: - Helper functions
     
     /// Detach files for associated `VGSCollect` instance.
