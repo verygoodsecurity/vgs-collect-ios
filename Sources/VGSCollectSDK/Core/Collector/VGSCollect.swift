@@ -77,15 +77,33 @@ public class VGSCollect {
       self.init(id: id, environment: env)
     }
 
-    // MARK: - Helper functions
-    
-    /// Detach files for associated `VGSCollect` instance.
-    public func cleanFiles() {
-        storage.removeFiles()
-    }
+    // MARK: - Manage VGSTextFields
     
     /// Returns `VGSTextField` with `VGSConfiguration.fieldName` associated with `VGCollect` instance.
     public func getTextField(fieldName: String) -> VGSTextField? {
         return storage.elements.first(where: { $0.fieldName == fieldName })
+    }
+  
+    /// Unassign `VGSTextField` from `VGSCollect` instance
+    ///
+    /// - Parameters:
+    ///   - textField: `VGSTextField` that should be unassigned.
+    public func unassignTextField(_ textField: VGSTextField) {
+      self.unregisterTextFields(textField: [textField])
+    }
+  
+    /// Unassign `VGSTextField`s from `VGSCollect` instance
+    ///
+    /// - Parameters:
+    ///   - textFields: an array of `VGSTextField`s that should be unassigned.
+    public func unassignTextFields(_ textFields: [VGSTextField]) {
+      self.unregisterTextFields(textField: textFields)
+    }
+  
+    // MARK: - Manage Filesb
+  
+    /// Detach files for associated `VGSCollect` instance.
+    public func cleanFiles() {
+        storage.removeFiles()
     }
 }

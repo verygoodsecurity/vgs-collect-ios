@@ -135,7 +135,6 @@ public class VGSTextField: UIView {
     }
     
     deinit {
-        vgsCollector?.unregisterTextFields(textField: [self])
         NotificationCenter.default.removeObserver(self)
     }
   
