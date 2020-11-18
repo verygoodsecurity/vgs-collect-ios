@@ -156,6 +156,40 @@ class VGSCollectTests: XCTestCase {
       XCTAssertTrue(collector.storage.elements.count == 0)
       XCTAssertTrue(collector.textFields.count == 0)
   }
+  
+    func testUnassignSingleTextField() {
+        let config = VGSConfiguration(collector: collector, fieldName: "test")
+        let tf1 = VGSCardTextField()
+        tf1.configuration = config
+        
+        XCTAssertTrue(collector.storage.elements.count == 1)
+        XCTAssertTrue(collector.textFields.count == 1)
+      
+        collector.unassignTextField(tf1)
+        
+        XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.textFields.count == 0)
+      
+        collector.unassignTextField(tf1)
+        XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.textFields.count == 0)
+    }
+  
+    func testUnassignMultipleTextFields() {
+      let config = VGSConfiguration(collector: collector, fieldName: "test")
+      let tf2 = VGSTextField()
+      tf2.configuration = config
+    
+      let tf3 = VGSExpDateTextField()
+      tf3.configuration = config
+    
+      XCTAssertTrue(collector.storage.elements.count == 2)
+      XCTAssertTrue(collector.textFields.count == 2)
+      
+      collector.unassignTextFields([tf3, tf2])
+      XCTAssertTrue(collector.storage.elements.count == 0)
+      XCTAssertTrue(collector.textFields.count == 0)
+    }
     
     func testCustomJsonMapping() {
         let cardConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.card_number")

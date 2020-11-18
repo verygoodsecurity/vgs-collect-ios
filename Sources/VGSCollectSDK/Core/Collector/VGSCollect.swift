@@ -20,12 +20,12 @@ public class VGSCollect {
   
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
-    /// Unique form identifier
+    /// Unique form identifier.
     internal let formId = UUID().uuidString
       
     // MARK: Custom HTTP Headers
     
-    /// Set your custom HTTP headers
+    /// Set your custom HTTP headers.
     public var customHeaders: [String: String]? {
         didSet {
             if customHeaders != oldValue {
@@ -52,7 +52,7 @@ public class VGSCollect {
   
     // MARK: - Initialzation
     
-    /// Initialzation
+    /// Initialzation.
     ///
     /// - Parameters:
     ///   - id: your organization vault id.
@@ -66,7 +66,7 @@ public class VGSCollect {
   
     // MARK: - Initialzation
     
-    /// Initialzation
+    /// Initialzation.
     ///
     /// - Parameters:
     ///   - id: your organization vault id.
@@ -77,15 +77,33 @@ public class VGSCollect {
       self.init(id: id, environment: env)
     }
 
-    // MARK: - Helper functions
-    
-    /// Detach files for associated `VGSCollect` instance.
-    public func cleanFiles() {
-        storage.removeFiles()
-    }
+    // MARK: - Manage VGSTextFields
     
     /// Returns `VGSTextField` with `VGSConfiguration.fieldName` associated with `VGCollect` instance.
     public func getTextField(fieldName: String) -> VGSTextField? {
         return storage.elements.first(where: { $0.fieldName == fieldName })
+    }
+  
+    /// Unassign `VGSTextField` from `VGSCollect` instance.
+    ///
+    /// - Parameters:
+    ///   - textField: `VGSTextField` that should be unassigned.
+    public func unassignTextField(_ textField: VGSTextField) {
+      self.unregisterTextFields(textField: [textField])
+    }
+  
+    /// Unassign `VGSTextField`s from `VGSCollect` instance.
+    ///
+    /// - Parameters:
+    ///   - textFields: an array of `VGSTextField`s that should be unassigned.
+    public func unassignTextFields(_ textFields: [VGSTextField]) {
+      self.unregisterTextFields(textField: textFields)
+    }
+  
+    // MARK: - Manage Files
+  
+    /// Detach files for associated `VGSCollect` instance.
+    public func cleanFiles() {
+        storage.removeFiles()
     }
 }
