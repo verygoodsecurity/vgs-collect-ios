@@ -93,17 +93,6 @@ public class VGSTextField: UIView {
             textField.returnKeyType = configuration.returnKeyType ?? .default
             textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
             
-            switch configuration.type {
-            case .cardHolderName:
-                textField.textContentType = .name
-                textField.autocorrectionType = .yes
-            case .cardNumber:
-                textField.textContentType = .creditCardNumber
-                textField.autocorrectionType = .yes
-            default:
-                break
-            }
-            
             if let pattern = configuration.formatPattern {
                 textField.formatPattern = pattern
             } else {
