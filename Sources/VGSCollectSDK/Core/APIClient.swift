@@ -59,32 +59,77 @@ class APIClient {
     private let vaultUrl: URL
     private var hostURL: URL?
     private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
-	  private static let hostValidatorBaseURL = URL(string: "https://js.verygoodvault.com/collect-configs")!
 
 		enum CustomHostStatus {
-			case isResolving(_ hostToResolve: String)
-			case resolved(_ url: URL)
-			case error
+			/**
+			 Resolving host name is in progress.
+
+			 - Parameters:
+					- hostNameToResolve: `String` object, host name to resolve.
+			*/
+			case isResolving(_ hostNameToResolve: String)
+
+			/**
+			 Host name is resolved and can be used for requests.
+
+			 - Parameters:
+					- resolvedURL: `URL` object, resolved host name URL.
+			*/
+			case resolved(_ resolvedURL: URL)
+
+			/**
+			 Host name cannot be resolved, default vault URL will be used.
+
+			 - Parameters:
+					- vaultURL: `URL` object, should be default vault URL.
+			*/
+			case useDefaultVault(_ vaultURL: URL)
+
+			var url: URL? {
+				switch self {
+				case .isResolving:
+					return nil
+				case .useDefaultVault(let defaultVaultURL):
+					return defaultVaultURL
+				case .resolved(let resolvedURL):
+					return resolvedURL
+				}
+			}
 		}
 
 		enum HostURLPolicy {
-			case vault
-			case customHost(_ status: CustomHostStatus)
+			/**
+			 Use vault url, custom host name not set.
+
+			 - Parameters:
+					- url: `URL` object, default vault URL.
+			*/
+			case vaultURL(_ vaultURL: URL)
+
+			/**
+			 Custom host URL.
+
+			 - Parameters:
+					- status: `CustomHostStatus` object, host name status.
+			*/
+			case customHostURL(_ status: CustomHostStatus)
+
+			var url: URL? {
+				switch self {
+				case .vaultURL(let vaultURL):
+					return vaultURL
+				case .customHostURL(let hostStatus):
+					return hostStatus.url
+				}
+			}
 		}
 
 		internal var hostURLPolicy: HostURLPolicy
 
-//    private var hostName: String? {
-//      set {
-//        if !newValue.isNilOrEmpty {
-//          self.updateHost(with: newValue!)
-//        } else {
-//          self.hostURL = nil
-//        }
-//      }
-//      get { return  hostURL?.absoluteString }
-//    }
-    
+
+	/// Serial queue for syncing requests.
+	private let dataSyncQueue: DispatchQueue = .init( label: "iOS.VGSCollection.RequestsQueue" )
+	private let syncSemaphore: DispatchSemaphore = .init( value: 1 )
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
         // Add Headers
@@ -99,57 +144,41 @@ class APIClient {
       self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
       self.vaultId = tenantId
 
-			guard let host = hostName else {
-				self.hostURLPolicy = .vault
+			guard let hostNameToResolve = hostName, !hostNameToResolve.isEmpty else {
+				self.hostURLPolicy = .vaultURL(vaultUrl)
 				return
 			}
 
-			self.hostURLPolicy = .customHost(.isResolving(host))
-			updateHost(with: host)
+			self.hostURLPolicy = .customHostURL(.isResolving(hostNameToResolve))
+			updateHost(with: hostNameToResolve)
     }
-  
-		func getBaseUrl(_ result: ( @escaping (URL) -> Void)) {
-			switch hostURLPolicy {
-			  // Use vault URL.
-				case .vault:
-					result(vaultUrl)
-					return
 
-				case .customHost(let status):
-					switch status {
-						// Use resolved custom URL.
-						case .resolved(let customHostURL):
-							result(customHostURL)
-						case .error:
-							// Use vault URL.
-							result(vaultUrl)
-						case .isResolving(let hostName):
-							// Try to send request after resolving custom URL.
-							updateHost(with: hostName) { [weak self] _ in
-								if let strongSelf = self {
-									strongSelf.getBaseUrl(result)
-								}
-							}
-					}
-			}
-		}
-  
     // MARK: - Send request
 
-    func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+	func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
 
-			switch hostURLPolicy {
-			case .vault:
-				let url = vaultUrl.appendingPathComponent(path)
-				self.sendRequest(to: url, method: method, value: value, completion: block)
-			default:
-				getBaseUrl { [weak self](baseURL) in
-					let url = baseURL.appendingPathComponent(path)
-					self?.sendRequest(to: url, method: method, value: value, completion: block)
+		let sendRequestBlock: (URL) -> Void = {requestURL in
+			let url = requestURL.appendingPathComponent(path)
+			self.sendRequest(to: url, method: method, value: value, completion: block)
+		}
+
+		switch hostURLPolicy {
+		case .vaultURL(let url):
+			sendRequestBlock(url)
+		case .customHostURL(let status):
+			switch status {
+			case .resolved(let resolvedURL):
+				sendRequestBlock(resolvedURL)
+			case .useDefaultVault(let vaultURL):
+				sendRequestBlock(vaultURL)
+			case .isResolving(let hostNameToResolve):
+				updateHost(with: hostNameToResolve) { (url) in
+					sendRequestBlock(url)
+				}
 			}
-    }
+		}
 	}
-  
+
    private  func sendRequest(to url: URL, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
       
         // Add Headers
@@ -189,7 +218,6 @@ class APIClient {
     }
 }
 
-
 extension APIClient {
   
   // MARK: - Vault Url
@@ -208,66 +236,43 @@ extension APIClient {
   
   // MARK: - Custom Host Name
 
-  private func updateHost(with hostName: String, completion: ((URL?) -> Void)? = nil) {
-      Self.buildHostName(hostName, tenantId: vaultId) { [weak self](url) in
+  private func updateHost(with hostName: String, completion: ((URL) -> Void)? = nil) {
+
+		dataSyncQueue.async {
+
+			// Enter sync zone.
+			self.syncSemaphore.wait()
+
+			// Check if we already have URL. If yes, don't fetch it the same time.
+			if let url = self.hostURLPolicy.url {
+				completion?(url)
+				// Quite sync zone.
+				self.syncSemaphore.signal()
+				return
+			}
+
+			// Resolve host name.
+			APIHostNameBuilder.buildHostName(hostName, tenantId: self.vaultId) {[weak self](url) in
         if let validUrl = url {
-					self?.hostURLPolicy = .customHost(.resolved(validUrl))
+					self?.hostURLPolicy = .customHostURL(.resolved(validUrl))
           self?.hostURL = validUrl
           completion?(validUrl)
+
+					// Quite sync zone.
+					self?.syncSemaphore.signal()
           return
         } else {
-					self?.hostURLPolicy = .customHost(.error)
-          completion?(nil)
+					guard let strongSelf = self else {
+						return
+					}
+					self?.hostURLPolicy = .customHostURL(.useDefaultVault(strongSelf.vaultUrl))
+          completion?(strongSelf.vaultUrl)
+
+					// Quite sync zone.
+					self?.syncSemaphore.signal()
           return
         }
       }
-    }
-  
-  private static func buildHostName(_ hostName: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
-    
-    guard !hostName.isEmpty else {
-      completion(nil)
-      return
-    }
-
-    if let url = buildHostValidationURL(with: hostName, tenantId: tenantId) {
-      DispatchQueue.global(qos: .userInitiated).async {
-          let contents = try? String(contentsOf: url)
-          DispatchQueue.main.async {
-            if let contents = contents, contents.contains(hostName) {
-              completion(URL(string: hostName))
-              return
-            } else {
-              print("ERROR: NOT VALID HOST NAME!!! WILL USE VAULT URL INSTEAD!!!")
-              completion(nil)
-              return
-            }
-          }
-       }
-    } else {
-      completion(nil)
-    }
-  }
-
-	private static func buildHostValidationURL(with host: String, tenantId: String) -> URL? {
-
-		let hostPath = "\(host)__\(tenantId).txt"
-		guard let component = URLComponents(string: hostPath) else {
-			// Cannot build component
-			return nil
 		}
-
-		let url: URL
-		if let hostToValid = component.host {
-			// Use hostname if component is url with scheme.
-			url = hostValidatorBaseURL.appendingPathComponent(hostToValid)
-		} else {
-			// Use path if component has path only.
-			url = hostValidatorBaseURL.appendingPathComponent(component.path)
-		}
-
-		print("final url: \(url)")
-
-		return url
 	}
 }
