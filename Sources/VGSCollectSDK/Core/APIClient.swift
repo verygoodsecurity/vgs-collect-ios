@@ -59,16 +59,31 @@ class APIClient {
     private let vaultUrl: URL
     private var hostURL: URL?
     private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
-    private var hostName: String? {
-      set {
-        if !newValue.isNilOrEmpty {
-          self.updateHost(with: newValue!)
-        } else {
-          self.hostURL = nil
-        }
-      }
-      get { return  hostURL?.absoluteString }
-    }
+	  private static let hostValidatorBaseURL = URL(string: "https://js.verygoodvault.com/collect-configs")!
+
+		enum CustomHostStatus {
+			case isResolving(_ hostToResolve: String)
+			case resolved(_ url: URL)
+			case error
+		}
+
+		enum HostURLPolicy {
+			case vault
+			case customHost(_ status: CustomHostStatus)
+		}
+
+		internal var hostURLPolicy: HostURLPolicy
+
+//    private var hostName: String? {
+//      set {
+//        if !newValue.isNilOrEmpty {
+//          self.updateHost(with: newValue!)
+//        } else {
+//          self.hostURL = nil
+//        }
+//      }
+//      get { return  hostURL?.absoluteString }
+//    }
     
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
@@ -83,39 +98,57 @@ class APIClient {
     required init(tenantId: String, regionalEnvironment: String, hostName: String?) {
       self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
       self.vaultId = tenantId
-      self.hostName = hostName
+
+			guard let host = hostName else {
+				self.hostURLPolicy = .vault
+				return
+			}
+
+			self.hostURLPolicy = .customHost(.isResolving(host))
+			updateHost(with: host)
     }
   
-    func getBaseUrl(_ result: ( @escaping (URL) -> Void)) {
-      if let hostUrl = hostURL {
-        result(hostUrl)
-        return
-      } else if hostName.isNilOrEmpty {
-        result(vaultUrl)
-        return
-      } else {
-        updateHost(with: hostName!) { [weak self] _ in
-          if let strongSelf = self {
-            strongSelf.getBaseUrl(result)
-          }
-        }
-      }
-    }
+		func getBaseUrl(_ result: ( @escaping (URL) -> Void)) {
+			switch hostURLPolicy {
+			  // Use vault URL.
+				case .vault:
+					result(vaultUrl)
+					return
+
+				case .customHost(let status):
+					switch status {
+						// Use resolved custom URL.
+						case .resolved(let customHostURL):
+							result(customHostURL)
+						case .error:
+							// Use vault URL.
+							result(vaultUrl)
+						case .isResolving(let hostName):
+							// Try to send request after resolving custom URL.
+							updateHost(with: hostName) { [weak self] _ in
+								if let strongSelf = self {
+									strongSelf.getBaseUrl(result)
+								}
+							}
+					}
+			}
+		}
   
     // MARK: - Send request
 
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
-      
-        if hostName != nil {
-          getBaseUrl { [weak self](baseURL) in
-            let url = baseURL.appendingPathComponent(path)
-            self?.sendRequest(to: url, method: method, value: value, completion: block)
-          }
-        } else {
-          let url = vaultUrl.appendingPathComponent(path)
-          self.sendRequest(to: url, method: method, value: value, completion: block)
-        }
+
+			switch hostURLPolicy {
+			case .vault:
+				let url = vaultUrl.appendingPathComponent(path)
+				self.sendRequest(to: url, method: method, value: value, completion: block)
+			default:
+				getBaseUrl { [weak self](baseURL) in
+					let url = baseURL.appendingPathComponent(path)
+					self?.sendRequest(to: url, method: method, value: value, completion: block)
+			}
     }
+	}
   
    private  func sendRequest(to url: URL, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
       
@@ -163,7 +196,7 @@ extension APIClient {
   
   /// Generates API URL with vault id, environment and data region.
   private static func buildVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
-      assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRIN IS NOT VALID!!!")
+      assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRING IS NOT VALID!!!")
       assert(VGSCollect.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
     
       let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
@@ -178,11 +211,12 @@ extension APIClient {
   private func updateHost(with hostName: String, completion: ((URL?) -> Void)? = nil) {
       Self.buildHostName(hostName, tenantId: vaultId) { [weak self](url) in
         if let validUrl = url {
+					self?.hostURLPolicy = .customHost(.resolved(validUrl))
           self?.hostURL = validUrl
           completion?(validUrl)
           return
         } else {
-          self?.hostName = nil
+					self?.hostURLPolicy = .customHost(.error)
           completion?(nil)
           return
         }
@@ -195,11 +229,8 @@ extension APIClient {
       completion(nil)
       return
     }
-    
-    let host = hostName.replacingOccurrences(of: "https://", with: "")
-    let hostPath = "\(host)__\(tenantId).txt"
-    
-    if let url = URL(string: hostValidatorUrl)?.appendingPathComponent(hostPath) {
+
+    if let url = buildHostValidationURL(with: hostName, tenantId: tenantId) {
       DispatchQueue.global(qos: .userInitiated).async {
           let contents = try? String(contentsOf: url)
           DispatchQueue.main.async {
@@ -217,4 +248,26 @@ extension APIClient {
       completion(nil)
     }
   }
+
+	private static func buildHostValidationURL(with host: String, tenantId: String) -> URL? {
+
+		let hostPath = "\(host)__\(tenantId).txt"
+		guard let component = URLComponents(string: hostPath) else {
+			// Cannot build component
+			return nil
+		}
+
+		let url: URL
+		if let hostToValid = component.host {
+			// Use hostname if component is url with scheme.
+			url = hostValidatorBaseURL.appendingPathComponent(hostToValid)
+		} else {
+			// Use path if component has path only.
+			url = hostValidatorBaseURL.appendingPathComponent(component.path)
+		}
+
+		print("final url: \(url)")
+
+		return url
+	}
 }
