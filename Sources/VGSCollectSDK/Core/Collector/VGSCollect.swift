@@ -57,11 +57,10 @@ public class VGSCollect {
     /// - Parameters:
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sanbox").
-    public init(id: String, environment: String) {
-      let url = Self.generateVaultURL(tenantId: id, regionalEnvironment: environment)
-      apiClient = APIClient(baseURL: url)
+    public init(id: String, environment: String, hostName: String? = nil) {
       self.tenantId = id
       self.regionalEnvironment = environment
+      self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostName: hostName)
     }
   
     // MARK: - Initialzation
@@ -72,9 +71,9 @@ public class VGSCollect {
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment. By default `Environment.sandbox`.
     ///   - dataRegion: id of data storage region (e.g. "eu-123").
-    public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
+  public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil, hostname: String? = nil) {
       let env = Self.generateRegionalEnvironmentString(environment, region: dataRegion)
-      self.init(id: id, environment: env)
+      self.init(id: id, environment: env, hostName: hostname)
     }
 
     // MARK: - Manage VGSTextFields
