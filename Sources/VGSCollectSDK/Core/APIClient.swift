@@ -132,7 +132,7 @@ class APIClient {
 
 
 	/// Serial queue for syncing requests.
-	private let dataSyncQueue: DispatchQueue = .init( label: "iOS.VGSCollection.RequestsQueue" )
+	private let dataSyncQueue: DispatchQueue = .init( label: "iOS.VGSCollect.ResolveHostNameRequestsQueue" )
 	private let syncSemaphore: DispatchSemaphore = .init( value: 1 )
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
@@ -173,8 +173,8 @@ class APIClient {
 			switch status {
 			case .resolved(let resolvedURL):
 				sendRequestBlock(resolvedURL)
-			case .useDefaultVault(let vaultURL):
-				sendRequestBlock(vaultURL)
+			case .useDefaultVault(let defaultVaultURL):
+				sendRequestBlock(defaultVaultURL)
 			case .isResolving(let hostNameToResolve):
 				updateHost(with: hostNameToResolve) { (url) in
 					sendRequestBlock(url)
@@ -262,18 +262,18 @@ extension APIClient {
           self?.hostURL = validUrl
           completion?(validUrl)
 
-					// Quite sync zone.
+					// Exit sync zone.
 					self?.syncSemaphore.signal()
           return
         } else {
 					guard let strongSelf = self else {
 						return
 					}
-					self?.hostURLPolicy = .customHostURL(.useDefaultVault(strongSelf.vaultUrl))
+					strongSelf.hostURLPolicy = .customHostURL(.useDefaultVault(strongSelf.vaultUrl))
           completion?(strongSelf.vaultUrl)
 
-					// Quite sync zone.
-					self?.syncSemaphore.signal()
+					// Exit sync zone.
+					strongSelf.syncSemaphore.signal()
           return
         }
       }
