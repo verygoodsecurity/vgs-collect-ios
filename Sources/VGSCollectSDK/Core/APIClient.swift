@@ -124,6 +124,10 @@ class APIClient {
 			}
 		}
 
+		internal var baseURL: URL? {
+			return self.hostURLPolicy.url
+		}
+
 		internal var hostURLPolicy: HostURLPolicy
 
 
