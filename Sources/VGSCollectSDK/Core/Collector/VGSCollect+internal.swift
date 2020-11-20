@@ -123,16 +123,4 @@ internal extension VGSCollect {
     }
     return environmentString
   }
-  
-  /// Generates API URL with vault id, environment and data region.
-  class func generateVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
-      assert(Self.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRIN IS NOT VALID!!!")
-      assert(Self.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
-    
-      let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
-      guard let url = URL(string: strUrl) else {
-          fatalError("ERROR: NOT VALID ORGANIZATION PARAMETERS!!!")
-      }
-      return url
-  }
 }
