@@ -52,14 +52,25 @@ public enum HTTPMethod: String {
 }
 
 class APIClient {
-    let baseURL: URL!
-    
+
     var customHeader: HTTPHeaders?
-    
-    init(baseURL url: URL) {
-        baseURL = url
+
+    private let vaultId: String
+    private let vaultUrl: URL
+    private var hostURL: URL?
+    private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
+    private var hostName: String? {
+      set {
+        if !newValue.isNilOrEmpty {
+          self.updateHost(with: newValue!)
+        } else {
+          self.hostURL = nil
+        }
+      }
+      get { return  hostURL?.absoluteString }
     }
     
+  
     internal static let defaultHttpHeaders: HTTPHeaders = {
         // Add Headers
         let version = ProcessInfo.processInfo.operatingSystemVersion
@@ -68,8 +79,46 @@ class APIClient {
           "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(VGSAnalyticsClient.shared.vgsCollectSessionId)"
         ]
     }()
+  
+    required init(tenantId: String, regionalEnvironment: String, hostName: String?) {
+      self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
+      self.vaultId = tenantId
+      self.hostName = hostName
+    }
+  
+    func getBaseUrl(_ result: ( @escaping (URL) -> Void)) {
+      if let hostUrl = hostURL {
+        result(hostUrl)
+        return
+      } else if hostName.isNilOrEmpty {
+        result(vaultUrl)
+        return
+      } else {
+        updateHost(with: hostName!) { [weak self] _ in
+          if let strongSelf = self {
+            strongSelf.getBaseUrl(result)
+          }
+        }
+      }
+    }
+  
+    // MARK: - Send request
 
     func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+      
+        if hostName != nil {
+          getBaseUrl { [weak self](baseURL) in
+            let url = baseURL.appendingPathComponent(path)
+            self?.sendRequest(to: url, method: method, value: value, completion: block)
+          }
+        } else {
+          let url = vaultUrl.appendingPathComponent(path)
+          self.sendRequest(to: url, method: method, value: value, completion: block)
+        }
+    }
+  
+   private  func sendRequest(to url: URL, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+      
         // Add Headers
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"
@@ -81,7 +130,6 @@ class APIClient {
         }
         // Setup URLRequest
         let jsonData = try? JSONSerialization.data(withJSONObject: value)
-        let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)
         request.httpBody = jsonData
         request.httpMethod = method.rawValue
@@ -106,4 +154,67 @@ class APIClient {
             }
         }.resume()
     }
+}
+
+
+extension APIClient {
+  
+  // MARK: - Vault Url
+  
+  /// Generates API URL with vault id, environment and data region.
+  private static func buildVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
+      assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRIN IS NOT VALID!!!")
+      assert(VGSCollect.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
+    
+      let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
+      guard let url = URL(string: strUrl) else {
+          fatalError("ERROR: NOT VALID ORGANIZATION PARAMETERS!!!")
+      }
+      return url
+  }
+  
+  // MARK: - Custom Host Name
+
+  private func updateHost(with hostName: String, completion: ((URL?) -> Void)? = nil) {
+      Self.buildHostName(hostName, tenantId: vaultId) { [weak self](url) in
+        if let validUrl = url {
+          self?.hostURL = validUrl
+          completion?(validUrl)
+          return
+        } else {
+          self?.hostName = nil
+          completion?(nil)
+          return
+        }
+      }
+    }
+  
+  private static func buildHostName(_ hostName: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
+    
+    guard !hostName.isEmpty else {
+      completion(nil)
+      return
+    }
+    
+    let host = hostName.replacingOccurrences(of: "https://", with: "")
+    let hostPath = "\(host)__\(tenantId).txt"
+    
+    if let url = URL(string: hostValidatorUrl)?.appendingPathComponent(hostPath) {
+      DispatchQueue.global(qos: .userInitiated).async {
+          let contents = try? String(contentsOf: url)
+          DispatchQueue.main.async {
+            if let contents = contents, contents.contains(hostName) {
+              completion(URL(string: hostName))
+              return
+            } else {
+              print("ERROR: NOT VALID HOST NAME!!! WILL USE VAULT URL INSTEAD!!!")
+              completion(nil)
+              return
+            }
+          }
+       }
+    } else {
+      completion(nil)
+    }
+  }
 }
