@@ -22,7 +22,8 @@ class APIHostnameValidatorTests: XCTestCase {
 		"https://ios-testing.testhost.io/",
 		"https://www.ios-testing.testhost.io/",
 		"ios-testing.testhost.io/",
-		"www.ios-testing.testhost.io/"
+		"www.ios-testing.testhost.io/",
+		"http://ios-testing.testhost.io"
 		]
 
 		let testTenantId = "123456"
