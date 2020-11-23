@@ -62,22 +62,15 @@ internal class APIHostnameValidator {
 			return nil
 		}
 
-		var path: String
+		let url: URL
 		if let componentHost = component.host {
 			// Use hostname if component is url with scheme.
-			path = componentHost
+			url = hostValidatorBaseURL.appendingPathComponent(componentHost)
 		} else {
 			// Use path if component has path only.
-			path = component.path
+			url = hostValidatorBaseURL.appendingPathComponent(component.path)
 		}
 
-		let wwwPrefix = "www."
-		// Remove www. if neeeded.
-		if path.hasPrefix(wwwPrefix) {
-			path = String(path.dropFirst(wwwPrefix.count))
-		}
-
-		let	url = hostValidatorBaseURL.appendingPathComponent(path)
 		return url
 	}
 }
