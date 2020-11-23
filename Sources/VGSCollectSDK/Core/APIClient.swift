@@ -65,9 +65,9 @@ class APIClient {
 			 Resolving host name is in progress.
 
 			 - Parameters:
-					- hostNameToResolve: `String` object, host name to resolve.
+					- hostnameToResolve: `String` object, host name to resolve.
 			*/
-			case isResolving(_ hostNameToResolve: String)
+			case isResolving(_ hostnameToResolve: String)
 
 			/**
 			 Host name is resolved and can be used for requests.
@@ -144,17 +144,17 @@ class APIClient {
         ]
     }()
   
-    required init(tenantId: String, regionalEnvironment: String, hostName: String?) {
+    required init(tenantId: String, regionalEnvironment: String, hostname: String?) {
       self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
       self.vaultId = tenantId
 
-			guard let hostNameToResolve = hostName, !hostNameToResolve.isEmpty else {
+			guard let hostnameToResolve = hostname, !hostnameToResolve.isEmpty else {
 				self.hostURLPolicy = .vaultURL(vaultUrl)
 				return
 			}
 
-			self.hostURLPolicy = .customHostURL(.isResolving(hostNameToResolve))
-			updateHost(with: hostNameToResolve)
+			self.hostURLPolicy = .customHostURL(.isResolving(hostnameToResolve))
+			updateHost(with: hostnameToResolve)
     }
 
     // MARK: - Send request
@@ -175,8 +175,8 @@ class APIClient {
 				sendRequestBlock(resolvedURL)
 			case .useDefaultVault(let defaultVaultURL):
 				sendRequestBlock(defaultVaultURL)
-			case .isResolving(let hostNameToResolve):
-				updateHost(with: hostNameToResolve) { (url) in
+			case .isResolving(let hostnameToResolve):
+				updateHost(with: hostnameToResolve) { (url) in
 					sendRequestBlock(url)
 				}
 			}
@@ -240,7 +240,7 @@ extension APIClient {
   
   // MARK: - Custom Host Name
 
-  private func updateHost(with hostName: String, completion: ((URL) -> Void)? = nil) {
+  private func updateHost(with hostname: String, completion: ((URL) -> Void)? = nil) {
 
 		dataSyncQueue.async {
 
@@ -256,7 +256,7 @@ extension APIClient {
 			}
 
 			// Resolve host name.
-			APIHostNameBuilder.buildHostName(hostName, tenantId: self.vaultId) {[weak self](url) in
+			APIHostNameBuilder.buildHostname(hostname, tenantId: self.vaultId) {[weak self](url) in
         if let validUrl = url {
 					self?.hostURLPolicy = .customHostURL(.resolved(validUrl))
           self?.hostURL = validUrl

@@ -11,19 +11,19 @@ internal class APIHostNameBuilder {
 
 	private static let hostValidatorBaseURL = URL(string: "https://js.verygoodvault.com/collect-configs")!
 
-  internal static func buildHostName(_ hostName: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
+  internal static func buildHostname(_ hostname: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
 
-    guard !hostName.isEmpty else {
+    guard !hostname.isEmpty else {
       completion(nil)
       return
     }
 
-    if let url = buildHostValidationURL(with: hostName, tenantId: tenantId) {
+    if let url = buildHostValidationURL(with: hostname, tenantId: tenantId) {
       DispatchQueue.global(qos: .userInitiated).async {
           let contents = try? String(contentsOf: url)
           DispatchQueue.main.async {
-            if let contents = contents, contents.contains(hostName) {
-              completion(URL(string: hostName))
+            if let contents = contents, contents.contains(hostname) {
+              completion(URL(string: hostname))
               return
             } else {
               print("ERROR: NOT VALID HOST NAME!!! WILL USE VAULT URL INSTEAD!!!")
@@ -37,9 +37,9 @@ internal class APIHostNameBuilder {
     }
   }
 
-	internal static func buildHostValidationURL(with host: String, tenantId: String) -> URL? {
+	internal static func buildHostValidationURL(with hostname: String, tenantId: String) -> URL? {
 
-		let hostPath = "\(host)__\(tenantId).txt"
+		let hostPath = "\(hostname)__\(tenantId).txt"
 		guard let component = URLComponents(string: hostPath) else {
 			// Cannot build component
 			return nil
