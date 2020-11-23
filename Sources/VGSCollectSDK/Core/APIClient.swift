@@ -64,12 +64,12 @@ class APIClient {
 			 Resolving host name is in progress.
 
 			 - Parameters:
-					- hostnameToResolve: `String` object, host name to resolve.
+					- hostnameToResolve: `String` object, hostname to resolve.
 			*/
 			case isResolving(_ hostnameToResolve: String)
 
 			/**
-			 Host name is resolved and can be used for requests.
+			 Hostname is resolved and can be used for requests.
 
 			 - Parameters:
 					- resolvedURL: `URL` object, resolved host name URL.
@@ -77,7 +77,7 @@ class APIClient {
 			case resolved(_ resolvedURL: URL)
 
 			/**
-			 Host name cannot be resolved, default vault URL will be used.
+			 Hostname cannot be resolved, default vault URL will be used.
 
 			 - Parameters:
 					- vaultURL: `URL` object, should be default vault URL.
@@ -98,7 +98,7 @@ class APIClient {
 
 		enum HostURLPolicy {
 			/**
-			 Use vault url, custom host name not set.
+			 Use vault url, custom hostname not set.
 
 			 - Parameters:
 					- url: `URL` object, default vault URL.
@@ -109,7 +109,7 @@ class APIClient {
 			 Custom host URL.
 
 			 - Parameters:
-					- status: `CustomHostStatus` object, host name status.
+					- status: `CustomHostStatus` object, hostname status.
 			*/
 			case customHostURL(_ status: CustomHostStatus)
 
