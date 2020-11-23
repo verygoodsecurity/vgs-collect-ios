@@ -9,19 +9,7 @@
 import Foundation
 
 internal extension VGSCollect {
-    
-    func registerTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.addElement(tf)
-        }
-    }
-    
-    func unregisterTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.removeElement(tf)
-        }
-    }
-    
+  
     /// Validate tenant id
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric
@@ -39,7 +27,7 @@ internal extension VGSCollect {
   
     /// Validate stored textfields input data
     func validateStoredInputData() -> VGSError? {
-        return validate(storage.elements)
+        return validate(storage.textFields)
     }
     
     /// Validate specific textfields input data
@@ -75,7 +63,7 @@ internal extension VGSCollect {
     /// Turns textfields data saved in Storage and extra data in format ready to send
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
-        let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
+        let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
             dict[element.fieldName] = element.textField.getSecureTextWithDivider
         }
 
@@ -103,14 +91,14 @@ internal extension VGSCollect {
     /// Update fields state
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
-        storage.elements.forEach { textField in
+        storage.textFields.forEach { textField in
             textField.focusStatus = false
         }
         // set focus for textField
         textField.focusStatus = true
         
         // call observers ONLY after all internal updates done
-        observeStates?(storage.elements)
+        observeStates?(storage.textFields)
         observeFieldState?(textField)
     }
   
@@ -122,5 +110,28 @@ internal extension VGSCollect {
         environmentString += "-" + region
     }
     return environmentString
+  }
+}
+
+/// Mark: - Fields registration
+internal extension VGSCollect {
+  func registerTextFields(textField objects: [VGSTextField]) {
+      objects.forEach { [weak self] tf in
+          self?.storage.addTextField(tf)
+      }
+  }
+  
+  func unregisterTextFields(textField objects: [VGSTextField]) {
+      objects.forEach { [weak self] tf in
+          self?.storage.removeTextField(tf)
+      }
+  }
+
+  func unregisterAllTextFields() {
+      self.storage.removeAllTextFields()
+  }
+  
+  func unregisterAllFiles() {
+      self.storage.removeFiles()
   }
 }

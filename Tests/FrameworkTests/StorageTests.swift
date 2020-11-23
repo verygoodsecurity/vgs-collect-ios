@@ -24,15 +24,15 @@ class StorageTests: XCTestCase {
     }
     
     func testAdd() {
-        storage.addElement(textField)
-        XCTAssert(storage.elements.count == 1)
+        storage.addTextField(textField)
+        XCTAssert(storage.textFields.count == 1)
         
-        storage.addElement(textField)
-        XCTAssert(storage.elements.count == 1)
+        storage.addTextField(textField)
+        XCTAssert(storage.textFields.count == 1)
     }
     
     func testRemove() {
-        storage.removeElement(textField)
-        XCTAssert(storage.elements.count == 0)
+        storage.removeTextField(textField)
+        XCTAssert(storage.textFields.count == 0)
     }
 }

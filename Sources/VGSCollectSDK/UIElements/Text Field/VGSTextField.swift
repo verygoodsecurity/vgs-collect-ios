@@ -273,7 +273,7 @@ internal extension VGSTextField {
         self.textField.formatPattern = VGSPaymentCards.unknown.formatPattern
       }
       // change cvc format pattern and validation rules based on card brand
-      if let cvcField = self.vgsCollector?.storage.elements.filter({ $0.fieldType == .cvc }).first {
+      if let cvcField = self.vgsCollector?.storage.textFields.filter({ $0.fieldType == .cvc }).first {
         cvcField.textField.formatPattern = cardState.cardBrand.cvcFormatPattern
         cvcField.validationRules = self.getCVCValidationRules(cardBrand:cardState.cardBrand)
       }

@@ -47,7 +47,7 @@ public class VGSCollect {
     
     /// Returns array of `VGSTextField`s associated with `VGSCollect` instance.
     public var textFields: [VGSTextField] {
-      return storage.elements
+      return storage.textFields
     }
   
     // MARK: - Initialzation
@@ -57,6 +57,7 @@ public class VGSCollect {
     /// - Parameters:
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sanbox").
+    ///   - hostname:
     public init(id: String, environment: String, hostname: String? = nil) {
       self.tenantId = id
       self.regionalEnvironment = environment
@@ -80,7 +81,7 @@ public class VGSCollect {
     
     /// Returns `VGSTextField` with `VGSConfiguration.fieldName` associated with `VGCollect` instance.
     public func getTextField(fieldName: String) -> VGSTextField? {
-        return storage.elements.first(where: { $0.fieldName == fieldName })
+        return storage.textFields.first(where: { $0.fieldName == fieldName })
     }
   
     /// Unassign `VGSTextField` from `VGSCollect` instance.
@@ -99,10 +100,16 @@ public class VGSCollect {
       self.unregisterTextFields(textField: textFields)
     }
   
+    /// Unassign  all `VGSTextField`s from `VGSCollect` instance.
+    public func unassignAllTextFields() {
+      self.unregisterAllTextFields()
+    }
+
+  
     // MARK: - Manage Files
   
     /// Detach files for associated `VGSCollect` instance.
     public func cleanFiles() {
-        storage.removeFiles()
+      self.unregisterAllFiles()
     }
 }

@@ -127,12 +127,12 @@ class VGSCollectTests: XCTestCase {
         let tf = VGSCardTextField()
         tf.configuration = config
         
-        XCTAssertTrue(collector.storage.elements.count == 1)
+        XCTAssertTrue(collector.storage.textFields.count == 1)
         XCTAssertTrue(collector.textFields.count == 1)
       
         collector.unregisterTextFields(textField: [tf])
         
-        XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.storage.textFields.count == 0)
         XCTAssertTrue(collector.textFields.count == 0)
     }
   
@@ -148,12 +148,12 @@ class VGSCollectTests: XCTestCase {
         tf.configuration = config
       }
     
-      XCTAssertTrue(collector.storage.elements.count == fieldsCount)
+      XCTAssertTrue(collector.storage.textFields.count == fieldsCount)
       XCTAssertTrue(collector.textFields.count == fieldsCount)
       
       collector.unregisterTextFields(textField: collector.textFields)
       
-      XCTAssertTrue(collector.storage.elements.count == 0)
+      XCTAssertTrue(collector.storage.textFields.count == 0)
       XCTAssertTrue(collector.textFields.count == 0)
   }
   
@@ -162,16 +162,16 @@ class VGSCollectTests: XCTestCase {
         let tf1 = VGSCardTextField()
         tf1.configuration = config
         
-        XCTAssertTrue(collector.storage.elements.count == 1)
+        XCTAssertTrue(collector.storage.textFields.count == 1)
         XCTAssertTrue(collector.textFields.count == 1)
       
         collector.unassignTextField(tf1)
         
-        XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.storage.textFields.count == 0)
         XCTAssertTrue(collector.textFields.count == 0)
       
         collector.unassignTextField(tf1)
-        XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.storage.textFields.count == 0)
         XCTAssertTrue(collector.textFields.count == 0)
     }
   
@@ -183,11 +183,11 @@ class VGSCollectTests: XCTestCase {
       let tf3 = VGSExpDateTextField()
       tf3.configuration = config
     
-      XCTAssertTrue(collector.storage.elements.count == 2)
+      XCTAssertTrue(collector.storage.textFields.count == 2)
       XCTAssertTrue(collector.textFields.count == 2)
       
       collector.unassignTextFields([tf3, tf2])
-      XCTAssertTrue(collector.storage.elements.count == 0)
+      XCTAssertTrue(collector.storage.textFields.count == 0)
       XCTAssertTrue(collector.textFields.count == 0)
     }
     
