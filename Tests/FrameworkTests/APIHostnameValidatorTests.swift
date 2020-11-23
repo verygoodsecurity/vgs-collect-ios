@@ -14,20 +14,27 @@ class APIHostnameValidatorTests: XCTestCase {
 	func testBuildHostURL() {
 		let validURL = URL(string: "https://js.verygoodvault.com/collect-configs/ios-testing.testhost.io__123456.txt")!
 
+		let validHostnames = [
+		"https://ios-testing.testhost.io",
+		"https://www.ios-testing.testhost.io",
+		"ios-testing.testhost.io",
+		"www.ios-testing.testhost.io",
+		"https://ios-testing.testhost.io/",
+		"https://www.ios-testing.testhost.io/",
+		"ios-testing.testhost.io/",
+		"www.ios-testing.testhost.io/"
+		]
+
 		let testTenantId = "123456"
 
-		guard let url1 = APIHostnameValidator.buildHostValidationURL(with: "https://ios-testing.testhost.io", tenantId: testTenantId) else {
-			assertionFailure("Failed. Cannot build URL with https://")
-			return
+		validHostnames.forEach { (hostname) in
+			if let url = APIHostnameValidator.buildHostValidationURL(with: hostname, tenantId: testTenantId) {
+				print("test hostname: \(hostname)")
+				XCTAssertTrue(url == validURL)
+			} else {
+				assertionFailure("Cannot build url with hostname: \(hostname)")
+			}
 		}
-
-		guard let url2 = APIHostnameValidator.buildHostValidationURL(with: "ios-testing.testhost.io", tenantId: testTenantId) else {
-			assertionFailure("Failed. Cannot build URL without https://")
-			return
-		}
-
-		XCTAssertTrue(url1 == validURL)
-		XCTAssertTrue(url2 == validURL)
 	}
 
 	func testSecureURL() {

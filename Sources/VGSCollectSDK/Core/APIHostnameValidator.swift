@@ -50,21 +50,34 @@ internal class APIHostnameValidator {
 
 	internal static func buildHostValidationURL(with hostname: String, tenantId: String) -> URL? {
 
-		let hostPath = "\(hostname)__\(tenantId).txt"
+		var nornalizedHostname = hostname
+		// Drop last "/" for valid file path.
+		if hostname.hasSuffix("/") {
+			nornalizedHostname = String(nornalizedHostname.dropLast())
+		}
+
+		let hostPath = "\(nornalizedHostname)__\(tenantId).txt"
 		guard let component = URLComponents(string: hostPath) else {
 			// Cannot build component
 			return nil
 		}
 
-		let url: URL
-		if let hostToValid = component.host {
+		var path: String
+		if let componentHost = component.host {
 			// Use hostname if component is url with scheme.
-			url = hostValidatorBaseURL.appendingPathComponent(hostToValid)
+			path = componentHost
 		} else {
 			// Use path if component has path only.
-			url = hostValidatorBaseURL.appendingPathComponent(component.path)
+			path = component.path
 		}
 
+		let wwwPrefix = "www."
+		// Remove www. if neeeded.
+		if path.hasPrefix(wwwPrefix) {
+			path = String(path.dropFirst(wwwPrefix.count))
+		}
+
+		let	url = hostValidatorBaseURL.appendingPathComponent(path)
 		return url
 	}
 }
