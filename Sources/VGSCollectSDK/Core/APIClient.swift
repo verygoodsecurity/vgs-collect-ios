@@ -256,7 +256,7 @@ extension APIClient {
 			}
 
 			// Resolve hostname.
-			APIHostnameBuilder.buildHostname(hostname, tenantId: self.vaultId) {[weak self](url) in
+			APIHostnameValidator.validateCustomHostname(hostname, tenantId: self.vaultId) {[weak self](url) in
         if let validUrl = url {
 					self?.hostURLPolicy = .customHostURL(.resolved(validUrl))
           self?.hostURL = validUrl

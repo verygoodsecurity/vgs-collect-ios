@@ -1,5 +1,5 @@
 //
-//  APIHostnameBuilder.swift
+//  APIHostnameValidator.swift
 //  VGSCollectSDK
 //
 //  Copyright © 2020 VGS. All rights reserved.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-internal class APIHostnameBuilder {
+internal class APIHostnameValidator {
 
 	private static let hostValidatorBaseURL = URL(string: "https://js.verygoodvault.com/collect-configs")!
 
-  internal static func buildHostname(_ hostname: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
+  internal static func validateCustomHostname(_ hostname: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
 
     guard !hostname.isEmpty else {
       completion(nil)

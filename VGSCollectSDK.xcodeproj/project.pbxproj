@@ -69,7 +69,7 @@
 		32F23A7924B752E200E389F7 /* PaymentCardsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A7724B7522000E389F7 /* PaymentCardsTest.swift */; };
 		32F23A7B24B8713A00E389F7 /* CardBrand+default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A7A24B8713900E389F7 /* CardBrand+default.swift */; };
 		32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4B7F324C881FA006086F3 /* Calendar+extension.swift */; };
-		4404600C2567FA0B0064BEA0 /* APIHostnameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600B2567FA0B0064BEA0 /* APIHostnameBuilder.swift */; };
+		4404600C2567FA0B0064BEA0 /* APIHostnameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600B2567FA0B0064BEA0 /* APIHostnameValidator.swift */; };
 		4404600F256801890064BEA0 /* APIHostnameBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600D2568017E0064BEA0 /* APIHostnameBuilderTests.swift */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
@@ -186,7 +186,7 @@
 		32F23A7724B7522000E389F7 /* PaymentCardsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardsTest.swift; sourceTree = "<group>"; };
 		32F23A7A24B8713900E389F7 /* CardBrand+default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+default.swift"; sourceTree = "<group>"; };
 		32F4B7F324C881FA006086F3 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
-		4404600B2567FA0B0064BEA0 /* APIHostnameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameBuilder.swift; sourceTree = "<group>"; };
+		4404600B2567FA0B0064BEA0 /* APIHostnameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameValidator.swift; sourceTree = "<group>"; };
 		4404600D2568017E0064BEA0 /* APIHostnameBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameBuilderTests.swift; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -423,7 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				FD1489FB232D4F6B00FD7781 /* APIClient.swift */,
-				4404600B2567FA0B0064BEA0 /* APIHostnameBuilder.swift */,
+				4404600B2567FA0B0064BEA0 /* APIHostnameValidator.swift */,
 				320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */,
 				32F4B7F324C881FA006086F3 /* Calendar+extension.swift */,
 				FDE247D024674AA7008D75B0 /* Collector */,
@@ -914,7 +914,7 @@
 				FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */,
 				3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */,
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
-				4404600C2567FA0B0064BEA0 /* APIHostnameBuilder.swift in Sources */,
+				4404600C2567FA0B0064BEA0 /* APIHostnameValidator.swift in Sources */,
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				32F23A7224B72C1400E389F7 /* VGSPaymentCardModel.swift in Sources */,
 				327C9E162407F43A004C641C /* VGSErrorInfoKey.swift in Sources */,
