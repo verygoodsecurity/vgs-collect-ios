@@ -11,6 +11,17 @@ internal class APIHostnameValidator {
 
 	private static let hostValidatorBaseURL = URL(string: "https://js.verygoodvault.com/collect-configs")!
 
+	internal static func hasSecureScheme(url: URL) -> Bool {
+		return url.scheme == "https"
+	}
+
+	internal static func urlWithSecureScheme(from url: URL) -> URL? {
+		var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+		components?.scheme = "https"
+
+		return components?.url
+	}
+
   internal static func validateCustomHostname(_ hostname: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
 
     guard !hostname.isEmpty else {
@@ -57,4 +68,3 @@ internal class APIHostnameValidator {
 		return url
 	}
 }
-

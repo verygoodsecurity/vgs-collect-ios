@@ -29,4 +29,21 @@ class APIHostnameValidatorTests: XCTestCase {
 		XCTAssertTrue(url1 == validURL)
 		XCTAssertTrue(url2 == validURL)
 	}
+
+	func testSecureURL() {
+		let secureURL = URL(string: "https://js.verygoodvault.com/collect-configs/ios-testing.testhost.io__123456.txt")!
+
+		let insecureURL = URL(string: "http://js.verygoodvault.com/collect-configs/ios-testing.testhost.io__123456.txt")!
+
+
+		XCTAssertTrue(APIHostnameValidator.hasSecureScheme(url: secureURL))
+		XCTAssertFalse(APIHostnameValidator.hasSecureScheme(url: insecureURL))
+
+		guard let updatedURL = APIHostnameValidator.urlWithSecureScheme(from: insecureURL) else {
+			assertionFailure("Failed. Cannot change URL scheme from \(insecureURL)")
+			return
+		}
+
+		XCTAssertTrue(secureURL == updatedURL)
+	}
 }

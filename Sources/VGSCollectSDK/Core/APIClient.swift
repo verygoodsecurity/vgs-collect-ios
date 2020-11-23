@@ -57,7 +57,6 @@ class APIClient {
 
     private let vaultId: String
     private let vaultUrl: URL
-    private var hostURL: URL?
     private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
 
 		enum CustomHostStatus {
@@ -257,9 +256,14 @@ extension APIClient {
 
 			// Resolve hostname.
 			APIHostnameValidator.validateCustomHostname(hostname, tenantId: self.vaultId) {[weak self](url) in
-        if let validUrl = url {
+				if var validUrl = url {
+
+					// Update url scheme if needed.
+					if !APIHostnameValidator.hasSecureScheme(url: validUrl), let secureURL = APIHostnameValidator.urlWithSecureScheme(from: validUrl) {
+						validUrl = secureURL
+					}
+
 					self?.hostURLPolicy = .customHostURL(.resolved(validUrl))
-          self?.hostURL = validUrl
           completion?(validUrl)
 
 					// Exit sync zone.
