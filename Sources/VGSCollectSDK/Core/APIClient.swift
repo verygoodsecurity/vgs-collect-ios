@@ -127,6 +127,7 @@ class APIClient {
 			return self.hostURLPolicy.url
 		}
 
+	  /// Host URL policy. Determinates final URL to send Collect requests.
 		internal var hostURLPolicy: HostURLPolicy
 
 
