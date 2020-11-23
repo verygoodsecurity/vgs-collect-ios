@@ -48,7 +48,7 @@ class CVVTextFieldTests: XCTestCase {
         XCTAssertTrue(state.isRequired)
         XCTAssertNotNil(state.description)
       
-        if let _ = state as? CardState {
+        if state is CardState {
             XCTFail("CardState shouldn't be available for .cvc configuration")
         }
     }

@@ -146,7 +146,6 @@ class PaymentCardsTest: XCTestCase {
     }
   }
   
-  
     func testUnknownBrands() {
       cardTextField.setText("9111 1111 1111 111")
       
@@ -204,7 +203,6 @@ class PaymentCardsTest: XCTestCase {
          XCTFail("Failt state card text files")
        }
       
-      
       cardTextField.setText("0000 1111 0000 1111 0009")
        if let state = cardTextField.state as? CardState {
          XCTAssertTrue(state.cardBrand == .unknown)
@@ -237,7 +235,6 @@ class PaymentCardsTest: XCTestCase {
     VGSPaymentCards.cutomPaymentCardModels = customBrands
     XCTAssertTrue(VGSPaymentCards.availableCards.count == VGSPaymentCards.defaultCardModels.count + customBrands.count)
    }
-  
   
   func resetCardBrands() {
     VGSPaymentCards.elo = VGSPaymentCardModel(brand: .elo)

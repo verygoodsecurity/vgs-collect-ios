@@ -100,24 +100,24 @@ internal extension FieldType {
     var defaultValidation: VGSValidationRuleSet {
       var rules = VGSValidationRuleSet()
       switch self {
-        case .cardHolderName, .ssn:
-          rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
-        case .expDate:
-          rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
-          rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
-        case .cardNumber:
-          rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
-        case .cvc:
-          rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
-          rules.add(rule: VGSValidationRuleLengthMatch(lengths: [3, 4], error: VGSValidationErrorType.lengthMathes.rawValue))
-        case .none:
-          rules = VGSValidationRuleSet()
+      case .cardHolderName, .ssn:
+        rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+      case .expDate:
+        rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+        rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
+      case .cardNumber:
+        rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
+      case .cvc:
+        rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+        rules.add(rule: VGSValidationRuleLengthMatch(lengths: [3, 4], error: VGSValidationErrorType.lengthMathes.rawValue))
+      case .none:
+        rules = VGSValidationRuleSet()
       }
       return rules
     }
   
     // String idetifier for each  field type. Can be used for ananlytics, etc.
-    var stringIdentifier:String {
+    var stringIdentifier: String {
       switch self {
       case .cardHolderName:
         return "card-holder-name"

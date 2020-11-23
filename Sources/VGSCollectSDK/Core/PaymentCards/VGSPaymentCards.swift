@@ -84,7 +84,6 @@ public class VGSPaymentCards {
     ///  Unknown Brand Payment Card Model.  Can be used for specifing cards details when `VGSValidationRulePaymentCard` requires validating `CardBrand.unknown` cards.
     public static var unknown = VGSUnknownPaymentCardModel()
   
-  
     // MARK: - Custom Payment Card Models
   
     /// Array of Custom Payment Card Models.
@@ -128,7 +127,7 @@ public extension VGSPaymentCards.CardBrand {
     }
   
     /// :nodoc:  Equatable protocol
-    static func ==(lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
       switch (lhs, rhs) {
       case (.visa, .visa),
            (.elo, .elo),
@@ -151,7 +150,6 @@ public extension VGSPaymentCards.CardBrand {
       }
     }
 }
-
 
 internal extension VGSPaymentCards {
     

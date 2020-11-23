@@ -37,7 +37,7 @@ public enum HTTPMethod: String {
         - data: response **data** object.
         - response: URLResponse object represents a URL load response.
     */
-    case success(_ code:Int, _ data:Data?, _ response: URLResponse?)
+    case success(_ code: Int, _ data: Data?, _ response: URLResponse?)
     
     /**
      Failed response case
@@ -48,7 +48,7 @@ public enum HTTPMethod: String {
         - response: `URLResponse` object represents a URL load response.
         - error: `Error` object.
     */
-    case failure(_ code:Int, _ data:Data?, _ response: URLResponse?, _ error:Error?)
+    case failure(_ code: Int, _ data: Data?, _ response: URLResponse?, _ error: Error?)
 }
 
 class APIClient {
@@ -131,7 +131,6 @@ class APIClient {
 
 	  /// Host URL policy. Determinates final URL to send Collect requests.
 		internal var hostURLPolicy: HostURLPolicy
-
 
 	/// Serial queue for syncing requests on resolving hostname flow.
 	private let dataSyncQueue: DispatchQueue = .init(label: "iOS.VGSCollect.ResolveHostNameRequestsQueue")

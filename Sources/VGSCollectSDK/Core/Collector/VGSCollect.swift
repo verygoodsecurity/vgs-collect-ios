@@ -41,7 +41,6 @@ public class VGSCollect {
     
     /// Observe  all `VGSTextField` on editing events.
     public var observeStates: ((_ form: [VGSTextField]) -> Void)?
-    
   
     // MARK: Get Registered VGSTextFields
     
@@ -104,7 +103,6 @@ public class VGSCollect {
     public func unassignAllTextFields() {
       self.unregisterAllTextFields()
     }
-
   
     // MARK: - Manage Files
   

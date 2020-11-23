@@ -54,4 +54,3 @@ public protocol VGSCardScanControllerDelegate {
     /// Asks `VGSTextField` where scanned data with `VGSConfiguration.FieldType` need to be set. Called after user select Done button, just before userDidFinishScan() delegate.
     @objc func textFieldForScannedData(type: CradScanDataType) -> VGSTextField?
 }
-

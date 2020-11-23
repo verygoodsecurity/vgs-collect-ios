@@ -75,10 +75,10 @@ class VGSCollectValidationTests: XCTestCase {
                
         collector.sendData(path: "post") { (response) in
           switch response {
-            case .success(let code, let data, _):
+          case .success(let code, let data, _):
               XCTAssertTrue(code == 200)
               XCTAssertNotNil(data)
-            case .failure(let code, _, _, let error):
+          case .failure(let code, _, _, let error):
               XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
           }
           expectation.fulfill()
@@ -124,11 +124,11 @@ class VGSCollectValidationTests: XCTestCase {
                
         collector.sendData(path: "post") { (response) in
           switch response {
-            case .success(let code, let data, _):
-              XCTAssertTrue(code == 200)
-              XCTAssertNotNil(data)
-            case .failure(let code, _, _, let error):
-              XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+          case .success(let code, let data, _):
+            XCTAssertTrue(code == 200)
+            XCTAssertNotNil(data)
+          case .failure(let code, _, _, let error):
+            XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
           }
           expectation.fulfill()
         }
@@ -149,12 +149,12 @@ class VGSCollectValidationTests: XCTestCase {
                
         collector.sendData(path: "post") { (response) in
           switch response {
-            case .success(let code, _, _):
-              XCTFail("Error: code=\(code): Send not valid data - returns success response")
-            case .failure(let code, _, _, let error):
-              let vgsError = error as? VGSError
-              XCTAssertNotNil(vgsError)
-              XCTAssertTrue(code == VGSErrorType.inputDataIsNotValid.rawValue)
+          case .success(let code, _, _):
+            XCTFail("Error: code=\(code): Send not valid data - returns success response")
+          case .failure(let code, _, _, let error):
+            let vgsError = error as? VGSError
+            XCTAssertNotNil(vgsError)
+            XCTAssertTrue(code == VGSErrorType.inputDataIsNotValid.rawValue)
           }
           expectation.fulfill()
         }
@@ -199,12 +199,12 @@ class VGSCollectValidationTests: XCTestCase {
                
         collector.sendData(path: "post") { (response) in
           switch response {
-            case .success(let code, _, _):
-              XCTFail("Error: code=\(code): Send not valid data - returns success response")
-            case .failure(let code, _, _, let error):
-              let vgsError = error as? VGSError
-              XCTAssertNotNil(vgsError)
-              XCTAssertTrue(code == VGSErrorType.inputDataIsNotValid.rawValue)
+          case .success(let code, _, _):
+            XCTFail("Error: code=\(code): Send not valid data - returns success response")
+          case .failure(let code, _, _, let error):
+            let vgsError = error as? VGSError
+            XCTAssertNotNil(vgsError)
+            XCTAssertTrue(code == VGSErrorType.inputDataIsNotValid.rawValue)
           }
           expectation.fulfill()
         }
@@ -249,11 +249,11 @@ class VGSCollectValidationTests: XCTestCase {
                
         collector.sendData(path: "post") { (response) in
           switch response {
-            case .success(let code, let data, _):
-              XCTAssertTrue(code == 200)
-              XCTAssertNotNil(data)
-            case .failure(let code, _, _, let error):
-              XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
+          case .success(let code, let data, _):
+            XCTAssertTrue(code == 200)
+            XCTAssertNotNil(data)
+          case .failure(let code, _, _, let error):
+            XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
           }
           expectation.fulfill()
         }

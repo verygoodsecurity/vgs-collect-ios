@@ -26,7 +26,6 @@ class SSNCollectingViewController: UIViewController {
     var consoleMessage: String = "" {
         didSet { consoleLabel.text = consoleMessage }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,26 +111,28 @@ class SSNCollectingViewController: UIViewController {
         
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
-          case .success(_, let data, _):
-            if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-              let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-              self?.consoleLabel.text = "Success: \n\(response)"
-              }
-              return
-          case .failure(let code, _, _, let error):
-            switch code {
-            case 400..<499:
-              // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-              self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
-            case VGSErrorType.inputDataIsNotValid.rawValue:
-              if let error = error as? VGSError {
-                self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
-              }
-            default:
-              self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
+        case .success(_, let data, _):
+          if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+            // swiftlint:disable force_try
+            let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+            self?.consoleLabel.text = "Success: \n\(response)"
+            // swiftlint:enable force_try
+          }
+          return
+        case .failure(let code, _, _, let error):
+          switch code {
+          case 400..<499:
+            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+            self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
+          case VGSErrorType.inputDataIsNotValid.rawValue:
+            if let error = error as? VGSError {
+              self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
             }
-            print("Submit request error: \(code), \(String(describing: error))")
-            return
+          default:
+            self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
+          }
+          print("Submit request error: \(code), \(String(describing: error))")
+          return
         }
       }
     }

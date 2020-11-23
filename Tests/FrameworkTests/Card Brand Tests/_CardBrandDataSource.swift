@@ -91,7 +91,7 @@ extension VGSPaymentCards.CardBrand {
                 "5555555555554444",
                 "5577000055770004",
                 "5585558555855583",
-                "5454545454545454",
+                "5454545454545454"
             ]
         case .discover:
             return [
@@ -206,7 +206,7 @@ extension VGSPaymentCards.CardBrand {
       case .dinersClub:
           return [
               "305", "300", "309",
-              "36","38", "39",
+              "36", "38", "39",
               "3000", "366", "391"
           ]
       case .jcb:

@@ -113,7 +113,7 @@ internal extension VGSCollect {
   }
 }
 
-/// Mark: - Fields registration
+// MARK: - Fields registration
 internal extension VGSCollect {
   func registerTextFields(textField objects: [VGSTextField]) {
       objects.forEach { [weak self] tf in

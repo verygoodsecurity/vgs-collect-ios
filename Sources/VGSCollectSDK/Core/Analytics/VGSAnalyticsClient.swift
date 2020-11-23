@@ -52,7 +52,7 @@ public class VGSAnalyticsClient {
       let osVersion = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
       return [
               "platform": UIDevice.current.systemName,
-              "device" : UIDevice.current.model,
+              "device": UIDevice.current.model,
               "osVersion": osVersion ]
       }()
 

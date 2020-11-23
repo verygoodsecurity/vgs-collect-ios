@@ -134,13 +134,13 @@ private extension VGSExpDateTextField {
       case .longSymbols:
         monthsDataSource = DateFormatter().monthSymbols
       case .numbers:
-        monthsDataSource =  months.map{ (String(format: "%02d", $0))}
+        monthsDataSource =  months.map { (String(format: "%02d", $0))}
       }
     }
     
     func updateYearsDataSource() {
       let suffixLength = yearPickeFormat == .short ? 2 : 4
-      yearsDataSource = years.map{ String(String($0).suffix(suffixLength))}
+      yearsDataSource = years.map { String(String($0).suffix(suffixLength))}
     }
   
     func scrollToCurrentMonth(animated: Bool) {

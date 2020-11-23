@@ -56,7 +56,6 @@ extension VGSDocumentPicker: UIDocumentPickerDelegate {
             let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnits: "bytes")
             delegate?.userDidPickFileWithInfo(fileMetadata)
         } else {
-            // swiftlint:disable:next line_length
             delegate?.filePickingFailedWithError(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Document File format is not supported. Can't convert to Data.", extraInfo: [:])))
         }
         return

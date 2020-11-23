@@ -27,7 +27,6 @@ class TestCollectCardsDataFlow: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
     
     func testPutCorrectData() {
       
@@ -92,4 +91,3 @@ class TestCollectCardsDataFlow: XCTestCase {
     app.buttons["Back"].tap()
   }
 }
-

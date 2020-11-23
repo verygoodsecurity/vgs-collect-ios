@@ -51,4 +51,3 @@ class TestCollectSSNDataFlow: XCTestCase {
         XCTAssert(successResponseLabel.exists)
   }
 }
-

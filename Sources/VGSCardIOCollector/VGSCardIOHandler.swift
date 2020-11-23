@@ -15,7 +15,6 @@ import AVFoundation.AVCaptureDevice
 import VGSCollectSDK
 #endif
 
-
 internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     
     weak var delegate: VGSCardIOScanControllerDelegate?
@@ -95,4 +94,3 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         cardIOdelegate.userDidFinishScan()
     }
 }
-

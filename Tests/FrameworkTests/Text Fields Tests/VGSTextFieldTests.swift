@@ -69,5 +69,4 @@ class VGSTextFieldTests: XCTestCase {
       XCTAssertTrue(textfield.state.isValid == false)
    }
 }
-      
        
