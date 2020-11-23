@@ -270,6 +270,7 @@ extension APIClient {
 
 					// Exit sync zone.
 					self?.syncSemaphore.signal()
+          VGSAnalyticsClient.shared.trackEvent(.hostnameValidation, status: .success, extraData: ["hostname": hostname])
           return
         } else {
 					guard let strongSelf = self else {
@@ -280,6 +281,7 @@ extension APIClient {
 
 					// Exit sync zone.
 					strongSelf.syncSemaphore.signal()
+          VGSAnalyticsClient.shared.trackEvent(.hostnameValidation, status: .failed, extraData: ["hostname": hostname])
           return
         }
       }

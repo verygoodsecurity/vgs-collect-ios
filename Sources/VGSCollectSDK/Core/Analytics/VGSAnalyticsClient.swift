@@ -14,6 +14,7 @@ import UIKit
 /// :nodoc: VGS Analytics event type
 public enum VGSAnalyticsEventType: String {
   case fieldInit = "Init"
+  case hostnameValidation = "HostNameValidation"
   case beforeSubmit = "BeforeSubmit"
   case submit = "Submit"
   case scan = "Scan"
