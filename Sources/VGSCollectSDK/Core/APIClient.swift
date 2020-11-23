@@ -130,9 +130,9 @@ class APIClient {
 		internal var hostURLPolicy: HostURLPolicy
 
 
-	/// Serial queue for syncing requests.
-	private let dataSyncQueue: DispatchQueue = .init( label: "iOS.VGSCollect.ResolveHostNameRequestsQueue" )
-	private let syncSemaphore: DispatchSemaphore = .init( value: 1 )
+	/// Serial queue for syncing requests on resolving hostname flow.
+	private let dataSyncQueue: DispatchQueue = .init(label: "iOS.VGSCollect.ResolveHostNameRequestsQueue")
+	private let syncSemaphore: DispatchSemaphore = .init(value: 1)
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
         // Add Headers
