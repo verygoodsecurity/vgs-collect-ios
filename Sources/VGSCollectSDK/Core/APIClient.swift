@@ -59,6 +59,7 @@ class APIClient {
     private let vaultUrl: URL
     private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
 
+	  /// Determinates hostname status states.
 		enum CustomHostStatus {
 			/**
 			 Resolving host name is in progress.
@@ -96,6 +97,7 @@ class APIClient {
 			}
 		}
 
+	  /// Determinates host URL policy for sending Collect requests.
 		enum HostURLPolicy {
 			/**
 			 Use vault url, custom hostname not set.
