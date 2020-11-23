@@ -54,8 +54,6 @@ internal class APIHostnameValidator {
 			url = hostValidatorBaseURL.appendingPathComponent(component.path)
 		}
 
-		print("final url: \(url)")
-
 		return url
 	}
 }
