@@ -29,12 +29,12 @@ internal class APIHostnameValidator {
       return
     }
 
-    if let url = buildHostValidationURL(with: hostname, tenantId: tenantId) {
+		if let url = buildHostValidationURL(with: hostname, tenantId: tenantId), let normalizedHostName = hostname.normalizedHostname() {
       DispatchQueue.global(qos: .userInitiated).async {
           let contents = try? String(contentsOf: url)
           DispatchQueue.main.async {
-            if let contents = contents, contents.contains(hostname) {
-              completion(URL(string: hostname))
+            if let contents = contents, contents.contains(normalizedHostName) {
+              completion(URL(string: contents))
               return
             } else {
               print("ERROR: NOT VALID HOST NAME!!! WILL USE VAULT URL INSTEAD!!!")
@@ -44,33 +44,19 @@ internal class APIHostnameValidator {
           }
        }
     } else {
+			print("ERROR: CANNOT BUILD HOSTNAME WITH: \(hostname)")
       completion(nil)
     }
   }
 
 	internal static func buildHostValidationURL(with hostname: String, tenantId: String) -> URL? {
 
-		var nornalizedHostname = hostname
-		// Drop last "/" for valid file path.
-		if hostname.hasSuffix("/") {
-			nornalizedHostname = String(nornalizedHostname.dropLast())
-		}
+		guard let normalizedHostname = hostname.normalizedHostname() else {return nil}
 
-		let hostPath = "\(nornalizedHostname)__\(tenantId).txt"
-		guard let component = URLComponents(string: hostPath) else {
-			// Cannot build component
-			return nil
-		}
+		let hostPath = "\(normalizedHostname)__\(tenantId).txt"
 
-		let url: URL
-		if let componentHost = component.host {
-			// Use hostname if component is url with scheme.
-			url = hostValidatorBaseURL.appendingPathComponent(componentHost)
-		} else {
-			// Use path if component has path only.
-			url = hostValidatorBaseURL.appendingPathComponent(component.path)
-		}
-
+		let	url = hostValidatorBaseURL.appendingPathComponent(hostPath)
+		print("final url: \(url)")
 		return url
 	}
 }
