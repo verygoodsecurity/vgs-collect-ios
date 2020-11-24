@@ -54,6 +54,7 @@ public class VGSAnalyticsClient {
       return [
               "platform": UIDevice.current.systemName,
               "device": UIDevice.current.model,
+              "deviceModel": UIDevice.current.modelIdentifier,
               "osVersion": osVersion ]
       }()
 
