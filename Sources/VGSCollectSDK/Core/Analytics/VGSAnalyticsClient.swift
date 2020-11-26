@@ -59,10 +59,10 @@ public class VGSAnalyticsClient {
       }()
 
   /// :nodoc: Track events related to specific VGSCollect instance
-  public func trackFormEvent(_ form: VGSCollect, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+  public func trackFormEvent(_ form: VGSFormAnanlyticsDetails, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       let formDetails = ["formId": form.formId,
                          "tnt": form.tenantId,
-                         "env": form.regionalEnvironment
+                         "env": form.environment
                       ]
     let data: [String: Any]
     if let extraData = extraData {

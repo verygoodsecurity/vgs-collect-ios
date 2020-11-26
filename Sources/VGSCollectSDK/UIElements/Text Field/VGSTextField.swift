@@ -112,10 +112,10 @@ public class VGSTextField: UIView {
               validationRules = fieldType.defaultValidation
             }
 
-            if let vgs = configuration.vgsCollector {
-                vgsCollector = vgs
-                vgs.registerTextFields(textField: [self])
-                VGSAnalyticsClient.shared.trackFormEvent(vgs, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
+            if let collector = configuration.vgsCollector {
+              vgsCollector = collector
+              collector.registerTextFields(textField: [self])
+              VGSAnalyticsClient.shared.trackFormEvent(collector.formAnalyticsDetails, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
             }
         }
     }

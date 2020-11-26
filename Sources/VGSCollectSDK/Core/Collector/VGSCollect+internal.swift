@@ -102,15 +102,15 @@ internal extension VGSCollect {
         observeFieldState?(textField)
     }
   
-  /// Generates API String with environment and data region.
-  class func generateRegionalEnvironmentString(_ environment: Environment, region: String?) -> String {
-    var environmentString = environment.rawValue
-    if let region = region, !region.isEmpty {
-        assert(Self.regionValid(region), "ERROR: REGION IS NOT VALID!!!")
-        environmentString += "-" + region
+    /// Generates API String with environment and data region.
+    class func generateRegionalEnvironmentString(_ environment: Environment, region: String?) -> String {
+      var environmentString = environment.rawValue
+      if let region = region, !region.isEmpty {
+          assert(Self.regionValid(region), "ERROR: REGION IS NOT VALID!!!")
+          environmentString += "-" + region
+      }
+      return environmentString
     }
-    return environmentString
-  }
 }
 
 // MARK: - Fields registration

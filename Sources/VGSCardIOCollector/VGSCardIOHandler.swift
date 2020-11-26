@@ -60,7 +60,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         }
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             if let form = textfield.configuration?.vgsCollector {
-              VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
             }
             textfield.setText(cardInfo.cardNumber)
         }

@@ -58,6 +58,7 @@ class APIClient {
     private let vaultId: String
     private let vaultUrl: URL
     private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
+    private let formAnalyticDetails: VGSFormAnanlyticsDetails
 
 	  /// Determinates hostname status states.
 		enum CustomHostStatus {
@@ -132,9 +133,9 @@ class APIClient {
 	  /// Host URL policy. Determinates final URL to send Collect requests.
 		internal var hostURLPolicy: HostURLPolicy
 
-	/// Serial queue for syncing requests on resolving hostname flow.
-	private let dataSyncQueue: DispatchQueue = .init(label: "iOS.VGSCollect.ResolveHostNameRequestsQueue")
-	private let syncSemaphore: DispatchSemaphore = .init(value: 1)
+    /// Serial queue for syncing requests on resolving hostname flow.
+    private let dataSyncQueue: DispatchQueue = .init(label: "iOS.VGSCollect.ResolveHostNameRequestsQueue")
+    private let syncSemaphore: DispatchSemaphore = .init(value: 1)
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
         // Add Headers
@@ -145,10 +146,11 @@ class APIClient {
         ]
     }()
   
-    required init(tenantId: String, regionalEnvironment: String, hostname: String?) {
+  required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails) {
       self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
       self.vaultId = tenantId
-
+      self.formAnalyticDetails = formAnalyticsDetails
+    
 			guard let hostnameToResolve = hostname, !hostnameToResolve.isEmpty else {
 				self.hostURLPolicy = .vaultURL(vaultUrl)
 				return
@@ -270,7 +272,9 @@ extension APIClient {
 
 					// Exit sync zone.
 					self?.syncSemaphore.signal()
-          VGSAnalyticsClient.shared.trackEvent(.hostnameValidation, status: .success, extraData: ["hostname": hostname])
+          if let strongSelf = self {
+            VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .success, extraData: ["hostname": hostname])
+          }
           return
         } else {
 					guard let strongSelf = self else {
@@ -281,7 +285,7 @@ extension APIClient {
 
 					// Exit sync zone.
 					strongSelf.syncSemaphore.signal()
-          VGSAnalyticsClient.shared.trackEvent(.hostnameValidation, status: .failed, extraData: ["hostname": hostname])
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .failed, extraData: ["hostname": hostname])
           return
         }
       }
