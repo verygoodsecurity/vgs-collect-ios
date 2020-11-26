@@ -10,7 +10,7 @@ import Foundation
 
 ///:nodoc:  VGSCollect Form Analytics Details
 public struct VGSFormAnanlyticsDetails {
-  let formId: String
-  let tenantId: String
-  let environment: String
+  public let formId: String
+  public let tenantId: String
+  public let environment: String
 }
