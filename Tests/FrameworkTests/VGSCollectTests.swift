@@ -164,12 +164,12 @@ class VGSCollectTests: XCTestCase {
         XCTAssertTrue(collector.storage.textFields.count == 1)
         XCTAssertTrue(collector.textFields.count == 1)
       
-        collector.unassignTextField(tf1)
+        collector.unsubscribeTextField(tf1)
         
         XCTAssertTrue(collector.storage.textFields.count == 0)
         XCTAssertTrue(collector.textFields.count == 0)
       
-        collector.unassignTextField(tf1)
+        collector.unsubscribeTextField(tf1)
         XCTAssertTrue(collector.storage.textFields.count == 0)
         XCTAssertTrue(collector.textFields.count == 0)
     }
@@ -185,7 +185,7 @@ class VGSCollectTests: XCTestCase {
       XCTAssertTrue(collector.storage.textFields.count == 2)
       XCTAssertTrue(collector.textFields.count == 2)
       
-      collector.unassignTextFields([tf3, tf2])
+      collector.unsubscribeTextFields([tf3, tf2])
       XCTAssertTrue(collector.storage.textFields.count == 0)
       XCTAssertTrue(collector.textFields.count == 0)
     }
