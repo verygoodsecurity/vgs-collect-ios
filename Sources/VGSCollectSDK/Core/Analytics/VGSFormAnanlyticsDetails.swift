@@ -13,4 +13,10 @@ public struct VGSFormAnanlyticsDetails {
   public let formId: String
   public let tenantId: String
   public let environment: String
+
+	public init(formId: String, tenantId: String, environment: String) {
+		self.formId = formId
+		self.tenantId = tenantId
+		self.environment = environment
+	}
 }
