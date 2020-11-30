@@ -31,7 +31,7 @@ internal extension VGSPaymentCards.CardBrand {
       case .visa:
           return "^4\\d*$"
       case .maestro:
-          return "^(5018|5020|5038|6304|6390[0-9]{2,}|67[0-9]{4,})\\d*$"
+          return "^(5018|5020|5038|56|57|58|6304|6390[0-9]{2,}|67[0-9]{4,})\\d*$"
       case .forbrugsforeningen:
         return "^600\\d*$"
       case .dankort:

@@ -98,7 +98,6 @@ class ValidationRulesTest: XCTestCase {
       XCTAssertTrue(textfield.state.validationErrors.count == 1)
       XCTAssertTrue(textfield.state.validationErrors.first == error)
     }
-    
   
     func testNoRule() {
       let config = VGSConfiguration(collector: form, fieldName: "test_field")
@@ -156,41 +155,41 @@ class ValidationRulesTest: XCTestCase {
     }
     
     func testMultipleRules() {
-      let length_error = "length_error"
-      let pattern_error = "pattern_error"
+      let lengthError = "length_error"
+      let patternError = "pattern_error"
       let config = VGSConfiguration(collector: form, fieldName: "test_field")
       config.type = .none
       config.validationRules = VGSValidationRuleSet(rules: [
-        VGSValidationRuleLength(min: 5, max: 9, error: length_error),
-        VGSValidationRulePattern(pattern: "^111\\d*$", error: pattern_error)
+        VGSValidationRuleLength(min: 5, max: 9, error: lengthError),
+        VGSValidationRulePattern(pattern: "^111\\d*$", error: patternError)
       ])
       textfield.configuration = config
       XCTAssertTrue(textfield.state.isValid == false)
       XCTAssertTrue(textfield.state.validationErrors.count == 2)
-      XCTAssertTrue(textfield.state.validationErrors.contains(length_error))
-      XCTAssertTrue(textfield.state.validationErrors.contains(pattern_error))
+      XCTAssertTrue(textfield.state.validationErrors.contains(lengthError))
+      XCTAssertTrue(textfield.state.validationErrors.contains(patternError))
       
       textfield.textField.secureText = "1234"
       XCTAssertTrue(textfield.state.isValid == false)
       XCTAssertTrue(textfield.state.validationErrors.count == 2)
-      XCTAssertTrue(textfield.state.validationErrors.contains(length_error))
-      XCTAssertTrue(textfield.state.validationErrors.contains(pattern_error))
+      XCTAssertTrue(textfield.state.validationErrors.contains(lengthError))
+      XCTAssertTrue(textfield.state.validationErrors.contains(patternError))
       
       textfield.textField.secureText = "1234567890"
       XCTAssertTrue(textfield.state.isValid == false)
       XCTAssertTrue(textfield.state.validationErrors.count == 2)
-      XCTAssertTrue(textfield.state.validationErrors.contains(length_error))
-      XCTAssertTrue(textfield.state.validationErrors.contains(pattern_error))
+      XCTAssertTrue(textfield.state.validationErrors.contains(lengthError))
+      XCTAssertTrue(textfield.state.validationErrors.contains(patternError))
       
       textfield.textField.secureText = "12345"
       XCTAssertTrue(textfield.state.isValid == false)
       XCTAssertTrue(textfield.state.validationErrors.count == 1)
-      XCTAssertTrue(textfield.state.validationErrors.contains(pattern_error))
+      XCTAssertTrue(textfield.state.validationErrors.contains(patternError))
       
       textfield.textField.secureText = "1112"
       XCTAssertTrue(textfield.state.isValid == false)
       XCTAssertTrue(textfield.state.validationErrors.count == 1)
-      XCTAssertTrue(textfield.state.validationErrors.contains(length_error))
+      XCTAssertTrue(textfield.state.validationErrors.contains(lengthError))
       
       textfield.textField.secureText = "11123"
       XCTAssertTrue(textfield.state.isValid)
@@ -201,4 +200,3 @@ class ValidationRulesTest: XCTestCase {
       XCTAssertTrue(textfield.state.validationErrors.count == 0)
     }
 }
-

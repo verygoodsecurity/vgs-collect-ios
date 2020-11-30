@@ -9,32 +9,25 @@
 import Foundation
 
 internal extension VGSCollect {
-    
-    func registerTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.addElement(tf)
-        }
-    }
-    
-    func unregisterTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.removeElement(tf)
-        }
-    }
-    
+  
     /// Validate tenant id
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric
     }
     
-  /// Validate data region id
+    /// Validate data region id
     class func regionValid(_ region: String) -> Bool {
       return !region.isEmpty && region.range(of: ".*[^a-zA-Z0-9-].*", options: .regularExpression) == nil
     }
   
+    /// Validate string representing environment and data region
+    class func regionalEnironmentStringValid(_ enironment: String) -> Bool {
+      return !enironment.isEmpty && NSPredicate(format: "SELF MATCHES %@", "^(live|sandbox|LIVE|SANDBOX)+((-)+([a-zA-Z0-9]+)|)+\\d*$").evaluate(with: enironment)
+    }
+  
     /// Validate stored textfields input data
     func validateStoredInputData() -> VGSError? {
-        return validate(storage.elements)
+        return validate(storage.textFields)
     }
     
     /// Validate specific textfields input data
@@ -70,7 +63,7 @@ internal extension VGSCollect {
     /// Turns textfields data saved in Storage and extra data in format ready to send
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
-        let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
+        let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
             dict[element.fieldName] = element.textField.getSecureTextWithDivider
         }
 
@@ -98,35 +91,47 @@ internal extension VGSCollect {
     /// Update fields state
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
-        storage.elements.forEach { textField in
+        storage.textFields.forEach { textField in
             textField.focusStatus = false
         }
         // set focus for textField
         textField.focusStatus = true
         
         // call observers ONLY after all internal updates done
-        observeStates?(storage.elements)
+        observeStates?(storage.textFields)
         observeFieldState?(textField)
     }
   
-  class func generateVaultURL(tenantId: String, environment: Environment, region: String?) -> URL {
-        
+    /// Generates API String with environment and data region.
+    class func generateRegionalEnvironmentString(_ environment: Environment, region: String?) -> String {
       var environmentString = environment.rawValue
-    
       if let region = region, !region.isEmpty {
-        if environment == .live {
-          assert(Self.regionValid(region), "ERROR: DATA REGION IS NOT VALID!!!")
+          assert(Self.regionValid(region), "ERROR: REGION IS NOT VALID!!!")
           environmentString += "-" + region
-        } else {
-          print("NOTE: DATA REGION SHOULD BE USED WITH LIVE ENVIRONMENT ONLY!!!")
-        }
       }
-      assert(Self.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
-
-      let strUrl = "https://" + tenantId + "." + environmentString + ".verygoodproxy.com"
-      guard let url = URL(string: strUrl) else {
-          fatalError("ERROR: NOT VALID ORGANIZATION PARAMETERS!!!")
-      }
-      return url
+      return environmentString
     }
+}
+
+// MARK: - Fields registration
+internal extension VGSCollect {
+  func registerTextFields(textField objects: [VGSTextField]) {
+      objects.forEach { [weak self] tf in
+          self?.storage.addTextField(tf)
+      }
+  }
+  
+  func unregisterTextFields(textField objects: [VGSTextField]) {
+      objects.forEach { [weak self] tf in
+          self?.storage.removeTextField(tf)
+      }
+  }
+
+  func unregisterAllTextFields() {
+      self.storage.removeAllTextFields()
+  }
+  
+  func unregisterAllFiles() {
+      self.storage.removeFiles()
+  }
 }

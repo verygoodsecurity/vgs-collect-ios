@@ -21,36 +21,72 @@ class VGSCollectTests: XCTestCase {
     }
 
     func testEnvByDefault() {
-        let host = collector.apiClient.baseURL.host ?? ""
+			let host = collector.apiClient.baseURL?.host ?? ""
         XCTAssertTrue(host.contains("sandbox"))
     }
   
-    func testSandboxEnvirinmentReturnsTrue() {
+    func testSandboxEnvironmentReturnsTrue() {
       var liveForm = VGSCollect(id: "testID", environment: .sandbox)
-      var host = liveForm.apiClient.baseURL.host ?? ""
+			var host = liveForm.apiClient.baseURL?.host ?? ""
       XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
     
       liveForm = VGSCollect(id: "testID", environment: .sandbox, dataRegion: "")
-      host = liveForm.apiClient.baseURL.host ?? ""
+			host = liveForm.apiClient.baseURL?.host ?? ""
       XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
     
       liveForm = VGSCollect(id: "testID", environment: .sandbox, dataRegion: "ua-0505")
-      host = liveForm.apiClient.baseURL.host ?? ""
-      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
+			host = liveForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox-ua-0505.verygoodproxy.com")
     }
     
-    func testLiveEnvirinmentReturnsTrue() {
+    func testLiveEnvironmentReturnsTrue() {
       var liveForm = VGSCollect(id: "testID", environment: .live)
-      var host = liveForm.apiClient.baseURL.host ?? ""
+			var host = liveForm.apiClient.baseURL?.host ?? ""
       XCTAssertTrue(host == "testID.live.verygoodproxy.com")
     
       liveForm = VGSCollect(id: "testID", environment: .live, dataRegion: "")
-      host = liveForm.apiClient.baseURL.host ?? ""
+			host = liveForm.apiClient.baseURL?.host ?? ""
       XCTAssertTrue(host == "testID.live.verygoodproxy.com")
     
       liveForm = VGSCollect(id: "testID", environment: .live, dataRegion: "ua-0505")
-      host = liveForm.apiClient.baseURL.host ?? ""
+			host = liveForm.apiClient.baseURL?.host ?? ""
       XCTAssertTrue(host == "testID.live-ua-0505.verygoodproxy.com")
+    }
+  
+    func testRegionalEnvironmentReturnsTrue() {
+      var liveForm = VGSCollect(id: "testID", environment: "live")
+			var host = liveForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.live.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: "live-eu1")
+			host = liveForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.live-eu1.verygoodproxy.com")
+    
+      liveForm = VGSCollect(id: "testID", environment: "live-ua-0505")
+			host = liveForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.live-ua-0505.verygoodproxy.com")
+      
+      var sandboxForm = VGSCollect(id: "testID", environment: "sandbox")
+			host = sandboxForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox.verygoodproxy.com")
+      
+      sandboxForm = VGSCollect(id: "testID", environment: "sandbox-ua5")
+			host = sandboxForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox-ua5.verygoodproxy.com")
+    
+      sandboxForm = VGSCollect(id: "testID", environment: "sandbox-ua-0505")
+			host = sandboxForm.apiClient.baseURL?.host ?? ""
+      XCTAssertTrue(host == "testID.sandbox-ua-0505.verygoodproxy.com")
+    }
+  
+    func testGenerateRegionalEnvironmentStringReturnsFalse() {
+      let notValidEnvStrings = ["liv", "random-ua1", "random-ua-0505",
+                                "live-", "live.com", "live/eu",
+                                "sandox/us-5050", "sanbox?web=google.com", "", " "]
+      
+      for env in notValidEnvStrings {
+        XCTAssertFalse(VGSCollect.regionalEnironmentStringValid(env))
+      }
     }
   
     func testRegionStringValidation() {
@@ -90,12 +126,12 @@ class VGSCollectTests: XCTestCase {
         let tf = VGSCardTextField()
         tf.configuration = config
         
-        XCTAssertTrue(collector.storage.elements.count == 1)
+        XCTAssertTrue(collector.storage.textFields.count == 1)
         XCTAssertTrue(collector.textFields.count == 1)
       
         collector.unregisterTextFields(textField: [tf])
         
-        XCTAssertTrue(collector.storage.elements.count == 0)
+        XCTAssertTrue(collector.storage.textFields.count == 0)
         XCTAssertTrue(collector.textFields.count == 0)
     }
   
@@ -111,14 +147,48 @@ class VGSCollectTests: XCTestCase {
         tf.configuration = config
       }
     
-      XCTAssertTrue(collector.storage.elements.count == fieldsCount)
+      XCTAssertTrue(collector.storage.textFields.count == fieldsCount)
       XCTAssertTrue(collector.textFields.count == fieldsCount)
       
       collector.unregisterTextFields(textField: collector.textFields)
       
-      XCTAssertTrue(collector.storage.elements.count == 0)
+      XCTAssertTrue(collector.storage.textFields.count == 0)
       XCTAssertTrue(collector.textFields.count == 0)
   }
+  
+    func testUnassignSingleTextField() {
+        let config = VGSConfiguration(collector: collector, fieldName: "test")
+        let tf1 = VGSCardTextField()
+        tf1.configuration = config
+        
+        XCTAssertTrue(collector.storage.textFields.count == 1)
+        XCTAssertTrue(collector.textFields.count == 1)
+      
+        collector.unsubscribeTextField(tf1)
+        
+        XCTAssertTrue(collector.storage.textFields.count == 0)
+        XCTAssertTrue(collector.textFields.count == 0)
+      
+        collector.unsubscribeTextField(tf1)
+        XCTAssertTrue(collector.storage.textFields.count == 0)
+        XCTAssertTrue(collector.textFields.count == 0)
+    }
+  
+    func testUnassignMultipleTextFields() {
+      let config = VGSConfiguration(collector: collector, fieldName: "test")
+      let tf2 = VGSTextField()
+      tf2.configuration = config
+    
+      let tf3 = VGSExpDateTextField()
+      tf3.configuration = config
+    
+      XCTAssertTrue(collector.storage.textFields.count == 2)
+      XCTAssertTrue(collector.textFields.count == 2)
+      
+      collector.unsubscribeTextFields([tf3, tf2])
+      XCTAssertTrue(collector.storage.textFields.count == 0)
+      XCTAssertTrue(collector.textFields.count == 0)
+    }
     
     func testCustomJsonMapping() {
         let cardConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.card_number")

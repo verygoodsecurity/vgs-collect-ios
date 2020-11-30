@@ -15,7 +15,6 @@ import AVFoundation.AVCaptureDevice
 import VGSCollectSDK
 #endif
 
-
 internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
     
     weak var delegate: VGSCardIOScanControllerDelegate?
@@ -61,7 +60,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         }
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             if let form = textfield.configuration?.vgsCollector {
-              VGSAnalyticsClient.shared.trackFormEvent(form, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
             }
             textfield.setText(cardInfo.cardNumber)
         }
@@ -95,4 +94,3 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
         cardIOdelegate.userDidFinishScan()
     }
 }
-

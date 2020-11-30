@@ -31,7 +31,6 @@ internal class VGSImagePicker: NSObject, VGSFilePickerProtocol {
     
     func present(on viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         if !isSourceEnabled() {
-            // swiftlint:disable:next line_length
             delegate?.filePickingFailedWithError(VGSError(type: .sourceNotAvailable, userInfo: VGSErrorInfo(key: VGSSDKErrorSourceNotAvailable, description: "Image source not available.", extraInfo: ["source": "\(picker.sourceType)"])))
             return
         }
@@ -75,7 +74,6 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
             }
             
             guard let imageData = data else {
-                // swiftlint:disable:next line_length
                 delegate?.filePickingFailedWithError(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Image File format is not supported. Can't convert to Data.", extraInfo: [:])))
                 return
             }
@@ -85,7 +83,6 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
             delegate?.userDidPickFileWithInfo(imgMetadata)
             return
         } else {
-            // swiftlint:disable:next line_length
             delegate?.filePickingFailedWithError(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Image File format is not supported.", extraInfo: [:])))
             return
         }

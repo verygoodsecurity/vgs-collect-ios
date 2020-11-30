@@ -38,10 +38,10 @@ class FilePickerTests: XCTestCase {
       
         vgsForm.sendData(path: "post") { (response) in
           switch response {
-            case .success(let code, let data, _):
-              XCTAssertTrue(code == 200)
-              XCTAssertNotNil(data)
-            case .failure(let code, _, _, let error):
+          case .success(let code, let data, _):
+            XCTAssertTrue(code == 200)
+            XCTAssertNotNil(data)
+          case .failure(let code, _, _, let error):
               XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
           }
           expectation.fulfill()
