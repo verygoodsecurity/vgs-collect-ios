@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "ELO.pdf",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "1x"
     },
     {
       "appearances" : [
@@ -11,12 +11,47 @@
           "value" : "dark"
         }
       ],
-      "filename" : "ELO_Dark.pdf",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "ELO-Light@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "ELO_Dark@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "ELO-Light@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "ELO_Dark@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }
