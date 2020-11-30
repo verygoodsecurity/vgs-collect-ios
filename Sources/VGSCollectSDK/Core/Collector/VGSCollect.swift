@@ -17,7 +17,7 @@ public class VGSCollect {
     internal let storage = Storage()
     internal let regionalEnvironment: String
     internal let tenantId: String
-    internal let formAnalyticsDetails: VGSFormAnanlyticsDetails
+    public let formAnalyticsDetails: VGSFormAnanlyticsDetails
   
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
