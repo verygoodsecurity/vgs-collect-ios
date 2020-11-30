@@ -85,7 +85,7 @@ class ApiClientTests: XCTestCase {
                   XCTFail("Error: code=\(code): wrong json format")
                 }
                 
-                if let headers = jsonData["headers"] as? [String: String]{
+                if let headers = jsonData["headers"] as? [String: String] {
                   XCTAssertTrue(headers[customHeaderKey] == customHeaderValue)
                 } else {
                   XCTFail("Error: code=\(code): wrong json format")

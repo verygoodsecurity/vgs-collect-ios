@@ -143,4 +143,3 @@ extension VGSValidationRulePaymentCard: VGSRuleValidator {
     return unknownBrandModel.checkSumAlgorithm?.validate(number) ?? true
    }
 }
-

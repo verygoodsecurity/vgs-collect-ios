@@ -22,7 +22,7 @@ internal struct VGSValidator {
       return VGSValidator.validate(input: input, rules: ruleSet)
   }
   
-  internal static func validate(input: String?, rules: VGSValidationRuleSet) -> [VGSValidationError]  {
+  internal static func validate(input: String?, rules: VGSValidationRuleSet) -> [VGSValidationError] {
 
       let errors = rules.rules
           .filter { !$0.validate(input: input) }

@@ -55,7 +55,6 @@ internal class Utils {
   }()
 }
 
-
 extension Dictionary {
     /// Resturn JSON string  representation of dictionary with sorted keys
     @available(iOS 11.0, *)

@@ -112,10 +112,10 @@ public class VGSTextField: UIView {
               validationRules = fieldType.defaultValidation
             }
 
-            if let vgs = configuration.vgsCollector {
-                vgsCollector = vgs
-                vgs.registerTextFields(textField: [self])
-                VGSAnalyticsClient.shared.trackFormEvent(vgs, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
+            if let collector = configuration.vgsCollector {
+              vgsCollector = collector
+              collector.registerTextFields(textField: [self])
+              VGSAnalyticsClient.shared.trackFormEvent(collector.formAnalyticsDetails, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
             }
         }
     }
@@ -273,9 +273,9 @@ internal extension VGSTextField {
         self.textField.formatPattern = VGSPaymentCards.unknown.formatPattern
       }
       // change cvc format pattern and validation rules based on card brand
-      if let cvcField = self.vgsCollector?.storage.elements.filter({ $0.fieldType == .cvc }).first {
+      if let cvcField = self.vgsCollector?.storage.textFields.filter({ $0.fieldType == .cvc }).first {
         cvcField.textField.formatPattern = cardState.cardBrand.cvcFormatPattern
-        cvcField.validationRules = self.getCVCValidationRules(cardBrand:cardState.cardBrand)
+        cvcField.validationRules = self.getCVCValidationRules(cardBrand: cardState.cardBrand)
       }
     }
     textField.updateTextFormat()

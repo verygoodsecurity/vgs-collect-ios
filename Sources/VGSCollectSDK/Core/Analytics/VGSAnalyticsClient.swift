@@ -14,6 +14,7 @@ import UIKit
 /// :nodoc: VGS Analytics event type
 public enum VGSAnalyticsEventType: String {
   case fieldInit = "Init"
+  case hostnameValidation = "HostNameValidation"
   case beforeSubmit = "BeforeSubmit"
   case submit = "Submit"
   case scan = "Scan"
@@ -52,15 +53,16 @@ public class VGSAnalyticsClient {
       let osVersion = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
       return [
               "platform": UIDevice.current.systemName,
-              "device" : UIDevice.current.model,
+              "device": UIDevice.current.model,
+              "deviceModel": UIDevice.current.modelIdentifier,
               "osVersion": osVersion ]
       }()
 
   /// :nodoc: Track events related to specific VGSCollect instance
-  public func trackFormEvent(_ form: VGSCollect, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+  public func trackFormEvent(_ form: VGSFormAnanlyticsDetails, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       let formDetails = ["formId": form.formId,
                          "tnt": form.tenantId,
-                         "env": form.regionalEnvironment
+                         "env": form.environment
                       ]
     let data: [String: Any]
     if let extraData = extraData {

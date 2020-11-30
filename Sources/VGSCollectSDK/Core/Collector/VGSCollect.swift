@@ -17,6 +17,7 @@ public class VGSCollect {
     internal let storage = Storage()
     internal let regionalEnvironment: String
     internal let tenantId: String
+    internal let formAnalyticsDetails: VGSFormAnanlyticsDetails
   
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000
@@ -41,13 +42,12 @@ public class VGSCollect {
     
     /// Observe  all `VGSTextField` on editing events.
     public var observeStates: ((_ form: [VGSTextField]) -> Void)?
-    
   
     // MARK: Get Registered VGSTextFields
     
     /// Returns array of `VGSTextField`s associated with `VGSCollect` instance.
     public var textFields: [VGSTextField] {
-      return storage.elements
+      return storage.textFields
     }
   
     // MARK: - Initialzation
@@ -57,53 +57,58 @@ public class VGSCollect {
     /// - Parameters:
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sanbox").
-    public init(id: String, environment: String) {
-      let url = Self.generateVaultURL(tenantId: id, regionalEnvironment: environment)
-      apiClient = APIClient(baseURL: url)
+    ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url
+    public init(id: String, environment: String, hostname: String? = nil) {
       self.tenantId = id
       self.regionalEnvironment = environment
+      self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
+      self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails)
     }
-  
-    // MARK: - Initialzation
-    
+      
     /// Initialzation.
     ///
     /// - Parameters:
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment. By default `Environment.sandbox`.
     ///   - dataRegion: id of data storage region (e.g. "eu-123").
-    public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil) {
+    ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url
+    public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil, hostname: String? = nil) {
       let env = Self.generateRegionalEnvironmentString(environment, region: dataRegion)
-      self.init(id: id, environment: env)
+      self.init(id: id, environment: env, hostname: hostname)
     }
 
     // MARK: - Manage VGSTextFields
     
     /// Returns `VGSTextField` with `VGSConfiguration.fieldName` associated with `VGCollect` instance.
     public func getTextField(fieldName: String) -> VGSTextField? {
-        return storage.elements.first(where: { $0.fieldName == fieldName })
+        return storage.textFields.first(where: { $0.fieldName == fieldName })
     }
   
-    /// Unassign `VGSTextField` from `VGSCollect` instance.
+    /// Unasubscribe `VGSTextField` from `VGSCollect` instance.
     ///
     /// - Parameters:
-    ///   - textField: `VGSTextField` that should be unassigned.
-    public func unassignTextField(_ textField: VGSTextField) {
+    ///   - textField: `VGSTextField` that should be unsubscribed.
+    public func unsubscribeTextField(_ textField: VGSTextField) {
       self.unregisterTextFields(textField: [textField])
     }
   
-    /// Unassign `VGSTextField`s from `VGSCollect` instance.
+    /// Unasubscribe `VGSTextField`s from `VGSCollect` instance.
     ///
     /// - Parameters:
-    ///   - textFields: an array of `VGSTextField`s that should be unassigned.
-    public func unassignTextFields(_ textFields: [VGSTextField]) {
+    ///   - textFields: an array of `VGSTextField`s that should be unsubscribed.
+    public func unsubscribeTextFields(_ textFields: [VGSTextField]) {
       self.unregisterTextFields(textField: textFields)
+    }
+  
+    /// Unasubscribe  all `VGSTextField`s from `VGSCollect` instance.
+    public func unsubscribeAllTextFields() {
+      self.unregisterAllTextFields()
     }
   
     // MARK: - Manage Files
   
     /// Detach files for associated `VGSCollect` instance.
     public func cleanFiles() {
-        storage.removeFiles()
+      self.unregisterAllFiles()
     }
 }

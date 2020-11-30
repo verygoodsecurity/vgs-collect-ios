@@ -21,7 +21,6 @@ class FilePickerViewController: UIViewController {
     // Init VGS Collector
     var vgsForm = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,30 +35,31 @@ class FilePickerViewController: UIViewController {
         stateLabel.text = "Uploading file..."
         let extraData = ["document_holder": "Joe Business"]
         
-     /// New send file  request func
+      /// New send file  request func
       vgsForm.sendFile(path: "/post", extraData: extraData) { [weak self](response) in
         switch response {
-          case .success(_, let data, _):
-            if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-              self?.stateLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-              print(String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-              }
-              
-              return
-          case .failure(let code, _, _, let error):
-            switch code {
-            case 400..<499:
-              // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-              self?.stateLabel.text = "Wrong Request Error: \(code)"
-            case VGSErrorType.inputFileSizeExceedsTheLimit.rawValue:
-              if let error = error as? VGSError {
-                self?.stateLabel.text = "Input file size exceeds the limits. Details:\n \(error)"
-              }
+        case .success(_, let data, _):
+          if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+            // swiftlint:disable force_try
+            self?.stateLabel.text = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+            print(String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+            // swiftlint:enable force_try
+          }
+          return
+        case .failure(let code, _, _, let error):
+          switch code {
+          case 400..<499:
+            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+            self?.stateLabel.text = "Wrong Request Error: \(code)"
+          case VGSErrorType.inputFileSizeExceedsTheLimit.rawValue:
+            if let error = error as? VGSError {
+              self?.stateLabel.text = "Input file size exceeds the limits. Details:\n \(error)"
+            }
           default:
             self?.stateLabel.text = "Something went wrong. Code: \(code)"
           }
-          print("Submit request error: \(code), \(String(describing: error))")
-          return
+        print("Submit request error: \(code), \(String(describing: error))")
+        return
         }
       }
       
@@ -88,15 +88,15 @@ class FilePickerViewController: UIViewController {
     private func selectFileFromSource() {
         let alert = UIAlertController(title: "Source Type", message: "Where is file you need to upload?", preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: "Photo Library", style: .default , handler:{ [weak self]  (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self]  (_)in
             self?.showPickerWithSource(.photoLibrary)
         }))
 
-        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ [weak self](UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self](_)in
             self?.showPickerWithSource(.camera)
         }))
 
-        alert.addAction(UIAlertAction(title: "Documents Directory", style: .default , handler:{ [weak self] (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Documents Directory", style: .default, handler: { [weak self] (_)in
             self?.showPickerWithSource(.documentsDirectory)
         }))
         

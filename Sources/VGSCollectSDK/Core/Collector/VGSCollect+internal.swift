@@ -9,19 +9,7 @@
 import Foundation
 
 internal extension VGSCollect {
-    
-    func registerTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.addElement(tf)
-        }
-    }
-    
-    func unregisterTextFields(textField objects: [VGSTextField]) {
-        objects.forEach { [weak self] tf in
-            self?.storage.removeElement(tf)
-        }
-    }
-    
+  
     /// Validate tenant id
     class func tenantIDValid(_ tenantId: String) -> Bool {
         return tenantId.isAlphaNumeric
@@ -39,7 +27,7 @@ internal extension VGSCollect {
   
     /// Validate stored textfields input data
     func validateStoredInputData() -> VGSError? {
-        return validate(storage.elements)
+        return validate(storage.textFields)
     }
     
     /// Validate specific textfields input data
@@ -75,7 +63,7 @@ internal extension VGSCollect {
     /// Turns textfields data saved in Storage and extra data in format ready to send
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
-        let textFieldsData: BodyData = storage.elements.reduce(into: BodyData()) { (dict, element) in
+        let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
             dict[element.fieldName] = element.textField.getSecureTextWithDivider
         }
 
@@ -103,36 +91,47 @@ internal extension VGSCollect {
     /// Update fields state
     func updateStatus(for textField: VGSTextField) {
         // reset all focus status
-        storage.elements.forEach { textField in
+        storage.textFields.forEach { textField in
             textField.focusStatus = false
         }
         // set focus for textField
         textField.focusStatus = true
         
         // call observers ONLY after all internal updates done
-        observeStates?(storage.elements)
+        observeStates?(storage.textFields)
         observeFieldState?(textField)
     }
   
-  /// Generates API String with environment and data region.
-  class func generateRegionalEnvironmentString(_ environment: Environment, region: String?) -> String {
-    var environmentString = environment.rawValue
-    if let region = region, !region.isEmpty {
-        assert(Self.regionValid(region), "ERROR: REGION IS NOT VALID!!!")
-        environmentString += "-" + region
+    /// Generates API String with environment and data region.
+    class func generateRegionalEnvironmentString(_ environment: Environment, region: String?) -> String {
+      var environmentString = environment.rawValue
+      if let region = region, !region.isEmpty {
+          assert(Self.regionValid(region), "ERROR: REGION IS NOT VALID!!!")
+          environmentString += "-" + region
+      }
+      return environmentString
     }
-    return environmentString
+}
+
+// MARK: - Fields registration
+internal extension VGSCollect {
+  func registerTextFields(textField objects: [VGSTextField]) {
+      objects.forEach { [weak self] tf in
+          self?.storage.addTextField(tf)
+      }
   }
   
-  /// Generates API URL with vault id, environment and data region.
-  class func generateVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
-      assert(Self.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRIN IS NOT VALID!!!")
-      assert(Self.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
-    
-      let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
-      guard let url = URL(string: strUrl) else {
-          fatalError("ERROR: NOT VALID ORGANIZATION PARAMETERS!!!")
+  func unregisterTextFields(textField objects: [VGSTextField]) {
+      objects.forEach { [weak self] tf in
+          self?.storage.removeTextField(tf)
       }
-      return url
+  }
+
+  func unregisterAllTextFields() {
+      self.storage.removeAllTextFields()
+  }
+  
+  func unregisterAllFiles() {
+      self.storage.removeFiles()
   }
 }

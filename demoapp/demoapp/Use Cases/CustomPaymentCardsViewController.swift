@@ -31,7 +31,6 @@ class CustomPaymentCardsViewController: UIViewController {
     
     // Init CardIO Scan controller
     var scanController = VGSCardIOScanController()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +66,6 @@ class CustomPaymentCardsViewController: UIViewController {
         customizeCardBrands()
     }
   
-  
   /// Customize VGS Payment Cards. Note: VGSPaymentCards are static, that means you also can customize card brands once per Application runtime.
   func customizeCardBrands() {
     /// Edit default card brand
@@ -94,7 +92,6 @@ class CustomPaymentCardsViewController: UIViewController {
                                                 brandIcon: UIImage(named: "vgs platinum"))
     
     VGSPaymentCards.cutomPaymentCardModels = [ customBrand ]
-
     
     /// Edit unknown card brand
     /// These are all card numbers that not don't match known card brand regex pattern
@@ -134,7 +131,7 @@ class CustomPaymentCardsViewController: UIViewController {
         cardConfiguration.isRequiredValidOnly = true
       
         /// Enable validation of unknown card brand if needed
-        cardConfiguration.validationRules = VGSValidationRuleSet(rules:[
+        cardConfiguration.validationRules = VGSValidationRuleSet(rules: [
           VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue, validateUnknownCardBrand: true)
         ])
         cardNumber.configuration = cardConfiguration
@@ -212,26 +209,28 @@ class CustomPaymentCardsViewController: UIViewController {
         
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
-          case .success(_, let data, _):
-            if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-              let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-              self?.consoleLabel.text = "Success: \n\(response)"
-              }
-              return
-          case .failure(let code, _, _, let error):
-            switch code {
-            case 400..<499:
-              // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-              self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
-            case VGSErrorType.inputDataIsNotValid.rawValue:
-              if let error = error as? VGSError {
-                self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
-              }
-            default:
-              self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
+        case .success(_, let data, _):
+          if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+            // swiftlint:disable force_try
+            let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+            self?.consoleLabel.text = "Success: \n\(response)"
+            // swiftlint:enable force_try
             }
-            print("Submit request error: \(code), \(String(describing: error))")
             return
+        case .failure(let code, _, _, let error):
+          switch code {
+          case 400..<499:
+            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+            self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
+          case VGSErrorType.inputDataIsNotValid.rawValue:
+            if let error = error as? VGSError {
+              self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
+            }
+          default:
+            self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
+          }
+          print("Submit request error: \(code), \(String(describing: error))")
+          return
         }
       }
     }

@@ -14,19 +14,23 @@ import UIKit
 /// Class Responsible for storing elements registered with VGSCollect instance
 internal class Storage {
     
-    var elements = [VGSTextField]()
+    var textFields = [VGSTextField]()
     var files = BodyData()
     
-    func addElement(_ element: VGSTextField) {
-        if elements.filter({ $0 == element }).count == 0 {
-            elements.append(element)
+    func addTextField(_ textField: VGSTextField) {
+        if textFields.filter({ $0 == textField }).count == 0 {
+            textFields.append(textField)
         }
     }
     
-    func removeElement(_ element: VGSTextField) {
-        if let index = elements.firstIndex(of: element) {
-            elements.remove(at: index)
+    func removeTextField(_ textField: VGSTextField) {
+        if let index = textFields.firstIndex(of: textField) {
+            textFields.remove(at: index)
         }
+    }
+  
+    func removeAllTextFields() {
+      textFields = [VGSTextField]()
     }
     
     func removeFiles() {

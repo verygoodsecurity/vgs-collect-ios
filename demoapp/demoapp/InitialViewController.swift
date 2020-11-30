@@ -11,7 +11,6 @@ import UIKit
 
 class InitialViewController: UITableViewController {
   
-  
   @IBAction func setupVaultIdAction(_ sender: Any) {
     
     let alert = UIAlertController(title: "Set <vault id>", message: "Add your organization valut id here", preferredStyle: UIAlertController.Style.alert)
@@ -21,7 +20,7 @@ class InitialViewController: UITableViewController {
     }
         
     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-    alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler:{ (UIAlertAction)in
+    alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { (_)in
       let vaultId = alert.textFields?.first?.text ?? "vaultId"
       AppCollectorConfiguration.shared.vaultId = vaultId
     }))
