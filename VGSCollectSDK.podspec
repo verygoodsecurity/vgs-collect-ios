@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
   #set as default podspec to prevent from downloading additional modules
     core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}", "Sources/VGSCollectSDK/**/*.{h, m}"
     core.resource_bundles = {
-      'CardIcon' => ['Resources/*']
+      'CardIcon' => ['Sources/VGSCollectSDK/Resources/*']
     }
   end
   
