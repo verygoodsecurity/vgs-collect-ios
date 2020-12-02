@@ -83,6 +83,13 @@ Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files w
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
 Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don't support Swift packages with resources.
+To check your current Swift tools version run in your terminal:
+
+```ruby
+xcrun swift -version
+```
+
+> NOTE: In some cases you can have multiple Swift tools versions installed.
 
 Once you have your Swift package set up, add VGSCollectSDK dependency.
 
