@@ -74,11 +74,11 @@ internal class AssetsBundle {
 
 			let containingBundle = Bundle(for: AssetsBundle.self)
 
-			// Look for CardIcon bundle (handle CocoaPods installation).
+			// Look for CardIcon bundle (handle CocoaPods integration).
 			if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
 				iconBundle = Bundle(url: bundleURL)
 			} else {
-				// Icon bundle matches containing bundle (Carthage installation).
+				// Icon bundle matches containing bundle (Carthage integration).
 				iconBundle = containingBundle
 			}
     }
