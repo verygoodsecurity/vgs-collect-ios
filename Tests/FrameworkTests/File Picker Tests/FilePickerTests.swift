@@ -28,7 +28,7 @@ class FilePickerTests: XCTestCase {
     // MARK: - Upload file
     func testUpload() {
         //The Bundle for your current class
-        let bundle = Bundle(for: type(of: self))
+        let bundle = AssetsBundle.main.iconBundle
         let testImage = UIImage(named: "visa", in: bundle, compatibleWith: nil)?.jpegData(compressionQuality: 1)
         
         XCTAssertNotNil(testImage)
