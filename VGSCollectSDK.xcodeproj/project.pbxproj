@@ -76,6 +76,7 @@
 		32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4B7F324C881FA006086F3 /* Calendar+extension.swift */; };
 		4404600C2567FA0B0064BEA0 /* APIHostnameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600B2567FA0B0064BEA0 /* APIHostnameValidator.swift */; };
 		4404600F256801890064BEA0 /* APIHostnameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */; };
+		447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A81112589438000BC77C7 /* CardIcon.xcassets */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSCollectSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -95,7 +96,6 @@
 		FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */; };
 		FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */; };
 		FD6F5657238E7FBB00C24123 /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F5656238E7FBB00C24123 /* CardType+icon.swift */; };
-		FD7503B223F4934900591668 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B96243BB403006A30CB /* CardBrandTest.swift */; };
 		FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */; };
 		FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */; };
@@ -106,7 +106,6 @@
 		FDD42A3D233F67BA0005D631 /* VGSTextField+UIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */; };
 		FDE247CD2467439D008D75B0 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE890812333AC6D00FA170D /* ApiClientTests.swift */; };
 		FDE247CF246749C3008D75B0 /* VGSCollect+network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */; };
-		FDE7447D238A5C96003AA46B /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE7447C238A5C96003AA46B /* CardIcon.xcassets */; };
 		FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */; };
 		FDF696E3234643F300063507 /* LuhnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E2234643F300063507 /* LuhnTests.swift */; };
 		FDF696E52346461D00063507 /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF696E42346461D00063507 /* StorageTests.swift */; };
@@ -195,6 +194,7 @@
 		32F4B7F324C881FA006086F3 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
 		4404600B2567FA0B0064BEA0 /* APIHostnameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameValidator.swift; sourceTree = "<group>"; };
 		4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameValidatorTests.swift; sourceTree = "<group>"; };
+		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollect.swift; sourceTree = "<group>"; };
@@ -226,7 +226,6 @@
 		FDD398ED247D776600B55057 /* VGSCardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCardTextField.swift; sourceTree = "<group>"; };
 		FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+UIBuilder.swift"; sourceTree = "<group>"; };
 		FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+network.swift"; sourceTree = "<group>"; };
-		FDE7447C238A5C96003AA46B /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateTextFieldTests.swift; sourceTree = "<group>"; };
 		FDE8907C2333A1D400FA170D /* CVVTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVVTextFieldTests.swift; sourceTree = "<group>"; };
 		FDE890812333AC6D00FA170D /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
@@ -435,11 +434,20 @@
 			path = PaymentCards;
 			sourceTree = "<group>";
 		};
+		447A81102589438000BC77C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				447A81112589438000BC77C7 /* CardIcon.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		FD05F9372316CE5A000EAF52 /* VGSCollectSDK */ = {
 			isa = PBXGroup;
 			children = (
 				FD05F9382316CE5A000EAF52 /* Core */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
+				447A81102589438000BC77C7 /* Resources */,
 				326FFB0124F90B270024A4F9 /* Integrations */,
 				32C894D5256D4AA500DC5648 /* Utils */,
 				FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */,
@@ -479,7 +487,6 @@
 			isa = PBXGroup;
 			children = (
 				32EFFCFF2510D97B007F4DA2 /* README.md */,
-				FDE7447B238A5C79003AA46B /* Resources */,
 				FD8A9722233CF63D0079FA32 /* Sources */,
 				FD8A9723233CF6470079FA32 /* Tests */,
 				32CFC70824EBEEB300457B17 /* VGSCardScanCollector */,
@@ -598,14 +605,6 @@
 				323105622417DF07009C3360 /* VGSCollect+internal.swift */,
 			);
 			path = Collector;
-			sourceTree = "<group>";
-		};
-		FDE7447B238A5C79003AA46B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FDE7447C238A5C96003AA46B /* CardIcon.xcassets */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		FDE890802333A75800FA170D /* Text Fields Tests */ = {
@@ -848,8 +847,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */,
 				32EFFD002510D97B007F4DA2 /* README.md in Resources */,
-				FDE7447D238A5C96003AA46B /* CardIcon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,7 +856,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD7503B223F4934900591668 /* CardIcon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

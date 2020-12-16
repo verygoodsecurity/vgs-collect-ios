@@ -59,16 +59,29 @@ extension VGSPaymentCards.CardBrand {
     static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
 }
 
-class AssetsBundle {
+internal class AssetsBundle {
     static var main = AssetsBundle()
     var iconBundle: Bundle?
     
     init() {
-        let containingBundle = Bundle(for: AssetsBundle.self)
-        if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
-            iconBundle = Bundle(url: bundleURL)
-        } else {
-            iconBundle = containingBundle
-        }
+			// Identify bundle for SPM.
+			#if SWIFT_PACKAGE
+				iconBundle = Bundle.module
+			#endif
+
+			// Return if bundle is found.
+			guard iconBundle == nil else {
+				return
+			}
+
+			let containingBundle = Bundle(for: AssetsBundle.self)
+
+			// Look for CardIcon bundle (handle CocoaPods integration).
+			if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
+				iconBundle = Bundle(url: bundleURL)
+			} else {
+				// Icon bundle matches containing bundle (Carthage integration).
+				iconBundle = containingBundle
+			}
     }
 }
