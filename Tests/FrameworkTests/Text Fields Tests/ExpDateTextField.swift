@@ -46,10 +46,10 @@ class ExpDateTextField: XCTestCase {
     func testSelectDate() {
         let monthSelected = 10
         let yearSelected = 5
-        textField.picker.selectRow(monthSelected, inComponent: 0, animated: false)
-        textField.pickerView(textField.picker, didSelectRow: monthSelected, inComponent: 0)
         textField.picker.selectRow(yearSelected, inComponent: 1, animated: false)
         textField.pickerView(textField.picker, didSelectRow: yearSelected, inComponent: 1)
+        textField.picker.selectRow(monthSelected, inComponent: 0, animated: false)
+        textField.pickerView(textField.picker, didSelectRow: monthSelected, inComponent: 0)
 
         let currentValue = textField.textField.secureText
         let monthComponent = currentValue?.components(separatedBy: "/").first ?? "0"
