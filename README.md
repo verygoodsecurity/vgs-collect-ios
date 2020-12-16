@@ -83,6 +83,14 @@ Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files w
 ### Swift Package Manager (beta)
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
+Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don't support Swift packages with resources.
+To check your current Swift tools version run in your terminal:
+
+```ruby
+xcrun swift -version
+```
+
+> NOTE: In some cases you can have multiple Swift tools versions installed.
 
 Once you have your Swift package set up, add VGSCollectSDK dependency.
 
@@ -469,6 +477,13 @@ Demo application for collecting card data on iOS is <a href="https://github.com/
 
 ### Releases
 To follow `VGSCollectSDK` updates and changes check the [releases](https://github.com/verygoodsecurity/vgs-collect-ios/releases) page.
+
+### Metrics
+VGSCollectSDK tracks a few key metrics to understand SDK features usage, which helps us know what areas need improvement. No personal information is tracked.
+You can easily opt-out of metrics collection in `VGSAnalyticsClient`:
+```
+VGSAnalyticsClient.shared.shouldCollectAnalytics = false
+```
 
 ## Dependencies
 - iOS 10+

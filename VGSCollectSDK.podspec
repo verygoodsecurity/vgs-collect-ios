@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.7.1'
+  spec.version = '1.7.2'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
   #set as default podspec to prevent from downloading additional modules
     core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}", "Sources/VGSCollectSDK/**/*.{h, m}"
     core.resource_bundles = {
-      'CardIcon' => ['Resources/*']
+      'CardIcon' => ['Sources/VGSCollectSDK/Resources/*']
     }
   end
   
