@@ -19,12 +19,16 @@ internal typealias BodyData = [String: Any]
 
 /// HTTP request methods
 public enum HTTPMethod: String {
-    /// GET method
+    /// GET method.
     case get     = "GET"
-    /// POST method
+    /// POST method.
     case post    = "POST"
-    /// PUT method
+    /// PUT method.
     case put     = "PUT"
+    // PATCH method.
+    case patch = "PATCH"
+    /// DELETE method.
+    case delete = "DELETE"
 }
 
 /// Response enum cases for SDK requests
