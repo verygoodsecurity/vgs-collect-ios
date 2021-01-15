@@ -8,31 +8,11 @@
 
 import XCTest
 
-class TestCustomCardNumbersDataFlow: XCTestCase {
+class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
 
-    let flowType = "Customize Payment Cards"
-  
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+	let flowType = "Customize Payment Cards"
 
   func testValidCustomBrand() {
-     let app = XCUIApplication()
-     app.navigationBars["Demo"].buttons["VaultID"].tap()
-     app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
-     app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-     app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
-     app.alerts["Set <vault id>"].scrollViews.otherElements.buttons["Save"].tap()
      app.tables.staticTexts[flowType].tap()
      
      let cardHolderNameField = app.textFields["Cardholder Name"]
@@ -69,12 +49,6 @@ class TestCustomCardNumbersDataFlow: XCTestCase {
   }
 
   func testValidUnknownBrand() {
-     let app = XCUIApplication()
-     app.navigationBars["Demo"].buttons["VaultID"].tap()
-     app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
-     app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-     app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
-     app.alerts["Set <vault id>"].scrollViews.otherElements.buttons["Save"].tap()
      app.tables.staticTexts[flowType].tap()
      
      let cardHolderNameField = app.textFields["Cardholder Name"]
@@ -93,8 +67,8 @@ class TestCustomCardNumbersDataFlow: XCTestCase {
      app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "2030")
      app.pickerWheels.element(boundBy: 1).tap()
     
-    app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "May")
-    app.pickerWheels.element(boundBy: 0).tap()
+     app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "May")
+     app.pickerWheels.element(boundBy: 0).tap()
 
      cvcField.tap()
      cvcField.typeText("1234")
@@ -112,12 +86,6 @@ class TestCustomCardNumbersDataFlow: XCTestCase {
   }
   
   func testValidInputThroughCardIO() {
-      let app = XCUIApplication()
-      app.navigationBars["Demo"].buttons["VaultID"].tap()
-      app.alerts["Set <vault id>"].waitForExistence(timeout: 2)
-      app.alerts["Set <vault id>"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-      app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
-      app.alerts["Set <vault id>"].scrollViews.otherElements.buttons["Save"].tap()
       app.tables.staticTexts[flowType].tap()
     
       let cardHolderNameField = app.textFields["Cardholder Name"]
