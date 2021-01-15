@@ -34,11 +34,11 @@ jobs:
           name: Run UI Tests on iOS 11
           command: >
             cd demoapp &&
-            pod install && xcrun simctl list &&  xcrun instruments -w "iPhone SE (11.4) [" || true &&
+            pod install && xcrun simctl list &&  xcrun instruments -w "iPhone X (11.4) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone SE,OS=11.4'
+            -destination 'platform=iOS Simulator,name=iPhone X,OS=11.4'
 
 
 workflows:
