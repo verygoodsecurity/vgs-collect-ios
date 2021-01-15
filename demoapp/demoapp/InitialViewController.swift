@@ -33,4 +33,11 @@ class InitialViewController: UITableViewController {
 
     self.present(alert, animated: true, completion: nil)
   }
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		// Setup data for UITests only.
+		UITestsMockedDataProvider.setupMockedDataForTestsIfNeeded()
+	}
 }
