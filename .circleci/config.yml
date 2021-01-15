@@ -7,12 +7,45 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Tests iOS14
+          name: Run Tests iOS 13-14
           command: xcodebuild test -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1'
-          
+  build-and-ui-test-demo-app-ios-13-14:
+    macos:
+      xcode: "12.1"
+    steps:
+      - checkout
+      - run:
+          name: Run UI Tests
+          command: >
+            cd demoapp &&
+            pod install &&
+            xcrun instruments -w "iPhone 12 (14.1) [" || true &&
+            xcrun instruments -w "iPad Air (3rd generation) (13.5) [" || true &&
+            xcodebuild test -workspace demoapp.xcworkspace
+            -scheme demoappUITests
+            -sdk iphonesimulator
+            -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1'
+            -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.5'
+  build-and-ui-test-demo-app-ios-11:
+    macos:
+      xcode: "11.0"
+    steps:
+      - checkout
+      - run:
+          name: Run UI Tests on iOS 11
+          command: >
+            cd demoapp &&
+            pod install && xcrun simctl list &&  xcrun instruments -w "iPhone SE (11.4) [" || true &&
+            xcodebuild test -workspace demoapp.xcworkspace
+            -scheme demoappUITests
+            -sdk iphonesimulator
+            -destination 'platform=iOS Simulator,name=iPhone SE,OS=11.4'
+
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - build-and-test-sdk
+      - build-and-ui-test-demo-app-ios-13-14
+      - build-and-ui-test-demo-app-ios-11
