@@ -60,6 +60,14 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     if popup.exists {
       popup.buttons["OK"].tap()
     }
-    app.buttons["Back"].tap()
+
+		// Back button is only for iPhone, on iPad we don't have back button.
+		if UIDevice.current.userInterfaceIdiom == .phone {
+			app.buttons["Back"].tap()
+		}
+
+		// Check if card screen visible.
+		let cardScreen = app.otherElements["CardsDataCollectingViewController.Screen.RootView"]
+		XCTAssert(cardScreen.waitForExistence(timeout: 0.3))
   }
 }

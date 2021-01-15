@@ -27,7 +27,7 @@ final class UITestsMockedDataProvider {
 
 
 	/// `true` if demo app in UITests mode.
-	static private var isRunningUITest: Bool {
+	static var isRunningUITest: Bool {
 			return ProcessInfo().arguments.contains("VGSCollectDemoAppUITests")
 	}
 }
