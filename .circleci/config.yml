@@ -28,7 +28,7 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.5'
   build-and-ui-test-demo-app-ios-11:
     macos:
-      xcode: "11.0"
+      xcode: "11.1.0"
     steps:
       - checkout
       - run:

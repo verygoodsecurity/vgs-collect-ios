@@ -20,6 +20,7 @@
 		32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */; };
 		36854589CD95C20D0657DAE4 /* libPods-demoappUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9EC63EB636126947A436E7 /* libPods-demoappUITests.a */; };
 		44241E9025B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */; };
+		44241E9525B1B39D00FC85D9 /* XCUITestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9425B1B39C00FC85D9 /* XCUITestCase+Extensions.swift */; };
 		C8CBAAC0A0A75BF9CF5A7FA4 /* Pods_demoapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */; };
 		FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9772304616C00B670DD /* AppDelegate.swift */; };
 		FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD12B97E2304616E00B670DD /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCustomDataFlow.swift; sourceTree = "<group>"; };
 		32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectSSNDataFlow.swift; sourceTree = "<group>"; };
 		44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectBaseTestCase.swift; sourceTree = "<group>"; };
+		44241E9425B1B39C00FC85D9 /* XCUITestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUITestCase+Extensions.swift"; sourceTree = "<group>"; };
 		5FB2107869E88DC903D1C009 /* Pods-demoappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.release.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.release.xcconfig"; sourceTree = "<group>"; };
 		67F5FCBA93936AD73802D53D /* Pods-demoappUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappUITests.debug.xcconfig"; path = "Target Support Files/Pods-demoappUITests/Pods-demoappUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		75E4290F89651AA85405A739 /* Pods-demoappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.debug.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */,
 				FD12B9992304616E00B670DD /* Info.plist */,
 				44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */,
+				44241E9425B1B39C00FC85D9 /* XCUITestCase+Extensions.swift */,
 			);
 			path = demoappUITests;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */,
 				326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */,
 				32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */,
+				44241E9525B1B39D00FC85D9 /* XCUITestCase+Extensions.swift in Sources */,
 				32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

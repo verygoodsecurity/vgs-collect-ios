@@ -27,6 +27,7 @@ class TestCollectBaseTestCase: XCTestCase {
 	}
 
 	func fillInTestData() {
+		wait(forTimeInterval: 0.3)
 		app.navigationBars["Demo"].buttons["VaultID"].tap()
 		app.alerts["Set <vault id>"].waitForExistence(timeout: 3)
 		app.alerts["Set <vault id>"].otherElements.collectionViews/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -34,5 +35,6 @@ class TestCollectBaseTestCase: XCTestCase {
 
 		app.alerts["Set <vault id>"].typeText("tntva5wfdrp")
 		app.alerts["Set <vault id>"].otherElements.buttons["Save"].tap()
+		wait(forTimeInterval: 0.5)
 	}
 }
