@@ -9,13 +9,13 @@ jobs:
       - run:
           name: Run Tests iOS 13-14
           command: xcodebuild test -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1'
-  build-and-ui-test-demo-app-ios-14:
+  build-and-ui-test-demo-app-ios-14-iphone12:
     macos:
       xcode: "12.1"
     steps:
       - checkout
       - run:
-          name: Run UI Tests
+          name: Run UI Tests on iPhone 12 iOS 14.1
           command: >
             cd demoapp &&
             cd demoapp &&
@@ -27,13 +27,13 @@ jobs:
             -scheme demoappUITests
             -sdk iphonesimulator
             -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1'
-  build-and-ui-test-demo-app-ios-13:
+  build-and-ui-test-demo-app-ios-13-ipad-air-3:
     macos:
       xcode: "12.1"
     steps:
       - checkout
       - run:
-          name: Run UI Tests
+          name: Run UI Tests on iPad Air (3rd generation) iOS 13.5
           command: >
             cd demoapp &&
             cd demoapp &&
@@ -51,5 +51,5 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test-sdk
-      - build-and-ui-test-demo-app-ios-14
-      - build-and-ui-test-demo-app-ios-13
+      - build-and-ui-test-demo-app-ios-14-iphone12
+      - build-and-ui-test-demo-app-ios-13-ipad-air-3
