@@ -90,6 +90,15 @@ class CardsDataCollectingViewController: UIViewController {
 //
       
     }
+
+	override func awakeFromNib() {
+		super.awakeFromNib()
+
+		let view = self.view
+		if UITestsMockedDataProvider.isRunningUITest {
+			view?.accessibilityIdentifier = "CardsDataCollectingViewController.Screen.RootView"
+		}
+	}
     
     // MARK: - Init UI
     private func setupUI() {
