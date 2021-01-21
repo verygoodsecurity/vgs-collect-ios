@@ -35,6 +35,9 @@ internal class MaskedTextField: UITextField {
     the textfield would behave like a normal one
     */
     var divider: String = ""
+  
+  
+    var outputFormat: String?
     
     /**
      Var that holds the prefix to be added to the textfield
@@ -80,6 +83,15 @@ internal class MaskedTextField: UITextField {
     /// returns textfield text without mask
     internal var getSecureRawText: String? {
         return getRawText()
+    }
+  
+  
+    internal var getOutputText: String? {
+      if outputFormat.isNilOrEmpty {
+        return getSecureTextWithDivider
+      } else {
+        return ""
+      }
     }
     
     /// Check *formatPattern* and replace  symbols that not included in *MaskedTextReplacementChar* with Divider string in a raw text.

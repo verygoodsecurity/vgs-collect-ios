@@ -125,7 +125,7 @@ internal extension VGSAnalyticsClient {
       let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
       let encodedJSON = jsonData?.base64EncodedData()
       request.httpBody = encodedJSON
-    
+      print(data)
       // Send data
       URLSession.shared.dataTask(with: request).resume()
   }

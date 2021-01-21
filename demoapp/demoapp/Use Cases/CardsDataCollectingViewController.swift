@@ -21,7 +21,7 @@ class CardsDataCollectingViewController: UIViewController {
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
-    var expCardDate = VGSExpDateTextField()
+    var expCardDate = VGSTextField()
     var cvcCardNum = VGSTextField()
     var cardHolderName = VGSTextField()
     
@@ -138,6 +138,7 @@ class CardsDataCollectingViewController: UIViewController {
       
         /// Default .expDate format is "##/##"
         expDateConfiguration.formatPattern = "##/####"
+        expDateConfiguration.outputDateFormat = "MM/YY"
         
         /// Update validation rules
         expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
@@ -146,7 +147,7 @@ class CardsDataCollectingViewController: UIViewController {
 
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YYYY"
-        expCardDate.monthPickerFormat = .longSymbols
+//        expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.isRequiredValidOnly = true

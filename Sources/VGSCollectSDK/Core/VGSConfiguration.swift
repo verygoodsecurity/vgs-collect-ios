@@ -74,6 +74,8 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
   
     /// Validation rules for field input. Defines `State.isValide` result.
     public var validationRules: VGSValidationRuleSet?
+  
+    public var outputDateFormat: String? = nil
          
     // MARK: - Initialization
     
@@ -85,5 +87,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     public init(collector vgs: VGSCollect, fieldName: String) {
         self.vgsCollector = vgs
         self.fieldName = fieldName
+    }
+  
+    internal var hasOutputFormat: Bool {
+      return !outputDateFormat.isNilOrEmpty
     }
 }

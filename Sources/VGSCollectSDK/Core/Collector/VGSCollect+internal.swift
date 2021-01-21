@@ -64,7 +64,14 @@ internal extension VGSCollect {
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
-            dict[element.fieldName] = element.textField.getSecureTextWithDivider
+          var val: String?
+          
+          if let date = element.textField.getSecureTextWithDivider, let config = element.configuration, let outputFormat = config.outputDateFormat {
+            val = Date.convertCardExpirationDate(date, inputFormat: element.textField.formatPattern, outputFormat: outputFormat)
+          } else {
+            val = element.textField.getSecureTextWithDivider
+          }
+          dict[element.fieldName] = val
         }
 
         var body = mapInputFieldsDataToDictionary(textFieldsData)
