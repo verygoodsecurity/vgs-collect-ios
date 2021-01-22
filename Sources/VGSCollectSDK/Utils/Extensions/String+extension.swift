@@ -63,18 +63,3 @@ internal extension String {
 		return path
 	}
 }
-
-internal extension Date {
-  
-  static func convertCardExpirationDate(_ date: String, inputFormat: String, outputFormat: String) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.calendar = Calendar(identifier: .gregorian)
-    dateFormatter.dateFormat = inputFormat
-    if let date = dateFormatter.date(from: date) {
-      dateFormatter.dateFormat = outputFormat
-      return  dateFormatter.string(from: date)
-    }
-    print("WRONG DATE FORMAT, WILL USE DEFAULT DATE!!!!")
-    return date
-  }
-}
