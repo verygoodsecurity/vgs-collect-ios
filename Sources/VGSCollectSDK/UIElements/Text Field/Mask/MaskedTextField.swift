@@ -84,15 +84,6 @@ internal class MaskedTextField: UITextField {
     internal var getSecureRawText: String? {
         return getRawText()
     }
-  
-  
-    internal var getOutputText: String? {
-      if outputFormat.isNilOrEmpty {
-        return getSecureTextWithDivider
-      } else {
-        return ""
-      }
-    }
     
     /// Check *formatPattern* and replace  symbols that not included in *MaskedTextReplacementChar* with Divider string in a raw text.
     ///  Example:
