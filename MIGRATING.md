@@ -1,7 +1,11 @@
 ## Migration Guides
 
+### Migrating from versions < v1.7.3
+#### Rename enum 
+`CardExpDateFormat` -> `VGSCardExpDateFormat`
+
 ### Migrating from versions < v1.7.0
-#### Carthage build modules changed for CardIO 
+#### Carthage build modules changed for CardIO
 If you use CardIO and integrate with Carthage, from now it's required to import `VGSCardIOCollector.framework` build in your application Target `Build Phases` and `Linkend Frameworks` settings.
 
 Before:
@@ -101,7 +105,7 @@ The location should look like: `~/Library/Developer/Xcode/DerivedData/your-proje
 ##### If you use Carthage:
 Carthage Caches usually stay at `~/Library/Caches/org.carthage.CarthageKit/dependencies/foobar`. You can remove  `Alamofire` dependencies there or follow the solution [here](https://github.com/Carthage/Carthage/issues/2786).
 
-Also remove `Alamofire` dependencies from your project's `Target`. Check targets’ `Build Phases/Run Scripts` and `General/Frameworks, Libraries, and Emdedded Content` tabs. 
+Also remove `Alamofire` dependencies from your project's `Target`. Check targets’ `Build Phases/Run Scripts` and `General/Frameworks, Libraries, and Emdedded Content` tabs.
 
 ### Migrating from versions < v1.3.5
 #### Changed request data format for`.expDate` `FieldType`
