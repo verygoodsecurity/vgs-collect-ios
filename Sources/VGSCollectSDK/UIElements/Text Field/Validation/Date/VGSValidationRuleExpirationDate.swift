@@ -60,7 +60,6 @@ public struct VGSValidationRuleCardExpirationDate: VGSValidationRuleProtocol {
 
 extension VGSValidationRuleCardExpirationDate: VGSRuleValidator {
   internal func validate(input: String?) -> Bool {
-
         guard let input = input else {
             return false
         }
@@ -75,7 +74,7 @@ extension VGSValidationRuleCardExpirationDate: VGSRuleValidator {
         let todayYY = Calendar(identifier: .gregorian).component(.year, from: Date())
         let todayMM = Calendar(identifier: .gregorian).component(.month, from: Date())
         
-        guard let inputMM = Int(mm), var inputYY = Int(yy) else {
+        guard let inputMM = Int(mm), (1...12).contains(inputMM), var inputYY = Int(yy) else {
             return false
         }
         ///convert input year to long format if needed
