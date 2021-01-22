@@ -13,22 +13,22 @@ import UIKit
 
 internal protocol FormatConvertable {
   /// Input text format
-  var inputFormat: CardExpDateFormat? { get }
+  var inputFormat: VGSCardExpDateFormat? { get }
   /// Output text format
-  var outputFormat: CardExpDateFormat? { get }
+  var outputFormat: VGSCardExpDateFormat? { get }
   /// Text convertor object
   var convertor: TextFormatConvertor { get }
 }
 
 internal protocol TextFormatConvertor {
-  func convert(_ input: String, inputFormat: CardExpDateFormat, outputFormat: CardExpDateFormat) -> String
+  func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat) -> String
 }
 
 /// Card Expiration date format convertor
 internal class ExpDateFormatConvertor: TextFormatConvertor {
   
   /// Convert Exp Date String with input `CardExpDateFormat` to Output `CardExpDateFormat`
-  func convert(_ input: String, inputFormat: CardExpDateFormat, outputFormat: CardExpDateFormat) -> String {
+  func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat) -> String {
     
     let inputYear = String(input.suffix(inputFormat.yearCharacters))
     let inputStart = input.dropLast(inputFormat.yearCharacters)

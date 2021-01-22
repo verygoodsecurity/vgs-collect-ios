@@ -15,20 +15,25 @@ import UIKit
 public final class VGSExpDateConfiguration: VGSConfiguration {
        
   /// Input date format to convert.
-  public var inputDateFormat: CardExpDateFormat?
+  public var inputDateFormat: VGSCardExpDateFormat?
   
   /// Output date format.
-  public var outputDateFormat: CardExpDateFormat?
-
+  public var outputDateFormat: VGSCardExpDateFormat?
+  
+  /// `FieldType.expDate` type of `VGSTextField` configuration.
+  override public var type: FieldType {
+    get { return .expDate }
+    set {}
+  }
 }
 
 /// Implement `FormatConvertable` protocol.
 extension VGSExpDateConfiguration: FormatConvertable {
-  internal var outputFormat: CardExpDateFormat? {
+  internal var outputFormat: VGSCardExpDateFormat? {
     return outputDateFormat
   }
 
-  internal var inputFormat: CardExpDateFormat? {
+  internal var inputFormat: VGSCardExpDateFormat? {
     return inputDateFormat
   }
   

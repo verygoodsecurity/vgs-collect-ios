@@ -65,7 +65,7 @@ extension VGSCardScanHandler: ScanDelegate {
       cardScanDelegate.textFieldForScannedData(type: .name) {
       textfield.setText(name)
     }
-    if let month = Int(creditCard.expiryMonth ?? ""), 1...12 ~= month, let year = Int(creditCard.expiryYear ?? ""), year >= Calendar.currentYear {
+    if let month = Int(creditCard.expiryMonth ?? ""), 1...12 ~= month, let year = Int(creditCard.expiryYear ?? ""), year >= Calendar.currentYearShort {
      if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDate) {
        textfield.setText("\(month)\(year)")
      }
