@@ -17,7 +17,7 @@ class ExpDateConvertorTests: XCTestCase {
 		let input: String
 		let output: String
 	}
-  
+
   func testConvertExpDateFormat() {
 		collector = VGSCollect(id: "tntva5wfdrp")
 		print("start testConvertExpDateFormat...")
@@ -48,8 +48,6 @@ class ExpDateConvertorTests: XCTestCase {
 			}
     }
 
-		return
-    
     config.inputDateFormat = .shortYear
     config.outputDateFormat = .longYear
     textField.configuration = config
@@ -66,6 +64,8 @@ class ExpDateConvertorTests: XCTestCase {
 				print("failed: \(date.input) \(date.output)")
 			}
     }
+
+		return
     
     config.divider = ""
     config.inputDateFormat = .longYear
