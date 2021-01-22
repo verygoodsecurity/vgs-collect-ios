@@ -9,7 +9,7 @@
 import Foundation
 
 /// Payment Card Expiration Date Format
-public enum CardExpDateFormat {
+public enum VGSCardExpDateFormat {
   
   /// Exp.Date in format mm/yy: 01/22
   case shortYear
@@ -25,6 +25,15 @@ public enum CardExpDateFormat {
       return 4
     }
   }
+  
+  internal var dateYearFormat: String {
+    switch self {
+    case .shortYear:
+      return "yy"
+    case .longYear:
+      return "yyyy"
+    }
+  }
 }
 
 /**
@@ -33,7 +42,7 @@ Validate input in scope of matching card expiration date format and time range.
 public struct VGSValidationRuleCardExpirationDate: VGSValidationRuleProtocol {
 
   /// Payment Card Expiration Date Format
-  public let dateFormat: CardExpDateFormat
+  public let dateFormat: VGSCardExpDateFormat
   
   /// Validation Error
   public let error: VGSValidationError
@@ -43,7 +52,7 @@ public struct VGSValidationRuleCardExpirationDate: VGSValidationRuleProtocol {
   /// - Parameters:
   ///   - error:`VGSValidationError` - error on failed validation relust.
   ///   - dateFormat: `CardExpDateFormat` date format
-  public init(dateFormat: CardExpDateFormat = .shortYear, error: VGSValidationError) {
+  public init(dateFormat: VGSCardExpDateFormat = .shortYear, error: VGSValidationError) {
         self.dateFormat = dateFormat
         self.error = error
     }

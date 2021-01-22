@@ -156,6 +156,13 @@ public class VGSTextField: UIView {
     public func cleanText() {
       updateTextFieldInput("")
     }
+  
+  internal func getOutputText() -> String? {
+    if let config = configuration as? FormatConvertable, let input = textField.getSecureTextWithDivider, let outputFormat = config.outputFormat, let inputFormat = config.inputFormat {
+      return config.convertor.convert(input, inputFormat: inputFormat, outputFormat: outputFormat)
+    }
+    return textField.getSecureTextWithDivider
+  }
 }
 
 // MARK: - UIResponder methods

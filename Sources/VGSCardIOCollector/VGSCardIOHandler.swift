@@ -64,7 +64,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
             }
             textfield.setText(cardInfo.cardNumber)
         }
-        if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= 2020 {
+        if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= Calendar.currentYear {
           let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
           if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {
             let yy = "\(cardInfo.expiryYear)".suffix(2)
@@ -78,7 +78,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
             let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
             textfield.setText(monthString)
         }
-      if cardInfo.expiryYear >= 2020 {
+      if cardInfo.expiryYear >= Calendar.currentYear {
           if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYear) {
             let yy = String("\(cardInfo.expiryYear)".suffix(2))
             textfield.setText(yy)

@@ -124,7 +124,6 @@ class CardsDataCollectingViewController: UIViewController {
       
         let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
-        cardConfiguration.isRequiredValidOnly = true
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
@@ -132,8 +131,8 @@ class CardsDataCollectingViewController: UIViewController {
       
         cardNumber.becomeFirstResponder()
 
+        /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
-        expDateConfiguration.isRequiredValidOnly = true
         expDateConfiguration.type = .expDate
       
         /// Default .expDate format is "##/##"
@@ -149,7 +148,6 @@ class CardsDataCollectingViewController: UIViewController {
         expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
-        cvcConfiguration.isRequiredValidOnly = true
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
@@ -161,7 +159,6 @@ class CardsDataCollectingViewController: UIViewController {
         holderConfiguration.type = .cardHolderName
         holderConfiguration.keyboardType = .namePhonePad
         /// Required to be not empty
-        holderConfiguration.isRequired = true
       
         cardHolderName.textAlignment = .natural
         cardHolderName.configuration = holderConfiguration

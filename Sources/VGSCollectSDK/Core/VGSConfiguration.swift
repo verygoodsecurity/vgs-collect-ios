@@ -74,7 +74,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
   
     /// Validation rules for field input. Defines `State.isValide` result.
     public var validationRules: VGSValidationRuleSet?
-         
+           
     // MARK: - Initialization
     
     /// Initialization
