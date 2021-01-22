@@ -13,7 +13,11 @@ import XCTest
 class ExpDateConvertorTests: XCTestCase {
   var collector: VGSCollect!
   var textField: VGSExpDateTextField!
-  typealias TestDataType = (input: String, output: String)
+
+	struct TestDataType {
+		let input: String
+		let output: String
+	}
 
   override func setUp() {
       collector = VGSCollect(id: "tntva5wfdrp")
@@ -33,9 +37,9 @@ class ExpDateConvertorTests: XCTestCase {
     config.outputDateFormat = .shortYear
     textField.configuration = config
    
-    let testDates1: [TestDataType] = [("12/2021", "12/21"),
-                                     ("01/2050", "01/50"),
-                                     ("05/2100", "05/00")]
+		let testDates1: [TestDataType] = [TestDataType(input: "12/2021", output: "12/21"),
+																			TestDataType(input:"01/2050", output: "01/50"),
+																			TestDataType(input: "05/2100", output:"05/00")]
     
     for date in testDates1 {
 			textField.setText(date.input)
@@ -50,9 +54,9 @@ class ExpDateConvertorTests: XCTestCase {
     config.outputDateFormat = .longYear
     textField.configuration = config
    
-    let testDates2: [TestDataType] = [("12/21", "12/2021"),
-                                     ("01/50", "01/2050"),
-                                     ("05/01", "05/2001")]
+		let testDates2: [TestDataType] = [TestDataType(input: "12/21", output: "12/2021"),
+																			TestDataType(input: "01/50", output: "01/2050"),
+																			TestDataType(input: "05/01", output: "05/2001")]
     
     for date in testDates2 {
 			textField.setText(date.input)
@@ -68,9 +72,9 @@ class ExpDateConvertorTests: XCTestCase {
     config.outputDateFormat = .shortYear
     textField.configuration = config
    
-    let testDates3: [TestDataType] = [("122021", "1221"),
-                                     ("012050", "0150"),
-                                     ("052100", "0500")]
+		let testDates3: [TestDataType] = [TestDataType(input:"122021", output: "1221"),
+																			TestDataType(input:"012050", output: "0150"),
+																			TestDataType(input:"052100", output: "0500")]
     
     for date in testDates3 {
 			textField.setText(date.input)
@@ -86,9 +90,9 @@ class ExpDateConvertorTests: XCTestCase {
     config.outputDateFormat = .longYear
     textField.configuration = config
    
-    let testDates4: [TestDataType] = [("12-/-21", "12-/-2021"),
-                                     ("01-/-50", "01-/-2050"),
-                                     ("05-/-01", "05-/-2001")]
+		let testDates4: [TestDataType] = [TestDataType(input:"12-/-21", output: "12-/-2021"),
+																			TestDataType(input:"01-/-50", output: "01-/-2050"),
+																			TestDataType(input: "05-/-01", output: "05-/-2001")]
     
     for date in testDates4 {
 			textField.setText(date.input)
