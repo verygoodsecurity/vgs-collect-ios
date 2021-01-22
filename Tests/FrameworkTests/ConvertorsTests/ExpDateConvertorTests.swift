@@ -63,7 +63,7 @@ class ExpDateConvertorTests: XCTestCase {
 
 		let testDates2: [TestDataType] = [
 			TestDataType(input: "01/22", output: "01/2022"),
-//																			TestDataType(input: "01/30", output: "01/2030"),
+																			TestDataType(input: "01/30", output: "01/2030"),
 //																			TestDataType(input: "05/01", output: "05/2001")
 		]
 
