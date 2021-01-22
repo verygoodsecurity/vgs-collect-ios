@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>FieldType Enumeration Reference</title>
+    <title>VGSExpDateConfiguration Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/FieldType" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/VGSExpDateConfiguration" class="dashAnchor"></a>
 
-    <a title="FieldType Enumeration Reference"></a>
+    <a title="VGSExpDateConfiguration Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      FieldType Enumeration Reference
+      VGSExpDateConfiguration Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -256,18 +256,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>FieldType</h1>
+            <h1>VGSExpDateConfiguration</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FieldType</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">VGSExpDateConfiguration</span> <span class="p">:</span> <span class="kt"><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Type of <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> configuration.</p>
+            <p>A class responsible for configuration <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> with <code>fieldType = .expDate</code>. Extends <code>VGSConfogiration</code> class.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L24-L43">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSExpDateConfiguration.swift#L15-L28">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -279,9 +279,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK9FieldTypeO4noneyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/none" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9FieldTypeO4noneyA2CmF">none</a>
+                    <a name="/s:13VGSCollectSDK23VGSExpDateConfigurationC05inputD6FormatAA010VGSCardExpdG0OSgvp"></a>
+                    <a name="//apple_ref/swift/Property/inputDateFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK23VGSExpDateConfigurationC05inputD6FormatAA010VGSCardExpdG0OSgvp">inputDateFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -289,19 +289,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Field type that doesn&rsquo;t require any input formatting and validation.</p>
+                        <p>Input date format to convert.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="k">none</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">inputDateFormat</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCardExpDateFormat.html">VGSCardExpDateFormat</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSExpDateConfiguration.swift#L18">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -309,9 +309,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK9FieldTypeO10cardNumberyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/cardNumber" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9FieldTypeO10cardNumberyA2CmF">cardNumber</a>
+                    <a name="/s:13VGSCollectSDK23VGSExpDateConfigurationC06outputD6FormatAA010VGSCardExpdG0OSgvp"></a>
+                    <a name="//apple_ref/swift/Property/outputDateFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK23VGSExpDateConfigurationC06outputD6FormatAA010VGSCardExpdG0OSgvp">outputDateFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -319,19 +319,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Field type that requires Credit Card Number input formatting and validation.</p>
+                        <p>Output date format.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">cardNumber</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">outputDateFormat</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCardExpDateFormat.html">VGSCardExpDateFormat</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L30">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSExpDateConfiguration.swift#L21">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -339,9 +339,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK9FieldTypeO7expDateyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/expDate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9FieldTypeO7expDateyA2CmF">expDate</a>
+                    <a name="/s:13VGSCollectSDK23VGSExpDateConfigurationC4typeAA9FieldTypeOvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK23VGSExpDateConfigurationC4typeAA9FieldTypeOvp">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -349,109 +349,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Field type that requires Expiration Date input formatting and validation.</p>
+                        <p><code><a href="../Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO7expDateyA2CmF">FieldType.expDate</a></code> type of <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> configuration.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">expDate</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/FieldType.html">FieldType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L33">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK9FieldTypeO3cvcyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/cvc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9FieldTypeO3cvcyA2CmF">cvc</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Field type that requires Credit Card CVC input formatting and validation.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">cvc</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L36">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK9FieldTypeO14cardHolderNameyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/cardHolderName" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9FieldTypeO14cardHolderNameyA2CmF">cardHolderName</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Field type that requires Cardholder Name input formatting and validation.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">cardHolderName</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L39">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK9FieldTypeO3ssnyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/ssn" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9FieldTypeO3ssnyA2CmF">ssn</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Field type that requires US Social Security Number input formatting and validation.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">ssn</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L42">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSExpDateConfiguration.swift#L24-L27">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

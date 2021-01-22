@@ -93,14 +93,14 @@
     },
     {
       "file": "/Users/eugene/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 182,
+      "line": 189,
       "symbol": "VGSTextField.textFieldDidBeginEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/eugene/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
-      "line": 193,
+      "line": 200,
       "symbol": "VGSTextField.textFieldDidEndEditing(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
