@@ -62,7 +62,7 @@ class ExpDateConvertorTests: XCTestCase {
 		textField.configuration = config
 
 		let testDates2: [TestDataType] = [TestDataType(input: "12/21", output: "12/2021"),
-//																			TestDataType(input: "01/50", output: "01/2050"),
+																			TestDataType(input: "01/50", output: "01/2050"),
 //																			TestDataType(input: "05/01", output: "05/2001")
 		]
 
@@ -111,7 +111,7 @@ class ExpDateConvertorTests: XCTestCase {
 		textField.configuration = config
 
 		let testDates4: [TestDataType] = [TestDataType(input:"12-/-21", output: "12-/-2021"),
-//																			TestDataType(input:"01-/-50", output: "01-/-2050"),
+																			TestDataType(input:"01-/-50", output: "01-/-2050"),
 //																			TestDataType(input: "05-/-01", output: "05-/-2001")
 		]
 
