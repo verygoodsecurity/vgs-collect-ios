@@ -21,7 +21,6 @@ class ExpDateConvertorTests: XCTestCase {
 
   override func setUp() {
       collector = VGSCollect(id: "tntva5wfdrp")
-      textField = VGSExpDateTextField()
   }
 
   override func tearDown() {
@@ -30,12 +29,16 @@ class ExpDateConvertorTests: XCTestCase {
   }
   
   func testConvertExpDateFormat() {
+		let textField = VGSExpDateTextField()
+		print("start testConvertExpDateFormat...")
     let config = VGSExpDateConfiguration(collector: collector, fieldName: "textField")
     config.formatPattern = "##/####"
     config.divider = "/"
     config.inputDateFormat = .longYear
     config.outputDateFormat = .shortYear
     textField.configuration = config
+
+		print("start testConvertExpDateFormat...")
    
 		let testDates1: [TestDataType] = [TestDataType(input: "12/2021", output: "12/21"),
 																			TestDataType(input:"01/2050", output: "01/50"),
@@ -44,6 +47,9 @@ class ExpDateConvertorTests: XCTestCase {
     for date in testDates1 {
 			textField.setText(date.input)
 			if let outputText = textField.getOutputText() {
+				print("outputText: \(outputText)")
+				print("date.input: \(date.input)")
+				print("date.output: \(date.output)")
 				XCTAssertTrue( outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
 			} else {
 				print("failed: \(date.input) \(date.output)")
