@@ -3,12 +3,12 @@ version: 2
 jobs:
   build-and-test-sdk:
     macos:
-      xcode: "12.1"
+      xcode: "12.3"
     steps:
       - checkout
       - run:
           name: Run Tests iOS 13-14
-          command: xcodebuild test -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1'
+          command: xcodebuild test -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.3'
   build-and-ui-test-demo-app-ios-14-iphone12:
     macos:
       xcode: "12.1"
