@@ -55,7 +55,8 @@ public class VGSAnalyticsClient {
               "platform": UIDevice.current.systemName,
               "device": UIDevice.current.model,
               "deviceModel": UIDevice.current.modelIdentifier,
-              "osVersion": osVersion ]
+              "osVersion": osVersion,
+							"dependencyManager": sdkIntegration]
       }()
 
   /// :nodoc: Track events related to specific VGSCollect instance
@@ -72,7 +73,7 @@ public class VGSAnalyticsClient {
     }
     trackEvent(type, status: status, extraData: data)
   }
-  
+
   /// :nodoc: Base function to Track analytics event
   public func trackEvent(_ type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       var data = [String: Any]()
@@ -88,6 +89,19 @@ public class VGSAnalyticsClient {
       data["vgsCollectSessionId"] = vgsCollectSessionId
       sendAnalyticsRequest(data: data)
   }
+
+	/// SDK integration tool.
+	private static var sdkIntegration: String {
+		#if COCOAPODS
+			return "COCOAPODS"
+		#endif
+
+		#if SWIFT_PACKAGE
+			return "SPM"
+		#endif
+
+		return "OTHER"
+	}
 }
 
 internal extension VGSAnalyticsClient {
@@ -111,7 +125,6 @@ internal extension VGSAnalyticsClient {
       let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
       let encodedJSON = jsonData?.base64EncodedData()
       request.httpBody = encodedJSON
-    
       // Send data
       URLSession.shared.dataTask(with: request).resume()
   }

@@ -140,6 +140,25 @@ class ValidationRulesTest: XCTestCase {
       XCTAssertTrue(textfield.state.validationErrors.count == 1)
       XCTAssertTrue(textfield.state.validationErrors.first == error)
       
+      /// Test  month in valid range
+      textfield.textField.secureText = "1322"
+      XCTAssertTrue(textfield.state.isValid == false)
+      XCTAssertTrue(textfield.state.validationErrors.count == 1)
+      XCTAssertTrue(textfield.state.validationErrors.first == error)
+      
+      textfield.textField.secureText = "0122"
+      XCTAssertTrue(textfield.state.isValid == true)
+      XCTAssertTrue(textfield.state.validationErrors.count == 0)
+      
+      textfield.textField.secureText = "1222"
+      XCTAssertTrue(textfield.state.isValid == true)
+      XCTAssertTrue(textfield.state.validationErrors.count == 0)
+      
+      textfield.textField.secureText = "0022"
+      XCTAssertTrue(textfield.state.isValid == false)
+      XCTAssertTrue(textfield.state.validationErrors.count == 1)
+      XCTAssertTrue(textfield.state.validationErrors.first == error)
+
       config.validationRules = VGSValidationRuleSet(rules: [
         VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: error)
       ])

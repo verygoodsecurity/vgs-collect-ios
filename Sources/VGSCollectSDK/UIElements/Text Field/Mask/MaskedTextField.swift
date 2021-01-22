@@ -35,6 +35,9 @@ internal class MaskedTextField: UITextField {
     the textfield would behave like a normal one
     */
     var divider: String = ""
+  
+  
+    var outputFormat: String?
     
     /**
      Var that holds the prefix to be added to the textfield

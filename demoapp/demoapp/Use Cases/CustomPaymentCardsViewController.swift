@@ -17,7 +17,7 @@ class CustomPaymentCardsViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector
-    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment, hostname: "blablabla.com")
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
@@ -157,7 +157,7 @@ class CustomPaymentCardsViewController: UIViewController {
 
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YYYY"
-        expCardDate.monthPickerFormat = .longSymbols
+//        expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.isRequired = true
