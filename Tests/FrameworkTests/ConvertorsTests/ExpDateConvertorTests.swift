@@ -29,8 +29,8 @@ class ExpDateConvertorTests: XCTestCase {
     let config = VGSExpDateConfiguration(collector: collector, fieldName: "textField")
     config.formatPattern = "##/####"
     config.divider = "/"
-    config.inputDateFormat = "MM/yyyy"
-    config.outputDateFormat = "MM/yy"
+    config.inputDateFormat = .longYear
+    config.outputDateFormat = .shortYear
     textField.configuration = config
    
     let testDates1: [TestDataType] = [("12/2021", "12/21"),
@@ -42,13 +42,13 @@ class ExpDateConvertorTests: XCTestCase {
       XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
     }
     
-    config.inputDateFormat = "MM/yy"
-    config.outputDateFormat = "MM/yyyy"
+    config.inputDateFormat = .shortYear
+    config.outputDateFormat = .longYear
     textField.configuration = config
    
     let testDates2: [TestDataType] = [("12/21", "12/2021"),
                                      ("01/50", "01/2050"),
-                                     ("05/00", "05/2000")]
+                                     ("05/01", "05/2001")]
     
     for date in testDates2 {
       textField.textField.secureText = date.input
