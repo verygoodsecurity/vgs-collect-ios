@@ -51,5 +51,3 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test-sdk
-      - build-and-ui-test-demo-app-ios-14-iphone12
-      - build-and-ui-test-demo-app-ios-13-ipad-air-3

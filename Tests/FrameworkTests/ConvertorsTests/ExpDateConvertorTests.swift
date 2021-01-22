@@ -12,7 +12,6 @@ import XCTest
 
 class ExpDateConvertorTests: XCTestCase {
   var collector: VGSCollect!
-  var textField: VGSExpDateTextField!
 
 	struct TestDataType {
 		let input: String
@@ -22,13 +21,9 @@ class ExpDateConvertorTests: XCTestCase {
   override func setUp() {
       collector = VGSCollect(id: "tntva5wfdrp")
   }
-
-  override func tearDown() {
-      collector = nil
-      textField = nil
-  }
   
   func testConvertExpDateFormat() {
+		collector = VGSCollect(id: "tntva5wfdrp")
 		let textField = VGSExpDateTextField()
 		print("start testConvertExpDateFormat...")
     let config = VGSExpDateConfiguration(collector: collector, fieldName: "textField")

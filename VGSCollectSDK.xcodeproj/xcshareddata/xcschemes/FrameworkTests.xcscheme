@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1140"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -21,6 +21,81 @@
                BlueprintName = "FrameworkTests"
                ReferencedContainer = "container:VGSCollectSDK.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "APIHostnameValidatorTests">
+               </Test>
+               <Test
+                  Identifier = "ApiClientTests">
+               </Test>
+               <Test
+                  Identifier = "CVVTextFieldTests">
+               </Test>
+               <Test
+                  Identifier = "CardBrandTest">
+               </Test>
+               <Test
+                  Identifier = "CardHolderNameFieldTests">
+               </Test>
+               <Test
+                  Identifier = "CardNumerTextFieldTests">
+               </Test>
+               <Test
+                  Identifier = "CardTextFieldTests">
+               </Test>
+               <Test
+                  Identifier = "ExpDateTextField">
+               </Test>
+               <Test
+                  Identifier = "ExpDateTextFieldTests">
+               </Test>
+               <Test
+                  Identifier = "FileInfoTest">
+               </Test>
+               <Test
+                  Identifier = "FilePickerTests">
+               </Test>
+               <Test
+                  Identifier = "LuhnTests">
+               </Test>
+               <Test
+                  Identifier = "MaskedTextFieldTest">
+               </Test>
+               <Test
+                  Identifier = "PaymentCardsTest">
+               </Test>
+               <Test
+                  Identifier = "SSNTextFieldTests">
+               </Test>
+               <Test
+                  Identifier = "StorageTests">
+               </Test>
+               <Test
+                  Identifier = "TextFieldSecurity">
+               </Test>
+               <Test
+                  Identifier = "TextFielsStyleUI">
+               </Test>
+               <Test
+                  Identifier = "UtilsTest">
+               </Test>
+               <Test
+                  Identifier = "VGSCollectTests">
+               </Test>
+               <Test
+                  Identifier = "VGSCollectValidationTests">
+               </Test>
+               <Test
+                  Identifier = "VGSTextFieldTests">
+               </Test>
+               <Test
+                  Identifier = "ValidationRulesTest">
+               </Test>
+            </SkippedTests>
+            <LocationScenarioReference
+               identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+               referenceType = "1">
+            </LocationScenarioReference>
          </TestableReference>
       </Testables>
    </TestAction>
