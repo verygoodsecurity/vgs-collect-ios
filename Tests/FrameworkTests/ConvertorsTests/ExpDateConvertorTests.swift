@@ -38,8 +38,12 @@ class ExpDateConvertorTests: XCTestCase {
                                      ("05/2100", "05/00")]
     
     for date in testDates1 {
-      textField.textField.secureText = date.input
-      XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
+			textField.textField.secureText = date.input
+			if let outputText = textField.getOutputText() {
+				XCTAssertTrue( outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
+			} else {
+				assertionFailure("outputText: \(textField.getOutputText())")
+			}
     }
     
     config.inputDateFormat = .shortYear
@@ -52,7 +56,11 @@ class ExpDateConvertorTests: XCTestCase {
     
     for date in testDates2 {
       textField.textField.secureText = date.input
-      XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
+			if let outputText = textField.getOutputText() {
+				XCTAssertTrue(outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
+			} else {
+				assertionFailure("outputText: \(textField.getOutputText())")
+			}
     }
     
     config.divider = ""
@@ -66,7 +74,11 @@ class ExpDateConvertorTests: XCTestCase {
     
     for date in testDates3 {
       textField.textField.secureText = date.input
-      XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
+			if let outputText = textField.getOutputText() {
+				XCTAssertTrue(outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
+			} else {
+				assertionFailure("outputText: \(textField.getOutputText())")
+			}
     }
     
     config.divider = "-/-"
@@ -79,8 +91,12 @@ class ExpDateConvertorTests: XCTestCase {
                                      ("05-/-01", "05-/-2001")]
     
     for date in testDates4 {
-      textField.textField.secureText = date.input
-      XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
+			textField.textField.secureText = date.input
+			if let outputText = textField.getOutputText() {
+				XCTAssertTrue(outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
+			} else {
+				assertionFailure("outputText: \(textField.getOutputText())")
+			}
     }
   }
 }
