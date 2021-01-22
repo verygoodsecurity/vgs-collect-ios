@@ -25,6 +25,15 @@ public enum CardExpDateFormat {
       return 4
     }
   }
+  
+  internal var dateYearFormat: String {
+    switch self {
+    case .shortYear:
+      return "yy"
+    case .longYear:
+      return "yyyy"
+    }
+  }
 }
 
 /**
