@@ -16,7 +16,7 @@ class ExpDateConvertorTests: XCTestCase {
   typealias TestDataType = (input: String, output: String)
 
   override func setUp() {
-      collector = VGSCollect(id: "any")
+      collector = VGSCollect(id: "tntva5wfdrp")
       textField = VGSExpDateTextField()
   }
 
@@ -38,11 +38,11 @@ class ExpDateConvertorTests: XCTestCase {
                                      ("05/2100", "05/00")]
     
     for date in testDates1 {
-			textField.textField.secureText = date.input
+			textField.setText(date.input)
 			if let outputText = textField.getOutputText() {
 				XCTAssertTrue( outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
 			} else {
-				assertionFailure("outputText: \(textField.getOutputText())")
+				print("failed: \(date.input) \(date.output)")
 			}
     }
     
@@ -55,11 +55,11 @@ class ExpDateConvertorTests: XCTestCase {
                                      ("05/01", "05/2001")]
     
     for date in testDates2 {
-      textField.textField.secureText = date.input
+			textField.setText(date.input)
 			if let outputText = textField.getOutputText() {
 				XCTAssertTrue(outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
 			} else {
-				assertionFailure("outputText: \(textField.getOutputText())")
+				print("failed: \(date.input) \(date.output)")
 			}
     }
     
@@ -73,11 +73,11 @@ class ExpDateConvertorTests: XCTestCase {
                                      ("052100", "0500")]
     
     for date in testDates3 {
-      textField.textField.secureText = date.input
+			textField.setText(date.input)
 			if let outputText = textField.getOutputText() {
 				XCTAssertTrue(outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
 			} else {
-				assertionFailure("outputText: \(textField.getOutputText())")
+				print("failed: \(date.input) \(date.output)")
 			}
     }
     
@@ -91,11 +91,11 @@ class ExpDateConvertorTests: XCTestCase {
                                      ("05-/-01", "05-/-2001")]
     
     for date in testDates4 {
-			textField.textField.secureText = date.input
+			textField.setText(date.input)
 			if let outputText = textField.getOutputText() {
 				XCTAssertTrue(outputText == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(outputText)")
 			} else {
-				assertionFailure("outputText: \(textField.getOutputText())")
+				print("failed: \(date.input) \(date.output)")
 			}
     }
   }
