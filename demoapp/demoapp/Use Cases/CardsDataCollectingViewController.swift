@@ -21,7 +21,7 @@ class CardsDataCollectingViewController: UIViewController {
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
-    var expCardDate = VGSTextField()
+    var expCardDate = VGSExpDateTextField()
     var cvcCardNum = VGSTextField()
     var cardHolderName = VGSTextField()
     
@@ -124,7 +124,6 @@ class CardsDataCollectingViewController: UIViewController {
       
         let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.type = .cardNumber
-        cardConfiguration.isRequiredValidOnly = true
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
@@ -132,13 +131,15 @@ class CardsDataCollectingViewController: UIViewController {
       
         cardNumber.becomeFirstResponder()
 
-        let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
-        expDateConfiguration.isRequiredValidOnly = true
+        /// Use `VGSExpDateConfiguration` if you need to convert output date format
+        let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
+        expDateConfiguration.inputDateFormat = "MM/yyyy"
+        expDateConfiguration.outputDateFormat = "MM/yy"
+
       
         /// Default .expDate format is "##/##"
         expDateConfiguration.formatPattern = "##/####"
-        expDateConfiguration.outputDateFormat = "MM/YY"
         
         /// Update validation rules
         expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
@@ -147,10 +148,9 @@ class CardsDataCollectingViewController: UIViewController {
 
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YYYY"
-//        expCardDate.monthPickerFormat = .longSymbols
+        expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
-        cvcConfiguration.isRequiredValidOnly = true
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
@@ -162,7 +162,6 @@ class CardsDataCollectingViewController: UIViewController {
         holderConfiguration.type = .cardHolderName
         holderConfiguration.keyboardType = .namePhonePad
         /// Required to be not empty
-        holderConfiguration.isRequired = true
       
         cardHolderName.textAlignment = .natural
         cardHolderName.configuration = holderConfiguration
