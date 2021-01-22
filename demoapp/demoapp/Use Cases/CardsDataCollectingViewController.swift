@@ -134,8 +134,8 @@ class CardsDataCollectingViewController: UIViewController {
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
-        expDateConfiguration.inputDateFormat = "MM/yyyy"
-        expDateConfiguration.outputDateFormat = "MM/yy"
+        expDateConfiguration.inputDateFormat = .shortYear
+        expDateConfiguration.outputDateFormat = .longYear
 
       
         /// Default .expDate format is "##/##"
