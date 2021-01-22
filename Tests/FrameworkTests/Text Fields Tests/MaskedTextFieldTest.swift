@@ -174,6 +174,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.textField.secureText = "5252525252525252"
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "5252-5252-5252-5252")
+        XCTAssertTrue(textfield.getOutputText() == "5252-5252-5252-5252")
         XCTAssertTrue(textfield.state.inputLength == 16)
         
         configuration.formatPattern = "-####-"
@@ -181,6 +182,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.textField.secureText = "5252525252525252"
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "+5252+")
+        XCTAssertTrue(textfield.getOutputText() == "+5252+")
         XCTAssertTrue(textfield.state.inputLength == 4)
       
         textfield.setText("")
@@ -192,6 +194,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.setText("XYZxyz123456789wertert")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "__XYZ__xyz__1234")
+        XCTAssertTrue(textfield.getOutputText() == "__XYZ__xyz__1234")
         XCTAssertTrue(textfield.state.inputLength == 10)
       
         textfield.setText("XYZxyz")
@@ -203,6 +206,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.setText("12345678")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "-1-2--3---4")
+        XCTAssertTrue(textfield.getOutputText() == "-1-2--3---4")
         XCTAssertTrue(textfield.state.inputLength == 4)
     }
     
@@ -213,6 +217,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.setText("5252525252525252")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "5252525252525252")
+        XCTAssertTrue(textfield.getOutputText() == "5252525252525252")
         XCTAssertTrue(textfield.state.inputLength == 16)
         
         configuration.type = .expDate
@@ -221,6 +226,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.setText("1234")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "12/34")
+        XCTAssertTrue(textfield.getOutputText() == "12/34")
         XCTAssertTrue(textfield.state.inputLength == 4)
         
         let nameInput = "Joe's Business"
@@ -230,6 +236,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.setText(nameInput)
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == nameInput)
+        XCTAssertTrue(textfield.getOutputText() == nameInput)
         XCTAssertTrue(textfield.state.inputLength == nameInput.count)
         
         configuration.type = .cvc
@@ -238,6 +245,7 @@ class MaskedTextFieldTest: XCTestCase {
         textfield.configuration = configuration
         textfield.setText("1234")
         XCTAssertTrue(textfield.textField.getSecureTextWithDivider == "1234")
+        XCTAssertTrue(textfield.getOutputText() == "1234")
         XCTAssertTrue(textfield.state.inputLength == 4)
     }
 }

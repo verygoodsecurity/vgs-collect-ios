@@ -54,5 +54,33 @@ class ExpDateConvertorTests: XCTestCase {
       textField.textField.secureText = date.input
       XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
     }
+    
+    config.divider = ""
+    config.inputDateFormat = .longYear
+    config.outputDateFormat = .shortYear
+    textField.configuration = config
+   
+    let testDates3: [TestDataType] = [("122021", "1221"),
+                                     ("012050", "0150"),
+                                     ("052100", "0500")]
+    
+    for date in testDates3 {
+      textField.textField.secureText = date.input
+      XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
+    }
+    
+    config.divider = "-/-"
+    config.inputDateFormat = .shortYear
+    config.outputDateFormat = .longYear
+    textField.configuration = config
+   
+    let testDates4: [TestDataType] = [("12-/-21", "12-/-2021"),
+                                     ("01-/-50", "01-/-2050"),
+                                     ("05-/-01", "05-/-2001")]
+    
+    for date in testDates4 {
+      textField.textField.secureText = date.input
+      XCTAssertTrue(textField.getOutputText() == date.output, "Expiration date convert error:\n - Input: \(date.input)\n - Output: \(date.output)\n - Result: \(textField.getOutputText())")
+    }
   }
 }
