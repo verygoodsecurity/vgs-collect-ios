@@ -54,7 +54,7 @@ class ExpDateConvertorTests: XCTestCase {
 		print("start testConvertExpDateFormat... 2")
 		let textField = VGSExpDateTextField()
 		let config = VGSExpDateConfiguration(collector: collector, fieldName: "textField")
-		config.formatPattern = "##/####"
+		config.formatPattern = "##/##"
 		config.divider = "/"
 
 		config.inputDateFormat = .shortYear
@@ -103,6 +103,7 @@ class ExpDateConvertorTests: XCTestCase {
 		print("start testConvertExpDateFormat... 4")
 		let textField = VGSExpDateTextField()
 		let config = VGSExpDateConfiguration(collector: collector, fieldName: "textField")
+		config.formatPattern = "##/##"
 		config.divider = "-/-"
 		config.inputDateFormat = .shortYear
 		config.outputDateFormat = .longYear
