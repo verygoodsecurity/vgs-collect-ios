@@ -15,11 +15,23 @@ internal extension Calendar {
     return Calendar(identifier: .gregorian).component(.month, from: Date())
   }
   
-  static var currentYear: Int {
+   static var currentYear: Int {
     return Calendar(identifier: .gregorian).component(.year, from: Date())
   }
   
   static var currentYearShort: Int {
     return Calendar(identifier: .gregorian).component(.year, from: Date()) - 2000
   }
+}
+
+/// :nodoc:
+public final class VGSCalendarUtils {
+
+	public static var currentYear: Int {
+	 return Calendar(identifier: .gregorian).component(.year, from: Date())
+	}
+
+	public static var currentYearShort: Int {
+		return Calendar(identifier: .gregorian).component(.year, from: Date()) - 2000
+	}
 }
