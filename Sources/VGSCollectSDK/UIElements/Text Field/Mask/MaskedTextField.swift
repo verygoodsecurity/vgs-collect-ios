@@ -79,6 +79,8 @@ internal class MaskedTextField: UITextField {
             return super.text
         }
     }
+  
+    internal var previousTextLength = 0
     
     /// returns textfield text without mask
     internal var getSecureRawText: String? {
@@ -97,8 +99,8 @@ internal class MaskedTextField: UITextField {
     
     // MARK: - Text Padding
     var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    
-    func updateTextFormat() {
+
+  func updateTextFormat() {
         self.undoManager?.removeAllActions()
         self.formatText()
     }
@@ -180,6 +182,10 @@ internal class MaskedTextField: UITextField {
      */
     func formatText() {
         var currentTextForFormatting = ""
+        var startCoursorOffset = 0
+        if let selectedRange = self.selectedTextRange {
+          startCoursorOffset = self.offset(from: self.beginningOfDocument, to: selectedRange.start)
+        }
         
         if let text = super.text {
             if text.count > 0 {
@@ -259,6 +265,22 @@ internal class MaskedTextField: UITextField {
                     super.text = String(text[text.index(text.startIndex, offsetBy: self.maxLength)])
                 }
             }
+          
+          
+          if previousTextLength < super.text?.count ?? 0 {
+            startCoursorOffset += 1
+          }
+          // only if there is a currently selected range
+          if self.selectedTextRange != nil {
+
+              // and only if the new position is valid
+            if let newPosition = self.position(from: self.beginningOfDocument, offset: startCoursorOffset) {
+
+                  // set the new position
+                  self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
+              }
+          }
+          self.previousTextLength = super.text?.count ?? 0
         }
     }
 }
