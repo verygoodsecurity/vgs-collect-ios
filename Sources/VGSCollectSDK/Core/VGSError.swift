@@ -49,11 +49,16 @@ public class VGSError: NSError {
     override public var code: Int {
         return type.rawValue
     }
-    
+
+	  ///: nodoc. Public required init.
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+	/// Initializer.
+	/// - Parameters:
+	///   - type: `VGSErrorType` object, error type.
+	///   - info: `VGSErrorInfo?` object, error info, default is `nil`.
     internal required init(type: VGSErrorType, userInfo info: VGSErrorInfo? = nil) {
         self.type = type
         super.init(domain: VGSCollectSDKErrorDomain, code: type.rawValue, userInfo: info?.asDictionary)

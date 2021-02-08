@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 #endif
 
+/// :nodoc: Public protocol to present scanners modules view controllers.
 public protocol VGSScanHandlerProtocol {
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)

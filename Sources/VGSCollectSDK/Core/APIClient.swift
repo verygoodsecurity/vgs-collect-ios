@@ -25,7 +25,7 @@ public enum HTTPMethod: String {
     case post    = "POST"
     /// PUT method.
     case put     = "PUT"
-    // PATCH method.
+    /// PATCH method.
     case patch = "PATCH"
     /// DELETE method.
     case delete = "DELETE"

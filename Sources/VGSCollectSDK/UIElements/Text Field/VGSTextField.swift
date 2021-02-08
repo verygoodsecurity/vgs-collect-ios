@@ -186,6 +186,8 @@ extension VGSTextField {
 
 // MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
+
+	 /// :nodoc: Wrap native `UITextField` delegate method for `textFieldDidBeginEditing`.
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidBeginEditing?(self)
@@ -196,7 +198,8 @@ extension VGSTextField: UITextFieldDelegate {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidChange?(self)
     }
-    
+
+	  /// :nodoc: Wrap native `UITextField` delegate method for `didEndEditing`.
     public func textFieldDidEndEditing(_ textField: UITextField) {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidEndEditing?(self)

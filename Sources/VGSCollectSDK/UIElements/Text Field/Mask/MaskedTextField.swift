@@ -10,6 +10,7 @@
 import UIKit
 #endif
 
+/// :nodoc: Internal wrapper for `UITextField`.
 internal class MaskedTextField: UITextField {
     enum MaskedTextReplacementChar: String, CaseIterable {
         case lettersAndDigit = "*"
@@ -35,8 +36,10 @@ internal class MaskedTextField: UITextField {
     the textfield would behave like a normal one
     */
     var divider: String = ""
-  
-  
+
+    /**
+	  Defines custom output format pattern. User input data will be 	formatted with specified pattern for collect request.
+    */
     var outputFormat: String?
     
     /**
