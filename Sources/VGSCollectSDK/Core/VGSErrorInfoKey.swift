@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// :nodoc: VGSError typealias for error info key.
 public typealias VGSErrorInfoKey = String
 
 /// An error domain string used to produce `VGSError` from `VGSCollectSDK` -  **"vgscollect.sdk"**

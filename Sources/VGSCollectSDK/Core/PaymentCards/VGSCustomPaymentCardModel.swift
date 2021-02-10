@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 #endif
 
+/// Holds information for custom payment model.
 public struct VGSCustomPaymentCardModel: VGSPaymentCardModelProtocol {
   
   /// Payment Card Brand
@@ -39,7 +40,16 @@ public struct VGSCustomPaymentCardModel: VGSPaymentCardModelProtocol {
   public var brandIcon: UIImage?
   
   // MARK: - Initialzation
-  
+
+	/// Initializer.
+	/// - Parameters:
+	///   - name: `String` object, payment card model name.
+	///   - regex: `String` object, should be valid regex expression.
+	///   - formatPattern: `String` object, should be valid format pattern.
+	///   - cardNumberLengths: `[Int]` object, array of valid card number lengths.
+	///   - cvcLengths: `[Int]` object, array of valid card number CVC. Default is `[3]`.
+	///   - checkSumAlgorithm: `CheckSumAlgorithmType?` object, should be valid checkSumAlgorithm object, default is `.luhn`.
+	///   - brandIcon: `UIImage?`, card image icon.
   public init(name: String, regex: String, formatPattern: String, cardNumberLengths: [Int], cvcLengths: [Int] = [3], checkSumAlgorithm: CheckSumAlgorithmType? = .luhn, brandIcon: UIImage?) {
     self.brand = .custom(brandName: name)
     self.name = name

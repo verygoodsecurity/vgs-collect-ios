@@ -87,10 +87,13 @@ public final class VGSExpDateTextField: VGSTextField {
 }
 
 extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
+
+	  /// :nodoc: Picker view dataSource implementation.
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
 
+	  /// :nodoc: Picker view dataSource implementation.
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case monthPickerComponent:
@@ -100,6 +103,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 
+	  /// :nodoc: Picker view delegate implementation.
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case monthPickerComponent:
@@ -109,6 +113,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 
+	  /// :nodoc: Picker view delegate implementation.
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
       /// check that date is not before current month
       let currentMonthIndex = Calendar(identifier: .gregorian).component(.month, from: Date()) - 1

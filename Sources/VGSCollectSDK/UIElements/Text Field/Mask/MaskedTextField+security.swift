@@ -10,8 +10,11 @@ import UIKit
 #endif
 
 extension MaskedTextField {
+
+	  /// :nodoc: Disable custom target-action outside `VGSCollectSDK`.
     override public func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {}
-    
+
+	  /// :nodoc: Replace native textfield delgate with custom.
     override public var delegate: UITextFieldDelegate? {
         get { return nil }
         set {}
