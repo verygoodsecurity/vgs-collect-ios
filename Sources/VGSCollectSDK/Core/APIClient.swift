@@ -146,10 +146,8 @@ class APIClient {
         let version = ProcessInfo.processInfo.operatingSystemVersion
         let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
 
-				var trStatus = "default"
-				if !VGSAnalyticsClient.shared.shouldCollectAnalytics {
-					trStatus = "none"
-				}
+				let trStatus = VGSAnalyticsClient.shared.shouldCollectAnalytics ? "default" : "none"
+
         return [
           "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(VGSAnalyticsClient.shared.vgsCollectSessionId)&tr=\(trStatus)"
         ]
