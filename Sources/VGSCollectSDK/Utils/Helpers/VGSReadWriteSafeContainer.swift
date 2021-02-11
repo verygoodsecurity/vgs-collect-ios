@@ -1,5 +1,5 @@
 //
-//  VGSLock.swift
+//  VGSReadWriteSafeContainer.swift
 //  VGSCollectSDK
 //
 
