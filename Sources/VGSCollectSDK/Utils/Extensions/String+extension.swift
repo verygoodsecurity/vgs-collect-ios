@@ -30,7 +30,9 @@ internal extension String {
 			// Clear all queries.
 			component.query = nil
 
-			print("WARNING! YOUR HOSTNAME HAS QUERIES AND WILL BE NORMALIZED!")
+      let text = "YOUR HOSTNAME HAS QUERIES AND WILL BE NORMALIZED!"
+      let event = VGSLogEvent(level: .warning, text: text, severityLevel: .warning)
+      VGSCollectLogger.shared.forwardLogEvent(event)
 		}
 
 		var path: String

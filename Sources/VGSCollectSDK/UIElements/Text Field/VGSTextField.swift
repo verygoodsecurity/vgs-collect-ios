@@ -82,7 +82,12 @@ public class VGSTextField: UIView {
     /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
     public var configuration: VGSConfiguration? {
         didSet {
-            guard let configuration = configuration else { return }
+            guard let configuration = configuration else {
+              let message = "VGSTextField CONFIGURATION ERROR! VGSConfiguration is REQUIRED!!!"
+              let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
+              VGSCollectLogger.shared.forwardLogEvent(event)
+              return
+            }
             
             // config text field
             fieldName = configuration.fieldName
@@ -186,6 +191,8 @@ extension VGSTextField {
 
 // MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
+
+	 /// :nodoc: Wrap native `UITextField` delegate method for `textFieldDidBeginEditing`.
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidBeginEditing?(self)
@@ -196,7 +203,8 @@ extension VGSTextField: UITextFieldDelegate {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidChange?(self)
     }
-    
+
+	  /// :nodoc: Wrap native `UITextField` delegate method for `didEndEditing`.
     public func textFieldDidEndEditing(_ textField: UITextField) {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidEndEditing?(self)

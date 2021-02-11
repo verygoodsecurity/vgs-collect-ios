@@ -13,10 +13,17 @@ let package = Package(
         .library(
             name: "VGSCollectSDK",
             targets: ["VGSCollectSDK"]),
+				.library(
+						name: "VGSCardScanCollector",
+						targets: ["VGSCardScanCollector"]
+			),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+			.package(
+				name: "CardScan",
+				url: "https://github.com/getbouncer/cardscan-ios.git",
+				.revision("caadb6c9b2059b3da7879e5c86be5f22a7295865")
+			),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -29,6 +36,12 @@ let package = Package(
         .testTarget(
             name: "FrameworkTests",
             dependencies: ["VGSCollectSDK"]
-				)
-			]
+				),
+				.target(
+						name: "VGSCardScanCollector",
+						dependencies: ["VGSCollectSDK",
+											.product(name: "CardScan", package: "CardScan")],
+						path: "Sources/VGSCardScanCollector/"
+		 ),
+		]
 )

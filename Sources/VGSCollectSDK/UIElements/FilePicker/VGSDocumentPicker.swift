@@ -54,8 +54,16 @@ extension VGSDocumentPicker: UIDocumentPickerDelegate {
         if let url = urls.first, let fileData = try? Data(contentsOf: url) {
             vgsCollector?.storage.files = [filename: fileData]
             let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnits: "bytes")
+            let text = "Did pick a file with size: \(fileData.count)."
+            let event = VGSLogEvent(level: .info, text: text, severityLevel: .warning)
+            VGSCollectLogger.shared.forwardLogEvent(event)
+          
             delegate?.userDidPickFileWithInfo(fileMetadata)
         } else {
+            let text = "Document File format is not supported. Cannot convert to Data object!!!."
+            let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+            VGSCollectLogger.shared.forwardLogEvent(event)
+          
             delegate?.filePickingFailedWithError(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Document File format is not supported. Can't convert to Data.", extraInfo: [:])))
         }
         return

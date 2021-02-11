@@ -1,4 +1,4 @@
-platform :ios, '10.1'
+platform :ios, '11.2'
 
 target 'demoapp' do
   # Comment the next line if you don't want to use dynamic frameworks

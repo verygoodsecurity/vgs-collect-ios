@@ -10,6 +10,9 @@ import Foundation
 #if !COCOAPODS
 import VGSCollectSDK
 #endif
+#if os(iOS)
+import UIKit
+#endif
 
 /// Supported scan data fields by CardScan
 @objc

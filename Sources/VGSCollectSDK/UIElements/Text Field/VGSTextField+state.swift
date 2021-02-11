@@ -11,8 +11,10 @@ import Foundation
 import UIKit
 #endif
 
+/// :nodoc: Extensions for `VGSTextField.`
 public extension VGSTextField {
-    
+
+	  /// Return current focus status.
     override var isFocused: Bool {
         return focusStatus
     }
