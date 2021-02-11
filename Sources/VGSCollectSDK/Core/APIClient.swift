@@ -142,7 +142,7 @@ class APIClient {
     private let syncSemaphore: DispatchSemaphore = .init(value: 1)
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
-        // Add Headers
+        // Add Headers.
         let version = ProcessInfo.processInfo.operatingSystemVersion
         let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
 
@@ -195,16 +195,16 @@ class APIClient {
 
    private  func sendRequest(to url: URL, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
       
-        // Add Headers
+        // Add headers.
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"
-        // Add custom headers if need
+        // Add custom headers if needed.
         if let customerHeaders = customHeader, customerHeaders.count > 0 {
             customerHeaders.keys.forEach({ (key) in
                 headers[key] = customerHeaders[key]
             })
         }
-        // Setup URLRequest
+        // Setup URLRequest.
         let jsonData = try? JSONSerialization.data(withJSONObject: value)
         var request = URLRequest(url: url)
         request.httpBody = jsonData
@@ -214,7 +214,7 @@ class APIClient {
         // Log request.
         VGSCollectRequestLogger.logRequest(request, payload: value)
     
-        // Send data
+        // Send data.
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error as NSError? {
@@ -246,7 +246,7 @@ extension APIClient {
   /// Generates API URL with vault id, environment and data region.
   private static func buildVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
     
-      /// Check environment is valid
+      // Check environment is valid.
       if !VGSCollect.regionalEnironmentStringValid(regionalEnvironment) {
         let eventText = "CONFIGURATION ERROR: ENVIRONMENT STRING IS NOT VALID!!! region \(regionalEnvironment)"
         let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
@@ -254,7 +254,7 @@ extension APIClient {
         assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "❗VGSCollectSDK CONFIGURATION ERROR: ENVIRONMENT STRING IS NOT VALID!!!")
       }
     
-      /// Check tenant  is valid
+      // Check tenant is valid.
       if !VGSCollect.tenantIDValid(tenantId) {
         let eventText = "CONFIGURATION ERROR: TENANT ID IS NOT VALID OR NOT SET!!! tenant: \(tenantId)"
         let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
@@ -264,7 +264,7 @@ extension APIClient {
     
       let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
     
-      /// Check vault url  is valid
+      // Check vault url is valid.
       guard let url = URL(string: strUrl) else {
         let eventText = "CONFIGURATION ERROR: NOT VALID ORGANIZATION PARAMETERS!!! tenantID: \(tenantId), environment: \(regionalEnvironment)"
         let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
