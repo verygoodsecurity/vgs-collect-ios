@@ -1,6 +1,6 @@
 //
 //  VGSLock.swift
-//  VGSShowSDK
+//  VGSCollectSDK
 //
 
 import Foundation

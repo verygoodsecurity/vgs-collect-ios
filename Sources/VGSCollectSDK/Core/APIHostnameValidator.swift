@@ -37,14 +37,18 @@ internal class APIHostnameValidator {
               completion(URL(string: contents))
               return
             } else {
-              print("ERROR: NOT VALID HOST NAME!!! WILL USE VAULT URL INSTEAD!!!")
+              let text = "CANNOT VALIDATE HOSTNAME: \"\(hostname)\". CHECK VAULT SETTINGS FOR TENANT ID: \"\(tenantId)\""
+              let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+              VGSLogger.shared.forwardLogEvent(event)
               completion(nil)
               return
             }
           }
        }
     } else {
-			print("ERROR: CANNOT BUILD HOSTNAME WITH: \(hostname)")
+      let text = "HOSTNAME IS NOT VALID: \"\(hostname)\", TENANT ID: \"\(tenantId)\""
+      let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+      VGSLogger.shared.forwardLogEvent(event)
       completion(nil)
     }
   }
@@ -56,7 +60,6 @@ internal class APIHostnameValidator {
 		let hostPath = "\(normalizedHostname)__\(tenantId).txt"
 
 		let	url = hostValidatorBaseURL.appendingPathComponent(hostPath)
-		print("final url: \(url)")
 		return url
 	}
 }

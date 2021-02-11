@@ -1,12 +1,12 @@
 //
-//  VGSShowRequestLogger.swift
+//  VGSCollectRequestLogger.swift
 //  VGSCollectSDK
 //
 
 import Foundation
 
 /// Utilities to log network requests.
-internal class VGSShowRequestLogger {
+internal class VGSCollectRequestLogger {
 
 	/// Log sending request.
 	/// - Parameters:

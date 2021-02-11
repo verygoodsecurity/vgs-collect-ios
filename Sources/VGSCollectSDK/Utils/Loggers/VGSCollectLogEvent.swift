@@ -76,9 +76,9 @@ internal struct VGSLogEvent {
 			severityText = severity
 		}
 		if isExtensiveDebugEnabled {
-			return "[VGShowSDK - \(severityText) \(text) - logLevel: \(level) - file: \(file) - func: \(functionName) - line: \(lineNumber)]"
+			return "[VGSCollectSDK - \(severityText) \(text) - logLevel: \(level) - file: \(file) - func: \(functionName) - line: \(lineNumber)]"
 		} else {
-			return "[VGShowSDK - \(severityText) \(text) - logLevel: \(level)]"
+			return "[VGSCollectSDK - \(severityText) \(text) - logLevel: \(level)]"
 		}
 	}
 }

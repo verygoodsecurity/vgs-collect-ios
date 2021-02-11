@@ -33,14 +33,16 @@ extension VGSCollect {
           content.append("custom_header")
         }
         if let error = validateStoredInputData() {
+          
           VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
+          
           block(.failure(error.code, nil, nil, error))
             return
         }
         let body = mapStoredInputDataForSubmit(with: extraData)
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
-        // send request
+        // Send request
         apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
           
           // Analytics
@@ -80,6 +82,10 @@ extension VGSCollect {
         }
         // check if file is exist
         guard let key = storage.files.keys.first, let value = storage.files.values.first else {
+            let text = "No file to send! File not selected or doesn't exists!"
+            let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+            VGSLogger.shared.forwardLogEvent(event)
+          
             let error = VGSError(type: .inputFileNotFound,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exists",
@@ -90,9 +96,13 @@ extension VGSCollect {
         }
         // check if file converted to Data
         guard let result = value as? Data else {
+            let text = "File format is not supported!!! Cannot convert file type to Data object."
+            let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+            VGSLogger.shared.forwardLogEvent(event)
+          
             let error = VGSError(type: .inputFileTypeIsNotSupported,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
-                                                        description: "File format is not supported. Can't convert to Data.",
+                                                        description: "File format is not supported. Cannot convert to Data.",
                                                         extraInfo: [:]))
             VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
             block(.failure(error.code, nil, nil, error))
@@ -100,6 +110,11 @@ extension VGSCollect {
         }
         // check mac file size
         if result.count >= maxFileSizeInternalLimitInBytes {
+          
+          let text = "File size is too large - \(result.count). File size shouldn't exceed \(maxFileSizeInternalLimitInBytes)"
+          let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+          VGSLogger.shared.forwardLogEvent(event)
+          
             let error = VGSError(type: .inputFileSizeExceedsTheLimit,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileSizeExceedsTheLimit,
                                                         description: "File size is too large.",
@@ -113,6 +128,10 @@ extension VGSCollect {
         // encode file
         let encodedData = result.base64EncodedString()
         if encodedData.count == 0 {
+          let text = "Encoded file size - \(encodedData.count)!!!"
+          let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+          VGSLogger.shared.forwardLogEvent(event)
+          
             let error = VGSError(type: .inputFileTypeIsNotSupported,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
