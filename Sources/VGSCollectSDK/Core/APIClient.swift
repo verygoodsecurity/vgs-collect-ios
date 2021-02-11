@@ -145,8 +145,11 @@ class APIClient {
         // Add Headers
         let version = ProcessInfo.processInfo.operatingSystemVersion
         let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+
+				let trStatus = VGSAnalyticsClient.shared.shouldCollectAnalytics ? "default" : "none"
+
         return [
-          "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(VGSAnalyticsClient.shared.vgsCollectSessionId)"
+          "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(VGSAnalyticsClient.shared.vgsCollectSessionId)&tr=\(trStatus)"
         ]
     }()
   
