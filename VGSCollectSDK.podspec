@@ -32,6 +32,7 @@ Pod::Spec.new do |spec|
     cardscan.source_files  = "Sources/VGSCardScanCollector", "Sources/VGSCardScanCollector/**/*.{swift}"
     cardscan.dependency "VGSCollectSDK/Core"
     cardscan.dependency "CardScan", "2.0.7"
+    cardscan.ios.deployment_target = "11.2"
   end
   
   spec.subspec 'CardIO' do |cardIO|
