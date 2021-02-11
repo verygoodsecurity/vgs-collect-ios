@@ -24,7 +24,7 @@ extension VGSCollect {
     */
     public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
       
-        /// content analytics
+        // Content analytics.
         var content: [String] = ["textField"]
         if !(extraData?.isEmpty ?? true) {
           content.append("custom_data")
@@ -42,7 +42,7 @@ extension VGSCollect {
         let body = mapStoredInputDataForSubmit(with: extraData)
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
-        // Send request
+        // Send request.
         apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
           
           // Analytics
@@ -80,7 +80,7 @@ extension VGSCollect {
         if !(customHeaders?.isEmpty ?? true) {
           content.append("custom_header")
         }
-        // check if file is exist
+        // Check if file is exist.
         guard let key = storage.files.keys.first, let value = storage.files.values.first else {
             let text = "No file to send! File not selected or doesn't exist!"
             let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
@@ -94,7 +94,7 @@ extension VGSCollect {
             block(.failure(error.code, nil, nil, error))
             return
         }
-        // check if file converted to Data
+        // Check if file is converted to Data.
         guard let result = value as? Data else {
             let text = "File format is not supported!!! Cannot convert file type to Data object."
             let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
@@ -108,7 +108,7 @@ extension VGSCollect {
             block(.failure(error.code, nil, nil, error))
             return
         }
-        // check mac file size
+        // Check max file size.
         if result.count >= maxFileSizeInternalLimitInBytes {
           
           let text = "File size is too large - \(result.count). File size shouldn't exceed \(maxFileSizeInternalLimitInBytes)"
@@ -125,7 +125,7 @@ extension VGSCollect {
             block(.failure(error.code, nil, nil, error))
             return
         }
-        // encode file
+        // Encode file.
         let encodedData = result.base64EncodedString()
         if encodedData.count == 0 {
           let text = "Encoded file size - \(encodedData.count)!!!"
@@ -140,14 +140,14 @@ extension VGSCollect {
           block(.failure(error.code, nil, nil, error))
             return
         }
-        // make body
+        // Make body.
         let body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
-        // send request
+        // Send request.
         apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
             
-            // Analytics
+            // Analytics.
             if let strongSelf = self {
               switch response {
               case .success(let code, _, _):
