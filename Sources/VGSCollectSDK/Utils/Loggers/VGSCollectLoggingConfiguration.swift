@@ -1,5 +1,5 @@
 //
-//  VGSLoggingConfiguration.swift
+//  VGSCollectLoggingConfiguration.swift
 //  VGSCollectSDK
 //
 
