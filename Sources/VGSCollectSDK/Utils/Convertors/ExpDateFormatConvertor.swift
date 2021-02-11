@@ -43,7 +43,10 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
       let output = String(inputStart + outputYear)
       return output
     }
-    print("NOT VALID INPUT YEAR, WILL USE INPUT DATE!!!!")
+    let text = "CANNOT CONVERT DATE FORMAT! NOT VALID INPUT YEAR - \(inputYear). WILL USE ORIGINAL(INPUT) DATE FORMAT!"
+    let event = VGSLogEvent(level: .warning, text: text, severityLevel: .warning)
+    VGSCollectLogger.shared.forwardLogEvent(event)
+    
     return input
   }
 }

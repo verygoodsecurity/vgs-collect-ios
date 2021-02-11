@@ -82,7 +82,12 @@ public class VGSTextField: UIView {
     /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
     public var configuration: VGSConfiguration? {
         didSet {
-            guard let configuration = configuration else { return }
+            guard let configuration = configuration else {
+              let message = "VGSTextField CONFIGURATION ERROR! VGSConfiguration is REQUIRED!!!"
+              let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
+              VGSCollectLogger.shared.forwardLogEvent(event)
+              return
+            }
             
             // config text field
             fieldName = configuration.fieldName

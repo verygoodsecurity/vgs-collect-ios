@@ -142,7 +142,7 @@ class APIClient {
     private let syncSemaphore: DispatchSemaphore = .init(value: 1)
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
-        // Add Headers
+        // Add Headers.
         let version = ProcessInfo.processInfo.operatingSystemVersion
         let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
 
@@ -195,25 +195,30 @@ class APIClient {
 
    private  func sendRequest(to url: URL, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
       
-        // Add Headers
+        // Add headers.
         var headers = APIClient.defaultHttpHeaders
         headers["Content-Type"] = "application/json"
-        // Add custom headers if need
+        // Add custom headers if needed.
         if let customerHeaders = customHeader, customerHeaders.count > 0 {
             customerHeaders.keys.forEach({ (key) in
                 headers[key] = customerHeaders[key]
             })
         }
-        // Setup URLRequest
+        // Setup URLRequest.
         let jsonData = try? JSONSerialization.data(withJSONObject: value)
         var request = URLRequest(url: url)
         request.httpBody = jsonData
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        // Send data
+    
+        // Log request.
+        VGSCollectRequestLogger.logRequest(request, payload: value)
+    
+        // Send data.
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error as NSError? {
+                    VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
                     block?(.failure(error.code, data, response, error))
                     return
                 }
@@ -221,9 +226,11 @@ class APIClient {
                 
                 switch statusCode {
                 case 200..<300:
+                    VGSCollectRequestLogger.logSuccessResponse(response, data: data, code: statusCode)
                     block?(.success(statusCode, data, response))
                     return
                 default:
+                    VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: statusCode)
                     block?(.failure(statusCode, data, response, error))
                     return
                 }
@@ -238,12 +245,33 @@ extension APIClient {
   
   /// Generates API URL with vault id, environment and data region.
   private static func buildVaultURL(tenantId: String, regionalEnvironment: String) -> URL {
-      assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "ENVIRONMENT STRING IS NOT VALID!!!")
-      assert(VGSCollect.tenantIDValid(tenantId), "ERROR: TENANT ID IS NOT VALID!!!")
+    
+      // Check environment is valid.
+      if !VGSCollect.regionalEnironmentStringValid(regionalEnvironment) {
+        let eventText = "CONFIGURATION ERROR: ENVIRONMENT STRING IS NOT VALID!!! region \(regionalEnvironment)"
+        let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
+        VGSCollectLogger.shared.forwardLogEvent(event)
+        assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "❗VGSCollectSDK CONFIGURATION ERROR: ENVIRONMENT STRING IS NOT VALID!!!")
+      }
+    
+      // Check tenant is valid.
+      if !VGSCollect.tenantIDValid(tenantId) {
+        let eventText = "CONFIGURATION ERROR: TENANT ID IS NOT VALID OR NOT SET!!! tenant: \(tenantId)"
+        let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
+        VGSCollectLogger.shared.forwardLogEvent(event)
+        assert(VGSCollect.tenantIDValid(tenantId), "❗VGSCollectSDK CONFIGURATION ERROR: : TENANT ID IS NOT VALID!!!")
+      }
     
       let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
+    
+      // Check vault url is valid.
       guard let url = URL(string: strUrl) else {
-          fatalError("ERROR: NOT VALID ORGANIZATION PARAMETERS!!!")
+        let eventText = "CONFIGURATION ERROR: NOT VALID ORGANIZATION PARAMETERS!!! tenantID: \(tenantId), environment: \(regionalEnvironment)"
+        let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
+        VGSCollectLogger.shared.forwardLogEvent(event)
+        
+        fatalError("❗VGSCollectSDK CONFIGURATION ERROR: : NOT VALID ORGANIZATION PARAMETERS!!!")
+
       }
       return url
   }
@@ -280,6 +308,11 @@ extension APIClient {
 					// Exit sync zone.
 					self?.syncSemaphore.signal()
           if let strongSelf = self {
+            
+            let text = "✅ Success! VGSSCollectSDK hostname \(hostname) has been successfully resolved and will be used for requests!"
+            let event = VGSLogEvent(level: .info, text: text)
+            VGSCollectLogger.shared.forwardLogEvent(event)
+            
             VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .success, extraData: ["hostname": hostname])
           }
           return
@@ -292,6 +325,11 @@ extension APIClient {
 
 					// Exit sync zone.
 					strongSelf.syncSemaphore.signal()
+          
+          let text = "VAULT URL WILL BE USED!"
+          let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
+          VGSCollectLogger.shared.forwardLogEvent(event)
+          
           VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .failed, extraData: ["hostname": hostname])
           return
         }

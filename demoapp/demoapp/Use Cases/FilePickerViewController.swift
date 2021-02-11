@@ -92,9 +92,11 @@ class FilePickerViewController: UIViewController {
             self?.showPickerWithSource(.photoLibrary)
         }))
 
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self](_)in
-            self?.showPickerWithSource(.camera)
-        }))
+				if !UIDevice.isSimulator {
+					alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self](_)in
+								self?.showPickerWithSource(.camera)
+					}))
+				}
 
         alert.addAction(UIAlertAction(title: "Documents Directory", style: .default, handler: { [weak self] (_)in
             self?.showPickerWithSource(.documentsDirectory)
