@@ -79,7 +79,7 @@ Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files w
 > NOTE: At this time **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
 
 
-### Swift Package Manager (Beta)
+### Swift Package Manager (beta)
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
 Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don't support Swift packages with resources.
