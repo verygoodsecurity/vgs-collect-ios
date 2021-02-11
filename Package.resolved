@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CardScan",
+        "repositoryURL": "https://github.com/getbouncer/cardscan-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "caadb6c9b2059b3da7879e5c86be5f22a7295865",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

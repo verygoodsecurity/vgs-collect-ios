@@ -51,12 +51,19 @@ public class VGSAnalyticsClient {
   internal static let userAgentData: [String: Any] = {
       let version = ProcessInfo.processInfo.operatingSystemVersion
       let osVersion = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
-      return [
-              "platform": UIDevice.current.systemName,
-              "device": UIDevice.current.model,
-              "deviceModel": UIDevice.current.modelIdentifier,
-              "osVersion": osVersion,
-							"dependencyManager": sdkIntegration]
+
+			var defaultUserAgentData = [
+				"platform": UIDevice.current.systemName,
+				"device": UIDevice.current.model,
+				"deviceModel": UIDevice.current.modelIdentifier,
+				"osVersion": osVersion,
+				"dependencyManager": sdkIntegration]
+
+				if let locale = Locale.preferredLanguages.first {
+					defaultUserAgentData["deviceLocale"] = locale
+				}
+
+      return defaultUserAgentData
       }()
 
   /// :nodoc: Track events related to specific VGSCollect instance
