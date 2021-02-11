@@ -79,7 +79,7 @@ Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files w
 > NOTE: At this time **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
 
 
-### Swift Package Manager
+### Swift Package Manager (Beta)
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
 Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don't support Swift packages with resources.
@@ -91,13 +91,15 @@ xcrun swift -version
 
 > NOTE: In some cases you can have multiple Swift tools versions installed.
 
-Once you have your Swift package set up, add VGSCollectSDK dependency.
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/verygoodsecurity/vgs-collect-ios", .upToNextMajor(from: "1.7.0"))
-]
-```
+Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).  
+To use Swift Package Manager, in Xcode add the https://github.com/verygoodsecurity/vgs-collect-ios.git dependency and choose the latest version up to the next major version.
+
+Select `VGSCollectSDK`  package.
+
+Starting with the 1.7.4 release, `VGSCollectSDK` also supports  [CardScan](https://github.com/getbouncer/cardscan-ios) integration via SPM.
+To use **CardScan** add `VGSCollectSDK`, `VGSCardScanCollector` libraries to your target. 
+
 
 ## Usage
 

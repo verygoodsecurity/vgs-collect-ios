@@ -11,6 +11,9 @@ import CardScan
 #if !COCOAPODS
 import VGSCollectSDK
 #endif
+#if os(iOS)
+import UIKit
+#endif
 
 internal class VGSCardScanHandler: NSObject, VGSScanHandlerProtocol {
     
@@ -19,17 +22,28 @@ internal class VGSCardScanHandler: NSObject, VGSScanHandlerProtocol {
   
     required init(apiKey: String) {
       super.init()
-      ScanViewController.configure(apiKey: apiKey)
+
+			if #available(iOS 11.2, *) {
+				ScanViewController.configure(apiKey: apiKey)
+			} else {
+				print("⚠️ Unsupported iOS version, should be iOS 11.2 or higher.")
+			}
     }
     
     func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        guard let vc = ScanViewController.createViewController(withDelegate: self) else {
-            print("This device is incompatible with CardScan")
-            return
-        }
-        self.view = vc
-        vc.scanDelegate = self
-        viewController.present(vc, animated: true)
+
+			if #available(iOS 11.2, *) {
+				guard let vc = ScanViewController.createViewController(withDelegate: self) else {
+						print("⚠️ This device is incompatible with CardScan.")
+						return
+				}
+				print("ScanViewController.version(): \(ScanViewController.version())")
+				self.view = vc
+				vc.scanDelegate = self
+				viewController.present(vc, animated: true)
+			} else {
+				print("⚠️ Unsupported iOS version, should be iOS 11.2 or higher.")
+			}
     }
     
     func dismissScanVC(animated: Bool, completion: (() -> Void)?) {
@@ -37,11 +51,18 @@ internal class VGSCardScanHandler: NSObject, VGSScanHandlerProtocol {
     }
   
     static func isCompatible() -> Bool {
-      return ScanViewController.isCompatible()
+			if #available(iOS 11.2, *) {
+				return ScanViewController.isCompatible()
+			} else {
+				print("⚠️ Unsupported iOS version, should be iOS 11.2 or higher.")
+				return false
+			}
     }
 }
 
 /// :nodoc:
+
+@available(iOS 11.2, *)
 extension VGSCardScanHandler: ScanDelegate {
   func userDidCancel(_ scanViewController: ScanViewController) {
     VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "Bouncer"])
