@@ -82,13 +82,13 @@ extension VGSCollect {
         }
         // check if file is exist
         guard let key = storage.files.keys.first, let value = storage.files.values.first else {
-            let text = "No file to send! File not selected or doesn't exists!"
+            let text = "No file to send! File not selected or doesn't exist!"
             let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-            VGSLogger.shared.forwardLogEvent(event)
+            VGSCollectLogger.shared.forwardLogEvent(event)
           
             let error = VGSError(type: .inputFileNotFound,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
-                                                        description: "File not selected or doesn't exists",
+                                                        description: "File not selected or doesn't exist",
                                                         extraInfo: [:]))
             VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
             block(.failure(error.code, nil, nil, error))
@@ -98,7 +98,7 @@ extension VGSCollect {
         guard let result = value as? Data else {
             let text = "File format is not supported!!! Cannot convert file type to Data object."
             let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-            VGSLogger.shared.forwardLogEvent(event)
+            VGSCollectLogger.shared.forwardLogEvent(event)
           
             let error = VGSError(type: .inputFileTypeIsNotSupported,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
@@ -113,7 +113,7 @@ extension VGSCollect {
           
           let text = "File size is too large - \(result.count). File size shouldn't exceed \(maxFileSizeInternalLimitInBytes)"
           let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-          VGSLogger.shared.forwardLogEvent(event)
+          VGSCollectLogger.shared.forwardLogEvent(event)
           
             let error = VGSError(type: .inputFileSizeExceedsTheLimit,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileSizeExceedsTheLimit,
@@ -130,7 +130,7 @@ extension VGSCollect {
         if encodedData.count == 0 {
           let text = "Encoded file size - \(encodedData.count)!!!"
           let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-          VGSLogger.shared.forwardLogEvent(event)
+          VGSCollectLogger.shared.forwardLogEvent(event)
           
             let error = VGSError(type: .inputFileTypeIsNotSupported,
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,

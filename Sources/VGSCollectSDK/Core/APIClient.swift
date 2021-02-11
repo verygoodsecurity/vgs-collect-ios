@@ -250,7 +250,7 @@ extension APIClient {
       if !VGSCollect.regionalEnironmentStringValid(regionalEnvironment) {
         let eventText = "CONFIGURATION ERROR: ENVIRONMENT STRING IS NOT VALID!!! region \(regionalEnvironment)"
         let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
-        VGSLogger.shared.forwardLogEvent(event)
+        VGSCollectLogger.shared.forwardLogEvent(event)
         assert(VGSCollect.regionalEnironmentStringValid(regionalEnvironment), "❗VGSCollectSDK CONFIGURATION ERROR: ENVIRONMENT STRING IS NOT VALID!!!")
       }
     
@@ -258,7 +258,7 @@ extension APIClient {
       if !VGSCollect.tenantIDValid(tenantId) {
         let eventText = "CONFIGURATION ERROR: TENANT ID IS NOT VALID OR NOT SET!!! tenant: \(tenantId)"
         let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
-        VGSLogger.shared.forwardLogEvent(event)
+        VGSCollectLogger.shared.forwardLogEvent(event)
         assert(VGSCollect.tenantIDValid(tenantId), "❗VGSCollectSDK CONFIGURATION ERROR: : TENANT ID IS NOT VALID!!!")
       }
     
@@ -268,7 +268,7 @@ extension APIClient {
       guard let url = URL(string: strUrl) else {
         let eventText = "CONFIGURATION ERROR: NOT VALID ORGANIZATION PARAMETERS!!! tenantID: \(tenantId), environment: \(regionalEnvironment)"
         let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
-        VGSLogger.shared.forwardLogEvent(event)
+        VGSCollectLogger.shared.forwardLogEvent(event)
         
         fatalError("❗VGSCollectSDK CONFIGURATION ERROR: : NOT VALID ORGANIZATION PARAMETERS!!!")
 
@@ -311,7 +311,7 @@ extension APIClient {
             
             let text = "✅ Success! VGSSCollectSDK hostname \(hostname) has been successfully resolved and will be used for requests!"
             let event = VGSLogEvent(level: .info, text: text)
-            VGSLogger.shared.forwardLogEvent(event)
+            VGSCollectLogger.shared.forwardLogEvent(event)
             
             VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .success, extraData: ["hostname": hostname])
           }
@@ -328,7 +328,7 @@ extension APIClient {
           
           let text = "VAULT URL WILL BE USED!"
           let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-          VGSLogger.shared.forwardLogEvent(event)
+          VGSCollectLogger.shared.forwardLogEvent(event)
           
           VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .failed, extraData: ["hostname": hostname])
           return

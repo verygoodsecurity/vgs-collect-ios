@@ -7,15 +7,15 @@ import Foundation
 
 /// `VGSLogger` encapsulates logging logic and debugging options for VGSCollectSDK. Use `.configuration` property to setup these options. `VGSLogger` logging implies only printing logs to Xcode console. It doesn't save logs to persistent store/local file, also it doesn't send debugging logs to backend services.
 /// **IMPORTANT** You should NOT use logging in your production configuration for live apps.
-public final class VGSLogger {
+public final class VGSCollectLogger {
 
   // MARK: - Public vars
 
 	/// Shared instance.
-	public static var shared = VGSLogger()
+	public static var shared = VGSCollectLogger()
 
 	/// Logging configuration. Check `VGSLoggingConfiguration` for logging options.
-	public var configuration: VGSLoggingConfiguration = VGSLoggingConfiguration()
+	public var configuration: VGSCollectLoggingConfiguration = VGSCollectLoggingConfiguration()
 
 	// MARK: - Private vars
 

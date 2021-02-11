@@ -33,7 +33,7 @@ internal class VGSImagePicker: NSObject, VGSFilePickerProtocol {
         if !isSourceEnabled() {
           let text = "Image source not available. Source: \(picker.sourceType)"
           let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-          VGSLogger.shared.forwardLogEvent(event)
+          VGSCollectLogger.shared.forwardLogEvent(event)
           
             delegate?.filePickingFailedWithError(VGSError(type: .sourceNotAvailable, userInfo: VGSErrorInfo(key: VGSSDKErrorSourceNotAvailable, description: "Image source not available.", extraInfo: ["source": "\(picker.sourceType)"])))
             return
@@ -80,7 +80,7 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
             guard let imageData = data else {
               let text = "Image File format is not supported!!! Can't convert to Data."
               let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-              VGSLogger.shared.forwardLogEvent(event)
+              VGSCollectLogger.shared.forwardLogEvent(event)
               
                 delegate?.filePickingFailedWithError(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Image File format is not supported. Can't convert to Data.", extraInfo: [:])))
                 return
@@ -93,7 +93,7 @@ extension VGSImagePicker: UIImagePickerControllerDelegate & UINavigationControll
         } else {
           let text = "Image File format is not supported. Cannot convert to Data object!!!."
           let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-          VGSLogger.shared.forwardLogEvent(event)
+          VGSCollectLogger.shared.forwardLogEvent(event)
           
             delegate?.filePickingFailedWithError(VGSError(type: .inputFileTypeIsNotSupported, userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported, description: "Image File format is not supported.", extraInfo: [:])))
             return

@@ -32,7 +32,7 @@ internal extension String {
 
       let text = "YOUR HOSTNAME HAS QUERIES AND WILL BE NORMALIZED!"
       let event = VGSLogEvent(level: .warning, text: text, severityLevel: .warning)
-      VGSLogger.shared.forwardLogEvent(event)
+      VGSCollectLogger.shared.forwardLogEvent(event)
 		}
 
 		var path: String

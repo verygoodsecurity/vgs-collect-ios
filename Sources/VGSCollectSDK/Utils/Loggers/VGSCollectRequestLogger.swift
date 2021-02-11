@@ -14,7 +14,7 @@ internal class VGSCollectRequestLogger {
 	///   - payload: `VGSRequestPayloadBody` object, request payload.
 	internal static func logRequest(_ request: URLRequest, payload: JsonData?) {
 
-		if !VGSLogger.shared.configuration.isNetworkDebugEnabled {return}
+		if !VGSCollectLogger.shared.configuration.isNetworkDebugEnabled {return}
 
 		print("⬆️ Send VGSCollectSDK request url: \(stringFromURL(request.url))")
 		if let headers = request.allHTTPHeaderFields {
@@ -36,7 +36,7 @@ internal class VGSCollectRequestLogger {
 	///   - code: `Int` object, status code.
 	internal static func logErrorResponse(_ response: URLResponse?, data: Data?, error: Error?, code: Int) {
 
-		if !VGSLogger.shared.configuration.isNetworkDebugEnabled {return}
+		if !VGSCollectLogger.shared.configuration.isNetworkDebugEnabled {return}
 
 		if let url = response?.url {
 			print("❗Failed ⬇️ VGSCollectSDK request url: \(stringFromURL(url))")
@@ -67,7 +67,7 @@ internal class VGSCollectRequestLogger {
 	///   - code: `Int` object, status code.
 	internal static func logSuccessResponse(_ response: URLResponse?, data: Data?, code: Int) {
 
-		if !VGSLogger.shared.configuration.isNetworkDebugEnabled {return}
+		if !VGSCollectLogger.shared.configuration.isNetworkDebugEnabled {return}
 
 		print("✅ Success ⬇️ VGSCollectSDK request url: \(stringFromURL(response?.url))")
 		print("✅ Success ⬇️ VGSCollectSDK response code: \(code)")

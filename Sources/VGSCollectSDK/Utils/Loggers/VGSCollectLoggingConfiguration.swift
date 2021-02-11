@@ -6,7 +6,7 @@
 import Foundation
 
 /// Holds configuration for VGSCollectSDK logging.
-public struct VGSLoggingConfiguration {
+public struct VGSCollectLoggingConfiguration {
 
 	/// Log level. Default is `.none`.
 	public var level: VGSLogLevel = .none

@@ -85,7 +85,7 @@ public class VGSTextField: UIView {
             guard let configuration = configuration else {
               let message = "VGSTextField CONFIGURATION ERROR! VGSConfiguration is REQUIRED!!!"
               let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
-              VGSLogger.shared.forwardLogEvent(event)
+              VGSCollectLogger.shared.forwardLogEvent(event)
               return
             }
             

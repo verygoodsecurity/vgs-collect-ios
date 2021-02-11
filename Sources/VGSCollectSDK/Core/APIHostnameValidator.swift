@@ -39,7 +39,7 @@ internal class APIHostnameValidator {
             } else {
               let text = "CANNOT VALIDATE HOSTNAME: \"\(hostname)\". CHECK VAULT SETTINGS FOR TENANT ID: \"\(tenantId)\""
               let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-              VGSLogger.shared.forwardLogEvent(event)
+              VGSCollectLogger.shared.forwardLogEvent(event)
               completion(nil)
               return
             }
@@ -48,7 +48,7 @@ internal class APIHostnameValidator {
     } else {
       let text = "HOSTNAME IS NOT VALID: \"\(hostname)\", TENANT ID: \"\(tenantId)\""
       let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-      VGSLogger.shared.forwardLogEvent(event)
+      VGSCollectLogger.shared.forwardLogEvent(event)
       completion(nil)
     }
   }

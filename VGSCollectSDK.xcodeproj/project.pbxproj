@@ -62,7 +62,6 @@
 		328A574023FADC3500714675 /* VGSFilePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A573F23FADC3500714675 /* VGSFilePickerConfiguration.swift */; };
 		328A574223FADD3D00714675 /* VGSFilePickerController+internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */; };
 		328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
-		328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		32919C8124FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32919C8024FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift */; };
 		3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */; };
 		32AFB93724FFD218007FFCAE /* VGSTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */; };
@@ -1110,7 +1109,6 @@
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				3270D3F1248155B200004E3B /* SSNTextFieldTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
-				328B5C7123C8DA2600A39515 /* String+extension.swift in Sources */,
 				3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */,
 				32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */,
 				32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */,
