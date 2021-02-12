@@ -95,13 +95,16 @@ xcrun swift -version
 
 
 Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).  
-To use Swift Package Manager, in Xcode add the https://github.com/verygoodsecurity/vgs-collect-ios.git dependency and choose the latest version up to the next major version.
+To use Swift Package Manager, in Xcode add the https://github.com/verygoodsecurity/vgs-collect-ios.git dependency and choose the exact version.
+
+<img src="images/VGSCollect_CardScan_SPM_1.png">
 
 Select `VGSCollectSDK`  package.
 
 Starting with the 1.7.4 release, `VGSCollectSDK` also supports  [CardScan](https://github.com/getbouncer/cardscan-ios) integration via SPM.
 To use **CardScan** add `VGSCollectSDK`, `VGSCardScanCollector` libraries to your target. 
 
+<img src="images/VGSCollect_CardScan_SPM_2.png">
 
 ## Usage
 
