@@ -94,7 +94,7 @@ xcrun swift -version
 > NOTE: In some cases you can have multiple Swift tools versions installed.
 
 
-Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) for more details.\n  
+Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) for more details. 
 To use Swift Package Manager, in Xcode add the https://github.com/verygoodsecurity/vgs-collect-ios.git dependency and choose the `Exact` version.
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_1.png" width="70%">
@@ -105,8 +105,6 @@ Select `VGSCollectSDK` and optionally other packages provided with `VGSCollectSD
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_2.png" width="70%">
 </p>
-
-> NOTE: At this time we support Swift Package Manager only for core `VGSCollectSDK` module. If you need to integrate Card Scanning solutions you should use other integration method. We will extend support of 3d party Card Scanning SDKs after they will become available to integrate via Swift Package Manager.
 
 ## Usage
 
