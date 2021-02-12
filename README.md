@@ -103,8 +103,6 @@ Starting with the 1.7.4 release, `VGSCollectSDK` also supports  [CardScan](https
 To use **CardScan** add `VGSCollectSDK`, `VGSCardScanCollector` libraries to your target. 
 
 
-> NOTE: At this time we support Swift Package Manager only for core `VGSCollectSDK` module. If you need to integrate Card Scanning solutions you should use other integration method. We will extend support of 3d party Card Scanning SDKs after they will become available to integrate via Swift Package Manager.
-
 ## Usage
 
 ### Import SDK into your file
