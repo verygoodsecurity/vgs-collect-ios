@@ -4,6 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
 [![swift](https://img.shields.io/badge/swift-5-orange)]()
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat)](https://cocoapods.org/pods/VGSCollectSDK)
+<img src="./VGSZeroData.png" height="20">
 
 # VGS Collect iOS SDK
 
@@ -17,6 +18,7 @@ Table of contents
    * [Integration](#integration)
       * [CocoaPods](#cocoapods)
       * [Carthage](#carthage)
+      * [Swift Package Manager](#swift-package-manager-beta) 
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Scan Credit Card Data](#scan-credit-card-data)
@@ -100,6 +102,8 @@ Select `VGSCollectSDK`  package.
 Starting with the 1.7.4 release, `VGSCollectSDK` also supports  [CardScan](https://github.com/getbouncer/cardscan-ios) integration via SPM.
 To use **CardScan** add `VGSCollectSDK`, `VGSCardScanCollector` libraries to your target. 
 
+
+> NOTE: At this time we support Swift Package Manager only for core `VGSCollectSDK` module. If you need to integrate Card Scanning solutions you should use other integration method. We will extend support of 3d party Card Scanning SDKs after they will become available to integrate via Swift Package Manager.
 
 ## Usage
 
@@ -468,7 +472,7 @@ You can add a file uploading functionality to your application with **VGSFilePic
 Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.
 
 ## Demo Application
-Demo application for collecting card data on iOS is <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/demoapp">here</a>.
+Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food">here</a>.
 
 ### Documentation
 -  SDK Documentation: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
