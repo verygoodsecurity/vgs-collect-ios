@@ -13,11 +13,15 @@ class APIClient {
 	/// Additional custom headers.
 	var customHeader: HTTPHeaders?
 
+  /// Vault Id.
 	private let vaultId: String
+
+	/// Vault URL.
 	private let vaultUrl: URL?
 
 	private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
 
+	/// Form analytics details.
 	private let formAnalyticDetails: VGSFormAnanlyticsDetails
 
 	/// Base URL.
