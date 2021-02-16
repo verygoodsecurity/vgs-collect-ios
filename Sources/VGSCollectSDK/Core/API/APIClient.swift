@@ -19,8 +19,6 @@ class APIClient {
 	/// Vault URL.
 	private let vaultUrl: URL?
 
-	private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
-
 	/// Form analytics details.
 	private let formAnalyticDetails: VGSFormAnanlyticsDetails
 
