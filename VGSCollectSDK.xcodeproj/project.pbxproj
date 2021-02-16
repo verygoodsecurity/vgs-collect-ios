@@ -90,6 +90,7 @@
 		441B26D525DB88C50099AA3A /* APIHostnameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26D025DB88C50099AA3A /* APIHostnameValidator.swift */; };
 		441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26D125DB88C50099AA3A /* APICustomHostStatus.swift */; };
 		441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26DC25DB88DB0099AA3A /* VGSResponse.swift */; };
+		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
 		447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A81112589438000BC77C7 /* CardIcon.xcassets */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
@@ -222,6 +223,7 @@
 		441B26D025DB88C50099AA3A /* APIHostnameValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHostnameValidator.swift; sourceTree = "<group>"; };
 		441B26D125DB88C50099AA3A /* APICustomHostStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICustomHostStatus.swift; sourceTree = "<group>"; };
 		441B26DC25DB88DB0099AA3A /* VGSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSResponse.swift; sourceTree = "<group>"; };
+		441B26E825DB8D950099AA3A /* APIClient+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Utils.swift"; sourceTree = "<group>"; };
 		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 				441B26CE25DB88C50099AA3A /* APIHostName */,
 				441B26CD25DB88C50099AA3A /* HTTPMethod.swift */,
 				441B26DC25DB88DB0099AA3A /* VGSResponse.swift */,
+				441B26E825DB8D950099AA3A /* APIClient+Utils.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */,
 				441B26D225DB88C50099AA3A /* APIClient.swift in Sources */,
 				FDE247CF246749C3008D75B0 /* VGSCollect+network.swift in Sources */,
+				441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */,
 				FD362EDF2401659100B4A640 /* VGSTextFieldDelegate.swift in Sources */,
 				321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */,
 				324B5E6B24A23C2D0036867E /* VGSValidationRulePattern.swift in Sources */,
