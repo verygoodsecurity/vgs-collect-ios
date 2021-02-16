@@ -8,137 +8,29 @@
 
 import Foundation
 
-/// Key-value data type, usually used for response format.
-public typealias JsonData = [String: Any]
-
-/// Key-value data type, used in http request headers.
-public typealias HTTPHeaders = [String: String]
-
-/// Key-value data type, for internal use.
-internal typealias BodyData = [String: Any]
-
-/// HTTP request methods
-public enum HTTPMethod: String {
-    /// GET method.
-    case get     = "GET"
-    /// POST method.
-    case post    = "POST"
-    /// PUT method.
-    case put     = "PUT"
-    /// PATCH method.
-    case patch = "PATCH"
-    /// DELETE method.
-    case delete = "DELETE"
-}
-
-/// Response enum cases for SDK requests
-@frozen public enum VGSResponse {
-    /**
-     Success response case
-     
-     - Parameters:
-        - code: response status code.
-        - data: response **data** object.
-        - response: URLResponse object represents a URL load response.
-    */
-    case success(_ code: Int, _ data: Data?, _ response: URLResponse?)
-    
-    /**
-     Failed response case
-     
-     - Parameters:
-        - code: response status code.
-        - data: response **Data** object.
-        - response: `URLResponse` object represents a URL load response.
-        - error: `Error` object.
-    */
-    case failure(_ code: Int, _ data: Data?, _ response: URLResponse?, _ error: Error?)
-}
-
 class APIClient {
 
     var customHeader: HTTPHeaders?
 
     private let vaultId: String
-    private let vaultUrl: URL
+    private let vaultUrl: URL?
+
     private static let hostValidatorUrl = "https://js.verygoodvault.com/collect-configs"
+
     private let formAnalyticDetails: VGSFormAnanlyticsDetails
 
-	  /// Determinates hostname status states.
-		enum CustomHostStatus {
-			/**
-			 Resolving host name is in progress.
-
-			 - Parameters:
-					- hostnameToResolve: `String` object, hostname to resolve.
-			*/
-			case isResolving(_ hostnameToResolve: String)
-
-			/**
-			 Hostname is resolved and can be used for requests.
-
-			 - Parameters:
-					- resolvedURL: `URL` object, resolved host name URL.
-			*/
-			case resolved(_ resolvedURL: URL)
-
-			/**
-			 Hostname cannot be resolved, default vault URL will be used.
-
-			 - Parameters:
-					- vaultURL: `URL` object, should be default vault URL.
-			*/
-			case useDefaultVault(_ vaultURL: URL)
-
-			var url: URL? {
-				switch self {
-				case .isResolving:
-					return nil
-				case .useDefaultVault(let defaultVaultURL):
-					return defaultVaultURL
-				case .resolved(let resolvedURL):
-					return resolvedURL
-				}
-			}
-		}
-
-	  /// Determinates host URL policy for sending Collect requests.
-		enum HostURLPolicy {
-			/**
-			 Use vault url, custom hostname not set.
-
-			 - Parameters:
-					- url: `URL` object, default vault URL.
-			*/
-			case vaultURL(_ vaultURL: URL)
-
-			/**
-			 Custom host URL.
-
-			 - Parameters:
-					- status: `CustomHostStatus` object, hostname status.
-			*/
-			case customHostURL(_ status: CustomHostStatus)
-
-			var url: URL? {
-				switch self {
-				case .vaultURL(let vaultURL):
-					return vaultURL
-				case .customHostURL(let hostStatus):
-					return hostStatus.url
-				}
-			}
-		}
-
+	  /// Base URL.
 		internal var baseURL: URL? {
 			return self.hostURLPolicy.url
 		}
 
 	  /// Host URL policy. Determinates final URL to send Collect requests.
-		internal var hostURLPolicy: HostURLPolicy
+		internal var hostURLPolicy: APIHostURLPolicy
 
     /// Serial queue for syncing requests on resolving hostname flow.
     private let dataSyncQueue: DispatchQueue = .init(label: "iOS.VGSCollect.ResolveHostNameRequestsQueue")
+
+	  /// Semaphore for sync logic.
     private let syncSemaphore: DispatchSemaphore = .init(value: 1)
   
     internal static let defaultHttpHeaders: HTTPHeaders = {
@@ -152,7 +44,7 @@ class APIClient {
           "vgs-client": "source=iosSDK&medium=vgs-collect&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(VGSAnalyticsClient.shared.vgsCollectSessionId)&tr=\(trStatus)"
         ]
     }()
-  
+
   required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails) {
       self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
       self.vaultId = tenantId
