@@ -191,7 +191,7 @@ extension APIClient {
 				if var validUrl = url {
 
 					// Update url scheme if needed.
-					if !APIHostnameValidator.hasSecureScheme(url: validUrl), let secureURL = APIHostnameValidator.urlWithSecureScheme(from: validUrl) {
+					if !validUrl.hasSecureScheme(), let secureURL = URL.urlWithSecureScheme(from: validUrl) {
 						validUrl = secureURL
 					}
 

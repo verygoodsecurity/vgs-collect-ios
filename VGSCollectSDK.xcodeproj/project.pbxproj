@@ -91,6 +91,7 @@
 		441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26D125DB88C50099AA3A /* APICustomHostStatus.swift */; };
 		441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26DC25DB88DB0099AA3A /* VGSResponse.swift */; };
 		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
+		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
 		447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A81112589438000BC77C7 /* CardIcon.xcassets */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
@@ -224,6 +225,7 @@
 		441B26D125DB88C50099AA3A /* APICustomHostStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICustomHostStatus.swift; sourceTree = "<group>"; };
 		441B26DC25DB88DB0099AA3A /* VGSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSResponse.swift; sourceTree = "<group>"; };
 		441B26E825DB8D950099AA3A /* APIClient+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Utils.swift"; sourceTree = "<group>"; };
+		441B26EF25DB956B0099AA3A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				328B5C6F23C8DA2600A39515 /* String+extension.swift */,
 				32059CCF2417E02E003E9481 /* Utils.swift */,
 				32C894DC256D4AE400DC5648 /* UIDevice+extension.swift */,
+				441B26EF25DB956B0099AA3A /* URL+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				324B5E6F24A23D530036867E /* VGSValidationRule.swift in Sources */,
 				324B5E7524A23FA60036867E /* VGSValidationRuleExpirationDate.swift in Sources */,
+				441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */,
 				441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */,
 				325AB9CB2420C5410024134B /* VGSFilePickerControllerDelegate.swift in Sources */,
 				328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */,
