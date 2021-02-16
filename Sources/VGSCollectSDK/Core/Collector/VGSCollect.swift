@@ -59,12 +59,13 @@ public class VGSCollect {
     /// - Parameters:
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sanbox").
-    ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url
-    public init(id: String, environment: String, hostname: String? = nil) {
+    ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url.
+	  ///   - satellitePort: `Int?` object, custom port for satellite configuration. Default is `nil`. **IMPORTANT! Use only with .sandbox environment!**.
+    public init(id: String, environment: String, hostname: String? = nil, satellitePort: Int? = nil) {
       self.tenantId = id
       self.regionalEnvironment = environment
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
-      self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails)
+      self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails, satellitePort: satellitePort)
     }
       
     /// Initialzation.
@@ -74,7 +75,8 @@ public class VGSCollect {
     ///   - environment: your organization vault environment. By default `Environment.sandbox`.
     ///   - dataRegion: id of data storage region (e.g. "eu-123").
     ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url
-    public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil, hostname: String? = nil) {
+	  ///   - satellitePort: `Int?` object, custom port for satellite configuration. Default is `nil`. **IMPORTANT! Use only with .sandbox environment!**.
+	public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil, hostname: String? = nil, satellitePort: Int? = nil) {
       let env = Self.generateRegionalEnvironmentString(environment, region: dataRegion)
       self.init(id: id, environment: env, hostname: hostname)
     }

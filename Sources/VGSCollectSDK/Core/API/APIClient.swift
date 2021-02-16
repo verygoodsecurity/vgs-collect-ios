@@ -55,7 +55,8 @@ class APIClient {
 	///   - regionalEnvironment: `String` object, should be valid environment.
 	///   - hostname: `String?` object, should be valid hostname or `nil`.
 	///   - formAnalyticsDetails: `VGSFormAnanlyticsDetails` object, analytics data.
-	required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails) {
+	///   - satellitePort: `Int?` object, custom port for satellite configuration. **IMPORTANT! Use only with .sandbox environment!**.
+	required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails, satellitePort: Int?) {
 		self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
 		self.vaultId = tenantId
 		self.formAnalyticDetails = formAnalyticsDetails
