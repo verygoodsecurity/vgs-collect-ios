@@ -34,7 +34,7 @@ internal class APIHostnameValidator {
 
 		guard let url = buildHostValidationURL(with: hostname, tenantId: tenantId), let normalizedHostName = hostname.normalizedHostname() else {
 
-			let text = "Cannot build validation URL with tenantId: \"\(tenantId)\", hostname: \"\(hostname)\""
+			let text = "Error❗Cannot build validation URL with tenantId: \"\(tenantId)\", hostname: \"\(hostname)\""
 			let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 			VGSCollectLogger.shared.forwardLogEvent(event)
 			completion(nil)
@@ -54,7 +54,7 @@ internal class APIHostnameValidator {
 		let task = URLRequest(url: validationURL)
 		session.dataTask(with: task) { (responseData, response, error) in
 			guard let httpResponse = response as? HTTPURLResponse, let data = responseData else {
-				let text = "Error! Cannot resolve hostname \"\(hostname)\". Invalid response type!"
+				let text = "Error❗Cannot resolve hostname \"\(hostname)\". Invalid response type!"
 				let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 				VGSCollectLogger.shared.forwardLogEvent(event)
 
@@ -63,7 +63,7 @@ internal class APIHostnameValidator {
 			}
 
 			if let error = error as NSError? {
-				let text = "Error! Cannot resolve hostname \(hostname) Error: \(error)!"
+				let text = "Error❗ Cannot resolve hostname \(hostname) Error: \(error)!"
 				let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 				VGSCollectLogger.shared.forwardLogEvent(event)
 
