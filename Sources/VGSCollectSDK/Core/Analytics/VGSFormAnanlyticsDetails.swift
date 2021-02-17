@@ -13,7 +13,7 @@ public struct VGSFormAnanlyticsDetails {
   public let formId: String
   public let tenantId: String
   public let environment: String
-	private (set) public var isSatelliteMode: Bool = false
+	internal (set) public var isSatelliteMode: Bool = false
 
 	public init(formId: String, tenantId: String, environment: String, isSatelliteMode: Bool = false) {
 		self.formId = formId

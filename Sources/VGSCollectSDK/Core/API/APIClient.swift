@@ -20,7 +20,7 @@ class APIClient {
 	private let vaultUrl: URL?
 
 	/// Form analytics details.
-	private let formAnalyticDetails: VGSFormAnanlyticsDetails
+	private var formAnalyticDetails: VGSFormAnanlyticsDetails
 
 	/// Base URL.
 	internal var baseURL: URL? {
@@ -78,6 +78,7 @@ class APIClient {
 			}
 
 			// Use satellite URL and return.
+			self.formAnalyticDetails.isSatelliteMode = true
 			self.hostURLPolicy = .satelliteURL(satelliteURL)
 
 			let message = "Satellite has been configured successfully! Satellite URL is: \(satelliteURL.absoluteString)"

@@ -59,7 +59,7 @@ class VGSCollectSatelliteTests: XCTestCase {
 			if let normalized = hostnames[index].normalizedHostname() {
 				XCTAssert(normalized == validNormalizedHostname)
 			} else {
-				assertionFailure("cannot normalize: \(hostnames[index])")
+				XCTFail("cannot normalize: \(hostnames[index])")
 			}
 		}
 	}
@@ -131,7 +131,7 @@ class VGSCollectSatelliteTests: XCTestCase {
 			if let url = VGSCollectSatelliteUtils.buildSatelliteURL(with: "sandbox", hostname: config.hostname, satellitePort: config.port) {
 				XCTAssertTrue(url == config.satelliteURL!, "error: \(url) != \(config.satelliteURL!) - " + outputText)
 			} else {
-				assertionFailure(outputText)
+				XCTFail(outputText)
 			}
 		}
 	}
