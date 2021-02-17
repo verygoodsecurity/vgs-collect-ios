@@ -104,8 +104,11 @@ class VGSCollectSatelliteTests: XCTestCase {
 
 			SatelliteTestData(hostname: "http://localhost", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!),
 
-			// *Hostname will be nornalized.
+			// Hostname *localhost/backend* will be nornalized to *localhost* only.
 			SatelliteTestData(hostname: "http://localhost/backend", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!),
+
+			// Hostname  *localhost:* will be normalized to *localhost* only.
+			SatelliteTestData(hostname: "http://localhost:", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!),
 
 			SatelliteTestData(hostname: "192.168.0", port: 9098, satelliteURL: URL(string: "http://192.168.0:9098")!),
 
