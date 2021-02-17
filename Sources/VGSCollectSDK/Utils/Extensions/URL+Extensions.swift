@@ -25,15 +25,4 @@ internal extension URL {
 
 		return components?.url
 	}
-
-	/// Build new URL with `http` scheme.
-	/// - Parameter url: `URL` object.
-	/// - Returns: `URL?` object with `http` scheme.
-	static func urlWithHTTPScheme(from url: URL) -> URL? {
-		// URL Scheme is get-only so use URLComponents to update scheme.
-		var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-		components?.scheme = "http"
-
-		return components?.url
-	}
 }

@@ -11,6 +11,9 @@ import Foundation
 /// Collect utils for satellite.
 internal class VGSCollectSatelliteUtils {
 
+	/// Enable assertions on default, disable them unit tests.
+	internal static var isAssertionsEnabled = true
+
 	/// Constants.
 	internal enum Constants {
 
@@ -38,6 +41,8 @@ internal class VGSCollectSatelliteUtils {
 			let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
 			VGSCollectLogger.shared.forwardLogEvent(event)
 
+			forwardAssertion(with: errorText)
+
 			return nil
 		}
 
@@ -52,17 +57,23 @@ internal class VGSCollectSatelliteUtils {
 		}
 
 		// Normalize URL. Set HTTP scheme.
-		guard let normalizedHostname = satelliteHostname.normalizedHostname(), let url = URL(string: normalizedHostname), let httpSatelliteURL = URL.urlWithHTTPScheme(from: url) else {
+		guard let normalizedHostname = satelliteHostname.normalizedHostname() else {
+			return nil
+		}
 
-			// Cannot normalize hostname for satellite.
+		print("normalized name debug: \(normalizedHostname)")
+
+		guard let url = URL(string: "http://" + normalizedHostname + ":\(satellitePort)") else {
+			// Cannot build hostname URL for satellite.
 			let errorText = "SATELLITE CONFIGURATION ERROR! HOSTNAME \(satelliteHostname) IS NOT VALID AND CANNOT BE NORMALIZED FOR SATELLITE! SHOULD BE *http://localhost* or *http://192.168.*"
 			let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
 			VGSCollectLogger.shared.forwardLogEvent(event)
 
+			forwardAssertion(with: errorText)
 			return nil
 		}
 
-		return httpSatelliteURL
+		return url
 	}
 
 	/// Validate satellite hostname. Should be http://localhost or http://192.168 or 192.168.1.3
@@ -71,13 +82,17 @@ internal class VGSCollectSatelliteUtils {
 	/// - Returns: `true` if hostname is valid for satellite.
 	internal static func isSatelliteHostnameValid(_ hostname: String) -> Bool {
 
-		// Normalize hostname.
-		guard let normalizedHostName = hostname.normalizedHostname() else {
+		let errorText = "SATELLITE CONFIGURATION ERROR! HOSTNAME \(hostname) IS INVALID FOR SATELLITE! SHOULD BE *http://localhost* or *192.168.*"
+
+		// Normalize hostname. Create components to check hostname.
+		guard let normalizedHostName = hostname.normalizedHostname(), let components = URLComponents(string: normalizedHostName) else {
+			let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
+			VGSCollectLogger.shared.forwardLogEvent(event)
+
+			forwardAssertion(with: errorText)
+
 			return false
 		}
-
-		// Create components.
-		guard let components = URLComponents(string: normalizedHostName) else {return false}
 
 		var path: String
 		if let componentHost = components.host {
@@ -96,9 +111,10 @@ internal class VGSCollectSatelliteUtils {
 			return true
 		}
 
-		let errorText = "SATELLITE CONFIGURATION ERROR! HOSTNAME \(hostname) IS INVALID FOR SATELLITE! SHOULD BE *http://localhost* or *192.168.*"
 		let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
 		VGSCollectLogger.shared.forwardLogEvent(event)
+
+		forwardAssertion(with: errorText)
 
 		return false
 	}
@@ -111,6 +127,8 @@ internal class VGSCollectSatelliteUtils {
 			let errorText = "CONFIGURATION ERROR! ENVIRONMENT *\(environment)* IS NOT *sandbox*! SATELLITE IS AVAILABLE ONLY FOR *sandbox*!"
 			let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
 			VGSCollectLogger.shared.forwardLogEvent(event)
+
+			forwardAssertion(with: errorText)
 
 			return false
 		}
@@ -127,9 +145,19 @@ internal class VGSCollectSatelliteUtils {
 			let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
 			VGSCollectLogger.shared.forwardLogEvent(event)
 
+			forwardAssertion(with: errorText)
+
 			return false
 		}
 
 		return true
+	}
+
+	/// Forward satellite assertions.
+	/// - Parameter assertionText: `String` object, assertion message.
+	internal static func forwardAssertion(with assertionText: String) {
+		if isAssertionsEnabled {
+			assertionFailure(assertionText)
+		}
 	}
 }

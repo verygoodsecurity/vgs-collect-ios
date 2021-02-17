@@ -9,7 +9,23 @@
 import XCTest
 @testable import VGSCollectSDK
 
+/// Test satellite feature.
 class VGSCollectSatelliteTests: XCTestCase {
+
+	/// Holds satellite test data.
+	struct SatelliteTestData {
+	 let hostname: String
+	 let port: Int
+	 let satelliteURL: URL
+	}
+
+	/// Set up satellite tests.
+	override class func setUp() {
+		super.setUp()
+
+		// Disable satellite assetions for unit tests.
+		VGSCollectSatelliteUtils.isAssertionsEnabled = false
+	}
 
 	/// Test satellite hostname normalization with IP address.
 	func testNormalizeSatelliteHostnameForIPAddress() {
@@ -69,6 +85,43 @@ class VGSCollectSatelliteTests: XCTestCase {
 
 		for index in 0..<invalidhostnames.count {
 			XCTAssertFalse(VGSCollectSatelliteUtils.isSatelliteHostnameValid(invalidhostnames[index]), "*\(invalidhostnames[index]) is invalid hostname.*")
+		}
+	}
+
+	/// Test build satelite URL function.
+	func testBuildSatelliteURL() {
+
+		let testData: [SatelliteTestData] = [
+			SatelliteTestData(hostname: "localhost", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!),
+
+			SatelliteTestData(hostname: "http://localhost", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!),
+
+			// *Hostname will be nornalized.
+			SatelliteTestData(hostname: "http://localhost/backend", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!),
+
+			SatelliteTestData(hostname: "192.168.0", port: 9098, satelliteURL: URL(string: "http://192.168.0:9098")!),
+
+			SatelliteTestData(hostname: "192.168.1", port: 9098, satelliteURL: URL(string: "http://192.168.1:9098")!),
+
+			SatelliteTestData(hostname: "192.168.1.5", port: 9098, satelliteURL: URL(string: "http://192.168.1.5:9098")!),
+
+			SatelliteTestData(hostname: "http://192.168.0", port: 9098, satelliteURL: URL(string: "http://192.168.0:9098")!),
+
+			SatelliteTestData(hostname: "http://192.168.1", port: 9098, satelliteURL: URL(string: "http://192.168.1:9098")!),
+
+			SatelliteTestData(hostname: "http://192.168.1.5", port: 9098, satelliteURL: URL(string: "http://192.168.1.5:9098")!),
+
+			SatelliteTestData(hostname: "http:192.168.1.5", port: 9098, satelliteURL: URL(string: "http://192.168.1.5:9098")!)
+		]
+
+		for index in 0..<testData.count {
+			let config = testData[index]
+			let outputText = "index: \(index) satellite configuration with hostname: \(config.hostname) port: \(config.port) should produce: \(config.satelliteURL)"
+			if let url = VGSCollectSatelliteUtils.buildSatelliteURL(with: "sandbox", hostname: config.hostname, satellitePort: config.port) {
+				XCTAssertTrue(url == config.satelliteURL, "error: \(url) != \(config.satelliteURL) - " + outputText)
+			} else {
+				assertionFailure(outputText)
+			}
 		}
 	}
 }
