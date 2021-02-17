@@ -154,7 +154,7 @@ class VGSCollectSatelliteTests: XCTestCase {
 
 			SatelliteTestData(hostname: "http://localhost-apiclient", port: 9098, satelliteURL: nil),
 
-			SatelliteTestData(hostname: "🐒-client", port: 80, satelliteURL: nil),
+			SatelliteTestData(hostname: "🐒-data", port: 80, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "", port: 9098, satelliteURL: nil),
 
