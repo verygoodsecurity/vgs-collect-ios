@@ -107,7 +107,7 @@ internal class VGSCollectSatelliteUtils {
 			return true
 		}
 
-		if path.hasPrefix(Constants.validLocalIPAddressPrefix) {
+		if path.hasPrefix(Constants.validLocalIPAddressPrefix) && verifyIPHostNameIsCorrect(path) {
 			return true
 		}
 
@@ -159,5 +159,15 @@ internal class VGSCollectSatelliteUtils {
 		if isAssertionsEnabled {
 			assertionFailure(assertionText)
 		}
+	}
+
+
+	/// Verify ip-format hostname has only digits and *.*.
+	/// - Parameter hostname: `String` object to validate.
+	/// - Returns: `true` if valid ip format.
+	internal static func verifyIPHostNameIsCorrect(_ hostname: String) -> Bool {
+		let characterSet: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+
+		return Set(hostname).isSubset(of: characterSet)
 	}
 }

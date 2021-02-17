@@ -178,4 +178,34 @@ class VGSCollectSatelliteTests: XCTestCase {
 			XCTAssertTrue(invalidURL == nil, outputText)
 		}
 	}
+
+	/// Test satellite IP has correct format.
+	func testSatelliteIPCorrectFormat() {
+
+		let validTestIPs = [
+			"192.168.1",
+			"192.168.1.3",
+			"192.168.1.5",
+			"192.168.0"
+		]
+
+		for index in 0..<validTestIPs.count {
+			let ip = validTestIPs[index]
+			let outputText = "index: \(index) satellite ip: \(ip) should be valid"
+			XCTAssertTrue(VGSCollectSatelliteUtils.verifyIPHostNameIsCorrect(ip), outputText)
+		}
+
+		let invalidTestIPs = [
+			"192.168.1-localhost",
+			"192.168.1.3.backend",
+			"192.168.1.5&&&",
+			"192.168.0?="
+		]
+
+		for index in 0..<invalidTestIPs.count {
+			let ip = invalidTestIPs[index]
+			let outputText = "index: \(index) satellite ip: \(ip) should be invalid"
+			XCTAssertFalse(VGSCollectSatelliteUtils.verifyIPHostNameIsCorrect(ip), outputText)
+		}
+	}
 }
