@@ -137,13 +137,27 @@ class VGSCollectSatelliteTests: XCTestCase {
 	func testInvalidSatelliteConfiguration() {
 
 		let testData: [SatelliteTestData] = [
+			SatelliteTestData(hostname: "ftp://test-ios", port: 80, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "https://test-ios", port: 9908, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "devapiclient", port: 9908, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "ftp://test-ios", port: 9908, satelliteURL: nil),
+
 			SatelliteTestData(hostname: "localhost", port: -5, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "http://localhostbackend", port: 9098, satelliteURL: nil),
 
+			SatelliteTestData(hostname: "http://localhost-apiclient", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "🐒-client", port: 80, satelliteURL: nil),
+
 			SatelliteTestData(hostname: "", port: 9098, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "192.168.0", port: 0, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "192.168.0", port: 999999999, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "193.168.1", port: 9098, satelliteURL: nil),
 
@@ -154,6 +168,8 @@ class VGSCollectSatelliteTests: XCTestCase {
 			SatelliteTestData(hostname: "http://192.167.1", port: 9098, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "http://localhost192.168.1.5", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://localhost:192.168.1.5", port: 9098, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "custombackend", port: 9098, satelliteURL: nil),
 
