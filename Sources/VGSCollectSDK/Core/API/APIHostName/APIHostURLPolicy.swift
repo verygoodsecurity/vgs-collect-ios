@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Defines API flows.
 internal enum APIHostURLPolicy {
 
 	/**
@@ -31,6 +32,14 @@ internal enum APIHostURLPolicy {
 	*/
 	case invalidVaultURL
 
+	/**
+	 Use satellite url for local testing.
+
+	 - Parameters:
+			- url: `URL` object, should be valid satellite URL for local testing.
+	*/
+	case satelliteURL(_ satelliteURL: URL)
+
 	var url: URL? {
 		switch self {
 		case .invalidVaultURL:
@@ -39,6 +48,8 @@ internal enum APIHostURLPolicy {
 			return vaultURL
 		case .customHostURL(let hostStatus):
 			return hostStatus.url
+		case .satelliteURL(let satelliteURL):
+			return satelliteURL
 		}
 	}
 }

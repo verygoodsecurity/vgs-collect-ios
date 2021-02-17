@@ -67,6 +67,26 @@ class APIClient {
 			return
 		}
 
+		// Check satellite port is *nil* for regular API flow.
+		guard satellitePort == nil else {
+			// Try to build satellite URL.
+			guard let port = satellitePort, let satelliteURL = VGSCollectSatelliteUtils.buildSatelliteURL(with: regionalEnvironment, hostname: hostname, satellitePort: port) else {
+
+				// Use default URL as fallback if cannot resolve satellite flow.
+				self.vaultUrl = (validVaultURL)
+				return
+			}
+
+			// Use satellite URL and return.
+			self.hostURLPolicy = .satelliteURL(satelliteURL)
+
+			let message = "Satellite has been configured successfully! Satellite URL is: \(satelliteURL.absoluteString)"
+			let event = VGSLogEvent(level: .info, text: message)
+			VGSCollectLogger.shared.forwardLogEvent(event)
+
+			return
+		}
+
 		guard let hostnameToResolve = hostname, !hostnameToResolve.isEmpty else {
 
 			if let name = hostname, name.isEmpty {

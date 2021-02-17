@@ -60,7 +60,7 @@ public class VGSCollect {
     ///   - id: your organization vault id.
     ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sanbox").
     ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url.
-	  ///   - satellitePort: `Int?` object, custom port for satellite configuration. Default is `nil`. **IMPORTANT! Use only with .sandbox environment!**.
+	  ///   - satellitePort: `Int?` object, custom port for satellite configuration.  Default is `nil`. **IMPORTANT! Use only with .sandbox environment!**.
     public init(id: String, environment: String, hostname: String? = nil, satellitePort: Int? = nil) {
       self.tenantId = id
       self.regionalEnvironment = environment
