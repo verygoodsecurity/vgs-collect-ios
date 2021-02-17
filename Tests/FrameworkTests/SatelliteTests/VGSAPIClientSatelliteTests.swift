@@ -62,8 +62,12 @@ class VGSAPIClientSatelliteTests: XCTestCase {
 			switch client.hostURLPolicy {
 			case .satelliteURL(let url):
 				XCTAssertTrue(url == config.url, outputText)
-			default:
-				XCTFail("\(outputText). API client is not in satellite mode!!!")
+			case .invalidVaultURL:
+				XCTFail("\(outputText). API policy is *invalidURL*. Should be *satelliteURL* policy!!!")
+			case .customHostURL:
+				XCTFail("\(outputText). API policy is *customHost*. Should be *satelliteURL* policy URL mode!!!")
+			case .vaultURL:
+				XCTFail("\(outputText). API policy is *vaultURL*. Should be *satelliteURL* policy URL mode!!!")
 			}
 		}
 	}
