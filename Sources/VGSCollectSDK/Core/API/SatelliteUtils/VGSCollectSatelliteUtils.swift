@@ -11,7 +11,7 @@ import Foundation
 /// Collect utils for satellite.
 internal class VGSCollectSatelliteUtils {
 
-	/// Enable assertions on default, disable them unit tests.
+	/// Enable assertions on default, disable in unit tests.
 	internal static var isAssertionsEnabled = true
 
 	/// Constants.
@@ -160,7 +160,6 @@ internal class VGSCollectSatelliteUtils {
 			assertionFailure(assertionText)
 		}
 	}
-
 
 	/// Verify ip-format hostname has only digits and *.*.
 	/// - Parameter hostname: `String` object to validate.
