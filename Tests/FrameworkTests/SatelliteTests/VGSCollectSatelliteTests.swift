@@ -27,6 +27,14 @@ class VGSCollectSatelliteTests: XCTestCase {
 		VGSCollectSatelliteUtils.isAssertionsEnabled = false
 	}
 
+	/// Tear down flow.
+	override class func tearDown() {
+		super.tearDown()
+
+		// Enable satellite assertions.
+		VGSCollectSatelliteUtils.isAssertionsEnabled = true
+	}
+
 	/// Test satellite hostname normalization with IP address.
 	func testNormalizeSatelliteHostnameForIPAddress() {
 		let validNormalizedIPHostname = "192.168.1.5"
