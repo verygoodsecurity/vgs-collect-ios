@@ -72,8 +72,8 @@ class APIClient {
 			// Try to build satellite URL.
 			guard let port = satellitePort, let satelliteURL = VGSCollectSatelliteUtils.buildSatelliteURL(with: regionalEnvironment, hostname: hostname, satellitePort: port) else {
 
-				// Use default URL as fallback if cannot resolve satellite flow.
-				self.vaultUrl = (validVaultURL)
+				// Use vault URL as fallback if cannot resolve satellite flow.
+				self.hostURLPolicy = .vaultURL(validVaultURL)
 				return
 			}
 
@@ -127,6 +127,8 @@ class APIClient {
 		case .invalidVaultURL:
 			sendRequestBlock(nil)
 		case .vaultURL(let url):
+			sendRequestBlock(url)
+		case .satelliteURL(let url):
 			sendRequestBlock(url)
 		case .customHostURL(let status):
 			switch status {

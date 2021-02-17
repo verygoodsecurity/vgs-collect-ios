@@ -16,7 +16,7 @@ class VGSCollectSatelliteTests: XCTestCase {
 	struct SatelliteTestData {
 	 let hostname: String
 	 let port: Int
-	 let satelliteURL: URL
+	 let satelliteURL: URL?
 	}
 
 	/// Set up satellite tests.
@@ -116,12 +116,66 @@ class VGSCollectSatelliteTests: XCTestCase {
 
 		for index in 0..<testData.count {
 			let config = testData[index]
-			let outputText = "index: \(index) satellite configuration with hostname: \(config.hostname) port: \(config.port) should produce: \(config.satelliteURL)"
+			let outputText = "index: \(index) satellite configuration with hostname: \(config.hostname) port: \(config.port) should produce: \(config.satelliteURL!)"
 			if let url = VGSCollectSatelliteUtils.buildSatelliteURL(with: "sandbox", hostname: config.hostname, satellitePort: config.port) {
-				XCTAssertTrue(url == config.satelliteURL, "error: \(url) != \(config.satelliteURL) - " + outputText)
+				XCTAssertTrue(url == config.satelliteURL!, "error: \(url) != \(config.satelliteURL!) - " + outputText)
 			} else {
 				assertionFailure(outputText)
 			}
+		}
+	}
+
+	/// Test invalid configurations: wrong hostname or port name.
+	func testInvalidSatelliteConfiguration() {
+
+		let testData: [SatelliteTestData] = [
+			SatelliteTestData(hostname: "localhost", port: -5, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://localhostbackend", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "192.168.0", port: 0, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "193.168.1", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "192.168.1.5-backend", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://193.168.0", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://192.167.1", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://localhost192.168.1.5", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "custombackend", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "custombackend", port: 0, satelliteURL: nil)
+		]
+
+		for index in 0..<testData.count {
+			let config = testData[index]
+			let invalidURL = VGSCollectSatelliteUtils.buildSatelliteURL(with: "sandbox", hostname: config.hostname, satellitePort: config.port)
+			let outputText = "index: \(index) satellite invalid configuration with hostname: \(config.hostname) port: \(config.port) should produce *nil*, actuallResult: \(invalidURL?.absoluteString ?? "*nil*")"
+			XCTAssertTrue(invalidURL == nil, outputText)
+		}
+	}
+
+	/// Test satellite ignores all non-sandbox environments.
+	func testSatelliteEnvironment() {
+		let configuration = SatelliteTestData(hostname: "localhost", port: 9098, satelliteURL: URL(string: "http://localhost:9098")!)
+
+		let testData = [
+			"live",
+			"live-eu",
+			"eu-123",
+			"us-777"
+		]
+
+		for index in 0..<testData.count {
+			let environment = testData[index]
+			let outputText = "index: \(index) satellite invalid environment: \(environment) but valid hostname: \(configuration.hostname) port: \(configuration.port) should produce *nil*"
+			let invalidURL = VGSCollectSatelliteUtils.buildSatelliteURL(with: environment, hostname: configuration.hostname, satellitePort: configuration.port)
+			XCTAssertTrue(invalidURL == nil, outputText)
 		}
 	}
 }
