@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
-/// Tests for API cleint and satellite policy.
+/// Tests for API cleint and satellite configuration: verify API URL policy setup.
 class VGSAPIClientSatelliteTests: VGSCollectBaseTestCase {
 
 	/// Valid tenant ID.
@@ -67,7 +67,7 @@ class VGSAPIClientSatelliteTests: VGSCollectBaseTestCase {
 			case .invalidVaultURL:
 				XCTFail("\(outputText). API policy is *invalidURL*. Should be *satelliteURL* policy!!!")
 			case .customHostURL:
-				XCTFail("\(outputText). API policy is *customHost*. Should be *satelliteURL* policy URL mode!!!")
+				XCTFail("\(outputText). API policy is *customHostURL*. Should be *satelliteURL* policy URL mode!!!")
 			case .vaultURL:
 				XCTFail("\(outputText). API policy is *vaultURL*. Should be *satelliteURL* policy URL mode!!!")
 			}
@@ -108,87 +108,7 @@ class VGSAPIClientSatelliteTests: VGSCollectBaseTestCase {
 			case .invalidVaultURL:
 				XCTFail("\(outputText). API policy is *invalidURL*. Should be *vaultURL* policy!!!")
 			case .customHostURL:
-				XCTFail("\(outputText). API policy is *customHost*. Should be *vaultURL* policy URL mode!!!")
-			}
-		}
-	}
-
-	/// Test requests in one method to avoid async issues.
-	func testRequests() {
-		let expectation1 = XCTestExpectation(description: "Sending data to vault URL...")
-
-		let expectation2 = XCTestExpectation(description: "Sending data to satellite URL...")
-
-		requestSendToVaultURLWithCompletion({
-			expectation1.fulfill()
-
-			// Add delay to be sure there are no other tasks.
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-				self.requestSendToSatelliteWithCompletion({
-					expectation2.fulfill()
-				})
-			}
-		})
-
-		wait(for: [expectation1, expectation2], timeout: 5)
-	}
-
-	/// Test if send data to satellite.
-	func requestSendToSatelliteWithCompletion(_ completion: @escaping () -> Void) {
-		let config = APISatelliteTestData(environment: "sandbox", hostname: "localhost", port: 9908, url: URL(string: "http://localhost:9908/post")!)
-		let mockedFormData = VGSFormAnanlyticsDetails(formId: "123", tenantId: tenantID, environment: config.environment)
-
-		let client = APIClient(tenantId: tenantID, regionalEnvironment: config.environment, hostname: config.hostname, formAnalyticsDetails: mockedFormData, satellitePort: config.port)
-
-		let jsonData: JsonData = ["card_number": "4111-1111-1111-1111"]
-		client.sendRequest(path: "/post", method: .put, value: jsonData) { _ in
-		}
-
-		URLSession.shared.getAllTasks { (tasks) in
-			for task in tasks {
-				print("task.currentRequest?.url?.absoluteString: \(task.currentRequest?.url?.absoluteString)")
-				XCTAssertTrue(tasks.count == 1, "should have only one URL task.")
-				XCTAssert(task.currentRequest?.httpMethod == "PUT", "should have only PUT method")
-				XCTAssertFalse(task.currentRequest?.httpMethod == "POST", "should NOT be POST method")
-				if let url = task.currentRequest?.url {
-					XCTAssertTrue(url == config.url, "url should be localhost!")
-					task.cancel()
-				} else {
-					XCTFail("no url in task")
-				}
-
-				completion()
-			}
-		}
-	}
-
-	/// Test if send data to vault if satellite configuration is wrong.
-	func requestSendToVaultURLWithCompletion(_ completion: @escaping () -> Void) {
-		let config = APISatelliteTestData(environment: "live", hostname: "localhost", port: 9908, url: URL(string: "https://testid.live.verygoodproxy.com/post")!)
-		let mockedFormData = VGSFormAnanlyticsDetails(formId: "123", tenantId: tenantID, environment: config.environment)
-
-		let client = APIClient(tenantId: tenantID, regionalEnvironment: config.environment, hostname: config.hostname, formAnalyticsDetails: mockedFormData, satellitePort: config.port)
-
-		let jsonData: JsonData = ["card_number": "4111-1111-1111-1111"]
-		client.sendRequest(path: "/post", method: .put, value: jsonData) { _ in
-		}
-
-		URLSession.shared.getAllTasks { (tasks) in
-			print(tasks)
-			for task in tasks {
-				XCTAssertTrue(tasks.count == 1, "should have only one URL task.")
-				XCTAssert(task.currentRequest?.httpMethod == "PUT", "should have only PUT method")
-				XCTAssertFalse(task.currentRequest?.httpMethod == "POST", "should NOT be POST method")
-				if let url = task.currentRequest?.url {
-					XCTAssertTrue(url == config.url, "url: \(url.absoluteString) doesn't match vault URL! \(config.url)")
-
-					// Clear task to avoid async issues.
-					task.cancel()
-				} else {
-					XCTFail("no url in task")
-				}
-
-				completion()
+				XCTFail("\(outputText). API policy is *customHostURL*. Should be *vaultURL* policy URL mode!!!")
 			}
 		}
 	}

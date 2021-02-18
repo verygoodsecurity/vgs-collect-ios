@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
+/// Test collect configuration for satellite.
 class VGSCollectSatelliteTests: VGSCollectBaseTestCase {
 	/// Valid tenant ID.
 	let tenantID: String = "testID"
@@ -61,7 +62,7 @@ class VGSCollectSatelliteTests: VGSCollectBaseTestCase {
 			XCTAssertTrue(collect1.formAnalyticsDetails.isSatelliteMode == true, "\(outputText) should produce *satellite* mode in analytics")
 
 			let url1 = collect1.apiClient.baseURL?.absoluteString ?? ""
-			XCTAssertTrue(url1 == config.url.absoluteString, outputText)
+			XCTAssertTrue(url1 == config.url.absoluteString, "\(outputText) - enum init produced produced: \(url1)")
 
 			// Test init with String environment.
 			let collect2 = VGSCollect(id: tenantID, environment: config.environment, hostname: config.hostname, satellitePort: config.port)
@@ -69,7 +70,7 @@ class VGSCollectSatelliteTests: VGSCollectBaseTestCase {
 			XCTAssertTrue(collect2.formAnalyticsDetails.isSatelliteMode == true, "\(outputText) should produce *satellite* mode in analytics")
 
 			let url2 = collect2.apiClient.baseURL?.absoluteString ?? ""
-			XCTAssertTrue(url2 == config.url.absoluteString, outputText)
+			XCTAssertTrue(url2 == config.url.absoluteString, "\(outputText) - string init produced produced: \(url2)")
 		}
 	}
 

@@ -9,7 +9,7 @@
 import XCTest
 @testable import VGSCollectSDK
 
-/// Test satellite feature.
+/// Test satellite utils: local hostname and port validation, building satellite URL with valid/invalid configurations.
 class VGSCollectSatelliteUtilsTests: XCTestCase {
 
 	/// Holds satellite test data.
