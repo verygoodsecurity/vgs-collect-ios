@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class CVVTextFieldTests: XCTestCase {
+class CVVTextFieldTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var cvvTextField: VGSTextField!
     
     override func setUp() {
+			  super.setUp()
         collector = VGSCollect(id: "tntva5wfdrp")
         
         cvvTextField = VGSTextField()

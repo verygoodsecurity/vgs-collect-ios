@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class LuhnTests: XCTestCase {
+class LuhnTests: VGSCollectBaseTestCase {
     var textField: VGSTextField!
     let cardNumer = "4111111111111111"
     
     override func setUp() {
+			  super.setUp()
         textField = VGSTextField(frame: .zero)
     }
 

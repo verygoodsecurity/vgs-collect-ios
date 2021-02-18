@@ -9,12 +9,13 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class ValidationRulesTest: XCTestCase {
+class ValidationRulesTest: VGSCollectBaseTestCase {
 
     var form: VGSCollect!
     var textfield: VGSTextField!
     
     override func setUp() {
+			super.setUp()
       form = VGSCollect(id: "tntva5wfdrp")
       textfield = VGSTextField()
     }

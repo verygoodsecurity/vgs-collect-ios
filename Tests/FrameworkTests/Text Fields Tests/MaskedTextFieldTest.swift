@@ -9,12 +9,13 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class MaskedTextFieldTest: XCTestCase {
+class MaskedTextFieldTest: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var configuration: VGSConfiguration!
     var textfield: VGSTextField!
     
     override func setUp() {
+			  super.setUp()
         collector = VGSCollect(id: "vaultid")
         configuration = VGSConfiguration.init(collector: collector, fieldName: "test1")
         textfield = VGSTextField()

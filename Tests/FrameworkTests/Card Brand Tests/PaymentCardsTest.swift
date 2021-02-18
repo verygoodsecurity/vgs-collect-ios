@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class PaymentCardsTest: XCTestCase {
+class PaymentCardsTest: VGSCollectBaseTestCase {
   var collector: VGSCollect!
   var cardTextField: VGSTextField!
 
   override func setUp() {
+		  super.setUp()
       collector = VGSCollect(id: "tnt")
       cardTextField = VGSTextField()
       let config = VGSConfiguration(collector: collector, fieldName: "cardNum")
