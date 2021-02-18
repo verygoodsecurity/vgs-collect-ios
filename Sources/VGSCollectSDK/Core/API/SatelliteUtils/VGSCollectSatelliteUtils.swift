@@ -37,7 +37,7 @@ internal class VGSCollectSatelliteUtils {
 
 		// Check satelliteHostname is set.
 		guard let satelliteHostname = hostname else {
-			let errorText = "SATELLITE CONFIGURATION ERROR! HOSTNAME NOT SET! SHOULD BE *http://localhost* or *http://192.168.*"
+			let errorText = "SATELLITE CONFIGURATION ERROR! HOSTNAME NOT SET! SHOULD BE *http://localhost* or in local IP format  http://192.168.X.X"
 			let event = VGSLogEvent(level: .warning, text: errorText, severityLevel: .error)
 			VGSCollectLogger.shared.forwardLogEvent(event)
 

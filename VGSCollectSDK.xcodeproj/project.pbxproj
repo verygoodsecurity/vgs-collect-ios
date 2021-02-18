@@ -92,10 +92,12 @@
 		441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26DC25DB88DB0099AA3A /* VGSResponse.swift */; };
 		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
 		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
+		443FDDB625DD43D5006932C4 /* VGSCollect+SatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */; };
+		443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */; };
 		447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A81112589438000BC77C7 /* CardIcon.xcassets */; };
 		44A67DDB25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */; };
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
-		44F8F52F25DBE8770052647A /* VGSCollectSatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteTests.swift */; };
+		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
 		FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */; };
 		FD05F94C2316CE5A000EAF52 /* VGSCollectSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -229,10 +231,12 @@
 		441B26DC25DB88DB0099AA3A /* VGSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSResponse.swift; sourceTree = "<group>"; };
 		441B26E825DB8D950099AA3A /* APIClient+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Utils.swift"; sourceTree = "<group>"; };
 		441B26EF25DB956B0099AA3A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+SatelliteTests.swift"; sourceTree = "<group>"; };
+		443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectBaseTestCase.swift; sourceTree = "<group>"; };
 		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSAPIClientSatelliteTests.swift; sourceTree = "<group>"; };
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
-		44F8F52325DBE7E40052647A /* VGSCollectSatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteTests.swift; sourceTree = "<group>"; };
+		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FD05F93A2316CE5A000EAF52 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollect.swift; sourceTree = "<group>"; };
@@ -551,13 +555,14 @@
 			path = SatelliteUtils;
 			sourceTree = "<group>";
 		};
-		44F8F52225DBE7D10052647A /* SatelliteTests */ = {
+		44F8F52225DBE7D10052647A /* Satellite Tests */ = {
 			isa = PBXGroup;
 			children = (
-				44F8F52325DBE7E40052647A /* VGSCollectSatelliteTests.swift */,
+				44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */,
 				44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */,
+				443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */,
 			);
-			path = SatelliteTests;
+			path = "Satellite Tests";
 			sourceTree = "<group>";
 		};
 		FD05F9372316CE5A000EAF52 /* VGSCollectSDK */ = {
@@ -647,7 +652,7 @@
 		FD2495522330CB49009024E6 /* FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				44F8F52225DBE7D10052647A /* SatelliteTests */,
+				44F8F52225DBE7D10052647A /* Satellite Tests */,
 				FD790B95243BB3D1006A30CB /* Card Brand Tests */,
 				324CDEE023FB12E200653890 /* File Picker Tests */,
 				FDE890802333A75800FA170D /* Text Fields Tests */,
@@ -661,6 +666,7 @@
 				32130057241F9FFB0062FEF0 /* VGSCollectTests.swift */,
 				3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */,
 				FD2495552330CB49009024E6 /* Info.plist */,
+				443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */,
 			);
 			path = FrameworkTests;
 			sourceTree = "<group>";
@@ -1170,7 +1176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */,
-				44F8F52F25DBE8770052647A /* VGSCollectSatelliteTests.swift in Sources */,
+				44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */,
 				FD1BE48923462F21006D8658 /* CVVTextFieldTests.swift in Sources */,
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
@@ -1190,6 +1196,7 @@
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */,
+				443FDDB625DD43D5006932C4 /* VGSCollect+SatelliteTests.swift in Sources */,
 				32AFB93724FFD218007FFCAE /* VGSTextFieldTests.swift in Sources */,
 				322F94D725BAC3E0001CDF12 /* ExpDateConvertorTests.swift in Sources */,
 				FD4ED0E52373666500AEAD24 /* TextFieldSecurity.swift in Sources */,
@@ -1198,6 +1205,7 @@
 				4404600F256801890064BEA0 /* APIHostnameValidatorTests.swift in Sources */,
 				3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */,
 				324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */,
+				443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */,
 				32059CD12417E02E003E9481 /* Utils.swift in Sources */,
 				327C9E182407FC62004C641C /* VGSErrorInfoKey.swift in Sources */,
 			);

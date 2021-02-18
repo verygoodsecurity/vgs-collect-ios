@@ -1,5 +1,5 @@
 //
-//  VGSCollectSatelliteTests.swift
+//  VGSCollectSatelliteUtilsTests.swift
 //  VGSCollectSDK
 //
 //  Created on 16.02.2021.
@@ -10,7 +10,7 @@ import XCTest
 @testable import VGSCollectSDK
 
 /// Test satellite feature.
-class VGSCollectSatelliteTests: XCTestCase {
+class VGSCollectSatelliteUtilsTests: XCTestCase {
 
 	/// Holds satellite test data.
 	struct SatelliteTestData {
@@ -169,6 +169,10 @@ class VGSCollectSatelliteTests: XCTestCase {
 			SatelliteTestData(hostname: "http://193.168.0", port: 9098, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "http://192.167.1", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://188.168.1", port: 9098, satelliteURL: nil),
+
+			SatelliteTestData(hostname: "http://199.168.1", port: 9098, satelliteURL: nil),
 
 			SatelliteTestData(hostname: "http://localhost192.168.1.5", port: 9098, satelliteURL: nil),
 
