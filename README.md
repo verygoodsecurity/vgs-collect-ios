@@ -106,8 +106,6 @@ Select `VGSCollectSDK` and optionally other packages provided with `VGSCollectSD
 <img src="images/VGSCollect_CardScan_SPM_2.png" width="70%">
 </p>
 
-> NOTE: At this time we support Swift Package Manager only for core `VGSCollectSDK` module. If you need to integrate Card Scanning solutions you should use other integration method. We will extend support of 3d party Card Scanning SDKs after they will become available to integrate via Swift Package Manager.
-
 ## Usage
 
 ### Import SDK into your file
