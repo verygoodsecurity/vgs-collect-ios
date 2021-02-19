@@ -72,12 +72,17 @@ public class VGSAnalyticsClient {
                          "tnt": form.tenantId,
                          "env": form.environment
                       ]
-    let data: [String: Any]
+    var data: [String: Any]
     if let extraData = extraData {
       data = deepMerge(formDetails, extraData)
     } else {
       data = formDetails
     }
+
+		// track only true or both?
+		if form.isSatelliteMode == true {
+			data["vgsSatellite"] = true
+		}
     trackEvent(type, status: status, extraData: data)
   }
 

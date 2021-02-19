@@ -9,12 +9,13 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class TextFieldSecurity: XCTestCase {
+class TextFieldSecurity: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var textField: VGSTextField!
     var cardNum = "4111 1111 1111 1111"
     
     override func setUp() {
+				super.setUp()
         collector = VGSCollect(id: "id")
         textField = VGSTextField()
         

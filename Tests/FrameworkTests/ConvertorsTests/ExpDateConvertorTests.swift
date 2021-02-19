@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
-class ExpDateConvertorTests: XCTestCase {
+class ExpDateConvertorTests: VGSCollectBaseTestCase {
   var collector: VGSCollect!
   var textField: VGSExpDateTextField!
 
@@ -20,6 +20,7 @@ class ExpDateConvertorTests: XCTestCase {
 	}
 
   override func setUp() {
+		  super.setUp()
       collector = VGSCollect(id: "any")
       textField = VGSExpDateTextField()
   }

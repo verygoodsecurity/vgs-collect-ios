@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class ExpDateTextFieldTests: XCTestCase {
+class ExpDateTextFieldTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var expDateTextField: VGSTextField!
     
     override func setUp() {
+			  super.setUp()
         collector = VGSCollect(id: "tntva5wfdrp")
         expDateTextField = VGSTextField()
         expDateTextField.textField.secureText = "1223"

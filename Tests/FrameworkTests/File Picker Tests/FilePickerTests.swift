@@ -9,7 +9,7 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class FilePickerTests: XCTestCase {
+class FilePickerTests: VGSCollectBaseTestCase {
     var vgsForm: VGSCollect!
     var filePicker: VGSFilePickerController!
     let parentVC = UIViewController()

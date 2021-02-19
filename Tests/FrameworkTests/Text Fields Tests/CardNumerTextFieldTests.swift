@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class CardNumerTextFieldTests: XCTestCase {
+class CardNumerTextFieldTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var cardNumerTextField: VGSTextField!
     
     override func setUp() {
+			  super.setUp()
         collector = VGSCollect(id: "tntva5wfdrp")
         
         cardNumerTextField = VGSTextField()
@@ -117,7 +118,7 @@ class CardNumerTextFieldTests: XCTestCase {
           XCTAssert(false, "CardState not valid")
       }
       
-      /// test with mask
+      // Test with mask.
       cardNumerTextField.setText("4111 1111 1111 1111")
       state = cardNumerTextField.state
 
