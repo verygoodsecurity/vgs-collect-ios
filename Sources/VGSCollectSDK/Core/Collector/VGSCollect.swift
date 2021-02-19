@@ -57,9 +57,9 @@ public class VGSCollect {
     /// Initialzation.
     ///
     /// - Parameters:
-    ///   - id: your organization vault id.
-    ///   - environment: your organization vault environment with data region.(e.g. "live", "live-eu1", "sandbox").
-    ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url.
+    ///   - id: `String` object, your organization vault id.
+    ///   - environment: `String` object, your organization vault environment with data region.(e.g. "live", "live-eu1", "sandbox").
+    ///   - hostname: `String?` object, custom Hostname, if not set, data will be sent to Vault Url. Default is `nil`.
 	  ///   - satellitePort: `Int?` object, custom port for satellite configuration.  Default is `nil`. **IMPORTANT! Use only with .sandbox environment! Hostname should be specified for valid http://localhost or in local IP format  http://192.168.X.X**.
     public init(id: String, environment: String, hostname: String? = nil, satellitePort: Int? = nil) {
       self.tenantId = id
@@ -75,10 +75,10 @@ public class VGSCollect {
     /// Initialzation.
     ///
     /// - Parameters:
-    ///   - id: your organization vault id.
-    ///   - environment: your organization vault environment. By default `Environment.sandbox`.
-    ///   - dataRegion: id of data storage region (e.g. "eu-123").
-    ///   - hostname: Custom Hostname, if not set, data will be sent to Vault Url
+    ///   - id: `String` object, your organization vault id.
+    ///   - environment: `Environment` object, your organization vault environment. By default `Environment.sandbox`.
+    ///   - dataRegion: `String` object, id of data storage region (e.g. "eu-123").
+    ///   - hostname: `String` object, custom Hostname, if not set, data will be sent to Vault Url. Default is `nil`.
 	  ///   - satellitePort: `Int?` object, custom port for satellite configuration. Default is `nil`. **IMPORTANT! Use only with .sandbox environment! Hostname should be specified for valid http://localhost or in local IP format http://192.168.X.X**.
 	public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil, hostname: String? = nil, satellitePort: Int? = nil) {
       let env = Self.generateRegionalEnvironmentString(environment, region: dataRegion)
