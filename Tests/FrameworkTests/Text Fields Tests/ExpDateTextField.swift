@@ -9,12 +9,13 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class ExpDateTextField: XCTestCase {
+class ExpDateTextField: VGSCollectBaseTestCase {
 
     var collector: VGSCollect!
     var textField: VGSExpDateTextField!
     
     override func setUp() {
+			  super.setUp()
         collector = VGSCollect(id: "any")
         textField = VGSExpDateTextField()
         let config = VGSConfiguration(collector: collector, fieldName: "textField")

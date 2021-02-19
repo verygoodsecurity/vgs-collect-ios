@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class CardBrandTest: XCTestCase {
+class CardBrandTest: VGSCollectBaseTestCase {
     var storage: VGSCollect!
     var cardTextField: VGSTextField!
     
     override func setUp() {
+			  super.setUp()
         storage = VGSCollect(id: "123")
         cardTextField = VGSTextField()
         

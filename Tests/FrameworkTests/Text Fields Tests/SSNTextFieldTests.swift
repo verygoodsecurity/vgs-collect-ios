@@ -9,11 +9,12 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class SSNTextFieldTests: XCTestCase {
+class SSNTextFieldTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var ssnTextField: VGSTextField!
     
     override func setUp() {
+			  super.setUp()
         collector = VGSCollect(id: "tntva5wfdrp")
         
         ssnTextField = VGSTextField()

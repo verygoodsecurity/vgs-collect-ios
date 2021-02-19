@@ -9,12 +9,13 @@
 import XCTest
 @testable import VGSCollectSDK
 
-class CardTextFieldTests: XCTestCase {
+class CardTextFieldTests: VGSCollectBaseTestCase {
 
     var form: VGSCollect!
     var cardTextField: VGSCardTextField!
     
     override func setUp() {
+			  super.setUp()
         form = VGSCollect(id: "tntva5wfdrp")
         let config = VGSConfiguration(collector: form, fieldName: "cardNumber")
         config.type = .cardNumber
