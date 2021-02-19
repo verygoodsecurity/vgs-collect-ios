@@ -17,7 +17,7 @@ internal class VGSCollectSatelliteUtils {
 	/// Constants.
 	internal enum Constants {
 
-		/// Valid port numbers.
+		/// Valid port numbers. https://en.wikipedia.org/wiki/Port_(computer_networking)#Port_number
 		static let validPortNumbers: ClosedRange<Int> = 1...65535
 
 		/// Valid localhost prefix.
