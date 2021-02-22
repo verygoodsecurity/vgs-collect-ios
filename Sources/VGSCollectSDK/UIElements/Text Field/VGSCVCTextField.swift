@@ -22,7 +22,7 @@ public final class VGSCVCTextField: VGSTextField {
   
     // MARK: - Enum cases
     /// Available Card brand icon positions enum.
-    public enum cvcIconLocation {
+    public enum CVCIconLocation {
         /// Card brand icon at left side of `VGSCardTextField`.
         case left
       
@@ -32,9 +32,9 @@ public final class VGSCVCTextField: VGSTextField {
     
     // MARK: Attributes
     /// Card brand icon position inside `VGSCardTextField`.
-    public var cvcIconLocation = cvcIconLocation.right {
+    public var cvcIconLocation = CVCIconLocation.right {
       didSet {
-        setcvcIconAtLocation(cvcIconLocation)
+        setCVCIconAtLocation(cvcIconLocation)
       }
     }
   
@@ -63,7 +63,7 @@ internal extension VGSCVCTextField {
         super.mainInitialization()
         
         setupcvcIconView()
-        setcvcIconAtLocation(cvcIconLocation)
+        setCVCIconAtLocation(cvcIconLocation)
         updateCardImage()
     }
   
@@ -118,7 +118,7 @@ internal extension VGSCVCTextField {
        }
     }
   
-    func setcvcIconAtLocation(_ location: cvcIconLocation) {
+    func setCVCIconAtLocation(_ location: CVCIconLocation) {
         cvcIconView.removeFromSuperview()
         switch location {
         case .left:
@@ -162,4 +162,3 @@ internal extension VGSCVCTextField {
         cvcIconView.addConstraints([widthConstraint, heightConstraint])
     }
 }
-
