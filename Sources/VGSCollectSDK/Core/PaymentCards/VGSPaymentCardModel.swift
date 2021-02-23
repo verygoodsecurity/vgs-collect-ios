@@ -21,6 +21,7 @@ public protocol VGSPaymentCardModelProtocol {
   var cvcLengths: [Int] { get set }
   var checkSumAlgorithm: CheckSumAlgorithmType? { get set }
   var brandIcon: UIImage? { get set }
+  var cvcIcon: UIImage? { get set }
 }
 
 /// An object representing Payment Card
