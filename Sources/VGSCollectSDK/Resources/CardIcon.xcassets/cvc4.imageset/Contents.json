@@ -15,7 +15,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "cvc4.png",
+      "filename" : "cvc4@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -26,12 +26,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cvc4-2.png",
+      "filename" : "cvc4-dark@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cvc4-1.png",
+      "filename" : "cvc4@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -42,7 +42,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cvc4-3.png",
+      "filename" : "cvc4-dark@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
