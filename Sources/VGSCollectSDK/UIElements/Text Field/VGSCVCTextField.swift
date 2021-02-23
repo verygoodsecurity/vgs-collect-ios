@@ -10,49 +10,46 @@
 import UIKit
 #endif
 
-/// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
+/// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show CVC/CVV images for credit card brands.
 public final class VGSCVCTextField: VGSTextField {
   
     internal let cvcIconView = UIImageView()
     internal lazy var stackView = self.makeStackView()
     internal let stackSpacing: CGFloat = 8.0
-    internal lazy var defaultUnknowBrandImage: UIImage? = {
-      return UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
-    }()
   
     // MARK: - Enum cases
-    /// Available Card brand icon positions enum.
+    /// Available CVC icon positions enum.
     public enum CVCIconLocation {
-        /// Card brand icon at left side of `VGSCardTextField`.
+        /// CVC icon at left side of `VGSCardTextField`.
         case left
       
-        /// Card brand icon at right side of `VGSCardTextField`.
+        /// CVC icon at right side of `VGSCardTextField`.
         case right
     }
     
     // MARK: Attributes
-    /// Card brand icon position inside `VGSCardTextField`.
+    /// CVC icon position inside `VGSCardTextField`.
     public var cvcIconLocation = CVCIconLocation.right {
       didSet {
         setCVCIconAtLocation(cvcIconLocation)
       }
     }
   
-    /// Card brand icon size.
+    /// CVC icon size.
     public var cvcIconSize: CGSize = CGSize(width: 45, height: 45) {
         didSet {
             updatecvcIconViewSize()
         }
     }
     
-    // MARK: Custom card brand images
+    // MARK: Custom CVC images for specific card brands
     /// Asks custom image for specific `VGSPaymentCards.CardBrand`
-    public var cardsIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
+    public var cvcIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
     
     /// :nodoc:
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        updateCardImage()
+        updateCVCImage(for: .unknown)
     }
 }
 
@@ -62,9 +59,9 @@ internal extension VGSCVCTextField {
     override func mainInitialization() {
         super.mainInitialization()
         
-        setupcvcIconView()
+        setupCVCIconView()
         setCVCIconAtLocation(cvcIconLocation)
-        updateCardImage()
+        updateCVCImage(for: .unknown)
     }
   
     override func buildTextFieldUI() {
@@ -103,19 +100,10 @@ internal extension VGSCVCTextField {
         stack.spacing = 8
         return stack
     }
+
   
-    // override textFieldDidChange
-    override func textFieldValueChanged() {
-        super.textFieldValueChanged()
-        updateCardImage()
-    }
-  
-    func updateCardImage() {
-       if let state = state as? CardState {
-          cvcIconView.image = (cardsIconSource == nil) ? state.cardBrand.brandIcon :  cardsIconSource?(state.cardBrand)
-       } else {
-        cvcIconView.image = VGSPaymentCards.unknown.brandIcon
-       }
+    func updateCVCImage(for cardBrand: VGSPaymentCards.CardBrand) {
+        cvcIconView.image = (cvcIconSource == nil) ? cardBrand.cvcIcon :  cvcIconSource?(cardBrand)
     }
   
     func setCVCIconAtLocation(_ location: CVCIconLocation) {
@@ -137,8 +125,8 @@ internal extension VGSCVCTextField {
         }
     }
     
-    // make image view for a card brand icon
-    private func setupcvcIconView() {
+    // Make image view for a card brand icon
+    private func setupCVCIconView() {
         cvcIconView.translatesAutoresizingMaskIntoConstraints = false
         cvcIconView.contentMode = .scaleAspectFit
         let widthConstraint = NSLayoutConstraint(item: cvcIconView,
