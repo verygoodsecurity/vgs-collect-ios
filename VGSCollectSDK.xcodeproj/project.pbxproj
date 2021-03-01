@@ -23,6 +23,7 @@
 		321300192417F2E80062FEF0 /* VGSCollect+internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323105622417DF07009C3360 /* VGSCollect+internal.swift */; };
 		3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */; };
 		3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219D73C2404279700F4A7E5 /* VGSError.swift */; };
+		321FE73A25DE45FC00B138E9 /* VGSCVCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */; };
 		322F94B125BABD9D001CDF12 /* VGSExpDateConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322F94B025BABD9D001CDF12 /* VGSExpDateConfiguration.swift */; };
 		322F94BB25BABE97001CDF12 /* ExpDateFormatConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322F94BA25BABE97001CDF12 /* ExpDateFormatConvertor.swift */; };
 		322F94D725BAC3E0001CDF12 /* ExpDateConvertorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322F94D625BAC3E0001CDF12 /* ExpDateConvertorTests.swift */; };
@@ -163,6 +164,7 @@
 		32130057241F9FFB0062FEF0 /* VGSCollectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectTests.swift; sourceTree = "<group>"; };
 		3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSCollectTest+Validation.swift"; sourceTree = "<group>"; };
 		3219D73C2404279700F4A7E5 /* VGSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSError.swift; sourceTree = "<group>"; };
+		321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTextField.swift; sourceTree = "<group>"; };
 		322F94B025BABD9D001CDF12 /* VGSExpDateConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateConfiguration.swift; sourceTree = "<group>"; };
 		322F94BA25BABE97001CDF12 /* ExpDateFormatConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateFormatConvertor.swift; sourceTree = "<group>"; };
 		322F94D625BAC3E0001CDF12 /* ExpDateConvertorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpDateConvertorTests.swift; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 				FDD398ED247D776600B55057 /* VGSCardTextField.swift */,
 				FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */,
 				FD05F9442316CE5A000EAF52 /* VGSTextField.swift */,
+				321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */,
 				FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
 				FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */,
@@ -1135,6 +1138,7 @@
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
 				327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
 				FDD398EE247D776600B55057 /* VGSCardTextField.swift in Sources */,
+				321FE73A25DE45FC00B138E9 /* VGSCVCTextField.swift in Sources */,
 				3281541325013EA1004E9AD4 /* VGSAnalyticsClient.swift in Sources */,
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,

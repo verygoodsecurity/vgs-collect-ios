@@ -21,6 +21,7 @@ public protocol VGSPaymentCardModelProtocol {
   var cvcLengths: [Int] { get set }
   var checkSumAlgorithm: CheckSumAlgorithmType? { get set }
   var brandIcon: UIImage? { get set }
+  var cvcIcon: UIImage? { get set }
 }
 
 /// An object representing Payment Card
@@ -51,6 +52,9 @@ public struct VGSPaymentCardModel: VGSPaymentCardModelProtocol {
   /// Image, associated with Payment Card Brand.
   public var brandIcon: UIImage?
   
+  /// Image, associated with CVC for Payment Card Brand.
+  public var cvcIcon: UIImage?
+  
   init(brand: VGSPaymentCards.CardBrand) {
     self.brand = brand
     self.name = brand.defaultName
@@ -60,5 +64,6 @@ public struct VGSPaymentCardModel: VGSPaymentCardModelProtocol {
     self.checkSumAlgorithm = brand.defaultCheckSumAlgorithm
     self.brandIcon = brand.defaultBrandIcon
     self.formatPattern = brand.defaultFormatPattern
+    self.cvcIcon = brand.defaultCVCIcon
   }
 }

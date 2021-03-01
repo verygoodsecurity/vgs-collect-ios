@@ -291,6 +291,9 @@ internal extension VGSTextField {
       if let cvcField = self.vgsCollector?.storage.textFields.filter({ $0.fieldType == .cvc }).first {
         cvcField.textField.formatPattern = cardState.cardBrand.cvcFormatPattern
         cvcField.validationRules = self.getCVCValidationRules(cardBrand: cardState.cardBrand)
+        if let field = cvcField as? VGSCVCTextField {
+          field.updateCVCImage(for: cardState.cardBrand)
+        }
       }
     }
     textField.updateTextFormat()

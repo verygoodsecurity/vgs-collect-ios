@@ -39,6 +39,9 @@ public struct VGSCustomPaymentCardModel: VGSPaymentCardModelProtocol {
    /// Image, associated with  Payment Card Brand.
   public var brandIcon: UIImage?
   
+  /// Image, associated with  CVC for Payment Card Brand.
+  public var cvcIcon: UIImage?
+  
   // MARK: - Initialzation
 
 	/// Initializer.

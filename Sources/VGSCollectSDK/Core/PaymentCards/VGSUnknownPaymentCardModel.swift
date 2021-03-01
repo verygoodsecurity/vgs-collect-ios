@@ -32,4 +32,7 @@ public struct VGSUnknownPaymentCardModel {
 
    /// Image, associated with Unknown Payment Card Brands.
   public var brandIcon: UIImage? = VGSPaymentCards.CardBrand.unknown.defaultBrandIcon
+  
+  /// Image, associated with CVC for Unknown Payment Card Brands.
+  public var cvcIcon: UIImage? = VGSPaymentCards.CardBrand.unknown.defaultCVCIcon
 }

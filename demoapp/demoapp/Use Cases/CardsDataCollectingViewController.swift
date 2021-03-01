@@ -22,7 +22,7 @@ class CardsDataCollectingViewController: UIViewController {
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
     var expCardDate = VGSExpDateTextField()
-    var cvcCardNum = VGSTextField()
+    var cvcCardNum = VGSCVCTextField()
     var cardHolderName = VGSTextField()
     
     var consoleMessage: String = "" {
