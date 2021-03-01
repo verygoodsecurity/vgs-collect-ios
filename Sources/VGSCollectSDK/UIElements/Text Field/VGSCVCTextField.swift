@@ -170,8 +170,6 @@ internal extension VGSCVCTextField {
                                                 multiplier: 1,
                                                 constant: cvcIconSize.height)
       heightConstraint.identifier = "heightConstraint"
-      // fix conflict with textfield height constraint when card icon more higher than textfield
-      heightConstraint.priority = .required
       cvcIconImageView.addConstraints([widthConstraint, heightConstraint])
     }
 }
