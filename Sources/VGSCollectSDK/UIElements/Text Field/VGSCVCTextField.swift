@@ -13,7 +13,28 @@ import UIKit
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show CVC/CVV images for credit card brands.
 public final class VGSCVCTextField: VGSTextField {
   
-    internal let cvcIconView = UIImageView()
+    /// Image view displaying CVC icon.
+    internal let cvcIconImageView = UIImageView()
+  
+    /// CVC image view container.
+    internal lazy var cvcIconContainerView: UIView = {
+      let view = UIView()
+      view.backgroundColor = .clear
+      view.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(cvcIconImageView)
+
+      // Center cvcIconImageView in container view.
+      cvcIconImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+      cvcIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
+      // Container view width should be equal to cvcIconImageView.width. Container view doesn't infer its own intristicContentSize. So stackView cannot get widths from simpleView without this.
+      view.widthAnchor.constraint(equalTo: cvcIconImageView.widthAnchor).isActive = true
+
+      return view
+    }()
+
+
+
     internal lazy var stackView = self.makeStackView()
     internal let stackSpacing: CGFloat = 8.0
   
@@ -103,50 +124,54 @@ internal extension VGSCVCTextField {
 
   
     func updateCVCImage(for cardBrand: VGSPaymentCards.CardBrand) {
-        cvcIconView.image = (cvcIconSource == nil) ? cardBrand.cvcIcon :  cvcIconSource?(cardBrand)
+        cvcIconImageView.image = (cvcIconSource == nil) ? cardBrand.cvcIcon :  cvcIconSource?(cardBrand)
     }
   
     func setCVCIconAtLocation(_ location: CVCIconLocation) {
-        cvcIconView.removeFromSuperview()
+        cvcIconContainerView.removeFromSuperview()
         switch location {
         case .left:
-            stackView.insertArrangedSubview(cvcIconView, at: 0)
+            stackView.insertArrangedSubview(cvcIconContainerView, at: 0)
         case .right:
-            stackView.addArrangedSubview(cvcIconView)
+            stackView.addArrangedSubview(cvcIconContainerView)
         }
     }
     
     func updatecvcIconViewSize() {
-        if let widthConstraint = cvcIconView.constraints.filter({ $0.identifier == "widthConstraint" }).first {
-            widthConstraint.constant = cvcIconSize.width
-        }
-        if let heightConstraint = cvcIconView.constraints.filter({ $0.identifier == "heightConstraint" }).first {
-            heightConstraint.constant = cvcIconSize.height
-        }
+      if let widthConstraint = cvcIconImageView.constraints.filter({ $0.identifier == "widthConstraint" }).first {
+          widthConstraint.constant = cvcIconSize.width
+        print("widthConstraint.constant: \(widthConstraint.constant)")
+      }
+      if let heightConstraint = cvcIconImageView.constraints.filter({ $0.identifier == "heightConstraint" }).first {
+          heightConstraint.constant = cvcIconSize.height
+        print("heightConstraint.constant: \(heightConstraint.constant)")
+      }
     }
     
     // Make image view for a card brand icon
     private func setupCVCIconView() {
-        cvcIconView.translatesAutoresizingMaskIntoConstraints = false
-        cvcIconView.contentMode = .scaleAspectFit
-        let widthConstraint = NSLayoutConstraint(item: cvcIconView,
-                                                 attribute: .width,
-                                                 relatedBy: .equal,
-                                                 toItem: nil,
-                                                 attribute: .notAnAttribute,
-                                                 multiplier: 1,
-                                                 constant: cvcIconSize.width)
-        widthConstraint.identifier = "widthConstraint"
-        let heightConstraint = NSLayoutConstraint(item: cvcIconView,
-                                                  attribute: .height,
-                                                  relatedBy: .equal,
-                                                  toItem: nil,
-                                                  attribute: .notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: cvcIconSize.height)
-        heightConstraint.identifier = "heightConstraint"
-        // fix conflict with textfield height constraint when card icon more higher then textfield
-        heightConstraint.priority = UILayoutPriority(rawValue: 999)
-        cvcIconView.addConstraints([widthConstraint, heightConstraint])
+
+      // Update only card image view width and height constraint.
+      cvcIconImageView.translatesAutoresizingMaskIntoConstraints = false
+      cvcIconImageView.contentMode = .scaleAspectFit
+      let widthConstraint = NSLayoutConstraint(item: cvcIconImageView,
+                                               attribute: .width,
+                                               relatedBy: .equal,
+                                               toItem: nil,
+                                               attribute: .notAnAttribute,
+                                               multiplier: 1,
+                                               constant: cvcIconSize.width)
+      widthConstraint.identifier = "widthConstraint"
+      let heightConstraint = NSLayoutConstraint(item: cvcIconImageView,
+                                                attribute: .height,
+                                                relatedBy: .equal,
+                                                toItem: nil,
+                                                attribute: .notAnAttribute,
+                                                multiplier: 1,
+                                                constant: cvcIconSize.height)
+      heightConstraint.identifier = "heightConstraint"
+      // fix conflict with textfield height constraint when card icon more higher than textfield
+      heightConstraint.priority = .required
+      cvcIconImageView.addConstraints([widthConstraint, heightConstraint])
     }
 }
