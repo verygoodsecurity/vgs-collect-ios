@@ -11,6 +11,9 @@ import Foundation
 /// Key-value data type, usually used for response format.
 public typealias JsonData = [String: Any]
 
+/// Array of JsonData objects type.
+public typealias JSONArray = [JsonData]
+
 /// Key-value data type, used in http request headers.
 public typealias HTTPHeaders = [String: String]
 
