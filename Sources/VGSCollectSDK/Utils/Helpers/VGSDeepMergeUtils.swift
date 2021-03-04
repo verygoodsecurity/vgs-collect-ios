@@ -1,5 +1,5 @@
 //
-//  VGSDeepMergeArrayUtils.swift
+//  VGSDeepMergeUtils.swift
 //  VGSCollectSDK
 //
 //  Created on 05.03.2021.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// Utils for deepMerge.
-final internal class VGSDeepMergeArrayUtils {
+final internal class VGSDeepMergeUtils {
 
 	// MARK: - Public
 
