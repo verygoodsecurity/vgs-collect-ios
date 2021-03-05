@@ -352,9 +352,6 @@
 			children = (
 				449C8A3E25F2520E00BE009F /* Mappers */,
 				32093D8525CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift */,
-				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
-				449C8A3025F2510700BE009F /* VGSDataMapper.swift */,
-				449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,6 +574,9 @@
 		449C8A3E25F2520E00BE009F /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */,
+				449C8A3025F2510700BE009F /* VGSDataMapper.swift */,
+				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
 				449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */,
 			);
 			path = Mappers;
