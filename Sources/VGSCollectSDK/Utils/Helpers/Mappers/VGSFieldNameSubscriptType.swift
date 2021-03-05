@@ -27,7 +27,7 @@ internal enum VGSFieldNameSubscriptType: CustomStringConvertible {
 		}
 	}
 
-	/// String representation of key.
+	/// String representation for key in dot format.
 	var dotMapKey: String {
 		switch self {
 		case .key(let key):

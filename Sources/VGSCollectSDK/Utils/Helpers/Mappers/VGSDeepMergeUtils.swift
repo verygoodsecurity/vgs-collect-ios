@@ -91,9 +91,4 @@ final internal class VGSDeepMergeUtils {
 			return result
 		}
 	}
-
-	enum NestedKeyPath {
-		case array(index: Int)
-		case dictionary(key: String)
-	}
 }
