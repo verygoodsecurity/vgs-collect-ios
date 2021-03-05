@@ -99,6 +99,9 @@
 		449C89D525F0AB9F00BE009F /* VGSDeepMergeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */; };
 		449C89DC25F0ABB000BE009F /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */; };
 		449C89E925F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */; };
+		449C8A3125F2510700BE009F /* VGSDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3025F2510700BE009F /* VGSDataMapper.swift */; };
+		449C8A3825F2513300BE009F /* VGSFieldNameMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */; };
+		449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */; };
 		44A67DDB25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */; };
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
 		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
@@ -242,6 +245,9 @@
 		449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtils.swift; sourceTree = "<group>"; };
 		449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtilsTests.swift; sourceTree = "<group>"; };
+		449C8A3025F2510700BE009F /* VGSDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDataMapper.swift; sourceTree = "<group>"; };
+		449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameMapUtils.swift; sourceTree = "<group>"; };
+		449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameSubscriptType.swift; sourceTree = "<group>"; };
 		44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSAPIClientSatelliteTests.swift; sourceTree = "<group>"; };
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
 		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
@@ -344,8 +350,11 @@
 		32093D8425CDA3E6006CD242 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				449C8A3E25F2520E00BE009F /* Mappers */,
 				32093D8525CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift */,
 				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
+				449C8A3025F2510700BE009F /* VGSDataMapper.swift */,
+				449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -563,6 +572,14 @@
 				449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */,
 			);
 			path = "DeepMergeUtils Tests";
+			sourceTree = "<group>";
+		};
+		449C8A3E25F2520E00BE009F /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */,
+			);
+			path = Mappers;
 			sourceTree = "<group>";
 		};
 		44F8F51A25DBD1860052647A /* SatelliteUtils */ = {
@@ -1128,6 +1145,7 @@
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				441B26D425DB88C50099AA3A /* APIHostURLPolicy.swift in Sources */,
 				32F23A7224B72C1400E389F7 /* VGSPaymentCardModel.swift in Sources */,
+				449C8A3825F2513300BE009F /* VGSFieldNameMapUtils.swift in Sources */,
 				327C9E162407F43A004C641C /* VGSErrorInfoKey.swift in Sources */,
 				32059CD02417E02E003E9481 /* Utils.swift in Sources */,
 				324B5E6724A2393C0036867E /* VGSValidatior.swift in Sources */,
@@ -1159,12 +1177,14 @@
 				3281541325013EA1004E9AD4 /* VGSAnalyticsClient.swift in Sources */,
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
+				449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */,
 				441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */,
 				441B26D225DB88C50099AA3A /* APIClient.swift in Sources */,
 				FDE247CF246749C3008D75B0 /* VGSCollect+network.swift in Sources */,
 				441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */,
 				FD362EDF2401659100B4A640 /* VGSTextFieldDelegate.swift in Sources */,
 				321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */,
+				449C8A3125F2510700BE009F /* VGSDataMapper.swift in Sources */,
 				324B5E6B24A23C2D0036867E /* VGSValidationRulePattern.swift in Sources */,
 				324B5E9D24A64A600036867E /* VGSValidationRulePaymentCard.swift in Sources */,
 				327C9E142407EF92004C641C /* VGSErrorInfo.swift in Sources */,

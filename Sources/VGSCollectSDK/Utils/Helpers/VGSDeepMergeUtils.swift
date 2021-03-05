@@ -2,7 +2,7 @@
 //  VGSDeepMergeUtils.swift
 //  VGSCollectSDK
 //
-//  Created on 05.03.2021.
+//  Created on 04.03.2021.
 //  Copyright © 2021 VGS. All rights reserved.
 //
 
@@ -51,37 +51,49 @@ final internal class VGSDeepMergeUtils {
 
 	/// Deep merge content of arrays of JSON objects.
 	/// - Parameters:
-	///   - target: `JSONArray` object, target to merge.
-	///   - source: `JSONArray` object, source to merge.
+	///   - target: `Array<Any>` object, target to merge.
+	///   - source: `Array<Any>` object, source to merge.
 	///   - deepMergeArrays: `Bool` object, if `true` apply deep merge for arrays elements if possible, otherwise concatenate arrays. Default is `false`.
-	/// - Returns: `JSONArray` object, merged arrays.
-	static func deepArrayMerge(target: JSONArray, source: JSONArray, deepMergeArrays: Bool = false) -> JSONArray {
-	 print("____________________")
-	 print("start of array loop")
-	 if !deepMergeArrays {
-		 print("concatanate arrays")
-		 return target + source
-	 } else {
-		 var result = target
-		 for index in 0..<source.count {
-			 let value2 = source[index]
-			 if let value1 = target[safe: index] {
-				 // Try to deepMerge value1 and value2.
-				 print("array: try to deep merge value1 :\(value1) and value 2: \(value2)")
-				result[index] = deepMerge(target: value1, source: value2, deepMergeArray: deepMergeArrays)
-				 print("array: result[index] :\(result[index]) and value 2: \(value2)")
-				 print("____________________")
-			 } else {
-				 print("append new value2: \(value2) to array")
-				 // Array1 doesn't have value at index in Array2. Just item from v2.
-				 result.append(value2)
-				 print("____________________")
-			 }
-		 }
+	/// - Returns: `Array<Any>` object, merged arrays.
+	static func deepArrayMerge(target: Array<Any>, source: Array<Any>, deepMergeArrays: Bool = false) -> Array<Any> {
+		print("____________________")
+		print("start of array loop")
+		if !deepMergeArrays {
+			print("concatanate arrays")
+			return target + source
+		} else {
+			var result = target
+			for index in 0..<source.count {
+				let value2 = source[index]
+				if let value1 = target[safe: index] {
+					// Try to deepMerge value1 and value2.
+					print("array: try to deep merge value1 :\(value1) and value 2: \(value2)")
 
-		 print("end of array loop")
-		 print("____________________")
-		 return result
-	 }
- }
+					if let data1 = value1 as? JsonData, let data2 = value2 as? JsonData {
+						result[index] = deepMerge(target: data1, source: data2, deepMergeArray: deepMergeArrays)
+					} else {
+						// replace
+						result[index] = value2
+					}
+
+					print("array: result[index] :\(result[index]) and value 2: \(value2)")
+					print("____________________")
+				} else {
+					print("append new value2: \(value2) to array")
+					// Array1 doesn't have value at index in Array2. Just item from v2.
+					result.append(value2)
+					print("____________________")
+				}
+			}
+
+			print("end of array loop")
+			print("____________________")
+			return result
+		}
+	}
+
+	enum NestedKeyPath {
+		case array(index: Int)
+		case dictionary(key: String)
+	}
 }
