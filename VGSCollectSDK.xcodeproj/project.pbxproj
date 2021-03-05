@@ -95,6 +95,7 @@
 		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
 		443FDDB625DD43D5006932C4 /* VGSCollect+SatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */; };
 		443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */; };
+		44447F6125F25F6300D4CE68 /* VGSFieldNameDataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44447F6025F25F6300D4CE68 /* VGSFieldNameDataMapperTests.swift */; };
 		447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A81112589438000BC77C7 /* CardIcon.xcassets */; };
 		449C89D525F0AB9F00BE009F /* VGSDeepMergeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */; };
 		449C89DC25F0ABB000BE009F /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */; };
@@ -241,6 +242,7 @@
 		441B26EF25DB956B0099AA3A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+SatelliteTests.swift"; sourceTree = "<group>"; };
 		443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectBaseTestCase.swift; sourceTree = "<group>"; };
+		44447F6025F25F6300D4CE68 /* VGSFieldNameDataMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameDataMapperTests.swift; sourceTree = "<group>"; };
 		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtils.swift; sourceTree = "<group>"; };
 		449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */,
+				44447F6025F25F6300D4CE68 /* VGSFieldNameDataMapperTests.swift */,
 			);
 			path = "DeepMergeUtils Tests";
 			sourceTree = "<group>";
@@ -1236,6 +1239,7 @@
 				FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
 				FDAAB6AB249A8844001F5C1A /* ExpDateTextField.swift in Sources */,
+				44447F6125F25F6300D4CE68 /* VGSFieldNameDataMapperTests.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,
 				FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */,
 				FD790B97243BB403006A30CB /* CardBrandTest.swift in Sources */,

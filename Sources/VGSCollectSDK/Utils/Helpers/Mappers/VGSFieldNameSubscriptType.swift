@@ -44,6 +44,6 @@ internal extension Array where Element == VGSFieldNameSubscriptType {
 	/// to `data.card_number.2`.
 	var dotMapKey: String {
 		let keys = map({return $0.dotMapKey})
-		return keys.joined()
+		return keys.joined(separator: ".")
 	}
 }

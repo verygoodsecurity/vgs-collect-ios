@@ -32,7 +32,7 @@ final internal class VGSDeepMergeUtils {
 						result[k2] = deepMerge(target: v1, source: v2, deepMergeArray: deepMergeArray)
 						print("____________________")
 						// If keys match in d1 and d2 and if v2 is also JSONArray - try to merge JSONArrays.
-					} else if let array1 = result[k2] as? JSONArray, let array2 = v2 as? JSONArray {
+					} else if let array1 = result[k2] as? Array<Any>, let array2 = v2 as? Array<Any> {
 						print("k2 \(k2) has both arrays in target and sources. Try to merge arrays array1: \(array1) and array2 \(array2)")
 						result[k2] = deepArrayMerge(target: array1, source: array2, deepMergeArrays: deepMergeArray)
 						print("____________________")
