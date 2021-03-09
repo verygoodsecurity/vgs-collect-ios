@@ -26,12 +26,12 @@ class VGSFieldNameMapUtilsTests: XCTestCase {
 			// 0.
 			VGSFieldNameMapTestData(fieldName: "data.card_number",
 															subscripts: [.key("data"), .key("card_number")],
-															comment: "Only json keys"),
+															comment: "Only JSON keys"),
 
 			// 1.
 			VGSFieldNameMapTestData(fieldName: "card_number",
 															subscripts: [.key("card_number")],
-															comment: "Single key"),
+															comment: "Single JSON key"),
 
 			// 2.
 			VGSFieldNameMapTestData(fieldName: "data.card_number[1]",
@@ -68,7 +68,7 @@ class VGSFieldNameMapUtilsTests: XCTestCase {
 
 			let actualResult = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
 
-			let debugOutput = "fieldName *\(fieldName) should produce \(validResultSubscripts), comment: \(comment)*. Actual result: \(actualResult)"
+			let debugOutput = "fieldName *\(fieldName) should produce \(validResultSubscripts), comment: \(comment)*.Actual result: \(actualResult)"
 
 			XCTAssertTrue(actualResult == validResultSubscripts, debugOutput)
 		}
