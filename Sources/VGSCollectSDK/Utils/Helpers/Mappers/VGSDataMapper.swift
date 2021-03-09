@@ -22,7 +22,7 @@ internal final class VGSFieldNameDataMapper {
 	///   - value: `Any` value to set.
 	internal init(fieldName: String, value: Any) {
 		let subscriptors = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
-		let dotNotationKey = subscriptors.dotMapKey
+		let dotNotationKey = subscriptors.dotMapNotationKey
 
 		setValue(value: value, key: dotNotationKey, dictionary: &jsonToSubmit)
 	}
