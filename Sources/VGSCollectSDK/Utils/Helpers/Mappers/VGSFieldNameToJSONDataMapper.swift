@@ -1,5 +1,5 @@
 //
-//  VGSDataMapper.swift
+//  VGSFieldNameToJSONDataMapper.swift
 //  VGSCollectSDK
 //
 //  Created on 05.03.2021.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// Helper class to produce JSON from nested key name.
-internal final class VGSFieldNameDataMapper {
+internal final class VGSFieldNameToJSONDataMapper {
 
 	/// JSON to submit produced from dot notation field name.
 	private (set) internal var jsonToSubmit: JsonData = [:]
