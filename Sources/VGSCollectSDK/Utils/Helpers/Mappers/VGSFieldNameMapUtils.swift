@@ -53,20 +53,6 @@ internal final class VGSFieldNameMapUtils {
 		return subscriptors
 	}
 
-	static func checkDotOrIndexNotationFormat(in fieldName: String) -> Bool {
-		var hasDotNotationOrIndex = false
-
-		if fieldName.contains(".") {
-			hasDotNotationOrIndex = true
-		}
-
-		if !matchesForRegexInText(regex: indexRegexPattern, text: fieldName).isEmpty {
-			hasDotNotationOrIndex = true
-		}
-
-		return hasDotNotationOrIndex
-	}
-
 	// MARK: - Private
 
 	static func matchesForRegexInText(regex: String, text: String) -> [String] {
@@ -81,20 +67,5 @@ internal final class VGSFieldNameMapUtils {
 					print("invalid regex: \(error.localizedDescription)")
 					return []
 			}
-	}
-}
-
-internal extension Array where Element == String {
-
-	/// Check if array of field names has dot notation or array.
-	var hasDotNotationFielNames: Bool {
-		var hasDotNotation = false
-		for key in self {
-			if VGSFieldNameMapUtils.checkDotOrIndexNotationFormat(in: key) {
-				hasDotNotation = true
-				break
-			}
-		}
-		return hasDotNotation
 	}
 }
