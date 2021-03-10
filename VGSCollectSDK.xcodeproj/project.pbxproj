@@ -99,6 +99,8 @@
 		44447F7725F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */; };
 		44447F8025F7651100D4CE68 /* JSONData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44447F7F25F7651100D4CE68 /* JSONData+Extensions.swift */; };
 		44447F8925F7667000D4CE68 /* VGSFieldNameToJSONTestData.json in Resources */ = {isa = PBXBuildFile; fileRef = 44447F8825F7667000D4CE68 /* VGSFieldNameToJSONTestData.json */; };
+		4479453E25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4479453D25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift */; };
+		4479456525F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */; };
 		447A81122589438000BC77C7 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A81112589438000BC77C7 /* CardIcon.xcassets */; };
 		449C89D525F0AB9F00BE009F /* VGSDeepMergeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */; };
 		449C89DC25F0ABB000BE009F /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */; };
@@ -250,6 +252,8 @@
 		44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameMapUtilsTests.swift; sourceTree = "<group>"; };
 		44447F7F25F7651100D4CE68 /* JSONData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONData+Extensions.swift"; sourceTree = "<group>"; };
 		44447F8825F7667000D4CE68 /* VGSFieldNameToJSONTestData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VGSFieldNameToJSONTestData.json; sourceTree = "<group>"; };
+		4479453D25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+fieldNameMapping.swift"; sourceTree = "<group>"; };
+		4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectFieldNameMappingPolicy.swift; sourceTree = "<group>"; };
 		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtils.swift; sourceTree = "<group>"; };
 		449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
@@ -624,6 +628,7 @@
 				449C8A3025F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift */,
 				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
 				449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */,
+				4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -812,6 +817,7 @@
 				FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */,
 				FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */,
 				323105622417DF07009C3360 /* VGSCollect+internal.swift */,
+				4479453D25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift */,
 			);
 			path = Collector;
 			sourceTree = "<group>";
@@ -1226,12 +1232,14 @@
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */,
+				4479453E25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift in Sources */,
 				441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */,
 				441B26D225DB88C50099AA3A /* APIClient.swift in Sources */,
 				FDE247CF246749C3008D75B0 /* VGSCollect+network.swift in Sources */,
 				441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */,
 				FD362EDF2401659100B4A640 /* VGSTextFieldDelegate.swift in Sources */,
 				321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */,
+				4479456525F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift in Sources */,
 				449C8A3125F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift in Sources */,
 				324B5E6B24A23C2D0036867E /* VGSValidationRulePattern.swift in Sources */,
 				324B5E9D24A64A600036867E /* VGSValidationRulePaymentCard.swift in Sources */,
