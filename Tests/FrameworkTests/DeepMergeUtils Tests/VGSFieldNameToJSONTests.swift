@@ -43,7 +43,7 @@ class VGSFieldNameToJSONTests: XCTestCase {
 			let expectedResult = item.expectedResult
 			let comment = item.comment
 
-			let actualResult = VGSFieldNameToJSONDataMapper.init(fieldName: fieldName, value: fieldValue).jsonToSubmit
+			let actualResult = VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName, value: fieldValue)
 
 			let debugOutput = "index: \(index). \nFieldName *\(fieldName) should produce \(expectedResult), \n\ncomment: \(comment)* \n\nActual result: \(actualResult)"
 

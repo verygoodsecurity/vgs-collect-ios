@@ -31,7 +31,7 @@ class VGSFieldNameDataMapperTests: XCTestCase {
 				 ]
 	 ]
 
-		let vgsJSON = VGSFieldNameToJSONDataMapper(fieldName: fieldName, value: cardNumberValue).jsonToSubmit
+		let vgsJSON = VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName, value: cardNumberValue)
 
 		print("vgsJSON: \(vgsJSON)")
 		let dataToSubmit = VGSDeepMergeUtils.deepMerge(target: extraData, source: vgsJSON, deepMergeArray: true)
@@ -63,7 +63,7 @@ class VGSFieldNameDataMapperTests: XCTestCase {
 				 ]
 	 ]
 
-		let vgsJSON = VGSFieldNameToJSONDataMapper(fieldName: fieldName, value: cardNumberValue).jsonToSubmit
+		let vgsJSON = VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName, value: cardNumberValue)
 
 		print("vgsJSON: \(vgsJSON)")
 		let dataToSubmit = VGSDeepMergeUtils.deepMerge(target: extraData, source: vgsJSON, deepMergeArray: true)
@@ -111,7 +111,7 @@ class VGSFieldNameDataMapperTests: XCTestCase {
 			 ]
 		 ]
 
-		let vgsJSON = VGSFieldNameToJSONDataMapper(fieldName: fieldName, value: cardNumberValue).jsonToSubmit
+		let vgsJSON = VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName, value: cardNumberValue)
 
 		print("vgsJSON: \(vgsJSON)")
 		let dataToSubmit = VGSDeepMergeUtils.deepMerge(target: extraData, source: vgsJSON)
@@ -159,7 +159,7 @@ class VGSFieldNameDataMapperTests: XCTestCase {
 				]
 		]
 
-		let vgsJSON = VGSFieldNameToJSONDataMapper(fieldName: fieldName, value: cardNumberValue).jsonToSubmit
+		let vgsJSON = VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName, value: cardNumberValue)
 
 		print("vgsJSON: \(vgsJSON)")
 		let dataToSubmit = VGSDeepMergeUtils.deepMerge(target: extraData, source: vgsJSON)
@@ -204,7 +204,7 @@ class VGSFieldNameDataMapperTests: XCTestCase {
 				]
 		]
 
-		let vgsJSON = VGSFieldNameToJSONDataMapper(fieldName: fieldName, value: cardNumberValue).jsonToSubmit
+		let vgsJSON = VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName, value: cardNumberValue)
 
 		print("vgsJSON: \(vgsJSON)")
 		let dataToSubmit = VGSDeepMergeUtils.deepMerge(target: extraData, source: vgsJSON, deepMergeArray: true)
