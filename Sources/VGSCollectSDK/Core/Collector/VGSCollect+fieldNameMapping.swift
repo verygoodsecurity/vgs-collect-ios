@@ -30,11 +30,15 @@ internal extension VGSCollect {
 		return [:]
 	}
 
-	func mapStoredInputDataForSubmitWithNestedArrays(_ arrayMergePolicy: VGSCollectArrayMergePolicy, extraData: JsonData? = nil) {
+	func mapStoredInputDataForSubmitWithArrays(_ arrayMergePolicy: VGSCollectArrayMergePolicy, extraData: JsonData? = nil) -> JsonData {
 		let collectFieldsJSON: JsonData = VGSFieldNameToJSONDataMapper.provideCollectJSON(for: storage.textFields)
 
 		if let data = extraData {
-			
+			let jsonToSubmit = VGSDeepMergeUtils.deepMerge(target: data, source: collectFieldsJSON, deepMergeArray: true)
+
+			return jsonToSubmit
+		} else {
+			return collectFieldsJSON
 		}
 	}
 }
