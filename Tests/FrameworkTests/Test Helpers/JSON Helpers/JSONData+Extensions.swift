@@ -45,3 +45,44 @@ internal extension JsonData  {
 
 /// Internal class to identify Test Bundle in non-SPM environment.
 internal class VGSCollectTestBundleHelper {}
+
+internal func == (lhs: JsonData, rhs: JsonData ) -> Bool {
+		return NSDictionary(dictionary: lhs).isEqual(to: rhs)
+}
+
+internal func == (lhs: JSONArray, rhs: JSONArray ) -> Bool {
+	let equalElementsCount = lhs.count == rhs.count
+
+	if !equalElementsCount {
+		return false
+	}
+
+	var isEqual = true
+	for index in 0..<rhs.count {
+		let value1 = lhs[index]
+		let value2 = rhs[index]
+
+		isEqual = value1 == value2
+	}
+
+	return isEqual
+}
+
+/// Resolve value from keyPath with dot notation.
+/// - Parameters:
+///   - jsonDictionary: `JsonData` object.
+///   - keyPath: String object, should be keyPath with dot-notation.
+/// - Returns: `T` object or `nil`.
+internal  func resolve<T>(_ jsonDictionary: JsonData, keyPath: String) -> T? {
+		var current: Any? = jsonDictionary
+
+		keyPath.split(separator: ".").forEach { component in
+				if let maybeInt = Int(component), let array = current as? Array<Any> {
+						current = array[maybeInt]
+				} else if let dictionary = current as? JsonData {
+						current = dictionary[String(component)]
+				}
+		}
+
+		return current as? T
+}
