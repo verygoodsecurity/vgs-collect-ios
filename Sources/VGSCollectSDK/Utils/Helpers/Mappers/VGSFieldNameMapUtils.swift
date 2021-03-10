@@ -33,6 +33,11 @@ internal final class VGSFieldNameMapUtils {
 			if let keyPathPrefix = path.components(separatedBy: "[").first {
 				let subscriptorItem = VGSFieldNameSubscriptType.key(keyPathPrefix)
 				subscripts.append(subscriptorItem)
+			} else {
+				// Add empty "" JSON key. Each key component should have at least one JSON key. We don't want to produce multiple-dimension arrars.
+				// This is required for consistency with https://github.com/henrytseng/dataobject-parser on JS.
+				let subscriptorItem = VGSFieldNameSubscriptType.key("")
+				subscripts.append(subscriptorItem)
 			}
 
 			// Grab all aray indices: [0].

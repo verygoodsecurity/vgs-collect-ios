@@ -11,32 +11,29 @@ import Foundation
 /// Helper class to produce JSON from nested key name.
 internal final class VGSFieldNameToJSONDataMapper {
 
-	/// JSON to submit produced from dot notation field name.
-	private (set) internal var jsonToSubmit: JsonData = [:]
-
-	// MARK: - Initialization
-
-	/// Initialization.
+	/// Map field name to JSON using dot-braces notation.
 	/// - Parameters:
-	///   - fieldName: `String` object in dot notation format.
-	///   - value: `Any` value to set.
-	internal init(fieldName: String, value: Any) {
-		let subscriptors = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
-		let dotNotationKey = subscriptors.dotMapNotationKey
+	///   - fieldName: String object, should be valid fieldName.
+	///   - value: `Any` object, value to set.
+	/// - Returns: `JsonData` object.
+	internal static func mapFieldNameToJSON(_ fieldName: String, value: Any) -> JsonData {
+		var fieldJSON: JsonData = [:]
 
-		setValue(value: value, key: dotNotationKey, dictionary: &jsonToSubmit)
+		setValue(value: value, fieldName: fieldName, dictionary: &fieldJSON)
+		return fieldJSON
 	}
 
   // Take this from https://github.com/tonyli508/ObjectMapperDeep
 	// Udate logic for reserving array capacity as JS lib https://github.com/henrytseng/dataobject-parser
 
-	private func setValue(value: Any, key: String, dictionary: inout JsonData) {
-		let keyComponents = ArraySlice(key.split { $0 == "." })
+	static private func setValue(value: Any, fieldName: String, dictionary: inout JsonData) {
+		let subscripts = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
+		let components = ArraySlice(subscripts)
 
 		var collection: Any = dictionary as JsonData
-		// because JSONDictionary is a dictionary so root array object won't map properly
-		// for now we assume root object is dictionary
-		if let newDictionary = setValue(value: value, forKeyPathComponents: keyComponents, collection: &collection) as? JsonData {
+		// Because JSONDictionary is a dictionary so root array object won't map properly.
+		// For now we assume root object is dictionary.
+		if let newDictionary = setValue(value: value, forKeyPathComponents: components, collection: &collection) as? JsonData {
 			dictionary = newDictionary
 		}
 	}
@@ -44,44 +41,48 @@ internal final class VGSFieldNameToJSONDataMapper {
 	/**
 	Set value for collection
 	because casted value doesn't work for inout parameters (address changed), so we need to return the collection
-	- parameter value:      value AnyObject
+	- parameter value:      value Any
 	- parameter components: key components
 	- parameter collection: Dictionary or Array
 	- returns: Collection with value set
 	*/
-	private func setValue(value: Any, forKeyPathComponents components: ArraySlice<String.SubSequence>, collection: inout Any) -> Any? {
+	static private func setValue(value: Any, forKeyPathComponents components: ArraySlice<VGSFieldNameSubscriptType>, collection: inout Any) -> Any? {
 		guard let head = components.first else {
 			return nil
 		}
 
+		// Convert head to string key.
+		let headStringKey = head.dotMapKey
+
+		// If one component => last component, tail of key. Add value, don't create empty JSON/Array.
 		if components.count == 1 {
-
-			addValue(value: value, forKey: String(head), toCollection: &collection)
-
+			addValue(value: value, forKey: String(headStringKey), toCollection: &collection)
 		} else {
 
-			var child = getValue(forKey: String(head), fromCollection: collection)
+			// Try to get value for head key.
+			var child = getValue(forKey: String(headStringKey), fromCollection: collection)
 
+			// Tail of key. Remaining key components.
 			let tail = components.dropFirst()
 
+			// Insert empty JSON or Array.
 			if child == nil {
-
-				let firstChildComponentKey = String(tail.first!)
-
-				// Check the first child component key, if it's unsigned integer then child is array type
-				if UInt(firstChildComponentKey) != nil {
-					// empty array
-					child = [] as Any
-				} else {
-					// empty dictionary
-					child = [:] as Any
+				if let firstChildComponentKey = tail.first?.dotMapKey {
+					// Check the first child component key, if it's unsigned integer then child is array type.
+					if UInt(firstChildComponentKey) != nil {
+						// empty array
+						child = [] as Any
+					} else {
+						// empty dictionary
+						child = [:] as Any
+					}
 				}
 			}
 
 			child = setValue(value: value, forKeyPathComponents: tail, collection: &child!)
 
 			// add child to collection
-			addValue(value: child!, forKey: String(head), toCollection: &collection)
+			addValue(value: child!, forKey: String(headStringKey), toCollection: &collection)
 		}
 
 		// return collection value, inout not works for casted type (as Dictionary and Array are structures)
@@ -94,10 +95,9 @@ internal final class VGSFieldNameToJSONDataMapper {
 	- parameter collection: Dictionary or Array
 	- returns: child value or nil
 	*/
-	private func getValue(forKey key: String, fromCollection collection: Any) -> Any? {
+	static private func getValue(forKey key: String, fromCollection collection: Any) -> Any? {
 
 		if let dictionary = collection as? JsonData {
-
 			return dictionary[key]
 		} else if let array = collection as? [Any?], let index = Int(key) {
 			return array[safe: index] as Any?
@@ -108,11 +108,11 @@ internal final class VGSFieldNameToJSONDataMapper {
 
 	/**
 	Add child value key pair to Dictionary or append value to Array
-	- parameter value:      child value AnyObject
+	- parameter value:      child value Any
 	- parameter key:        key String
 	- parameter collection: Dictionary or Array
 	*/
-	private func addValue(value: Any, forKey key: String, toCollection collection: inout Any) {
+	static private func addValue(value: Any, forKey key: String, toCollection collection: inout Any) {
 
 		if var dictionary = collection as? JsonData {
 			// Add key value pair.
@@ -123,7 +123,7 @@ internal final class VGSFieldNameToJSONDataMapper {
 				if index < array.count {
 					array[index] = value
 				} else {
-					// Fill array with nil to align index with capacity. The same behavior of https://github.com/henrytseng/dataobject-parser for JS.
+					// Fill array with nil to align index with required capacity. The same behavior of https://github.com/henrytseng/dataobject-parser on JS.
 					for _ in 0..<index {
 						array.append(nil)
 					}
