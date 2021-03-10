@@ -83,13 +83,13 @@ class VGSFieldNameMapUtilsTests: XCTestCase {
 
 			let actualResult = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
 
-			let debugSubscriptsOutput = "index: \(index) fieldName *\(fieldName) should produce \(exprectedSubscripts), comment: \(comment)*.Actual result: \(actualResult)"
+			let debugSubscriptsOutput = "index: \(index) \nfieldName *\(fieldName) should produce \(exprectedSubscripts), \ncomment: \(comment)* \nActual result: \(actualResult)"
 
 			XCTAssertTrue(actualResult == exprectedSubscripts, debugSubscriptsOutput)
 
 			let actualDotMapNotationKey = actualResult.dotMapNotationKey
 
-			let debugKeyNotationOutput = "index: \(index) fieldName *\(fieldName) should produce \(expectedDotNotationKey), comment: \(comment)*. Actual result: \(actualDotMapNotationKey)"
+			let debugKeyNotationOutput = "index: \(index) \nfieldName *\(fieldName) should produce \(expectedDotNotationKey), \ncomment: \(comment)* \nActual result: \(actualDotMapNotationKey)"
 
 			XCTAssertTrue(actualDotMapNotationKey == expectedDotNotationKey, debugKeyNotationOutput)
 		}

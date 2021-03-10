@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
-internal extension JsonData  {
+internal extension JsonData {
 
 	init?(jsonFileName: String) {
 		let notFoundCompletion = {
