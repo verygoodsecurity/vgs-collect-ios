@@ -46,57 +46,65 @@ public enum VGSCollectFieldNameMappingPolicy {
 	case nestedJSONWithArray(_ arrayMergePolicy: VGSCollectArrayMergePolicy)
 }
 
-/// Defines array merge policy.
+/// Defines policy how to merge arrays objects.
 public enum VGSCollectArrayMergePolicy {
 
 	/**
-	Concat arrays content.
+	Overwrites the existing array values completely rather than concatenating them.
 	Example:
 
-		/// Input:
-		[
-		 { "cvc" : "555" }
-		]
+		// Collect JSON:
+		{ "array" :
+			[
+				{ "number" : "4111-1111-1111-1111" }
+			]
+  	}
 
-		[
-		 { "number" : "4111-1111-1111-1111" }
-		]
+		// Extra data JSON:
+		{ "array" :
+			[
+				{ "some_data" : "123" },
+				{ "some" : "111" }
+			]
+		}
 
-		/// Output:
-		[
-		 { "cvc" : "555" },
-		 { "number" : "4111-1111-1111-1111" }
-		]
+		// JSON to submit:
+		{ "array" :
+			[
+				{ "some_data" : "123" }
+			]
+		}
 	*/
-	case concat
+	case overwrite
 
 	/**
-	Concat arrays content.
+	Merge arrays content if possible (JSON <==> JSON at the same index).
 	Example:
 
-		/// Input:
+		// Collect JSON:
 		[
 		 { "cvc" : "555" }
 		]
 
+		// Extra data JSON:
 		[
 		 { "number" : "4111-1111-1111-1111" }
 		]
 
-		/// Output:
+		// JSON to submit:
 		[
-		 { "cvc" : "555",
-	     "number" : "4111-1111-1111-1111"
+		 {
+			"cvc" : "555",
+			"number" : "4111-1111-1111-1111"
 		 }
 		]
-
   */
-	case deepMerge
+	case merge
 }
 
 /// Request options.
 public struct VGSCollectRequestOptions {
 
 	/// Defines how to map fieldNames. Default is `.nestedJSON`.
-	public var fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSON
+	public var fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSONWithArray(.overwrite)
 }

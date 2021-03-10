@@ -9,6 +9,7 @@
 import Foundation
 
 internal extension VGSCollect {
+
 	/// Map field names from collect to `JsonData`.
 	/// - Parameters:
 	///   - mergePolicy: `VGSCollectFieldNameMappingPolicy?` object, defines how to map fieldNames. Default is `nil` (no nested Arrays).
@@ -20,12 +21,20 @@ internal extension VGSCollect {
 			return mapStoredInputDataForSubmit(with: extraData)
 		}
 
-		switch mergePolicy {
+		switch policy {
 		case .nestedJSON:
 			return mapStoredInputDataForSubmit(with: extraData)
-		default:
+		case .nestedJSONWithArray(let arrayMergePolicy):
 			return [:]
 		}
 		return [:]
+	}
+
+	func mapStoredInputDataForSubmitWithNestedArrays(_ arrayMergePolicy: VGSCollectArrayMergePolicy, extraData: JsonData? = nil) {
+		let collectFieldsJSON: JsonData = VGSFieldNameToJSONDataMapper.provideCollectJSON(for: storage.textFields)
+
+		if let data = extraData {
+			
+		}
 	}
 }

@@ -11,16 +11,29 @@ import Foundation
 /// Helper class to produce JSON from nested key name.
 internal final class VGSFieldNameToJSONDataMapper {
 
+	internal static func provideCollectJSON(for textFields: [VGSTextField]) -> JsonData {
+		var collectFieldsJSON: JsonData = [:]
+
+		for field in textFields {
+			let fieldName = field.fieldName
+			let fieldValue = field.getOutputText()
+
+			VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName ?? "", value: fieldValue as Any, json: &collectFieldsJSON)
+		}
+
+		return collectFieldsJSON
+	}
+
 	/// Map field name to JSON using dot-braces notation.
 	/// - Parameters:
 	///   - fieldName: String object, should be valid fieldName.
 	///   - value: `Any` object, value to set.
-	/// - Returns: `JsonData` object.
-	internal static func mapFieldNameToJSON(_ fieldName: String, value: Any) -> JsonData {
-		var fieldJSON: JsonData = [:]
-
-		setValue(value: value, fieldName: fieldName, dictionary: &fieldJSON)
-		return fieldJSON
+	///   - json: `JsonData` object, inout.
+	/// - Returns: `JsonData` object with updated value.
+	internal static func mapFieldNameToJSON(_ fieldName: String, value: Any, json: inout JsonData) -> JsonData {
+		setValue(value: value, fieldName: fieldName, dictionary: &json)
+		
+		return json
 	}
 
   // Take this from https://github.com/tonyli508/ObjectMapperDeep
