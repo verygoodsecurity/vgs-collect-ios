@@ -25,11 +25,16 @@ internal extension VGSCollect {
 		case .nestedJSON:
 			return mapStoredInputDataForSubmit(with: extraData)
 		case .nestedJSONWithArray(let mergeArrayPolicy):
-			return mapStoredInputDataForSubmitWithArrays(mergeArrayPolicy)
+			return mapStoredInputDataForSubmitWithArrays(mergeArrayPolicy, extraData: extraData)
 		}
 	}
 
-	func mapStoredInputDataForSubmitWithArrays(_ mergeArrayPolicy: VGSCollectArrayMergePolicy, extraData: JsonData? = nil) -> JsonData {
+	/// Map stored input to JSON with dot-braces notation for nested JSONs and Arrays.
+	/// - Parameters:
+	///   - mergeArrayPolicy: `VGSCollectArrayMergePolicy` object, merge policy.
+	///   - extraData: `JsonData?` object, extra data.
+	/// - Returns: `JsonData` to submit.
+	func mapStoredInputDataForSubmitWithArrays(_ mergeArrayPolicy: VGSCollectArrayMergePolicy, extraData: JsonData?) -> JsonData {
 		let collectFieldsJSON: JsonData = VGSFieldNameToJSONDataMapper.provideJSON(for: storage.textFields)
 
 		if let data = extraData {
