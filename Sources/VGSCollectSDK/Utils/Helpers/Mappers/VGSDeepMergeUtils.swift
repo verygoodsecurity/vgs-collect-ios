@@ -17,91 +17,79 @@ final internal class VGSDeepMergeUtils {
 	/// - Parameters:
 	///   - target: `JsonData` object, target to merge.
 	///   - source: `JsonData` object, source to merge.
-	///   - deepMergeArray: `Bool` object, if `true` apply deep merge for arrays elements if possible, otherwise concatenate arrays. Default is `false`.
+	///   - mergeArrayPolicy: `VGSCollectArrayMergePolicy` object, array merge policy.
 	/// - Returns: `JsonData` object, merged data.
-	static func deepMerge(target: JsonData, source: JsonData, deepMergeArray: Bool = false) -> JsonData {
-			print("start deep merge loop")
-			print("____________________")
-			var result = target
-			for (k2, v2) in source {
+	static func deepMerge(target: JsonData, source: JsonData, mergeArrayPolicy: VGSCollectArrayMergePolicy) -> JsonData {
 
-				print("k2: \(k2) v2: \(v2)")
-					// If keys match in d1 and d2 and if v2 is also JSONData - deep merge JSONData recursively.
-					if let v1 = result[k2] as? JsonData, let v2 = v2 as? JsonData {
-							print("k2 \(k2) has both values in target and sources. Try to merge v1: \(v1) and v2 \(v2)")
-						result[k2] = deepMerge(target: v1, source: v2, deepMergeArray: deepMergeArray)
-						print("____________________")
-						// If keys match in d1 and d2 and if v2 is also JSONArray - try to merge JSONArrays.
-					} else if let array1 = result[k2] as? Array<Any>, let array2 = v2 as? Array<Any> {
-
-						
-						print("k2 \(k2) has both arrays in target and sources. Try to merge arrays array1: \(array1) and array2 \(array2)")
-						result[k2] = deepArrayMerge(target: array1, source: array2, deepMergeArrays: deepMergeArray)
-						print("____________________")
-					} else {
-						print("for k2: \(k2) use v2: \(v2)")
-						// Just add value since d1 doesn't have value k2.
-						result[k2] = v2
-						print("____________________")
-					}
-
+		var result = target
+		for (k2, v2) in source {
+			// If JSON and JSON, deep merge JSONData recursively.
+			if let v1 = result[k2] as? JsonData, let v2 = v2 as? JsonData {
+				result[k2] = deepMerge(target: v1, source: v2, mergeArrayPolicy: mergeArrayPolicy)
+				// Try to merge Array1 and Array2.
+			} else if let array1 = result[k2] as? Array<Any?>, let array2 = v2 as? Array<Any?> {
+				switch mergeArrayPolicy {
+				case .merge:
+					result[k2] = deepArrayMerge(target: array1, source: array2, mergeArrayPolicy: mergeArrayPolicy)
+				case .overwrite:
+					result[k2] = v2
+				}
+			} else {
+				// Just add value since d1 doesn't have value k2.
+				result[k2] = v2
 			}
-			print("end deep merge loop")
-			print("____________________")
-			return result
+		}
+		return result
 	}
 
 	/// Deep merge content of arrays of JSON objects.
 	/// - Parameters:
 	///   - target: `Array<Any>` object, target to merge.
 	///   - source: `Array<Any>` object, source to merge.
-	///   - deepMergeArrays: `Bool` object, if `true` apply deep merge for arrays elements if possible, otherwise concatenate arrays. Default is `false`.
+	///   - mergeArrayPolicy: `VGSCollectArrayMergePolicy` object, array merge policy.
 	/// - Returns: `Array<Any>` object, merged arrays.
-	static func deepArrayMerge(target: Array<Any?>, source: Array<Any?>, deepMergeArrays: Bool = false) -> Array<Any?> {
-		print("____________________")
-		print("start of array loop")
-		if !deepMergeArrays {
-			print("concatanate arrays")
-			return target + source
-		} else {
-			var result = target
-			for index in 0..<source.count {
-				let value2 = source[index]
-				if let value1 = target[safe: index] {
-					// Try to deepMerge value1 and value2.
-					print("array: try to deep merge value1 :\(value1) and value 2: \(value2)")
+	static func deepArrayMerge(target: Array<Any?>, source: Array<Any?>, mergeArrayPolicy: VGSCollectArrayMergePolicy) -> Array<Any?> {
+		var result = target
 
-					if let data1 = value1 as? JsonData, let data2 = value2 as? JsonData {
-						result[index] = deepMerge(target: data1, source: data2, deepMergeArray: deepMergeArrays)
-					} else {
-						// We have some non JSON and JSON value at the same index. Keep both in non-nil in source array. *We add nil to source to keep array capacity if user specify index to insert > 0.
+		// Iterate through source array.
+		for index in 0..<source.count {
+			let value2 = source[index]
 
+			// If target array has element at index try to merge.
+			if let value1 = target[safe: index] {
+				// Try to deepMerge value1 and value2 (JSON & JSON).
+				if let data1 = value1 as? JsonData, let data2 = value2 as? JsonData {
+					result[index] = deepMerge(target: data1, source: data2, mergeArrayPolicy: mergeArrayPolicy)
+				} else {
 
-						let isTargetNotSON = !(value1 is JsonData)
-						let isSoruceJSON = value2 is JsonData
+					let isSourceJSON = isJSON(value2)
 
-						if isTargetNotSON && isSoruceJSON {
-							result[index] = value2
-						} else {
-							// Keep both
-							if value2 != nil {
-								result.append(value2)
-							}
+					// Keep both if source is not JSON.
+					if !isSourceJSON {
+						// Append only non-nil values from source.
+						if value2 != nil {
+							result.append(value2)
 						}
 					}
-					print("array: result[index] :\(result[index]) and value 2: \(value2)")
-					print("____________________")
-				} else {
-					print("append new value2: \(value2) to array")
-					// Array1 doesn't have value at index in Array2. Just add item from v2.
-					result.append(value2)
-					print("____________________")
-				}
-			}
 
-			print("end of array loop")
-			print("____________________")
-			return result
+					// Source is JSON, but target is not JSON. Overwrite target with source JSON.
+					if isSourceJSON {
+						result[index] = value2
+					}
+				}
+			} else {
+				// Target doesn't have value at index of source. Just add item from source.
+				result.append(value2)
+			}
 		}
+
+		return result
+	}
+
+	/// Check if value is `JSON`.
+	/// - Parameter json: `Any?` value.
+	/// - Returns: `true` if JSON.
+	private static func isJSON(_ json: Any?) -> Bool {
+		return json is JsonData
 	}
 }
