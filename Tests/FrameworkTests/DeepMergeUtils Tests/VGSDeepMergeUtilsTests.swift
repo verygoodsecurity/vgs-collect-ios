@@ -62,6 +62,37 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 	}
 
 	func testDeepMergeJSONOverwritingArrays() {
+		let testData = VGSFieldNameMapperTestDataProvider.provideTestDataForDeemMergeToJSON()
 
+		for index in 0..<testData.count {
+			let item = testData[index]
+			let fieldData = item.fieldsData
+			let expectedCollectJSON = item.expectedCollectJSON
+			let extraData = item.extraData
+			let expectedSubmitJSON = item.expectedSubmitJSON
+			let comment = item.comment ?? ""
+
+			var textFields = [VGSTextField]()
+
+			for fieldItem in fieldData {
+				let field = VGSTextField()
+				field.fieldName = fieldItem.fieldName
+				field.textField.secureText = fieldItem.value as? String
+
+				textFields.append(field)
+			}
+
+			let actualCollectJSON: JsonData = VGSFieldNameToJSONDataMapper.provideJSON(for: textFields)
+
+			let debugFieldsOutput = "index: \(index). \nFielsdData *\(fieldData) should produce \(expectedCollectJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualCollectJSON)"
+
+			XCTAssertTrue(actualCollectJSON == expectedCollectJSON, debugFieldsOutput)
+
+			let actualJSONToSubmit: JsonData = VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: textFields, mergeArrayPolicy: .merge, extraData: extraData)
+
+			let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(extraData) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
+
+			XCTAssertTrue(actualJSONToSubmit == expectedSubmitJSON, debugDeepMergeOutput)
+		}
 	}
 }

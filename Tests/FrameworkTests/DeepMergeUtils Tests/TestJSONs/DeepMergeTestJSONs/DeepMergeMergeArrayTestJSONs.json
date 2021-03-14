@@ -12,7 +12,7 @@
 								}
 						],
 						"expectedCollectJSON": {
-								"card_data": "4111-1111-1111-1111",
+								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
 						},
 						"etraData": {
@@ -20,13 +20,14 @@
 								"user_id": "348193"
 						},
 						"expectedSubmitJSON": {
-								"card_data": "4111-1111-1111-1111",
+								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111",
 								"user_name": "Bob",
 								"user_id": "348193"
 						},
 						"comment": "Fieldname format without dot notation. With extra data."
 				},
+
 				{
 						"fieldsData": [
 								{
@@ -39,7 +40,7 @@
 								}
 						],
 						"expectedCollectJSON": {
-								"card_data": "4111-1111-1111-1111",
+								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
 						},
 						"etraData": null,
