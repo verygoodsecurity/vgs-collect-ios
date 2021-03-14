@@ -67,6 +67,7 @@ internal final class VGSFieldNameToJSONDataMapper {
 		// Convert head to string key.
 		let headStringKey = head.dotMapKey
 
+
 		// If one component => last component, tail of key. Add value, don't create empty JSON/Array.
 		if components.count == 1 {
 			addValue(value: value, forKey: String(headStringKey), toCollection: &collection)
@@ -94,7 +95,7 @@ internal final class VGSFieldNameToJSONDataMapper {
 
 			child = setValue(value: value, forKeyPathComponents: tail, collection: &child!)
 
-			// add child to collection
+			// Add child to collection
 			addValue(value: child!, forKey: String(headStringKey), toCollection: &collection)
 		}
 
@@ -112,8 +113,9 @@ internal final class VGSFieldNameToJSONDataMapper {
 
 		if let dictionary = collection as? JsonData {
 			return dictionary[key]
-		} else if let array = collection as? [Any?], let index = Int(key) {
-			return array[safe: index] as Any?
+		} else if let array = collection as? [Any?], let index = Int(key), array.count > index {
+			let item = array[index]
+			return item
 		}
 
 		return nil
@@ -134,8 +136,6 @@ internal final class VGSFieldNameToJSONDataMapper {
 		} else if var array = collection as? [Any?] {
 			if let index = Int(key) {
 				if index < array.count {
-					print("index to set: \(index)")
-					print("value to set: \(value)")
 					// Array has valid capacity. Just update value for index.
 					array[index] = value
 				} else {
@@ -151,8 +151,6 @@ internal final class VGSFieldNameToJSONDataMapper {
 						}
 					}
 
-					print("old array: \(array)")
-					print("new array: \(newArray)")
 					// Update new array with content of old array. Old array capacity < new array capacity. Don'
 					for newIndex in 0...index {
 						// Fill in old values.
