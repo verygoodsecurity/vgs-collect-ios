@@ -64,22 +64,28 @@ final internal class VGSDeepMergeUtils {
 
 					let isSourceJSON = isJSON(value2)
 
-					// Keep both if source is not JSON.
-					if !isSourceJSON {
-						// Append only non-nil values from source.
+					// Source is JSON, but target is not JSON. Overwrite target with source JSON.
+					if isSourceJSON {
+						result[index] = value2
+					} else {
+						// Try to keep both values. Append only non-nil since target array iteration not finished.
 						if value2 != nil {
 							result.append(value2)
 						}
 					}
-
-					// Source is JSON, but target is not JSON. Overwrite target with source JSON.
-					if isSourceJSON {
-						result[index] = value2
-					}
 				}
 			} else {
-				// Target doesn't have value at index of source. Just add item from source. Add nil values as well to keep required source array capacity.
-				result.append(value2)
+				// Target doesn't have value at index of source. Add item from source if result is not nil at this index (already append some values from source before). In this way we can save specified array capacity in source.
+
+				// Append all non-nil values.
+				if value2 != nil {
+					result.append(value2)
+				} else {
+					// Append nil values only when index > result.count (some source value has been already appended if index < result.count).
+					if index > result.count - 1 {
+						result.append(value2)
+					}
+				}
 			}
 		}
 
