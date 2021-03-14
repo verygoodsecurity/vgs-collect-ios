@@ -171,10 +171,10 @@
 							}
 						]
 						"expectedCollectJSON": {
-							"data" : {
+							"data" : [
 								"card_number": "4111-1111-1111-1111",
 								"card_cvc", "111"
-							}
+							]
 						},
 						"etraData": {
 							"data" : [
@@ -190,14 +190,85 @@
 								"111"
 							]
 						},
-						"comment": "Fieldname format with key-dot and array notation. No Extra data. Result is array with all values. Keep all  primitive values"
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Keep all  primitive values"
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data[0]",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data[1]",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : [
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							]
+						},
+						"etraData": {
+							"data" : [
+								{"user_id" : "123"},
+								{"user_name" : "Bob"}
+							]
+						},
+						"expectedSubmitJSON": {
+							"data" : [
+								{"user_id" : "123"},
+								{"user_name" : "Bob"}
+								"4111-1111-1111-1111",
+								"111"
+							]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Keep all  values since source is not JSON."
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data[0]",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data[4]",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : [
+								"card_number": "4111-1111-1111-1111",
+								null,
+								null,
+								null,
+								"card_cvc", "111"
+							]
+						},
+						"etraData": {
+							"data" : [
+								{"user_id" : "123"},
+								{"user_name" : "Bob"}
+							]
+						},
+						"expectedSubmitJSON": {
+							"data" : [
+								{"user_id" : "123"},
+								{"user_name" : "Bob"}
+								"4111-1111-1111-1111",
+								null,
+								"111"
+							]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Keep all  values since source is not JSON. Extra nils"
 				},
 
 
 
 
 
-				
+
+
 
 
 
