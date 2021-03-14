@@ -78,7 +78,7 @@ final internal class VGSDeepMergeUtils {
 					}
 				}
 			} else {
-				// Target doesn't have value at index of source. Just add item from source.
+				// Target doesn't have value at index of source. Just add item from source. Add nil values as well to keep required source array capacity.
 				result.append(value2)
 			}
 		}

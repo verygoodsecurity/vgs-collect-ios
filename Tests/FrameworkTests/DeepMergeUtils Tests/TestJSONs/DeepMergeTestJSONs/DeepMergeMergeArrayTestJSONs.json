@@ -1,0 +1,343 @@
+{
+		"test_data": [
+				{
+					  "fieldsData" : [
+							{
+								"fieldName": "card_number",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "card_cvc",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+								"card_data": "4111-1111-1111-1111",
+								"card_cvc", "111"
+						},
+						"etraData": {
+							"user_name" : "Bob",
+							"user_id" : "348193",
+						},
+						"expectedSubmitJSON": {
+								"card_data": "4111-1111-1111-1111",
+								"card_cvc", "111",
+								"user_name" : "Bob",
+								"user_id" : "348193",
+						},
+						"comment": "Fieldname format without dot notation. With extra data."
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "card_number",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "card_cvc",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+								"card_data": "4111-1111-1111-1111",
+								"card_cvc", "111"
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"card_number": "4111-1111-1111-1111",
+							"card_cvc", "111"
+						},
+						"comment": "Fieldname format without dot notation. No extra data."
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data.card_number",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data.card_cvc",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"etraData": {
+							"user_name" : "Bob",
+							"user_id" : "348193",
+						},
+						"expectedSubmitJSON": {
+							"data" : {
+								"user_name" : "Bob",
+								"user_id" : "348193",
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"comment": "Fieldname format with key-dot notation. Extra data."
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data.card_number",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data.card_cvc",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data" : {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"comment": "Fieldname format with key-dot notation. No Extra data."
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data[0]",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data[1]",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data" : [
+								"4111-1111-1111-1111",
+								"111"
+							]
+						},
+						"comment": "Fieldname format with key-dot and array notation. No Extra data. Result is array"
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data[0]",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data[2]",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data" : [
+								"4111-1111-1111-1111",
+								null,
+								"111"
+							]
+						},
+						"comment": "Fieldname format with key-dot and array notation. No Extra data. Result is array with extra nulls"
+				},
+				{
+						"fieldsData" : [
+							{
+								"fieldName": "data[0]",
+								"fieldValue": "4111-1111-1111-1111"
+							},
+							{
+								"fieldName": "data[1]",
+								"fieldValue": "111"
+							}
+						]
+						"expectedCollectJSON": {
+							"data" : {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc", "111"
+							}
+						},
+						"etraData": {
+							"data" : [
+								"333",
+								"20/22"
+							]
+						},
+						"expectedSubmitJSON": {
+							"data" : [
+								"333",
+								"20/22"
+								"4111-1111-1111-1111",
+								"111"
+							]
+						},
+						"comment": "Fieldname format with key-dot and array notation. No Extra data. Result is array with all values. Keep all  primitive values"
+				},
+
+
+
+
+
+				
+
+
+
+
+
+
+				{
+						"fieldName": "card_data[0]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": ["4111-1111-1111-1111"]
+						},
+						"comment": "Nested object is root array with primitive values."
+				},
+				{
+						"fieldName": "card_data[1]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": [null, "4111-1111-1111-1111"]
+						},
+						"comment": "Nested object is root array with primitive values.. Add extra null to array."
+				},
+				{
+						"fieldName": "card_data.card_number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": "4111-1111-1111-1111"
+								}
+						},
+						"comment": "Multiple keys fieldName. Nested JSON"
+				},
+				{
+						"fieldName": "card_data.card_number[0].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array."
+				},
+				{
+						"fieldName": "card_data.card_number[0][1].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Ignore extra index [1] in subscript segment card_data.card_number[0][1]."
+				},
+				{
+						"fieldName": "card_data.card_number[0]yyy.number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Ignore extra key *yyy* in key segment."
+				},
+				{
+						"fieldName": "card_data.card_number[2].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												null,
+												null,
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Extra nulls to keep array capacity."
+				},
+				{
+						"fieldName": "card_data.card_number[0]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": ["4111-1111-1111-1111"]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Array contains primitive value. Not JSON."
+				},
+				{
+						"fieldName": "card_data.card_number[2]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [null, null, "4111-1111-1111-1111"]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Array contains primitive value.\n Not JSON. Extra nulls to keep array capacity."
+				},
+				{
+						"fieldName": "card_data.card_number[0].numbers[1].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"numbers": [
+																null,
+																{ "number": "4111-1111-1111-1111" }
+														]
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Multiple nested levels."
+				},
+				{
+						"fieldName": "card_data.card_number[0].numbers[1]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"numbers": [null, "4111-1111-1111-1111"]
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Multiple nested levels. Primitive values in the deepest array."
+				}
+		]
+}
