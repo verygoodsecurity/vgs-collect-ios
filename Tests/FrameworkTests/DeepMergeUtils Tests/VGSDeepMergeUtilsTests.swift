@@ -14,11 +14,11 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 
 	struct TestFieldData {
 		let fieldName: String
-		let value: Any
+		let value: String
 
 		init?(json: JsonData) {
 			guard let name = json["fieldName"] as? String,
-						let value = json["fieldValue"] as? Any else {
+						let value = json["fieldValue"] as? String else {
 				return nil
 			}
 
@@ -61,7 +61,8 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 		}
 	}
 
-	func testDeepMergeJSONOverwritingArrays() {
+	/// Test deep merge JSON arrays.
+	func testDeepMergeJSONOArrays() {
 		let testData = VGSFieldNameMapperTestDataProvider.provideTestDataForDeemMergeToJSON()
 
 		for index in 0..<testData.count {
@@ -77,12 +78,14 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 			for fieldItem in fieldData {
 				let field = VGSTextField()
 				field.fieldName = fieldItem.fieldName
-				field.textField.secureText = fieldItem.value as? String
+				field.textField.secureText = fieldItem.value
 
 				textFields.append(field)
 			}
 
 			let actualCollectJSON: JsonData = VGSFieldNameToJSONDataMapper.provideJSON(for: textFields)
+
+			print("actualJSON: \(actualCollectJSON)")
 
 			let debugFieldsOutput = "index: \(index). \nFielsdData *\(fieldData) should produce \(expectedCollectJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualCollectJSON)"
 
