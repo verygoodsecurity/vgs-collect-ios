@@ -68,8 +68,10 @@
 								}
 						},
 						"etraData": {
-								"user_name": "Bob",
-								"user_id": "348193"
+							  "data" : {
+									"user_name": "Bob",
+									"user_id": "348193"
+								}
 						},
 						"expectedSubmitJSON": {
 								"data": {
