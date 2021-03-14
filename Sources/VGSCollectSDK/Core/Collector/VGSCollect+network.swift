@@ -17,12 +17,13 @@ extension VGSCollect {
         - path: Inbound rout path for your organization vault.
         - method: HTTPMethod, default is `.post`.
         - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
+	      - requestOptions: `VGSCollectRequestOptions?` object, additional request options. Default is `nil`.
         - completion: response completion block, returns `VGSResponse`.
      
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-    public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+	public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions? = nil, completion block: @escaping (VGSResponse) -> Void) {
       
         // Content analytics.
         var content: [String] = ["textField"]
@@ -39,7 +40,10 @@ extension VGSCollect {
           block(.failure(error.code, nil, nil, error))
             return
         }
-        let body = mapStoredInputDataForSubmit(with: extraData)
+
+				let policy = requestOptions?.fieldNameMappingPolicy
+        let body = mapFieldsToBodyJSON(with: policy, extraData: extraData)
+
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
         // Send request.
