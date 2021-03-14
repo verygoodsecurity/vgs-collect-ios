@@ -106,7 +106,7 @@
 		449C89DC25F0ABB000BE009F /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */; };
 		449C89E925F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */; };
 		449C8A3125F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3025F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift */; };
-		449C8A3825F2513300BE009F /* VGSFieldNameMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */; };
+		449C8A3825F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3725F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift */; };
 		449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */; };
 		44A67DDB25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */; };
 		44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */; };
@@ -259,7 +259,7 @@
 		449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtilsTests.swift; sourceTree = "<group>"; };
 		449C8A3025F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToJSONDataMapper.swift; sourceTree = "<group>"; };
-		449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameMapUtils.swift; sourceTree = "<group>"; };
+		449C8A3725F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToSubscriptMapper.swift; sourceTree = "<group>"; };
 		449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameSubscriptType.swift; sourceTree = "<group>"; };
 		44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSAPIClientSatelliteTests.swift; sourceTree = "<group>"; };
 		44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToJSONTests.swift; sourceTree = "<group>"; };
@@ -624,7 +624,7 @@
 		449C8A3E25F2520E00BE009F /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
-				449C8A3725F2513300BE009F /* VGSFieldNameMapUtils.swift */,
+				449C8A3725F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift */,
 				449C8A3025F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift */,
 				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
 				449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */,
@@ -1199,7 +1199,7 @@
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				441B26D425DB88C50099AA3A /* APIHostURLPolicy.swift in Sources */,
 				32F23A7224B72C1400E389F7 /* VGSPaymentCardModel.swift in Sources */,
-				449C8A3825F2513300BE009F /* VGSFieldNameMapUtils.swift in Sources */,
+				449C8A3825F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift in Sources */,
 				327C9E162407F43A004C641C /* VGSErrorInfoKey.swift in Sources */,
 				32059CD02417E02E003E9481 /* Utils.swift in Sources */,
 				324B5E6724A2393C0036867E /* VGSValidatior.swift in Sources */,

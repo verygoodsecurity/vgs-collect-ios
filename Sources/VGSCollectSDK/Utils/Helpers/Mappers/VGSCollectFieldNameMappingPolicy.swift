@@ -50,7 +50,7 @@ public enum VGSCollectFieldNameMappingPolicy {
 public enum VGSCollectArrayMergePolicy {
 
 	/**
-	Overwrites the existing array values completely rather than concatenating them.
+	Overwrites the existing array values completely at the same index.
 	Example:
 
 		// Collect JSON:

@@ -1,5 +1,5 @@
 //
-//  VGSFieldNameMapUtils.swift
+//  VGSFieldNameToSubscriptMapper.swift
 //  VGSCollectSDK
 //
 //  Created on 05.03.2021.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// Utility class to parse field names with `.[1]` notation.
-internal final class VGSFieldNameMapUtils {
+internal final class VGSFieldNameToSubscriptMapper {
 
 	// MARK: - Private vars
 

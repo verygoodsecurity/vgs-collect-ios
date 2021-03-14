@@ -81,7 +81,7 @@ class VGSFieldNameMapUtilsTests: XCTestCase {
 			let expectedDotNotationKey = item.dotMapNotaionKey
 			let comment = item.comment ?? ""
 
-			let actualResult = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
+			let actualResult = VGSFieldNameToSubscriptMapper.mapFieldNameToSubscripts(fieldName)
 
 			let debugSubscriptsOutput = "index: \(index) \nfieldName *\(fieldName) should produce \(exprectedSubscripts), \ncomment: \(comment)* \nActual result: \(actualResult)"
 

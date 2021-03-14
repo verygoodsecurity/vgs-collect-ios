@@ -40,7 +40,7 @@ internal final class VGSFieldNameToJSONDataMapper {
 	// Udate logic for reserving array capacity as JS lib https://github.com/henrytseng/dataobject-parser
 
 	static private func setValue(value: Any, fieldName: String, dictionary: inout JsonData) {
-		let subscripts = VGSFieldNameMapUtils.mapFieldNameToSubscripts(fieldName)
+		let subscripts = VGSFieldNameToSubscriptMapper.mapFieldNameToSubscripts(fieldName)
 		let components = ArraySlice(subscripts)
 
 		var collection: Any = dictionary as JsonData
