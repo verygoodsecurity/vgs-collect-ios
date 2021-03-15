@@ -449,6 +449,62 @@
 								]
 						},
 						"comment": "3 fields test. Null in extra data array."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										"4111-1111-1111-1111"
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "cvc": "333" }
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"cvc": "333"
+										},
+										"4111-1111-1111-1111"
+								]
+						},
+						"comment": "Test merge when source is not JSON."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										"4111-1111-1111-1111"
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "cvc": "333" },
+										null
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"cvc": "333"
+										},
+										null,
+										"4111-1111-1111-1111"
+								]
+						},
+						"comment": "Test merge when source is not JSON. Extra data has null."
 				}
 		]
 }

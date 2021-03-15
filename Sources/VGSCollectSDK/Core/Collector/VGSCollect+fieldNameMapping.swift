@@ -12,16 +12,12 @@ internal extension VGSCollect {
 
 	/// Map fields data to `JsonData`.
 	/// - Parameters:
-	///   - mergePolicy: `VGSCollectFieldNameMappingPolicy?` object, defines how to map fieldNames. Default is `nil` (no nested Arrays).
+	///   - mergePolicy: `VGSCollectFieldNameMappingPolicy` object, defines how to map fieldNames.
 	///   - extraData: `JsonData?` object, additional `JSON` for submit data. Default is `nil`.
 	/// - Returns: `JsonData` object, data to submit.
-	func mapFieldsToBodyJSON(with mergePolicy: VGSCollectFieldNameMappingPolicy?, extraData: JsonData?) -> JsonData {
-		guard let policy = mergePolicy else {
-			// Fallback to old implementation if not specified.
-			return mapStoredInputDataForSubmit(with: extraData)
-		}
+	func mapFieldsToBodyJSON(with mergePolicy: VGSCollectFieldNameMappingPolicy, extraData: JsonData?) -> JsonData {
 
-		switch policy {
+		switch mergePolicy {
 		case .nestedJSON:
 			return mapStoredInputDataForSubmit(with: extraData)
 		case .nestedJSONWithArray(let mergeArrayPolicy):

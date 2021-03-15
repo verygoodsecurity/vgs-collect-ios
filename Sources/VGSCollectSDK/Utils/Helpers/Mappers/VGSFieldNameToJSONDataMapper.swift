@@ -141,25 +141,15 @@ internal final class VGSFieldNameToJSONDataMapper {
 				} else {
 					// Fill array with nil to align index with required capacity. The same behavior of https://github.com/henrytseng/dataobject-parser on JS
 
-					// Create new array and fill with nils, append last value.
-					var newArray = [Any?]()
-					for newIndex in 0...index {
-						if newIndex != index {
-							newArray.append(nil)
-						} else {
-							newArray.append(value)
-						}
+					let newCount = index
+
+					// Append nils to align old array with new capacity.
+					while array.count < newCount {
+						array.append(nil)
 					}
 
-					// Update new array with content of old array. Old array capacity < new array capacity. Don'
-					for newIndex in 0...index {
-						// Fill in old values.
-						if let oldValue = array[safe: newIndex], oldValue != nil {
-							newArray[newIndex] = oldValue
-						}
-					}
-
-					array = newArray
+					// Append last.
+					array.append(value)
 				}
 			} else {
 				// Do nothing since, Array index is invalid.

@@ -23,7 +23,7 @@ extension VGSCollect {
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-	public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions? = nil, completion block: @escaping (VGSResponse) -> Void) {
+	public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
       
         // Content analytics.
         var content: [String] = ["textField"]
@@ -41,7 +41,7 @@ extension VGSCollect {
             return
         }
 
-				let policy = requestOptions?.fieldNameMappingPolicy
+				let policy = requestOptions.fieldNameMappingPolicy
         let body = mapFieldsToBodyJSON(with: policy, extraData: extraData)
 
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])

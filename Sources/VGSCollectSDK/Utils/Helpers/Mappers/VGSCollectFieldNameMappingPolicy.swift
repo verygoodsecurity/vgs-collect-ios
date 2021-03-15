@@ -106,5 +106,11 @@ public enum VGSCollectArrayMergePolicy {
 public struct VGSCollectRequestOptions {
 
 	/// Defines how to map fieldNames. Default is `.nestedJSON`.
-	public var fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSONWithArray(.overwrite)
+	public var fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSON
+
+	/// Initializer.
+	/// - Parameter fieldNameMappingPolicy: `VGSCollectFieldNameMappingPolicy` object, default `.nestedJSON`.
+	public init(fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSON) {
+		self.fieldNameMappingPolicy = fieldNameMappingPolicy
+	}
 }
