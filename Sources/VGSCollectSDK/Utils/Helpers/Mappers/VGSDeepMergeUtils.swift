@@ -69,27 +69,37 @@ final internal class VGSDeepMergeUtils {
 						result[index] = value2
 					} else {
 						// Try to keep both values. Append only non-nil since target array iteration not finished.
-						if value2 != nil {
-							result.append(value2)
-						}
+						appendValueIfNeeded(value2, at: index, array: &result)
 					}
 				}
 			} else {
 				// Target doesn't have value at index of source. Add item from source if result is not nil at this index (already append some values from source before). In this way we can save specified array capacity in source.
 
 				// Append all non-nil values.
-				if value2 != nil {
-					result.append(value2)
-				} else {
-					// Append nil values only when index > result.count (some source value has been already appended if index < result.count).
-					if index > result.count - 1 {
-						result.append(value2)
-					}
-				}
+				appendValueIfNeeded(value2, at: index, array: &result)
 			}
 		}
 
 		return result
+	}
+
+	/// Append value if needed to array.
+	/// - Parameters:
+	///   - value: `Any?`, value to append.
+	///   - index: `Int` object, iteration index.
+	///   - array: Array of `Any?`, `inout`.
+	private static func appendValueIfNeeded(_ value: Any?, at index: Int, array: inout [Any?]) {
+		// Append all non-nil values.
+		guard value == nil else {
+			array.append(value)
+			return
+		}
+
+		// Don't append nil if result array has element at this index.
+		// We can have this case when new value from source has already been appended on the previous iteration. So we iterate through all target values but appended some values from source.
+		if index > array.count - 1 {
+			array.append(value)
+		}
 	}
 
 	/// Check if value is `JSON`.
