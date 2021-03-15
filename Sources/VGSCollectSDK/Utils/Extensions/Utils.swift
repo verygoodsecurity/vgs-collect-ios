@@ -44,15 +44,9 @@ func mapStringKVOToDictionary(key: String, value: Any, separator: String.Element
 
 internal class Utils {
   
-  /// VGS Collect SDK Version
-  static let vgsCollectVersion: String = {
-      guard let vgsInfo = Bundle(for: Utils.self).infoDictionary,
-          let build = vgsInfo["CFBundleShortVersionString"]
-          else {
-              return "Unknown"
-      }
-      return "\(build)"
-  }()
+  /// VGS Collect SDK Version.
+	/// Necessary since SPM doesn't track info plist correctly: https://forums.swift.org/t/add-info-plist-on-spm-bundle/40274/5
+  static let vgsCollectVersion: String = "1.7.5"
 }
 
 extension Dictionary {
