@@ -426,7 +426,7 @@
 						},
 						"etraData": {
 								"data": [
-										{ "card_number": "3434-1111-1111-1111" },
+										{ "card_number": "3333-3333-3333-3333" },
 										{ "cvc": "5555" },
 										null,
 										null,
@@ -505,6 +505,112 @@
 								]
 						},
 						"comment": "Test merge when source is not JSON. Extra data has null."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[2]",
+										"fieldValue": "4111-1111-1111-1111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+									  null,
+										null,
+										"4111-1111-1111-1111"
+								]
+						},
+						"etraData": {
+								"data": [
+										null,
+										{ "cvc": "333" },
+										null
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+									  null,
+										{
+												"cvc": "333"
+										},
+										null,
+										"4111-1111-1111-1111"
+								]
+						},
+						"comment": "Extra data with nulls."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "3"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "2"
+								},
+								{
+										"fieldName": "data[3]",
+										"fieldValue": "22"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+									  "3",
+										"2",
+										null,
+										"22"
+								]
+						},
+						"etraData": {
+								"data": [
+										"1",
+										null,
+										null,
+										"3",
+										"5"
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+									"1",
+									null,
+									null,
+									"3",
+									"5",
+									"3",
+									"2",
+									"22"
+								]
+						},
+						"comment": "Primitive merge tests."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[1].test",
+										"fieldValue": "test"
+								},
+						],
+						"expectedCollectJSON": {
+								"data": [
+										null,
+										{"test" : "test"}
+
+								]
+						},
+						"etraData": {
+								"data": [
+									"1"
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+									"1",
+									{"test" : "test"}
+								]
+						},
+						"comment": "Index out of bounds in target."
 				}
 		]
 }
