@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Defines fieldName mapping.
+/// Defines fieldName mapping to JSON.
 public enum VGSCollectFieldNameMappingPolicy {
 
 	/**
@@ -40,72 +40,79 @@ public enum VGSCollectFieldNameMappingPolicy {
 				]
 		}
 
-	- Parameters:
-	- arrayMergePolicy: `VGSCollectArrayMergePolicy`, defines how to merge arrays.
+	Merge arrays content at the same nested level if possible.
+
+				// Collect fields JSON:
+				[
+				 { "cvc" : "555" }
+				]
+
+				// Extra data JSON:
+				[
+				 { "number" : "4111-1111-1111-1111" }
+				]
+
+				// JSON to submit:
+				[
+				 {
+					"cvc" : "555",
+					"number" : "4111-1111-1111-1111"
+				 }
+				]
 	*/
-	case nestedJSONWithArray(_ arrayMergePolicy: VGSCollectArrayMergePolicy)
+	case nestedJSONWithArrayMerge
+
+	/**
+	Map field name to nested JSON and array if array index is specified.
+	Example:
+	card_data[1].number => nested JSON with array
+
+		{
+			"card_data" :
+				[
+					null,
+
+					{ "number" : "4111-1111-1111-1111" }
+				]
+		}
+
+	Completely overwrite extra data array with Collect Array data.
+
+				// Collect fields JSON:
+				[
+				 { "cvc" : "555" }
+				]
+
+				// Extra data JSON:
+				[
+				 { "number" : "4111-1111-1111-1111" },
+				 { "id" : "1111" }
+				]
+
+				// JSON to submit:
+				[
+				 {
+					"cvc" : "555",
+				 }
+				]
+	*/
+	case nestedJSONWithArrayOverwrite
 }
 
-/// Defines policy how to merge arrays objects.
-public enum VGSCollectArrayMergePolicy {
-
-	/**
-	Overwrites the existing array values completely at the same index.
-	Example:
-
-		// Collect JSON:
-		{ "array" :
-			[
-				{ "number" : "4111-1111-1111-1111" }
-			]
-  	}
-
-		// Extra data JSON:
-		{ "array" :
-			[
-				{ "some_data" : "123" },
-				{ "some" : "111" }
-			]
-		}
-
-		// JSON to submit:
-		{ "array" :
-			[
-				{ "some_data" : "123" }
-			]
-		}
-	*/
-	case overwrite
-
-	/**
-	Merge arrays content if possible (JSON <==> JSON at the same index).
-	Example:
-
-		// Collect JSON:
-		[
-		 { "cvc" : "555" }
-		]
-
-		// Extra data JSON:
-		[
-		 { "number" : "4111-1111-1111-1111" }
-		]
-
-		// JSON to submit:
-		[
-		 {
-			"cvc" : "555",
-			"number" : "4111-1111-1111-1111"
-		 }
-		]
-  */
+/// Defines array merge policy.
+internal enum VGSCollectArrayMergePolicy {
+	///	Merge arrays content at the same level if possible.
 	case merge
+
+	/// Completely overwrite extra data array with Collect Array data.
+	case overwrite
 }
+
 
 /// Request options.
 public struct VGSCollectRequestOptions {
 
-	/// Defines how to map fieldNames. Default is `.nestedJSON`.
+	/// Defines how to map fieldNames to JSON. Default is `.nestedJSON`.
 	public var fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSON
 
 	/// Initializer.

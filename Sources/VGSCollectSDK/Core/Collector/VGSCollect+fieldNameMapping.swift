@@ -20,8 +20,10 @@ internal extension VGSCollect {
 		switch mergePolicy {
 		case .nestedJSON:
 			return mapStoredInputDataForSubmit(with: extraData)
-		case .nestedJSONWithArray(let mergeArrayPolicy):
-			return VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: storage.textFields, mergeArrayPolicy: mergeArrayPolicy, extraData: extraData)
+		case .nestedJSONWithArrayMerge:
+			return VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: storage.textFields, mergeArrayPolicy: .merge, extraData: extraData)
+		case .nestedJSONWithArrayOverwrite:
+			return VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: storage.textFields, mergeArrayPolicy: .overwrite, extraData: extraData)
 		}
 	}
 
