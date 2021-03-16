@@ -93,6 +93,7 @@
 		441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26DC25DB88DB0099AA3A /* VGSResponse.swift */; };
 		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
 		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
+		4430E19C2600B909006B2EF3 /* OverwriteArraysTestJSONs.json in Resources */ = {isa = PBXBuildFile; fileRef = 4430E19B2600B909006B2EF3 /* OverwriteArraysTestJSONs.json */; };
 		443FDDB625DD43D5006932C4 /* VGSCollect+SatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */; };
 		443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */; };
 		44447F7725F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */; };
@@ -246,6 +247,7 @@
 		441B26DC25DB88DB0099AA3A /* VGSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSResponse.swift; sourceTree = "<group>"; };
 		441B26E825DB8D950099AA3A /* APIClient+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Utils.swift"; sourceTree = "<group>"; };
 		441B26EF25DB956B0099AA3A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		4430E19B2600B909006B2EF3 /* OverwriteArraysTestJSONs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OverwriteArraysTestJSONs.json; sourceTree = "<group>"; };
 		443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+SatelliteTests.swift"; sourceTree = "<group>"; };
 		443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectBaseTestCase.swift; sourceTree = "<group>"; };
 		44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameMapUtilsTests.swift; sourceTree = "<group>"; };
@@ -569,6 +571,14 @@
 			path = APIHostName;
 			sourceTree = "<group>";
 		};
+		4430E19A2600B8D6006B2EF3 /* OverwriteArraysTestJSONs */ = {
+			isa = PBXGroup;
+			children = (
+				4430E19B2600B909006B2EF3 /* OverwriteArraysTestJSONs.json */,
+			);
+			path = OverwriteArraysTestJSONs;
+			sourceTree = "<group>";
+		};
 		44447F7D25F7648700D4CE68 /* Test Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +598,7 @@
 		44447F8625F7662A00D4CE68 /* TestJSONs */ = {
 			isa = PBXGroup;
 			children = (
+				4430E19A2600B8D6006B2EF3 /* OverwriteArraysTestJSONs */,
 				44792A7725FDE68D006A04B8 /* DeepMergeTestJSONs */,
 				44447F8725F7663400D4CE68 /* DotNotationJSONs */,
 			);
@@ -1082,6 +1093,7 @@
 			files = (
 				44792A7925FDE6AE006A04B8 /* DeepMergeMergeArrayTestJSONs.json in Resources */,
 				44447F8925F7667000D4CE68 /* VGSFieldNameToJSONTestData.json in Resources */,
+				4430E19C2600B909006B2EF3 /* OverwriteArraysTestJSONs.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
