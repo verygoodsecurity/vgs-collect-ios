@@ -108,7 +108,6 @@ internal enum VGSCollectArrayMergePolicy {
 	case overwrite
 }
 
-
 /// Request options.
 public struct VGSCollectRequestOptions {
 
