@@ -67,7 +67,6 @@ internal final class VGSFieldNameToJSONDataMapper {
 		// Convert head to string key.
 		let headStringKey = head.dotMapKey
 
-
 		// If one component => last component, tail of key. Add value, don't create empty JSON/Array.
 		if components.count == 1 {
 			addValue(value: value, forKey: String(headStringKey), toCollection: &collection)
