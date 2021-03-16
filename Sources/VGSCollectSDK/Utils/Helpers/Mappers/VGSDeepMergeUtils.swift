@@ -96,7 +96,8 @@ final internal class VGSDeepMergeUtils {
 		}
 
 		// Don't append nil if result array has element at this index.
-		// We can have this case when new value from source has already been appended on the previous iteration. So we iterate through all target values but appended some values from source.
+		// We can have this case when new value from source has already been appended on the previous iteration (non JSON source element).
+		// So we iterate through all target values but appended some values from source.
 		if index > array.count - 1 {
 			array.append(value)
 		}
