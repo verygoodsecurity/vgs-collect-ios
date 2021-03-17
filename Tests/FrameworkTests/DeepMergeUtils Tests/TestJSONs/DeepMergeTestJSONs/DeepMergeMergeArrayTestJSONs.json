@@ -611,6 +611,50 @@
 								]
 						},
 						"comment": "Index out of bounds in target."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "card_date.personal_data[6]",
+										"fieldValue": "Bob"
+								},
+						],
+						"expectedCollectJSON": {
+							"card_date" : {
+								"personal_data": [
+										null,
+										null,
+										null,
+										null,
+										null,
+										null,
+										"Bob"
+
+								] }
+						},
+						"etraData": {
+							"card_date": {
+									"personal_data": [
+										"1",
+										"2",
+										"3"
+									]
+							}
+						},
+						"expectedSubmitJSON": {
+							"card_date": {
+									"personal_data": [
+									"1",
+									"2",
+									"3",
+									null,
+									null,
+									null,
+									"Bob"
+								]
+							}
+						},
+						"comment": "Index out of bounds in target. Multiple nulls merge test."
 				}
 		]
 }
