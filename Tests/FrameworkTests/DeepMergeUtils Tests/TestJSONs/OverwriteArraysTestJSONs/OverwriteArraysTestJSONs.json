@@ -69,7 +69,32 @@
 								"data": [{ "number": "4111-1111-1111-1111" }, { "cvc": "111" }]
 						},
 						"comment": "Fieldname format with key-dot and array notation. Result is array with JSONs. Replace array."
-				}
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data.[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data.[1]yyy",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": {
+									"" : ["4111-1111-1111-1111", "111"]
+								}
+
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data": {
+								"" : ["4111-1111-1111-1111", "111"]
+							}
+						},
+						"comment": "Incorrect field names format. Add extra key to keep JSON-Array single nested level. Ignore key after array notation braces."
+				},
 		]
 }
 
