@@ -97,6 +97,18 @@ public enum VGSCollectFieldNameMappingPolicy {
 				]
 	*/
 	case nestedJSONWithArrayOverwrite
+
+	/// Name for analytics.
+	internal var analyticsName: String {
+		switch self {
+		case .nestedJSON:
+			return "nested_json"
+		case .nestedJSONWithArrayMerge:
+			return "nested_json_array_merge"
+		case .nestedJSONWithArrayOverwrite:
+			return  "nested_json_array_overwrite"
+		}
+	}
 }
 
 /// Defines array merge policy.

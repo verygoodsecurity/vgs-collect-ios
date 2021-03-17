@@ -33,6 +33,10 @@ extension VGSCollect {
         if !(customHeaders?.isEmpty ?? true) {
           content.append("custom_header")
         }
+
+				let fieldMappingPolicy = requestOptions.fieldNameMappingPolicy
+
+				content.append(fieldMappingPolicy.analyticsName)
         if let error = validateStoredInputData() {
           
           VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
@@ -41,8 +45,7 @@ extension VGSCollect {
             return
         }
 
-				let policy = requestOptions.fieldNameMappingPolicy
-        let body = mapFieldsToBodyJSON(with: policy, extraData: extraData)
+        let body = mapFieldsToBodyJSON(with: fieldMappingPolicy, extraData: extraData)
 
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
