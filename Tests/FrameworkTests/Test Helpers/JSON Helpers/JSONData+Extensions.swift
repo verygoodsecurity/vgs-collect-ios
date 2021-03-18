@@ -17,7 +17,7 @@ internal extension JsonData {
 			print("JSON file \(jsonFileName).json not found or is invalid")
 		}
 
-		let bundle =  Bundle(for: type(of: VGSCollectTestBundleHelper()))
+		let bundle = Bundle(for: type(of: VGSCollectTestBundleHelper()))
 		#if SWIFT_PACKAGE
 			bundle = Bundle.module
 		#endif
@@ -66,23 +66,4 @@ internal func == (lhs: [JsonData], rhs: [JsonData]) -> Bool {
 	}
 
 	return isEqual
-}
-
-/// Resolve value from keyPath with dot notation.
-/// - Parameters:
-///   - jsonDictionary: `JsonData` object.
-///   - keyPath: String object, should be keyPath with dot-notation.
-/// - Returns: `T` object or `nil`.
-internal  func resolve<T>(_ jsonDictionary: JsonData, keyPath: String) -> T? {
-		var current: Any? = jsonDictionary
-
-		keyPath.split(separator: ".").forEach { component in
-				if let maybeInt = Int(component), let array = current as? Array<Any> {
-						current = array[maybeInt]
-				} else if let dictionary = current as? JsonData {
-						current = dictionary[String(component)]
-				}
-		}
-
-		return current as? T
 }
