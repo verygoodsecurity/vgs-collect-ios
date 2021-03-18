@@ -11,7 +11,7 @@ import Foundation
 /// Utils for deepMerge.
 final internal class VGSDeepMergeUtils {
 
-	// MARK: - Public
+	// MARK: - Helpers
 
 	/// Deep merge JSON objects and arrays.
 	/// - Parameters:

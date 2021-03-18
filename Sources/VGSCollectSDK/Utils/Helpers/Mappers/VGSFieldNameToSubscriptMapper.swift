@@ -16,7 +16,7 @@ internal final class VGSFieldNameToSubscriptMapper {
 	/// Regex pattern to find array index in format: [1].
 	private static let arrayIndexRegexPattern = "\\[\\d+\\]"
 
-	// MARK: - Public
+	// MARK: - Helpers
 
 	/// Map field name to subscripts.
 	/// - Parameter fieldName: `String` object, should be fieldName.
