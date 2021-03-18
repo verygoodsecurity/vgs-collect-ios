@@ -50,7 +50,7 @@ internal func == (lhs: JsonData, rhs: JsonData ) -> Bool {
 		return NSDictionary(dictionary: lhs).isEqual(to: rhs)
 }
 
-internal func == (lhs: JSONArray, rhs: JSONArray ) -> Bool {
+internal func == (lhs: [JsonData], rhs: [JsonData]) -> Bool {
 	let equalElementsCount = lhs.count == rhs.count
 
 	if !equalElementsCount {
