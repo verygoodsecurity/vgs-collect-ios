@@ -17,7 +17,7 @@ extension VGSCollect {
         - path: Inbound rout path for your organization vault.
         - method: HTTPMethod, default is `.post`.
         - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
-	      - requestOptions: `VGSCollectRequestOptions?` object, holds additional request options. Default options are `.nestedJSON`.
+	      - requestOptions: `VGSCollectRequestOptions` object, holds additional request options. Default options are `.nestedJSON`.
         - completion: response completion block, returns `VGSResponse`.
      
      - Note:
@@ -150,7 +150,7 @@ extension VGSCollect {
         // Make body.
         let body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
-      
+
         // Send request.
         apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
             
