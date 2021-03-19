@@ -17,13 +17,13 @@ extension VGSCollect {
         - path: Inbound rout path for your organization vault.
         - method: HTTPMethod, default is `.post`.
         - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
-	      - requestOptions: `VGSCollectRequestOptions?` object, additional request options. Default options are `.nestedJSON`.
+	      - requestOptions: `VGSCollectRequestOptions?` object, holds additional request options. Default options are `.nestedJSON`.
         - completion: response completion block, returns `VGSResponse`.
      
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-	public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(fieldNameMappingPolicy: .nestedJSON), completion block: @escaping (VGSResponse) -> Void) {
+	public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
       
         // Content analytics.
         var content: [String] = ["textField"]

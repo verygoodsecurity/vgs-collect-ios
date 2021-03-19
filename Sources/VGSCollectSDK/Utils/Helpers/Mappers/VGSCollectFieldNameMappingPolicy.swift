@@ -127,8 +127,5 @@ public struct VGSCollectRequestOptions {
 	public var fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy = .nestedJSON
 
 	/// Initializer.
-	/// - Parameter fieldNameMappingPolicy: `VGSCollectFieldNameMappingPolicy` object.
-	public init(fieldNameMappingPolicy: VGSCollectFieldNameMappingPolicy) {
-		self.fieldNameMappingPolicy = fieldNameMappingPolicy
-	}
+	public init() {}
 }
