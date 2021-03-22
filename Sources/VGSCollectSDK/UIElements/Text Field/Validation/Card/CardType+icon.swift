@@ -12,11 +12,20 @@ import UIKit
 #endif
 
 extension VGSPaymentCards.CardBrand {
-    
+    static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+  
+    static var defaultCVCIcon3Digits = UIImage(named: "cvc3", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+  
+    static var defaultCVCIcon4Digits = UIImage(named: "cvc4", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+  
     var brandIcon: UIImage? {
       return VGSPaymentCards.availableCards.first(where: { $0.brand == self })?.brandIcon ?? VGSPaymentCards.unknown.brandIcon
     }
   
+    var cvcIcon: UIImage? {
+      return VGSPaymentCards.availableCards.first(where: { $0.brand == self })?.cvcIcon ?? VGSPaymentCards.unknown.cvcIcon
+    }
+
     var defaultBrandIcon: UIImage? {
         let bundle = AssetsBundle.main.iconBundle
         
@@ -56,7 +65,16 @@ extension VGSPaymentCards.CardBrand {
         return resultIcon
     }
   
-    static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+    var defaultCVCIcon: UIImage? {
+        var resultIcon: UIImage?
+        switch self {
+        case .amex:
+          resultIcon = Self.defaultCVCIcon4Digits
+        default:
+          resultIcon = Self.defaultCVCIcon3Digits
+        }
+        return resultIcon
+    }
 }
 
 internal class AssetsBundle {

@@ -1,0 +1,690 @@
+{
+		"test_data": [
+				{
+						"fieldsData": [
+								{
+										"fieldName": "card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc": "111"
+						},
+						"etraData": {
+								"user_name": "Bob",
+								"user_id": "348193"
+						},
+						"expectedSubmitJSON": {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc": "111",
+								"user_name": "Bob",
+								"user_id": "348193"
+						},
+						"comment": "Fieldname format without dot notation. With extra data."
+				},
+
+				{
+						"fieldsData": [
+								{
+										"fieldName": "card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc": "111"
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc": "111"
+						},
+						"comment": "Fieldname format without dot notation. No extra data."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data.card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data.card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": {
+										"card_number": "4111-1111-1111-1111",
+										"card_cvc": "111"
+								}
+						},
+						"etraData": {
+							  "data" : {
+									"user_name": "Bob",
+									"user_id": "348193"
+								}
+						},
+						"expectedSubmitJSON": {
+								"data": {
+										"user_name": "Bob",
+										"user_id": "348193",
+										"card_number": "4111-1111-1111-1111",
+										"card_cvc": "111"
+								}
+						},
+						"comment": "Fieldname format with key-dot notation. Extra data JSON."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data.card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data.card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": {
+										"card_number": "4111-1111-1111-1111",
+										"card_cvc": "111"
+								}
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+								"data": {
+										"card_number": "4111-1111-1111-1111",
+										"card_cvc": "111"
+								}
+						},
+						"comment": "Fieldname format with key-dot notation. No Extra data."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", "111"]
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+								"data": ["4111-1111-1111-1111", "111"]
+						},
+						"comment": "Fieldname format with key-dot and array notation. No Extra data. Result is array"
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[2]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", null, "111"]
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+								"data": ["4111-1111-1111-1111", null, "111"]
+						},
+						"comment": "Fieldname format with key-dot and array notation. No Extra data. Result is array with extra nulls"
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", "111"]
+						},
+						"etraData": {
+								"data": ["333", "20/22"]
+						},
+						"expectedSubmitJSON": {
+								"data": ["333", "20/22", "4111-1111-1111-1111", "111"]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Keep all  primitive values"
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", "111"]
+						},
+						"etraData": {
+								"data": [{ "user_id": "123" }, { "user_name": "Bob" }]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{ "user_id": "123" },
+										{ "user_name": "Bob" },
+										"4111-1111-1111-1111",
+										"111"
+								]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Keep all values since source is not JSON."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[4]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", null, null, null, "111"]
+						},
+						"etraData": {
+								"data": [{ "user_id": "123" }, { "user_name": "Bob" }]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{ "user_id": "123" },
+										{ "user_name": "Bob" },
+										"4111-1111-1111-1111",
+										null,
+										"111"
+								]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Keep all  values since source is not JSON. Extra nils to keep array capacity."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0].card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										{ "card_number": "4111-1111-1111-1111" },
+										{ "cvc": "111" }
+								]
+						},
+						"etraData": {
+								"data": [{ "user_id": "123" }, { "user_name": "Bob" }]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{ "user_id": "123", "card_number": "4111-1111-1111-1111" },
+										{ "user_name": "Bob", "cvc": "111" }
+								]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with merged JSONs. Deep merge JSON."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0].card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										{ "card_number": "4111-1111-1111-1111" },
+										{ "cvc": "111" }
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "card_number": "3434-1111-1111-1111" },
+										{ "cvc": "333" }
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"card_number": "4111-1111-1111-1111"
+										},
+										{
+												"cvc": "111"
+										}
+								]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with merges JSONs. Source JSON replace target JSONs."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0].card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										{ "card_number": "4111-1111-1111-1111" },
+										{ "cvc": "111" }
+								]
+						},
+						"etraData": {
+								"data": ["3434-1111-1111-1111", "333"]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"card_number": "4111-1111-1111-1111"
+										},
+										{
+												"cvc": "111"
+										}
+								]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with merges JSON. Source JSON replace target primitive values."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0].card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										{ "card_number": "4111-1111-1111-1111" },
+										{ "cvc": "111" }
+								]
+						},
+						"etraData": {
+								"data": [["3434-1111-1111-1111"], ["333"]]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"card_number": "4111-1111-1111-1111"
+										},
+										{
+												"cvc": "111"
+										}
+								]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with merges JSON. Source JSON replace target arrays at the same index."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[4].cvv",
+										"fieldValue": "333"
+								},
+								{
+										"fieldName": "data[0].card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										{ "card_number": "4111-1111-1111-1111" },
+										{ "cvc": "111" },
+										null,
+										null,
+										{ "cvv": "333" }
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "card_number": "3434-1111-1111-1111" },
+										{ "cvc": "5555" }
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"card_number": "4111-1111-1111-1111"
+										},
+										{
+												"cvc": "111"
+										},
+										null,
+										null,
+										{
+												"cvv": "333"
+										}
+								]
+						},
+						"comment": "3 fields test."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[4].cvv",
+										"fieldValue": "333"
+								},
+								{
+										"fieldName": "data[0].card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										{ "card_number": "4111-1111-1111-1111" },
+										{ "cvc": "111" },
+										null,
+										null,
+										{ "cvv": "333" }
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "card_number": "3333-3333-3333-3333" },
+										{ "cvc": "5555" },
+										null,
+										null,
+										null
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"card_number": "4111-1111-1111-1111"
+										},
+										{
+												"cvc": "111"
+										},
+										null,
+										null,
+										{
+												"cvv": "333"
+										}
+								]
+						},
+						"comment": "3 fields test. Null in extra data array."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										"4111-1111-1111-1111"
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "cvc": "333" }
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"cvc": "333"
+										},
+										"4111-1111-1111-1111"
+								]
+						},
+						"comment": "Test merge when source is not JSON."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+										"4111-1111-1111-1111"
+								]
+						},
+						"etraData": {
+								"data": [
+										{ "cvc": "333" },
+										null
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+										{
+												"cvc": "333"
+										},
+										null,
+										"4111-1111-1111-1111"
+								]
+						},
+						"comment": "Test merge when source is not JSON. Extra data has null."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[2]",
+										"fieldValue": "4111-1111-1111-1111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+									  null,
+										null,
+										"4111-1111-1111-1111"
+								]
+						},
+						"etraData": {
+								"data": [
+										null,
+										{ "cvc": "333" },
+										null
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+									  null,
+										{
+												"cvc": "333"
+										},
+										null,
+										"4111-1111-1111-1111"
+								]
+						},
+						"comment": "Extra data with nulls."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "3"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "2"
+								},
+								{
+										"fieldName": "data[3]",
+										"fieldValue": "22"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [
+									  "3",
+										"2",
+										null,
+										"22"
+								]
+						},
+						"etraData": {
+								"data": [
+										"1",
+										null,
+										null,
+										"3",
+										"5"
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+									"1",
+									null,
+									null,
+									"3",
+									"5",
+									"3",
+									"2",
+									"22"
+								]
+						},
+						"comment": "Primitive merge tests."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[1].test",
+										"fieldValue": "test"
+								},
+						],
+						"expectedCollectJSON": {
+								"data": [
+										null,
+										{"test" : "test"}
+
+								]
+						},
+						"etraData": {
+								"data": [
+									"1"
+								]
+						},
+						"expectedSubmitJSON": {
+								"data": [
+									"1",
+									{"test" : "test"}
+								]
+						},
+						"comment": "Index out of bounds in target."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "card_date.personal_data[6]",
+										"fieldValue": "Bob"
+								},
+						],
+						"expectedCollectJSON": {
+							"card_date" : {
+								"personal_data": [
+										null,
+										null,
+										null,
+										null,
+										null,
+										null,
+										"Bob"
+
+								] }
+						},
+						"etraData": {
+							"card_date": {
+									"personal_data": [
+										"1",
+										"2",
+										"3"
+									]
+							}
+						},
+						"expectedSubmitJSON": {
+							"card_date": {
+									"personal_data": [
+									"1",
+									"2",
+									"3",
+									null,
+									null,
+									null,
+									"Bob"
+								]
+							}
+						},
+						"comment": "Index out of bounds in target. Multiple nulls merge test."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[1].number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "333"
+								},
+						],
+						"expectedCollectJSON": {
+								"data": [
+										null,
+										{"number" : "4111-1111-1111-1111",
+										  "cvc"   : "333"
+										}
+								]
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data": [
+									null,
+									{"number" : "4111-1111-1111-1111",
+										"cvc"   : "333"
+									}
+							]
+						},
+						"comment": "Test nested array with multiple JSON keys at the same index."
+				}
+		]
+}

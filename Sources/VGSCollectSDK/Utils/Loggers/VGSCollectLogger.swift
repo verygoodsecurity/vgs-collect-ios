@@ -9,7 +9,7 @@ import Foundation
 /// **IMPORTANT** You should NOT use logging in your production configuration for live apps.
 public final class VGSCollectLogger {
 
-  // MARK: - Public vars
+  // MARK: - vars
 
 	/// Shared instance.
 	public static var shared = VGSCollectLogger()

@@ -1,0 +1,100 @@
+{
+		"test_data": [
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", "111"]
+						},
+						"etraData": {
+								"data": ["333", "20/22"]
+						},
+						"expectedSubmitJSON": {
+								"data": ["4111-1111-1111-1111", "111"]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with all values. Replace array."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[3]",
+										"fieldValue": "10/22"
+								},
+								{
+										"fieldName": "data[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1]",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": ["4111-1111-1111-1111", "111", null, "10/22"]
+						},
+						"etraData": {
+								"data": ["333", "20/22"]
+						},
+						"expectedSubmitJSON": {
+								"data": ["4111-1111-1111-1111", "111", null, "10/22"]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with values and null. Replace array."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[0].number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": [{ "number": "4111-1111-1111-1111" }, { "cvc": "111" }]
+						},
+						"etraData": {
+								"data": ["333", "20/22"]
+						},
+						"expectedSubmitJSON": {
+								"data": [{ "number": "4111-1111-1111-1111" }, { "cvc": "111" }]
+						},
+						"comment": "Fieldname format with key-dot and array notation. Result is array with JSONs. Replace array."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data.[0]",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data.[1]yyy",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"data": {
+									"" : ["4111-1111-1111-1111", "111"]
+								}
+
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data": {
+								"" : ["4111-1111-1111-1111", "111"]
+							}
+						},
+						"comment": "Incorrect field names format. Add extra key to keep JSON-Array single nested level. Ignore key after array notation braces."
+				},
+		]
+}
+
