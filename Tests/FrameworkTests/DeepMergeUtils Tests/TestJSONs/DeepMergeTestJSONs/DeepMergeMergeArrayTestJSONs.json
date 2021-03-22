@@ -655,6 +655,36 @@
 							}
 						},
 						"comment": "Index out of bounds in target. Multiple nulls merge test."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data[1].number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data[1].cvc",
+										"fieldValue": "333"
+								},
+						],
+						"expectedCollectJSON": {
+								"data": [
+										null,
+										{"number" : "4111-1111-1111-1111",
+										  "cvc"   : "333"
+										}
+								]
+						},
+						"etraData": null,
+						"expectedSubmitJSON": {
+							"data": [
+									null,
+									{"number" : "4111-1111-1111-1111",
+										"cvc"   : "333"
+									}
+							]
+						},
+						"comment": "Test nested array with multiple JSON keys at the same index."
 				}
 		]
 }
