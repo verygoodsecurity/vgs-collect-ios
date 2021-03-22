@@ -19,7 +19,7 @@ public enum VGSCollectFieldNameMappingPolicy {
 		{
 			"card_data" :
 				{
-					"number" : "4111-1111-1111-1111"
+					"number" : "4111111111111111"
 				}
 		}
 	*/
@@ -36,7 +36,7 @@ public enum VGSCollectFieldNameMappingPolicy {
 				[
 					null,
 
-					{ "number" : "4111-1111-1111-1111" }
+					{ "number" : "4111111111111111" }
 				]
 		}
 
@@ -49,14 +49,14 @@ public enum VGSCollectFieldNameMappingPolicy {
 
 				// Extra data JSON:
 				[
-				 { "number" : "4111-1111-1111-1111" }
+				 { "number" : "4111111111111111" }
 				]
 
 				// JSON to submit:
 				[
 				 {
 					"cvc" : "555",
-					"number" : "4111-1111-1111-1111"
+					"number" : "4111111111111111"
 				 }
 				]
 	*/
@@ -72,7 +72,7 @@ public enum VGSCollectFieldNameMappingPolicy {
 				[
 					null,
 
-					{ "number" : "4111-1111-1111-1111" }
+					{ "number" : "4111111111111111" }
 				]
 		}
 
@@ -85,7 +85,7 @@ public enum VGSCollectFieldNameMappingPolicy {
 
 				// Extra data JSON:
 				[
-				 { "number" : "4111-1111-1111-1111" },
+				 { "number" : "4111111111111111" },
 				 { "id" : "1111" }
 				]
 
