@@ -1,0 +1,147 @@
+{
+		"test_data": [
+				{
+						"fieldName": "card_data",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": "4111-1111-1111-1111"
+						},
+						"comment": "Single key fieldName."
+				},
+				{
+						"fieldName": "card_data[0]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": ["4111-1111-1111-1111"]
+						},
+						"comment": "Nested object is root array with primitive values."
+				},
+				{
+						"fieldName": "card_data[1]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": [null, "4111-1111-1111-1111"]
+						},
+						"comment": "Nested object is root array with primitive values.. Add extra null to array."
+				},
+				{
+						"fieldName": "card_data.card_number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": "4111-1111-1111-1111"
+								}
+						},
+						"comment": "Multiple keys fieldName. Nested JSON"
+				},
+				{
+						"fieldName": "card_data.card_number[0].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array."
+				},
+				{
+						"fieldName": "card_data.card_number[0][1].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Ignore extra index [1] in subscript segment card_data.card_number[0][1]."
+				},
+				{
+						"fieldName": "card_data.card_number[0]yyy.number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Ignore extra key *yyy* in key segment."
+				},
+				{
+						"fieldName": "card_data.card_number[2].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												null,
+												null,
+												{
+														"number": "4111-1111-1111-1111"
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Extra nulls to keep array capacity."
+				},
+				{
+						"fieldName": "card_data.card_number[0]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": ["4111-1111-1111-1111"]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Array contains primitive value. Not JSON."
+				},
+				{
+						"fieldName": "card_data.card_number[2]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [null, null, "4111-1111-1111-1111"]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Array contains primitive value.\n Not JSON. Extra nulls to keep array capacity."
+				},
+				{
+						"fieldName": "card_data.card_number[0].numbers[1].number",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"numbers": [
+																null,
+																{ "number": "4111-1111-1111-1111" }
+														]
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Multiple nested levels."
+				},
+				{
+						"fieldName": "card_data.card_number[0].numbers[1]",
+						"fieldValue": "4111-1111-1111-1111",
+						"expectedResult": {
+								"card_data": {
+										"card_number": [
+												{
+														"numbers": [null, "4111-1111-1111-1111"]
+												}
+										]
+								}
+						},
+						"comment": "Multiple keys and single index fieldName. Nested JSON with array. Multiple nested levels. Primitive values in the deepest array."
+				}
+		]
+}
