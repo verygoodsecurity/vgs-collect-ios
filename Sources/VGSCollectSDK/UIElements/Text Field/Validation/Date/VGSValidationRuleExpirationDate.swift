@@ -26,6 +26,10 @@ public enum VGSCardExpDateFormat {
     }
   }
   
+  var monthCharacters: Int {
+    return 2
+  }
+  
   internal var dateYearFormat: String {
     switch self {
     case .shortYear:
