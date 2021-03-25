@@ -74,7 +74,14 @@ internal extension VGSCollect {
         let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
 
           let output = element.getOutputText()
-          dict[element.fieldName] = output
+          
+          /// Check if any serialization should be done before data will be send
+          if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+            let result = serialazable.serialize(output)
+            dict = deepMerge(dict, result)
+          } else {
+            dict[element.fieldName] = output
+          }
         }
 
         var body = mapInputFieldsDataToDictionary(textFieldsData)
