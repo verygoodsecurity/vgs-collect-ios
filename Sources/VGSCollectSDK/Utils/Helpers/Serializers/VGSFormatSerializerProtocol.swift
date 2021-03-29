@@ -14,7 +14,7 @@ public protocol VGSFormatSerializerProtocol {
 }
 
 /// Base protocol describing functionality for Content Serialization
-protocol VGSFormatSerializableProtocol {
+internal protocol VGSFormatSerializableProtocol {
   func serialize(_ content: String) -> [String: Any]
   var shouldSerialize: Bool { get }
 }

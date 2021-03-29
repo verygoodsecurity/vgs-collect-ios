@@ -76,8 +76,8 @@ internal extension VGSCollect {
           let output = element.getOutputText()
           
           /// Check if any serialization should be done before data will be send
-          if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize, let output = output {
-            let result = serialazable.serialize(output)
+          if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+            let result = serialazable.serialize(output ?? "")
             dict = deepMerge(dict, result)
           } else {
             dict[element.fieldName] = output

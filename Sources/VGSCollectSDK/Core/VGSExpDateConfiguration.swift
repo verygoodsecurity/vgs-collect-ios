@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// A class responsible for configuration `VGSTextField` with `fieldType = .expDate`. Extends `VGSConfogiration` class.
-public final class VGSExpDateConfiguration: VGSConfiguration {
+public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializableProtocol {
        
   /// Input date format to convert.
   public var inputDateFormat: VGSCardExpDateFormat?
@@ -28,25 +28,11 @@ public final class VGSExpDateConfiguration: VGSConfiguration {
     get { return .expDate }
     set {}
   }
-}
-
-/// Implement `FormatConvertable` protocol.
-extension VGSExpDateConfiguration: FormatConvertable {
-  internal var outputFormat: VGSCardExpDateFormat? {
-    return outputDateFormat
-  }
-
-  internal var inputFormat: VGSCardExpDateFormat? {
-    return inputDateFormat
-  }
   
-  internal var convertor: TextFormatConvertor {
-    return ExpDateFormatConvertor()
-  }
-}
-
-extension VGSExpDateConfiguration: VGSFormatSerializableProtocol {
-  func serialize(_ content: String) -> [String: Any] {
+  // MARK: - `VGSExpDateConfiguration` implementation
+  
+  /// Serialize Expiration Date
+  internal func serialize(_ content: String) -> [String: Any] {
     var result = [String: Any]()
     for serializer in serializers {
       if let serializer = serializer as? VGSExpDateSeparateSerializer {
@@ -60,7 +46,23 @@ extension VGSExpDateConfiguration: VGSFormatSerializableProtocol {
   }
   
   /// Returns if Content should be Serialized
-  var shouldSerialize: Bool {
+  internal var shouldSerialize: Bool {
     return !serializers.isEmpty
+  }
+}
+
+/// Implement `FormatConvertable` protocol.
+extension VGSExpDateConfiguration: FormatConvertable {
+
+  internal var outputFormat: VGSCardExpDateFormat? {
+    return outputDateFormat
+  }
+
+  internal var inputFormat: VGSCardExpDateFormat? {
+    return inputDateFormat
+  }
+  
+  internal var convertor: TextFormatConvertor {
+    return ExpDateFormatConvertor()
   }
 }
