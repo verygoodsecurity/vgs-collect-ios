@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 #endif
 
-/// A class responsible for configuration `VGSTextField` with `fieldType = .expDate`. Extends `VGSConfogiration` class.
+/// A class responsible for configuration `VGSTextField` with `fieldType = .expDate`. Extends `VGSConfiguration` class.
 public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializableProtocol {
        
   /// Input date format to convert.
