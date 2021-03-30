@@ -72,7 +72,7 @@ class VGSFieldNameMapperTestDataProvider {
 
 		return testData
 	}
-
+  
 	static func provideTestDataForDeepMergeArrays() -> [VGSDeepMergeUtilsTests.TestJSONData] {
 		return provideTestData(for: "DeepMergeMergeArrayTestJSONs")
 	}
@@ -81,7 +81,7 @@ class VGSFieldNameMapperTestDataProvider {
 		return provideTestData(for: "OverwriteArraysTestJSONs")
 	}
 
-	static func provideTestData(for fileName: String) -> [VGSDeepMergeUtilsTests.TestJSONData]  {
+	static func provideTestData(for fileName: String) -> [VGSDeepMergeUtilsTests.TestJSONData] {
 		guard let rootTestJSON = JsonData(jsonFileName: fileName), let testDataJSONArray = rootTestJSON["test_data"] as? [JsonData] else {
 			XCTFail("Cannot build data for file VGSDeepMergeUtilsTests.TestJSONData")
 			return []

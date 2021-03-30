@@ -16,14 +16,21 @@ internal final class VGSFieldNameToJSONDataMapper {
 	/// - Returns: `JsonData` with textFields data.
 	internal static func provideJSON(for textFields: [VGSTextField]) -> JsonData {
 		var collectFieldsJSON: JsonData = [:]
-
+    
 		for field in textFields {
-			let fieldName = field.fieldName
-			let fieldValue = field.getOutputText()
-
-			VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName ?? "", value: fieldValue as Any, json: &collectFieldsJSON)
+      let fieldName = field.fieldName
+      let fieldValue = field.getOutputText()
+      
+      /// Check if field value need serioalization
+      if let serialazable = field.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+        let serializationResult = serialazable.serialize(fieldValue ?? "")
+        serializationResult.forEach { (componentFieldName, componentValue) in
+          VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(componentFieldName, value: componentValue as Any, json: &collectFieldsJSON)
+        }
+      } else {
+        VGSFieldNameToJSONDataMapper.mapFieldNameToJSON(fieldName ?? "", value: fieldValue as Any, json: &collectFieldsJSON)
+      }
 		}
-
 		return collectFieldsJSON
 	}
 

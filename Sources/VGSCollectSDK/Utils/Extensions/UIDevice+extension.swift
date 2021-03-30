@@ -7,9 +7,11 @@
 //
 
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
 
-extension UIDevice {
+internal extension UIDevice {
   
   // device model identifier, like iPhone 3,1(not marketing iPhone model)
   var modelIdentifier: String {
