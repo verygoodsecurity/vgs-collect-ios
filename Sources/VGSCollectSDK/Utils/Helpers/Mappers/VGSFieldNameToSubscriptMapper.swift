@@ -51,7 +51,6 @@ internal final class VGSFieldNameToSubscriptMapper {
 
 				// Convert digit index to Int.
 				if let numInt = Int(num) {
-					print("numInt: \(numInt)")
 					let numberSubs = VGSFieldNameSubscriptType.index(numInt)
 					subscripts.append(numberSubs)
 				}

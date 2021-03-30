@@ -1,0 +1,47 @@
+{
+		"test_data": [
+					{
+							"monthFieldName": "card_data[0].month",
+							"yearFieldName": "card_data[0].year",
+							"fieldValue": "01/30",
+							"expectedResult": {
+								"card_data" : [
+									{
+										"month": "01",
+										"year": "30"
+									}
+								]
+							},
+							"comment": "Map to array with JSON."
+					},
+					{
+							"monthFieldName": "card_data[1].month",
+							"yearFieldName": "card_data[1].year",
+							"fieldValue": "01/30",
+							"expectedResult": {
+								"card_data" : [
+									null,
+									{
+										"month": "01",
+										"year": "30"
+									}
+								]
+							},
+							"comment": "Map to array with JSON adjusting array capacity."
+					},
+					{
+						"monthFieldName": "card_data[0].month",
+						"yearFieldName": "card_data[0].year",
+							"fieldValue": "11/35",
+							"expectedResult": {
+								"card_data" : [
+									{
+										"month": "11",
+										"year": "35"
+									}
+								]
+							},
+							"comment": "Map to nested JSON."
+					}
+			]
+}

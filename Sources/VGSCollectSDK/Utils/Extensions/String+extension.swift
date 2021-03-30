@@ -12,6 +12,11 @@ internal extension String {
     var isAlphaNumeric: Bool {
         return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
     }
+  
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted)
+            .joined()
+    }
 }
 
 internal extension Optional where Wrapped == String {
