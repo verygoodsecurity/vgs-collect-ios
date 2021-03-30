@@ -24,6 +24,8 @@
 		3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */; };
 		3215C4BC260DAF3D00F21259 /* VGSFormatSerializerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215C4BB260DAF3D00F21259 /* VGSFormatSerializerProtocol.swift */; };
 		3215C4C8260DAF9400F21259 /* VGSExpDateSeparateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215C4C7260DAF9400F21259 /* VGSExpDateSeparateSerializer.swift */; };
+		3215C4E92611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3215C4E82611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift */; };
+		3215C5072611B87400F21259 /* DefaultExpirationDateSplitSerializer.json in Resources */ = {isa = PBXBuildFile; fileRef = 3215C5062611B87400F21259 /* DefaultExpirationDateSplitSerializer.json */; };
 		3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219D73C2404279700F4A7E5 /* VGSError.swift */; };
 		321FE73A25DE45FC00B138E9 /* VGSCVCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */; };
 		322F94B125BABD9D001CDF12 /* VGSExpDateConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322F94B025BABD9D001CDF12 /* VGSExpDateConfiguration.swift */; };
@@ -65,6 +67,9 @@
 		328A574023FADC3500714675 /* VGSFilePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A573F23FADC3500714675 /* VGSFilePickerConfiguration.swift */; };
 		328A574223FADD3D00714675 /* VGSFilePickerController+internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */; };
 		328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
+		328D7C18261352CF00E0917F /* DeepMergeExpirationDateSplitSerializer.json in Resources */ = {isa = PBXBuildFile; fileRef = 328D7C15261352CF00E0917F /* DeepMergeExpirationDateSplitSerializer.json */; };
+		328D7C19261352CF00E0917F /* OverwriteExpirationDateSplitSerializer.json in Resources */ = {isa = PBXBuildFile; fileRef = 328D7C16261352CF00E0917F /* OverwriteExpirationDateSplitSerializer.json */; };
+		328D7C1A261352CF00E0917F /* CustomOutputExpirationDateSplitSerializer.json in Resources */ = {isa = PBXBuildFile; fileRef = 328D7C17261352CF00E0917F /* CustomOutputExpirationDateSplitSerializer.json */; };
 		32919C8124FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32919C8024FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift */; };
 		3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */; };
 		32AFB93724FFD218007FFCAE /* VGSTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */; };
@@ -181,6 +186,8 @@
 		3213005A241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSCollectTest+Validation.swift"; sourceTree = "<group>"; };
 		3215C4BB260DAF3D00F21259 /* VGSFormatSerializerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFormatSerializerProtocol.swift; sourceTree = "<group>"; };
 		3215C4C7260DAF9400F21259 /* VGSExpDateSeparateSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateSeparateSerializer.swift; sourceTree = "<group>"; };
+		3215C4E82611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateSeparateSerializerTests.swift; sourceTree = "<group>"; };
+		3215C5062611B87400F21259 /* DefaultExpirationDateSplitSerializer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultExpirationDateSplitSerializer.json; sourceTree = "<group>"; };
 		3219D73C2404279700F4A7E5 /* VGSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSError.swift; sourceTree = "<group>"; };
 		321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTextField.swift; sourceTree = "<group>"; };
 		322F94B025BABD9D001CDF12 /* VGSExpDateConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateConfiguration.swift; sourceTree = "<group>"; };
@@ -219,6 +226,9 @@
 		328A573F23FADC3500714675 /* VGSFilePickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerConfiguration.swift; sourceTree = "<group>"; };
 		328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePickerController+internal.swift"; sourceTree = "<group>"; };
 		328B5C6F23C8DA2600A39515 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
+		328D7C15261352CF00E0917F /* DeepMergeExpirationDateSplitSerializer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeepMergeExpirationDateSplitSerializer.json; sourceTree = "<group>"; };
+		328D7C16261352CF00E0917F /* OverwriteExpirationDateSplitSerializer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OverwriteExpirationDateSplitSerializer.json; sourceTree = "<group>"; };
+		328D7C17261352CF00E0917F /* CustomOutputExpirationDateSplitSerializer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CustomOutputExpirationDateSplitSerializer.json; sourceTree = "<group>"; };
 		32919C8024FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardScanControllerDelegate.swift; sourceTree = "<group>"; };
 		3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldTest.swift; sourceTree = "<group>"; };
 		32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTests.swift; sourceTree = "<group>"; };
@@ -384,6 +394,26 @@
 				3215C4C7260DAF9400F21259 /* VGSExpDateSeparateSerializer.swift */,
 			);
 			path = Serializers;
+			sourceTree = "<group>";
+		};
+		3215C4E72611B4B900F21259 /* SerializersTest */ = {
+			isa = PBXGroup;
+			children = (
+				3215C4F42611B80B00F21259 /* ExpDateSplitSerializerTestJSONs */,
+				3215C4E82611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift */,
+			);
+			path = SerializersTest;
+			sourceTree = "<group>";
+		};
+		3215C4F42611B80B00F21259 /* ExpDateSplitSerializerTestJSONs */ = {
+			isa = PBXGroup;
+			children = (
+				3215C5062611B87400F21259 /* DefaultExpirationDateSplitSerializer.json */,
+				328D7C17261352CF00E0917F /* CustomOutputExpirationDateSplitSerializer.json */,
+				328D7C15261352CF00E0917F /* DeepMergeExpirationDateSplitSerializer.json */,
+				328D7C16261352CF00E0917F /* OverwriteExpirationDateSplitSerializer.json */,
+			);
+			path = ExpDateSplitSerializerTestJSONs;
 			sourceTree = "<group>";
 		};
 		322F94B925BABE82001CDF12 /* Convertors */ = {
@@ -778,6 +808,7 @@
 				FD790B95243BB3D1006A30CB /* Card Brand Tests */,
 				324CDEE023FB12E200653890 /* File Picker Tests */,
 				322F94D525BAC3C8001CDF12 /* ConvertorsTests */,
+				3215C4E72611B4B900F21259 /* SerializersTest */,
 				FDE890812333AC6D00FA170D /* ApiClientTests.swift */,
 				4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */,
 				FDF696E42346461D00063507 /* StorageTests.swift */,
@@ -1106,8 +1137,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				44792A7925FDE6AE006A04B8 /* DeepMergeMergeArrayTestJSONs.json in Resources */,
+				328D7C19261352CF00E0917F /* OverwriteExpirationDateSplitSerializer.json in Resources */,
+				3215C5072611B87400F21259 /* DefaultExpirationDateSplitSerializer.json in Resources */,
 				44447F8925F7667000D4CE68 /* VGSFieldNameToJSONTestData.json in Resources */,
+				328D7C18261352CF00E0917F /* DeepMergeExpirationDateSplitSerializer.json in Resources */,
 				4430E19C2600B909006B2EF3 /* OverwriteArraysTestJSONs.json in Resources */,
+				328D7C1A261352CF00E0917F /* CustomOutputExpirationDateSplitSerializer.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1314,6 +1349,7 @@
 				FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */,
 				44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */,
 				FD1BE48923462F21006D8658 /* CVVTextFieldTests.swift in Sources */,
+				3215C4E92611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift in Sources */,
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */,

@@ -72,7 +72,6 @@ internal extension VGSCollect {
     func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
         let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
-
           let output = element.getOutputText()
           
           /// Check if any serialization should be done before data will be send

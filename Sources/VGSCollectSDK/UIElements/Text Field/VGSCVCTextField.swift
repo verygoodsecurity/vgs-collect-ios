@@ -33,8 +33,6 @@ public final class VGSCVCTextField: VGSTextField {
       return view
     }()
 
-
-
     internal lazy var stackView = self.makeStackView()
     internal let stackSpacing: CGFloat = 8.0
   
