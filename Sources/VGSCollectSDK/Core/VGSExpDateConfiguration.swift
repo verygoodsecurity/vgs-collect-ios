@@ -36,8 +36,18 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
     var result = [String: Any]()
     for serializer in serializers {
       if let serializer = serializer as? VGSExpDateSeparateSerializer {
-        let mth = content.prefix(outputFormat?.monthCharacters ?? 2)
-        let year = content.suffix(outputFormat?.yearCharacters ?? 2)
+        /// remove dividers
+        var dateDigitsString = content.digits
+        /// check output date components length
+        let outputMonthDigits = outputFormat?.monthCharacters ?? 2
+        let outputYearDigits = outputFormat?.yearCharacters ?? 2
+        /// take month digitis
+        let mth = dateDigitsString.prefix(outputMonthDigits)
+        /// remove month digits
+        dateDigitsString = String(dateDigitsString.dropFirst(outputMonthDigits))
+        /// take year digitis
+        let year = dateDigitsString.prefix(outputYearDigits)
+        /// set result for specific fieldnames
         result[serializer.monthFieldName] = mth
         result[serializer.yearFieldName] = year
       }
