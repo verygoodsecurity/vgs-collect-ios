@@ -8,6 +8,15 @@ import Foundation
 import VGSCollectSDK
 #endif
 
+/// Holds scanned expiration date.
+internal struct VGSScanCardExpirationData {
+	/// Scanned month.
+	internal let monthString: String?
+
+	/// Scanned year.
+	internal let yearString: String?
+}
+
 /// Holds mapping utils for scanned card data.
 internal final class VGSScanCardDataMapUtils {
 
@@ -18,12 +27,37 @@ internal final class VGSScanCardDataMapUtils {
 
 	// MARK: - Interface
 
+	/// Maps scanned expiration data to expected format.
+	/// - Parameters:
+	///   - data: `VGSScanCardExpirationData` object, holds scanned expiry date data.
+	///   - format: `CradScanDataType` object, card data type.
+	/// - Returns: `String?`, formatted string or `nil`.
+	internal static func mapCardExpirationData(_ data: VGSScanCardExpirationData, scannedDataType: CradScanDataType) -> String? {
+		switch scannedDataType {
+		case .cardNumber, .name:
+			return nil
+		case  .expirationDate:
+			return mapDefaultExpirationDate(data.monthString, scannedExpYear: data.yearString)
+		case .expirationDateLong:
+			return mapLongExpirationDate(data.monthString, scannedExpYear: data.yearString)
+		case .expirationMonth:
+			return mapMonth(data.monthString)
+		case .expirationYear:
+			return mapYear(data.yearString)
+		case .expirationYearLong:
+			return mapYearLong(data.yearString)
+		}
+	}
+
+	// MARK: - Helpers
+
+
 	/// Map scanned exp month and year to valid format (MM/YY).
 	/// - Parameters:
 	///   - scannedExpMonth: `String` object, scanned expiry month.
 	///   - scannedExpYear: `String` object, scanned expiry year.
 	/// - Returns: `String?`, composed text or nil if scanned info is invalid.
-	internal static func mapDefaultExpirationDate(_ scannedExpMonth: String?, scannedExpYear: String?) -> String? {
+	private static func mapDefaultExpirationDate(_ scannedExpMonth: String?, scannedExpYear: String?) -> String? {
 		guard let month = mapMonth(scannedExpMonth), let year = mapYear(scannedExpYear) else {
 			return nil
 		}
@@ -36,7 +70,7 @@ internal final class VGSScanCardDataMapUtils {
 	///   - scannedExpMonth: `String` object, scanned expiry month.
 	///   - scannedExpYear: `String` object, scanned expiry year.
 	/// - Returns: `String?`, composed text or nil if scanned info is invalid.
-	internal static func mapLongExpirationDate(_ scannedExpMonth: String?, scannedExpYear: String?) -> String? {
+	private static func mapLongExpirationDate(_ scannedExpMonth: String?, scannedExpYear: String?) -> String? {
 		guard let month = mapMonth(scannedExpMonth), let longYear = mapYearLong(scannedExpYear) else {
 			return nil
 		}
@@ -47,7 +81,7 @@ internal final class VGSScanCardDataMapUtils {
 	/// Maps scanned expiry month to short format (YY) string.
 	/// - Parameter scannedExpYear: `String?` object, scanned expiry year.
 	/// - Returns: `String?`, year text or nil if scanned info is invalid.
-	internal static func mapMonth(_ scannedExpMonth: String?) -> String? {
+	private static func mapMonth(_ scannedExpMonth: String?) -> String? {
 		guard let month = monthInt(from: scannedExpMonth) else {return nil}
 
 		let formattedMonthString = formatMonthString(from: month)
@@ -57,7 +91,7 @@ internal final class VGSScanCardDataMapUtils {
 	/// Maps scanned expiry year to short format (YY) string.
 	/// - Parameter scannedExpYear: `String?` object, scanned expiry year.
 	/// - Returns: `String?`, year text or nil if scanned info is invalid.
-	internal static func mapYear(_ scannedExpYear: String?) -> String? {
+	private static func mapYear(_ scannedExpYear: String?) -> String? {
 		guard let year = yearInt(from: scannedExpYear) else {return nil}
 
 		return "\(year)"
@@ -66,13 +100,11 @@ internal final class VGSScanCardDataMapUtils {
 	/// Maps scanned expiry year to long format (YYYY) string.
 	/// - Parameter scannedExpYear: `String?` object, scanned expiry year.
 	/// - Returns: `String?`, year text or nil if scanned info is invalid.
-	internal static func mapYearLong(_ scannedExpYear: String?) -> String? {
+	private static func mapYearLong(_ scannedExpYear: String?) -> String? {
 		guard let year = yearInt(from: scannedExpYear) else {return nil}
 
 		return longYearString(from: year)
 	}
-
-	// MARK: - Helpers
 
 	/// Converts year to long format string.
 	/// - Parameter shortYear: `Int` object, should be short year.
