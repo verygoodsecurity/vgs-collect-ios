@@ -111,6 +111,7 @@ extension VGSCardScanHandler: ScanDelegate {
        textfield.setText("\(year)")
      }
      if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYearLong) {
+			let longYear = "20\(year)"
        textfield.setText("\(longYear)")
      }
     }
