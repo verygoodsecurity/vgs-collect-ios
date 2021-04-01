@@ -121,6 +121,8 @@
 		44AF144C2615F1220055CD91 /* VGSScanCardDataMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */; };
 		44AF1470261603190055CD91 /* VGSScanCardExpirationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF146F261603190055CD91 /* VGSScanCardExpirationData.swift */; };
 		44AF14782616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14772616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift */; };
+		44AF14A9261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14A8261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift */; };
+		44AF14B526161A580055CD91 /* VGSScanCardIOExpirationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14B426161A580055CD91 /* VGSScanCardIOExpirationData.swift */; };
 		44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */; };
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
 		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
@@ -286,6 +288,8 @@
 		44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardDataMapUtils.swift; sourceTree = "<group>"; };
 		44AF146F261603190055CD91 /* VGSScanCardExpirationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardExpirationData.swift; sourceTree = "<group>"; };
 		44AF14772616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardDataMapUtilsTests.swift; sourceTree = "<group>"; };
+		44AF14A8261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardIODataMapUtils.swift; sourceTree = "<group>"; };
+		44AF14B426161A580055CD91 /* VGSScanCardIOExpirationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardIOExpirationData.swift; sourceTree = "<group>"; };
 		44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToJSONTests.swift; sourceTree = "<group>"; };
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
 		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 		326FFAFA24F908AB0024A4F9 /* VGSCardIOCollector */ = {
 			isa = PBXGroup;
 			children = (
+				44AF14A72616199B0055CD91 /* CardIODataMapper */,
 				326FFAFB24F908E30024A4F9 /* VGSCardIOHandler.swift */,
 				326FFAFC24F908E30024A4F9 /* VGSCardIOScanController.swift */,
 				326FFAFD24F908E30024A4F9 /* VGSCardIOScanControllerDelegate.swift */,
@@ -722,6 +727,15 @@
 				44AF14772616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift */,
 			);
 			path = MapExpirationDateTests;
+			sourceTree = "<group>";
+		};
+		44AF14A72616199B0055CD91 /* CardIODataMapper */ = {
+			isa = PBXGroup;
+			children = (
+				44AF14A8261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift */,
+				44AF14B426161A580055CD91 /* VGSScanCardIOExpirationData.swift */,
+			);
+			path = CardIODataMapper;
 			sourceTree = "<group>";
 		};
 		44F8F51A25DBD1860052647A /* SatelliteUtils */ = {
@@ -1261,6 +1275,8 @@
 				326FFAFE24F908E40024A4F9 /* VGSCardIOHandler.swift in Sources */,
 				327CDD4F256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
 				326FFB0024F908E40024A4F9 /* VGSCardIOScanControllerDelegate.swift in Sources */,
+				44AF14A9261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift in Sources */,
+				44AF14B526161A580055CD91 /* VGSScanCardIOExpirationData.swift in Sources */,
 				326FFAFF24F908E40024A4F9 /* VGSCardIOScanController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

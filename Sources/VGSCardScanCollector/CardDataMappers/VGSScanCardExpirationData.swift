@@ -6,7 +6,7 @@
 import Foundation
 
 /// Holds scanned expiration date data.
-internal struct VGSScanCardExpirationData {
+internal struct VGSScanCardBouncerExpirationData {
 	/// Scanned month.
 	internal let monthString: String?
 

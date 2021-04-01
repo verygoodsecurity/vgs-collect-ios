@@ -87,7 +87,7 @@ extension VGSCardScanHandler: ScanDelegate {
       textfield.setText(name)
 		}
 
-		let expiryDateData = VGSScanCardExpirationData(monthString: creditCard.expiryMonth, yearString: creditCard.expiryYear)
+		let expiryDateData = VGSScanCardBouncerExpirationData(monthString: creditCard.expiryMonth, yearString: creditCard.expiryYear)
 
 		if let defaultExpirationDate = VGSScanCardDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDate), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDate) {
 			print("Default exp date to set: \(defaultExpirationDate)")
