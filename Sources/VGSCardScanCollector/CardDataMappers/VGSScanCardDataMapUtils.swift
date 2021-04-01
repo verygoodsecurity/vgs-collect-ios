@@ -42,7 +42,6 @@ internal final class VGSScanCardDataMapUtils {
 
 	// MARK: - Helpers
 
-
 	/// Map scanned exp month and year to valid format (MM/YY).
 	/// - Parameters:
 	///   - scannedExpMonth: `String` object, scanned expiry month.
