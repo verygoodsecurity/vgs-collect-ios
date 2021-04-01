@@ -118,6 +118,7 @@
 		449C8A3825F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3725F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift */; };
 		449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */; };
 		44A67DDB25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */; };
+		44AF144C2615F1220055CD91 /* VGSScanCardDataMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */; };
 		44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */; };
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
 		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
@@ -280,6 +281,7 @@
 		449C8A3725F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToSubscriptMapper.swift; sourceTree = "<group>"; };
 		449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameSubscriptType.swift; sourceTree = "<group>"; };
 		44A67DDA25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSAPIClientSatelliteTests.swift; sourceTree = "<group>"; };
+		44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardDataMapUtils.swift; sourceTree = "<group>"; };
 		44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToJSONTests.swift; sourceTree = "<group>"; };
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
 		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 		32CFC71E24EBEF0E00457B17 /* VGSCardScanCollector */ = {
 			isa = PBXGroup;
 			children = (
+				44AF143F2615DFF30055CD91 /* CardDataMappers */,
 				32CFC72124EBF28B00457B17 /* VGSCardScanHandler.swift */,
 				32CFC71F24EBEFF700457B17 /* VGSCardScanController.swift */,
 				32919C8024FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift */,
@@ -697,6 +700,14 @@
 				4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */,
 			);
 			path = Mappers;
+			sourceTree = "<group>";
+		};
+		44AF143F2615DFF30055CD91 /* CardDataMappers */ = {
+			isa = PBXGroup;
+			children = (
+				44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */,
+			);
+			path = CardDataMappers;
 			sourceTree = "<group>";
 		};
 		44F8F51A25DBD1860052647A /* SatelliteUtils */ = {
@@ -1247,6 +1258,7 @@
 				32CFC72224EBF28B00457B17 /* VGSCardScanHandler.swift in Sources */,
 				327CDD4E256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
 				32919C8124FD1EB4002C83D1 /* VGSCardScanControllerDelegate.swift in Sources */,
+				44AF144C2615F1220055CD91 /* VGSScanCardDataMapUtils.swift in Sources */,
 				32CFC72024EBEFF700457B17 /* VGSCardScanController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
