@@ -11,8 +11,12 @@ import VGSCollectSDK
 /// Holds mapping utils for scanned card data.
 internal final class VGSScanCardDataMapUtils {
 
+	// MARK: - Constants
+
 	/// Valid months range.
 	private static let monthsRange = 1...12
+
+	// MARK: - Interface
 
 	/// Map scanned exp month and year to valid format (MM/YY).
 	/// - Parameters:
