@@ -107,7 +107,7 @@ extension VGSCardScanHandler: ScanDelegate {
 			textfield.setText(expiryYear)
 		}
 
-		if let expiryYearLong = VGSScanCardDataMapUtils.mapYearLong(creditCard.expiryYear), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateLong) {
+		if let expiryYearLong = VGSScanCardDataMapUtils.mapYearLong(creditCard.expiryYear), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYearLong) {
 			print("expiryYearLong to set: \(expiryYearLong)")
 			textfield.setText(expiryYearLong)
 		}
