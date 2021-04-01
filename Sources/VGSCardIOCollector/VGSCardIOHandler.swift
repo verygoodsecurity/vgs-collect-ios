@@ -58,12 +58,17 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
             delegate?.userDidFinishScan()
             return
         }
+
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             if let form = textfield.configuration?.vgsCollector {
               VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
             }
             textfield.setText(cardInfo.cardNumber)
         }
+
+				print("cardInfo month: \(cardInfo.expiryMonth)")
+				print("cardInfo year: \(cardInfo.expiryYear)")
+
         if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= VGSCalendarUtils.currentYear {
           let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
           if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {

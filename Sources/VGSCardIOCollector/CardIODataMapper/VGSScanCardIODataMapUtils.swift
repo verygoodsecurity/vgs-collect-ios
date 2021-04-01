@@ -42,10 +42,10 @@ internal final class VGSScanCardIODataMapUtils {
 
 	/// Map scanned exp month and year to valid format (MM/YY).
 	/// - Parameters:
-	///   - scannedExpMonth: `Int` object, scanned expiry month.
-	///   - scannedExpYear: `Int` object, scanned expiry year.
+	///   - scannedExpMonth: `UInt` object, scanned expiry month.
+	///   - scannedExpYear: `UInt` object, scanned expiry year.
 	/// - Returns: `String?`, composed text or nil if scanned info is invalid.
-	private static func mapDefaultExpirationDate(_ scannedExpMonth: Int, scannedExpYear: Int) -> String? {
+	private static func mapDefaultExpirationDate(_ scannedExpMonth: UInt, scannedExpYear: UInt) -> String? {
 		guard let month = mapMonth(scannedExpMonth), let year = mapYear(scannedExpYear) else {
 			return nil
 		}
@@ -55,10 +55,10 @@ internal final class VGSScanCardIODataMapUtils {
 
 	/// Map scanned exp month and year to long expiration date format (MM/YYYY).
 	/// - Parameters:
-	///   - scannedExpMonth: `String` object, scanned expiry month.
-	///   - scannedExpYear: `String` object, scanned expiry year.
+	///   - scannedExpMonth: `UInt` object, scanned expiry month.
+	///   - scannedExpYear: `UInt` object, scanned expiry year.
 	/// - Returns: `String?`, composed text or nil if scanned info is invalid.
-	private static func mapLongExpirationDate(_ scannedExpMonth: Int, scannedExpYear: Int) -> String? {
+	private static func mapLongExpirationDate(_ scannedExpMonth: UInt, scannedExpYear: UInt) -> String? {
 		guard let month = mapMonth(scannedExpMonth), let longYear = mapYearLong(scannedExpYear) else {
 			return nil
 		}
@@ -67,9 +67,9 @@ internal final class VGSScanCardIODataMapUtils {
 	}
 
 	/// Maps scanned expiry month to short format (MM) string.
-	/// - Parameter scannedExpYear: `Int` object, scanned expiry year.
+	/// - Parameter scannedExpYear: `UInt` object, scanned expiry year.
 	/// - Returns: `String?`, year text or nil if scanned info is invalid.
-	private static func mapMonth(_ scannedExpMonth: Int) -> String? {
+	private static func mapMonth(_ scannedExpMonth: UInt) -> String? {
 		guard let month = monthInt(from: scannedExpMonth) else {return nil}
 
 		let formattedMonthString = formatMonthString(from: month)
@@ -77,49 +77,50 @@ internal final class VGSScanCardIODataMapUtils {
 	}
 
 	/// Maps scanned expiry year to short format (YY) string.
-	/// - Parameter scannedExpYear: `Int` object, scanned expiry year.
+	/// - Parameter scannedExpYear: `UInt` object, scanned expiry year.
 	/// - Returns: `String?`, year text or nil if scanned info is invalid.
-	private static func mapYear(_ scannedExpYear: Int) -> String? {
+	private static func mapYear(_ scannedExpYear: UInt) -> String? {
 		guard let year = yearInt(from: scannedExpYear) else {return nil}
 
+		// CardIO holds year in long format, convert to short format manually.
 		return shortYearString(from: year)
 	}
 
 	/// Maps scanned expiry year to long format (YYYY) string.
-	/// - Parameter scannedExpYear: `Int` object, scanned expiry year.
+	/// - Parameter scannedExpYear: `UInt` object, scanned expiry year.
 	/// - Returns: `String?`, year text or nil if scanned info is invalid.
-	private static func mapYearLong(_ scannedExpYear: Int) -> String? {
+	private static func mapYearLong(_ scannedExpYear: UInt) -> String? {
 		guard let year = yearInt(from: scannedExpYear) else {return nil}
 
 		return "\(year)"
 	}
 
 	/// Converts year to long format string.
-	/// - Parameter shortYear: `Int` object, should be short year.
+	/// - Parameter shortYear: `UInt` object, should be short year.
 	/// - Returns: `String` with long year format.
-	private static func shortYearString(from longYear: Int) -> String {
+	private static func shortYearString(from longYear: UInt) -> String {
 		return String("\(longYear)".suffix(2))
 	}
 
-	/// Checks if month (Int) is valid.
-	/// - Parameter month: `Int` object, month to verify.
+	/// Checks if month (UInt) is valid.
+	/// - Parameter month: `UInt` object, month to verify.
 	/// - Returns: `Bool` object, `true` if is valid.
-	private static func isMonthValid(_ month: Int) -> Bool {
-		return monthsRange ~= month
+	private static func isMonthValid(_ month: UInt) -> Bool {
+		return monthsRange ~= Int(month)
 	}
 
 	/// Checks if year (Int) is valid.
-	/// - Parameter year: `Int` object, year to verify.
+	/// - Parameter year: `UInt` object, year to verify.
 	/// - Returns: `Bool` object, `true` if is valid.
-	private static func isYearValid(_ year: Int) -> Bool {
+	private static func isYearValid(_ year: UInt) -> Bool {
 		// CardIO returns year in long format: `2025`.
 		return year >= VGSCalendarUtils.currentYear
 	}
 
 	/// Provides month Int.
-	/// - Parameter month: `Int` object, month from CardIO.
-	/// - Returns: `Int?`, valid month or `nil`.
-	private static func monthInt(from month: Int) -> Int? {
+	/// - Parameter month: `UInt` object, month from CardIO.
+	/// - Returns: `UInt?`, valid month or `nil`.
+	private static func monthInt(from month: UInt) -> UInt? {
 		guard isMonthValid(month) else {
 			return nil
 		}
@@ -129,8 +130,8 @@ internal final class VGSScanCardIODataMapUtils {
 
 	/// Provides year Int.
 	/// - Parameter yearString: `String` object, year from CardIO.
-	/// - Returns: `Int?`, valid year or `nil`.
-	private static func yearInt(from year: Int) -> Int? {
+	/// - Returns: `UInt`, valid year or `nil`.
+	private static func yearInt(from year: UInt) -> UInt? {
 		guard isYearValid(year) else {
 			return nil
 		}
@@ -139,9 +140,9 @@ internal final class VGSScanCardIODataMapUtils {
 	}
 
 	/// Format month int.
-	/// - Parameter monthInt: `Int`, should be month.
+	/// - Parameter monthInt: `UInt`, should be month.
 	/// - Returns: `String` object, formatted month.
-	private static func formatMonthString(from monthInt: Int) -> String {
+	private static func formatMonthString(from monthInt: UInt) -> String {
 		// Add `0` for month less than 10.
 		let monthString = monthInt < 10 ? "0\(monthInt)" : "\(monthInt)"
 		return monthString
