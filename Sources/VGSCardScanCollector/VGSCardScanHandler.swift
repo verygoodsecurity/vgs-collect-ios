@@ -90,10 +90,13 @@ extension VGSCardScanHandler: ScanDelegate {
      if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDate) {
 			let creditCardMonth = creditCard.expiryMonth ?? ""
 			print("creditCardMonth: \(creditCardMonth)")
+			print("expiryYear: \(creditCard.expiryYear ?? "")")
        textfield.setText("\(month)\(year)")
+
      }
      if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateLong) {
        let longYear = "20\(year)"
+			 print("expiryYear: \(creditCard.expiryYear ?? "")")
        textfield.setText("\(month)\(longYear)")
      }
     }
@@ -104,10 +107,10 @@ extension VGSCardScanHandler: ScanDelegate {
     }
     if let year = Int(creditCard.expiryYear ?? ""), year >= VGSCalendarUtils.currentYear {
      if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYear) {
+			print("expiryYear: \(creditCard.expiryYear ?? "")")
        textfield.setText("\(year)")
      }
      if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYearLong) {
-       let longYear = "20\(year)"
        textfield.setText("\(longYear)")
      }
     }
