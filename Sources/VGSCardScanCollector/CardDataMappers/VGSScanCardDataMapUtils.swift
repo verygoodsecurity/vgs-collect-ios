@@ -8,15 +8,6 @@ import Foundation
 import VGSCollectSDK
 #endif
 
-/// Holds scanned expiration date.
-internal struct VGSScanCardExpirationData {
-	/// Scanned month.
-	internal let monthString: String?
-
-	/// Scanned year.
-	internal let yearString: String?
-}
-
 /// Holds mapping utils for scanned card data.
 internal final class VGSScanCardDataMapUtils {
 
