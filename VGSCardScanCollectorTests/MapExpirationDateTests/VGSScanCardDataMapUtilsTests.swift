@@ -8,6 +8,7 @@ import XCTest
 @testable import VGSCollectSDK
 @testable import VGSCardScanCollector
 
+/// Tests for bouncer data mapping to VGS Collect.
 class VGSScanCardDataMapUtilsTests: XCTestCase {
 
 	/// Holds test data.
@@ -16,6 +17,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 		let expectedText: String
 	}
 
+	/// Holds set of data to test specific use case.
 	struct TestDataItem {
 		let items: [TestDataMappingItem]
 		let scannedData: VGSScanCardExpirationData
@@ -45,7 +47,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
 																						scannedData: VGSScanCardExpirationData(monthString: "03", yearString: "25"))
 
-	/// Test scan data.
+	/// Tests scan data.
 	func testScannedData() {
 		verifyScanDataItem(testDataItemShortMonth)
 		verifyScanDataItem(testDataItemLongMonth)
@@ -53,7 +55,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 
 	// MARK: - Helpers
 
-	/// Verify scanned data mapping.
+	/// Verifies scanned data mapping.
 	/// - Parameter testDataItem: `TestDataItem` object, holds test data.
 	private func verifyScanDataItem(_ testDataItem: TestDataItem) {
 		let scannedData = testDataItem.scannedData
