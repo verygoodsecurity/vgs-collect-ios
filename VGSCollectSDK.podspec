@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.7.7'
+  spec.version = '1.7.8'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -31,7 +31,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'CardScan' do |cardscan|
     cardscan.source_files  = "Sources/VGSCardScanCollector", "Sources/VGSCardScanCollector/**/*.{swift}"
     cardscan.dependency "VGSCollectSDK/Core"
-    cardscan.dependency "CardScan", "2.0.7"
+    cardscan.dependency "CardScan", "2.0.9"
     cardscan.ios.deployment_target = "11.2"
   end
   

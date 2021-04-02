@@ -22,7 +22,7 @@ let package = Package(
 			.package(
 				name: "CardScan",
 				url: "https://github.com/getbouncer/cardscan-ios.git",
-				.exact("2.0.7")
+				.exact("2.0.9")
 			),
     ],
     targets: [

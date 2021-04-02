@@ -85,29 +85,31 @@ extension VGSCardScanHandler: ScanDelegate {
     if let name = creditCard.name, !name.isEmpty, let textfield =
       cardScanDelegate.textFieldForScannedData(type: .name) {
       textfield.setText(name)
-    }
-    if let month = Int(creditCard.expiryMonth ?? ""), 1...12 ~= month, let year = Int(creditCard.expiryYear ?? ""), year >= VGSCalendarUtils.currentYearShort {
-     if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDate) {
-       textfield.setText("\(month)\(year)")
-     }
-     if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateLong) {
-       let longYear = "20\(year)"
-       textfield.setText("\(month)\(longYear)")
-     }
-    }
-    if let month = Int(creditCard.expiryMonth ?? ""), 1...12 ~= month, let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationMonth) {
-       textfield.setText("\(month)")
-    }
-    if let year = Int(creditCard.expiryYear ?? ""), year >= VGSCalendarUtils.currentYear {
-     if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYear) {
-       textfield.setText("\(year)")
-     }
-     if let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYearLong) {
-       let longYear = "20\(year)"
-       textfield.setText("\(longYear)")
-     }
-    }
-     cardScanDelegate.userDidFinishScan()
+		}
+
+		let expiryDateData = VGSBouncerExpirationDate(monthString: creditCard.expiryMonth, yearString: creditCard.expiryYear)
+
+		if let defaultExpirationDate = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDate), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDate) {
+			textfield.setText(defaultExpirationDate)
+		}
+
+		if let longExpirationDate = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateLong), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateLong) {
+			textfield.setText(longExpirationDate)
+		}
+
+		if let expiryMonth = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationMonth), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationMonth) {
+			textfield.setText(expiryMonth)
+		}
+
+		if let expiryYear = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationYear), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYear) {
+			textfield.setText(expiryYear)
+		}
+
+		if let expiryYearLong = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationYearLong), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationYearLong) {
+			textfield.setText(expiryYearLong)
+		}
+		
+		cardScanDelegate.userDidFinishScan()
   }
   
   /// :nodoc:
