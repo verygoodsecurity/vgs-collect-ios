@@ -58,39 +58,40 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
             delegate?.userDidFinishScan()
             return
         }
+
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             if let form = textfield.configuration?.vgsCollector {
               VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
             }
             textfield.setText(cardInfo.cardNumber)
         }
-        if  1...12 ~= Int(cardInfo.expiryMonth), cardInfo.expiryYear >= VGSCalendarUtils.currentYear {
-          let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
-          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {
-            let yy = "\(cardInfo.expiryYear)".suffix(2)
-            textfield.setText("\(monthString)\(yy)")
-          }
-          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDateLong) {
-            textfield.setText("\(monthString)\(cardInfo.expiryYear)")
-          }
-        }
-        if 1...12 ~= Int(cardInfo.expiryMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationMonth) {
-            let monthString = Int(cardInfo.expiryMonth) < 10 ? "0\(cardInfo.expiryMonth)" : "\(cardInfo.expiryMonth)"
-            textfield.setText(monthString)
-        }
-      if cardInfo.expiryYear >= VGSCalendarUtils.currentYear {
-          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYear) {
-            let yy = String("\(cardInfo.expiryYear)".suffix(2))
-            textfield.setText(yy)
-          }
-          if let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYearLong) {
-            let yy = String("\(cardInfo.expiryYear)")
-            textfield.setText(yy)
-          }
-        }
-        if let cvc = cardInfo.cvv, !cvc.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cvc) {
+
+			let expiryDateData = VGSCardIOExpirationDate(month: cardInfo.expiryMonth, year: cardInfo.expiryYear)
+
+			if let defaultExpirationDate = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDate), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDate) {
+				textfield.setText(defaultExpirationDate)
+			}
+
+			if let longExpirationDate = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateLong), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDateLong) {
+				textfield.setText(longExpirationDate)
+			}
+
+			if let expiryMonth = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationMonth) {
+				textfield.setText(expiryMonth)
+			}
+
+			if let expiryYear = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationYear), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYear) {
+				textfield.setText(expiryYear)
+			}
+
+			if let expiryYearLong = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationYearLong), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationYearLong) {
+				textfield.setText(expiryYearLong)
+			}
+
+			if let cvc = cardInfo.cvv, !cvc.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cvc) {
             textfield.setText(cvc)
-        }
-        cardIOdelegate.userDidFinishScan()
+			}
+
+			cardIOdelegate.userDidFinishScan()
     }
 }
