@@ -1,5 +1,5 @@
 //
-//  VGSScanCardIODataMapUtils.swift
+//  VGSCardIODataMapUtils.swift
 //  VGSCardIOCollector
 //
 
@@ -7,7 +7,7 @@ import Foundation
 import VGSCollectSDK
 
 /// Holds mapping utils for scanned card data.
-internal final class VGSScanCardIODataMapUtils {
+internal final class VGSCardIODataMapUtils {
 
 	// MARK: - Constants
 
@@ -21,7 +21,7 @@ internal final class VGSScanCardIODataMapUtils {
 	///   - data: `VGSScanCardIOExpirationData` object, scanned expiry date data.
 	///   - format: `CradIODataType` object, CardIO data type.
 	/// - Returns: `String?`, formatted string or `nil`.
-	internal static func mapCardExpirationData(_ data: VGSScanCardIOExpirationData, scannedDataType: CradIODataType) -> String? {
+	internal static func mapCardExpirationData(_ data: VGSCardIOExpirationDate, scannedDataType: CradIODataType) -> String? {
 		switch scannedDataType {
 		case .cardNumber, .cvc:
 			return nil

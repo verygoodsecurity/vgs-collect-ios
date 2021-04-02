@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -121,8 +121,8 @@
 		44AF144C2615F1220055CD91 /* VGSScanCardDataMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */; };
 		44AF1470261603190055CD91 /* VGSScanCardBouncerExpirationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF146F261603190055CD91 /* VGSScanCardBouncerExpirationData.swift */; };
 		44AF14782616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14772616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift */; };
-		44AF14A9261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14A8261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift */; };
-		44AF14B526161A580055CD91 /* VGSScanCardIOExpirationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14B426161A580055CD91 /* VGSScanCardIOExpirationData.swift */; };
+		44AF14A9261619FA0055CD91 /* VGSCardIODataMapUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14A8261619FA0055CD91 /* VGSCardIODataMapUtils.swift */; };
+		44AF14B526161A580055CD91 /* VGSCardIOExpirationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14B426161A580055CD91 /* VGSCardIOExpirationDate.swift */; };
 		44AF14D12616CCFC0055CD91 /* VGSCardIOCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14D02616CCFC0055CD91 /* VGSCardIOCollectorTests.swift */; };
 		44AF14D32616CCFC0055CD91 /* VGSCardIOCollector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326FFAF224F904430024A4F9 /* VGSCardIOCollector.framework */; platformFilter = ios; };
 		44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */; };
@@ -297,8 +297,8 @@
 		44AF14402615E00E0055CD91 /* VGSScanCardDataMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardDataMapUtils.swift; sourceTree = "<group>"; };
 		44AF146F261603190055CD91 /* VGSScanCardBouncerExpirationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardBouncerExpirationData.swift; sourceTree = "<group>"; };
 		44AF14772616037C0055CD91 /* VGSScanCardDataMapUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardDataMapUtilsTests.swift; sourceTree = "<group>"; };
-		44AF14A8261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardIODataMapUtils.swift; sourceTree = "<group>"; };
-		44AF14B426161A580055CD91 /* VGSScanCardIOExpirationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSScanCardIOExpirationData.swift; sourceTree = "<group>"; };
+		44AF14A8261619FA0055CD91 /* VGSCardIODataMapUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIODataMapUtils.swift; sourceTree = "<group>"; };
+		44AF14B426161A580055CD91 /* VGSCardIOExpirationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOExpirationDate.swift; sourceTree = "<group>"; };
 		44AF14CE2616CCFC0055CD91 /* VGSCardIOCollectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSCardIOCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44AF14D02616CCFC0055CD91 /* VGSCardIOCollectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOCollectorTests.swift; sourceTree = "<group>"; };
 		44AF14D22616CCFC0055CD91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -752,8 +752,8 @@
 		44AF14A72616199B0055CD91 /* CardIODataMapper */ = {
 			isa = PBXGroup;
 			children = (
-				44AF14A8261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift */,
-				44AF14B426161A580055CD91 /* VGSScanCardIOExpirationData.swift */,
+				44AF14A8261619FA0055CD91 /* VGSCardIODataMapUtils.swift */,
+				44AF14B426161A580055CD91 /* VGSCardIOExpirationDate.swift */,
 			);
 			path = CardIODataMapper;
 			sourceTree = "<group>";
@@ -761,10 +761,18 @@
 		44AF14CF2616CCFC0055CD91 /* VGSCardIOCollectorTests */ = {
 			isa = PBXGroup;
 			children = (
+				44AF14DF2616CD600055CD91 /* CardIOMapExpirationDateTests */,
 				44AF14D02616CCFC0055CD91 /* VGSCardIOCollectorTests.swift */,
 				44AF14D22616CCFC0055CD91 /* Info.plist */,
 			);
 			path = VGSCardIOCollectorTests;
+			sourceTree = "<group>";
+		};
+		44AF14DF2616CD600055CD91 /* CardIOMapExpirationDateTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CardIOMapExpirationDateTests;
 			sourceTree = "<group>";
 		};
 		44F8F51A25DBD1860052647A /* SatelliteUtils */ = {
@@ -1335,8 +1343,8 @@
 				326FFAFE24F908E40024A4F9 /* VGSCardIOHandler.swift in Sources */,
 				327CDD4F256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
 				326FFB0024F908E40024A4F9 /* VGSCardIOScanControllerDelegate.swift in Sources */,
-				44AF14A9261619FA0055CD91 /* VGSScanCardIODataMapUtils.swift in Sources */,
-				44AF14B526161A580055CD91 /* VGSScanCardIOExpirationData.swift in Sources */,
+				44AF14A9261619FA0055CD91 /* VGSCardIODataMapUtils.swift in Sources */,
+				44AF14B526161A580055CD91 /* VGSCardIOExpirationDate.swift in Sources */,
 				326FFAFF24F908E40024A4F9 /* VGSCardIOScanController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
