@@ -269,7 +269,7 @@ Other submodules can safely be deleted from Carthage Build folder.
 
 > NOTE: At this time, **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
 
-> NOTE: For **Carthage** users CardScan available only with version 1.0.5048. Use **CocoaPods** or **Swift Package Manager** integration for the latest CardScan version. 
+> NOTE: For **Carthage** users CardScan available only with version 1.0.5048. Use **CocoaPods** or **Swift Package Manager** integration for the latest CardScan version. CardScan supports only **CocoaPods** or **Swift Package Manager** now.
 
 #### Code Example
 
