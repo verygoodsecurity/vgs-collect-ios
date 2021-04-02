@@ -20,7 +20,7 @@ internal final class VGSScanCardDataMapUtils {
 
 	/// Maps scanned expiration data to expected format.
 	/// - Parameters:
-	///   - data: `VGSScanCardBouncerExpirationData` object, holds scanned expiry date data.
+	///   - data: `VGSScanCardBouncerExpirationData` object, scanned expiry date data.
 	///   - format: `CradScanDataType` object, card data type.
 	/// - Returns: `String?`, formatted string or `nil`.
 	internal static func mapCardExpirationData(_ data: VGSScanCardBouncerExpirationData, scannedDataType: CradScanDataType) -> String? {
