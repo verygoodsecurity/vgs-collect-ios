@@ -73,7 +73,7 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 			if let text = VGSCardIODataMapUtils.mapCardExpirationData(scannedData, scannedDataType: format) {
 				XCTAssertTrue(text == expectedText, outputText + "\nActual result: \(text)")
 			} else {
-				XCTFail(outputText + "actual result: *nil*")
+				XCTFail(outputText + "\nActual result: *nil*")
 			}
 		}
 	}

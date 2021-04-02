@@ -71,9 +71,9 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 
 			let outputText = "Index: \(index). \nCannot convert text for data: month: \(scannedMonth), year: \(scannedYear). \nFormat: \(format). \nExpectedText: \(expectedText)"
 			if let text = VGSBouncerDataMapUtils.mapCardExpirationData(scannedData, scannedDataType: format) {
-				XCTAssertTrue(text == expectedText, outputText + "actual result: \(text)")
+				XCTAssertTrue(text == expectedText, outputText + " \nActual result: \(text)")
 			} else {
-				XCTFail(outputText + "actual result: *nil*")
+				XCTFail(outputText + "\nActual result: *nil*")
 			}
 		}
 	}
