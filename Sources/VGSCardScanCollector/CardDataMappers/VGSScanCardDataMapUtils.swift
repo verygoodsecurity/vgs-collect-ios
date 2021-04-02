@@ -42,7 +42,7 @@ internal final class VGSScanCardDataMapUtils {
 
 	// MARK: - Helpers
 
-	/// Map scanned exp month and year to valid format (MM/YY).
+	/// Maps scanned exp month and year to valid format (MM/YY).
 	/// - Parameters:
 	///   - scannedExpMonth: `String` object, scanned expiry month.
 	///   - scannedExpYear: `String` object, scanned expiry year.
@@ -55,7 +55,7 @@ internal final class VGSScanCardDataMapUtils {
 		return "\(month)\(year)"
 	}
 
-	/// Map scanned exp month and year to long expiration date format (MM/YYYY).
+	/// Maps scanned exp month and year to long expiration date format (MM/YYYY).
 	/// - Parameters:
 	///   - scannedExpMonth: `String` object, scanned expiry month.
 	///   - scannedExpYear: `String` object, scanned expiry year.
@@ -142,7 +142,7 @@ internal final class VGSScanCardDataMapUtils {
 		return yearInt
 	}
 
-	/// Format month int.
+	/// Formats month int.
 	/// - Parameter monthInt: `Int`, should be month.
 	/// - Returns: `String` object, formatted month.
 	private static func formatMonthString(from monthInt: Int) -> String {
