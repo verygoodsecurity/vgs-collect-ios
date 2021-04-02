@@ -1,5 +1,5 @@
 //
-//  VGSScanCardDataMapUtilsTests.swift
+//  VGSBouncerDataMapUtilsTests.swift
 //  VGSCardScanCollectorTests
 //
 
@@ -8,8 +8,8 @@ import XCTest
 @testable import VGSCollectSDK
 @testable import VGSCardScanCollector
 
-/// Tests for bouncer data mapping to VGS Collect.
-class VGSScanCardDataMapUtilsTests: XCTestCase {
+/// Tests for Bouncer data mapping to VGS Collect.
+class VGSBouncerDataMapUtilsTests: XCTestCase {
 
 	/// Holds test data.
 	struct TestDataMappingItem {
