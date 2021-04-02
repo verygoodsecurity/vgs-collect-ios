@@ -47,7 +47,6 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
 																						scannedData: VGSCardIOExpirationDate(month: 3, year: 2025))
 
-
 	private let testDataItemMonthFirst = TestDataItem(items: [
 																							TestDataMappingItem(format: .expirationDate, expectedText: "0125"),
 
