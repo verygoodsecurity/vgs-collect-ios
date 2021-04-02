@@ -18,7 +18,7 @@ internal final class VGSScanCardIODataMapUtils {
 
 	/// Maps scanned expiration data to expected format.
 	/// - Parameters:
-	///   - data: `VGSScanCardIOExpirationData` object, holds scanned expiry date data.
+	///   - data: `VGSScanCardIOExpirationData` object, scanned expiry date data.
 	///   - format: `CradIODataType` object, CardIO data type.
 	/// - Returns: `String?`, formatted string or `nil`.
 	internal static func mapCardExpirationData(_ data: VGSScanCardIOExpirationData, scannedDataType: CradIODataType) -> String? {
@@ -40,7 +40,7 @@ internal final class VGSScanCardIODataMapUtils {
 
 	// MARK: - Helpers
 
-	/// Map scanned exp month and year to valid format (MM/YY).
+	/// Maps scanned exp month and year to valid format (MM/YY).
 	/// - Parameters:
 	///   - scannedExpMonth: `UInt` object, scanned expiry month.
 	///   - scannedExpYear: `UInt` object, scanned expiry year.
@@ -53,7 +53,7 @@ internal final class VGSScanCardIODataMapUtils {
 		return "\(month)\(year)"
 	}
 
-	/// Map scanned exp month and year to long expiration date format (MM/YYYY).
+	/// Maps scanned exp month and year to long expiration date format (MM/YYYY).
 	/// - Parameters:
 	///   - scannedExpMonth: `UInt` object, scanned expiry month.
 	///   - scannedExpYear: `UInt` object, scanned expiry year.
@@ -82,7 +82,7 @@ internal final class VGSScanCardIODataMapUtils {
 	private static func mapYear(_ scannedExpYear: UInt) -> String? {
 		guard let year = yearInt(from: scannedExpYear) else {return nil}
 
-		// CardIO holds year in long format, convert to short format manually.
+		// CardIO holds year in long format (2025), convert to short (25) format manually.
 		return shortYearString(from: year)
 	}
 
@@ -96,7 +96,7 @@ internal final class VGSScanCardIODataMapUtils {
 	}
 
 	/// Converts year to long format string.
-	/// - Parameter shortYear: `UInt` object, should be short year.
+	/// - Parameter longYear: `UInt` object, should be short year.
 	/// - Returns: `String` with long year format.
 	private static func shortYearString(from longYear: UInt) -> String {
 		return String("\(longYear)".suffix(2))
@@ -129,8 +129,8 @@ internal final class VGSScanCardIODataMapUtils {
 	}
 
 	/// Provides year Int.
-	/// - Parameter yearString: `String` object, year from CardIO.
-	/// - Returns: `UInt`, valid year or `nil`.
+	/// - Parameter year: `UInt` object, year from CardIO.
+	/// - Returns: `UInt?`, valid year or `nil`.
 	private static func yearInt(from year: UInt) -> UInt? {
 		guard isYearValid(year) else {
 			return nil
@@ -139,8 +139,8 @@ internal final class VGSScanCardIODataMapUtils {
 		return year
 	}
 
-	/// Format month int.
-	/// - Parameter monthInt: `UInt`, should be month.
+	/// Formats month int.
+	/// - Parameter monthInt: `UInt` object, should be month.
 	/// - Returns: `String` object, formatted month.
 	private static func formatMonthString(from monthInt: UInt) -> String {
 		// Add `0` for month less than 10.
