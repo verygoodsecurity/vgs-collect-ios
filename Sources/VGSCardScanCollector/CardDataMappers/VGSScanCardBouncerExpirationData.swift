@@ -6,7 +6,8 @@
 import Foundation
 
 /// Holds scanned expiration date data.
-/// Bouncer holds scanned data in format `0325` -> `03` for month, `25` for year.
+/// Bouncer holds scanned data expiration date with two separate strings.
+/// `03/25` on card -> `03` for month, `25` for year. Year is always `YY` in short format.
 internal struct VGSScanCardBouncerExpirationData {
 	/// Scanned month.
 	internal let monthString: String?
