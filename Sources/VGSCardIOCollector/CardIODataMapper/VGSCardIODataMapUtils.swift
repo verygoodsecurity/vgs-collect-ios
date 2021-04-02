@@ -18,7 +18,7 @@ internal final class VGSCardIODataMapUtils {
 
 	/// Maps scanned expiration data to expected format.
 	/// - Parameters:
-	///   - data: `VGSScanCardIOExpirationData` object, scanned expiry date data.
+	///   - data: `VGSCardIOExpirationDate` object, scanned expiry date data.
 	///   - format: `CradIODataType` object, CardIO data type.
 	/// - Returns: `String?`, formatted string or `nil`.
 	internal static func mapCardExpirationData(_ data: VGSCardIOExpirationDate, scannedDataType: CradIODataType) -> String? {

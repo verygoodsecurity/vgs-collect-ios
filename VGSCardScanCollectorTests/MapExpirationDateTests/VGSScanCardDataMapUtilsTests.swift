@@ -20,7 +20,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 	/// Holds set of data to test specific use case.
 	struct TestDataItem {
 		let items: [TestDataMappingItem]
-		let scannedData: VGSScanCardExpirationData
+		let scannedData: VGSBouncerExpirationDate
 	}
 
 	private let testDataItemLongMonth = TestDataItem(items: [
@@ -33,7 +33,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 																							TestDataMappingItem(format: .expirationYear, expectedText: "24"),
 
 																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2024")],
-																						scannedData: VGSScanCardExpirationData(monthString: "10", yearString: "24"))
+																						scannedData: VGSBouncerExpirationDate(monthString: "10", yearString: "24"))
 
 	private let testDataItemShortMonth = TestDataItem(items: [
 																							TestDataMappingItem(format: .expirationDate, expectedText: "0325"),
@@ -45,7 +45,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 																							TestDataMappingItem(format: .expirationYear, expectedText: "25"),
 
 																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
-																						scannedData: VGSScanCardExpirationData(monthString: "03", yearString: "25"))
+																						scannedData: VGSBouncerExpirationDate(monthString: "03", yearString: "25"))
 
 	/// Tests scan data.
 	func testScannedData() {
@@ -70,7 +70,7 @@ class VGSScanCardDataMapUtilsTests: XCTestCase {
 			let scannedYear = scannedData.yearString ?? ""
 
 			let outputText = "Index: \(index). \nCannot convert text for data: month: \(scannedMonth), year: \(scannedYear). \nFormat: \(format). \nExpectedText: \(expectedText)"
-			if let text = VGSScanCardDataMapUtils.mapCardExpirationData(scannedData, scannedDataType: format) {
+			if let text = VGSBouncerDataMapUtils.mapCardExpirationData(scannedData, scannedDataType: format) {
 				XCTAssertTrue(text == expectedText, outputText + "actual result: \(text)")
 			} else {
 				XCTFail(outputText + "actual result: *nil*")

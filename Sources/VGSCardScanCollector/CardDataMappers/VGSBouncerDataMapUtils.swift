@@ -1,5 +1,5 @@
 //
-//  VGSScanCardDataMapUtils.swift
+//  VGSBouncerDataMapUtils.swift
 //  VGSCollectSDK
 //
 
@@ -9,7 +9,7 @@ import VGSCollectSDK
 #endif
 
 /// Holds mapping utils for scanned card data.
-internal final class VGSScanCardDataMapUtils {
+internal final class VGSBouncerDataMapUtils {
 
 	// MARK: - Constants
 
@@ -20,10 +20,10 @@ internal final class VGSScanCardDataMapUtils {
 
 	/// Maps scanned expiration data to expected format.
 	/// - Parameters:
-	///   - data: `VGSScanCardBouncerExpirationData` object, scanned expiry date data.
+	///   - data: `VGSBouncerExpirationDate` object, scanned expiry date data.
 	///   - format: `CradScanDataType` object, card data type.
 	/// - Returns: `String?`, formatted string or `nil`.
-	internal static func mapCardExpirationData(_ data: VGSScanCardBouncerExpirationData, scannedDataType: CradScanDataType) -> String? {
+	internal static func mapCardExpirationData(_ data: VGSBouncerExpirationDate, scannedDataType: CradScanDataType) -> String? {
 		switch scannedDataType {
 		case .cardNumber, .name:
 			return nil
