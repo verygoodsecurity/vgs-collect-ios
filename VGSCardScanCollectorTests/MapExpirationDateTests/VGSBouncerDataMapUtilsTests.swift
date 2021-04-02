@@ -47,10 +47,36 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
 																						scannedData: VGSBouncerExpirationDate(monthString: "03", yearString: "25"))
 
+	private let testDataItemMonthFirst = TestDataItem(items: [
+																							TestDataMappingItem(format: .expirationDate, expectedText: "0125"),
+
+																							TestDataMappingItem(format: .expirationDateLong, expectedText: "012025"),
+
+																							TestDataMappingItem(format: .expirationMonth, expectedText: "01"),
+
+																							TestDataMappingItem(format: .expirationYear, expectedText: "25"),
+
+																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
+																						scannedData: VGSBouncerExpirationDate(monthString: "01", yearString: "25"))
+
+	private let testDataItemMonthLast = TestDataItem(items: [
+																							TestDataMappingItem(format: .expirationDate, expectedText: "1225"),
+
+																							TestDataMappingItem(format: .expirationDateLong, expectedText: "122025"),
+
+																							TestDataMappingItem(format: .expirationMonth, expectedText: "12"),
+
+																							TestDataMappingItem(format: .expirationYear, expectedText: "25"),
+
+																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
+																						scannedData: VGSBouncerExpirationDate(monthString: "12", yearString: "25"))
+
 	/// Tests scan data.
 	func testScannedData() {
 		verifyScanDataItem(testDataItemShortMonth)
 		verifyScanDataItem(testDataItemLongMonth)
+		verifyScanDataItem(testDataItemMonthFirst)
+		verifyScanDataItem(testDataItemMonthLast)
 	}
 
 	// MARK: - Helpers
