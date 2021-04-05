@@ -14,6 +14,8 @@ import Foundation
 /// - Allows to edit Unknown Payment Cards Models(brands not defined by SDK and Developer)
 public class VGSPaymentCards {
     
+  private init() {}
+    
   // MARK: - CardBrand Enum Cases
 
   /// Supported card brands
@@ -90,6 +92,10 @@ public class VGSPaymentCards {
     /// - Note: the order have impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     public static var cutomPaymentCardModels = [VGSCustomPaymentCardModel]()
 
+    /// An array of valid Card Brands, could include custom and default brands.
+    /// - Note: the order have impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    public static var validCardBrands: [VGSPaymentCardModelProtocol] = availableCards
+
     /// Array of Available Cards.
     /// -  Note: the order have impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     internal static var defaultCardModels: [VGSPaymentCardModelProtocol] {
@@ -108,7 +114,7 @@ public class VGSPaymentCards {
                                                       jcb ] }
       
     /// Array of All  Card Models(Custom + Default). Note: the order have impact on which card brand should be detected first by  `VGSPaymentCardModel.regex`
-    internal static var availableCards: [VGSPaymentCardModelProtocol] {
+     internal static var availableCards: [VGSPaymentCardModelProtocol] {
       return Self.cutomPaymentCardModels + Self.defaultCardModels
     }
 }
@@ -154,11 +160,11 @@ public extension VGSPaymentCards.CardBrand {
 internal extension VGSPaymentCards {
     
     static func getCardModelFromAvailableModels(brand: VGSPaymentCards.CardBrand) -> VGSPaymentCardModelProtocol? {
-      return Self.availableCards.first(where: { $0.brand == brand})
+      return Self.validCardBrands.first(where: { $0.brand == brand})
     }
 
     static func detectCardBrandFromAvailableCards(input: String) -> VGSPaymentCards.CardBrand {
-      for cardModel in Self.availableCards {
+      for cardModel in Self.validCardBrands {
           let predicate = NSPredicate(format: "SELF MATCHES %@", cardModel.regex)
           if predicate.evaluate(with: input) == true {
             return cardModel.brand
