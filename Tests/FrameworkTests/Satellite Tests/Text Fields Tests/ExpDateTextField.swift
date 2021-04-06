@@ -30,9 +30,18 @@ class ExpDateTextField: VGSCollectBaseTestCase {
     
     func testMonthFormat() {
         textField.monthPickerFormat = .longSymbols
-        XCTAssertTrue(textField.monthsDataSource.first == "January")
+
+			  // For Arabic long and short month is the same.
+				let firstLongAr = "يناير"
+			  var validLongMonth = "January"
+			  var validShortMonth = "Jan"
+				if Locale.current.languageCode == "ar" {
+					validLongMonth = firstLongAr
+					validShortMonth = firstLongAr
+				}
+        XCTAssertTrue(textField.monthsDataSource.first == validLongMonth)
         textField.monthPickerFormat = .shortSymbols
-        XCTAssertTrue(textField.monthsDataSource.first == "Jan")
+        XCTAssertTrue(textField.monthsDataSource.first == validShortMonth)
         textField.monthPickerFormat = .numbers
         XCTAssertTrue(textField.monthsDataSource.last == "12")
     }

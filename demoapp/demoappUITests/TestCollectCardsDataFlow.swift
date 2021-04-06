@@ -18,7 +18,7 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
 
       let cardHolderNameField = app.textFields["Cardholder Name"]
       let cardNumberField = app.textFields["4111 1111 1111 1111"]
-      let expDateField = app.textFields["MM/YYYY"]
+      let expDateField = app.textFields["MM/YY"]
       let cvcField = app.secureTextFields["CVC"]
       let consoleLabel = app.staticTexts.matching(identifier: "ConsoleLabelIdentifire")
       let navigationBar = app.navigationBars["Collect Payment Cards"].staticTexts["Collect Payment Cards"]
