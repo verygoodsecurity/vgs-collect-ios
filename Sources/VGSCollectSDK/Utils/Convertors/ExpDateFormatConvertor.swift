@@ -33,7 +33,7 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
     let inputYear = String(input.suffix(inputFormat.yearCharacters))
     let inputStart = input.dropLast(inputFormat.yearCharacters)
     
-    var dateFormatter = DateFormatter()
+		let dateFormatter = DateFormatter()
     dateFormatter.calendar = Calendar(identifier: .gregorian)
     dateFormatter.dateFormat = inputFormat.dateYearFormat
 		dateFormatter.locale = Locale(identifier: "en_US")
