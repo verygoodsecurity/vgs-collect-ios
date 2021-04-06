@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "04A09FD5-BB5B-41F2-A2F1-B0C4ADA30E43",
+      "name" : "English",
+      "options" : {
+
+      }
+    },
+    {
+      "id" : "19689B0B-11BE-421B-A1F9-6F66CA2F01B6",
+      "name" : "Arabic",
+      "options" : {
+        "language" : "ar"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:VGSCollectSDK.xcodeproj",
+        "identifier" : "FD2495502330CB49009024E6",
+        "name" : "FrameworkTests"
+      }
+    }
+  ],
+  "version" : 1
+}
