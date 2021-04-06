@@ -32,7 +32,7 @@ class ExpDateTextField: VGSCollectBaseTestCase {
         textField.monthPickerFormat = .longSymbols
 
 			  // For Arabic long and short month is the same.
-				let firstLongAr = "1يناير"
+				let firstLongAr = "يناير"
 			  var validLongMonth = "January"
 			  var validShortMonth = "Jan"
 				if Locale.current.languageCode == "ar" {
