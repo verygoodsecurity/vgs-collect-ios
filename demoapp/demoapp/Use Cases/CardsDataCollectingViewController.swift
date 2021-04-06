@@ -147,7 +147,7 @@ class CardsDataCollectingViewController: UIViewController {
 
         expCardDate.configuration = expDateConfiguration
         expCardDate.placeholder = "MM/YY"
-        expCardDate.monthPickerFormat = .shortSymbols
+        expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.type = .cvc
