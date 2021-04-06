@@ -86,6 +86,7 @@ class ExpDateTextFieldTests: VGSCollectBaseTestCase {
         /// Test today
         let today = Date()
         let formatter = DateFormatter()
+				formatter.locale = Locale(identifier: "en_US")
 
         formatter.dateFormat = "yy"
         let todayYY = formatter.string(from: today)
