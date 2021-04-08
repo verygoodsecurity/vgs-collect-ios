@@ -163,8 +163,8 @@ public class VGSTextField: UIView {
     }
   
   internal func getOutputText() -> String? {
-    if let config = configuration as? FormatConvertable, let input = textField.getSecureTextWithDivider, let outputFormat = config.outputFormat, let inputFormat = config.inputFormat {
-      return config.convertor.convert(input, inputFormat: inputFormat, outputFormat: outputFormat)
+    if let config = configuration as? FormatConvertable, let input = textField.getSecureTextWithDivider, let outputFormat = config.outputFormat, let inputFormat = config.inputFormat, let outputOrder = config.outputOrder {
+        return config.convertor.convert(input, inputFormat: inputFormat, outputFormat: outputFormat, outputOrder: outputOrder)
     }
     return textField.getSecureTextWithDivider
   }

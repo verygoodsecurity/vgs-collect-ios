@@ -16,22 +16,26 @@ internal protocol FormatConvertable {
   var inputFormat: VGSCardExpDateFormat? { get }
   /// Output text format
   var outputFormat: VGSCardExpDateFormat? { get }
+  /// Output order
+  var outputOrder: VGSCardExpDateOrder? { get }
   /// Text convertor object
   var convertor: TextFormatConvertor { get }
 }
 
 internal protocol TextFormatConvertor {
-  func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat) -> String
+    func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat,outputOrder: VGSCardExpDateOrder) -> String
 }
 
 /// Card Expiration date format convertor
 internal class ExpDateFormatConvertor: TextFormatConvertor {
   
   /// Convert Exp Date String with input `CardExpDateFormat` to Output `CardExpDateFormat`
-  func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat) -> String {
+  func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat, outputOrder: VGSCardExpDateOrder) -> String {
     
     let inputYear = String(input.suffix(inputFormat.yearCharacters))
-    let inputStart = input.dropLast(inputFormat.yearCharacters)
+    let inputMonth = String(input.prefix(inputFormat.monthCharacters))
+    let isMonthFirst = outputOrder == .monthFirst
+    let inputDivider = String(input.dropLast(inputFormat.yearCharacters)).dropFirst(inputFormat.monthCharacters)
     
 		let dateFormatter = DateFormatter()
     dateFormatter.calendar = Calendar(identifier: .gregorian)
@@ -41,7 +45,7 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
     if let date = dateFormatter.date(from: inputYear) {
       dateFormatter.dateFormat = outputFormat.dateYearFormat
       let outputYear = dateFormatter.string(from: date)
-      let output = String(inputStart + outputYear)
+        let output = isMonthFirst ? String(inputMonth + inputDivider + outputYear) : String(outputYear + inputDivider + inputMonth)
       return output
     }
     let text = "CANNOT CONVERT DATE FORMAT! NOT VALID INPUT YEAR - \(inputYear). WILL USE ORIGINAL(INPUT) DATE FORMAT!"

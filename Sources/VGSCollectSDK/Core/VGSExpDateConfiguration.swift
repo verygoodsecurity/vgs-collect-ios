@@ -19,6 +19,9 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
   
   /// Output date format.
   public var outputDateFormat: VGSCardExpDateFormat?
+    
+  /// Output date order.
+  public var outputDateOrder: VGSCardExpDateOrder?
   
   /// Output date format.
   public var serializers: [VGSFormatSerializerProtocol] = []
@@ -32,7 +35,7 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
   // MARK: - `VGSExpDateConfiguration` implementation
   
   /// Serialize Expiration Date
-  internal func serialize(_ content: String) -> [String: Any] {
+internal func serialize(_ content: String) -> [String: Any] {
     var result = [String: Any]()
     for serializer in serializers {
       if let serializer = serializer as? VGSExpDateSeparateSerializer {
@@ -50,7 +53,7 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
         /// set result for specific fieldnames
         result[serializer.monthFieldName] = mth
         result[serializer.yearFieldName] = year
-      }
+      } 
     }
     return result
   }
@@ -70,6 +73,10 @@ extension VGSExpDateConfiguration: FormatConvertable {
 
   internal var inputFormat: VGSCardExpDateFormat? {
     return inputDateFormat
+  }
+    
+  internal var outputOrder: VGSCardExpDateOrder? {
+    return outputDateOrder
   }
   
   internal var convertor: TextFormatConvertor {

@@ -40,6 +40,14 @@ public enum VGSCardExpDateFormat {
   }
 }
 
+public enum VGSCardExpDateOrder {
+    /// Exp.Date in format mm/yy: 01/22
+    case monthFirst
+    
+    /// Exp.Date in format yy/mm: 22/01
+    case yearFirst
+}
+
 /**
 Validate input in scope of matching card expiration date format and time range.
 */
