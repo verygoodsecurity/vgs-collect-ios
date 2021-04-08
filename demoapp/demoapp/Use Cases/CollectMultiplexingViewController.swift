@@ -174,7 +174,7 @@ class CollectMultiplexingViewController: UIViewController {
 			case .success(_, let data, _):
 				if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
 					// swiftlint:disable force_try
-					let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
+					let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["data"]!, options: .prettyPrinted), encoding: .utf8)!)
 					self?.consoleLabel.text = "Success: \n\(response)"
 					print(response)
 					// swiftlint:enable force_try
