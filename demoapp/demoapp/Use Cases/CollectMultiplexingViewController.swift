@@ -6,7 +6,7 @@
 import UIKit
 import VGSCollectSDK
 
-/// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
+/// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS for Multiplexing setup.
 class CollectMultiplexingViewController: UIViewController {
 
 	@IBOutlet weak var cardDataStackView: UIStackView!
@@ -81,7 +81,7 @@ class CollectMultiplexingViewController: UIViewController {
 
 	private func setupElementsConfiguration() {
 
-		let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_number")
+		let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "data.attributes.details.number")
 		cardConfiguration.type = .cardNumber
 		cardNumber.configuration = cardConfiguration
 		cardNumber.placeholder = "4111 1111 1111 1111"
@@ -91,10 +91,11 @@ class CollectMultiplexingViewController: UIViewController {
 		cardNumber.becomeFirstResponder()
 
 		/// Use `VGSExpDateConfiguration` if you need to convert output date format
-		let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
+		let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "data.attributes.details")
 		expDateConfiguration.type = .expDate
 		expDateConfiguration.inputDateFormat = .shortYear
 		expDateConfiguration.outputDateFormat = .longYear
+		expDateConfiguration.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "data.attributes.details.month", yearFieldName: "data.attributes.details.year")]
 
 		/// Default .expDate format is "##/##"
 		expDateConfiguration.formatPattern = "##/##"
@@ -108,7 +109,7 @@ class CollectMultiplexingViewController: UIViewController {
 		expCardDate.placeholder = "MM/YY"
 		expCardDate.monthPickerFormat = .longSymbols
 
-		let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
+		let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "data.attributes.details.verification_value")
 		cvcConfiguration.type = .cvc
 
 		cvcCardNum.configuration = cvcConfiguration
@@ -116,7 +117,7 @@ class CollectMultiplexingViewController: UIViewController {
 		cvcCardNum.placeholder = "CVC"
 		cvcCardNum.tintColor = .lightGray
 
-		let firstNameConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
+		let firstNameConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "data.attributes.details.first_name")
 		firstNameConfiguration.type = .cardHolderName
 		firstNameConfiguration.keyboardType = .namePhonePad
 		/// Required to be not empty
@@ -125,7 +126,7 @@ class CollectMultiplexingViewController: UIViewController {
 		cardHolderFirstName.configuration = firstNameConfiguration
 		cardHolderFirstName.placeholder = "First Name"
 
-		let lastNameConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
+		let lastNameConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "data.attributes.details.last_name")
 		lastNameConfiguration.type = .cardHolderName
 		lastNameConfiguration.keyboardType = .namePhonePad
 		/// Required to be not empty
@@ -145,7 +146,7 @@ class CollectMultiplexingViewController: UIViewController {
 	}
 
 	// Upload data from TextFields to VGS
-	@IBAction func uploadAction(_ sender: Any) {
+	@IBAction func collectForMultiplexing(_ sender: Any) {
 		// hide kayboard
 		hideKeyboard()
 
@@ -154,12 +155,19 @@ class CollectMultiplexingViewController: UIViewController {
 			textField.borderColor = textField.state.isValid ? .lightGray : .red
 		}
 
-		// send extra data
-		var extraData = [String: Any]()
-		extraData["customKey"] = "Custom Value"
+		// Multiplexing extra data
+		var extraMultiplexingData: [String: Any] = [
+			"data": [
+				"type" : "financial_instruments",
+				"attributes" : [
+					"instrument_type": "card"
+				]
+		]]
+
+		let multiplexingPath = "/api/v1/financial_instruments"
 
 		/// New sendRequest func
-		vgsCollect.sendData(path: "/post", extraData: extraData) { [weak self](response) in
+		vgsCollect.sendData(path: multiplexingPath, extraData: extraMultiplexingData) { [weak self](response) in
 
 			self?.consoleStatusLabel.text = "RESPONSE"
 			switch response {

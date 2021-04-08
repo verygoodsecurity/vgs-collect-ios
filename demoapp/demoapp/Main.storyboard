@@ -782,8 +782,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="collectForMultiplexing:" destination="YWP-j6-nBY" eventType="touchUpInside" id="A9G-Qe-LNB"/>
                                             <action selector="submitAction:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="eg0-2F-kI6"/>
-                                            <action selector="uploadAction:" destination="YWP-j6-nBY" eventType="touchUpInside" id="OhO-wh-Df3"/>
                                         </connections>
                                     </button>
                                 </subviews>
