@@ -23,7 +23,7 @@ internal protocol FormatConvertable {
 }
 
 internal protocol TextFormatConvertor {
-    func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat,outputOrder: VGSCardExpDateOrder) -> String
+  func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat,outputOrder: VGSCardExpDateOrder) -> String
 }
 
 /// Card Expiration date format convertor
@@ -45,7 +45,7 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
     if let date = dateFormatter.date(from: inputYear) {
       dateFormatter.dateFormat = outputFormat.dateYearFormat
       let outputYear = dateFormatter.string(from: date)
-        let output = isMonthFirst ? String(inputMonth + inputDivider + outputYear) : String(outputYear + inputDivider + inputMonth)
+      let output = isMonthFirst ? String(inputMonth + inputDivider + outputYear) : String(outputYear + inputDivider + inputMonth)
       return output
     }
     let text = "CANNOT CONVERT DATE FORMAT! NOT VALID INPUT YEAR - \(inputYear). WILL USE ORIGINAL(INPUT) DATE FORMAT!"

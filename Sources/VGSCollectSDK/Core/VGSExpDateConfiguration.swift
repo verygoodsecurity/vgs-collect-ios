@@ -35,7 +35,7 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
   // MARK: - `VGSExpDateConfiguration` implementation
   
   /// Serialize Expiration Date
-internal func serialize(_ content: String) -> [String: Any] {
+ internal func serialize(_ content: String) -> [String: Any] {
     var result = [String: Any]()
     for serializer in serializers {
       if let serializer = serializer as? VGSExpDateSeparateSerializer {
@@ -53,7 +53,7 @@ internal func serialize(_ content: String) -> [String: Any] {
         /// set result for specific fieldnames
         result[serializer.monthFieldName] = mth
         result[serializer.yearFieldName] = year
-      } 
+      }
     }
     return result
   }
