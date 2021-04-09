@@ -6,7 +6,7 @@ The [VGS Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/mas
 ## Flow diagram
 
 <p align="center">
-  <img src="./demoapp/demoapp/UseCases/MultiplexingSetup/multiplexing-flow.png" />
+  <img src="./multiplexing-flow.png" alt="multiplexing-flow"/>
 </p>
 
 ## How to run multiplexing sample
