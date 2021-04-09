@@ -10,7 +10,7 @@ The [VGS Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/mas
 
 3. Run `DemoApp` and select `Collect Card for Multiplexing`.
 
-4. With provided Collect setup, form will make a request to the `/api/v1/financial_instruments` endpoint with the following data structure:
+4. Fill in form with valid card data and press `Upload`. With provided Collect setup, form will make a request to the `/api/v1/financial_instruments` endpoint with the following data structure:
 
 ```
 {
