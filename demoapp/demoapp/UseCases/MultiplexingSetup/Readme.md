@@ -6,7 +6,7 @@ The [VGS Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/mas
 ## Flow diagram
 
 <p align="center">
-  <img src="https://api.media.atlassian.com/file/804e00b0-78b7-4738-b6f5-a82224a5e8af/binary?token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI5N2Y2ODMyNS0yNTlhLTQxZjAtYWQyNi1iYjA4ZmVjZWQyZGQiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpmaWxlOjgwNGUwMGIwLTc4YjctNDczOC1iNmY1LWE4MjIyNGE1ZThhZiI6WyJyZWFkIl19LCJleHAiOjE2MTgwMDYyMjUsIm5iZiI6MTYxNzkyMzI0NX0.FGxs70deJGR5iqb1Ew7Bz467E2KxpTkURST0o5OTUiE&client=97f68325-259a-41f0-ad26-bb08feced2dd&name=multiplexing-runtime-flow.png" />
+  <img src="./demoapp/demoapp/UseCases/MultiplexingSetup/multiplexing-flow.png" />
 </p>
 
 ## How to run multiplexing sample
