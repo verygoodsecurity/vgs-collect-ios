@@ -9,6 +9,8 @@ import VGSCollectSDK
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS for Multiplexing setup.
 class CollectMultiplexingViewController: UIViewController {
 
+	// MARK: - Outlets
+
 	@IBOutlet weak var cardDataStackView: UIStackView!
 	@IBOutlet weak var consoleStatusLabel: UILabel!
 	@IBOutlet weak var consoleLabel: UILabel!
@@ -35,15 +37,6 @@ class CollectMultiplexingViewController: UIViewController {
 		setupUI()
 		setupElementsConfiguration()
 
-		// check if device is jailbroken
-		if VGSCollect.isJailbroken() {
-			print("Device is Jailbroken")
-		}
-
-		// set custom headers
-		vgsCollect.customHeaders = [
-			"my custome header": "some custom data"
-		]
 
 		// Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
 		vgsCollect.observeStates = { [weak self] form in
@@ -156,7 +149,7 @@ class CollectMultiplexingViewController: UIViewController {
 		}
 
 		// Multiplexing extra data
-		var extraMultiplexingData: [String: Any] = [
+		let extraMultiplexingData: [String: Any] = [
 			"data": [
 				"type" : "financial_instruments",
 				"attributes" : [
@@ -200,6 +193,7 @@ class CollectMultiplexingViewController: UIViewController {
 }
 
 // MARK: - VGSTextFieldDelegate
+
 extension CollectMultiplexingViewController: VGSTextFieldDelegate {
 	func vgsTextFieldDidChange(_ textField: VGSTextField) {
 		print(textField.state.description)
