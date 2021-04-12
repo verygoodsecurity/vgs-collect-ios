@@ -215,7 +215,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     }
    
    func testAvailableBrands() {
-    XCTAssertTrue(VGSPaymentCards.availableCards.count == VGSPaymentCards.defaultCardModels.count)
+    XCTAssertTrue(VGSPaymentCards.availableCardBrands.count == VGSPaymentCards.defaultCardModels.count)
 
     let customBrand1 = VGSCustomPaymentCardModel(name: "custom-brand-1",
                                                  regex: "^9\\d*$",
@@ -234,7 +234,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
                                                  brandIcon: nil)
     let customBrands = [customBrand1, customBrand2]
     VGSPaymentCards.cutomPaymentCardModels = customBrands
-    XCTAssertTrue(VGSPaymentCards.availableCards.count == VGSPaymentCards.defaultCardModels.count + customBrands.count)
+    XCTAssertTrue(VGSPaymentCards.availableCardBrands.count == VGSPaymentCards.defaultCardModels.count + customBrands.count)
    }
   
   func resetCardBrands() {
