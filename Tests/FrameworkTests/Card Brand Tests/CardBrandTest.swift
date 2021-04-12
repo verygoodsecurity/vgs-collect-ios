@@ -27,6 +27,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
     override func tearDown() {
         storage = nil
         cardTextField = nil
+        VGSPaymentCards.validCardBrands = nil
     }
     
     func testCardBrandDetectionReturnsTrue() {
