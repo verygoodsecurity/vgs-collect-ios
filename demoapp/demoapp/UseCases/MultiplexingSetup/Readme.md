@@ -11,7 +11,7 @@ The [VGS Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/mas
 
 ## How to run multiplexing sample
 
-1. Follow the instructions and install [Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/master/integration/README.md) app.
+1. Follow the instructions and install [Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/master/integration/README.md) app. (Contact support@verygoodsecurity.com if you need access)
 
 2. In `DemoApp`,  change `vaultId` to your vault id in `AppCollectorConfiguration` associated with Multiplexing setup.
 
