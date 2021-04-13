@@ -89,15 +89,15 @@ public class VGSPaymentCards {
     // MARK: - Custom Payment Card Models
   
     /// Array of Custom Payment Card Models.
-    /// - Note: the order have impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    /// - Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     public static var cutomPaymentCardModels = [VGSCustomPaymentCardModel]()
 
     /// An array of valid Card Brands, could include custom and default brands. If not set, will use `availableCardBrands` array insted.
-    /// - Note: the order have impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    /// - Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     public static var validCardBrands: [VGSPaymentCardModelProtocol]?
 
     /// Array of Available Cards.
-    /// -  Note: the order have impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    /// -  Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     internal static var defaultCardModels: [VGSPaymentCardModelProtocol] {
                                             return  [ elo,
                                                       visaElectron,
@@ -116,11 +116,11 @@ public class VGSPaymentCards {
     /// Array of CardBrands that should be supported by SDK.
     ///  Will return an array of `validCardBrands` when it's not nil.
     ///  Will return All Card Models(Custom + Default) if specific `validCardBrands` is nil.
-    /// - Note: the order have impact on which card brand should be detected first by  `VGSPaymentCardModel.regex`
+    /// - Note: the order has impact on which card brand should be detected first by  `VGSPaymentCardModel.regex`
      internal static var availableCardBrands: [VGSPaymentCardModelProtocol] {
       /// Check if uset setup an array of specific CardBrands that should be supported by SDK.
-      if let customBrandSet = validCardBrands {
-        return customBrandSet
+      if let userValidBrands = validCardBrands {
+        return userValidBrands
       }
       /// If no specific valid brands, return All Card Models(Custom + Default)
       return Self.cutomPaymentCardModels + Self.defaultCardModels
