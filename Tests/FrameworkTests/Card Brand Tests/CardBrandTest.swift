@@ -168,7 +168,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
         /// Check if brand in valid brands
         let isValidModel = validBrands.contains(model.brand)
         
-        /// Get array of test cad numbers for specific brands
+        /// Get array of test card numbers for specific brands
         let testCardNumbers = (model.brand == customBrandModel.brand) ? ["9111 1111 1111 111"] : model.brand.cardNumbers
         
         for cardNumber in testCardNumbers {
