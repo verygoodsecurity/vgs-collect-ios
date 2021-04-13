@@ -92,7 +92,7 @@ public class VGSPaymentCards {
     /// - Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     public static var cutomPaymentCardModels = [VGSCustomPaymentCardModel]()
 
-    /// An array of valid Card Brands, could include custom and default brands. If not set, will use `availableCardBrands` array insted.
+    /// An array of valid Card Brands, could include custom and default brands. If not set, will use `availableCardBrands` array instead.
     /// - Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
     public static var validCardBrands: [VGSPaymentCardModelProtocol]?
 
