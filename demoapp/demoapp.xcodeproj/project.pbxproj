@@ -8,12 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */; };
-		322196DC24D1918600A66EC9 /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DB24D1918600A66EC9 /* CardsDataCollectingViewController.swift */; };
 		322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DD24D19CE900A66EC9 /* InitialViewController.swift */; };
 		3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */; };
-		3258CB3F24D1C2FB00C0CC8D /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB3E24D1C2FB00C0CC8D /* SSNCollectingViewController.swift */; };
-		3258CB4124D1C32500C0CC8D /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */; };
-		3258CB4324D1C34100C0CC8D /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */; };
 		325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */; };
 		326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */; };
 		32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */; };
@@ -24,13 +20,19 @@
 		44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */; };
 		44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */; };
 		446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */; };
+		44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */; };
+		44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691326205F670014645F /* CardsDataCollectingViewController.swift */; };
+		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
+		44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691526205F670014645F /* CustomDataCollectingViewController.swift */; };
+		44D8691E26205F670014645F /* CollectMultiplexingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691726205F670014645F /* CollectMultiplexingViewController.swift */; };
+		44D8691F26205F670014645F /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 44D8691826205F670014645F /* Readme.md */; };
+		44D8692026205F670014645F /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691926205F670014645F /* FilePickerViewController.swift */; };
 		44E292B425CD5BD900717F1C /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E292B325CD5BD900717F1C /* UIColor+Extensions.swift */; };
 		C8CBAAC0A0A75BF9CF5A7FA4 /* Pods_demoapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */; };
 		FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9772304616C00B670DD /* AppDelegate.swift */; };
 		FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD12B97E2304616E00B670DD /* Assets.xcassets */; };
 		FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD12B9802304616E00B670DD /* LaunchScreen.storyboard */; };
 		FD12B98D2304616E00B670DD /* demoappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B98C2304616E00B670DD /* demoappTests.swift */; };
-		FD7503A323F468E900591668 /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7503A223F468E900591668 /* FilePickerViewController.swift */; };
 		FDD398F0247D7A7100B55057 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDD398EF247D7A7100B55057 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -53,12 +55,8 @@
 
 /* Begin PBXFileReference section */
 		218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		322196DB24D1918600A66EC9 /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
 		322196DD24D19CE900A66EC9 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataFlow.swift; sourceTree = "<group>"; };
-		3258CB3E24D1C2FB00C0CC8D /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
-		3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
-		3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataCollectingViewController.swift; sourceTree = "<group>"; };
 		325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectorConfiguration.swift; sourceTree = "<group>"; };
 		326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCustomCardNumbersDataFlow.swift; sourceTree = "<group>"; };
 		32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCustomDataFlow.swift; sourceTree = "<group>"; };
@@ -68,6 +66,13 @@
 		44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsMockedDataProvider.swift; sourceTree = "<group>"; };
 		44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UITestsMockedData.plist; sourceTree = "<group>"; };
 		446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
+		44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
+		44D8691326205F670014645F /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
+		44D8691426205F670014645F /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
+		44D8691526205F670014645F /* CustomDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataCollectingViewController.swift; sourceTree = "<group>"; };
+		44D8691726205F670014645F /* CollectMultiplexingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectMultiplexingViewController.swift; sourceTree = "<group>"; };
+		44D8691826205F670014645F /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		44D8691926205F670014645F /* FilePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerViewController.swift; sourceTree = "<group>"; };
 		44E292B325CD5BD900717F1C /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		5FB2107869E88DC903D1C009 /* Pods-demoappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.release.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.release.xcconfig"; sourceTree = "<group>"; };
 		67F5FCBA93936AD73802D53D /* Pods-demoappUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappUITests.debug.xcconfig"; path = "Target Support Files/Pods-demoappUITests/Pods-demoappUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,7 +91,6 @@
 		FD12B98E2304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD12B9932304616E00B670DD /* demoappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9992304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD7503A223F468E900591668 /* FilePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewController.swift; sourceTree = "<group>"; };
 		FDD398EF247D7A7100B55057 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FDD398F2247D7A7C00B55057 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDD398F4247D877800B55057 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -121,16 +125,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3258CB4424D1C35900C0CC8D /* Use Cases */ = {
+		44D8691126205F670014645F /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				322196DB24D1918600A66EC9 /* CardsDataCollectingViewController.swift */,
-				3258CB4024D1C32500C0CC8D /* CustomPaymentCardsViewController.swift */,
-				3258CB3E24D1C2FB00C0CC8D /* SSNCollectingViewController.swift */,
-				3258CB4224D1C34100C0CC8D /* CustomDataCollectingViewController.swift */,
-				FD7503A223F468E900591668 /* FilePickerViewController.swift */,
+				44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */,
+				44D8691326205F670014645F /* CardsDataCollectingViewController.swift */,
+				44D8691426205F670014645F /* SSNCollectingViewController.swift */,
+				44D8691526205F670014645F /* CustomDataCollectingViewController.swift */,
+				44D8691626205F670014645F /* MultiplexingSetup */,
+				44D8691926205F670014645F /* FilePickerViewController.swift */,
 			);
-			path = "Use Cases";
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		44D8691626205F670014645F /* MultiplexingSetup */ = {
+			isa = PBXGroup;
+			children = (
+				44D8691726205F670014645F /* CollectMultiplexingViewController.swift */,
+				44D8691826205F670014645F /* Readme.md */,
+			);
+			path = MultiplexingSetup;
 			sourceTree = "<group>";
 		};
 		44E292B025CD5BBB00717F1C /* Helpers */ = {
@@ -211,8 +225,8 @@
 				FD12B97E2304616E00B670DD /* Assets.xcassets */,
 				FD12B9832304616E00B670DD /* Info.plist */,
 				FD12B9802304616E00B670DD /* LaunchScreen.storyboard */,
-				3258CB4424D1C35900C0CC8D /* Use Cases */,
 				FDD398EF247D7A7100B55057 /* Main.storyboard */,
+				44D8691126205F670014645F /* UseCases */,
 				322196DD24D19CE900A66EC9 /* InitialViewController.swift */,
 				325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */,
 				44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */,
@@ -353,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44D8691F26205F670014645F /* Readme.md in Resources */,
 				FDD398F0247D7A7100B55057 /* Main.storyboard in Resources */,
 				FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */,
 				FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */,
@@ -467,16 +482,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3258CB4124D1C32500C0CC8D /* CustomPaymentCardsViewController.swift in Sources */,
+				44D8691E26205F670014645F /* CollectMultiplexingViewController.swift in Sources */,
 				44E292B425CD5BD900717F1C /* UIColor+Extensions.swift in Sources */,
 				322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */,
-				3258CB3F24D1C2FB00C0CC8D /* SSNCollectingViewController.swift in Sources */,
-				3258CB4324D1C34100C0CC8D /* CustomDataCollectingViewController.swift in Sources */,
+				44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
+				44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */,
+				44D8692026205F670014645F /* FilePickerViewController.swift in Sources */,
 				446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */,
-				322196DC24D1918600A66EC9 /* CardsDataCollectingViewController.swift in Sources */,
+				44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */,
+				44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */,
 				325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */,
-				FD7503A323F468E900591668 /* FilePickerViewController.swift in Sources */,
 				44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,7 +40,7 @@ internal class VGSCardScanHandler: NSObject, VGSScanHandlerProtocol {
 				print("ScanViewController.version(): \(ScanViewController.version())")
 				self.view = vc
 				vc.scanDelegate = self
-				viewController.present(vc, animated: true, completion: completion)
+				viewController.present(vc, animated: animated, completion: completion)
 			} else {
 				print("⚠️ Unsupported iOS version, should be iOS 11.2 or higher.")
 			}
