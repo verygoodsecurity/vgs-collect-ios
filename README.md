@@ -481,6 +481,8 @@ Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food">here</a>.
 
+Also you can check our cost [optimization demo](./demoapp/demoapp/UseCases/MultiplexingSetup/) with Multiplexing.
+
 ### Documentation
 -  SDK Documentation: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
 -  API Documentation: https://verygoodsecurity.github.io/vgs-collect-ios/

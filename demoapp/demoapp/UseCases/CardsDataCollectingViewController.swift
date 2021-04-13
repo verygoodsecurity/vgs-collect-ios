@@ -130,7 +130,6 @@ class CardsDataCollectingViewController: UIViewController {
         cardNumber.cardIconLocation = .right
       
         cardNumber.becomeFirstResponder()
-
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
