@@ -95,7 +95,7 @@ internal extension VGSPaymentCards.CardBrand {
   
     var cvcFormatPattern: String {
       var maxLength = 0
-      if let cardBrand = VGSPaymentCards.availableCards.first(where: { $0.brand == self }) {
+      if let cardBrand = VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self }) {
         maxLength = cardBrand.cvcLengths.max() ?? 0
       } else {
         maxLength = VGSPaymentCards.unknown.cvcLengths.max() ?? 0
