@@ -89,8 +89,6 @@ class CollectMultiplexingViewController: UIViewController {
 		expDateConfiguration.inputDateFormat = .shortYear
 		expDateConfiguration.outputDateFormat = .longYear
 		expDateConfiguration.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "data.attributes.details.month", yearFieldName: "data.attributes.details.year")]
-
-		/// Default .expDate format is "##/##"
 		expDateConfiguration.formatPattern = "##/##"
 
 		/// Update validation rules
@@ -148,7 +146,7 @@ class CollectMultiplexingViewController: UIViewController {
 			textField.borderColor = textField.state.isValid ? .lightGray : .red
 		}
 
-		// Multiplexing extra data
+		// Required multiplexing extra data
 		let extraMultiplexingData: [String: Any] = [
 			"data": [
 				"type" : "financial_instruments",

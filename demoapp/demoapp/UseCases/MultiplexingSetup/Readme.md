@@ -13,7 +13,7 @@ The [VGS Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/mas
 
 1. Follow the instructions and install [Multiplexing](https://github.com/verygoodsecurity/multiplexing/blob/master/integration/README.md) app.
 
-2. Change `vaultId` to your vault id in `AppCollectorConfiguration` associated with Multiplexing setup.
+2. In `DemoApp`,  change `vaultId` to your vault id in `AppCollectorConfiguration` associated with Multiplexing setup.
 
 3. Run `DemoApp` and select `Collect Card for Multiplexing`.
 
