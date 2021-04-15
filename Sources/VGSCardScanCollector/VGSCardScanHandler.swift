@@ -96,6 +96,14 @@ extension VGSCardScanHandler: ScanDelegate {
 		if let longExpirationDate = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateLong), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateLong) {
 			textfield.setText(longExpirationDate)
 		}
+    
+    if let shortExpirationDateWithYearFirst = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateShortYearThenMonth), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateShortYearThenMonth) {
+      textfield.setText(shortExpirationDateWithYearFirst)
+    }
+    
+    if let longExpirationDateWithYearFirst = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateLongYearThenMonth), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationDateLongYearThenMonth) {
+      textfield.setText(longExpirationDateWithYearFirst)
+    }
 
 		if let expiryMonth = VGSBouncerDataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationMonth), let textfield = cardScanDelegate.textFieldForScannedData(type: .expirationMonth) {
 			textfield.setText(expiryMonth)
