@@ -75,6 +75,14 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
 			if let longExpirationDate = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateLong), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDateLong) {
 				textfield.setText(longExpirationDate)
 			}
+      
+      if let shortExpirationDateWithYearFirst = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateShortYearThenMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDateShortYearThenMonth) {
+        textfield.setText(shortExpirationDateWithYearFirst)
+      }
+      
+      if let longExpirationDateWithYearFirst = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationDateLongYearThenMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationDateLongYearThenMonth) {
+        textfield.setText(longExpirationDateWithYearFirst)
+      }
 
 			if let expiryMonth = VGSCardIODataMapUtils.mapCardExpirationData(expiryDateData, scannedDataType: .expirationMonth), let textfield = cardIOdelegate.textFieldForScannedData(type: .expirationMonth) {
 				textfield.setText(expiryMonth)
