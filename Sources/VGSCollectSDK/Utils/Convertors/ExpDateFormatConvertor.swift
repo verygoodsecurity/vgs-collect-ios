@@ -30,8 +30,10 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
   /// Convert Exp Date String with input `CardExpDateFormat` to Output `CardExpDateFormat`
   func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat) -> String {
     
-    let inputYear = String(input.suffix(inputFormat.yearCharacters))
-    let inputStart = input.dropLast(inputFormat.yearCharacters)
+    
+    let inputYear = inputFormat.isYearFirst ? String(input.prefix(inputFormat.yearCharacters)) : String(input.suffix(inputFormat.yearCharacters))
+    let inputMonth = inputFormat.isYearFirst ? input.suffix(inputFormat.monthCharacters) : input.prefix(inputFormat.monthCharacters)
+    let divider = inputFormat.isYearFirst ? String(input.dropLast(inputFormat.monthCharacters)).dropFirst(inputFormat.yearCharacters) : String(input.dropLast(inputFormat.yearCharacters)).dropFirst(inputFormat.monthCharacters)
     
 		let dateFormatter = DateFormatter()
     dateFormatter.calendar = Calendar(identifier: .gregorian)
@@ -41,7 +43,8 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
     if let date = dateFormatter.date(from: inputYear) {
       dateFormatter.dateFormat = outputFormat.dateYearFormat
       let outputYear = dateFormatter.string(from: date)
-      let output = String(inputStart + outputYear)
+      let output = outputFormat.isYearFirst ? String(outputYear + divider + inputMonth) :
+      String(inputMonth + divider + outputYear)
       return output
     }
     let text = "CANNOT CONVERT DATE FORMAT! NOT VALID INPUT YEAR - \(inputYear). WILL USE ORIGINAL(INPUT) DATE FORMAT!"
