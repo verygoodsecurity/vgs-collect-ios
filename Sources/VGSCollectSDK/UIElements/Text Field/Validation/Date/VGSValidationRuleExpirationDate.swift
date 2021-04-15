@@ -17,11 +17,17 @@ public enum VGSCardExpDateFormat {
   /// Exp.Date in format mm/yyyy: 01/2022
   case longYear
   
+  /// Exp.Date in format yy/mm: 22/01
+  case shortYearThenMonth
+  
+  /// Exp.Date in format yy/mm: 2022/01
+  case longYearThenMonth
+  
   var yearCharacters: Int {
     switch self {
-    case .shortYear:
+    case .shortYear, .shortYearThenMonth:
       return 2
-    case .longYear:
+    case .longYear, .longYearThenMonth:
       return 4
     }
   }
@@ -32,10 +38,19 @@ public enum VGSCardExpDateFormat {
   
   internal var dateYearFormat: String {
     switch self {
-    case .shortYear:
+    case .shortYear, .shortYearThenMonth:
       return "yy"
-    case .longYear:
+    case .longYear, .longYearThenMonth:
       return "yyyy"
+    }
+  }
+  
+  internal var isYearFirst: Bool {
+    switch self {
+    case .shortYear, .longYear:
+      return false
+    case .shortYearThenMonth, .longYearThenMonth:
+      return true
     }
   }
 }
