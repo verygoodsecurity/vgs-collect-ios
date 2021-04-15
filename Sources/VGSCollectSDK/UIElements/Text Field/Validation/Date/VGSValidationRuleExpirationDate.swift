@@ -83,12 +83,12 @@ extension VGSValidationRuleCardExpirationDate: VGSRuleValidator {
             return false
         }
     
-        let mmChars = 2
+        let mmChars = self.dateFormat.monthCharacters
         let yyChars = self.dateFormat.yearCharacters
         guard input.count == mmChars + yyChars else { return false }
                 
-        let mm = input.prefix(mmChars)
-        let yy = input.suffix(yyChars)
+        let mm = self.dateFormat.isYearFirst ? input.suffix(mmChars) : input.prefix(mmChars)
+        let yy = self.dateFormat.isYearFirst ? input.prefix(yyChars) : input.suffix(yyChars)
                         
         let todayYY = Calendar(identifier: .gregorian).component(.year, from: Date())
         let todayMM = Calendar(identifier: .gregorian).component(.month, from: Date())
