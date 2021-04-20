@@ -17,6 +17,9 @@ let package = Package(
 						name: "VGSCardScanCollector",
 						targets: ["VGSCardScanCollector"]
 			),
+			.library(
+				name: "VGSCardIOCollector",
+				targets: ["VGSCardIOCollector"])
     ],
     dependencies: [
 			.package(
@@ -24,6 +27,10 @@ let package = Package(
 				url: "https://github.com/getbouncer/cardscan-ios.git",
 				.exact("2.0.9")
 			),
+			.package(
+						name: "CardIOSDK",
+						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
+						.branch("feature/xcframework_build"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -43,5 +50,10 @@ let package = Package(
 											.product(name: "CardScan", package: "CardScan")],
 						path: "Sources/VGSCardScanCollector/"
 		 ),
+			.target(
+				name: "VGSCardIOCollector",
+				dependencies: ["VGSCollectSDK",
+											 .product(name: "CardIOSDK", package: "CardIOSDK")],
+				path: "Sources/VGSCardIOCollector/")
 		]
 )
