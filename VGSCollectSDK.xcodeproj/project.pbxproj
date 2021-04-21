@@ -42,6 +42,7 @@
 		324B5E7B24A3A5880036867E /* ValidationRulesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */; };
 		324B5E9D24A64A600036867E /* VGSValidationRulePaymentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E9C24A64A600036867E /* VGSValidationRulePaymentCard.swift */; };
 		324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CDEE123FB12E200653890 /* FilePickerTests.swift */; };
+		3259B39D263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259B39C263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift */; };
 		325AB9CB2420C5410024134B /* VGSFilePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */; };
 		3260697D24F7F3F80091F0DD /* CardScan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CFC72424EBF3B500457B17 /* CardScan.framework */; };
 		3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F723F5A32400D4A73D /* VGSFileSource.swift */; };
@@ -219,6 +220,7 @@
 		324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationRulesTest.swift; sourceTree = "<group>"; };
 		324B5E9C24A64A600036867E /* VGSValidationRulePaymentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRulePaymentCard.swift; sourceTree = "<group>"; };
 		324CDEE123FB12E200653890 /* FilePickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
+		3259B39C263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpirationDateTextFieldUtils.swift; sourceTree = "<group>"; };
 		325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		3262B2F723F5A32400D4A73D /* VGSFileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFileSource.swift; sourceTree = "<group>"; };
 		3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSImagePicker.swift; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
 				449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */,
 				4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */,
+				3259B39C263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -1424,6 +1427,7 @@
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */,
+				3259B39D263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift in Sources */,
 				4479453E25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift in Sources */,
 				441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */,
 				441B26D225DB88C50099AA3A /* APIClient.swift in Sources */,
