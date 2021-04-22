@@ -81,13 +81,11 @@ public final class VGSExpDateTextField: VGSTextField {
     private func updateTextField() {
       let month = months[picker.selectedRow(inComponent: monthPickerComponent)]
       let year = years[picker.selectedRow(inComponent: yearPickerComponent)]
-      guard let config = configuration as? VGSExpDateConfiguration else {
-        return
-      }
-      
       let inputDateFormat: VGSCardExpDateFormat
-      if let fieldDateFormat = config.inputFormat {
-        inputDateFormat = fieldDateFormat
+      
+      /// Check if specific `.inputFormat` is set in field configuration
+      if let config = configuration as? VGSExpDateConfiguration, let fieldDateFormat = config.inputFormat {
+          inputDateFormat = fieldDateFormat
       } else {
         /// Default format could be mm/yy or mm/yyyy. In other case `.inputDateFormat` should be specified
         let format = textField.formatPattern.components(separatedBy: "/").last ?? FieldType.expDate.defaultFormatPattern
