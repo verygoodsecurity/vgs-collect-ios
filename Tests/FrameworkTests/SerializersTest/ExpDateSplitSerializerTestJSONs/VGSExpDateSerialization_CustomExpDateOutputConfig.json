@@ -1,0 +1,39 @@
+{
+    "test_data": [
+          {
+              "monthFieldName": "month",
+              "yearFieldName": "year",
+              "fieldValue": "2030-/-01",
+              "expectedResult": {
+                  "month": "01",
+                  "year": "30"
+              },
+              "comment": "Single key fieldNames."
+          },
+          {
+              "monthFieldName": "date.month",
+              "yearFieldName": "date.year",
+              "fieldValue": "2033-/-10",
+              "expectedResult": {
+                  "date": {
+                    "month": "10",
+                    "year": "33",
+                    
+                  }
+              },
+              "comment": "Map to dot JSON"
+          },
+          {
+              "monthFieldName": "date.month",
+              "yearFieldName": "year",
+              "fieldValue": "2025-/-05",
+              "expectedResult": {
+                  "date": {
+                    "month": "05"
+                  },
+                  "year": "25"
+              },
+              "comment": "Map to dot JSON with single key"
+          }
+      ]
+}

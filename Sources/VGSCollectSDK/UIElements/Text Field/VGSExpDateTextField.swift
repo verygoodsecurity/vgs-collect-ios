@@ -81,10 +81,20 @@ public final class VGSExpDateTextField: VGSTextField {
     private func updateTextField() {
       let month = months[picker.selectedRow(inComponent: monthPickerComponent)]
       let year = years[picker.selectedRow(inComponent: yearPickerComponent)]
-      let format = textField.formatPattern.components(separatedBy: "/").last ?? FieldType.expDate.defaultFormatPattern
-      let yearString = (format.count == 4) ? String(year) : String(year - 2000)
-      let monthString = String(format: "%02d", month)
-      self.setText("\(monthString)\(yearString)")
+      let inputDateFormat: VGSCardExpDateFormat
+      
+      /// Check if specific `.inputFormat` is set in field configuration
+      if let config = configuration as? VGSExpDateConfiguration, let fieldDateFormat = config.inputFormat {
+          inputDateFormat = fieldDateFormat
+      } else {
+        /// Default format could be mm/yy or mm/yyyy. In other case `.inputDateFormat` should be specified
+        let format = textField.formatPattern.components(separatedBy: "/").last ?? FieldType.expDate.defaultFormatPattern
+        inputDateFormat = (format.count == 4) ? .longYear : .shortYear
+      }
+      
+      /// Create the date string
+      let dateString = VGSExpirationDateTextFieldUtils.mapDatePickerExpirationDataForFieldFormat(inputDateFormat, month: month, year: year)
+      self.setText(dateString)
     }
 }
 

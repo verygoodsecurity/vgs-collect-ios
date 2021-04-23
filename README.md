@@ -258,6 +258,10 @@ Starting with the 1.7.4 release, `VGSCollectSDK` also supports  [CardScan](https
 
 To use **CardScan** add `VGSCollectSDK`, `VGSCardScanCollector` packages to your target. 
 
+Starting with the 1.7.11 release, `VGSCollectSDK` supports  [CardIO](https://github.com/verygoodsecurity/card.io-iOS-source) integration via Swift PM.
+
+To use **CardIO** add `VGSCollectSDK`, `VGSCardIOCollector` packages to your target. 
+
 #### Integrate with Carthage
 
 Carthage users should point to `VGSCollectSDK` repository and use next generated framework:

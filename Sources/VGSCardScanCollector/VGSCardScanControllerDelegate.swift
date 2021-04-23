@@ -38,6 +38,12 @@ public enum CradScanDataType: Int {
   
     /// Card holder name displayed on card.
     case name
+  
+    /// Credit Card Expiration Date. String in format "21/01".
+    case expirationDateShortYearThenMonth
+
+    /// Credit Card Expiration Date. String in format "2021/01".
+    case expirationDateLongYearThenMonth
 }
 
 /// Delegates produced by `VGSCardScanController` instance.

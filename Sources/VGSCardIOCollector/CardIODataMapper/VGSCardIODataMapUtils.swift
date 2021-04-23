@@ -35,6 +35,10 @@ internal final class VGSCardIODataMapUtils {
 			return mapYear(data.year)
 		case .expirationYearLong:
 			return mapYearLong(data.year)
+    case .expirationDateShortYearThenMonth:
+      return mapExpirationDateWithShortYearFirst(data.month, scannedExpYear: data.year)
+    case .expirationDateLongYearThenMonth:
+      return mapLongExpirationDateWithLongYearFirst(data.month, scannedExpYear: data.year)
 		}
 	}
 
@@ -52,6 +56,19 @@ internal final class VGSCardIODataMapUtils {
 
 		return "\(month)\(year)"
 	}
+  
+  /// Maps scanned exp month and year to valid format starting with  year  (YY/MM).
+  /// - Parameters:
+  ///   - scannedExpMonth: `UInt` object, scanned expiry month.
+  ///   - scannedExpYear: `UInt` object, scanned expiry year.
+  /// - Returns: `String?`, composed text or nil if scanned info is invalid.
+  private static func mapExpirationDateWithShortYearFirst(_ scannedExpMonth: UInt, scannedExpYear: UInt) -> String? {
+    guard let month = mapMonth(scannedExpMonth), let year = mapYear(scannedExpYear) else {
+      return nil
+    }
+
+    return "\(year)\(month)"
+  }
 
 	/// Maps scanned exp month and year to long expiration date format (MM/YYYY).
 	/// - Parameters:
@@ -65,6 +82,19 @@ internal final class VGSCardIODataMapUtils {
 
 		return "\(month)\(longYear)"
 	}
+  
+  /// Maps scanned exp month and year to long expiration date format starting with  year (YYYY/MM).
+  /// - Parameters:
+  ///   - scannedExpMonth: `UInt` object, scanned expiry month.
+  ///   - scannedExpYear: `UInt` object, scanned expiry year.
+  /// - Returns: `String?`, composed text or nil if scanned info is invalid.
+  private static func mapLongExpirationDateWithLongYearFirst(_ scannedExpMonth: UInt, scannedExpYear: UInt) -> String? {
+    guard let month = mapMonth(scannedExpMonth), let longYear = mapYearLong(scannedExpYear) else {
+      return nil
+    }
+
+    return "\(longYear)\(month)"
+  }
 
 	/// Maps scanned expiry month to short format (MM) string.
 	/// - Parameter scannedExpYear: `UInt` object, scanned expiry year.

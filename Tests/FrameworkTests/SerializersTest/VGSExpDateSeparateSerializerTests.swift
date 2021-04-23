@@ -17,6 +17,7 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
 	enum TestFlow {
 		case defaultConfiguration
 		case customConfiguration
+    case customExpDateOutputConfiguration
 		case mapWithArrayOverwrite
 		case mapWithArrayMerge
 
@@ -30,6 +31,8 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
 				return "DefaultConfig"
 			case .customConfiguration:
 				return "CustomConfig"
+      case .customExpDateOutputConfiguration:
+        return "CustomExpDateOutputConfig"
 			case .mapWithArrayOverwrite:
 				return "MapWithArrayOverwrite"
 			case .mapWithArrayMerge:
@@ -98,6 +101,28 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
     config.formatPattern = "##/##"
     config.inputDateFormat = .shortYear
     config.outputDateFormat = .longYear
+    config.divider = "-/-"
+    
+    for test in testData {
+      config.serializers = [VGSExpDateSeparateSerializer(monthFieldName: test.monthFieldName, yearFieldName: test.yearFieldName)]
+      textField.configuration = config
+      textField.setText(test.fieldValue)
+      
+      let submitJSON = collector.mapFieldsToBodyJSON(with: .nestedJSON, extraData: nil)
+      XCTAssertTrue(submitJSON == test.submitJSON, "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON)")
+      
+    }
+  }
+  
+  /// Test custom exp date output format.
+  func testSplitCustomExpDateOutputSerializerWithCustomConfig() {
+    let fileName = TestFlow.customExpDateOutputConfiguration.jsonFileName
+    let testData = VGSExpDateSerializersDataProvider.provideTestData(for: fileName)
+    
+    let config = VGSExpDateConfiguration(collector: collector, fieldName: "card.expDate")
+    config.formatPattern = "####/##"
+    config.inputDateFormat = .longYearThenMonth
+    config.outputDateFormat = .shortYearThenMonth
     config.divider = "-/-"
     
     for test in testData {
