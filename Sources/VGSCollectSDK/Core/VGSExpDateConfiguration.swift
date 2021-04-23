@@ -38,15 +38,31 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
       if let serializer = serializer as? VGSExpDateSeparateSerializer {
         /// remove dividers
         var dateDigitsString = content.digits
+        
+        /// get output date format, if not set - use default
+        let outputDateFormat = outputFormat ?? .shortYear
         /// check output date components length
-        let outputMonthDigits = outputFormat?.monthCharacters ?? 2
-        let outputYearDigits = outputFormat?.yearCharacters ?? 2
-        /// take month digitis
-        let mth = dateDigitsString.prefix(outputMonthDigits)
-        /// remove month digits
-        dateDigitsString = String(dateDigitsString.dropFirst(outputMonthDigits))
-        /// take year digitis
-        let year = dateDigitsString.prefix(outputYearDigits)
+        let outputMonthDigits = outputDateFormat.monthCharacters
+        let outputYearDigits = outputDateFormat.yearCharacters
+        
+        let mth: String
+        let year: String
+        if outputDateFormat.isYearFirst {
+          /// take month digitis
+          year = String(dateDigitsString.prefix(outputYearDigits))
+          /// remove month digits
+          dateDigitsString = String(dateDigitsString.dropFirst(outputYearDigits))
+          /// take year digitis
+          mth = String(dateDigitsString.prefix(outputMonthDigits))
+        } else {
+          /// take month digitis
+          mth = String(dateDigitsString.prefix(outputMonthDigits))
+          /// remove month digits
+          dateDigitsString = String(dateDigitsString.dropFirst(outputMonthDigits))
+          /// take year digitis
+          year = String(dateDigitsString.prefix(outputYearDigits))
+        }
+        
         /// set result for specific fieldnames
         result[serializer.monthFieldName] = mth
         result[serializer.yearFieldName] = year
