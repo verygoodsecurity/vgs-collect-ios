@@ -37,6 +37,10 @@ internal final class VGSBouncerDataMapUtils {
 			return mapYear(data.yearString)
 		case .expirationYearLong:
 			return mapYearLong(data.yearString)
+    case .expirationDateShortYearThenMonth:
+      return mapExpirationDateWithShortYearFirst(data.monthString, scannedExpYear: data.yearString)
+    case .expirationDateLongYearThenMonth:
+      return mapLongExpirationDateWithLongYearFirst(data.monthString, scannedExpYear: data.yearString)
 		}
 	}
 
@@ -67,6 +71,32 @@ internal final class VGSBouncerDataMapUtils {
 
 		return "\(month)\(longYear)"
 	}
+  
+  /// Maps scanned exp month and year to valid format starting with  year  (YY/MM).
+  /// - Parameters:
+  ///   - scannedExpMonth: `UInt` object, scanned expiry month.
+  ///   - scannedExpYear: `UInt` object, scanned expiry year.
+  /// - Returns: `String?`, composed text or nil if scanned info is invalid.
+  private static func mapExpirationDateWithShortYearFirst(_ scannedExpMonth: String?, scannedExpYear: String?) -> String? {
+    guard let month = mapMonth(scannedExpMonth), let year = mapYear(scannedExpYear) else {
+      return nil
+    }
+
+    return "\(year)\(month)"
+  }
+  
+  /// Maps scanned exp month and year to long expiration date format starting with  year (YYYY/MM).
+  /// - Parameters:
+  ///   - scannedExpMonth: `UInt` object, scanned expiry month.
+  ///   - scannedExpYear: `UInt` object, scanned expiry year.
+  /// - Returns: `String?`, composed text or nil if scanned info is invalid.
+  private static func mapLongExpirationDateWithLongYearFirst(_ scannedExpMonth: String?, scannedExpYear: String?) -> String? {
+    guard let month = mapMonth(scannedExpMonth), let longYear = mapYearLong(scannedExpYear) else {
+      return nil
+    }
+
+    return "\(longYear)\(month)"
+  }
 
 	/// Maps scanned expiry month to short format (YY) string.
 	/// - Parameter scannedExpYear: `String?` object, scanned expiry year.

@@ -42,6 +42,8 @@
 		324B5E7B24A3A5880036867E /* ValidationRulesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */; };
 		324B5E9D24A64A600036867E /* VGSValidationRulePaymentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324B5E9C24A64A600036867E /* VGSValidationRulePaymentCard.swift */; };
 		324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324CDEE123FB12E200653890 /* FilePickerTests.swift */; };
+		3259B39D263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3259B39C263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift */; };
+		3259B3DB2632AF7B008EECE0 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 3259B3DA2632AF7B008EECE0 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json */; };
 		325AB9CB2420C5410024134B /* VGSFilePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */; };
 		3260697D24F7F3F80091F0DD /* CardScan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CFC72424EBF3B500457B17 /* CardScan.framework */; };
 		3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262B2F723F5A32400D4A73D /* VGSFileSource.swift */; };
@@ -91,6 +93,7 @@
 		32F23A7B24B8713A00E389F7 /* CardBrand+default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F23A7A24B8713900E389F7 /* CardBrand+default.swift */; };
 		32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4B7F324C881FA006086F3 /* Calendar+extension.swift */; };
 		4404600F256801890064BEA0 /* APIHostnameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */; };
+		44168FBF2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44168FBE2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift */; };
 		441B26D225DB88C50099AA3A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CC25DB88C50099AA3A /* APIClient.swift */; };
 		441B26D325DB88C50099AA3A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CD25DB88C50099AA3A /* HTTPMethod.swift */; };
 		441B26D425DB88C50099AA3A /* APIHostURLPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CF25DB88C50099AA3A /* APIHostURLPolicy.swift */; };
@@ -219,6 +222,8 @@
 		324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationRulesTest.swift; sourceTree = "<group>"; };
 		324B5E9C24A64A600036867E /* VGSValidationRulePaymentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRulePaymentCard.swift; sourceTree = "<group>"; };
 		324CDEE123FB12E200653890 /* FilePickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
+		3259B39C263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpirationDateTextFieldUtils.swift; sourceTree = "<group>"; };
+		3259B3DA2632AF7B008EECE0 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VGSExpDateSerialization_CustomExpDateOutputConfig.json; sourceTree = "<group>"; };
 		325AB9CA2420C5410024134B /* VGSFilePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		3262B2F723F5A32400D4A73D /* VGSFileSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSFileSource.swift; sourceTree = "<group>"; };
 		3262B2FC23F5A36E00D4A73D /* VGSImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSImagePicker.swift; sourceTree = "<group>"; };
@@ -266,6 +271,7 @@
 		32F23A7A24B8713900E389F7 /* CardBrand+default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardBrand+default.swift"; sourceTree = "<group>"; };
 		32F4B7F324C881FA006086F3 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
 		4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameValidatorTests.swift; sourceTree = "<group>"; };
+		44168FBE2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpirationDateTextFieldUtilsTests.swift; sourceTree = "<group>"; };
 		441B26CC25DB88C50099AA3A /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		441B26CD25DB88C50099AA3A /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		441B26CF25DB88C50099AA3A /* APIHostURLPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHostURLPolicy.swift; sourceTree = "<group>"; };
@@ -433,6 +439,7 @@
 				3215C4F42611B80B00F21259 /* ExpDateSplitSerializerTestJSONs */,
 				3215C4E82611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift */,
 				4459728926135BE600139EAA /* VGSExpDateSerializersDataProvider.swift */,
+				44168FBE2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift */,
 			);
 			path = SerializersTest;
 			sourceTree = "<group>";
@@ -441,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				3215C5062611B87400F21259 /* VGSExpDateSerialization_DefaultConfig.json */,
+				3259B3DA2632AF7B008EECE0 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json */,
 				328D7C17261352CF00E0917F /* VGSExpDateSerialization_CustomConfig.json */,
 				328D7C15261352CF00E0917F /* VGSExpDateSerialization_MapWithArrayOverwrite.json */,
 				328D7C16261352CF00E0917F /* VGSExpDateSerialization_MapWithArrayMerge.json */,
@@ -727,6 +735,7 @@
 				449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */,
 				449C8A3F25F2521800BE009F /* VGSFieldNameSubscriptType.swift */,
 				4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */,
+				3259B39C263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -1248,6 +1257,7 @@
 				44792A7925FDE6AE006A04B8 /* DeepMergeMergeArrayTestJSONs.json in Resources */,
 				328D7C19261352CF00E0917F /* VGSExpDateSerialization_MapWithArrayMerge.json in Resources */,
 				3215C5072611B87400F21259 /* VGSExpDateSerialization_DefaultConfig.json in Resources */,
+				3259B3DB2632AF7B008EECE0 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json in Resources */,
 				44447F8925F7667000D4CE68 /* VGSFieldNameToJSONTestData.json in Resources */,
 				328D7C18261352CF00E0917F /* VGSExpDateSerialization_MapWithArrayOverwrite.json in Resources */,
 				4430E19C2600B909006B2EF3 /* OverwriteArraysTestJSONs.json in Resources */,
@@ -1424,6 +1434,7 @@
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */,
+				3259B39D263079AD008EECE0 /* VGSExpirationDateTextFieldUtils.swift in Sources */,
 				4479453E25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift in Sources */,
 				441B26D625DB88C50099AA3A /* APICustomHostStatus.swift in Sources */,
 				441B26D225DB88C50099AA3A /* APIClient.swift in Sources */,
@@ -1486,6 +1497,7 @@
 				44447F8025F7651100D4CE68 /* JSONData+Extensions.swift in Sources */,
 				32F23A7924B752E200E389F7 /* PaymentCardsTest.swift in Sources */,
 				FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */,
+				44168FBF2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift in Sources */,
 				327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */,
 				FDAAB6AB249A8844001F5C1A /* ExpDateTextField.swift in Sources */,
 				FDF696E52346461D00063507 /* StorageTests.swift in Sources */,

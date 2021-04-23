@@ -32,7 +32,9 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 
 																							TestDataMappingItem(format: .expirationYear, expectedText: "24"),
 
-																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2024")],
+																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2024"),
+																							TestDataMappingItem(format: .expirationDateShortYearThenMonth, expectedText: "2410"),
+																							TestDataMappingItem(format: .expirationDateLongYearThenMonth, expectedText: "202410")],
 																						scannedData: VGSBouncerExpirationDate(monthString: "10", yearString: "24"))
 
 	private let testDataItemShortMonth = TestDataItem(items: [
@@ -44,7 +46,10 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 
 																							TestDataMappingItem(format: .expirationYear, expectedText: "25"),
 
-																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
+																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025"),
+																							TestDataMappingItem(format: .expirationDateShortYearThenMonth, expectedText: "2503"),
+																							TestDataMappingItem(format: .expirationDateLongYearThenMonth, expectedText: "202503")
+	                                          ],
 																						scannedData: VGSBouncerExpirationDate(monthString: "03", yearString: "25"))
 
 	private let testDataItemMonthFirst = TestDataItem(items: [
@@ -56,7 +61,10 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 
 																							TestDataMappingItem(format: .expirationYear, expectedText: "25"),
 
-																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
+																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025"),
+																							TestDataMappingItem(format: .expirationDateShortYearThenMonth, expectedText: "2501"),
+																						   TestDataMappingItem(format: .expirationDateLongYearThenMonth, expectedText: "202501")
+	],
 																						scannedData: VGSBouncerExpirationDate(monthString: "01", yearString: "25"))
 
 	private let testDataItemMonthLast = TestDataItem(items: [
@@ -68,7 +76,9 @@ class VGSBouncerDataMapUtilsTests: XCTestCase {
 
 																							TestDataMappingItem(format: .expirationYear, expectedText: "25"),
 
-																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025")],
+																							TestDataMappingItem(format: .expirationYearLong, expectedText: "2025"),
+																							TestDataMappingItem(format: .expirationDateShortYearThenMonth, expectedText: "2512"),
+																							TestDataMappingItem(format: .expirationDateLongYearThenMonth, expectedText: "202512")],
 																						scannedData: VGSBouncerExpirationDate(monthString: "12", yearString: "25"))
 
 	/// Tests scan data.
