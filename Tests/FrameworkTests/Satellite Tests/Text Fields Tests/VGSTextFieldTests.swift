@@ -69,5 +69,82 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
       XCTAssertTrue(textfield.state.isEmpty == true)
       XCTAssertTrue(textfield.state.isValid == false)
    }
+  
+  func testFieldsContentEqual() {
+    let input1 = "4111111111111111"
+    let input2 = "41111111111111111"
+    
+    /// Field with default `.cardNumber` configuration
+    let testField1 = VGSTextField()
+    let config = VGSConfiguration(collector: collector, fieldName: "field1")
+    config.type = .cardNumber
+    testField1.configuration = config
+    
+    /// Field with default `.none` configuration
+    let testField2 = VGSTextField()
+    let config2 = VGSConfiguration(collector: collector, fieldName: "field2")
+    config2.type = .none
+    testField2.configuration = config2
+    
+    /// Field with custom dividers and formatPattern
+    let testField3 = VGSCardTextField()
+    let config3 = VGSConfiguration(collector: collector, fieldName: "field3")
+    config3.type = .cardNumber
+    config3.divider = "---"
+    config3.formatPattern = "## ## ## ## ## ## ## ## ##"
+    testField3.configuration = config3
+    
+    /// Field not attached to VGSCollect instance
+    let testField4 = VGSTextField()
+    
+    let testFields = [testField1, testField2, testField3, testField4]
+    
+    for i in 0 ..< testFields.count - 1 {
+      let field1 = testFields[i]
+      
+      for j in (i+1) ..< testFields.count {
+        let field2 = testFields[j]
+
+        /// Test positive case with equal input
+        field1.textField.secureText = input1
+        field2.textField.secureText = input1
+        XCTAssertTrue(field1.isContentEquals(field2), "Fields not equal error: \(field1.textField.secureText) != \(field2.textField.secureText))")
+        XCTAssertTrue(field2.isContentEquals(field1), "Fields not equal error: \(field2.textField.secureText) != \(field1.textField.secureText))")
+        
+        /// Test negative case with different input
+        field2.textField.secureText = input2
+        XCTAssertFalse(field1.isContentEquals(field2), "Fields equal error: \(field1.textField.secureText) == \(field2.textField.secureText))")
+        XCTAssertFalse(field2.isContentEquals(field1), "Fields equal error: \(field2.textField.secureText) == \(field1.textField.secureText))")
+      }
+    }
+  }
+  
+  func testExpDateFieldsContentEqual() {
+    let expDate1 = VGSTextField()
+    let config1 = VGSExpDateConfiguration.init(collector: collector, fieldName: "expDate1")
+    config1.formatPattern = "##---##"
+    config1.divider = "."
+    expDate1.configuration = config1
+  
+    let expDate2 = VGSExpDateTextField()
+    let config2 = VGSExpDateConfiguration(collector: collector, fieldName: "expDate2")
+    config2.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "month2", yearFieldName: "year2")]
+    expDate2.configuration = config2
+  
+    let input1 = "0225"
+    let input2 = "0325"
+    
+    /// Test positive case with equal input
+    expDate1.textField.secureText = input1
+    expDate2.textField.secureText = input1
+    XCTAssertTrue(expDate1.isContentEquals(expDate2), "Fields not equal error: \(expDate1.textField.secureText) != \(expDate1.textField.secureText))")
+    XCTAssertTrue(expDate2.isContentEquals(expDate1), "Fields not equal error: \(expDate2.textField.secureText) != \(expDate1.textField.secureText))")
+    
+    /// Test negative case with different input
+    expDate1.textField.secureText = input1
+    expDate2.textField.secureText = input2
+    XCTAssertFalse(expDate1.isContentEquals(expDate2), "Fields equal error: \(expDate1.textField.secureText) == \(expDate1.textField.secureText))")
+    XCTAssertFalse(expDate2.isContentEquals(expDate1), "Fields equal error: \(expDate2.textField.secureText) == \(expDate1.textField.secureText))")
+  }
 }
        
