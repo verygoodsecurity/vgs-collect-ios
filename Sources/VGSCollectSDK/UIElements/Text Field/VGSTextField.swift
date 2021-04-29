@@ -144,6 +144,7 @@ public class VGSTextField: UIView {
     }
   
     // MARK: - Manage input
+  
     /// Set textfield default text.
     /// - Note: This will not change `State.isDirty` attribute.
     /// - Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.
@@ -157,9 +158,17 @@ public class VGSTextField: UIView {
       updateTextFieldInput(text)
     }
 
-      /// Removes input from field.
+    /// Removes input from field.
     public func cleanText() {
       updateTextFieldInput("")
+    }
+  
+    // MARK: - Compare Input
+
+    /// Check if input text in two textfields is same. Returns `Bool`.
+    /// - Note: Result will be based on raw text, mask and dividers will be ignored.
+    public func isContentEqual(_ textField: VGSTextField) -> Bool {
+      return self.textField.getSecureRawText == textField.textField.getSecureRawText
     }
   
   internal func getOutputText() -> String? {
@@ -168,6 +177,7 @@ public class VGSTextField: UIView {
     }
     return textField.getSecureTextWithDivider
   }
+
 }
 
 // MARK: - UIResponder methods
