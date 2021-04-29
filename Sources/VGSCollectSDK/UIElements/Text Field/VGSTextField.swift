@@ -167,7 +167,7 @@ public class VGSTextField: UIView {
 
     /// Check if input text in two textfields is same. Returns `Bool`.
     /// - Note: Result will be based on raw text, mask and dividers will be ignored.
-    public func isContentEquals(_ textField: VGSTextField) -> Bool {
+    public func isContentEqual(_ textField: VGSTextField) -> Bool {
       return self.textField.getSecureRawText == textField.textField.getSecureRawText
     }
   
