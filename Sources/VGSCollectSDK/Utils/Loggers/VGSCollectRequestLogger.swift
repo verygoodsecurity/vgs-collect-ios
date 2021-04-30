@@ -115,7 +115,7 @@ internal class VGSCollectRequestLogger {
 	}
 
 	/// Limit string characters value to print.
-	private static var maxTextCountToPrintLimit: Int = 70000
+	private static var maxTextCountToPrintLimit: Int = 50000
 
 	/// Stringify `JSON` for logging.
 	/// - Parameter vgsJSON: `VGSJSONData` object.
