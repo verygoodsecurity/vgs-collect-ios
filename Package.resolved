@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "CardIOSDK",
+        "repositoryURL": "https://github.com/EugeneIOs/CardIOSDK-iOS",
+        "state": {
+          "branch": "feature/xcframework-spm-update",
+          "revision": "bbbd811cf553f7ec5ded7b5853c00b423694db7d",
+          "version": null
+        }
+      },
+      {
         "package": "CardScan",
         "repositoryURL": "https://github.com/getbouncer/cardscan-ios.git",
         "state": {
           "branch": null,
-          "revision": "caadb6c9b2059b3da7879e5c86be5f22a7295865",
-          "version": "2.0.7"
+          "revision": "84e7d1e7805675274edd85bc786b2dd1e4d864e0",
+          "version": "2.0.9"
         }
       }
     ]

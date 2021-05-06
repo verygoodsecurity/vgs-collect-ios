@@ -29,8 +29,8 @@ let package = Package(
 			),
 			.package(
 						name: "CardIOSDK",
-						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
-						.branch("feature/xcframework_build"))
+						url: "https://github.com/EugeneIOs/CardIOSDK-iOS",
+						.branch("feature/xcframework-spm-update"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
