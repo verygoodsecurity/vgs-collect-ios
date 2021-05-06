@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "CardIOSDK",
-        "repositoryURL": "https://github.com/EugeneIOs/CardIOSDK-iOS",
+        "repositoryURL": "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
         "state": {
-          "branch": "feature/xcframework-spm-update",
-          "revision": "bbbd811cf553f7ec5ded7b5853c00b423694db7d",
-          "version": null
+          "branch": null,
+          "revision": "2a764795a837f259a9f50845fbd5fbba69b330bf",
+          "version": "5.5.5"
         }
       },
       {
