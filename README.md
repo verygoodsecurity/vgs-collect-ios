@@ -483,9 +483,9 @@ You can add a file uploading functionality to your application with **VGSFilePic
 Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.
 
 ## Demo Application
-Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food">here</a>.
+Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food-iOS">here</a>.
 
-Also you can check our cost [optimization demo](./demoapp/demoapp/UseCases/MultiplexingSetup/) with Multiplexing.
+Also you can check our [payment optimization demo](./demoapp/demoapp/UseCases/MultiplexingSetup/) with Multiplexing.
 
 ### Documentation
 -  SDK Documentation: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk
