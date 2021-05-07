@@ -30,8 +30,10 @@ custom_categories:
   - VGSTextField
   - VGSCardTextField
   - VGSExpDateTextField
+  - VGSCVCTextField
   - VGSTextFieldDelegate
   - VGSConfiguration
+  - VGSExpDateConfiguration
   - FieldType
 - name: Card Scan
   children:
@@ -53,13 +55,20 @@ custom_categories:
   - SSNState
   - CardState
   - VGSResponse
+  - VGSCollectRequestOptions
+  - JsonData
   - HTTPMethod
   - HTTPHeaders
 - name: Payment Cards
   children:
   - VGSPaymentCards
   - VGSPaymentCardModel
+  - VGSCustomPaymentCardModel
   - VGSUnknownPaymentCardModel
+- name: VGSTextField Serializers
+  children:
+  - VGSFormatSerializerProtocol
+  - VGSExpDateSeparateSerializer
 - name: Validation Rules
   children:
   - VGSValidationRuleSet
@@ -88,3 +97,13 @@ custom_categories:
   - VGSSDKErrorFileSizeExceedsTheLimit
   - VGSSDKErrorSourceNotAvailable
   - VGSSDKErrorUnexpectedResponseDataFormat
+- name: Debugging
+  children:
+  - VGSCollectLogger
+  - VGSLogLevel
+  - VGSCollectLoggingConfiguration
+- name: Enumerations
+  children:
+  - VGSCardExpDateFormat
+  - VGSCollectFieldNameMappingPolicy
+

@@ -49,7 +49,11 @@ internal class VGSCollectRequestLogger {
 		if let errorData = data {
 			if let bodyErrorText = String(data: errorData, encoding: String.Encoding.utf8) {
 				print("❗Failed ⬇️ VGSCollectSDK response extra info:")
-				print("\(bodyErrorText)")
+				if bodyErrorText.count > maxTextCountToPrintLimit {
+					print("VGSCollectSDK response size is too big to print. Use debugger if needed.")
+				} else {
+					print("\(bodyErrorText)")
+				}
 			}
 		}
 
@@ -110,12 +114,20 @@ internal class VGSCollectRequestLogger {
 		return "[\n  \(stringifiedHeaders) \n]"
 	}
 
+	/// Limit string characters value to print.
+	private static var maxTextCountToPrintLimit: Int = 50000
+
 	/// Stringify `JSON` for logging.
 	/// - Parameter vgsJSON: `VGSJSONData` object.
 	/// - Returns: `String` object, pretty printed `JSON`.
 	private static func stringifyJSONForLogs(_ vgsJSON: JsonData) -> String {
 		if let json = try? JSONSerialization.data(withJSONObject: vgsJSON, options: .prettyPrinted) {
-			return String(decoding: json, as: UTF8.self)
+			let stringToPrint = String(decoding: json, as: UTF8.self)
+			if stringToPrint.count > maxTextCountToPrintLimit {
+				return "VGSCollectSDK response size is too big to print. Use debugger if needed."
+			} else {
+				return stringToPrint
+			}
 		} else {
 				return ""
 		}
