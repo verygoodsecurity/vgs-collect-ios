@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSCollectFieldNameMappingPolicy Enumeration Reference</title>
+    <title>Dictionary Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/VGSCollectFieldNameMappingPolicy" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Extension/Dictionary" class="dashAnchor"></a>
 
-    <a title="VGSCollectFieldNameMappingPolicy Enumeration Reference"></a>
+    <a title="Dictionary Extension Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSCollectFieldNameMappingPolicy Enumeration Reference
+      Dictionary Extension Reference
     </p>
 
     <div class="content-wrapper">
@@ -294,15 +294,14 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSCollectFieldNameMappingPolicy</h1>
+            <h1>Dictionary</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSCollectFieldNameMappingPolicy</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Dictionary</span></code></pre>
 
                 </div>
               </div>
-            <p>Defines fieldName mapping to JSON.</p>
-
+            
           </div>
         </section>
 
@@ -313,9 +312,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK0A22FieldNameMappingPolicyO10nestedJSONyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/nestedJSON" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A22FieldNameMappingPolicyO10nestedJSONyA2CmF">nestedJSON</a>
+                    <a name="/s:SD13VGSCollectSDKE24jsonStringRepresentationSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/jsonStringRepresentation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SD13VGSCollectSDKE24jsonStringRepresentationSSSgvp">jsonStringRepresentation</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -323,150 +322,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Map fieldName to nested JSON.
-Example:
-card_data.number =&gt; nested JSON</p>
-<pre class="highlight swift"><code><span class="p">{</span>
-    <span class="s">"card_data"</span> <span class="p">:</span>
-        <span class="p">{</span>
-            <span class="s">"number"</span> <span class="p">:</span> <span class="s">"4111111111111111"</span>
-        <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
+                        <p>Resturn JSON string  representation of dictionary with sorted keys</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">nestedJSON</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mf">11.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
+<span class="k">var</span> <span class="nv">jsonStringRepresentation</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L27">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK0A22FieldNameMappingPolicyO24nestedJSONWithArrayMergeyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/nestedJSONWithArrayMerge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A22FieldNameMappingPolicyO24nestedJSONWithArrayMergeyA2CmF">nestedJSONWithArrayMerge</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Map field name to nested JSON and array if array index is specified.
-Example:
-card_data[1].number =&gt; nested JSON with array</p>
-<pre class="highlight swift"><code><span class="p">{</span>
-    <span class="s">"card_data"</span> <span class="p">:</span>
-        <span class="p">[</span>
-            <span class="n">null</span><span class="p">,</span>
-
-            <span class="p">{</span> <span class="s">"number"</span> <span class="p">:</span> <span class="s">"4111111111111111"</span> <span class="p">}</span>
-        <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>Merge arrays content at the same nested level if possible.</p>
-<pre class="highlight swift"><code>        <span class="c1">// Collect fields JSON:</span>
-        <span class="p">[</span>
-         <span class="p">{</span> <span class="s">"cvc"</span> <span class="p">:</span> <span class="s">"555"</span> <span class="p">}</span>
-        <span class="p">]</span>
-
-        <span class="c1">// Extra data JSON:</span>
-        <span class="p">[</span>
-         <span class="p">{</span> <span class="s">"number"</span> <span class="p">:</span> <span class="s">"4111111111111111"</span> <span class="p">}</span>
-        <span class="p">]</span>
-
-        <span class="c1">// JSON to submit:</span>
-        <span class="p">[</span>
-         <span class="p">{</span>
-            <span class="s">"cvc"</span> <span class="p">:</span> <span class="s">"555"</span><span class="p">,</span>
-            <span class="s">"number"</span> <span class="p">:</span> <span class="s">"4111111111111111"</span>
-         <span class="p">}</span>
-        <span class="p">]</span>
-</code></pre>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">nestedJSONWithArrayMerge</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L63">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK0A22FieldNameMappingPolicyO28nestedJSONWithArrayOverwriteyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/nestedJSONWithArrayOverwrite" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A22FieldNameMappingPolicyO28nestedJSONWithArrayOverwriteyA2CmF">nestedJSONWithArrayOverwrite</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Map field name to nested JSON and array if array index is specified.
-Example:
-card_data[1].number =&gt; nested JSON with array</p>
-<pre class="highlight swift"><code><span class="p">{</span>
-    <span class="s">"card_data"</span> <span class="p">:</span>
-        <span class="p">[</span>
-            <span class="n">null</span><span class="p">,</span>
-
-            <span class="p">{</span> <span class="s">"number"</span> <span class="p">:</span> <span class="s">"4111111111111111"</span> <span class="p">}</span>
-        <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>Completely overwrite extra data array with Collect Array data.</p>
-<pre class="highlight swift"><code>        <span class="c1">// Collect fields JSON:</span>
-        <span class="p">[</span>
-         <span class="p">{</span> <span class="s">"cvc"</span> <span class="p">:</span> <span class="s">"555"</span> <span class="p">}</span>
-        <span class="p">]</span>
-
-        <span class="c1">// Extra data JSON:</span>
-        <span class="p">[</span>
-         <span class="p">{</span> <span class="s">"number"</span> <span class="p">:</span> <span class="s">"4111111111111111"</span> <span class="p">},</span>
-         <span class="p">{</span> <span class="s">"id"</span> <span class="p">:</span> <span class="s">"1111"</span> <span class="p">}</span>
-        <span class="p">]</span>
-
-        <span class="c1">// JSON to submit:</span>
-        <span class="p">[</span>
-         <span class="p">{</span>
-            <span class="s">"cvc"</span> <span class="p">:</span> <span class="s">"555"</span><span class="p">,</span>
-         <span class="p">}</span>
-        <span class="p">]</span>
-</code></pre>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">nestedJSONWithArrayOverwrite</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L99">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Extensions/Utils.swift#L55-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
