@@ -1,6 +1,124 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSDocumentPicker.swift",
+      "line": 49,
+      "symbol": "VGSDocumentPicker.documentPicker(_:didPickDocumentsAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSDocumentPicker.swift",
+      "line": 72,
+      "symbol": "VGSDocumentPicker.documentPickerWasCancelled(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSImagePicker.swift",
+      "line": 64,
+      "symbol": "VGSImagePicker.imagePickerControllerDidCancel(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/FilePicker/VGSImagePicker.swift",
+      "line": 68,
+      "symbol": "VGSImagePicker.imagePickerController(_:didFinishPickingMediaWithInfo:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Mask/MaskedTextField+security.swift",
+      "line": 23,
+      "symbol": "MaskedTextField.addSomeTarget(_:action:for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Mask/MaskedTextField.swift",
+      "line": 270,
+      "symbol": "MaskedTextField.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
+      "line": 211,
+      "symbol": "VGSTextField.textFieldDidChange(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
+      "line": 223,
+      "symbol": "VGSTextField.textFieldDidEndEditingOnExit(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift",
+      "line": 336,
+      "symbol": "UIView.mainStyle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 15,
+      "symbol": "VGSPaymentCards.CardBrand.defaultUnknownBrandIcon",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 17,
+      "symbol": "VGSPaymentCards.CardBrand.defaultCVCIcon3Digits",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 19,
+      "symbol": "VGSPaymentCards.CardBrand.defaultCVCIcon4Digits",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 21,
+      "symbol": "VGSPaymentCards.CardBrand.brandIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 25,
+      "symbol": "VGSPaymentCards.CardBrand.cvcIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 29,
+      "symbol": "VGSPaymentCards.CardBrand.defaultBrandIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/CardType+icon.swift",
+      "line": 68,
+      "symbol": "VGSPaymentCards.CardBrand.defaultCVCIcon",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dima/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift",
+      "line": 20,
+      "symbol": "CheckSumAlgorithmType.validate(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
-  "source_directory": "/Users/eugene/vgs-collect-ios"
+  "source_directory": "/Users/dima/vgs-collect-ios"
 }
