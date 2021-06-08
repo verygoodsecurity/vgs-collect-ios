@@ -39,7 +39,8 @@ let package = Package(
         .target(
             name: "VGSCollectSDK",
   					exclude: [
-							"VGSCollectSDK.h"
+							"VGSCollectSDK.h",
+							"Info.plist"
 	 				]),
         .testTarget(
             name: "FrameworkTests",
