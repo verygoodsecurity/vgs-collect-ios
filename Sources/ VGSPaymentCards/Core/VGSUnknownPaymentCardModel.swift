@@ -16,7 +16,8 @@ public struct VGSUnknownPaymentCardModel {
   
   internal let name = VGSPaymentCards.CardBrand.unknown.defaultName
   
-  internal var regex: String = VGSPaymentCards.CardBrand.unknown.defaultRegex
+  /// TODO: Change to internal
+  public var regex: String = VGSPaymentCards.CardBrand.unknown.defaultRegex
 
   /// Valid Unknown Card Numbers Lengths
   public var cardNumberLengths: [Int] = VGSPaymentCards.CardBrand.unknown.defaultCardLengths

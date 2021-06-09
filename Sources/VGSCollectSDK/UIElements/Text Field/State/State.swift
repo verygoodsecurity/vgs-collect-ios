@@ -1,13 +1,13 @@
 //
 //  State.swift
 //
-//  Created by Vitalii Obertynskyi on 9/15/19.
 //
 
 import Foundation
 #if os(iOS)
 import UIKit
 #endif
+import VGSPaymentCards
 
 /// An object that describes `VGSTextField` state.  State attributes are read-only.
 public class State {

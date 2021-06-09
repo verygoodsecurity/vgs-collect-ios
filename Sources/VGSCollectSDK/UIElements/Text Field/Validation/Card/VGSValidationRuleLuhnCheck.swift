@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import VGSPaymentCards
 /**
 Validate input in scope of matching Luhn algorithm.
 */
