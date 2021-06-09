@@ -74,7 +74,6 @@
 		327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C9E132407EF92004C641C /* VGSErrorInfo.swift */; };
 		327C9E182407FC62004C641C /* VGSErrorInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C9E152407F43A004C641C /* VGSErrorInfoKey.swift */; };
 		327CA40D2670B5E30097B959 /* VGSPaymentCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320B0C0A266F75A800167801 /* VGSPaymentCards.framework */; };
-		327CA40E2670B5E30097B959 /* VGSPaymentCards.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 320B0C0A266F75A800167801 /* VGSPaymentCards.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
 		327CDD4E256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
 		327CDD4F256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
@@ -208,20 +207,6 @@
 			remoteInfo = VGSFramework;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		327CA4112670B5E30097B959 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				327CA40E2670B5E30097B959 /* VGSPaymentCards.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -1292,7 +1277,6 @@
 				FD12B9AC2304619100B670DD /* Frameworks */,
 				FD12B9AD2304619100B670DD /* Resources */,
 				32C89470256C34EC00DC5648 /* SwiftLint */,
-				327CA4112670B5E30097B959 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1765,9 +1749,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4445Y664U5;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1779,8 +1763,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSPaymentCards.VGSPaymentCards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSPaymentCards;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -1792,9 +1777,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4445Y664U5;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1806,8 +1791,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSPaymentCards.VGSPaymentCards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSPaymentCards;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -1861,9 +1847,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RV64AU4P26;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1881,6 +1867,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1893,9 +1880,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RV64AU4P26;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1913,6 +1900,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -1924,7 +1912,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1944,6 +1932,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardScanCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1956,7 +1945,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1976,6 +1965,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardScanCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
