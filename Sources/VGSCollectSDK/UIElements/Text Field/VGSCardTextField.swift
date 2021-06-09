@@ -9,6 +9,7 @@
 #if os(iOS)
 import UIKit
 #endif
+import VGSPaymentCards
 
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
 public final class VGSCardTextField: VGSTextField {
@@ -17,7 +18,7 @@ public final class VGSCardTextField: VGSTextField {
     internal lazy var stackView = self.makeStackView()
     internal let stackSpacing: CGFloat = 8.0
     internal lazy var defaultUnknowBrandImage: UIImage? = {
-      return UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
+      return VGSPaymentCards.CardBrand.unknown.brandIcon
     }()
   
     // MARK: - Enum cases

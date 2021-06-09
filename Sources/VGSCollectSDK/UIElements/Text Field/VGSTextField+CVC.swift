@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import VGSPaymentCards
 /// Handle cvc field type
 internal extension VGSTextField {
     

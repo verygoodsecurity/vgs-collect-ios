@@ -9,6 +9,7 @@
 #if os(iOS)
 import UIKit
 #endif
+import VGSPaymentCards
 
 /// An object that displays an editable text area in user interface.
 public class VGSTextField: UIView {

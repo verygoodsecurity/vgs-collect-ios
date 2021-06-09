@@ -9,6 +9,7 @@
 #if os(iOS)
 import UIKit
 #endif
+import VGSPaymentCards
 
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show CVC/CVV images for credit card brands.
 public final class VGSCVCTextField: VGSTextField {

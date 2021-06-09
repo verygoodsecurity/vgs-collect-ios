@@ -165,7 +165,7 @@ public extension VGSPaymentCards.CardBrand {
     }
 }
 
-internal extension VGSPaymentCards {
+public extension VGSPaymentCards {
     
     static func getCardModelFromAvailableModels(brand: VGSPaymentCards.CardBrand) -> VGSPaymentCardModelProtocol? {
       return Self.availableCardBrands.first(where: { $0.brand == brand})
