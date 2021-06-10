@@ -54,8 +54,12 @@ class VGSFieldNameToJSONTests: XCTestCase {
 }
 
 class VGSFieldNameMapperTestDataProvider {
-	static func provideTestDataForVGSFieldNameToJSON() -> [VGSFieldNameToJSONTests.VGSFieldNameTestData] {
-		guard let rootTestJSON = JsonData(jsonFileName: "VGSFieldNameToJSONTestData"), let testDataJSONArray = rootTestJSON["test_data"] as? [JsonData] else {
+	static func provideTestDataForVGSFieldNameToJSON() -> [VGSFieldNameToJSONTests.VGSFieldNameTestData]  {
+		return provideFieldNameTestData(for: "VGSFieldNameToJSONTestData")
+	}
+
+	static func provideFieldNameTestData(for fileName: String) -> [VGSFieldNameToJSONTests.VGSFieldNameTestData]  {
+		guard let rootTestJSON = JsonData(jsonFileName: fileName), let testDataJSONArray = rootTestJSON["test_data"] as? [JsonData] else {
 			XCTFail("cannot build data for file VGSFieldNameToJSONTestData")
 			return []
 		}
@@ -79,6 +83,10 @@ class VGSFieldNameMapperTestDataProvider {
 
 	static func provideTestDataForOverwriteArrays() -> [VGSDeepMergeUtilsTests.TestJSONData] {
 		return provideTestData(for: "OverwriteArraysTestJSONs")
+	}
+
+	static func provideTestDataForFlatJSON() -> [VGSDeepMergeUtilsTests.TestJSONData] {
+		return provideTestData(for: "FlatPolicyTestJSONs")
 	}
 
 	static func provideTestData(for fileName: String) -> [VGSDeepMergeUtilsTests.TestJSONData] {

@@ -19,9 +19,9 @@ internal extension VGSCollect {
 
 		switch mergePolicy {
 		case .flatJSON:
-			return mapStoredInputDataForSubmit(with: extraData, isNestedFieldNameJSON: true)
+			return VGSCollect.mapStoredInpuToFlatJSON(with: extraData, from: storage.textFields)
 		case .nestedJSON:
-			return mapStoredInputDataForSubmit(with: extraData, isNestedFieldNameJSON: true)
+			return mapStoredInputDataForSubmit(with: extraData)
 		case .nestedJSONWithArrayMerge:
 			return VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: storage.textFields, mergeArrayPolicy: .merge, extraData: extraData)
 		case .nestedJSONWithArrayOverwrite:
