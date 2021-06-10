@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
 import VGSPaymentCards
+#endif
 /// Handle cvc field type
 internal extension VGSTextField {
     

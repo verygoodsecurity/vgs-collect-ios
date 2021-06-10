@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
 import VGSPaymentCards
+#endif
 /**
 Validate input in scope of matching Luhn algorithm.
 */
