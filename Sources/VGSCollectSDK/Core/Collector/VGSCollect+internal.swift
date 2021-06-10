@@ -69,21 +69,16 @@ internal extension VGSCollect {
     }
     
     /// Turns textfields data saved in Storage and extra data in format ready to send
-    func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
+	func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil, isNestedFieldNameJSON: Bool) -> [String: Any] {
 
-        let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
-          let output = element.getOutputText()
-          
-          /// Check if any serialization should be done before data will be send
-          if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
-            let result = serialazable.serialize(output ?? "")
-            dict = deepMerge(dict, result)
-          } else {
-            dict[element.fieldName] = output
-          }
-        }
+        let textFieldsData: BodyData = mapFieldsDataToBody()
 
-        var body = mapInputFieldsDataToDictionary(textFieldsData)
+		    var body = textFieldsData
+
+		    // Produce nested JSON for each `.` from field name.
+				if isNestedFieldNameJSON {
+						body = mapInputFieldsDataToDictionary(textFieldsData)
+				}
 
         if let customData = extraData, customData.count != 0 {
            // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
@@ -92,7 +87,25 @@ internal extension VGSCollect {
 
         return body
     }
-    
+
+	  /// Map fields data to body.
+	  /// - Returns: `BodyData` from collect fields.
+		func mapFieldsDataToBody() -> BodyData {
+			let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
+				let output = element.getOutputText()
+
+				/// Check if any serialization should be done before data will be send
+				if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+					let result = serialazable.serialize(output ?? "")
+					dict = deepMerge(dict, result)
+				} else {
+					dict[element.fieldName] = output
+				}
+			}
+
+			return textFieldsData
+		}
+
     /// Maps textfield string key with separator  into nesting Dictionary
     func mapInputFieldsDataToDictionary(_ body: [String: Any]) -> [String: Any] {
         var resultDict = [String: Any]()
