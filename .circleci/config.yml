@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run UI Tests on iPhone 12 iOS 14.1
+          name: Run UI Tests on iPhone 12 iOS 14.2
           command: >
             cd demoapp &&
             cd demoapp &&
@@ -33,18 +33,18 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run UI Tests on iPad Air (3rd generation) iOS 13.5
+          name: Run UI Tests on iPad Air (3rd generation) iOS 13.7
           command: >
             cd demoapp &&
             cd demoapp &&
             plutil -insert vaultID -string ${vaultID} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPad Air (3rd generation) (13.5) [" || true &&
+            xcrun instruments -w "iPad Air (3rd generation) (13.7) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.5'
+            -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.7'
 
 workflows:
   version: 2
