@@ -41,12 +41,12 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "VGSCollectSDK",
-					dependencies: [.target(name: "VGSPaymentCards")],
+						dependencies: [.target(name: "VGSPaymentCards")],
   					exclude: [
 							"VGSCollectSDK.h"
 	 				]),
         .target(name: "VGSPaymentCards",
-                path: "Sources/ VGSPaymentCards/",
+                path: "Sources/VGSPaymentCards/",
                 exclude:  [
 									"Info.plist",
                   "VGSPaymentCards.h"
