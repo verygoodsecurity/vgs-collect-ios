@@ -69,21 +69,11 @@ internal extension VGSCollect {
     }
     
     /// Turns textfields data saved in Storage and extra data in format ready to send
-    func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
+	func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
-        let textFieldsData: BodyData = storage.textFields.reduce(into: BodyData()) { (dict, element) in
-          let output = element.getOutputText()
-          
-          /// Check if any serialization should be done before data will be send
-          if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
-            let result = serialazable.serialize(output ?? "")
-            dict = deepMerge(dict, result)
-          } else {
-            dict[element.fieldName] = output
-          }
-        }
+		   let textFieldsData: BodyData = VGSCollect.mapFieldsDataToBody(from: storage.textFields)
 
-        var body = mapInputFieldsDataToDictionary(textFieldsData)
+		    var body = mapInputFieldsDataToDictionary(textFieldsData)
 
         if let customData = extraData, customData.count != 0 {
            // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
@@ -92,7 +82,36 @@ internal extension VGSCollect {
 
         return body
     }
-    
+
+	static func mapStoredInpuToFlatJSON(with extraData: [String: Any]? = nil, from textFields: [VGSTextField]) -> [String: Any] {
+		var body: BodyData = mapFieldsDataToBody(from: textFields)
+
+		 if let customData = extraData, customData.count != 0 {
+				// NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
+				body = deepMerge(customData, body)
+		 }
+
+		 return body
+	}
+
+	  /// Map fields data to body.
+	  /// - Returns: `BodyData` from collect fields.
+	static func mapFieldsDataToBody(from textFields: [VGSTextField]) -> BodyData {
+			let textFieldsData: BodyData = textFields.reduce(into: BodyData()) { (dict, element) in
+				let output = element.getOutputText()
+
+				/// Check if any serialization should be done before data will be send
+				if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+					let result = serialazable.serialize(output ?? "")
+					dict = deepMerge(dict, result)
+				} else {
+					dict[element.fieldName] = output
+				}
+			}
+
+			return textFieldsData
+		}
+
     /// Maps textfield string key with separator  into nesting Dictionary
     func mapInputFieldsDataToDictionary(_ body: [String: Any]) -> [String: Any] {
         var resultDict = [String: Any]()

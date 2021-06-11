@@ -1,0 +1,89 @@
+{
+		"test_data": [
+				{
+						"fieldsData": [
+								{
+										"fieldName": "card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc": "111"
+						},
+						"extraData": null,
+						"expectedSubmitJSON": {
+								"card_number": "4111-1111-1111-1111",
+								"card_cvc": "111"
+						},
+						"comment": "Fieldname format without dot notation. No extra data."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data.card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data.card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+										"data.card_number": "4111-1111-1111-1111",
+										"data.card_cvc": "111"
+						},
+						"extraData": {
+								"data" : {
+									"user_name": "Bob",
+									"user_id": "348193"
+								}
+						},
+						"expectedSubmitJSON": {
+							"data.card_number": "4111-1111-1111-1111",
+							"data.card_cvc": "111",
+								"data": {
+										"user_name": "Bob",
+										"user_id": "348193"
+								}
+						},
+						"comment": "Fieldname format with key-dot notation. Extra data JSON. No nested JSON levels."
+				},
+				{
+						"fieldsData": [
+								{
+										"fieldName": "data.[0]card_number",
+										"fieldValue": "4111-1111-1111-1111"
+								},
+								{
+										"fieldName": "data.[1]card_cvc",
+										"fieldValue": "111"
+								}
+						],
+						"expectedCollectJSON": {
+							"data.[0]card_number": "4111-1111-1111-1111",
+							"data.[1]card_cvc": "111"
+						},
+						"extraData": {
+								"data" : {
+									"user_name": "Bob",
+									"user_id": "348193"
+								}
+						},
+						"expectedSubmitJSON": {
+							"data.[0]card_number": "4111-1111-1111-1111",
+							"data.[1]card_cvc": "111",
+								"data": {
+										"user_name": "Bob",
+										"user_id": "348193"
+								}
+						},
+						"comment": "Fieldname format with key-dot notation and array. Extra data JSON. No nested levels for array."
+				},
+		]
+}
+

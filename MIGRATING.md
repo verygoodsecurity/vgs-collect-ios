@@ -1,5 +1,29 @@
 ## Migration Guides
 
+### Migrating from versions < v1.8.0
+#### Swift PM modules updates.
+`VGSPaymentCards` moved to separate module. For SDK integration with Swift Package Manager you need to import `VGSPaymentCards` module to each source file where you edit card brands.
+
+Before:
+
+```
+import VGSCollectSDK
+...
+
+VGSPaymentCards.visa.regex = "\\d*$"
+```
+
+Now:
+```
+import VGSCollectSDK
+import VGSPaymentCards
+...
+
+VGSPaymentCards.visa.regex = "\\d*$"
+```
+
+#### Rename enum 
+
 ### Migrating from versions < v1.7.3
 #### Rename enum 
 `CardExpDateFormat` -> `VGSCardExpDateFormat`

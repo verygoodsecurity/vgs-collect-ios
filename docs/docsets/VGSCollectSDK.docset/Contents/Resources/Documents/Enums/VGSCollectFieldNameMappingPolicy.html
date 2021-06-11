@@ -147,26 +147,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Payment%20Cards.html">Payment Cards</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/VGSPaymentCards.html">VGSPaymentCards</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/VGSPaymentCards/CardBrand.html">– CardBrand</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/VGSPaymentCardModel.html">VGSPaymentCardModel</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/VGSCustomPaymentCardModel.html">VGSCustomPaymentCardModel</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/VGSUnknownPaymentCardModel.html">VGSUnknownPaymentCardModel</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../VGSTextField%20Serializers.html">VGSTextField Serializers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -200,9 +180,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSValidationRuleCardExpirationDate.html">VGSValidationRuleCardExpirationDate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/CheckSumAlgorithmType.html">CheckSumAlgorithmType</a>
               </li>
             </ul>
           </li>
@@ -280,14 +257,6 @@
               </li>
             </ul>
           </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Dictionary.html">Dictionary</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -297,12 +266,16 @@
             <h1>VGSCollectFieldNameMappingPolicy</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSCollectFieldNameMappingPolicy</span></code></pre>
 
                 </div>
               </div>
             <p>Defines fieldName mapping to JSON.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L12-L127">Show on GitHub</a>
+              </div>
           </div>
         </section>
 
@@ -310,6 +283,43 @@
           <div class="section-content">
             <div class="task-group">
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A22FieldNameMappingPolicyO8flatJSONyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/flatJSON" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A22FieldNameMappingPolicyO8flatJSONyA2CmF">flatJSON</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Map fieldName to JSON without applying any transformations.
+FieldName is used as single key.
+Example:
+card_data.number =&gt; JSON</p>
+<pre class="highlight swift"><code><span class="p">{</span>
+ <span class="s">"card_data.number"</span> <span class="p">:</span> <span class="s">"4111-1111-1111-1111"</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">flatJSON</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -344,7 +354,7 @@ card_data.number =&gt; nested JSON</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -405,7 +415,7 @@ card_data[1].number =&gt; nested JSON with array</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L63">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -466,7 +476,7 @@ card_data[1].number =&gt; nested JSON with array</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L99">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Utils/Helpers/Mappers/VGSCollectFieldNameMappingPolicy.swift#L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -479,8 +489,8 @@ card_data[1].number =&gt; nested JSON with array</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2021-05-14)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2021 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2021-06-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

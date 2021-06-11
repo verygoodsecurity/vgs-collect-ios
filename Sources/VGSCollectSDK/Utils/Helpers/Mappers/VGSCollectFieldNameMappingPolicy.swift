@@ -12,6 +12,19 @@ import Foundation
 public enum VGSCollectFieldNameMappingPolicy {
 
 	/**
+		Map fieldName to JSON without applying any transformations.
+		FieldName is used as single key.
+		Example:
+		card_data.number => JSON
+
+			{
+			 "card_data.number" : "4111-1111-1111-1111"
+			}
+
+		*/
+	case flatJSON
+
+	/**
 	Map fieldName to nested JSON.
 	Example:
 	card_data.number => nested JSON
@@ -101,6 +114,8 @@ public enum VGSCollectFieldNameMappingPolicy {
 	/// Name for analytics.
 	internal var analyticsName: String {
 		switch self {
+		case .flatJSON:
+			return "flat_json"
 		case .nestedJSON:
 			return "nested_json"
 		case .nestedJSONWithArrayMerge:

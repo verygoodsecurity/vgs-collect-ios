@@ -18,6 +18,8 @@ internal extension VGSCollect {
 	func mapFieldsToBodyJSON(with mergePolicy: VGSCollectFieldNameMappingPolicy, extraData: JsonData?) -> JsonData {
 
 		switch mergePolicy {
+		case .flatJSON:
+			return VGSCollect.mapStoredInpuToFlatJSON(with: extraData, from: storage.textFields)
 		case .nestedJSON:
 			return mapStoredInputDataForSubmit(with: extraData)
 		case .nestedJSONWithArrayMerge:

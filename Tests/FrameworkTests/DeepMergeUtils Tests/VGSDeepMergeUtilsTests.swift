@@ -56,7 +56,7 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 			self.expectedCollectJSON = expectedCollectJSON
 			self.expectedSubmitJSON = submitJSON
 
-			self.extraData = json["etraData"] as? JsonData ?? nil
+			self.extraData = json["extraData"] as? JsonData ?? nil
 			self.comment = json["comment"] as? String ?? nil
 		}
 	}

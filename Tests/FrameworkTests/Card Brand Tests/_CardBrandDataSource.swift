@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import VGSCollectSDK
+@testable import VGSPaymentCards
 
 extension VGSPaymentCards.CardBrand {
     

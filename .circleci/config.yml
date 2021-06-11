@@ -8,43 +8,43 @@ jobs:
       - checkout
       - run:
           name: Run Tests iOS 13-14
-          command: xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1' -testPlan FrameworkTests
+          command: xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2' -testPlan FrameworkTests
   build-and-ui-test-demo-app-ios-14-iphone12:
     macos:
       xcode: "12.1"
     steps:
       - checkout
       - run:
-          name: Run UI Tests on iPhone 12 iOS 14.1
+          name: Run UI Tests on iPhone 12 iOS 14.2
           command: >
             cd demoapp &&
             cd demoapp &&
             plutil -insert vaultID -string ${vaultID} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPhone 12 (14.1) [" || true &&
+            xcrun instruments -w "iPhone 12 (14.2) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.1'
+            -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2'
   build-and-ui-test-demo-app-ios-13-ipad-air-3:
     macos:
       xcode: "12.1"
     steps:
       - checkout
       - run:
-          name: Run UI Tests on iPad Air (3rd generation) iOS 13.5
+          name: Run UI Tests on iPad Air (3rd generation) iOS 13.7
           command: >
             cd demoapp &&
             cd demoapp &&
             plutil -insert vaultID -string ${vaultID} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPad Air (3rd generation) (13.5) [" || true &&
+            xcrun instruments -w "iPad Air (3rd generation) (13.7) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.5'
+            -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.7'
 
 workflows:
   version: 2
