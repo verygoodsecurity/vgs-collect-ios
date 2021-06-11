@@ -18,11 +18,11 @@ extension VGSPaymentCards.CardBrand {
   
     static var defaultCVCIcon4Digits = UIImage(named: "cvc4", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
   
-    var brandIcon: UIImage? {
+    public var brandIcon: UIImage? {
       return VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self })?.brandIcon ?? VGSPaymentCards.unknown.brandIcon
     }
   
-    var cvcIcon: UIImage? {
+    public var cvcIcon: UIImage? {
       return VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self })?.cvcIcon ?? VGSPaymentCards.unknown.cvcIcon
     }
 

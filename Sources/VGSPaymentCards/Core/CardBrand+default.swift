@@ -9,7 +9,7 @@
 import Foundation
 
 /// Default CardBrand settings
-internal extension VGSPaymentCards.CardBrand {
+extension VGSPaymentCards.CardBrand {
   
   /// Returns regex for specific card brand detection
   var defaultRegex: String {
@@ -93,7 +93,7 @@ internal extension VGSPaymentCards.CardBrand {
         }
     }
   
-    var cvcFormatPattern: String {
+    public var cvcFormatPattern: String {
       var maxLength = 0
       if let cardBrand = VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self }) {
         maxLength = cardBrand.cvcLengths.max() ?? 0
