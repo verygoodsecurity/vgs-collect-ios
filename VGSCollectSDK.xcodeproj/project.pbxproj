@@ -71,7 +71,7 @@
 		327CA43026737DA00097B959 /* VGSUnknownPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42426737DA00097B959 /* VGSUnknownPaymentCardModel.swift */; };
 		327CA43226737DA00097B959 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 327CA42726737DA00097B959 /* CardIcon.xcassets */; };
 		327CA43326737DA00097B959 /* CheckSumAlgoritmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42926737DA00097B959 /* CheckSumAlgoritmType.swift */; };
-		327CA43B267381290097B959 /* VGSPaymentCards.h in Headers */ = {isa = PBXBuildFile; fileRef = 327CA439267381290097B959 /* VGSPaymentCards.h */; };
+		327CA43B267381290097B959 /* VGSPaymentCards.h in Headers */ = {isa = PBXBuildFile; fileRef = 327CA439267381290097B959 /* VGSPaymentCards.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
 		327CDD4E256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
 		327CDD4F256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
@@ -1739,7 +1739,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/VGSPaymentCards/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/VGSPaymentCards/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1767,7 +1767,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/VGSPaymentCards/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/VGSPaymentCards/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
