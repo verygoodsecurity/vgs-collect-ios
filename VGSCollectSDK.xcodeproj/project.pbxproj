@@ -128,6 +128,8 @@
 		44AF14D32616CCFC0055CD91 /* VGSCardIOCollector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326FFAF224F904430024A4F9 /* VGSCardIOCollector.framework */; platformFilter = ios; };
 		44AF15052616CF680055CD91 /* VGSCardIODataMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF15042616CF680055CD91 /* VGSCardIODataMapUtilsTests.swift */; };
 		44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */; };
+		44D520AE2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D520AD2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift */; };
+		44D520B0267221D7005AB588 /* FlatPolicyTestJSONs.json in Resources */ = {isa = PBXBuildFile; fileRef = 44D520AF267221D7005AB588 /* FlatPolicyTestJSONs.json */; };
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
 		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
@@ -307,6 +309,8 @@
 		44AF14D22616CCFC0055CD91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44AF15042616CF680055CD91 /* VGSCardIODataMapUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIODataMapUtilsTests.swift; sourceTree = "<group>"; };
 		44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameToJSONTests.swift; sourceTree = "<group>"; };
+		44D520AD2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFlatJSONStructMappingTests.swift; sourceTree = "<group>"; };
+		44D520AF267221D7005AB588 /* FlatPolicyTestJSONs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FlatPolicyTestJSONs.json; sourceTree = "<group>"; };
 		44F3B861261B6EE500BCB354 /* FrameworkTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FrameworkTests.xctestplan; sourceTree = "<group>"; };
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
 		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
@@ -685,6 +689,7 @@
 		44447F8625F7662A00D4CE68 /* TestJSONs */ = {
 			isa = PBXGroup;
 			children = (
+				44D520AA2672205E005AB588 /* FlatJSONs */,
 				4430E19A2600B8D6006B2EF3 /* OverwriteArraysTestJSONs */,
 				44792A7725FDE68D006A04B8 /* DeepMergeTestJSONs */,
 				44447F8725F7663400D4CE68 /* DotNotationJSONs */,
@@ -723,6 +728,7 @@
 				449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */,
 				44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */,
 				44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */,
+				44D520AD2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift */,
 			);
 			path = "DeepMergeUtils Tests";
 			sourceTree = "<group>";
@@ -781,6 +787,14 @@
 				44AF15042616CF680055CD91 /* VGSCardIODataMapUtilsTests.swift */,
 			);
 			path = CardIOMapExpirationDateTests;
+			sourceTree = "<group>";
+		};
+		44D520AA2672205E005AB588 /* FlatJSONs */ = {
+			isa = PBXGroup;
+			children = (
+				44D520AF267221D7005AB588 /* FlatPolicyTestJSONs.json */,
+			);
+			path = FlatJSONs;
 			sourceTree = "<group>";
 		};
 		44F8F51A25DBD1860052647A /* SatelliteUtils */ = {
@@ -1257,6 +1271,7 @@
 				44792A7925FDE6AE006A04B8 /* DeepMergeMergeArrayTestJSONs.json in Resources */,
 				328D7C19261352CF00E0917F /* VGSExpDateSerialization_MapWithArrayMerge.json in Resources */,
 				3215C5072611B87400F21259 /* VGSExpDateSerialization_DefaultConfig.json in Resources */,
+				44D520B0267221D7005AB588 /* FlatPolicyTestJSONs.json in Resources */,
 				3259B3DB2632AF7B008EECE0 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json in Resources */,
 				44447F8925F7667000D4CE68 /* VGSFieldNameToJSONTestData.json in Resources */,
 				328D7C18261352CF00E0917F /* VGSExpDateSerialization_MapWithArrayOverwrite.json in Resources */,
@@ -1486,6 +1501,7 @@
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */,
 				3270D3F1248155B200004E3B /* SSNTextFieldTests.swift in Sources */,
+				44D520AE2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
 				3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */,
 				32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */,
