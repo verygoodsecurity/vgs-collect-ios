@@ -15,7 +15,7 @@
 								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
 						},
-						"etraData": {
+						"extraData": {
 								"user_name": "Bob",
 								"user_id": "348193"
 						},
@@ -43,7 +43,7 @@
 								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
@@ -67,7 +67,7 @@
 										"card_cvc": "111"
 								}
 						},
-						"etraData": {
+						"extraData": {
 							  "data" : {
 									"user_name": "Bob",
 									"user_id": "348193"
@@ -100,7 +100,7 @@
 										"card_cvc": "111"
 								}
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 								"data": {
 										"card_number": "4111-1111-1111-1111",
@@ -123,7 +123,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", "111"]
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 								"data": ["4111-1111-1111-1111", "111"]
 						},
@@ -143,7 +143,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", null, "111"]
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 								"data": ["4111-1111-1111-1111", null, "111"]
 						},
@@ -163,7 +163,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", "111"]
 						},
-						"etraData": {
+						"extraData": {
 								"data": ["333", "20/22"]
 						},
 						"expectedSubmitJSON": {
@@ -185,7 +185,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", "111"]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [{ "user_id": "123" }, { "user_name": "Bob" }]
 						},
 						"expectedSubmitJSON": {
@@ -212,7 +212,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", null, null, null, "111"]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [{ "user_id": "123" }, { "user_name": "Bob" }]
 						},
 						"expectedSubmitJSON": {
@@ -243,7 +243,7 @@
 										{ "cvc": "111" }
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [{ "user_id": "123" }, { "user_name": "Bob" }]
 						},
 						"expectedSubmitJSON": {
@@ -271,7 +271,7 @@
 										{ "cvc": "111" }
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										{ "card_number": "3434-1111-1111-1111" },
 										{ "cvc": "333" }
@@ -306,7 +306,7 @@
 										{ "cvc": "111" }
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": ["3434-1111-1111-1111", "333"]
 						},
 						"expectedSubmitJSON": {
@@ -338,7 +338,7 @@
 										{ "cvc": "111" }
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [["3434-1111-1111-1111"], ["333"]]
 						},
 						"expectedSubmitJSON": {
@@ -377,7 +377,7 @@
 										{ "cvv": "333" }
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										{ "card_number": "3434-1111-1111-1111" },
 										{ "cvc": "5555" }
@@ -424,7 +424,7 @@
 										{ "cvv": "333" }
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										{ "card_number": "3333-3333-3333-3333" },
 										{ "cvc": "5555" },
@@ -462,7 +462,7 @@
 										"4111-1111-1111-1111"
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										{ "cvc": "333" }
 								]
@@ -489,7 +489,7 @@
 										"4111-1111-1111-1111"
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										{ "cvc": "333" },
 										null
@@ -520,7 +520,7 @@
 										"4111-1111-1111-1111"
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										null,
 										{ "cvc": "333" },
@@ -562,7 +562,7 @@
 										"22"
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 										"1",
 										null,
@@ -599,7 +599,7 @@
 
 								]
 						},
-						"etraData": {
+						"extraData": {
 								"data": [
 									"1"
 								]
@@ -632,7 +632,7 @@
 
 								] }
 						},
-						"etraData": {
+						"extraData": {
 							"card_date": {
 									"personal_data": [
 										"1",
@@ -675,7 +675,7 @@
 										}
 								]
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 							"data": [
 									null,

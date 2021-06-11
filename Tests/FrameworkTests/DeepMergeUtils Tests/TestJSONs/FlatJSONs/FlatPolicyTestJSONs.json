@@ -15,7 +15,7 @@
 								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 								"card_number": "4111-1111-1111-1111",
 								"card_cvc": "111"
@@ -37,7 +37,7 @@
 										"data.card_number": "4111-1111-1111-1111",
 										"data.card_cvc": "111"
 						},
-						"etraData": {
+						"extraData": {
 								"data" : {
 									"user_name": "Bob",
 									"user_id": "348193"
@@ -68,7 +68,7 @@
 							"data.[0]card_number": "4111-1111-1111-1111",
 							"data.[1]card_cvc": "111"
 						},
-						"etraData": {
+						"extraData": {
 								"data" : {
 									"user_name": "Bob",
 									"user_id": "348193"

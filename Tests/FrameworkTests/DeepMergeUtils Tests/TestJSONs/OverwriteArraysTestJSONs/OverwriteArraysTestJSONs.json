@@ -14,7 +14,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", "111"]
 						},
-						"etraData": {
+						"extraData": {
 								"data": ["333", "20/22"]
 						},
 						"expectedSubmitJSON": {
@@ -40,7 +40,7 @@
 						"expectedCollectJSON": {
 								"data": ["4111-1111-1111-1111", "111", null, "10/22"]
 						},
-						"etraData": {
+						"extraData": {
 								"data": ["333", "20/22"]
 						},
 						"expectedSubmitJSON": {
@@ -62,7 +62,7 @@
 						"expectedCollectJSON": {
 								"data": [{ "number": "4111-1111-1111-1111" }, { "cvc": "111" }]
 						},
-						"etraData": {
+						"extraData": {
 								"data": ["333", "20/22"]
 						},
 						"expectedSubmitJSON": {
@@ -87,7 +87,7 @@
 								}
 
 						},
-						"etraData": null,
+						"extraData": null,
 						"expectedSubmitJSON": {
 							"data": {
 								"" : ["4111-1111-1111-1111", "111"]
