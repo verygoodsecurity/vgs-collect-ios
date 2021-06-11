@@ -18,15 +18,6 @@
 		32093D7E25CD9F88006CD242 /* VGSCollectRequestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7825CD9F88006CD242 /* VGSCollectRequestLogger.swift */; };
 		32093D8625CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D8525CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift */; };
 		320B0C13266F75A800167801 /* VGSPaymentCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320B0C0A266F75A800167801 /* VGSPaymentCards.framework */; };
-		320B0C26266F76E900167801 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 320B0C25266F76E900167801 /* Info.plist */; };
-		320B0C2E266F781500167801 /* VGSPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C29266F781500167801 /* VGSPaymentCardModel.swift */; };
-		320B0C2F266F781500167801 /* VGSPaymentCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C2A266F781500167801 /* VGSPaymentCards.swift */; };
-		320B0C30266F781500167801 /* VGSCustomPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C2B266F781500167801 /* VGSCustomPaymentCardModel.swift */; };
-		320B0C31266F781500167801 /* CardBrand+default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C2C266F781500167801 /* CardBrand+default.swift */; };
-		320B0C32266F781500167801 /* VGSUnknownPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C2D266F781500167801 /* VGSUnknownPaymentCardModel.swift */; };
-		320B0C35266F789600167801 /* CheckSumAlgoritmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C34266F789600167801 /* CheckSumAlgoritmType.swift */; };
-		320B0C3E266F79A800167801 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 320B0C3D266F79A800167801 /* CardIcon.xcassets */; };
-		320B0C42266F7AE500167801 /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320B0C41266F7AE500167801 /* CardType+icon.swift */; };
 		320E885323A94E1800A9C1FA /* CharacterSet+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */; };
 		321300172417F2B70062FEF0 /* VGSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9442316CE5A000EAF52 /* VGSTextField.swift */; };
 		321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */; };
@@ -72,7 +63,15 @@
 		327C9E162407F43A004C641C /* VGSErrorInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C9E152407F43A004C641C /* VGSErrorInfoKey.swift */; };
 		327C9E172407FC58004C641C /* VGSErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C9E132407EF92004C641C /* VGSErrorInfo.swift */; };
 		327C9E182407FC62004C641C /* VGSErrorInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C9E152407F43A004C641C /* VGSErrorInfoKey.swift */; };
-		327CA40D2670B5E30097B959 /* VGSPaymentCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320B0C0A266F75A800167801 /* VGSPaymentCards.framework */; };
+		327CA42B26737DA00097B959 /* VGSPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA41F26737DA00097B959 /* VGSPaymentCardModel.swift */; };
+		327CA42C26737DA00097B959 /* VGSPaymentCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42026737DA00097B959 /* VGSPaymentCards.swift */; };
+		327CA42D26737DA00097B959 /* VGSCustomPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42126737DA00097B959 /* VGSCustomPaymentCardModel.swift */; };
+		327CA42E26737DA00097B959 /* CardBrand+default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42226737DA00097B959 /* CardBrand+default.swift */; };
+		327CA42F26737DA00097B959 /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42326737DA00097B959 /* CardType+icon.swift */; };
+		327CA43026737DA00097B959 /* VGSUnknownPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42426737DA00097B959 /* VGSUnknownPaymentCardModel.swift */; };
+		327CA43226737DA00097B959 /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 327CA42726737DA00097B959 /* CardIcon.xcassets */; };
+		327CA43326737DA00097B959 /* CheckSumAlgoritmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CA42926737DA00097B959 /* CheckSumAlgoritmType.swift */; };
+		327CA43B267381290097B959 /* VGSPaymentCards.h in Headers */ = {isa = PBXBuildFile; fileRef = 327CA439267381290097B959 /* VGSPaymentCards.h */; };
 		327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
 		327CDD4E256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
 		327CDD4F256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */; };
@@ -219,16 +218,6 @@
 		32093D8525CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSReadWriteSafeContainer.swift; sourceTree = "<group>"; };
 		320B0C0A266F75A800167801 /* VGSPaymentCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSPaymentCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		320B0C12266F75A800167801 /* VGSPaymentCardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGSPaymentCardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		320B0C24266F76E900167801 /* VGSPaymentCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSPaymentCards.h; sourceTree = "<group>"; };
-		320B0C25266F76E900167801 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		320B0C29266F781500167801 /* VGSPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSPaymentCardModel.swift; sourceTree = "<group>"; };
-		320B0C2A266F781500167801 /* VGSPaymentCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSPaymentCards.swift; sourceTree = "<group>"; };
-		320B0C2B266F781500167801 /* VGSCustomPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCustomPaymentCardModel.swift; sourceTree = "<group>"; };
-		320B0C2C266F781500167801 /* CardBrand+default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardBrand+default.swift"; sourceTree = "<group>"; };
-		320B0C2D266F781500167801 /* VGSUnknownPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSUnknownPaymentCardModel.swift; sourceTree = "<group>"; };
-		320B0C34266F789600167801 /* CheckSumAlgoritmType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSumAlgoritmType.swift; sourceTree = "<group>"; };
-		320B0C3D266F79A800167801 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
-		320B0C41266F7AE500167801 /* CardType+icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
 		320E885223A94E1800A9C1FA /* CharacterSet+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+extension.swift"; sourceTree = "<group>"; };
 		3213001A24190BE50062FEF0 /* VGSCollectTest+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollectTest+Validation.swift"; sourceTree = "<group>"; };
 		32130057241F9FFB0062FEF0 /* VGSCollectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectTests.swift; sourceTree = "<group>"; };
@@ -272,6 +261,16 @@
 		3270D3F0248155B200004E3B /* SSNTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSNTextFieldTests.swift; sourceTree = "<group>"; };
 		327C9E132407EF92004C641C /* VGSErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSErrorInfo.swift; sourceTree = "<group>"; };
 		327C9E152407F43A004C641C /* VGSErrorInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSErrorInfoKey.swift; sourceTree = "<group>"; };
+		327CA41F26737DA00097B959 /* VGSPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSPaymentCardModel.swift; sourceTree = "<group>"; };
+		327CA42026737DA00097B959 /* VGSPaymentCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSPaymentCards.swift; sourceTree = "<group>"; };
+		327CA42126737DA00097B959 /* VGSCustomPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCustomPaymentCardModel.swift; sourceTree = "<group>"; };
+		327CA42226737DA00097B959 /* CardBrand+default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardBrand+default.swift"; sourceTree = "<group>"; };
+		327CA42326737DA00097B959 /* CardType+icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
+		327CA42426737DA00097B959 /* VGSUnknownPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSUnknownPaymentCardModel.swift; sourceTree = "<group>"; };
+		327CA42726737DA00097B959 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
+		327CA42926737DA00097B959 /* CheckSumAlgoritmType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckSumAlgoritmType.swift; sourceTree = "<group>"; };
+		327CA439267381290097B959 /* VGSPaymentCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGSPaymentCards.h; sourceTree = "<group>"; };
+		327CA43A267381290097B959 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		327CDD4C256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFormAnanlyticsDetails.swift; sourceTree = "<group>"; };
 		3281541225013EA1004E9AD4 /* VGSAnalyticsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSAnalyticsClient.swift; sourceTree = "<group>"; };
 		328A573F23FADC3500714675 /* VGSFilePickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFilePickerConfiguration.swift; sourceTree = "<group>"; };
@@ -431,7 +430,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				327CA40D2670B5E30097B959 /* VGSPaymentCards.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,54 +465,6 @@
 				32093D8525CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		320B0C23266F76E900167801 /* VGSPaymentCards */ = {
-			isa = PBXGroup;
-			children = (
-				320B0C24266F76E900167801 /* VGSPaymentCards.h */,
-				320B0C25266F76E900167801 /* Info.plist */,
-			);
-			path = VGSPaymentCards;
-			sourceTree = SOURCE_ROOT;
-		};
-		320B0C27266F771800167801 /*  VGSPaymentCards */ = {
-			isa = PBXGroup;
-			children = (
-				320B0C28266F781500167801 /* Core */,
-				320B0C33266F787400167801 /* Enums */,
-				320B0C3C266F79A800167801 /* Resources */,
-			);
-			path = " VGSPaymentCards";
-			sourceTree = "<group>";
-		};
-		320B0C28266F781500167801 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				320B0C2B266F781500167801 /* VGSCustomPaymentCardModel.swift */,
-				320B0C29266F781500167801 /* VGSPaymentCardModel.swift */,
-				320B0C2A266F781500167801 /* VGSPaymentCards.swift */,
-				320B0C2D266F781500167801 /* VGSUnknownPaymentCardModel.swift */,
-				320B0C2C266F781500167801 /* CardBrand+default.swift */,
-				320B0C41266F7AE500167801 /* CardType+icon.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		320B0C33266F787400167801 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				320B0C34266F789600167801 /* CheckSumAlgoritmType.swift */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
-		320B0C3C266F79A800167801 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				320B0C3D266F79A800167801 /* CardIcon.xcassets */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		3215C4BA260DAF0F00F21259 /* Serializers */ = {
@@ -642,6 +592,54 @@
 				326FFB0324F90B940024A4F9 /* CrardScannerInteractionProtocol.swift */,
 			);
 			path = CardScanners;
+			sourceTree = "<group>";
+		};
+		327CA41D26737DA00097B959 /* VGSPaymentCards */ = {
+			isa = PBXGroup;
+			children = (
+				327CA41E26737DA00097B959 /* Core */,
+				327CA42626737DA00097B959 /* Resources */,
+				327CA42826737DA00097B959 /* Enums */,
+			);
+			path = VGSPaymentCards;
+			sourceTree = "<group>";
+		};
+		327CA41E26737DA00097B959 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				327CA41F26737DA00097B959 /* VGSPaymentCardModel.swift */,
+				327CA42026737DA00097B959 /* VGSPaymentCards.swift */,
+				327CA42126737DA00097B959 /* VGSCustomPaymentCardModel.swift */,
+				327CA42226737DA00097B959 /* CardBrand+default.swift */,
+				327CA42326737DA00097B959 /* CardType+icon.swift */,
+				327CA42426737DA00097B959 /* VGSUnknownPaymentCardModel.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		327CA42626737DA00097B959 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				327CA42726737DA00097B959 /* CardIcon.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		327CA42826737DA00097B959 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				327CA42926737DA00097B959 /* CheckSumAlgoritmType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		327CA438267381290097B959 /* VGSPaymentCards */ = {
+			isa = PBXGroup;
+			children = (
+				327CA439267381290097B959 /* VGSPaymentCards.h */,
+				327CA43A267381290097B959 /* Info.plist */,
+			);
+			path = VGSPaymentCards;
 			sourceTree = "<group>";
 		};
 		3281541125013E96004E9AD4 /* Analytics */ = {
@@ -939,11 +937,11 @@
 				32EFFCFF2510D97B007F4DA2 /* README.md */,
 				FD8A9722233CF63D0079FA32 /* Sources */,
 				FD8A9723233CF6470079FA32 /* Tests */,
+				327CA438267381290097B959 /* VGSPaymentCards */,
 				32CFC70824EBEEB300457B17 /* VGSCardScanCollector */,
 				32CFC71324EBEEB300457B17 /* VGSCardScanCollectorTests */,
 				326FFAF324F904430024A4F9 /* VGSCardIOCollector */,
 				44AF14CF2616CCFC0055CD91 /* VGSCardIOCollectorTests */,
-				320B0C23266F76E900167801 /* VGSPaymentCards */,
 				FD12B9B02304619100B670DD /* Products */,
 				32CFC72324EBF3B500457B17 /* Frameworks */,
 			);
@@ -1042,9 +1040,9 @@
 			isa = PBXGroup;
 			children = (
 				FD05F9372316CE5A000EAF52 /* VGSCollectSDK */,
+				327CA41D26737DA00097B959 /* VGSPaymentCards */,
 				326FFAFA24F908AB0024A4F9 /* VGSCardIOCollector */,
 				32CFC71E24EBEF0E00457B17 /* VGSCardScanCollector */,
-				320B0C27266F771800167801 /*  VGSPaymentCards */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1114,6 +1112,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				327CA43B267381290097B959 /* VGSPaymentCards.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1363,7 +1362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				320B0C3E266F79A800167801 /* CardIcon.xcassets in Resources */,
+				327CA43226737DA00097B959 /* CardIcon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,7 +1398,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				320B0C26266F76E900167801 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1511,13 +1509,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				320B0C2E266F781500167801 /* VGSPaymentCardModel.swift in Sources */,
-				320B0C32266F781500167801 /* VGSUnknownPaymentCardModel.swift in Sources */,
-				320B0C2F266F781500167801 /* VGSPaymentCards.swift in Sources */,
-				320B0C30266F781500167801 /* VGSCustomPaymentCardModel.swift in Sources */,
-				320B0C31266F781500167801 /* CardBrand+default.swift in Sources */,
-				320B0C42266F7AE500167801 /* CardType+icon.swift in Sources */,
-				320B0C35266F789600167801 /* CheckSumAlgoritmType.swift in Sources */,
+				327CA43026737DA00097B959 /* VGSUnknownPaymentCardModel.swift in Sources */,
+				327CA42B26737DA00097B959 /* VGSPaymentCardModel.swift in Sources */,
+				327CA43326737DA00097B959 /* CheckSumAlgoritmType.swift in Sources */,
+				327CA42F26737DA00097B959 /* CardType+icon.swift in Sources */,
+				327CA42C26737DA00097B959 /* VGSPaymentCards.swift in Sources */,
+				327CA42D26737DA00097B959 /* VGSCustomPaymentCardModel.swift in Sources */,
+				327CA42E26737DA00097B959 /* CardBrand+default.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1741,7 +1739,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VGSPaymentCards/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/VGSPaymentCards/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1769,7 +1767,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = VGSPaymentCards/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/VGSPaymentCards/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
