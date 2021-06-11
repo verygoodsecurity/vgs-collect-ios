@@ -2,7 +2,7 @@
 
 ### Migrating from versions < v1.8.0
 #### Swift PM modules updates.
-`VGSPaymentCards` moved to separate module.  In case if integrate SDK with `Swift PM` and need to call `VGSPaymentCards.swift` class, you should import additional module:
+`VGSPaymentCards` moved to separate module. For SDK integration with Swift Package Manager you need to import `VGSPaymentCards` module to each source file where you edit card brands.
 
 Before:
 
