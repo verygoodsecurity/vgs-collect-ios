@@ -39,6 +39,7 @@ let package = Package(
         .target(
             name: "VGSCollectSDK",
   					exclude: [
+              "Info.plist",
 							"VGSCollectSDK.h"
 	 				]),
         .target(name: "VGSPaymentCards",
