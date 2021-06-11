@@ -1,5 +1,29 @@
 ## Migration Guides
 
+### Migrating from versions < v1.8.0
+#### Swift PM modules updates.
+`VGSPaymentCards` moved to separate module.  In case if integrate SDK with `Swift PM` and need to call `VGSPaymentCards.swift` class, you should import additional module:
+
+Before:
+
+```
+import VGSCollectSDK
+...
+
+VGSPaymentCards.visa.regex = "\\d*$"
+```
+
+Now:
+```
+import VGSCollectSDK
+import VGSPaymentCards
+...
+
+VGSPaymentCards.visa.regex = "\\d*$"
+```
+
+#### Rename enum 
+
 ### Migrating from versions < v1.7.3
 #### Rename enum 
 `CardExpDateFormat` -> `VGSCardExpDateFormat`
