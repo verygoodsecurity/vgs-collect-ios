@@ -19,10 +19,7 @@ let package = Package(
 			),
 			.library(
 				name: "VGSCardIOCollector",
-				targets: ["VGSCardIOCollector"]),
-			.library(
-				name: "VGSPaymentCards",
-				targets: ["VGSPaymentCards"])
+				targets: ["VGSCardIOCollector"])
     ],
     dependencies: [
 			.package(
