@@ -66,7 +66,12 @@ public final class VGSExpDateTextField: VGSTextField {
     internal let yearPickerComponent = 1
     internal let validYearsCount = 20
     internal lazy var picker = self.makePicker()
-        
+          
+    override func mainInitialization() {
+      super.mainInitialization()
+      // default behaviour in case field setup with VGSConfiguration
+      setupDatePicker()
+    }
   
     override func setupField(with configuration: VGSConfiguration) {
       super.setupField(with: configuration)
