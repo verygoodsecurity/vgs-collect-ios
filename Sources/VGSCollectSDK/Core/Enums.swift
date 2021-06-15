@@ -42,6 +42,16 @@ public enum FieldType: Int, CaseIterable {
     case ssn
 }
 
+/// Type of `VGSTextField` inout source
+public enum VGSTextFieldInputSource {
+  
+  /// UIKeyboard input type
+  case keyboard
+  
+  /// UIDatePicker input type
+  case datePicker
+}
+
 internal extension FieldType {
     
     var defaultFormatPattern: String {

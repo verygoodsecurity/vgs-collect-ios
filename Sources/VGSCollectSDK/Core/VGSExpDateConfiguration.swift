@@ -13,7 +13,10 @@ import UIKit
 
 /// A class responsible for configuration `VGSTextField` with `fieldType = .expDate`. Extends `VGSConfiguration` class.
 public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializableProtocol {
-       
+   
+  /// Input Source type. Default is `VGSTextFieldInputSource.datePicker`
+  public var inputSource: VGSTextFieldInputSource = .datePicker
+  
   /// Input date format to convert.
   public var inputDateFormat: VGSCardExpDateFormat?
   
