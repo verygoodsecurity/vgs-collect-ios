@@ -42,13 +42,13 @@ public enum FieldType: Int, CaseIterable {
     case ssn
 }
 
-/// Type of `VGSTextField` inout source
+/// Type of `VGSTextField` input source.
 public enum VGSTextFieldInputSource {
   
-  /// UIKeyboard input type
+  /// UIKeyboard input type.
   case keyboard
   
-  /// UIDatePicker input type
+  /// UIDatePicker input type.
   case datePicker
 }
 
