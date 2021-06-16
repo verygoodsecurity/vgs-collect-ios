@@ -66,35 +66,26 @@ public final class VGSExpDateTextField: VGSTextField {
     internal let yearPickerComponent = 1
     internal let validYearsCount = 20
     internal lazy var picker = self.makePicker()
-        
-    // MARK: - Initialization
-  
+          
     override func mainInitialization() {
       super.mainInitialization()
-      textField.inputView = picker
-      updateYearsDataSource()
-      updateMonthsDataSource()
-      scrollToCurrentMonth(animated: false)
-      textField.inputAccessoryView = UIView()
+      // default behaviour in case field setup with VGSConfiguration
+      setupDatePicker()
     }
-        
-    private func updateTextField() {
-      let month = months[picker.selectedRow(inComponent: monthPickerComponent)]
-      let year = years[picker.selectedRow(inComponent: yearPickerComponent)]
-      let inputDateFormat: VGSCardExpDateFormat
-      
-      /// Check if specific `.inputFormat` is set in field configuration
-      if let config = configuration as? VGSExpDateConfiguration, let fieldDateFormat = config.inputFormat {
-          inputDateFormat = fieldDateFormat
-      } else {
-        /// Default format could be mm/yy or mm/yyyy. In other case `.inputDateFormat` should be specified
-        let format = textField.formatPattern.components(separatedBy: "/").last ?? FieldType.expDate.defaultFormatPattern
-        inputDateFormat = (format.count == 4) ? .longYear : .shortYear
+  
+    override func setupField(with configuration: VGSConfiguration) {
+      super.setupField(with: configuration)
+      guard let config  = configuration as? VGSExpDateConfiguration else {
+        return
       }
       
-      /// Create the date string
-      let dateString = VGSExpirationDateTextFieldUtils.mapDatePickerExpirationDataForFieldFormat(inputDateFormat, month: month, year: year)
-      self.setText(dateString)
+      // setup input source
+      switch config.inputSource {
+      case .datePicker:
+        setupDatePicker()
+      case .keyboard:
+        setupKeyboard(with: config)
+      }
     }
 }
 
@@ -132,10 +123,35 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
       if pickerView.selectedRow(inComponent: yearPickerComponent) == 0 && pickerView.selectedRow(inComponent: monthPickerComponent) < currentMonthIndex {
         pickerView.selectRow(currentMonthIndex, inComponent: monthPickerComponent, animated: true)
       }
-      updateTextField()
+      updateTextFieldWithDatePickerSelection()
     }
 }
 
+// MARK: -  Configuration
+
+private extension VGSExpDateTextField {
+  
+  /// setup date picker configuration
+  private func setupDatePicker() {
+    textField.inputView = picker
+    updateYearsDataSource()
+    updateMonthsDataSource()
+    scrollToCurrentMonth(animated: false)
+    textField.inputAccessoryView = UIView()
+  }
+
+  /// setup keyboard configuration
+  private func setupKeyboard(with configuration: VGSExpDateConfiguration) {
+    textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
+    textField.returnKeyType = configuration.returnKeyType ?? .default
+    textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
+    // remove date picker if any
+    textField.inputView = nil
+    textField.inputAccessoryView  = nil
+  }
+}
+
+// MARK: -  Date Picker
 private extension VGSExpDateTextField {
     func makePicker() -> UIPickerView {
         let picker = UIPickerView()
@@ -158,6 +174,25 @@ private extension VGSExpDateTextField {
     func updateYearsDataSource() {
       let suffixLength = yearPickeFormat == .short ? 2 : 4
       yearsDataSource = years.map { String(String($0).suffix(suffixLength))}
+    }
+  
+    func updateTextFieldWithDatePickerSelection() {
+      let month = months[picker.selectedRow(inComponent: monthPickerComponent)]
+      let year = years[picker.selectedRow(inComponent: yearPickerComponent)]
+      let inputDateFormat: VGSCardExpDateFormat
+      
+      /// Check if specific `.inputFormat` is set in field configuration
+      if let config = configuration as? VGSExpDateConfiguration, let fieldDateFormat = config.inputFormat {
+          inputDateFormat = fieldDateFormat
+      } else {
+        /// Default format could be mm/yy or mm/yyyy. In other case `.inputDateFormat` should be specified
+        let format = textField.formatPattern.components(separatedBy: "/").last ?? FieldType.expDate.defaultFormatPattern
+        inputDateFormat = (format.count == 4) ? .longYear : .shortYear
+      }
+      
+      /// Create the date string
+      let dateString = VGSExpirationDateTextFieldUtils.mapDatePickerExpirationDataForFieldFormat(inputDateFormat, month: month, year: year)
+      self.setText(dateString)
     }
   
     func scrollToCurrentMonth(animated: Bool) {
