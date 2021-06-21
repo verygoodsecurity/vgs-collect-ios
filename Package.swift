@@ -13,56 +13,57 @@ let package = Package(
         .library(
             name: "VGSCollectSDK",
             targets: ["VGSCollectSDK", "VGSPaymentCards"]),
-				.library(
-						name: "VGSCardScanCollector",
-						targets: ["VGSCardScanCollector"]
-			),
-			.library(
-				name: "VGSCardIOCollector",
-				targets: ["VGSCardIOCollector"])
+        .library(
+            name: "VGSCardScanCollector",
+            targets: ["VGSCardScanCollector"]
+        ),
+        .library(
+            name: "VGSCardIOCollector",
+            targets: ["VGSCardIOCollector"])
     ],
     dependencies: [
-			.package(
-				name: "CardScan",
-				url: "https://github.com/getbouncer/cardscan-ios.git",
-				.exact("2.0.9")
-			),
-			.package(
-						name: "CardIOSDK",
-						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
-						.exact("5.5.5")
-			)
+        .package(
+            name: "CardScan",
+            url: "https://github.com/getbouncer/cardscan-ios.git",
+            .exact("2.0.9")
+        ),
+        .package(
+            name: "CardIOSDK",
+            url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
+            .exact("5.5.5")
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "VGSCollectSDK",
-  					exclude: [
-              "Info.plist",
-							"VGSCollectSDK.h"
-	 				]),
+            dependencies: ["VGSPaymentCards"],
+            exclude: [
+                "Info.plist",
+                "VGSCollectSDK.h"
+            ]),
         .target(name: "VGSPaymentCards",
                 path: "Sources/VGSPaymentCards/",
                 exclude:  [
-									"Info.plist",
-                  "VGSPaymentCards.h"
+                    "Info.plist",
+                    "VGSPaymentCards.h"
                 ]
         ),
         .testTarget(
             name: "FrameworkTests",
             dependencies: ["VGSCollectSDK"]
-				),
-				.target(
-						name: "VGSCardScanCollector",
-						dependencies: ["VGSCollectSDK",
-											.product(name: "CardScan", package: "CardScan")],
-						path: "Sources/VGSCardScanCollector/"
-		 ),
-			.target(
-				name: "VGSCardIOCollector",
-				dependencies: ["VGSCollectSDK",
-											 .product(name: "CardIOSDK", package: "CardIOSDK")],
-				path: "Sources/VGSCardIOCollector/")
-		]
+        ),
+        .target(
+            name: "VGSCardScanCollector",
+            dependencies: ["VGSCollectSDK",
+                           .product(name: "CardScan", package: "CardScan")],
+            path: "Sources/VGSCardScanCollector/"
+        ),
+        .target(
+            name: "VGSCardIOCollector",
+            dependencies: ["VGSCollectSDK",
+                           .product(name: "CardIOSDK", package: "CardIOSDK")],
+            path: "Sources/VGSCardIOCollector/")
+    ]
 )
