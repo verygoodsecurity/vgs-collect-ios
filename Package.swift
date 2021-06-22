@@ -52,7 +52,12 @@ let package = Package(
         ),
         .testTarget(
             name: "FrameworkTests",
-            dependencies: ["VGSCollectSDK"]
+            dependencies: ["VGSCollectSDK"],
+					  exclude: [
+						"Info.plist",
+						"FrameworkTests.xctestplan"
+					  ],
+				  	resources: [.process("Resources")]
 				),
 				.target(
 						name: "VGSCardScanCollector",

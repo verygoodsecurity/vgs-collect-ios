@@ -17,9 +17,10 @@ internal extension JsonData {
 			print("JSON file \(jsonFileName).json not found or is invalid")
 		}
 
-		let bundle = Bundle(for: type(of: VGSCollectTestBundleHelper()))
 		#if SWIFT_PACKAGE
-			bundle = Bundle.module
+			let bundle = Bundle.module
+		#else
+			let bundle = Bundle(for: type(of: VGSCollectTestBundleHelper()))
 		#endif
 
 		if let path = bundle.path(forResource: jsonFileName, ofType: "json") {
