@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VGSValidationRulePaymentCard Structure Reference</title>
+    <title>VGSTextFieldInputSource Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/VGSValidationRulePaymentCard" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/VGSTextFieldInputSource" class="dashAnchor"></a>
 
-    <a title="VGSValidationRulePaymentCard Structure Reference"></a>
+    <a title="VGSTextFieldInputSource Enumeration Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      VGSValidationRulePaymentCard Structure Reference
+      VGSTextFieldInputSource Enumeration Reference
     </p>
 
     <div class="content-wrapper">
@@ -271,20 +271,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>VGSValidationRulePaymentCard</h1>
+            <h1>VGSTextFieldInputSource</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSValidationRulePaymentCard</span> <span class="p">:</span> <span class="kt">VGSValidationRuleProtocol</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSTextFieldInputSource</span></code></pre>
 
                 </div>
               </div>
-            <p>Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
-Supports optional validation of cards that are not defined in SDK - <code>CardBrand.unknown</code>.
-To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, setup  <code>VGSPaymentCards.unknown</code> model attributes.</p>
+            <p>Type of <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> input source.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L18-L43">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L46-L53">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -296,9 +294,9 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK28VGSValidationRulePaymentCardV5errorSSvp"></a>
-                    <a name="//apple_ref/swift/Property/error" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRulePaymentCardV5errorSSvp">error</a>
+                    <a name="/s:13VGSCollectSDK23VGSTextFieldInputSourceO8keyboardyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/keyboard" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK23VGSTextFieldInputSourceO8keyboardyA2CmF">keyboard</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -306,19 +304,19 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Validation Error</p>
+                        <p>UIKeyboard input type.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">keyboard</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L21">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -326,9 +324,9 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK28VGSValidationRulePaymentCardV015validateUnknownF5BrandSbvp"></a>
-                    <a name="//apple_ref/swift/Property/validateUnknownCardBrand" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRulePaymentCardV015validateUnknownF5BrandSbvp">validateUnknownCardBrand</a>
+                    <a name="/s:13VGSCollectSDK23VGSTextFieldInputSourceO10datePickeryA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/datePicker" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK23VGSTextFieldInputSourceO10datePickeryA2CmF">datePicker</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -336,129 +334,19 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Turn on/off validation of cards that are not defined in SDK - <code>CardBrand.unknown</code></p>
+                        <p>UIDatePicker input type.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">validateUnknownCardBrand</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">datePicker</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L24">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK28VGSValidationRulePaymentCardV5errorACSS_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(error:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRulePaymentCardV5errorACSS_tcfc">init(error:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialzation</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>error</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></code> - error on failed validation relust.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L30-L32">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13VGSCollectSDK28VGSValidationRulePaymentCardV5error015validateUnknownF5BrandACSS_Sbtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(error:validateUnknownCardBrand:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK28VGSValidationRulePaymentCardV5error015validateUnknownF5BrandACSS_Sbtcfc">init(error:<wbr>validateUnknownCardBrand:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initialzation</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span><span class="p">,</span> <span class="nv">validateUnknownCardBrand</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>error</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></code> - error on failed validation relust.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>validateUnknownCardBrand</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>flag that turn on/off validation <code>CardBrand.unknown</code>cards.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L39-L42">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Enums.swift#L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
