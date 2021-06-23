@@ -91,40 +91,7 @@ public class VGSTextField: UIView {
               VGSCollectLogger.shared.forwardLogEvent(event)
               return
             }
-            
-            // config text field
-            fieldName = configuration.fieldName
-            isRequired = configuration.isRequired
-            isRequiredValidOnly = configuration.isRequiredValidOnly
-            fieldType = configuration.type
-            textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
-            textField.returnKeyType = configuration.returnKeyType ?? .default
-            textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
-            
-            if let pattern = configuration.formatPattern {
-                textField.formatPattern = pattern
-            } else {
-                textField.formatPattern = configuration.type.defaultFormatPattern
-            }
-            
-            if let divider = configuration.divider {
-                textField.divider = divider
-            } else {
-                textField.divider = configuration.type.defaultDivider
-            }
-          
-            /// Validation
-            if let rules = configuration.validationRules {
-              validationRules = rules
-            } else {
-              validationRules = fieldType.defaultValidation
-            }
-
-            if let collector = configuration.vgsCollector {
-              vgsCollector = collector
-              collector.registerTextFields(textField: [self])
-              VGSAnalyticsClient.shared.trackFormEvent(collector.formAnalyticsDetails, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
-            }
+          setupField(with: configuration)
         }
     }
     
@@ -180,9 +147,45 @@ public class VGSTextField: UIView {
     }
     return textField.getSecureTextWithDivider
   }
+  
+  /// Field Configuration
+  internal func setupField(with configuration: VGSConfiguration) {
+    // config text field
+    fieldName = configuration.fieldName
+    isRequired = configuration.isRequired
+    isRequiredValidOnly = configuration.isRequiredValidOnly
+    fieldType = configuration.type
+    textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
+    textField.returnKeyType = configuration.returnKeyType ?? .default
+    textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
+    
+    if let pattern = configuration.formatPattern {
+        textField.formatPattern = pattern
+    } else {
+        textField.formatPattern = configuration.type.defaultFormatPattern
+    }
+    
+    if let divider = configuration.divider {
+        textField.divider = divider
+    } else {
+        textField.divider = configuration.type.defaultDivider
+    }
+  
+    /// Validation
+    if let rules = configuration.validationRules {
+      validationRules = rules
+    } else {
+      validationRules = fieldType.defaultValidation
+    }
+
+    if let collector = configuration.vgsCollector {
+      vgsCollector = collector
+      collector.registerTextFields(textField: [self])
+      VGSAnalyticsClient.shared.trackFormEvent(collector.formAnalyticsDetails, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
+    }
+  }
 
 }
-
 // MARK: - UIResponder methods
 extension VGSTextField {
     

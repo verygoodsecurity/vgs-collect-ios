@@ -13,7 +13,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Tests/FrameworkTests/ConvertorsTests/FrameworkTests.xctestplan"
+            reference = "container:Tests/FrameworkTests/FrameworkTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
