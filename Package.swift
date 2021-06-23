@@ -38,6 +38,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "VGSCollectSDK",
+						dependencies: ["VGSPaymentCards"],
   					exclude: [
               "Info.plist",
 							"VGSCollectSDK.h"
@@ -51,7 +52,12 @@ let package = Package(
         ),
         .testTarget(
             name: "FrameworkTests",
-            dependencies: ["VGSCollectSDK"]
+            dependencies: ["VGSCollectSDK"],
+					  exclude: [
+						"Info.plist",
+						"FrameworkTests.xctestplan"
+					  ],
+				  	resources: [.process("Resources")]
 				),
 				.target(
 						name: "VGSCardScanCollector",
