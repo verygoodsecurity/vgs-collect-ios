@@ -13,7 +13,7 @@ import UIKit
 
 extension VGSCollect {
 
-    ///:nodoc: Check device if it jailbroken
+    ///:nodoc: Check device if it jailbroken (verify the most common and basic cases to detect jailbroken device). 
     public static func isJailbroken() -> Bool {
         
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return false }
