@@ -36,7 +36,10 @@ public class VGSAnalyticsClient {
   
   /// Enable or disable VGS analytics tracking
   public var shouldCollectAnalytics = true
-  
+
+	/// URL session object with `.urlSession` configuration.
+	internal let urlSession = URLSession(configuration: .ephemeral)
+
   /// Uniq id that should stay the same during application rintime
   public let vgsCollectSessionId = UUID().uuidString
   
@@ -138,6 +141,6 @@ internal extension VGSAnalyticsClient {
       let encodedJSON = jsonData?.base64EncodedData()
       request.httpBody = encodedJSON
       // Send data
-      URLSession.shared.dataTask(with: request).resume()
+			urlSession.dataTask(with: request).resume()
   }
 }

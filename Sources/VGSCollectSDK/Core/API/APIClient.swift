@@ -27,6 +27,9 @@ class APIClient {
 		return self.hostURLPolicy.url
 	}
 
+	/// URL session object with `.ephemeral` configuration.
+	internal let urlSession = URLSession(configuration: .ephemeral)
+
 	/// Host URL policy. Determinates final URL to send Collect requests.
 	internal var hostURLPolicy: APIHostURLPolicy
 
@@ -167,7 +170,7 @@ class APIClient {
 		VGSCollectRequestLogger.logRequest(request, payload: value)
 
 		// Send data.
-		URLSession.shared.dataTask(with: request) { (data, response, error) in
+		urlSession.dataTask(with: request) { (data, response, error) in
 			DispatchQueue.main.async {
 				if let error = error as NSError? {
 					VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
