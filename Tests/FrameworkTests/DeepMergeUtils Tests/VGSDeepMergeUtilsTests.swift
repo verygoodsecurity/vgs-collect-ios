@@ -93,7 +93,7 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 
 			let actualJSONToSubmit: JsonData = VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: textFields, mergeArrayPolicy: .merge, extraData: extraData)
 
-			let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(extraData) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
+      let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(String(describing: extraData)) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
 
 			XCTAssertTrue(actualJSONToSubmit == expectedSubmitJSON, debugDeepMergeOutput)
 		}
@@ -131,7 +131,7 @@ class VGSDeepMergeUtilsTests: XCTestCase {
 
 			let actualJSONToSubmit: JsonData = VGSCollect.mapStoredInputDataForSubmitWithArrays(fields: textFields, mergeArrayPolicy: .overwrite, extraData: extraData)
 
-			let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(extraData) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
+      let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(String(describing: extraData)) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
 
 			XCTAssertTrue(actualJSONToSubmit == expectedSubmitJSON, debugDeepMergeOutput)
 		}

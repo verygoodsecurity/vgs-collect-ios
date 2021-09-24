@@ -108,13 +108,13 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
         /// Test positive case with equal input
         field1.textField.secureText = input1
         field2.textField.secureText = input1
-        XCTAssertTrue(field1.isContentEqual(field2), "Fields not equal error: \(field1.textField.secureText) != \(field2.textField.secureText))")
-        XCTAssertTrue(field2.isContentEqual(field1), "Fields not equal error: \(field2.textField.secureText) != \(field1.textField.secureText))")
+        XCTAssertTrue(field1.isContentEqual(field2), "Fields not equal error: \(String(describing: field1.textField.secureText)) != \(String(describing: field2.textField.secureText)))")
+        XCTAssertTrue(field2.isContentEqual(field1), "Fields not equal error: \(String(describing: field2.textField.secureText)) != \(String(describing: field1.textField.secureText)))")
         
         /// Test negative case with different input
         field2.textField.secureText = input2
-        XCTAssertFalse(field1.isContentEqual(field2), "Fields equal error: \(field1.textField.secureText) == \(field2.textField.secureText))")
-        XCTAssertFalse(field2.isContentEqual(field1), "Fields equal error: \(field2.textField.secureText) == \(field1.textField.secureText))")
+        XCTAssertFalse(field1.isContentEqual(field2), "Fields equal error: \(String(describing: field1.textField.secureText)) == \(String(describing: field2.textField.secureText)))")
+        XCTAssertFalse(field2.isContentEqual(field1), "Fields equal error: \(String(describing: field2.textField.secureText)) == \(String(describing: field1.textField.secureText)))")
       }
     }
   }
@@ -137,14 +137,14 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
     /// Test positive case with equal input
     expDate1.textField.secureText = input1
     expDate2.textField.secureText = input1
-    XCTAssertTrue(expDate1.isContentEqual(expDate2), "Fields not equal error: \(expDate1.textField.secureText) != \(expDate1.textField.secureText))")
-    XCTAssertTrue(expDate2.isContentEqual(expDate1), "Fields not equal error: \(expDate2.textField.secureText) != \(expDate1.textField.secureText))")
+    XCTAssertTrue(expDate1.isContentEqual(expDate2), "Fields not equal error: \(String(describing: expDate1.textField.secureText)) != \(String(describing: expDate1.textField.secureText)))")
+    XCTAssertTrue(expDate2.isContentEqual(expDate1), "Fields not equal error: \(String(describing: expDate2.textField.secureText)) != \(String(describing: expDate1.textField.secureText)))")
     
     /// Test negative case with different input
     expDate1.textField.secureText = input1
     expDate2.textField.secureText = input2
-    XCTAssertFalse(expDate1.isContentEqual(expDate2), "Fields equal error: \(expDate1.textField.secureText) == \(expDate1.textField.secureText))")
-    XCTAssertFalse(expDate2.isContentEqual(expDate1), "Fields equal error: \(expDate2.textField.secureText) == \(expDate1.textField.secureText))")
+    XCTAssertFalse(expDate1.isContentEqual(expDate2), "Fields equal error: \(String(describing: expDate1.textField.secureText)) == \(String(describing: expDate1.textField.secureText)))")
+    XCTAssertFalse(expDate2.isContentEqual(expDate1), "Fields equal error: \(String(describing: expDate2.textField.secureText)) == \(String(describing: expDate1.textField.secureText)))")
   }
 }
        
