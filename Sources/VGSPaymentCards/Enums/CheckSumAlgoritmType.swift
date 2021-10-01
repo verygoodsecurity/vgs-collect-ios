@@ -16,8 +16,8 @@ public enum CheckSumAlgorithmType {
 }
 
 public extension CheckSumAlgorithmType {
-  
-  public func validate(_ input: String) -> Bool {
+  /// Validate input String with specified algorithm.
+  func validate(_ input: String) -> Bool {
     switch self {
     case .luhn:
       return Self.validateWithLuhnAlgorithm(with: input)

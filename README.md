@@ -94,7 +94,7 @@ xcrun swift -version
 > NOTE: In some cases you can have multiple Swift tools versions installed.
 
 
-Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) for more details.\n  
+Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) for more details.  
 To use Swift Package Manager, in Xcode add the https://github.com/verygoodsecurity/vgs-collect-ios.git dependency and choose the `Exact` version.
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_1.png" width="70%">

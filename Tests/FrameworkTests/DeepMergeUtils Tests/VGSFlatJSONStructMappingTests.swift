@@ -16,7 +16,6 @@ class VGSFlatJSONStructMappingTests: XCTestCase {
 		for index in 0..<testData.count {
 			let item = testData[index]
 			let fieldData = item.fieldsData
-			let expectedCollectJSON = item.expectedCollectJSON
 			let extraData = item.extraData
 			let expectedSubmitJSON = item.expectedSubmitJSON
 			let comment = item.comment ?? ""
@@ -33,7 +32,7 @@ class VGSFlatJSONStructMappingTests: XCTestCase {
 
 			let actualJSONToSubmit: JsonData = VGSCollect.mapStoredInpuToFlatJSON(with: extraData, from: textFields)
 
-			let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(extraData) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
+      let debugDeepMergeOutput = "index: \(index). \nFielsdData *\(fieldData) \nExtra data: \(String(describing: extraData)) \nshould produce \(expectedSubmitJSON), \n\ncomment: \(comment)* \n\nActual result: \(actualJSONToSubmit)"
 
 			XCTAssertTrue(actualJSONToSubmit == expectedSubmitJSON, debugDeepMergeOutput)
 		}
