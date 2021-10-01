@@ -109,13 +109,11 @@ public class VGSAnalyticsClient {
 	private static var sdkIntegration: String {
 		#if COCOAPODS
 			return "COCOAPODS"
+		#elseif SWIFT_PACKAGE
+      return "SPM"
+		#else
+      return "OTHER"
 		#endif
-
-		#if SWIFT_PACKAGE
-			return "SPM"
-		#endif
-
-		return "OTHER"
 	}
 }
 

@@ -44,11 +44,7 @@ let package = Package(
 							"VGSCollectSDK.h"
 	 				]),
         .target(name: "VGSPaymentCards",
-                path: "Sources/VGSPaymentCards/",
-                exclude:  [
-									"Info.plist",
-                  "VGSPaymentCards.h"
-                ]
+                path: "Sources/VGSPaymentCards/"
         ),
         .testTarget(
             name: "FrameworkTests",
