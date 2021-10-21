@@ -200,21 +200,22 @@ extension APIClient {
 
 	private func updateHost(with hostname: String, completion: ((URL) -> Void)? = nil) {
 
-		dataSyncQueue.async {
+		dataSyncQueue.async {[weak self] in
+			guard let strongSelf = self else {return}
 
 			// Enter sync zone.
-			self.syncSemaphore.wait()
+			strongSelf.syncSemaphore.wait()
 
 			// Check if we already have URL. If yes, don't fetch it the same time.
-			if let url = self.hostURLPolicy.url {
+			if let url = strongSelf.hostURLPolicy.url {
 				completion?(url)
 				// Quite sync zone.
-				self.syncSemaphore.signal()
+				strongSelf.syncSemaphore.signal()
 				return
 			}
 
 			// Resolve hostname.
-			APIHostnameValidator.validateCustomHostname(hostname, tenantId: self.vaultId) {[weak self](url) in
+			APIHostnameValidator.validateCustomHostname(hostname, tenantId: strongSelf.vaultId) {[weak self](url) in
 				if var validUrl = url {
 
 					// Update url scheme if needed.
