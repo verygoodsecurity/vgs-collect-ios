@@ -26,6 +26,7 @@ internal class MaskedTextField: UITextField {
         case digits = "#"
     }
 
+	  /// Internal delegate that acts as a proxy of `UITextFieldDelegate`.
 		internal weak var customDelegate: MaskedTextFieldDelegate?
 
     /**
@@ -280,7 +281,7 @@ extension MaskedTextField: UITextFieldDelegate {
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
 								 replacementString string: String) -> Bool {
 		guard let customTextFieldDelegate = customDelegate else {
-			return false
+			return true
 		}
 
 		return customTextFieldDelegate.maskedTextField(textField, shouldChangeCharactersInRange: range, replacementString: string)
