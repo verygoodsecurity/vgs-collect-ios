@@ -18,6 +18,7 @@ extension MaskedTextField {
     override public var delegate: UITextFieldDelegate? {
         get { return nil }
         set {
+					// Use only internal masked text field as a delegate.
 					if let value = newValue as? MaskedTextField {
 						super.delegate = value
 					}

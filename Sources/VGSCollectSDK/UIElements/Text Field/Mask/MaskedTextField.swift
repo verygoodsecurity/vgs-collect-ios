@@ -10,6 +10,7 @@
 import UIKit
 #endif
 
+/// Defines interface for masked text field delegate.
 internal protocol MaskedTextFieldDelegate: AnyObject {
 	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange,
 												 replacementString string: String) -> Bool
@@ -272,6 +273,8 @@ internal class MaskedTextField: UITextField {
         }
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension MaskedTextField: UITextFieldDelegate {
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,

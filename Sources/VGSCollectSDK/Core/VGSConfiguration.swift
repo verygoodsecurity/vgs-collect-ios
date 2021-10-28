@@ -74,6 +74,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
   
     /// Validation rules for field input. Defines `State.isValide` result.
     public var validationRules: VGSValidationRuleSet?
+
+	  /// Max input length. **IMPORTANT!** Can conflict with `.formatPattern` attribute.
+		public var maxInputLength: Int?
            
     // MARK: - Initialization
     

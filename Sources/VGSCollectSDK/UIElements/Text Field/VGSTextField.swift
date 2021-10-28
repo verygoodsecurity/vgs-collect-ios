@@ -79,9 +79,6 @@ public class VGSTextField: UIView {
         textField.autocorrectionType = autocorrectionType
       }
     }
-
-	  /// Defines max input length.
-		public var maxLength: Int?
   
     // MARK: - Functional Attributes
     
@@ -342,13 +339,14 @@ internal extension VGSTextField {
   }
 }
 
+// MARK: - MaskedTextFieldDelegate
+
 extension VGSTextField: MaskedTextFieldDelegate {
 	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-		guard let currentMaxLength = maxLength else {return true}
+		guard let maxInputLength = configuration?.maxInputLength, let currentString: NSString = textField.secureText as? NSString else {return true}
 
-		let currentString: NSString = self.textField.secureText as! NSString
-			 let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-			return newString.length <= currentMaxLength
+		let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+		return newString.length <= maxInputLength
 	}
 }
 

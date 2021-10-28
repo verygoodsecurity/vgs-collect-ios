@@ -135,8 +135,7 @@ class CardsDataCollectingViewController: UIViewController {
         expDateConfiguration.type = .expDate
 				expDateConfiguration.inputDateFormat = .shortYear
         expDateConfiguration.outputDateFormat = .longYear
-				expCardDate.maxLength = 4
-      
+
         /// Default .expDate format is "##/##"
         expDateConfiguration.formatPattern = "##/##"
         
@@ -163,7 +162,8 @@ class CardsDataCollectingViewController: UIViewController {
         /// Required to be not empty
       
         cardHolderName.textAlignment = .natural
-				cardHolderName.maxLength = 5
+				// Set max input length
+				//holderConfiguration.maxInputLength = 32
         cardHolderName.configuration = holderConfiguration
         cardHolderName.placeholder = "Cardholder Name"
         
