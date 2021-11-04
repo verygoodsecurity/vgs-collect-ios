@@ -58,7 +58,11 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     public var isRequiredValidOnly: Bool = false
     
     /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
-    public var formatPattern: String?
+		public var formatPattern: String? {
+			didSet {
+				logWarningForFormatPatternIfNeeded()
+			}
+		}
     
     /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on send request.
     public var divider: String?
@@ -74,6 +78,22 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
   
     /// Validation rules for field input. Defines `State.isValide` result.
     public var validationRules: VGSValidationRuleSet?
+
+	  /// Max input length. **IMPORTANT!** Can conflict with `.formatPattern` attribute.
+		public var maxInputLength: Int? {
+			didSet {
+				logWarningForFormatPatternIfNeeded()
+			}
+		}
+
+	  /// Logs warning when both `.formatPattern` and `.maxInputLength` are used.
+		internal func logWarningForFormatPatternIfNeeded() {
+			if !formatPattern.isNilOrEmpty && maxInputLength != nil {
+				let message = "Format pattern (\(formatPattern)) and maxInputLength (\(maxInputLength)) can conflict when both are in use!"
+				let event = VGSLogEvent(level: .warning, text: message, severityLevel: .warning)
+				VGSCollectLogger.shared.forwardLogEvent(event)
+			}
+		}
            
     // MARK: - Initialization
     

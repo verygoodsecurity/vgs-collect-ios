@@ -119,13 +119,15 @@ public class VGSTextField: UIView {
     /// - Note: This will not change `State.isDirty` attribute.
     /// - Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.
     public func setDefaultText(_ text: String?) {
-      updateTextFieldInput(text)
+			let trimmedText = trimTextIfNeeded(text)
+			updateTextFieldInput(trimmedText)
     }
   
     /// :nodoc: Set textfield text.
     public func setText(_ text: String?) {
-      isDirty = true
-      updateTextFieldInput(text)
+			isDirty = true
+			let trimmedText = trimTextIfNeeded(text)
+			updateTextFieldInput(trimmedText)
     }
 
     /// Removes input from field.
@@ -255,7 +257,9 @@ internal extension VGSTextField {
     @objc
     func addTextFieldObservers() {
       //delegates
-      textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
+			textField.delegate = textField
+			textField.customDelegate = self
+			textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
       //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
@@ -335,6 +339,29 @@ internal extension VGSTextField {
     textFieldValueChanged()
     delegate?.vgsTextFieldDidChange?(self)
   }
+
+	/// Returns trimmed text if `.maxInputLength` is set.
+	/// - Parameter text: `String?` object, new text to set.
+	/// - Returns: `String?` object, trimmed text or initial text if `.maxInputLength` not set.
+	func trimTextIfNeeded(_ text: String?) -> String? {
+		guard let maxInputLength = configuration?.maxInputLength, let newText = text else {
+			return text
+		}
+
+		let trimmedText = String(newText.prefix(maxInputLength))
+		return trimmedText
+	}
+}
+
+// MARK: - MaskedTextFieldDelegate
+
+extension VGSTextField: MaskedTextFieldDelegate {
+	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+		guard let maxInputLength = configuration?.maxInputLength, let currentString: NSString = textField.secureText as? NSString else {return true}
+
+		let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+		return newString.length <= maxInputLength
+	}
 }
 
 // MARK: - Main style for text field

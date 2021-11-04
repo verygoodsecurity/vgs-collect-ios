@@ -17,7 +17,12 @@ extension MaskedTextField {
 	  /// :nodoc: Replace native textfield delgate with custom.
     override public var delegate: UITextFieldDelegate? {
         get { return nil }
-        set {}
+        set {
+					// Use only internal masked text field as a delegate.
+					if let value = newValue as? MaskedTextField {
+						super.delegate = value
+					}
+				}
     }
     
     func addSomeTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
