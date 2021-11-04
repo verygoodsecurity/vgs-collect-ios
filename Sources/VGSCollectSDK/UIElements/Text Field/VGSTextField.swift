@@ -360,7 +360,13 @@ extension VGSTextField: MaskedTextFieldDelegate {
 		guard let maxInputLength = configuration?.maxInputLength, let currentString: NSString = textField.secureText as? NSString else {return true}
 
 		let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-		return newString.length <= maxInputLength
+		let rawText = getFilteredString(newString as String) as NSString
+		return rawText.length <= maxInputLength
+	}
+
+	fileprivate func getFilteredString(_ string: String) -> String {
+			let charactersArray = string.components(separatedBy: CharacterSet.alphanumerics.inverted)
+			return charactersArray.joined(separator: "")
 	}
 }
 
