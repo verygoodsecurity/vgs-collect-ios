@@ -351,6 +351,11 @@ internal extension VGSTextField {
 		let trimmedText = String(newText.prefix(maxInputLength))
 		return trimmedText
 	}
+
+	/// `true` if has format pattern.
+	fileprivate var hasFormatPattern: Bool {
+		return !textField.formatPattern.isEmpty
+	}
 }
 
 // MARK: - MaskedTextFieldDelegate
@@ -360,7 +365,16 @@ extension VGSTextField: MaskedTextFieldDelegate {
 		guard let maxInputLength = configuration?.maxInputLength, let currentString: NSString = textField.secureText as? NSString else {return true}
 
 		let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-		let rawText = getFilteredString(newString as String) as NSString
+
+		// Do not filter text when format pattern is not set (empty). Spaces and non alpha-numeric chards will be treated as valid characters and will be used in maxInputLength check.
+		// Otherwise when formatPattern is set filter text only for alphanumeric characters.
+		let rawText: NSString
+		if hasFormatPattern {
+			rawText = getFilteredString(newString as String) as NSString
+		} else {
+			rawText = newString
+		}
+
 		return rawText.length <= maxInputLength
 	}
 
