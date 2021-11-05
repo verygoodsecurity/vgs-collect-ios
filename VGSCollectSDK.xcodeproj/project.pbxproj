@@ -94,6 +94,7 @@
 		32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4B7F324C881FA006086F3 /* Calendar+extension.swift */; };
 		4404600F256801890064BEA0 /* APIHostnameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */; };
 		44168FBF2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44168FBE2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift */; };
+		441A727D272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441A727C272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift */; };
 		441B26D225DB88C50099AA3A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CC25DB88C50099AA3A /* APIClient.swift */; };
 		441B26D325DB88C50099AA3A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CD25DB88C50099AA3A /* HTTPMethod.swift */; };
 		441B26D425DB88C50099AA3A /* APIHostURLPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CF25DB88C50099AA3A /* APIHostURLPolicy.swift */; };
@@ -294,6 +295,7 @@
 		32F4B7F324C881FA006086F3 /* Calendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+extension.swift"; sourceTree = "<group>"; };
 		4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHostnameValidatorTests.swift; sourceTree = "<group>"; };
 		44168FBE2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpirationDateTextFieldUtilsTests.swift; sourceTree = "<group>"; };
+		441A727C272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMaxInputLengthTests.swift; sourceTree = "<group>"; };
 		441B26CC25DB88C50099AA3A /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		441B26CD25DB88C50099AA3A /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		441B26CF25DB88C50099AA3A /* APIHostURLPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHostURLPolicy.swift; sourceTree = "<group>"; };
@@ -1092,6 +1094,7 @@
 				FDA680DE239844FC00372817 /* CardTextFieldTests.swift */,
 				324B5E7924A3A34F0036867E /* ValidationRulesTest.swift */,
 				32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */,
+				441A727C272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift */,
 			);
 			path = "Text Fields Tests";
 			sourceTree = "<group>";
@@ -1674,6 +1677,7 @@
 				44D520AE2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift in Sources */,
 				FDF696E123463ACB00063507 /* TextFielsStyleUI.swift in Sources */,
 				3213005B241FA0BE0062FEF0 /* VGSCollectTest+Validation.swift in Sources */,
+				441A727D272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift in Sources */,
 				32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */,
 				32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */,
 				32C894DE256D4AE400DC5648 /* UIDevice+extension.swift in Sources */,
@@ -2198,7 +2202,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2234,7 +2238,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

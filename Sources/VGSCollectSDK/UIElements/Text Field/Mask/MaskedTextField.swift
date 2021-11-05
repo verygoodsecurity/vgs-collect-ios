@@ -10,6 +10,12 @@
 import UIKit
 #endif
 
+/// Defines interface for masked text field delegate.
+internal protocol MaskedTextFieldDelegate: AnyObject {
+	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange,
+												 replacementString string: String) -> Bool
+}
+
 /// :nodoc: Internal wrapper for `UITextField`.
 internal class MaskedTextField: UITextField {
     enum MaskedTextReplacementChar: String, CaseIterable {
@@ -19,6 +25,9 @@ internal class MaskedTextField: UITextField {
         case upperCaseLetter = "A"
         case digits = "#"
     }
+
+	  /// Internal delegate that acts as a proxy of `UITextFieldDelegate`.
+		internal weak var customDelegate: MaskedTextFieldDelegate?
 
     /**
      Var that holds the format pattern that you wish to apply
@@ -264,6 +273,19 @@ internal class MaskedTextField: UITextField {
             }
         }
     }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension MaskedTextField: UITextFieldDelegate {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+								 replacementString string: String) -> Bool {
+		guard let customTextFieldDelegate = customDelegate else {
+			return true
+		}
+
+		return customTextFieldDelegate.maskedTextField(textField, shouldChangeCharactersInRange: range, replacementString: string)
+	}
 }
 
 extension MaskedTextField {
