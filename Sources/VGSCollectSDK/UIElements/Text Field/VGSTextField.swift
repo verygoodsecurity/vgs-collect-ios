@@ -87,7 +87,7 @@ public class VGSTextField: UIView {
 			}
 		}
 
-		/// A localized string that contains a brief description of the result of performing an action on the accessibility element.
+		/// A localized string that contains a brief description of the result of performing an action on the accessibility text field.
 		public var textFieldAccessibilityHint: String? {
 			didSet {
 				textField.accessibilityHint = textFieldAccessibilityHint
