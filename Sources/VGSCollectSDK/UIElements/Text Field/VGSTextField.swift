@@ -79,7 +79,21 @@ public class VGSTextField: UIView {
         textField.autocorrectionType = autocorrectionType
       }
     }
-  
+
+		/// A succinct label in a localized string that identifies the accessibility text field.
+		public var textFieldAccessibilityLabel: String? {
+			didSet {
+				textField.accessibilityLabel = textFieldAccessibilityLabel
+			}
+		}
+
+		/// A localized string that contains a brief description of the result of performing an action on the accessibility text field.
+		public var textFieldAccessibilityHint: String? {
+			didSet {
+				textField.accessibilityHint = textFieldAccessibilityHint
+			}
+		}
+
     // MARK: - Functional Attributes
     
     /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
