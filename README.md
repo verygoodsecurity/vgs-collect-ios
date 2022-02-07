@@ -17,8 +17,7 @@ Table of contents
    * [Before you start](#before-you-start)
    * [Integration](#integration)
       * [CocoaPods](#cocoapods)
-      * [Carthage](#carthage)
-      * [Swift Package Manager](#swift-package-manager-beta) 
+      * [Swift Package Manager](#swift-package-manager) 
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Scan Credit Card Data](#scan-credit-card-data)
@@ -49,39 +48,7 @@ You should have your organization registered at <a href="https://dashboard.veryg
 pod 'VGSCollectSDK'
 ```
 
-### Carthage
-
-VGCollectSDK is also available through [Carthage](https://github.com/Carthage/Carthage).
-Add the following line  to your `Cartfile`:
-
-```ruby
-github "verygoodsecurity/vgs-collect-ios"
-```
-
-then run:
-
-```ruby
-carthage update --platform iOS
-```
-
-If you don't need additional features like card scanning, you should add into your project only `VGSCollectSDK`. Other submodules can safely be deleted from Carthage Build folder.
-
-Check VGSCollecSDK submodules and required frameworks:
-
-| Build Frameworks | Core SDK  | CardIO | Card Scan   |
-| ----- | -------------- |---------------- |--------------- |
-| VGSCollectSDK   | ✔ | ✔ | ✔|
-| CardIO  |  | ✔ |  |
-| VGSCardIOCollector |  |✔ |  |
-| CardScan  |  |  |   ✔ |
-| VGSCardScanCollector |  |  | ✔ |
-
-Don't forget to import `VGSCardIOCollector` or `VGSCardScanCollector` in files where you use scan modules.
-
-> NOTE: At this time **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
-
-
-### Swift Package Manager (beta)
+### Swift Package Manager
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
 Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don't support Swift packages with resources.
