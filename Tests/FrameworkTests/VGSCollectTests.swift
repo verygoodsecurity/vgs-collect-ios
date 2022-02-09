@@ -112,15 +112,6 @@ class VGSCollectTests: VGSCollectBaseTestCase {
         XCTAssert(collector.customHeaders![headerKey] == headerValue)
     }
     
-    func testJail() {
-        XCTAssertFalse(VGSCollect.isJailbroken())
-    }
-    
-    func testCanOpen() {
-        let path = "."
-        XCTAssertTrue(VGSCollect.canOpen(path: path))
-    }
-    
     func testRegistrationSingleTextField() {
         let config = VGSConfiguration(collector: collector, fieldName: "test")
         let tf = VGSCardTextField()
