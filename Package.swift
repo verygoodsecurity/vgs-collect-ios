@@ -30,7 +30,7 @@ let package = Package(
 			.package(
 						name: "CardIOSDK",
 						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
-						.exact("5.5.5")
+						.exact("5.5.7")
 			)
     ],
     targets: [
