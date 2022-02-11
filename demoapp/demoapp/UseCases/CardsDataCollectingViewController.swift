@@ -38,11 +38,6 @@ class CardsDataCollectingViewController: UIViewController {
         setupUI()
         setupElementsConfiguration()
         
-        // check if device is jailbroken
-        if VGSCollect.isJailbroken() {
-            print("Device is Jailbroken")
-        }
-
         // set custom headers
         vgsCollect.customHeaders = [
             "my custome header": "some custom data"

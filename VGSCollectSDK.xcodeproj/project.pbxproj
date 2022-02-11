@@ -143,7 +143,6 @@
 		FD05F94C2316CE5A000EAF52 /* VGSCollectSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD1489FF232D4F8000FD7781 /* MaskedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1489FE232D4F8000FD7781 /* MaskedTextField.swift */; };
 		FD148A07232EC53600FD7781 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD148A06232EC53600FD7781 /* State.swift */; };
-		FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 		FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */; };
 		FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */; };
 		FD1BE48823462F1E006D8658 /* ExpDateTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE8907A2333A16A00FA170D /* ExpDateTextFieldTests.swift */; };
@@ -351,7 +350,6 @@
 		FD12B9AF2304619100B670DD /* VGSCollectSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSCollectSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1489FE232D4F8000FD7781 /* MaskedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedTextField.swift; sourceTree = "<group>"; };
 		FD148A06232EC53600FD7781 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VGSCollect+extension.swift"; sourceTree = "<group>"; };
 		FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+state.swift"; sourceTree = "<group>"; };
 		FD2495512330CB49009024E6 /* FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2495552330CB49009024E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1071,7 +1069,6 @@
 			children = (
 				FD05F93B2316CE5A000EAF52 /* VGSCollect.swift */,
 				FDE247CE246749C3008D75B0 /* VGSCollect+network.swift */,
-				FD1B445F2327A6A4009AA04A /* VGSCollect+extension.swift */,
 				323105622417DF07009C3360 /* VGSCollect+internal.swift */,
 				4479453D25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift */,
 			);
@@ -1613,7 +1610,6 @@
 				44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */,
 				326FFB0424F90B940024A4F9 /* CrardScannerInteractionProtocol.swift in Sources */,
 				FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */,
-				FD1B44612327A6C6009AA04A /* VGSCollect+extension.swift in Sources */,
 				3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */,
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
 				327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
@@ -2202,7 +2198,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.5;
+				MARKETING_VERSION = 1.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2238,7 +2234,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.5;
+				MARKETING_VERSION = 1.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -37,11 +37,7 @@ class CustomPaymentCardsViewController: UIViewController {
         
         setupUI()
         setupElementsConfiguration()
-        
-        // check if device is jailbroken
-        if VGSCollect.isJailbroken() {
-            print("Device is Jailbroken")
-        }
+
 
         // set custom headers
         vgsCollect.customHeaders = [

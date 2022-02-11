@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.9.5'
+  spec.version = '1.9.6'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -43,6 +43,6 @@ Pod::Spec.new do |spec|
   spec.subspec 'CardIO' do |cardIO|
     cardIO.source_files  = "Sources/VGSCardIOCollector", "Sources/VGSCardIOCollector/**/*.{swift}", "Sources/VGSCardIOCollector/**/*.{h, m}"
     cardIO.dependency "VGSCollectSDK/Core"
-    cardIO.dependency "CardIOSDK", "5.5.6"
+    cardIO.dependency "CardIOSDK", "5.5.7"
   end
 end
