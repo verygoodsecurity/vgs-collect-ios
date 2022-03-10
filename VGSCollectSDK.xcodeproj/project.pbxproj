@@ -133,6 +133,7 @@
 		44ECD60227D9C18C00460FDF /* CardType+icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD5FA27D9C18C00460FDF /* CardType+icon.swift */; };
 		44ECD60327D9C18C00460FDF /* VGSUnknownPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD5FB27D9C18C00460FDF /* VGSUnknownPaymentCardModel.swift */; };
 		44ECD60427D9C18C00460FDF /* CheckSumAlgoritmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD5FD27D9C18C00460FDF /* CheckSumAlgoritmType.swift */; };
+		44ECD60627D9E87000460FDF /* CardIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44ECD60527D9E87000460FDF /* CardIcon.xcassets */; };
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
 		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
 		FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD05F9392316CE5A000EAF52 /* Storage.swift */; };
@@ -281,7 +282,6 @@
 		4459728926135BE600139EAA /* VGSExpDateSerializersDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateSerializersDataProvider.swift; sourceTree = "<group>"; };
 		4479453D25F8C032006CB371 /* VGSCollect+fieldNameMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+fieldNameMapping.swift"; sourceTree = "<group>"; };
 		4479456425F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectFieldNameMappingPolicy.swift; sourceTree = "<group>"; };
-		447A81112589438000BC77C7 /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		449C89D425F0AB9F00BE009F /* VGSDeepMergeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtils.swift; sourceTree = "<group>"; };
 		449C89DB25F0ABB000BE009F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		449C89E825F0AFF400BE009F /* VGSDeepMergeUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDeepMergeUtilsTests.swift; sourceTree = "<group>"; };
@@ -316,6 +316,7 @@
 		44ECD5FA27D9C18C00460FDF /* CardType+icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
 		44ECD5FB27D9C18C00460FDF /* VGSUnknownPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSUnknownPaymentCardModel.swift; sourceTree = "<group>"; };
 		44ECD5FD27D9C18C00460FDF /* CheckSumAlgoritmType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckSumAlgoritmType.swift; sourceTree = "<group>"; };
+		44ECD60527D9E87000460FDF /* CardIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardIcon.xcassets; sourceTree = "<group>"; };
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
 		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
 		FD05F9392316CE5A000EAF52 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -658,7 +659,7 @@
 		447A81102589438000BC77C7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				447A81112589438000BC77C7 /* CardIcon.xcassets */,
+				44ECD60527D9E87000460FDF /* CardIcon.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1289,6 +1290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44ECD60627D9E87000460FDF /* CardIcon.xcassets in Resources */,
 				32EFFD002510D97B007F4DA2 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
