@@ -7,9 +7,7 @@ import Foundation
 #if os(iOS)
 import UIKit
 #endif
-#if !COCOAPODS
-import VGSPaymentCards
-#endif
+
 
 /// An object that describes `VGSTextField` state.  State attributes are read-only.
 public class State {

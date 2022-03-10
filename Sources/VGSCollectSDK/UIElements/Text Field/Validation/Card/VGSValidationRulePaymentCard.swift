@@ -7,9 +7,7 @@
 //
 
 import Foundation
-#if !COCOAPODS
-import VGSPaymentCards
-#endif
+
 /**
  Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
  Supports optional validation of cards that are not defined in SDK - `CardBrand.unknown`.
