@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,9 +19,6 @@
 		44241E9525B1B39D00FC85D9 /* XCUITestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9425B1B39C00FC85D9 /* XCUITestCase+Extensions.swift */; };
 		44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */; };
 		44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */; };
-		442EF6D427B6793B00C326EA /* VGSCardIOCollector in Frameworks */ = {isa = PBXBuildFile; productRef = 442EF6D327B6793B00C326EA /* VGSCardIOCollector */; };
-		442EF6D627B6793B00C326EA /* VGSCardScanCollector in Frameworks */ = {isa = PBXBuildFile; productRef = 442EF6D527B6793B00C326EA /* VGSCardScanCollector */; };
-		442EF6D827B6793B00C326EA /* VGSCollectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 442EF6D727B6793B00C326EA /* VGSCollectSDK */; };
 		446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */; };
 		44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */; };
 		44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691326205F670014645F /* CardsDataCollectingViewController.swift */; };
@@ -106,9 +103,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8CBAAC0A0A75BF9CF5A7FA4 /* Pods_demoapp.framework in Frameworks */,
-				442EF6D827B6793B00C326EA /* VGSCollectSDK in Frameworks */,
-				442EF6D627B6793B00C326EA /* VGSCardScanCollector in Frameworks */,
-				442EF6D427B6793B00C326EA /* VGSCardIOCollector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,9 +276,6 @@
 			);
 			name = demoapp;
 			packageProductDependencies = (
-				442EF6D327B6793B00C326EA /* VGSCardIOCollector */,
-				442EF6D527B6793B00C326EA /* VGSCardScanCollector */,
-				442EF6D727B6793B00C326EA /* VGSCollectSDK */,
 			);
 			productName = demoapp;
 			productReference = FD12B9742304616C00B670DD /* demoapp.app */;
@@ -362,7 +353,6 @@
 			);
 			mainGroup = FD12B96B2304616C00B670DD;
 			packageReferences = (
-				442EF6D227B6793B00C326EA /* XCRemoteSwiftPackageReference "vgs-collect-ios" */,
 			);
 			productRefGroup = FD12B9752304616C00B670DD /* Products */;
 			projectDirPath = "";
@@ -829,35 +819,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		442EF6D227B6793B00C326EA /* XCRemoteSwiftPackageReference "vgs-collect-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:verygoodsecurity/vgs-collect-ios.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		442EF6D327B6793B00C326EA /* VGSCardIOCollector */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 442EF6D227B6793B00C326EA /* XCRemoteSwiftPackageReference "vgs-collect-ios" */;
-			productName = VGSCardIOCollector;
-		};
-		442EF6D527B6793B00C326EA /* VGSCardScanCollector */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 442EF6D227B6793B00C326EA /* XCRemoteSwiftPackageReference "vgs-collect-ios" */;
-			productName = VGSCardScanCollector;
-		};
-		442EF6D727B6793B00C326EA /* VGSCollectSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 442EF6D227B6793B00C326EA /* XCRemoteSwiftPackageReference "vgs-collect-ios" */;
-			productName = VGSCollectSDK;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD12B96C2304616C00B670DD /* Project object */;
 }
