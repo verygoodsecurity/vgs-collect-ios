@@ -1,13 +1,14 @@
 ## Migration Guides
 
-### Migrating from versions < v1.8.0
+### Migrating from versions < v1.9.7
 #### Swift PM modules updates.
-`VGSPaymentCards` moved to separate module. For SDK integration with Swift Package Manager you need to import `VGSPaymentCards` module to each source file where you edit card brands.
+For SDK integration with Swift Package Manager you don't need to import `VGSPaymentCards` module.
 
 Before:
 
 ```
 import VGSCollectSDK
+import VGSPaymentCards
 ...
 
 VGSPaymentCards.visa.regex = "\\d*$"
@@ -16,7 +17,6 @@ VGSPaymentCards.visa.regex = "\\d*$"
 Now:
 ```
 import VGSCollectSDK
-import VGSPaymentCards
 ...
 
 VGSPaymentCards.visa.regex = "\\d*$"
