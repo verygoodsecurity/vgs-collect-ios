@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import VGSCollectSDK
-@testable import VGSPaymentCards
 
 class CardTextFieldTests: VGSCollectBaseTestCase {
 
