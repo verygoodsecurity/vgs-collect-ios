@@ -146,6 +146,26 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Payment%20Cards.html">Payment Cards</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSPaymentCards.html">VGSPaymentCards</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSPaymentCards/CardBrand.html">– CardBrand</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSPaymentCardModel.html">VGSPaymentCardModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSCustomPaymentCardModel.html">VGSCustomPaymentCardModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSUnknownPaymentCardModel.html">VGSUnknownPaymentCardModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="VGSTextField%20Serializers.html">VGSTextField Serializers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -179,6 +199,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/VGSValidationRuleCardExpirationDate.html">VGSValidationRuleCardExpirationDate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/CheckSumAlgorithmType.html">CheckSumAlgorithmType</a>
               </li>
             </ul>
           </li>
@@ -473,7 +496,7 @@ To use Swift Package Manager, in Xcode add the <a href="https://github.com/veryg
 <p><strong>VGSCardTextField</strong> automatically detects card provider and display card brand icon in the input field.</p>
 <h3 id='scan-credit-card-data' class='heading'>Scan Credit Card Data</h3>
 
-<p>VGS Collect SDK provides several card scan solutions for the Payment Card Industry to help protect your businesses and the sensitive information of your consumers. It&rsquo;s required to use only Scan modules provided by VGS, which are audited by VGS PCI requirements.</p>
+<p>VGS Collect SDK provides optional card scan solution. It&rsquo;s required to use only Scan modules provided by VGS, which are audited by VGS PCI requirements.</p>
 <h4 id='integrate-with-cocoapods' class='heading'>Integrate with Cocoapods</h4>
 
 <p>Add &lsquo;VGSCollectSDK&rsquo; alongside with one of scan modules pod:</p>
@@ -481,35 +504,12 @@ To use Swift Package Manager, in Xcode add the <a href="https://github.com/veryg
 
 <span class="c1"># Add CardIO module to use Card.io as scan provider</span>
 <span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardIO'</span> 
-
-<span class="c1"># Add CardScan module to use CardScan(Bouncer) as scan provider</span>
-<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardScan'</span> 
 </code></pre>
 <h4 id='integrate-with-swift-package-manager' class='heading'>Integrate with Swift Package Manager</h4>
-
-<p>Starting with the 1.7.4 release, <code>VGSCollectSDK</code> also supports  <a href="https://github.com/getbouncer/cardscan-ios">CardScan</a> integration via Swift PM.</p>
-
-<p>To use <strong>CardScan</strong> add <code>VGSCollectSDK</code>, <code>VGSCardScanCollector</code> packages to your target. </p>
 
 <p>Starting with the 1.7.11 release, <code>VGSCollectSDK</code> supports  <a href="https://github.com/verygoodsecurity/card.io-iOS-source">CardIO</a> integration via Swift PM.</p>
 
 <p>To use <strong>CardIO</strong> add <code>VGSCollectSDK</code>, <code>VGSCardIOCollector</code> packages to your target. </p>
-<h4 id='integrate-with-carthage' class='heading'>Integrate with Carthage</h4>
-
-<p>Carthage users should point to <code>VGSCollectSDK</code> repository and use next generated framework:</p>
-
-<ul>
-<li>To use <strong>Card.io</strong>: <code>VGSCollectSDK</code>, <code>VGSCardIOCollector</code>, and <code>CardIO</code>. In your file add <code>import VGSCardIOCollector</code>.</li>
-<li>To use <strong>Card Scan</strong>: <code>VGSCollectSDK</code>, <code>VGSCardScanCollector</code>, and <code>CardScan</code>. In your file add <code>import VGSCardScanCollector</code>.</li>
-</ul>
-
-<p>Other submodules can safely be deleted from Carthage Build folder.</p>
-
-<blockquote>
-<p>NOTE: At this time, <strong>Carthage</strong> does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.</p>
-
-<p>NOTE: For <strong>Carthage</strong> users CardScan available only with version 1.0.5048. Use <strong>CocoaPods</strong> or <strong>Swift Package Manager</strong> integration for the latest CardScan version. CardScan supports only <strong>CocoaPods</strong> or <strong>Swift Package Manager</strong> now.</p>
-</blockquote>
 <h4 id='code-example' class='heading'>Code Example</h4>
 
 <table>
@@ -743,7 +743,6 @@ You can easily opt-out of metrics collection in <code>VGSAnalyticsClient</code>:
 
 <ul>
 <li><a href="https://github.com/card-io/card.io-iOS-SDK">CardIO</a></li>
-<li><a href="https://github.com/getbouncer/cardscan-ios">Card Scan(Bouncer)</a></li>
 </ul></li>
 </ul>
 <h2 id='license' class='heading'>License</h2>
@@ -757,7 +756,7 @@ You can easily opt-out of metrics collection in <code>VGSAnalyticsClient</code>:
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2022-02-11)</p>
+      <p>&copy; 2022 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2022-03-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

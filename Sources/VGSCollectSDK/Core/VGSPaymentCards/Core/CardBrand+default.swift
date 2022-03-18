@@ -92,7 +92,8 @@ extension VGSPaymentCards.CardBrand {
           return [3]
         }
     }
-  
+
+	  /// no:doc
     public var cvcFormatPattern: String {
       var maxLength = 0
       if let cardBrand = VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self }) {

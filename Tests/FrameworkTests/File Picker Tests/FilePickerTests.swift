@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-@testable import VGSPaymentCards
+
 class FilePickerTests: VGSCollectBaseTestCase {
     var vgsForm: VGSCollect!
     var filePicker: VGSFilePickerController!

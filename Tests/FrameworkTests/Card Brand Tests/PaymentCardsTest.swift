@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import VGSCollectSDK
-@testable import VGSPaymentCards
 
 class PaymentCardsTest: VGSCollectBaseTestCase {
   var collector: VGSCollect!

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.9.6'
+  spec.version = '1.9.7'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -19,18 +19,13 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
   spec.default_subspec = 'Core'
-  
-  spec.subspec 'PaymentCards' do |pc|
-    pc.source_files = "Sources/VGSPaymentCards", "Sources/VGSPaymentCards/**/*.{swift}", "Sources/VGSPaymentCards/**/*.{h, m}"
-    pc.resource_bundles = {
-      'CardIcon' => ['Sources/VGSPaymentCards/Resources/*']
-    }
-  end
-  
+
   spec.subspec 'Core' do |core|
   #set as default podspec to prevent from downloading additional modules
     core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}", "Sources/VGSCollectSDK/**/*.{h, m}"
-    core.dependency "VGSCollectSDK/PaymentCards"
+		core.resource_bundles = {
+      'CardIcon' => ['Sources/VGSCollectSDK/Resources/*']
+		}
   end
     
   spec.subspec 'CardScan' do |cardscan|
