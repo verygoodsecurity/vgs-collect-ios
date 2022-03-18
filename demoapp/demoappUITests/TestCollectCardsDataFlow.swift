@@ -50,24 +50,4 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
       let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
       XCTAssert(successResponseLabel.exists)
     }
-
-  func testCardScan() {
-    app.tables.staticTexts["Collect Payment Cards Data"].tap()
-    app.staticTexts["STATE"].tap()
-
-    app.buttons["SCAN"].tap()
-    let popup = app.alerts["“demoapp” Would Like to Access the Camera"]
-    if popup.exists {
-      popup.buttons["OK"].tap()
-    }
-
-		// Back button is only for iPhone, on iPad we don't have back button.
-		if UIDevice.current.userInterfaceIdiom == .phone {
-			app.buttons["Back"].tap()
-		}
-
-		// Check if card screen visible.
-		let cardScreen = app.otherElements["CardsDataCollectingViewController.Screen.RootView"]
-		XCTAssert(cardScreen.waitForExistence(timeout: 0.3))
-  }
 }

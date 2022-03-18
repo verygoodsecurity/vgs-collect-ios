@@ -30,7 +30,7 @@ class CardsDataCollectingViewController: UIViewController {
     }
     
     // Init CardScan controller with API KEY. Details: https://cardscan.io
-    var scanController = VGSCardScanController(apiKey: "YOUR_CARD_SCAN_API_KEY")
+    var scanController = VGSCardIOScanController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,15 +172,9 @@ class CardsDataCollectingViewController: UIViewController {
         }
     }
     
-    // Start CardScan scanning
+    // Start CardIO scanning
     @IBAction func scanAction(_ sender: Any) {
-      
-      /// Check if CardScan can run on current device
-      if VGSCardScanController.isCompatible() {
         scanController.presentCardScanner(on: self, animated: true, completion: nil)
-      } else {
-        print("This device not compatible with CardScan")
-      }
     }
     
     // Upload data from TextFields to VGS
@@ -248,32 +242,33 @@ extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   }
 }
 
-// MARK: - VGSCardScanControllerDelegate
-extension CardsDataCollectingViewController: VGSCardScanControllerDelegate {
-    
-    //After User did finish scanning on Card Scan screen
-    func userDidFinishScan() {
-        scanController.dismissCardScanner(animated: true, completion: {
-            // add actions on scan controller dismiss completion
-        })
-    }
-    
-    //When user press Back/Cancel button on Card Scan screen
-    func userDidCancelScan() {
-        scanController.dismissCardScanner(animated: true, completion: nil)
-    }
-    
-    //Asks VGSTextField where scanned data with type need to be set.
-    func textFieldForScannedData(type: CradScanDataType) -> VGSTextField? {
-        switch type {
-        case .expirationDateLong:
-            return expCardDate
-        case .name:
-            return cardHolderName
-        case .cardNumber:
-            return cardNumber
-        default:
-            return nil
-        }
-    }
+// MARK: - VGSCardIOScanControllerDelegate
+extension CardsDataCollectingViewController: VGSCardIOScanControllerDelegate {
+  
+  //When user press Done button on CardIO screen
+  func userDidFinishScan() {
+      scanController.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+  }
+  
+  //When user press Cancel button on CardIO screen
+  func userDidCancelScan() {
+      scanController.dismissCardScanner(animated: true, completion: nil)
+  }
+  
+  //Asks VGSTextField where scanned data with type need to be set.
+  func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
+      switch type {
+      case .expirationDateLong:
+          return expCardDate
+      case .cvc:
+          return cvcCardNum
+      case .cardNumber:
+          return cardNumber
+      default:
+          return nil
+      }
+  }
 }
+
