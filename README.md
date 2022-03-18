@@ -204,7 +204,7 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
 
 
 ### Scan Credit Card Data
-VGS Collect SDK provides several card scan solutions for the Payment Card Industry to help protect your businesses and the sensitive information of your consumers. It's required to use only Scan modules provided by VGS, which are audited by VGS PCI requirements.
+VGS Collect SDK provides optional card scan solution. It's required to use only Scan modules provided by VGS, which are audited by VGS PCI requirements.
 
 #### Integrate with Cocoapods
 
@@ -215,32 +215,12 @@ pod 'VGSCollectSDK'
 
 # Add CardIO module to use Card.io as scan provider
 pod 'VGSCollectSDK/CardIO' 
-
-# Add CardScan module to use CardScan(Bouncer) as scan provider
-pod 'VGSCollectSDK/CardScan' 
 ```
 #### Integrate with Swift Package Manager
-
-Starting with the 1.7.4 release, `VGSCollectSDK` also supports  [CardScan](https://github.com/getbouncer/cardscan-ios) integration via Swift PM.
-
-To use **CardScan** add `VGSCollectSDK`, `VGSCardScanCollector` packages to your target. 
 
 Starting with the 1.7.11 release, `VGSCollectSDK` supports  [CardIO](https://github.com/verygoodsecurity/card.io-iOS-source) integration via Swift PM.
 
 To use **CardIO** add `VGSCollectSDK`, `VGSCardIOCollector` packages to your target. 
-
-#### Integrate with Carthage
-
-Carthage users should point to `VGSCollectSDK` repository and use next generated framework:
-
--  To use **Card.io**: `VGSCollectSDK`, `VGSCardIOCollector`, and `CardIO`. In your file add `import VGSCardIOCollector`.
--  To use **Card Scan**: `VGSCollectSDK`, `VGSCardScanCollector`, and `CardScan`. In your file add `import VGSCardScanCollector`.
-
-Other submodules can safely be deleted from Carthage Build folder.
-
-> NOTE: At this time, **Carthage** does not provide a way to build only specific repository submodules. All submodules and their dependencies will be built by default. However you can include into your project only submodules that you need.
-
-> NOTE: For **Carthage** users CardScan available only with version 1.0.5048. Use **CocoaPods** or **Swift Package Manager** integration for the latest CardScan version. CardScan supports only **CocoaPods** or **Swift Package Manager** now.
 
 #### Code Example
 
@@ -473,7 +453,6 @@ VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 - Swift 5
 - Optional 3rd party libraries:
   - [CardIO](https://github.com/card-io/card.io-iOS-SDK)
-  - [Card Scan(Bouncer)](https://github.com/getbouncer/cardscan-ios)
 
 ## License
 

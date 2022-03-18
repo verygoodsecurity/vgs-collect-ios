@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,6 @@
 		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
 		44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691526205F670014645F /* CustomDataCollectingViewController.swift */; };
 		44D8691E26205F670014645F /* CollectMultiplexingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691726205F670014645F /* CollectMultiplexingViewController.swift */; };
-		44D8691F26205F670014645F /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 44D8691826205F670014645F /* Readme.md */; };
 		44D8692026205F670014645F /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691926205F670014645F /* FilePickerViewController.swift */; };
 		44E292B425CD5BD900717F1C /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E292B325CD5BD900717F1C /* UIColor+Extensions.swift */; };
 		C8CBAAC0A0A75BF9CF5A7FA4 /* Pods_demoapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */; };
@@ -71,7 +70,6 @@
 		44D8691426205F670014645F /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
 		44D8691526205F670014645F /* CustomDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataCollectingViewController.swift; sourceTree = "<group>"; };
 		44D8691726205F670014645F /* CollectMultiplexingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectMultiplexingViewController.swift; sourceTree = "<group>"; };
-		44D8691826205F670014645F /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		44D8691926205F670014645F /* FilePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerViewController.swift; sourceTree = "<group>"; };
 		44E292B325CD5BD900717F1C /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		5FB2107869E88DC903D1C009 /* Pods-demoappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappTests.release.xcconfig"; path = "Target Support Files/Pods-demoappTests/Pods-demoappTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				44D8691726205F670014645F /* CollectMultiplexingViewController.swift */,
-				44D8691826205F670014645F /* Readme.md */,
 			);
 			path = MultiplexingSetup;
 			sourceTree = "<group>";
@@ -367,7 +364,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44D8691F26205F670014645F /* Readme.md in Resources */,
 				FDD398F0247D7A7100B55057 /* Main.storyboard in Resources */,
 				FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */,
 				FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */,
