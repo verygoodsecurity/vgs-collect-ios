@@ -11,21 +11,25 @@ import Foundation
 import UIKit
 #endif
 
+/// no:doc
 extension VGSPaymentCards.CardBrand {
     static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
   
     static var defaultCVCIcon3Digits = UIImage(named: "cvc3", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
   
     static var defaultCVCIcon4Digits = UIImage(named: "cvc4", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
-  
+
+		/// no:doc
     public var brandIcon: UIImage? {
       return VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self })?.brandIcon ?? VGSPaymentCards.unknown.brandIcon
     }
-  
+
+		/// no:doc
     public var cvcIcon: UIImage? {
       return VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self })?.cvcIcon ?? VGSPaymentCards.unknown.cvcIcon
     }
 
+		/// no:doc
     var defaultBrandIcon: UIImage? {
         let bundle = AssetsBundle.main.iconBundle
         
@@ -64,7 +68,8 @@ extension VGSPaymentCards.CardBrand {
         }
         return resultIcon
     }
-  
+
+		/// no:doc
     var defaultCVCIcon: UIImage? {
         var resultIcon: UIImage?
         switch self {
@@ -77,10 +82,12 @@ extension VGSPaymentCards.CardBrand {
     }
 }
 
+/// no:doc
 internal class AssetsBundle {
     static var main = AssetsBundle()
     var iconBundle: Bundle?
-    
+
+		/// no:doc
     init() {
 			// Identify bundle for SPM.
 			#if SWIFT_PACKAGE

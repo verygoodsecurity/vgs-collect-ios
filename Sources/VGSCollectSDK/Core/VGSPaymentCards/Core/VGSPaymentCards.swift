@@ -13,7 +13,8 @@ import Foundation
 /// - Allows to add Custom Payment Cards Models
 /// - Allows to edit Unknown Payment Cards Models(brands not defined by SDK and Developer)
 public class VGSPaymentCards {
-    
+
+	/// no:doc
   private init() {}
     
   // MARK: - CardBrand Enum Cases
@@ -128,6 +129,8 @@ public class VGSPaymentCards {
 }
 
 // MARK: - Attributes
+
+/// no:doc
 public extension VGSPaymentCards.CardBrand {
   
     /// String representation of `VGSPaymentCards.CardBrand` enum values.
@@ -165,12 +168,15 @@ public extension VGSPaymentCards.CardBrand {
     }
 }
 
+/// no:doc
 public extension VGSPaymentCards {
-    
+
+		/// no:doc
     static func getCardModelFromAvailableModels(brand: VGSPaymentCards.CardBrand) -> VGSPaymentCardModelProtocol? {
       return Self.availableCardBrands.first(where: { $0.brand == brand})
     }
 
+		/// no:doc
     static func detectCardBrandFromAvailableCards(input: String) -> VGSPaymentCards.CardBrand {
       for cardModel in Self.availableCardBrands {
           let predicate = NSPredicate(format: "SELF MATCHES %@", cardModel.regex)

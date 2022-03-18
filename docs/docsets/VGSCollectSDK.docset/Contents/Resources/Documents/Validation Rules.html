@@ -147,6 +147,26 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Payment%20Cards.html">Payment Cards</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSPaymentCards.html">VGSPaymentCards</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSPaymentCards/CardBrand.html">– CardBrand</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSPaymentCardModel.html">VGSPaymentCardModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSCustomPaymentCardModel.html">VGSCustomPaymentCardModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSUnknownPaymentCardModel.html">VGSUnknownPaymentCardModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="VGSTextField%20Serializers.html">VGSTextField Serializers</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -180,6 +200,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/VGSValidationRuleCardExpirationDate.html">VGSValidationRuleCardExpirationDate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/CheckSumAlgorithmType.html">CheckSumAlgorithmType</a>
               </li>
             </ul>
           </li>
@@ -419,7 +442,7 @@
                       <div class="abstract">
                         <p>Validate input in scope of matching supported card brands, available lengths and checkSum algorithms.
 Supports optional validation of cards that are not defined in SDK - <code>CardBrand.unknown</code>.
-To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, setup  <code>VGSPaymentCards.unknown</code> model attributes.</p>
+To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, setup  <code><a href="Classes/VGSPaymentCards.html#/s:13VGSCollectSDK15VGSPaymentCardsC7unknownAA26VGSUnknownPaymentCardModelVvpZ">VGSPaymentCards.unknown</a></code> model attributes.</p>
 
                         <a href="Structs/VGSValidationRulePaymentCard.html" class="slightly-smaller">See more</a>
                       </div>
@@ -432,7 +455,7 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L18-L43">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRulePaymentCard.swift#L16-L41">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -463,7 +486,7 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRuleLuhnCheck.swift#L16-L28">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Card/VGSValidationRuleLuhnCheck.swift#L14-L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -499,6 +522,37 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK21CheckSumAlgorithmTypeO"></a>
+                    <a name="//apple_ref/swift/Enum/CheckSumAlgorithmType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK21CheckSumAlgorithmTypeO">CheckSumAlgorithmType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check Sum Algorithm Types</p>
+
+                        <a href="Enums/CheckSumAlgorithmType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">CheckSumAlgorithmType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Enums/CheckSumAlgoritmType.swift#L12-L16">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -507,7 +561,7 @@ To edit validation requirments for <code>CardBrand.unknown</code> cards in SDK, 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2022 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2022-02-11)</p>
+      <p>&copy; 2022 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external">Very Good Security</a>. All rights reserved. (Last updated: 2022-03-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
