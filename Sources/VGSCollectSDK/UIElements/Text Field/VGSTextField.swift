@@ -32,6 +32,13 @@ public class VGSTextField: UIView {
     public var placeholder: String? {
         didSet { textField.placeholder = placeholder }
     }
+
+	/// Textfield autocapitalization type.
+	public var autocapitalizationType: UITextAutocapitalizationType {
+		didSet {
+			textField.autocapitalizationType = autocapitalizationType
+		}
+	}
     
     /// Textfield attributedPlaceholder string.
     public var attributedPlaceholder: NSAttributedString? {
