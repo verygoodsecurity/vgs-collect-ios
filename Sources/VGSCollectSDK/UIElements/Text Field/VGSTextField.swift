@@ -33,8 +33,8 @@ public class VGSTextField: UIView {
         didSet { textField.placeholder = placeholder }
     }
 
-	/// Textfield autocapitalization type.
-	public var autocapitalizationType: UITextAutocapitalizationType {
+	/// Textfield autocapitalization type. Default is `.sentences`.
+	public var autocapitalizationType: UITextAutocapitalizationType = .sentences {
 		didSet {
 			textField.autocapitalizationType = autocapitalizationType
 		}
