@@ -39,6 +39,13 @@ public class VGSTextField: UIView {
 			textField.autocapitalizationType = autocapitalizationType
 		}
 	}
+
+	/// Textfield spell checking type. Default is `UITextSpellCheckingType.default`.
+	public var spellCheckingType: UITextSpellCheckingType  = .default {
+		didSet {
+			textField.spellCheckingType = spellCheckingType
+		}
+	}
     
     /// Textfield attributedPlaceholder string.
     public var attributedPlaceholder: NSAttributedString? {
