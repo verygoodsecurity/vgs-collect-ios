@@ -32,6 +32,20 @@ public class VGSTextField: UIView {
     public var placeholder: String? {
         didSet { textField.placeholder = placeholder }
     }
+
+	/// Textfield autocapitalization type. Default is `.sentences`.
+	public var autocapitalizationType: UITextAutocapitalizationType = .sentences {
+		didSet {
+			textField.autocapitalizationType = autocapitalizationType
+		}
+	}
+
+	/// Textfield spell checking type. Default is `UITextSpellCheckingType.default`.
+	public var spellCheckingType: UITextSpellCheckingType  = .default {
+		didSet {
+			textField.spellCheckingType = spellCheckingType
+		}
+	}
     
     /// Textfield attributedPlaceholder string.
     public var attributedPlaceholder: NSAttributedString? {
