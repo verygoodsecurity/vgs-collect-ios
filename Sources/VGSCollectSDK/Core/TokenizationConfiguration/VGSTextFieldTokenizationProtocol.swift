@@ -8,12 +8,16 @@
 
 import Foundation
 
-
+/// Type of VGS Valut storage.
 public enum VGSVaultStorageType: String {
+  /// PERSISTANT data storage.
   case PERSISTANT = "PERSISTANT"
-  case VALOTILE = "VALOTILE"
+  
+  /// VOLATILE data storage.
+  case VOLATILE = "VOLATILE"
 }
 
+/// Type of Alias format. Read more about avaliable formats: https://www.verygoodsecurity.com/docs/terminology/nomenclature#alias-formats .
 public enum VGSVaultAliasFormat: String {
   case FPE_ACC_NUM_T_FOUR = "FPE_ACC_NUM_T_FOUR"
   case FPE_ALPHANUMERIC_ACC_NUM_T_FOUR = "FPE_ALPHANUMERIC_ACC_NUM_T_FOUR"
@@ -31,6 +35,7 @@ internal protocol VGSTextFieldTokenizationConfigurationProtocol {
   var tokenizationConfiguration: VGSTokenizationParametersProtocol { get }
 }
 
+/// Parameters describing textfield input tokenization.
 public protocol VGSTokenizationParametersProtocol {
   /// Tokenization format
   var format: String { get }

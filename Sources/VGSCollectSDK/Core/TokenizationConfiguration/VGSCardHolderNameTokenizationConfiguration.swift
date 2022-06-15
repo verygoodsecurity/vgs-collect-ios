@@ -5,7 +5,7 @@
 
 import Foundation
 
-/// `VGSSSNTokenizationParameters` - parameters required for tokenization api.
+/// `VGSCardHolderNameTokenizationParameters` - parameters required for tokenization api.
 public struct VGSCardHolderNameTokenizationParameters: VGSTokenizationParametersProtocol {
     
     /// An Array of data classifiers.

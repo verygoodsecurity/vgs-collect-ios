@@ -6,7 +6,7 @@
 import UIKit
 import VGSCollectSDK
 
-/// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
+/// A class that demonstrates how to tokenize  data from VGSTextFields and upload it to VGS.
 class CardsDataTokenizationViewController: UIViewController {
     
     @IBOutlet weak var cardDataStackView: UIStackView!
@@ -108,7 +108,7 @@ class CardsDataTokenizationViewController: UIViewController {
         let holderConfiguration = VGSCardHolderNameTokenizationConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
         holderConfiguration.type = .cardHolderName
         holderConfiguration.keyboardType = .namePhonePad
-        holderConfiguration.tokenizationPatameters.shouldTokenize =false
+        holderConfiguration.tokenizationPatameters.shouldTokenize = false
         /// Required to be not empty
       
         cardHolderName.textAlignment = .natural

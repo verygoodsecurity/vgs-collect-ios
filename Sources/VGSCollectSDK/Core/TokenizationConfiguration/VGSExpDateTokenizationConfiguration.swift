@@ -4,7 +4,7 @@
 
 import Foundation
 
-/// `VGSSSNTokenizationParameters` - parameters required for tokenization api.
+/// `VGSExpDateTokenizationParameters` - parameters required for tokenization api.
 public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtocol {
     
     /// An Array of data classifiers.
@@ -20,7 +20,7 @@ public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtoco
     public var shouldTokenize: Bool = true
 }
 
-/// `VGSSSNTokenizationConfiguration` - textfield configuration for textfield with type `.expDate`, required for work with tokenization api.
+/// `VGSExpDateTokenizationConfiguration` - textfield configuration for textfield with type `.expDate`, required for work with tokenization api.
 public class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
   /// `VGSExpDateTokenizationParameters` - tokenization configuration parameters.

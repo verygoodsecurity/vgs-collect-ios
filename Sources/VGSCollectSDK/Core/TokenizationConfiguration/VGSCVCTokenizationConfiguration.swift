@@ -12,7 +12,7 @@ public struct VGSCVCTokenizationParameters: VGSTokenizationParametersProtocol {
     public var classifiers: [String] = []
   
     /// Valut storage type.
-    public let storage: String = VGSVaultStorageType.VALOTILE.rawValue
+    public let storage: String = VGSVaultStorageType.VOLATILE.rawValue
   
     /// Data alies format.
     public let format: String = VGSVaultAliasFormat.NUM_LENGTH_PRESERVING.rawValue
