@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */; };
+		0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */; };
+		035179A1285920F100394BFC /* VGSCardTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */; };
+		035179A32859BABC00394BFC /* VGSSSNTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A22859BABC00394BFC /* VGSSSNTokenizationConfiguration.swift */; };
+		035179A52859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A42859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift */; };
+		035179A72859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */; };
+		035179A92859BD5500394BFC /* VGSTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD12417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
@@ -192,6 +199,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTokenizationProtocol.swift; sourceTree = "<group>"; };
+		0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTokenizationConfiguration.swift; sourceTree = "<group>"; };
+		035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTokenizationConfiguration.swift; sourceTree = "<group>"; };
+		035179A22859BABC00394BFC /* VGSSSNTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSSSNTokenizationConfiguration.swift; sourceTree = "<group>"; };
+		035179A42859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTokenizationConfiguration.swift; sourceTree = "<group>"; };
+		035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardHolderNameTokenizationConfiguration.swift; sourceTree = "<group>"; };
+		035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectLogLevel.swift; sourceTree = "<group>"; };
@@ -409,6 +423,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		035179992858B39100394BFC /* TokenizationConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */,
+				0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */,
+				035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */,
+				035179A22859BABC00394BFC /* VGSSSNTokenizationConfiguration.swift */,
+				035179A42859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift */,
+				035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */,
+				035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */,
+			);
+			path = TokenizationConfiguration;
+			sourceTree = "<group>";
+		};
 		32093D7225CD9F88006CD242 /* Loggers */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +894,7 @@
 				FDE247D024674AA7008D75B0 /* Collector */,
 				3281541125013E96004E9AD4 /* Analytics */,
 				44ECD5F427D9C18C00460FDF /* VGSPaymentCards */,
+				035179992858B39100394BFC /* TokenizationConfiguration */,
 				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
 				FD05F9392316CE5A000EAF52 /* Storage.swift */,
 				FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */,
@@ -1458,6 +1487,7 @@
 				324B5E6F24A23D530036867E /* VGSValidationRule.swift in Sources */,
 				324B5E7524A23FA60036867E /* VGSValidationRuleExpirationDate.swift in Sources */,
 				441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */,
+				0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */,
 				441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */,
 				325AB9CB2420C5410024134B /* VGSFilePickerControllerDelegate.swift in Sources */,
 				328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */,
@@ -1472,12 +1502,15 @@
 				44ECD5FE27D9C18C00460FDF /* VGSPaymentCardModel.swift in Sources */,
 				FD8B62472497CD580097C9AB /* VGSExpDateTextField.swift in Sources */,
 				44ECD60027D9C18C00460FDF /* VGSCustomPaymentCardModel.swift in Sources */,
+				035179A1285920F100394BFC /* VGSCardTokenizationConfiguration.swift in Sources */,
 				3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */,
+				035179A92859BD5500394BFC /* VGSTokenizationConfiguration.swift in Sources */,
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
 				327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
 				FDD398EE247D776600B55057 /* VGSCardTextField.swift in Sources */,
 				321FE73A25DE45FC00B138E9 /* VGSCVCTextField.swift in Sources */,
 				3281541325013EA1004E9AD4 /* VGSAnalyticsClient.swift in Sources */,
+				035179A52859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift in Sources */,
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */,
@@ -1490,6 +1523,7 @@
 				FD362EDF2401659100B4A640 /* VGSTextFieldDelegate.swift in Sources */,
 				321300182417F2C70062FEF0 /* VGSCollect.swift in Sources */,
 				4479456525F8EB93006CB371 /* VGSCollectFieldNameMappingPolicy.swift in Sources */,
+				035179A72859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift in Sources */,
 				449C8A3125F2510700BE009F /* VGSFieldNameToJSONDataMapper.swift in Sources */,
 				44ECD60127D9C18C00460FDF /* CardBrand+default.swift in Sources */,
 				324B5E6B24A23C2D0036867E /* VGSValidationRulePattern.swift in Sources */,
@@ -1508,12 +1542,14 @@
 				441B26D525DB88C50099AA3A /* APIHostnameValidator.swift in Sources */,
 				FD4ED0E623736BB100AEAD24 /* MaskedTextField+security.swift in Sources */,
 				3262B30123F6CBCB00D4A73D /* VGSFilePickerController.swift in Sources */,
+				0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */,
 				3215C4C8260DAF9400F21259 /* VGSExpDateSeparateSerializer.swift in Sources */,
 				324B5E7324A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				322F94BB25BABE97001CDF12 /* ExpDateFormatConvertor.swift in Sources */,
 				32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */,
 				324B5E6D24A23CC50036867E /* VGSValidationError.swift in Sources */,
+				035179A32859BABC00394BFC /* VGSSSNTokenizationConfiguration.swift in Sources */,
 				321300192417F2E80062FEF0 /* VGSCollect+internal.swift in Sources */,
 				32E4989C23FAEF8300863E61 /* VGSFileInfo.swift in Sources */,
 				32093D7C25CD9F88006CD242 /* VGSCollectPrintingLogger.swift in Sources */,

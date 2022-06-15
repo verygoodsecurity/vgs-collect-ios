@@ -167,4 +167,25 @@ extension VGSCollect {
           block(response)
         }
     }
+  
+  public func tokenizeData(completion block: @escaping (VGSResponse) -> Void) {
+    // Get tokenized textfields params as JSON body
+    let body = mapFieldsToTokenizationBodyJSON()
+    
+    // Send request.
+    apiClient.sendRequest(path: "", method: .post, value: body) { [weak self](response ) in
+      
+      // Analytics
+      if let strongSelf = self {
+        switch response {
+        case .success(let code, _, _):
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code])
+        case .failure(let code, _, _, let error):
+          let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
+        }
+      }
+      block(response)
+    }
+  }
 }
