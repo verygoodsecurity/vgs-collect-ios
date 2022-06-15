@@ -1,0 +1,39 @@
+//
+//  VGSSSNTokenizationConfiguration.swift
+//  VGSCollectSDK
+//
+
+
+import Foundation
+
+/// `VGSSSNTokenizationParameters` - parameters required for tokenization api.
+public struct VGSSSNTokenizationParameters: VGSTokenizationParametersProtocol {
+    
+    /// An Array of data classifiers.
+    public var classifiers: [String] = []
+
+    /// Valut storage type.
+    public let storage: String = VGSVaultStorageType.PERSISTANT.rawValue
+    
+    /// Data alies format.
+    public var format: String = VGSVaultAliasFormat.UUID.rawValue
+  
+    /// Defines if data should be tokenized.
+    public let shouldTokenize: Bool = true
+}
+
+/// `VGSSSNTokenizationConfiguration` - textfield configuration for textfield with type `.ssn`, required for work with tokenization api.
+public class VGSSSNTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
+  
+  /// `VGSSSNTokenizationParameters` - tokenization configuration parameters.
+  public var tokenizationPatameters = VGSSSNTokenizationParameters()
+
+  override public var type: FieldType {
+    get { return .ssn }
+    set {}
+  }
+  
+  internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
+    return tokenizationPatameters
+  }
+}
