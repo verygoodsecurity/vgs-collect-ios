@@ -7,18 +7,11 @@ import Foundation
 
 /// `VGSCardHolderNameTokenizationParameters` - parameters required for tokenization api.
 public struct VGSCardHolderNameTokenizationParameters: VGSTokenizationParametersProtocol {
-    
-    /// An Array of data classifiers.
-    public var classifiers: [String] = []
-
     /// Valut storage type.
-    public let storage: String = VGSVaultStorageType.PERSISTANT.rawValue
+    public var storage: String = VGSVaultStorageType.PERSISTANT.rawValue
     
     /// Data alies format.
     public var format: String = VGSVaultAliasFormat.UUID.rawValue
-  
-    /// Defines if data should be tokenized.
-    public var shouldTokenize: Bool = true
 }
 
 /// `VGSCardHolderNameTokenizationConfiguration` - textfield configuration for textfield with type `.cardHolderName`, required for work with tokenization api.

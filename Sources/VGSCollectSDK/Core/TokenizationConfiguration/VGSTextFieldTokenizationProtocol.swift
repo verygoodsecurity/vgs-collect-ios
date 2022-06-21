@@ -41,19 +41,13 @@ public protocol VGSTokenizationParametersProtocol {
   var format: String { get }
   /// Storage type
   var storage: String  { get }
-  /// Data classifiers
-  var classifiers: [String] { get }
-  /// Set if data should be tokenized. If `false` raw value will be stored in Vault
-  var shouldTokenize: Bool { get }
 }
 
 internal extension VGSTokenizationParametersProtocol {
   func mapToJSON() -> [String: Any] {
     return [
       "storage": storage,
-      "format": format,
-      "classifiers": classifiers,
-      "tokenization": shouldTokenize
+      "format": format
     ]
   }
 }
