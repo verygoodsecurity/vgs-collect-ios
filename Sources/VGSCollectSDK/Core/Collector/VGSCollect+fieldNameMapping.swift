@@ -46,7 +46,7 @@ internal extension VGSCollect {
 		}
 	}
   
-  /// Map stored input for tokenizable textfields to JSON..
+  /// Map stored input for tokenizable textfields to JSON.
   /// - Returns: `JsonData` to submit.
   func mapFieldsToTokenizationBodyJSON() -> JsonData {
     let tokenizibleTextFields = storage.tokenizibleTextFields

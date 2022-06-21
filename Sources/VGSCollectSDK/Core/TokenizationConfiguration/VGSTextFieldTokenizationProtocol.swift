@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Type of VGS Valut storage.
+/// Type of VGS Vault storage.
 public enum VGSVaultStorageType: String {
   /// PERSISTANT data storage.
   case PERSISTANT = "PERSISTANT"
@@ -37,9 +37,9 @@ internal protocol VGSTextFieldTokenizationConfigurationProtocol {
 
 /// Parameters describing textfield input tokenization.
 public protocol VGSTokenizationParametersProtocol {
-  /// Tokenization format
+  /// Tokenization format.
   var format: String { get }
-  /// Storage type
+  /// Storage type.
   var storage: String  { get }
 }
 

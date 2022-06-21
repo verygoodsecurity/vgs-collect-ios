@@ -11,7 +11,7 @@ import Foundation
 /// `VGSTokenizationParameters` - parameters required for tokenization api.
 public struct VGSTokenizationParameters: VGSTokenizationParametersProtocol {
 
-    /// Valut storage type.
+    /// Vault storage type.
     public var storage: String = VGSVaultStorageType.PERSISTANT.rawValue
     
     /// Data alies format.

@@ -6,8 +6,8 @@
 import Foundation
 
 /// `VGSCardTokenizationParameters` - parameters required for tokenization api.
-public struct VGSCardTokenizationParameters: VGSTokenizationParametersProtocol {
-    /// Valut storage type.
+public struct VGSCardNumberTokenizationParameters: VGSTokenizationParametersProtocol {
+    /// Vault storage type.
     public let storage: String = VGSVaultStorageType.PERSISTANT.rawValue
     
     /// Data alies format.
@@ -15,15 +15,16 @@ public struct VGSCardTokenizationParameters: VGSTokenizationParametersProtocol {
 }
 
 /// `VGSCardTokenizationConfiguration` - textfield configuration for textfield with type `.cardNumber`, required for work with tokenization api.
-public class VGSCardTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
+public class VGSCardNumberTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
-  // `VGSCardTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSCardTokenizationParameters()
+  /// `VGSCardTokenizationParameters` - tokenization configuration parameters.
+  public var tokenizationPatameters = VGSCardNumberTokenizationParameters()
 
+  /// `FieldType.cardNumber` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
     get { return .cardNumber }
     set {}
   }
   
-  internal var tokenizationConfiguration: VGSTokenizationParametersProtocol = VGSCardTokenizationParameters()
+  internal var tokenizationConfiguration: VGSTokenizationParametersProtocol = VGSCardNumberTokenizationParameters()
 }

@@ -7,7 +7,7 @@ import Foundation
 
 /// `VGSCardHolderNameTokenizationParameters` - parameters required for tokenization api.
 public struct VGSCardHolderNameTokenizationParameters: VGSTokenizationParametersProtocol {
-    /// Valut storage type.
+    /// Vault storage type.
     public var storage: String = VGSVaultStorageType.PERSISTANT.rawValue
     
     /// Data alies format.
@@ -20,6 +20,7 @@ public class VGSCardHolderNameTokenizationConfiguration: VGSConfiguration, VGSTe
   /// `VGSCardHolderNameTokenizationParameters` - tokenization configuration parameters.
   public var tokenizationPatameters = VGSCardHolderNameTokenizationParameters()
 
+  /// `FieldType.cardHolderName` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
     get { return .cardHolderName }
     set {}

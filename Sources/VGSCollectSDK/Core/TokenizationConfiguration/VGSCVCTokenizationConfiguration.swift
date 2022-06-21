@@ -8,7 +8,7 @@ import Foundation
 /// `VGSCVCTokenizationParameters` - parameters required for tokenization api.
 public struct VGSCVCTokenizationParameters: VGSTokenizationParametersProtocol {
    
-    /// Valut storage type.
+    /// Vault storage type.
     public let storage: String = VGSVaultStorageType.VOLATILE.rawValue
   
     /// Data alies format.
@@ -21,6 +21,7 @@ public class VGSCVCTokenizationConfiguration: VGSConfiguration, VGSTextFieldToke
   /// `VGSCVCTokenizationParameters` - tokenization configuration parameters.
   public var tokenizationPatameters = VGSCVCTokenizationParameters()
   
+  /// `FieldType.cvc` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
     get { return .cvc }
     set {}

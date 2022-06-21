@@ -7,7 +7,7 @@ import Foundation
 /// `VGSExpDateTokenizationParameters` - parameters required for tokenization api.
 public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtocol {
 
-    /// Valut storage type.
+    /// Vault storage type.
     public let storage: String = VGSVaultStorageType.PERSISTANT.rawValue
     
     /// Data alies format.
@@ -20,6 +20,7 @@ public class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSTextField
   /// `VGSExpDateTokenizationParameters` - tokenization configuration parameters.
   public var tokenizationPatameters = VGSExpDateTokenizationParameters()
 
+  /// `FieldType.expDate` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
     get { return .expDate }
     set {}
