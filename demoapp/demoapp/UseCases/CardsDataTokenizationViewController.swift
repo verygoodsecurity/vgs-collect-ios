@@ -69,10 +69,8 @@ class CardsDataTokenizationViewController: UIViewController {
 
     private func setupElementsConfiguration() {
       
-        let cardConfiguration = VGSCardTokenizationConfiguration(collector: vgsCollect, fieldName: "card_number")
-        cardConfiguration.type = .cardNumber
+        let cardConfiguration = VGSCardNumberTokenizationConfiguration(collector: vgsCollect, fieldName: "card_number")
         cardConfiguration.tokenizationPatameters.format = VGSVaultAliasFormat.UUID.rawValue
-        cardConfiguration.tokenizationPatameters.classifiers = ["card", "userId"]
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
@@ -81,7 +79,6 @@ class CardsDataTokenizationViewController: UIViewController {
         cardNumber.becomeFirstResponder()
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
-        expDateConfiguration.type = .expDate
         expDateConfiguration.inputDateFormat = .shortYear
         expDateConfiguration.outputDateFormat = .longYear
 
@@ -98,24 +95,24 @@ class CardsDataTokenizationViewController: UIViewController {
         expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSCVCTokenizationConfiguration(collector: vgsCollect, fieldName: "card_cvc")
-        cvcConfiguration.tokenizationPatameters.classifiers = ["cvc", "userId"]
-      
         cvcCardNum.configuration = cvcConfiguration
+      
         cvcCardNum.isSecureTextEntry = true
         cvcCardNum.placeholder = "CVC"
         cvcCardNum.tintColor = .lightGray
 
         let holderConfiguration = VGSCardHolderNameTokenizationConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
+        holderConfiguration.tokenizationPatameters.format = VGSVaultAliasFormat.UUID.rawValue
+        holderConfiguration.tokenizationPatameters.storage = VGSVaultStorageType.PERSISTANT.rawValue
+      
+      
         holderConfiguration.type = .cardHolderName
         holderConfiguration.keyboardType = .namePhonePad
-        holderConfiguration.tokenizationPatameters.shouldTokenize = false
-        /// Required to be not empty
-      
-        cardHolderName.textAlignment = .natural
-        // Set max input length
-        //holderConfiguration.maxInputLength = 32
+              // Set max input length
+        // holderConfiguration.maxInputLength = 32
         cardHolderName.configuration = holderConfiguration
         cardHolderName.placeholder = "Cardholder Name"
+        cardHolderName.textAlignment = .natural
         
         vgsCollect.textFields.forEach { textField in
           textField.textColor = UIColor.inputBlackTextColor
