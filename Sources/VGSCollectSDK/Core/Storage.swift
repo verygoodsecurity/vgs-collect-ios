@@ -21,11 +21,15 @@ internal class Storage {
     var files = BodyData()
     
     /// TextFields attached to `VGSCollect` instance, with configuration that implements `VGSTextFieldTokenizationConfigurationProtocol`.
-    var tokenizibleTextFields: [VGSTextField] {
+    var tokenizableTextFields: [VGSTextField] {
       return textFields.filter{$0.tokenizationParameters != nil}
     }
   
-  
+    /// TextFields attached to `VGSCollect` instance, with configuration that DOES NOT  implements `VGSTextFieldTokenizationConfigurationProtocol`.
+    var notTokenizibleTextFields: [VGSTextField] {
+      return textFields.filter{$0.tokenizationParameters == nil}
+    }
+    
     func addTextField(_ textField: VGSTextField) {
         if textFields.filter({ $0 == textField }).count == 0 {
             textFields.append(textField)

@@ -168,24 +168,38 @@ extension VGSCollect {
         }
     }
   
-  public func tokenizeData(completion block: @escaping (VGSResponse) -> Void) {
+  /**
+   Makes tokenization response with data from VGSTextFields.
+   - Parameters:
+      - completion: response completion block, returns `VGSTokenizationResponse`.
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func tokenizeData(completion block: @escaping (VGSTokenizationResponse) -> Void) {
+    // Default request params
+    let path = "tokens"
+    let method = HTTPMethod.post
+    // TextField attached to collect by tokenization protocol implementation
+    let tokenizableFields = storage.tokenizableTextFields
+    let notTokenizableFields = storage.notTokenizibleTextFields
     // Get tokenized textfields params as JSON body
-    let body = mapFieldsToTokenizationBodyJSON()
-    
+    let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
     // Send request.
-    apiClient.sendRequest(path: "", method: .post, value: body) { [weak self](response ) in
-      
-      // Analytics
+    apiClient.sendRequest(path: path, method: method, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {
-        case .success(let code, _, _):
+        case .success(let code, let data, let response):
+          // Analytics
           VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code])
-        case .failure(let code, _, _, let error):
+          // Build response - combine tokenized data with not tokenized
+          let responseBody = strongSelf.buildTokenizationResponseBody(data, tokenizedFields: tokenizableFields, notTokenizedFields: notTokenizableFields)
+          block(.success(code, responseBody, response))
+        case .failure(let code, let data, let response, let error):
           let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
           VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
+          block(.failure(code, data, response, error))
         }
       }
-      block(response)
     }
   }
 }

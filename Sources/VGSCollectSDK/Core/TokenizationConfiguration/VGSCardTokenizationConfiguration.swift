@@ -8,7 +8,7 @@ import Foundation
 /// `VGSCardTokenizationParameters` - parameters required for tokenization api.
 public struct VGSCardNumberTokenizationParameters: VGSTokenizationParametersProtocol {
     /// Vault storage type.
-    public let storage: String = VGSVaultStorageType.PERSISTANT.rawValue
+    public let storage: String = VGSVaultStorageType.PERSISTENT.rawValue
     
     /// Data alies format.
     public var format: String = VGSVaultAliasFormat.FPE_SIX_T_FOUR.rawValue

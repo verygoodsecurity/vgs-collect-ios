@@ -8,7 +8,7 @@ import Foundation
 public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtocol {
 
     /// Vault storage type.
-    public let storage: String = VGSVaultStorageType.PERSISTANT.rawValue
+    public let storage: String = VGSVaultStorageType.PERSISTENT.rawValue
     
     /// Data alies format.
     public var format: String = VGSVaultAliasFormat.UUID.rawValue

@@ -10,8 +10,8 @@ import Foundation
 
 /// Type of VGS Vault storage.
 public enum VGSVaultStorageType: String {
-  /// PERSISTANT data storage.
-  case PERSISTANT = "PERSISTANT"
+  /// PERSISTENT data storage.
+  case PERSISTENT = "PERSISTENT"
   
   /// VOLATILE data storage.
   case VOLATILE = "VOLATILE"

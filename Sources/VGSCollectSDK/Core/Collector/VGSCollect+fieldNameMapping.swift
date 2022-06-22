@@ -10,6 +10,8 @@ import Foundation
 
 internal extension VGSCollect {
 
+  // MARK: - Request body mappers for VGSCollect.sendData(:)
+  
 	/// Map fields data to `JsonData`.
 	/// - Parameters:
 	///   - mergePolicy: `VGSCollectFieldNameMappingPolicy` object, defines how to map fieldNames.
@@ -46,12 +48,69 @@ internal extension VGSCollect {
 		}
 	}
   
+  // MARK: - Tokenization Response mappers
+  
+  /// Map tokenization response body with not tokenized fields values.
+  ///  - Parameters:
+  ///   - tokenizedData: Data? - tokenization response data.
+  ///   - tokenizedFields: [VGSTextField] - fields that should be tokenized
+  ///   - notTokenizedFields: [VGSTextField] - fields that should not be tokenized
+  /// - Returns: `JsonData` result JSON.
+  func buildTokenizationResponseBody(_ tokenizedData: Data?, tokenizedFields: [VGSTextField], notTokenizedFields: [VGSTextField]) -> JsonData? {
+    let tokenizedFieldResponse: JsonData? = mapTokenizationResponseDataWithTextField(tokenizedData, textFieds: tokenizedFields)
+    let notTokenizedFieldResponse: JsonData? = mapNotTokenazibleFieldsToResponseBody(notTokenizedFields)
+      
+    switch(tokenizedFieldResponse, notTokenizedFieldResponse) {
+    case(.some(let dict1), .some(let dict2)):
+      return deepMerge(dict1, dict2)
+    case(.some(let dict1), nil):
+      return dict1
+    case(nil, .some(let dict2)):
+      return dict2
+    case(nil, nil):
+      return nil
+    }
+  }
+  
+  /// Map tokenization response result to JsonData, filter result from input values.
+  /// - Returns: `JsonData` to submit.
+  func mapTokenizationResponseDataWithTextField(_ data: Data?, textFieds: [VGSTextField]) -> JsonData? {
+    guard let tokenizedData = data?.serializeToJsonData?["data"] as? [JsonData] else {
+      return nil
+    }
+    // Convert textfields into dict with output value as a key, fieldname as a value.
+    let fieldValuesDict = textFieds.reduce(into: JsonData()) { (dict, element) in
+      dict[element.getOutputText()] = element.fieldName
+    }
+    // Combine fieldValuesDict with textFileds' fildNames, map into dict with fieldName as a key, alias as a value.
+    let result: JsonData = tokenizedData.reduce(into: JsonData()) { (dict, element) in
+      if let fieldValue = element["value"] as? String,
+         let fieldName = fieldValuesDict[fieldValue] as? String,
+         let aliases = element["aliases"] as? [JsonData],
+         let alias = aliases.first?["alias"] as? String {
+        
+        dict[fieldName] = alias
+      }
+    }
+    return result
+  }
+  /// Map  not tokenizable JSON with key reprsent `textField.fieldName` and value is output text.
+  /// - Parameters:
+  ///   - notTokenazibleFields - an array of VGSTextField that should not be tokenized.
+  /// - Returns: `JsonData?` to submit.
+  func mapNotTokenazibleFieldsToResponseBody(_ notTokenazibleFields: [VGSTextField]) -> JsonData {
+      return notTokenazibleFields.reduce(into: JsonData()) { (dict, element) in
+        dict[element.fieldName] = element.getOutputText()
+    }
+  }
+  
+  // MARK: - Tokenization Request mappers
+
   /// Map stored input for tokenizable textfields to JSON.
   /// - Returns: `JsonData` to submit.
-  func mapFieldsToTokenizationBodyJSON() -> JsonData {
-    let tokenizibleTextFields = storage.tokenizibleTextFields
+  func mapFieldsToTokenizationRequestBodyJSON(_ textFields: [VGSTextField]) -> JsonData {
     var fieldsData = [JsonData]()
-    for textField in tokenizibleTextFields {
+    for textField in textFields {
       guard let tokenizationParameters = textField.tokenizationParameters else {
         continue
       }
