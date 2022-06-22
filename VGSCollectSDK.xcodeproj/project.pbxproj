@@ -14,6 +14,7 @@
 		035179A52859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A42859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift */; };
 		035179A72859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */; };
 		035179A92859BD5500394BFC /* VGSTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */; };
+		03DDAAF928632DF800337BA8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CD25DB88C50099AA3A /* HTTPMethod.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD12417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
@@ -1579,6 +1580,7 @@
 				FDE247CD2467439D008D75B0 /* ApiClientTests.swift in Sources */,
 				44A67DDB25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift in Sources */,
 				FDA680DF239844FC00372817 /* CardTextFieldTests.swift in Sources */,
+				03DDAAF928632DF800337BA8 /* HTTPMethod.swift in Sources */,
 				44447F8025F7651100D4CE68 /* JSONData+Extensions.swift in Sources */,
 				32F23A7924B752E200E389F7 /* PaymentCardsTest.swift in Sources */,
 				FDAAB6AD249A9257001F5C1A /* FileInfoTest.swift in Sources */,
