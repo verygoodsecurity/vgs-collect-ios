@@ -103,7 +103,7 @@ class CardsDataTokenizationViewController: UIViewController {
 
         let holderConfiguration = VGSCardHolderNameTokenizationConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
         holderConfiguration.tokenizationPatameters.format = VGSVaultAliasFormat.UUID.rawValue
-        holderConfiguration.tokenizationPatameters.storage = VGSVaultStorageType.PERSISTANT.rawValue
+        holderConfiguration.tokenizationPatameters.storage = VGSVaultStorageType.PERSISTENT.rawValue
       
       
         holderConfiguration.type = .cardHolderName
@@ -138,14 +138,10 @@ class CardsDataTokenizationViewController: UIViewController {
         
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
-        case .success(_, let data, _):
-          if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            // swiftlint:disable force_try
-            let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-            self?.consoleLabel.text = "Success: \n\(response)"
+        case .success(_, let resultBody, _):
+          let response = (String(data: try! JSONSerialization.data(withJSONObject: resultBody!, options: .prettyPrinted), encoding: .utf8)!)
+          self?.consoleLabel.text = "Success: \n\(response)"
             print(response)
-            // swiftlint:enable force_try
-            }
             return
         case .failure(let code, _, _, let error):
           switch code {
