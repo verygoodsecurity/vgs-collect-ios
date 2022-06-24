@@ -13,7 +13,7 @@ internal extension APIClient {
 	// MARK: - Vault Url
 
 	/// Generates API URL with vault id, environment and data region.
-	static func buildVaultURL(tenantId: String, regionalEnvironment: String) -> URL? {
+  static func buildVaultURL(tenantId: String, regionalEnvironment: String, routeId: String? = nil) -> URL? {
 
 		// Check environment is valid.
 		if !VGSCollect.regionalEnironmentStringValid(regionalEnvironment) {
@@ -30,8 +30,24 @@ internal extension APIClient {
 			VGSCollectLogger.shared.forwardLogEvent(event)
 			assert(VGSCollect.tenantIDValid(tenantId), "❗VGSCollectSDK CONFIGURATION ERROR: : TENANT ID IS NOT VALID!!!")
 		}
-
-		let strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
+    
+    let strUrl: String
+    // Check is routeId is set and valid.
+    if let routeId = routeId, !routeId.isEmpty {
+      // Validate routeId is valid UUID string.
+      guard UUID(uuidString: routeId) != nil else {
+        let eventText = "CONFIGURATION ERROR: NOT VALID ROUTE ID PARAMETER!!! routeId: \(routeId), tenantID: \(tenantId), environment: \(regionalEnvironment)"
+        let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
+        VGSCollectLogger.shared.forwardLogEvent(event)
+          assertionFailure("❗VGSCollectSDK CONFIGURATION ERROR: : NOT VALID ROUTE ID PARAMETER!!!")
+        return nil
+      }
+      // Build url with specifi route id.
+      strUrl = "https://" + tenantId + "-" + "\(routeId)" + "." + regionalEnvironment + ".verygoodproxy.com"
+    } else {
+      // Build default url.
+      strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
+    }
 
 		// Check vault url is valid.
 		guard let url = URL(string: strUrl) else {

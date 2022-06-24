@@ -23,7 +23,7 @@ extension VGSCollect {
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-	public func sendData(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
+  public func sendData(path: String, method: HTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
       
         // Content analytics.
         var content: [String] = ["textField"]
@@ -50,7 +50,7 @@ extension VGSCollect {
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
         // Send request.
-        apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
+    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
           
           // Analytics
           if let strongSelf = self {
@@ -175,7 +175,7 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func tokenizeData(completion block: @escaping (VGSTokenizationResponse) -> Void) {
+  public func tokenizeData(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
     // Default request params
     let path = "tokens"
     let method = HTTPMethod.post
@@ -185,7 +185,7 @@ extension VGSCollect {
     // Get tokenized textfields params as JSON body
     let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
     // Send request.
-    apiClient.sendRequest(path: path, method: method, value: tokenizationJSON) { [weak self](response ) in
+    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {
         case .success(let code, let data, let response):

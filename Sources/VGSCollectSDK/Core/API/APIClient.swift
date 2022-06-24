@@ -15,6 +15,9 @@ class APIClient {
 
   /// Vault Id.
 	private let vaultId: String
+  
+  /// Environment.
+  private let environment: String
 
 	/// Vault URL.
 	private let vaultUrl: URL?
@@ -71,6 +74,7 @@ class APIClient {
 	required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails, satellitePort: Int?) {
 		self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
 		self.vaultId = tenantId
+    self.environment = regionalEnvironment
 		self.formAnalyticDetails = formAnalyticsDetails
 
 		guard let validVaultURL = vaultUrl else {
@@ -119,19 +123,30 @@ class APIClient {
 
 	// MARK: - Send request
 
-	func sendRequest(path: String, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+  func sendRequest(path: String, method: HTTPMethod = .post, routeId: String? = nil, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
 
-		let sendRequestBlock: (URL?) -> Void = {url in
-			guard let requestURL = url else {
+    let sendRequestBlock: (URL?) -> Void = {url in
+			guard var requestURL = url else {
 				let message = "CONFIGURATION ERROR: NOT VALID ORGANIZATION PARAMETERS!!! CANNOT BUILD URL!!!"
 				let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
 				VGSCollectLogger.shared.forwardLogEvent(event)
-
 				let invalidURLError = VGSError(type: .invalidConfigurationURL)
 				block?(.failure(invalidURLError.code, nil, nil, invalidURLError))
 				return
 			}
 
+      // Check if routeId is set and should be attached to request url
+      if case .vaultURL(_) = self.hostURLPolicy,
+         let routeId = routeId {
+        
+        guard let newUrl = APIClient.buildVaultURL(tenantId: self.vaultId, regionalEnvironment: self.environment, routeId: routeId) else {
+          let invalidURLError = VGSError(type: .invalidConfigurationURL)
+          block?(.failure(invalidURLError.code, nil, nil, invalidURLError))
+          return
+        }
+        requestURL = newUrl
+      }
+    
 			let url = requestURL.appendingPathComponent(path)
 			self.sendRequest(to: url, method: method, value: value, completion: block)
 		}
@@ -140,7 +155,7 @@ class APIClient {
 		case .invalidVaultURL:
 			sendRequestBlock(nil)
 		case .vaultURL(let url):
-			sendRequestBlock(url)
+      sendRequestBlock(url)
 		case .satelliteURL(let url):
 			sendRequestBlock(url)
 		case .customHostURL(let status):
@@ -270,4 +285,5 @@ extension APIClient {
 			}
 		}
 	}
+
 }
