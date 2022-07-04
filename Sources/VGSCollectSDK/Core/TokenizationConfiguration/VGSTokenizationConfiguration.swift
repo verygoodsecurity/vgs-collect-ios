@@ -22,9 +22,9 @@ public struct VGSTokenizationParameters: VGSTokenizationParametersProtocol {
 public class VGSTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
   /// `VGSTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSTokenizationParameters()
+  public var tokenizationParameters = VGSTokenizationParameters()
 
   internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
-    return tokenizationPatameters
+    return tokenizationParameters
   }
 }

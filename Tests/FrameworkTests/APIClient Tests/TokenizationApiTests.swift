@@ -26,7 +26,7 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
             
         let expDate = "1125"
         let expDateConfig = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: "expDate")
-        expDateConfig.tokenizationPatameters.format = VGSVaultAliasFormat.UUID.rawValue
+        expDateConfig.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
         expDateConfig.inputDateFormat = .shortYear
         expDateConfig.outputDateFormat = .longYear
         let expDatTextField = VGSTextField()

@@ -21,7 +21,7 @@ public struct VGSSSNTokenizationParameters: VGSTokenizationParametersProtocol {
 public class VGSSSNTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
   /// `VGSSSNTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSSSNTokenizationParameters()
+  public var tokenizationParameters = VGSSSNTokenizationParameters()
 
   /// `FieldType.ssn` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
@@ -30,6 +30,6 @@ public class VGSSSNTokenizationConfiguration: VGSConfiguration, VGSTextFieldToke
   }
   
   internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
-    return tokenizationPatameters
+    return tokenizationParameters
   }
 }

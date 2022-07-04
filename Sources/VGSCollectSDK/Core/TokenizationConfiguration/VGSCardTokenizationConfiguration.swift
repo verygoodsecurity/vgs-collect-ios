@@ -18,7 +18,7 @@ public struct VGSCardNumberTokenizationParameters: VGSTokenizationParametersProt
 public class VGSCardNumberTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
   /// `VGSCardTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSCardNumberTokenizationParameters()
+  public var tokenizationParameters = VGSCardNumberTokenizationParameters()
 
   /// `FieldType.cardNumber` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {

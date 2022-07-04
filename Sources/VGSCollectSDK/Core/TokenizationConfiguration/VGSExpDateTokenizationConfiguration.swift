@@ -36,9 +36,9 @@ public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExp
   
   // MARK: - VGSTokenizationParametersProtocol
   /// `VGSExpDateTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSExpDateTokenizationParameters()
+  public var tokenizationParameters = VGSExpDateTokenizationParameters()
 
   internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
-    return tokenizationPatameters
+    return tokenizationParameters
   }
 }

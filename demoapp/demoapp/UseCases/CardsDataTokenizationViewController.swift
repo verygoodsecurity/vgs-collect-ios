@@ -70,7 +70,7 @@ class CardsDataTokenizationViewController: UIViewController {
     private func setupElementsConfiguration() {
       
         let cardConfiguration = VGSCardNumberTokenizationConfiguration(collector: vgsCollect, fieldName: "card_number")
-        cardConfiguration.tokenizationPatameters.format = VGSVaultAliasFormat.UUID.rawValue
+        cardConfiguration.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
@@ -102,8 +102,8 @@ class CardsDataTokenizationViewController: UIViewController {
         cvcCardNum.tintColor = .lightGray
 
         let holderConfiguration = VGSCardHolderNameTokenizationConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
-        holderConfiguration.tokenizationPatameters.format = VGSVaultAliasFormat.UUID.rawValue
-        holderConfiguration.tokenizationPatameters.storage = VGSVaultStorageType.PERSISTENT.rawValue
+        holderConfiguration.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
+        holderConfiguration.tokenizationParameters.storage = VGSVaultStorageType.PERSISTENT.rawValue
       
       
         holderConfiguration.type = .cardHolderName

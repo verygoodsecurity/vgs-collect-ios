@@ -18,7 +18,7 @@ public struct VGSCardHolderNameTokenizationParameters: VGSTokenizationParameters
 public class VGSCardHolderNameTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
   /// `VGSCardHolderNameTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSCardHolderNameTokenizationParameters()
+  public var tokenizationParameters = VGSCardHolderNameTokenizationParameters()
 
   /// `FieldType.cardHolderName` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
@@ -27,6 +27,6 @@ public class VGSCardHolderNameTokenizationConfiguration: VGSConfiguration, VGSTe
   }
   
   internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
-    return tokenizationPatameters
+    return tokenizationParameters
   }
 }

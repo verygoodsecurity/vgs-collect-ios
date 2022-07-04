@@ -19,7 +19,7 @@ public struct VGSCVCTokenizationParameters: VGSTokenizationParametersProtocol {
 public class VGSCVCTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
 
   /// `VGSCVCTokenizationParameters` - tokenization configuration parameters.
-  public var tokenizationPatameters = VGSCVCTokenizationParameters()
+  public var tokenizationParameters = VGSCVCTokenizationParameters()
   
   /// `FieldType.cvc` type of `VGSTextField`tokenization  configuration.
   override public var type: FieldType {
@@ -28,6 +28,6 @@ public class VGSCVCTokenizationConfiguration: VGSConfiguration, VGSTextFieldToke
   }
     
   internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
-    return tokenizationPatameters
+    return tokenizationParameters
   }
 }
