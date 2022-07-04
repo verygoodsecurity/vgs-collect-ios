@@ -61,3 +61,13 @@ extension Dictionary {
         return String(data: theJSONData, encoding: .ascii)
     }
 }
+
+extension Data {
+  /// Serialaze data into `JsonData`
+  var serializeToJsonData: JsonData? {
+    if let jsonData = try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any] {
+      return jsonData
+    }
+    return nil
+  }
+}
