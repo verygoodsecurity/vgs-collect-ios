@@ -69,22 +69,26 @@ class CardsDataTokenizationViewController: UIViewController {
 
     private func setupElementsConfiguration() {
       
+        /// Use VGSCardNumberTokenizationConfiguration with predefined tokenization paramaters
         let cardConfiguration = VGSCardNumberTokenizationConfiguration(collector: vgsCollect, fieldName: "card_number")
-        cardConfiguration.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
         cardNumber.configuration = cardConfiguration
         cardNumber.placeholder = "4111 1111 1111 1111"
         cardNumber.textAlignment = .natural
         cardNumber.cardIconLocation = .right
       
         cardNumber.becomeFirstResponder()
-        /// Use `VGSExpDateConfiguration` if you need to convert output date format
+        /// Use `VGSExpDateTokenizationConfiguration`for tokenization
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
+        /// Edit default tokenization parameters
+//        expDateConfiguration.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
+      expDateConfiguration.serializers = [VGSExpDateSeparateSerializer.init(monthFieldName: "MONTH", yearFieldName: "YEAR")]
+        /// Set UI configuration
         expDateConfiguration.inputDateFormat = .shortYear
         expDateConfiguration.outputDateFormat = .longYear
 
         /// Default .expDate format is "##/##"
         expDateConfiguration.formatPattern = "##/##"
-        
+              
         /// Update validation rules
         expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
           VGSValidationRuleCardExpirationDate(dateFormat: .shortYear, error: VGSValidationErrorType.expDate.rawValue)
@@ -101,11 +105,8 @@ class CardsDataTokenizationViewController: UIViewController {
         cvcCardNum.placeholder = "CVC"
         cvcCardNum.tintColor = .lightGray
 
-        let holderConfiguration = VGSCardHolderNameTokenizationConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
-        holderConfiguration.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
-        holderConfiguration.tokenizationParameters.storage = VGSVaultStorageType.PERSISTENT.rawValue
-      
-      
+        /// Use  default VGSConfiguration for fields tha should not be tokenized. Raw field value will returned in response
+        let holderConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "cardHolder_name")
         holderConfiguration.type = .cardHolderName
         holderConfiguration.keyboardType = .namePhonePad
               // Set max input length
