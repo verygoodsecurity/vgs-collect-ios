@@ -14,6 +14,7 @@
 		035179A52859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A42859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift */; };
 		035179A72859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */; };
 		035179A92859BD5500394BFC /* VGSTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */; };
+		038EDA0D286F2EFF00AF3CF2 /* TokenizationApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EDA0C286F2EFF00AF3CF2 /* TokenizationApiTests.swift */; };
 		03DDAAF928632DF800337BA8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CD25DB88C50099AA3A /* HTTPMethod.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD12417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
@@ -207,6 +208,7 @@
 		035179A42859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardHolderNameTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfiguration.swift; sourceTree = "<group>"; };
+		038EDA0C286F2EFF00AF3CF2 /* TokenizationApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizationApiTests.swift; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectLogLevel.swift; sourceTree = "<group>"; };
@@ -436,6 +438,16 @@
 				035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */,
 			);
 			path = TokenizationConfiguration;
+			sourceTree = "<group>";
+		};
+		038EDA0E286F2F8700AF3CF2 /* APIClient Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FDE890812333AC6D00FA170D /* ApiClientTests.swift */,
+				038EDA0C286F2EFF00AF3CF2 /* TokenizationApiTests.swift */,
+				4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */,
+			);
+			path = "APIClient Tests";
 			sourceTree = "<group>";
 		};
 		32093D7225CD9F88006CD242 /* Loggers */ = {
@@ -971,8 +983,7 @@
 				324CDEE023FB12E200653890 /* File Picker Tests */,
 				322F94D525BAC3C8001CDF12 /* ConvertorsTests */,
 				3215C4E72611B4B900F21259 /* SerializersTest */,
-				FDE890812333AC6D00FA170D /* ApiClientTests.swift */,
-				4404600D2568017E0064BEA0 /* APIHostnameValidatorTests.swift */,
+				038EDA0E286F2F8700AF3CF2 /* APIClient Tests */,
 				44D521092681B7F5005AB588 /* FrameworkTests.xctestplan */,
 				FDF696E42346461D00063507 /* StorageTests.swift */,
 				FD24955D2330CC62009024E6 /* VGSCollectTests.swift */,
@@ -1567,6 +1578,7 @@
 				FD1BE48923462F21006D8658 /* CVVTextFieldTests.swift in Sources */,
 				3215C4E92611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift in Sources */,
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
+				038EDA0D286F2EFF00AF3CF2 /* TokenizationApiTests.swift in Sources */,
 				FDF696E3234643F300063507 /* LuhnTests.swift in Sources */,
 				44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */,
 				3270D3F1248155B200004E3B /* SSNTextFieldTests.swift in Sources */,
