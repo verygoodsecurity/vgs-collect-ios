@@ -29,7 +29,7 @@ internal class Storage {
     var notTokenizibleTextFields: [VGSTextField] {
       return textFields.filter{
         $0.tokenizationParameters == nil &&
-        $0.fieldType.requiresTokenization == false
+        $0.fieldType.sensitive == false
       }
     }
     
