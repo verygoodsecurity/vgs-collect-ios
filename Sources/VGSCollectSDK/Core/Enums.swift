@@ -143,6 +143,16 @@ internal extension FieldType {
          return "text"
       }
     }
+  
+  // field types with sensitive data that should not ignore tokenization.
+  var requiresTokenization: Bool {
+    switch self {
+    case .cardNumber, .cvc, .ssn:
+      return true
+    default:
+      return false
+    }
+  }
 }
 
 internal enum DateFormatPattern: String {
