@@ -21,14 +21,31 @@ public enum VGSVaultStorageType: String {
 
 /// Type of Alias format. Read more about avaliable formats: https://www.verygoodsecurity.com/docs/terminology/nomenclature#alias-formats .
 public enum VGSVaultAliasFormat: String {
+	/// no:doc
   case FPE_ACC_NUM_T_FOUR = "FPE_ACC_NUM_T_FOUR"
+
+	/// no:doc
   case FPE_ALPHANUMERIC_ACC_NUM_T_FOUR = "FPE_ALPHANUMERIC_ACC_NUM_T_FOUR"
+
+	/// no:doc
   case FPE_SIX_T_FOUR = "FPE_SIX_T_FOUR"
+
+	/// no:doc
   case FPE_SSN_T_FOUR = "FPE_SSN_T_FOUR"
+
+	/// no:doc
   case FPE_T_FOUR = "FPE_T_FOUR"
+
+	/// no:doc
   case NUM_LENGTH_PRESERVING = "NUM_LENGTH_PRESERVING"
+
+	/// no:doc
   case PFPT = "PFPT"
+
+	/// no:doc
   case RAW_UUID = "RAW_UUID"
+
+	/// no:doc
   case UUID = "UUID"
 }
 
