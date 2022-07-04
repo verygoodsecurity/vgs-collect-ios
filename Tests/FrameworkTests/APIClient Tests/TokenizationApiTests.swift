@@ -88,15 +88,22 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
     func testNotTokenizableFieldsTokenization() {
       /// this test require setting tokenzation url as upstream host
     
-      /// Tokenizable fields
+      /// Fields that should be ignored if not set as tokenized
       let cardNum = "4111111111111111"
       let cardConfig = VGSConfiguration(collector: collector, fieldName: "cardNumber")
       cardConfig.type = .cardNumber
-      cardConfig.divider = " "
       let cardTextField = VGSCardTextField()
       cardTextField.configuration = cardConfig
       cardTextField.textField.secureText = cardNum
-          
+      
+      let cvc = "123"
+      let cvcConfig = VGSConfiguration(collector: collector, fieldName: "cvc")
+      cvcConfig.type = .cvc
+      let cvcTextField = VGSTextField()
+      cvcTextField.configuration = cvcConfig
+      cvcTextField.textField.secureText = cvc
+       
+      /// Fields that should be ignored in tokenization request but returned in response
       let expDate = "1125"
       let expDateConfig = VGSExpDateConfiguration(collector: collector, fieldName: "expDate")
       
@@ -136,8 +143,8 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
               XCTAssertTrue(code == 200)
               XCTAssertNotNil(jsonData)
               XCTAssertNil(response)
-              XCTAssertNotNil(json["cardNumber"])
-              XCTAssertTrue(json["cardNumber"] == "4111 1111 1111 1111")
+              XCTAssertNil(json["cardNumber"])
+              XCTAssertNil(json["cvc"])
               XCTAssertTrue(json["expDate"] == "11/2025")
               XCTAssertTrue(json["not_secured_cardHolder"] == cardHolder)
               XCTAssertTrue(json["not_secured_some_number"] == "123-4567-89")
