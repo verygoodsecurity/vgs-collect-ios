@@ -8,6 +8,8 @@
 
 import Foundation
 
+// swiftlint:disable all
+
 /// Type of VGS Vault storage.
 public enum VGSVaultStorageType: String {
   /// PERSISTENT data storage.
@@ -51,3 +53,5 @@ internal extension VGSTokenizationParametersProtocol {
     ]
   }
 }
+
+// swiftlint:enable all
