@@ -10,7 +10,7 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
 
     override func setUp() {
-			collector = VGSCollect(id: MockedDataProvider.tokenizationVaultId, environment: .sandbox)
+			collector = VGSCollect(id: MockedDataProvider.shared.tokenizationVaultId, environment: .sandbox)
     }
 
     func testSendCardToTokenizationAPI() {

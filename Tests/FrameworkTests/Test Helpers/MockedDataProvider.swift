@@ -14,6 +14,9 @@ final class MockedDataProvider {
 	/// Mocked tokenization vault id.
 	static var tokenizationVaultId: String = ""
 
+	/// Shared instance.
+	static let shared = MockedDataProvider()
+
 	/// no:doc
 	private init() {
 		provideMockedData()
