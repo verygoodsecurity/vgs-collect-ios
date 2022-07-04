@@ -173,11 +173,12 @@ extension VGSCollect {
   /**
    Makes tokenization response with data from VGSTextFields.
    - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
       - completion: response completion block, returns `VGSTokenizationResponse`.
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func tokenizeData(completion block: @escaping (VGSTokenizationResponse) -> Void) {
+  public func tokenizeData(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
     // Default request params
     let path = "tokens"
     let method = HTTPMethod.post
@@ -205,7 +206,7 @@ extension VGSCollect {
     // Get tokenized textfields params as JSON body
     let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
     // Send request.
-    apiClient.sendRequest(path: path, method: method, value: tokenizationJSON) { [weak self](response ) in
+    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {
         case .success(let code, let data, let response):
