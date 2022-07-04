@@ -6,6 +6,7 @@
 import UIKit
 import VGSCollectSDK
 
+// swiftlint:disable all
 /// A class that demonstrates how to tokenize  data from VGSTextFields and upload it to VGS.
 class CardsDataTokenizationViewController: UIViewController {
     
@@ -124,7 +125,7 @@ class CardsDataTokenizationViewController: UIViewController {
           textField.delegate = self
         }
     }
-    
+
     // Upload data from TextFields to VGS
     @IBAction func uploadAction(_ sender: Any) {
       // hide kayboard
@@ -180,3 +181,5 @@ extension CardsDataTokenizationViewController: VGSTextFieldDelegate {
     }
   }
 }
+
+// swiftlint:enable all
