@@ -16,6 +16,7 @@ extension VGSCollect {
      - Parameters:
         - path: Inbound rout path for your organization vault.
         - method: HTTPMethod, default is `.post`.
+        - routeId: id of VGS Proxy Route, default is `nil`.
         - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
 	      - requestOptions: `VGSCollectRequestOptions` object, holds additional request options. Default options are `.nestedJSON`.
         - completion: response completion block, returns `VGSResponse`.
@@ -72,13 +73,14 @@ extension VGSCollect {
      - Parameters:
         - path: Inbound rout path for your organization vault.
         - method: HTTPMethod, default is `.post`.
+        - routeId: id of VGS Proxy Route, default is `nil`.
         - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
         - completion: response completion block, returns `VGSResponse`.
      
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-    public func sendFile(path: String, method: HTTPMethod = .post, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+    public func sendFile(path: String, method: HTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
 
         var content: [String] = ["file"]
         if !(extraData?.isEmpty ?? true) {
@@ -97,7 +99,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exist",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -111,7 +113,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. Cannot convert to Data.",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
+            VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -128,7 +130,7 @@ extension VGSCollect {
                                                         extraInfo: [
                                                             "expectedSize": maxFileSizeInternalLimitInBytes,
                                                             "fileSize": "\(result.count)", "sizeUnits": "bytes"]))
-          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -143,25 +145,25 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content,"upstream": "custom"])
           block(.failure(error.code, nil, nil, error))
             return
         }
         // Make body.
         let body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
-        VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
+        VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content, "upstream": "custom"])
 
         // Send request.
-        apiClient.sendRequest(path: path, method: method, value: body) { [weak self](response ) in
+        apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
             
             // Analytics.
             if let strongSelf = self {
               switch response {
               case .success(let code, _, _):
-                VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content])
+                VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content, "upstream": "custom"])
               case .failure(let code, _, _, let error):
                 let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-                VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "content": content])
+                VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "content": content, "upstream": "custom"])
               }
           }
           block(response)
@@ -175,29 +177,49 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func tokenizeData(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
+  public func tokenizeData(completion block: @escaping (VGSTokenizationResponse) -> Void) {
     // Default request params
     let path = "tokens"
     let method = HTTPMethod.post
+    
+    // Check fields validation status
+    if let error = validateStoredInputData() {
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "tokenization"])
+      block(.failure(error.code, nil, nil, error))
+      return
+    }
+
     // TextField attached to collect by tokenization protocol implementation
     let tokenizableFields = storage.tokenizableTextFields
     let notTokenizableFields = storage.notTokenizibleTextFields
+    
+    // Check if there are fields for tokenization. Return data from not tokenizable fields.
+    if tokenizableFields.count == 0 {
+      let code = 200
+      let responseBody = mapNotTokenazibleFieldsToResponseBody(notTokenizableFields)
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
+      block(.success(code, responseBody, nil))
+      return
+    }
+      
     // Get tokenized textfields params as JSON body
     let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
     // Send request.
-    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
+    apiClient.sendRequest(path: path, method: method, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {
         case .success(let code, let data, let response):
           // Analytics
-          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code])
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
           // Build response - combine tokenized data with not tokenized
           let responseBody = strongSelf.buildTokenizationResponseBody(data, tokenizedFields: tokenizableFields, notTokenizedFields: notTokenizableFields)
           block(.success(code, responseBody, response))
+          return
         case .failure(let code, let data, let response, let error):
           let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "tokenization"])
           block(.failure(code, data, response, error))
+          return
         }
       }
     }
