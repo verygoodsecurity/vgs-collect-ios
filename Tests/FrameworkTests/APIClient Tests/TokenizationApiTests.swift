@@ -10,7 +10,7 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
 
     override func setUp() {
-        collector = VGSCollect(id: "tntnvv2mv09", environment: .sandbox)
+			collector = VGSCollect(id: MockedDataProvider.tokenizationVaultId, environment: .sandbox)
     }
 
     func testSendCardToTokenizationAPI() {
@@ -156,4 +156,3 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
         wait(for: [expectation], timeout: 60.0)
     }
 }
-

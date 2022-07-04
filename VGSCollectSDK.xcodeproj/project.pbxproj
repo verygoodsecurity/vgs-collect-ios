@@ -102,6 +102,8 @@
 		441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26DC25DB88DB0099AA3A /* VGSResponse.swift */; };
 		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
 		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
+		442BB2C6287314DC001FD26B /* MockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442BB2C5287314DC001FD26B /* MockedData.plist */; };
+		442BB2C82873158A001FD26B /* MockedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442BB2C72873158A001FD26B /* MockedDataProvider.swift */; };
 		443FDDB625DD43D5006932C4 /* VGSCollect+SatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */; };
 		443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */; };
 		44447F7725F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */; };
@@ -292,6 +294,8 @@
 		441B26DC25DB88DB0099AA3A /* VGSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSResponse.swift; sourceTree = "<group>"; };
 		441B26E825DB8D950099AA3A /* APIClient+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Utils.swift"; sourceTree = "<group>"; };
 		441B26EF25DB956B0099AA3A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		442BB2C5287314DC001FD26B /* MockedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MockedData.plist; sourceTree = "<group>"; };
+		442BB2C72873158A001FD26B /* MockedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedDataProvider.swift; sourceTree = "<group>"; };
 		443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+SatelliteTests.swift"; sourceTree = "<group>"; };
 		443FDDC125DD4B2B006932C4 /* VGSCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectBaseTestCase.swift; sourceTree = "<group>"; };
 		44447F7625F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFieldNameMapUtilsTests.swift; sourceTree = "<group>"; };
@@ -685,6 +689,7 @@
 			isa = PBXGroup;
 			children = (
 				44447F7E25F7649100D4CE68 /* JSON Helpers */,
+				442BB2C72873158A001FD26B /* MockedDataProvider.swift */,
 			);
 			path = "Test Helpers";
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 			children = (
 				44D5210C2681B803005AB588 /* TestJSONs */,
 				44D521152681B803005AB588 /* ExpDateSplitSerializerTestJSONs */,
+				442BB2C5287314DC001FD26B /* MockedData.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1343,6 +1349,7 @@
 				44D521212681B803005AB588 /* VGSExpDateSerialization_MapWithArrayOverwrite.json in Resources */,
 				44D5211C2681B803005AB588 /* FlatPolicyTestJSONs.json in Resources */,
 				44D521202681B803005AB588 /* VGSExpDateSerialization_CustomExpDateOutputConfig.json in Resources */,
+				442BB2C6287314DC001FD26B /* MockedData.plist in Resources */,
 				44D5210A2681B7F6005AB588 /* FrameworkTests.xctestplan in Resources */,
 				44D521232681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json in Resources */,
 				44D5211F2681B803005AB588 /* VGSExpDateSerialization_DefaultConfig.json in Resources */,
@@ -1610,6 +1617,7 @@
 				FD24955E2330CC62009024E6 /* VGSCollectTests.swift in Sources */,
 				324B5E7B24A3A5880036867E /* ValidationRulesTest.swift in Sources */,
 				44447F7725F74CCC00D4CE68 /* VGSFieldNameMapUtilsTests.swift in Sources */,
+				442BB2C82873158A001FD26B /* MockedDataProvider.swift in Sources */,
 				4404600F256801890064BEA0 /* APIHostnameValidatorTests.swift in Sources */,
 				3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */,
 				324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */,
