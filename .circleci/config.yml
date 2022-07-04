@@ -10,8 +10,7 @@ jobs:
           name: Run Tests iOS 13-14
           command: >
 					cd Tests/FrameworkTests/Resources/MockedData &&
-					plutil -insert tokenization_vaultId -string ${tokenization_vaultId} &&
-					cd .. && cd .. && cd .. && xcodebuild test -project
+					plutil -insert tokenization_vaultId -string ${tokenization_vaultId} && cd .. && cd .. && cd .. && xcodebuild test -project
 					VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2' -testPlan FrameworkTests
   build-and-ui-test-demo-app-ios-14-iphone12:
     macos:
