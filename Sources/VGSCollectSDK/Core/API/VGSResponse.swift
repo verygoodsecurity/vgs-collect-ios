@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Response enum cases for SDK requests
+/// Response enum cases for SDK requests.
 @frozen public enum VGSResponse {
 		/**
 		 Success response case
@@ -30,4 +30,28 @@ import Foundation
 				- error: `Error` object.
 		*/
 		case failure(_ code: Int, _ data: Data?, _ response: URLResponse?, _ error: Error?)
+}
+
+/// Tokenization response enum cases for SDK requests.
+@frozen public enum VGSTokenizationResponse {
+    /**
+     Success response case
+
+     - Parameters:
+        - code: response status code.
+        - body: response **JsonData** object.
+        - response: URLResponse object represents a URL load response.
+    */
+  case success(_ code: Int, _ body: JsonData?, _ response: URLResponse?)
+
+    /**
+     Failed response case
+
+     - Parameters:
+        - code: response status code.
+        - data: response **Data** object.
+        - response: `URLResponse` object represents a URL load response.
+        - error: `Error` object.
+    */
+    case failure(_ code: Int, _ data: Data?, _ response: URLResponse?, _ error: Error?)
 }

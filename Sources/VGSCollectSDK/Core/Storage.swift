@@ -11,11 +11,27 @@ import Foundation
 import UIKit
 #endif
 
-/// Class Responsible for storing elements registered with VGSCollect instance
+/// Class Responsible for storing elements registered with VGSCollect instance.
 internal class Storage {
     
+    /// TextFields attached to `VGSCollect` instance.
     var textFields = [VGSTextField]()
+  
+    /// File Data attached to`VGSCollect` instance.
     var files = BodyData()
+    
+    /// TextFields attached to `VGSCollect` instance, with configuration that implements `VGSTextFieldTokenizationConfigurationProtocol`.
+    var tokenizableTextFields: [VGSTextField] {
+      return textFields.filter{$0.tokenizationParameters != nil}
+    }
+  
+    /// TextFields attached to `VGSCollect` instance, with configuration that DOES NOT  implements `VGSTextFieldTokenizationConfigurationProtocol`.
+    var notTokenizibleTextFields: [VGSTextField] {
+      return textFields.filter{
+        $0.tokenizationParameters == nil &&
+        $0.fieldType.sensitive == false
+      }
+    }
     
     func addTextField(_ textField: VGSTextField) {
         if textFields.filter({ $0 == textField }).count == 0 {

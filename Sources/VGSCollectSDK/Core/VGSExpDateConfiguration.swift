@@ -11,9 +11,30 @@ import Foundation
 import UIKit
 #endif
 
+/// Attributes required to configure date format and input source for field with type  `.expDate`.
+public protocol VGSExpDateConfigurationProtocol {
+  
+  /// Input Source type.
+  var inputSource: VGSTextFieldInputSource {get set}
+  
+  /// Input date format to convert.
+  var inputDateFormat: VGSCardExpDateFormat? {get set}
+  
+  /// Output date format.
+  var outputDateFormat: VGSCardExpDateFormat? {get set}
+}
+
 /// A class responsible for configuration `VGSTextField` with `fieldType = .expDate`. Extends `VGSConfiguration` class.
-public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializableProtocol {
+public final class VGSExpDateConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, VGSFormatSerializableProtocol {
    
+  // MARK: - Attributes
+  /// `FieldType.expDate` type of `VGSTextField` configuration.
+  override public var type: FieldType {
+    get { return .expDate }
+    set {}
+  }
+  
+  // MARK: - VGSExpDateConfigurationProtocol
   /// Input Source type. Default is `VGSTextFieldInputSource.datePicker`.
   public var inputSource: VGSTextFieldInputSource = .datePicker
   
@@ -23,17 +44,12 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSFormatSerializa
   /// Output date format.
   public var outputDateFormat: VGSCardExpDateFormat?
   
+  // MARK: - VGSFormatSerializableProtocol
   /// Output date format.
   public var serializers: [VGSFormatSerializerProtocol] = []
   
-  /// `FieldType.expDate` type of `VGSTextField` configuration.
-  override public var type: FieldType {
-    get { return .expDate }
-    set {}
-  }
   
   // MARK: - `VGSExpDateConfiguration` implementation
-  
   /// Serialize Expiration Date
   internal func serialize(_ content: String) -> [String: Any] {
     var result = [String: Any]()

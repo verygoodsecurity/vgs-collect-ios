@@ -120,6 +120,26 @@
                                             <segue destination="9Jh-bq-fKs" kind="show" id="YjI-Ae-yje"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="wLj-pH-ZDn" rowHeight="55" style="IBUITableViewCellStyleDefault" id="eSL-x2-ZHR">
+                                        <rect key="frame" x="20" y="293" width="374" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eSL-x2-ZHR" id="vS1-i2-75O">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Tokenize Card Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wLj-pH-ZDn">
+                                                    <rect key="frame" x="20" y="0.0" width="317.5" height="55"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vFh-aa-X7w" kind="show" id="Yn2-cK-Ogi"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -839,6 +859,113 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMW-9N-vod" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4093" y="785"/>
+        </scene>
+        <!--Collect Card Tokenization-->
+        <scene sceneID="DK8-GJ-FCd">
+            <objects>
+                <viewController id="vFh-aa-X7w" customClass="CardsDataTokenizationViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Fs-yo-7f5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JMc-sj-acE">
+                                <rect key="frame" x="20" y="118" width="374" height="220"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="I3Y-kc-ECC"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7Li-vw-Vmp">
+                                <rect key="frame" x="20" y="752" width="374" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-H7-QQl">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="TOKENIZE"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="uploadAction:" destination="vFh-aa-X7w" eventType="touchUpInside" id="ZVU-O0-qYf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="enl-ck-NT0"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yv7-Ud-4we">
+                                <rect key="frame" x="20" y="348" width="374" height="394"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoF-J2-Egb">
+                                        <rect key="frame" x="20" y="46" width="334" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="9yx-r6-QvL"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for data..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQj-ng-0TU">
+                                        <rect key="frame" x="20" y="8" width="334" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Arv-xy-yAw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bEn-U8-OPb">
+                                        <rect key="frame" x="8" y="56" width="358" height="17"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ConsoleLabelIdentifire"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="bEn-U8-OPb" firstAttribute="top" secondItem="SoF-J2-Egb" secondAttribute="bottom" constant="8" id="320-Ol-x11"/>
+                                    <constraint firstItem="fQj-ng-0TU" firstAttribute="leading" secondItem="Yv7-Ud-4we" secondAttribute="leading" constant="20" symbolic="YES" id="Hye-gT-Tyh"/>
+                                    <constraint firstAttribute="trailing" secondItem="bEn-U8-OPb" secondAttribute="trailing" constant="8" id="SBl-uV-qM2"/>
+                                    <constraint firstItem="bEn-U8-OPb" firstAttribute="leading" secondItem="Yv7-Ud-4we" secondAttribute="leading" constant="8" id="mAn-MW-tyR"/>
+                                    <constraint firstItem="fQj-ng-0TU" firstAttribute="top" secondItem="Yv7-Ud-4we" secondAttribute="top" constant="8" id="ol5-DS-pVI"/>
+                                    <constraint firstItem="SoF-J2-Egb" firstAttribute="top" secondItem="fQj-ng-0TU" secondAttribute="bottom" constant="8" symbolic="YES" id="pSS-KJ-xBz"/>
+                                    <constraint firstAttribute="trailing" secondItem="fQj-ng-0TU" secondAttribute="trailing" constant="20" symbolic="YES" id="qii-rk-cWa"/>
+                                    <constraint firstAttribute="trailing" secondItem="SoF-J2-Egb" secondAttribute="trailing" constant="20" symbolic="YES" id="rkw-AO-2S5"/>
+                                    <constraint firstItem="SoF-J2-Egb" firstAttribute="leading" secondItem="Yv7-Ud-4we" secondAttribute="leading" constant="20" symbolic="YES" id="xwh-rl-tf3"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bEn-U8-OPb" secondAttribute="bottom" constant="2" id="z6C-BN-lOP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1yU-jn-RNZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yv7-Ud-4we" firstAttribute="leading" secondItem="1yU-jn-RNZ" secondAttribute="leading" constant="20" id="5RN-8r-W5X"/>
+                            <constraint firstItem="JMc-sj-acE" firstAttribute="top" secondItem="1yU-jn-RNZ" secondAttribute="top" constant="30" id="H3D-la-Gy5"/>
+                            <constraint firstItem="7Li-vw-Vmp" firstAttribute="leading" secondItem="1yU-jn-RNZ" secondAttribute="leading" constant="20" id="N3B-bO-R1f"/>
+                            <constraint firstItem="1yU-jn-RNZ" firstAttribute="trailing" secondItem="JMc-sj-acE" secondAttribute="trailing" constant="20" id="Nqv-h7-wAc"/>
+                            <constraint firstItem="1yU-jn-RNZ" firstAttribute="trailing" secondItem="Yv7-Ud-4we" secondAttribute="trailing" constant="20" id="VGu-76-6Dt"/>
+                            <constraint firstItem="1yU-jn-RNZ" firstAttribute="bottom" secondItem="7Li-vw-Vmp" secondAttribute="bottom" constant="50" id="YaB-M2-C7X"/>
+                            <constraint firstItem="7Li-vw-Vmp" firstAttribute="top" secondItem="Yv7-Ud-4we" secondAttribute="bottom" constant="10" id="j1d-VT-e88"/>
+                            <constraint firstItem="Yv7-Ud-4we" firstAttribute="top" secondItem="JMc-sj-acE" secondAttribute="bottom" constant="10" id="kqp-yB-dFH"/>
+                            <constraint firstItem="JMc-sj-acE" firstAttribute="leading" secondItem="1yU-jn-RNZ" secondAttribute="leading" constant="20" id="rSu-w5-VpX"/>
+                            <constraint firstItem="1yU-jn-RNZ" firstAttribute="trailing" secondItem="7Li-vw-Vmp" secondAttribute="trailing" constant="20" id="x1s-vC-F16"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Card" image="bank_card" id="LwD-tb-RlK"/>
+                    <navigationItem key="navigationItem" title="Collect Card Tokenization" id="Bqz-a4-Nd7" userLabel="Collect Tokenize Cards"/>
+                    <connections>
+                        <outlet property="cardDataStackView" destination="JMc-sj-acE" id="0bM-YG-60U"/>
+                        <outlet property="consoleLabel" destination="bEn-U8-OPb" id="wdT-0H-1Rg"/>
+                        <outlet property="consoleStatusLabel" destination="fQj-ng-0TU" id="PBJ-wo-afP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wxb-Af-SG4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2445" y="181"/>
         </scene>
     </scenes>
     <resources>

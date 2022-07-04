@@ -142,4 +142,34 @@ class ApiClientTests: VGSCollectBaseTestCase {
         }
         wait(for: [expectation], timeout: 60.0)
     }
+  
+  func testValidRouteId() {
+    let vaultId = "tnt12345"
+    let routeId = UUID().uuidString
+    let environment = "sandbox"
+    let proxy = "verygoodproxy.com"
+    let expectedUrl = URL(string: "https://\(vaultId)-\(routeId).\(environment).\(proxy)")
+    // build url
+    let url = APIClient.buildVaultURL(tenantId: vaultId, regionalEnvironment: environment, routeId: routeId)
+    XCTAssertTrue(url?.absoluteString != nil)
+    XCTAssertTrue(url?.absoluteString == expectedUrl?.absoluteString, "-testValidRouteId error, wrong url: \(String(describing: url))")
+  }
+  
+  func testBaseUrlNotChangedAfterRouteIdSet() {
+    let routeId = UUID().uuidString
+    let baseUrl = collector.apiClient.baseURL
+    // dummy field
+    let configuration = VGSConfiguration(collector: collector, fieldName: "textfield")
+    let textField = VGSTextField()
+    textField.configuration = configuration
+    
+    let expectation = XCTestExpectation(description: "Sending data...")
+    collector.sendData(path: "/post", routeId: routeId) { [weak self]respose in
+      // check base url not changed and don't include routeid
+      let url = self?.collector.apiClient.baseURL
+      XCTAssertTrue(baseUrl?.absoluteString == url?.absoluteString, "-testBaseUrlNotChangedAfterRouteIdSet url error: \(String(describing: url))")
+      expectation.fulfill()
+    }
+    wait(for: [expectation], timeout: 60.0)
+  }
 }

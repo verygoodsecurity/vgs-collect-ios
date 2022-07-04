@@ -25,6 +25,7 @@ public class VGSTextField: UIView {
     internal var horizontalConstraints = [NSLayoutConstraint]()
     internal var verticalConstraint = [NSLayoutConstraint]()
     internal var validationRules = VGSValidationRuleSet()
+    internal var tokenizationParameters: VGSTokenizationParametersProtocol? = nil
 
     // MARK: - UI Attributes
     
@@ -210,8 +211,10 @@ public class VGSTextField: UIView {
       collector.registerTextFields(textField: [self])
       VGSAnalyticsClient.shared.trackFormEvent(collector.formAnalyticsDetails, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
     }
+    if  let config = configuration as? VGSTextFieldTokenizationConfigurationProtocol {
+      tokenizationParameters = config.tokenizationConfiguration
+    }
   }
-
 }
 // MARK: - UIResponder methods
 extension VGSTextField {

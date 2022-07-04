@@ -46,7 +46,7 @@ internal class Utils {
   
   /// VGS Collect SDK Version.
 	/// Necessary since SPM doesn't track info plist correctly: https://forums.swift.org/t/add-info-plist-on-spm-bundle/40274/5
-  static let vgsCollectVersion: String = "1.9.8"
+  static let vgsCollectVersion: String = "1.10.0"
 }
 
 extension Dictionary {
@@ -60,4 +60,14 @@ extension Dictionary {
 
         return String(data: theJSONData, encoding: .ascii)
     }
+}
+
+extension Data {
+  /// Serialaze data into `JsonData`
+  var serializeToJsonData: JsonData? {
+    if let jsonData = try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any] {
+      return jsonData
+    }
+    return nil
+  }
 }
