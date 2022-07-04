@@ -36,7 +36,7 @@ final class MockedDataProvider {
 					return
 			}
 
-			MockedDataProvider.tokenizationVaultId = dictionary["tokenization_vaultId"] as? String ?? ""
+			tokenizationVaultId = dictionary["tokenization_vaultId"] as? String ?? ""
 		} else {
 			assertionFailure("Mocked data not found!")
 		}
