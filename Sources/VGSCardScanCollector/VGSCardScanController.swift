@@ -35,7 +35,9 @@ public class VGSCardScanController {
     /// Initialization
     ///
     /// - Parameters:
+    ///   - apiKey: key required for CardScan  SDK usage.
     ///   - delegate: `VGSCardScanControllerDelegate`. Default is `nil`.
+  @available(*, deprecated, message: "CardScan support will be droped in future versions, migrate to card.io.")
     public required init(apiKey: String, delegate: VGSCardScanControllerDelegate? = nil) {
           
       self.scanHandler = VGSCardScanHandler(apiKey: apiKey)
