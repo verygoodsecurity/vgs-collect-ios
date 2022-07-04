@@ -12,7 +12,7 @@ import Foundation
 final class MockedDataProvider {
 
 	/// Mocked tokenization vault id.
-	static var tokenizationVaultId: String = ""
+	var tokenizationVaultId: String = ""
 
 	/// Shared instance.
 	static let shared = MockedDataProvider()
