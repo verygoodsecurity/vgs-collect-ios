@@ -59,7 +59,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
       XCTAssertTrue(state.isValid)
       XCTAssertTrue(state.inputLength == 12)
       XCTAssertTrue(state.last4 == "0012")
-      XCTAssertTrue(state.bin == "900000")
+      XCTAssertTrue(state.bin == "90000000")
     } else {
       XCTFail("Failt state card text files")
     }
