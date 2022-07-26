@@ -2,7 +2,7 @@
 
 ### Migrating from versions < v1.11.0
 #### Bin length changed.
-Bin length expanded form 6 to 8 digits for [Visa](https://ht.visa.com/dam/VCOM/global/partner-with-us/documents/visa.com-numerics-faq.pdf), [MasterCard](https://www.mastercard.com/content/dam/public/mastercardcom/globalrisk/pdf/8-Digit%20BIN%20Expansion%20and%20PCI%20Standards%20-%20FINAL%20(10-20-2021).pdf), Maestro card brands. 
+Bin length expanded from 6 to 8 digits for [Visa](https://ht.visa.com/dam/VCOM/global/partner-with-us/documents/visa.com-numerics-faq.pdf), [MasterCard](https://www.mastercard.com/content/dam/public/mastercardcom/globalrisk/pdf/8-Digit%20BIN%20Expansion%20and%20PCI%20Standards%20-%20FINAL%20(10-20-2021).pdf), Maestro card brands. 
 
 ### Migrating from versions < v1.9.7
 #### Swift PM modules updates.
