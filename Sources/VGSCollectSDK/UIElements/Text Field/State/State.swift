@@ -91,7 +91,7 @@ public class CardState: State {
         
         self.cardBrand = VGSPaymentCards.detectCardBrandFromAvailableCards(input: input)
         if self.isValid {
-          self.bin = String(input.prefix(6))
+          self.bin = getBin(input, cardBrand: self.cardBrand)
           self.last4 = (input.count) >= 12 ? String(input.suffix(4)) : ""
         }
     }
@@ -110,6 +110,21 @@ public class CardState: State {
             """)
         }
         return result
+    }
+  
+    /**
+     Get bin from input card number.
+     - Parameters:
+        - cardNumber: `String`, full card number.
+        - cardBrand: `VGSPaymentCards.CardBrand`, card brand.
+    */
+    private func getBin(_ cardNumber: String, cardBrand: VGSPaymentCards.CardBrand) -> String {
+      switch cardBrand{
+      case .visa, .mastercard, .maestro:
+        return String(cardNumber.prefix(8))
+      default:
+        return String(cardNumber.prefix(6))
+      }
     }
 }
 
