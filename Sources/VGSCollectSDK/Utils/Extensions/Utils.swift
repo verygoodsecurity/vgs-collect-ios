@@ -46,7 +46,7 @@ internal class Utils {
   
   /// VGS Collect SDK Version.
 	/// Necessary since SPM doesn't track info plist correctly: https://forums.swift.org/t/add-info-plist-on-spm-bundle/40274/5
-  static let vgsCollectVersion: String = "1.10.0"
+  static let vgsCollectVersion: String = "1.11.0"
 }
 
 extension Dictionary {

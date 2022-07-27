@@ -93,7 +93,8 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
          XCTAssertTrue(st.isRequired)
          XCTAssertTrue(st.isRequiredValidOnly)
          XCTAssertTrue(st.inputLength == 16)
-         XCTAssertTrue(st.bin == "411111")
+         // bin 8 digits
+         XCTAssertTrue(st.bin == "41111111")
          XCTAssertTrue(st.last4 == "1111")
          XCTAssertTrue(st.cardBrand == .visa)
       } else {
@@ -119,7 +120,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
       }
       
       // Test with mask.
-      cardNumerTextField.setText("4111 1111 1111 1111")
+      cardNumerTextField.setText("5555 3412 4444 1115")
       state = cardNumerTextField.state
 
       if let st = state as? CardState {
@@ -129,9 +130,10 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
          XCTAssertTrue(st.isRequired)
          XCTAssertTrue(st.isRequiredValidOnly)
          XCTAssertTrue(st.inputLength == 16)
-         XCTAssertTrue(st.bin == "411111")
-         XCTAssertTrue(st.last4 == "1111")
-         XCTAssertTrue(st.cardBrand == .visa)
+          // bin 8 digits
+         XCTAssertTrue(st.bin == "55553412")
+         XCTAssertTrue(st.last4 == "1115")
+         XCTAssertTrue(st.cardBrand == .mastercard)
       } else {
          XCTAssert(false, "CardState not valid")
       }
