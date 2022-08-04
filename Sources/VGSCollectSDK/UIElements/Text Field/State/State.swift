@@ -121,6 +121,10 @@ public class CardState: State {
     private func getBin(_ cardNumber: String, cardBrand: VGSPaymentCards.CardBrand) -> String {
       switch cardBrand{
       case .visa, .mastercard, .maestro:
+        /// check min card length allowed
+        guard cardNumber.count >= 16 else {
+          return ""
+        }
         return String(cardNumber.prefix(8))
       default:
         return String(cardNumber.prefix(6))
