@@ -3,7 +3,7 @@ version: 2
 jobs:
   build-and-test-sdk:
     macos:
-      xcode: "12.1"
+      xcode: "12.5.1"
     steps:
       - checkout
       - run:
@@ -12,7 +12,7 @@ jobs:
             cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2' -testPlan FrameworkTests
   build-and-ui-test-demo-app-ios-14-iphone12:
     macos:
-      xcode: "12.1"
+      xcode: "12.5.1"
     steps:
       - checkout
       - run:
@@ -30,7 +30,7 @@ jobs:
             -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2'
   build-and-ui-test-demo-app-ios-13-ipad-air-3:
     macos:
-      xcode: "12.1"
+      xcode: "12.5.1"
     steps:
       - checkout
       - run:
