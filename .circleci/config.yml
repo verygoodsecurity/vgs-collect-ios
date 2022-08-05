@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Run Tests iOS 13-14
           command: >
-            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2' -testPlan FrameworkTests
+            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.5' -testPlan FrameworkTests
   build-and-ui-test-demo-app-ios-14-iphone12:
     macos:
       xcode: "12.5.1"
@@ -23,11 +23,11 @@ jobs:
             plutil -insert vaultID -string ${vaultID} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPhone 12 (14.2) [" || true &&
+            xcrun instruments -w "iPhone 12 (14.5) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2'
+            -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.5'
   build-and-ui-test-demo-app-ios-13-ipad-air-3:
     macos:
       xcode: "12.5.1"
