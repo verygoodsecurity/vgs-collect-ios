@@ -990,7 +990,7 @@
         <!--Deposit-->
         <scene sceneID="vrK-jB-y7b">
             <objects>
-                <viewController storyboardIdentifier="PayOptIntegrationViewController" title="Deposit" id="MhQ-Uk-aP9" customClass="PayOptIntegrationViewController" customModule="CollectPayoptDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PayOptIntegrationViewController" title="Deposit" id="MhQ-Uk-aP9" customClass="CollectPayoptIntegrationViewConroller" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y5B-rN-5rB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1071,7 +1071,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tU7-GQ-Azh"/>
                     <connections>
-                        <outlet property="tableView" destination="lss-re-fEa" id="SRt-dS-a3K"/>
+                        <outlet property="tableView" destination="lss-re-fEa" id="RkP-IR-x4v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vlV-at-8Iq" sceneMemberID="firstResponder"/>

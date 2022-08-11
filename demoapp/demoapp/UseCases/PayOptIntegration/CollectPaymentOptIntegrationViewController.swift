@@ -8,7 +8,7 @@ import UIKit
 import VGSCollectSDK
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to Payment Orchestration service.
-class PayOptIntegrationViewController: UIViewController {
+class CollectPayoptIntegrationViewConroller: UIViewController {
 
 	/// Data for cell labels
 	struct PaymentCellData {
@@ -17,9 +17,9 @@ class PayOptIntegrationViewController: UIViewController {
 	}
 
 	/// Init VGSCollect instance with payopt tenanId(vaultId) for AddCard flow
-	var vgsCollectNewCardFlow = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment)
+	var vgsCollectNewCardFlow = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
 	/// Init VGSCollect instance with payopt tenanId(vaultId) for SavedCard flow
-	var vgsCollectSavedCardFlow = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment)
+	var vgsCollectSavedCardFlow = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
 
 	/// Payopt access token
 	var payOptAccessToken = ""
@@ -116,7 +116,7 @@ class PayOptIntegrationViewController: UIViewController {
 					return
 				}
 				/// Save fin instrument in shared config
-				DemoAppConfig.shared.savedFinancialInstruments.append(finId)
+				AppCollectorConfiguration.shared.savedFinancialInstruments.append(finId)
 				/// Make deposit request
 				self?.deposit(50, finId: finId)
 			case .failure(let code,  _, _, let error):
@@ -168,7 +168,7 @@ class PayOptIntegrationViewController: UIViewController {
 }
 
 // MARK: - UITableView
-extension PayOptIntegrationViewController: UITableViewDelegate, UITableViewDataSource {
+extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 1
 	}
@@ -226,7 +226,7 @@ extension PayOptIntegrationViewController: UITableViewDelegate, UITableViewDataS
 	}
 }
 
-extension PayOptIntegrationViewController {
+extension CollectPayoptIntegrationViewConroller {
 	/// Financial instrument id from success payment orchestration save card response.
 	/// - Parameter data: `Data?` object, response data.
 	/// - Returns: `String?` object, financial instrument id or `nil`.

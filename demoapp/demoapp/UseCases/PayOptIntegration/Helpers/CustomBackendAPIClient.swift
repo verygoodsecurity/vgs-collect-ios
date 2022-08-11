@@ -102,7 +102,7 @@ final class CustomBackendAPIClient {
 		let customHeader = ["Authorization": "Bearer \(accessToken)"]
 
 		/// Fetch
-		let url = URL(string: "https://\(AppCollectorConfiguration.shared.tenantId)-\(DemoAppConfig.shared.paymentOrchestrationDefaultRouteId).\(DemoAppConfig.shared.environment).verygoodproxy.com")!
+		let url = URL(string: "https://\(AppCollectorConfiguration.shared.vaultId)-\(AppCollectorConfiguration.shared.paymentOrchestrationDefaultRouteId).\(AppCollectorConfiguration.shared.environment).verygoodproxy.com")!
 		print("🔼🔼🔼 fetchPaymentInstrument url: \(url.absoluteString)")
 
 		// Use API client directly since we don't need to send data from VGS Collect (it can contain data from VGSTextFields).
