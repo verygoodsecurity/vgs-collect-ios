@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddCardCell" rowHeight="317" id="ME1-5I-uvR" customClass="AddCardCell" customModule="CollectPayoptDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="644" height="317"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ME1-5I-uvR" id="RhC-vc-HDQ">
+                <rect key="frame" x="0.0" y="0.0" width="644" height="317"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HL-SK-wuu">
+                        <rect key="frame" x="0.0" y="0.0" width="644" height="64"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ij8-2n-AoE">
+                                <rect key="frame" x="20" y="4" width="604" height="28"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vxy-TT-OZx">
+                                <rect key="frame" x="20" y="36" width="150" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Visa" translatesAutoresizingMaskIntoConstraints="NO" id="XeC-Yj-M8R">
+                                        <rect key="frame" x="0.0" y="0.0" width="34.5" height="20"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mastercard" translatesAutoresizingMaskIntoConstraints="NO" id="xeI-sp-vit">
+                                        <rect key="frame" x="38.5" y="0.0" width="34.5" height="20"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Amex" translatesAutoresizingMaskIntoConstraints="NO" id="XDI-Fa-vUF">
+                                        <rect key="frame" x="77" y="0.0" width="34.5" height="20"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Discover" translatesAutoresizingMaskIntoConstraints="NO" id="K3f-IF-b8v">
+                                        <rect key="frame" x="115.5" y="0.0" width="34.5" height="20"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="uc9-gr-G3X"/>
+                                    <constraint firstAttribute="width" constant="150" id="vym-kI-64g"/>
+                                </constraints>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-Ga-TBW">
+                                <rect key="frame" x="599" y="7" width="25" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="CkY-PF-Qrq"/>
+                                    <constraint firstAttribute="height" constant="50" id="O71-IU-pQe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ij8-2n-AoE" firstAttribute="top" secondItem="9HL-SK-wuu" secondAttribute="top" constant="4" id="2eK-7Q-2Ir"/>
+                            <constraint firstItem="ij8-2n-AoE" firstAttribute="leading" secondItem="9HL-SK-wuu" secondAttribute="leading" constant="20" symbolic="YES" id="7G2-TA-VeX"/>
+                            <constraint firstAttribute="bottom" secondItem="Vxy-TT-OZx" secondAttribute="bottom" constant="8" id="L2N-jK-RI7"/>
+                            <constraint firstItem="dtR-Ga-TBW" firstAttribute="centerY" secondItem="9HL-SK-wuu" secondAttribute="centerY" id="Muw-2C-he3"/>
+                            <constraint firstAttribute="height" constant="64" id="NI4-h9-Yjc"/>
+                            <constraint firstItem="Vxy-TT-OZx" firstAttribute="top" secondItem="ij8-2n-AoE" secondAttribute="bottom" constant="4" id="TfF-og-Qb4"/>
+                            <constraint firstAttribute="trailing" secondItem="ij8-2n-AoE" secondAttribute="trailing" constant="20" symbolic="YES" id="V8w-At-hCx"/>
+                            <constraint firstAttribute="trailing" secondItem="dtR-Ga-TBW" secondAttribute="trailing" constant="20" id="pqJ-8E-U2N"/>
+                            <constraint firstItem="Vxy-TT-OZx" firstAttribute="leading" secondItem="ij8-2n-AoE" secondAttribute="leading" id="rXI-xf-fj9"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IEx-Ir-eP9">
+                        <rect key="frame" x="20" y="64" width="604" height="260"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="260" id="EZm-0J-gXQ"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="9HL-SK-wuu" secondAttribute="trailing" id="44c-Pe-mfp"/>
+                    <constraint firstItem="IEx-Ir-eP9" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" constant="64" id="5k8-qe-GXz"/>
+                    <constraint firstAttribute="trailing" secondItem="IEx-Ir-eP9" secondAttribute="trailing" constant="20" symbolic="YES" id="W0R-JT-ZGj"/>
+                    <constraint firstItem="9HL-SK-wuu" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" id="WW8-lE-JI4"/>
+                    <constraint firstAttribute="bottom" secondItem="IEx-Ir-eP9" secondAttribute="bottom" constant="10" id="Y9O-HL-QYS"/>
+                    <constraint firstItem="9HL-SK-wuu" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" id="eD2-cc-m5h"/>
+                    <constraint firstItem="IEx-Ir-eP9" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" constant="20" symbolic="YES" id="yqI-Mn-h6k"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="checkboxImageView" destination="dtR-Ga-TBW" id="zCn-Ed-H0G"/>
+                <outlet property="stackView" destination="IEx-Ir-eP9" id="Esn-ZB-EE1"/>
+                <outlet property="title" destination="ij8-2n-AoE" id="B8W-x1-LNk"/>
+            </connections>
+            <point key="canvasLocation" x="-314.49275362318843" y="-53.90625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Amex" width="39" height="24"/>
+        <image name="Discover" width="39" height="24"/>
+        <image name="Mastercard" width="39" height="24"/>
+        <image name="Visa" width="39" height="24"/>
+        <image name="circle-checkbox" width="512" height="512"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -140,6 +140,26 @@
                                             <segue destination="vFh-aa-X7w" kind="show" id="Yn2-cK-Ogi"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="p8n-ja-fci" rowHeight="55" style="IBUITableViewCellStyleDefault" id="JxW-4O-iLg">
+                                        <rect key="frame" x="20" y="348" width="374" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JxW-4O-iLg" id="pOB-Ub-iK0">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Collect Payment Orchestration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p8n-ja-fci">
+                                                    <rect key="frame" x="20" y="0.0" width="317.5" height="55"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MhQ-Uk-aP9" kind="push" id="amI-mj-Nh2"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -966,6 +986,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxb-Af-SG4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2445" y="181"/>
+        </scene>
+        <!--Deposit-->
+        <scene sceneID="vrK-jB-y7b">
+            <objects>
+                <viewController storyboardIdentifier="PayOptIntegrationViewController" title="Deposit" id="MhQ-Uk-aP9" customClass="PayOptIntegrationViewController" customModule="CollectPayoptDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y5B-rN-5rB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-RW-eTI">
+                                <rect key="frame" x="20" y="752" width="374" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-nC-VqL">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="DEPOSIT"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="uploadAction:" destination="MhQ-Uk-aP9" eventType="touchUpInside" id="Ens-oZ-BpN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kca-rY-9wg"/>
+                                </constraints>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="   $50" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T6C-z2-SyJ">
+                                <rect key="frame" x="20" y="108" width="374" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="vbj-iv-tG5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="F0E-e8-z2w">
+                                <rect key="frame" x="20" y="188" width="374" height="54"/>
+                                <segments>
+                                    <segment title="50"/>
+                                    <segment title="100"/>
+                                    <segment title="250"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Hn-pFM">
+                                <rect key="frame" x="20" y="271" width="374" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lss-re-fEa">
+                                <rect key="frame" x="20" y="313.5" width="374" height="430.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="G6B-HV-k8r"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F0E-e8-z2w" firstAttribute="height" secondItem="T6C-z2-SyJ" secondAttribute="height" multiplier="0.882353" id="6na-PW-cCy"/>
+                            <constraint firstItem="lss-re-fEa" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" id="7uc-6A-I4U"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="lss-re-fEa" secondAttribute="trailing" constant="20" id="AK7-Ev-Ohp"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="Zkj-RW-eTI" secondAttribute="trailing" constant="20" id="ArU-7t-zra"/>
+                            <constraint firstItem="T6C-z2-SyJ" firstAttribute="top" secondItem="G6B-HV-k8r" secondAttribute="top" constant="20" id="B2X-MO-Plh"/>
+                            <constraint firstItem="lss-re-fEa" firstAttribute="leading" secondItem="T6C-z2-SyJ" secondAttribute="leading" id="BVe-oD-vLQ"/>
+                            <constraint firstItem="lss-re-fEa" firstAttribute="top" secondItem="aYg-Hn-pFM" secondAttribute="bottom" constant="21" id="NaU-Ua-tvE"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="bottom" secondItem="Zkj-RW-eTI" secondAttribute="bottom" constant="50" id="Rkn-a8-Azf"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="leading" secondItem="T6C-z2-SyJ" secondAttribute="leading" id="TSd-rd-bMI"/>
+                            <constraint firstItem="Zkj-RW-eTI" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="V1N-nU-sK2"/>
+                            <constraint firstItem="F0E-e8-z2w" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" id="lmX-j7-QTl"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" constant="20" id="maJ-Ot-AZ6"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="top" secondItem="F0E-e8-z2w" secondAttribute="bottom" constant="30" id="mbY-Qd-E38"/>
+                            <constraint firstItem="Zkj-RW-eTI" firstAttribute="top" secondItem="lss-re-fEa" secondAttribute="bottom" constant="8" id="nzs-XM-nS9"/>
+                            <constraint firstItem="T6C-z2-SyJ" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="rJb-XW-QyH"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" id="sOS-cA-ykj"/>
+                            <constraint firstItem="F0E-e8-z2w" firstAttribute="leading" secondItem="T6C-z2-SyJ" secondAttribute="leading" id="xoS-bm-RbR"/>
+                            <constraint firstItem="F0E-e8-z2w" firstAttribute="top" secondItem="T6C-z2-SyJ" secondAttribute="bottom" constant="20" id="zIG-FK-Ad5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tU7-GQ-Azh"/>
+                    <connections>
+                        <outlet property="tableView" destination="lss-re-fEa" id="SRt-dS-a3K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlV-at-8Iq" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1659" y="181"/>
         </scene>
     </scenes>
     <resources>
