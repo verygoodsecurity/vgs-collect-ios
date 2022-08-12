@@ -34,16 +34,26 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		return selectedIndexPath.section == (paymentMethodsDataSource.count - 1)
 	}
 
+	let apiClient = CustomBackendAPIClient()
+
 	@IBOutlet weak var tableView: UITableView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		// Enable loggs from collect SDK
 		VGSCollectLogger.shared.configuration.isExtensiveDebugEnabled = true
 		VGSCollectLogger.shared.configuration.isNetworkDebugEnabled = true
+
 		// Setup UI
 		prepareDataSource()
 		setupTableView()
+
+		apiClient.fetchToken { token in
+			self.payOptAccessToken = token
+		} failure: { errorMessage in
+			print("error: \(errorMessage)")
+		}
 	}
 
 	private func prepareDataSource() {
@@ -161,9 +171,9 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		// TODO: make API call to custom backend, backend should use fin_id and sum to make transfer via payopt API.
 		print("🔼 Send transfer with deposit: \(sum) fin_id: \(finId)")
 		/// Navigate to completion VC
-		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
-		let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CompletionViewController")
-		self.navigationController?.pushViewController(nextViewController, animated: true)
+//		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+//		let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CompletionViewController")
+//		self.navigationController?.pushViewController(nextViewController, animated: true)
 	}
 }
 
