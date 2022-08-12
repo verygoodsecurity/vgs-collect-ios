@@ -46,9 +46,11 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		}
 	}
 
+	/// Defines screen state.
 	enum ScreenState {
 		case initial
 		case fetchingToken(_ requestState: RequestResult<String>)
+		case fetchingSavedCards(_ requestState: RequestResult<[SavedCardModel]>)
 	}
 
 	let apiClient = CustomBackendAPIClient()
@@ -66,28 +68,43 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		prepareDataSource()
 		setupTableView()
 
-		// Fetch token.
-		fetchAccessToken()
+		// Fetch token and cards.
+		fetchAccessTokenAndCards()
 	}
 
-	/// Fetchs access token for payopt.
-	private func fetchAccessToken() {
+	/// Fetches access token for payopt.
+	private func fetchAccessTokenAndCards() {
 		state = .fetchingToken(.isLoading)
 		apiClient.fetchToken {[weak self] token in
 			guard let strongSelf = self else {return}
 			strongSelf.state = .fetchingToken(.success(token))
+			strongSelf.fetchSavedCards()
 		} failure: {[weak self] errorMessage in
 			guard let strongSelf = self else {return}
 			strongSelf.state = .fetchingToken(.error(errorMessage))
 		}
 	}
 
+	/// Fetches saved cards.
+	private func fetchSavedCards() {
+		guard !AppCollectorConfiguration.shared.savedFinancialInstruments.isEmpty else {return}
+		state = .fetchingSavedCards(.isLoading)
+		apiClient.fetchSavedPaymentMethods(AppCollectorConfiguration.shared.savedFinancialInstruments, accessToken: payOptAccessToken) {[weak self] fetchedCards in
+			guard let strongSelf = self else {return}
+			strongSelf.state = .fetchingSavedCards(.success(fetchedCards))
+		} failure: {[weak self] requestError in
+			guard let strongSelf = self else {return}
+			strongSelf.state = .fetchingSavedCards(.error(requestError?.localizedDescription ?? "Cannot fetch saved cards."))
+		}
+
+	}
+
 	private func prepareDataSource() {
 		paymentMethodsDataSource.append(PaymentCellData(title: "PayPall",
-																									subtitle: "You will be sent to PayPall to complete the deposit"))
+																										subtitle: "You will be sent to PayPall to complete the deposit"))
 		for savedCard in savedCards {
 			paymentMethodsDataSource.append(PaymentCellData(title: "\(savedCard.cardBrandName.uppercased()) \(savedCard.last4)",
-																										subtitle: "Expires \(savedCard.expDate)"))
+																											subtitle: "Expires \(savedCard.expDate)"))
 		}
 		paymentMethodsDataSource.append(PaymentCellData(title: "Add credit or debit card",
 																										subtitle: ""))
@@ -103,26 +120,26 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		tableView.reloadData()
 	}
 
-		@objc
-		func hideKeyboard() {
-				view.endEditing(true)
-		}
+	@objc
+	func hideKeyboard() {
+		view.endEditing(true)
+	}
 
-		// Upload data from TextFields to VGS
-		@IBAction func uploadAction(_ sender: Any) {
-			// hide kayboard
-			hideKeyboard()
-			if isAddCardCellSelected {
-				// create financial instrument
-				createFinId()
-			} else if selectedIndexPath.section != 0{
-				// collect cvc and pay
-				let selectedFinId = savedCards[selectedIndexPath.section - 1]
-				depositWithSavedCard(selectedFinId.id, amount: 50)
-			} else {
-				/// deposit with PayPal
-			}
+	// Upload data from TextFields to VGS
+	@IBAction func uploadAction(_ sender: Any) {
+		// hide kayboard
+		hideKeyboard()
+		if isAddCardCellSelected {
+			// create financial instrument
+			createFinId()
+		} else if selectedIndexPath.section != 0{
+			// collect cvc and pay
+			let selectedFinId = savedCards[selectedIndexPath.section - 1]
+			depositWithSavedCard(selectedFinId.id, amount: 50)
+		} else {
+			/// deposit with PayPal
 		}
+	}
 
 	// MARK: - API methods
 	/// Create financial instrument with AddCard fields
@@ -197,9 +214,9 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		// TODO: make API call to custom backend, backend should use fin_id and sum to make transfer via payopt API.
 		print("🔼 Send transfer with deposit: \(sum) fin_id: \(finId)")
 		/// Navigate to completion VC
-//		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
-//		let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CompletionViewController")
-//		self.navigationController?.pushViewController(nextViewController, animated: true)
+		//		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+		//		let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CompletionViewController")
+		//		self.navigationController?.pushViewController(nextViewController, animated: true)
 	}
 
 	fileprivate func updateUI() {
@@ -217,6 +234,22 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 			case .isLoading:
 				displayLoader()
 			}
+		case .fetchingSavedCards(let savedCardsRequestState):
+			updateSavedCardsUI(with: savedCardsRequestState)
+		}
+	}
+
+	func updateSavedCardsUI(with savedCardsRequestState: RequestResult<[SavedCardModel]>) {
+		switch savedCardsRequestState {
+		case .success(let fetchedCards):
+			self.savedCards = fetchedCards
+			tableView.reloadData()
+			hideLoader()
+		case .error(let errorText):
+			print("Cannot fetch saved cards: \(errorText ?? "Uknown error")")
+			hideLoader()
+	  case .isLoading:
+			displayLoader()
 		}
 	}
 }
@@ -247,36 +280,36 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-			let cellData = paymentMethodsDataSource[indexPath.section]
+		let cellData = paymentMethodsDataSource[indexPath.section]
 
-			if indexPath.section == paymentMethodsDataSource.count - 1,  let cell = tableView.dequeueReusableCell(withIdentifier: "AddCardCell", for: indexPath) as? AddCardCell  {
-					cell.title.text = cellData.title
-					cell.layer.borderWidth = 1
-					cell.layer.borderColor = UIColor.darkGray.cgColor
-					cell.setupVGSTextFieldsConfiguration(with: vgsCollectNewCardFlow)
-					cell.setSelected(isAddCardCellSelected)
-					return cell
-			} else if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentCardCell", for: indexPath) as? PaymentCardCell  {
-					cell.title.text = cellData.title
-					cell.subtitle.text = cellData.subtitle
-					cell.layer.borderWidth = 1
-					cell.layer.borderColor = UIColor.black.cgColor
-					let isSelected = (indexPath.section == selectedIndexPath.section)
-					cell.setSelected(isSelected)
-					if isSelected {
-						/// Attach CVC field to VGSCollect instance
-						cell.setupVGSTextFieldConfiguration(vgsCollectSavedCardFlow)
-					}
-					return cell
+		if indexPath.section == paymentMethodsDataSource.count - 1,  let cell = tableView.dequeueReusableCell(withIdentifier: "AddCardCell", for: indexPath) as? AddCardCell  {
+			cell.title.text = cellData.title
+			cell.layer.borderWidth = 1
+			cell.layer.borderColor = UIColor.darkGray.cgColor
+			cell.setupVGSTextFieldsConfiguration(with: vgsCollectNewCardFlow)
+			cell.setSelected(isAddCardCellSelected)
+			return cell
+		} else if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentCardCell", for: indexPath) as? PaymentCardCell  {
+			cell.title.text = cellData.title
+			cell.subtitle.text = cellData.subtitle
+			cell.layer.borderWidth = 1
+			cell.layer.borderColor = UIColor.black.cgColor
+			let isSelected = (indexPath.section == selectedIndexPath.section)
+			cell.setSelected(isSelected)
+			if isSelected {
+				/// Attach CVC field to VGSCollect instance
+				cell.setupVGSTextFieldConfiguration(vgsCollectSavedCardFlow)
 			}
-			return UITableViewCell()
+			return cell
+		}
+		return UITableViewCell()
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-			/// deatach cvc field attached with previously selected field
-			vgsCollectSavedCardFlow.unsubscribeAllTextFields()
-			selectedIndexPath = indexPath
-			tableView.reloadData()
+		/// deatach cvc field attached with previously selected field
+		vgsCollectSavedCardFlow.unsubscribeAllTextFields()
+		selectedIndexPath = indexPath
+		tableView.reloadData()
 	}
 }
 
