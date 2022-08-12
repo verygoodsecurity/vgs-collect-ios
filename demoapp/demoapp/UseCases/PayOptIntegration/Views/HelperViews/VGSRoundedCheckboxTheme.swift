@@ -24,10 +24,10 @@ internal protocol VGSRoundedCheckboxTheme {
 internal class VGSRoundedCheckbox: UIView {
 
 	/// Unselected state image.
-	private let unselectedStateImage = UIImage(named: "radio_button_unselected", in: BundleUtils.shared.resourcesBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+	private let unselectedStateImage = UIImage(named: "radio_button_unselected", in: Bundle.main, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
 	/// Checkmark image.
-	private let checkmarkImage = UIImage(named: "checkmark", in: BundleUtils.shared.resourcesBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+	private let checkmarkImage = UIImage(named: "checkmark", in: Bundle.main, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
 	// MARK: - Vars
 
@@ -101,11 +101,19 @@ internal class VGSRoundedCheckbox: UIView {
 		return CGSize(width: 22, height: 22)
 	}
 
+	/// The background color of the payment option checkbox for unselected state.
+	internal static	var checkoutPaymentOptionCheckboxUnselectedColor: UIColor = UIColor.vgsSystemGrayColor
+
+	/// The background color of the payment option checkbox for selected state.
+	internal static 	var checkoutPaymentOptionCheckboxSelectedColor: UIColor = UIColor.systemBlue
+
+	/// The checkmark tint color in the payment option checkbox.
+	internal static	var checkoutPaymentOptionCheckmarkTintColor: UIColor = .white
+
 	/// Generates ui theme for saved card rounded checkbox.
-	/// - Parameter uiTheme: `VGSCheckoutThemeProtocol` object, ui theme.
 	/// - Returns: `CardCellCheckboxTheme` object, CardCellCheckboxTheme
-	static func generateCheckboxThemeForSavedCard(from uiTheme: VGSCheckoutThemeProtocol) -> VGSRoundedCheckboxTheme {
-		let cellCheckboxTheme = VGSPaymentOptionCardTableViewCell.CardCellCheckboxTheme(unselectedColor: uiTheme.checkoutPaymentOptionCheckboxUnselectedColor, selectedColor: uiTheme.checkoutPaymentOptionCheckboxSelectedColor, checkmarkTintColor: uiTheme.checkoutPaymentOptionCheckmarkTintColor)
+	static func generateCheckboxThemeForSavedCard() -> VGSRoundedCheckboxTheme {
+		let cellCheckboxTheme = VGSPaymentOptionCardTableViewCell.CardCellCheckboxTheme(unselectedColor: checkoutPaymentOptionCheckboxUnselectedColor, selectedColor: checkoutPaymentOptionCheckboxSelectedColor, checkmarkTintColor: checkoutPaymentOptionCheckmarkTintColor)
 
 		return cellCheckboxTheme
 	}

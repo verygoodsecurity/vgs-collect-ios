@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import VGSCollectSDK
 
 /// A set of methods to notify about changes in `VGSPaymentOptionCardTableViewCell` cell.
 internal protocol VGSPaymentOptionCardTableViewCellDelegate: AnyObject {
@@ -27,6 +28,45 @@ internal class VGSPaymentOptionCardTableViewCell: UITableViewCell {
 		/// The checkmark tint color in checkbox.
 		var checkmarkTintColor: UIColor
 	}
+
+	/// The background color of the payment option item.
+	internal	var checkoutPaymentOptionBackgroundColor: UIColor = .vgsPaymentOptionBackgroundColor
+
+	/// The text color of the card holder title in saved card item.
+	internal var checkoutSavedCardCardholderTitleColor: UIColor = .vgsInputBlackTextColor
+
+	/// The text color of the card holder title in saved card item in selected state.
+	internal var checkoutSavedCardCardholderSelectedTitleColor: UIColor = .systemBlue
+
+	/// The text font of the card holder title in saved card item. Default is `.caption1` with `.semibold` weight.
+	internal var checkoutSavedCardCardholderTitleFont: UIFont = .vgsPreferredFont(forTextStyle: .caption1, weight: .semibold, maximumPointSize: 18)
+
+	/// The text color of the last 4 and exp date in saved card item.
+	internal	var checkoutSavedCardDetailsTitleColor: UIColor = .vgsSystemGrayColor
+
+	/// The text color of the last 4 and exp date in saved card item in selected state.
+	internal	var checkoutSavedCardDetailsSelectedTitleColor: UIColor = .vgsSystemGrayColor
+
+	/// The text font of the of the last 4 and exp date in saved card item. Default is `.callout` with `.semibold` weight.
+	internal	var checkoutSavedCardDetailsTitleFont: UIFont = .vgsPreferredFont(forTextStyle: .callout, weight: .medium, maximumPointSize: 16)
+
+	/// The border color of the saved card item when selected.
+	internal	var checkoutSavedCardSelectedBorderColor: UIColor = .systemBlue
+
+	/// The text color for new card payment option title.
+	internal	var checkoutPaymentOptionNewCardTitleColor: UIColor = .systemBlue
+
+	/// The font for new card payment option title. Default is `.callout` with `.semibold` weight.
+	internal	var checkoutPaymentOptionNewCardTitleFont: UIFont = .vgsPreferredFont(forTextStyle: .callout, weight: .semibold, maximumPointSize: 18)
+
+	/// The background color of the payment option checkbox for unselected state.
+	internal	var checkoutPaymentOptionCheckboxUnselectedColor: UIColor = UIColor.vgsSystemGrayColor
+
+	/// The background color of the payment option checkbox for selected state.
+	internal	var checkoutPaymentOptionCheckboxSelectedColor: UIColor = UIColor.systemBlue
+
+	/// The checkmark tint color in the payment option checkbox.
+	internal	var checkoutPaymentOptionCheckmarkTintColor: UIColor = .white
 
 	// MARK: - Initialization
 
@@ -111,29 +151,24 @@ internal class VGSPaymentOptionCardTableViewCell: UITableViewCell {
 	/// - Parameters:
 	///   - viewModel: `VGSPaymentOptionCardCellViewModel` object, cell view model.
 	///   - uiTheme: `VGSCheckoutThemeProtocol` object, ui theme.
-	internal func configure(with viewModel: VGSPaymentOptionCardCellViewModel, uiTheme: VGSCheckoutThemeProtocol, isEditing: Bool) {
+	internal func configure(with viewModel: VGSPaymentOptionCardCellViewModel, isEditing: Bool) {
 
 		cardBrandImageView.image = viewModel.cardBrandImage
 		cardHolderLabel.text = viewModel.cardHolder?.uppercased()
 		cardDetailsLabel.text = viewModel.last4AndExpDateText
 
-		cardHolderLabel.font = uiTheme.checkoutSavedCardCardholderTitleFont
-		cardDetailsLabel.font = uiTheme.checkoutSavedCardDetailsTitleFont
-		itemContainerView.backgroundColor = uiTheme.checkoutPaymentOptionBackgroundColor
+		cardHolderLabel.font = checkoutSavedCardCardholderTitleFont
+		cardDetailsLabel.font = checkoutSavedCardDetailsTitleFont
+		itemContainerView.backgroundColor = checkoutPaymentOptionBackgroundColor
 
 		if saveCardActionView == nil {
-			let actionView = VGSSavedCardCellActionView(uiTheme: uiTheme)
+			let actionView = VGSSavedCardCellActionView()
 			actionView.translatesAutoresizingMaskIntoConstraints = false
 			actionView.widthAnchor.constraint(equalToConstant: 30).isActive = true
 			itemContainerView.stackView.addArrangedSubview(actionView)
 			saveCardActionView = actionView
 			saveCardActionView?.delegate = self
 		}
-
-//		if UIApplication.isRunningUITest {
-//			let last4 = viewModel.last4 ?? ""
-//			saveCardActionView?.removeCardButton.accessibilityIdentifier = "VGSCheckout.Screens.PaymentOptions.Buttons.RemoveSavedCard" + last4
-//		}
 
 		if isEditing {
 			saveCardActionView?.actionViewState = .remove
@@ -142,13 +177,13 @@ internal class VGSPaymentOptionCardTableViewCell: UITableViewCell {
 		}
 
 		if viewModel.isSelected && !isEditing {
-			cardHolderLabel.textColor = uiTheme.checkoutSavedCardCardholderSelectedTitleColor
-			cardDetailsLabel.textColor = uiTheme.checkoutSavedCardDetailsSelectedTitleColor
-			itemContainerView.layer.borderColor = uiTheme.checkoutSavedCardSelectedBorderColor.cgColor
+			cardHolderLabel.textColor = checkoutSavedCardCardholderSelectedTitleColor
+			cardDetailsLabel.textColor = checkoutSavedCardDetailsSelectedTitleColor
+			itemContainerView.layer.borderColor = checkoutSavedCardSelectedBorderColor.cgColor
 			itemContainerView.layer.borderWidth = 1
 		} else {
-			cardHolderLabel.textColor = uiTheme.checkoutSavedCardCardholderTitleColor
-			cardDetailsLabel.textColor = uiTheme.checkoutSavedCardDetailsTitleColor
+			cardHolderLabel.textColor = checkoutSavedCardCardholderTitleColor
+			cardDetailsLabel.textColor = checkoutSavedCardDetailsTitleColor
 			itemContainerView.layer.borderWidth = 1
 			itemContainerView.layer.borderColor = UIColor.clear.cgColor
 		}

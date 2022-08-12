@@ -108,4 +108,7 @@ internal struct VGSPaymentOptionCardCellViewModel {
 
 	/// Last 4.
 	internal let last4: String?
+
+	/// Card brand image.
+	internal let cardBrandImage: UIImage?
 }
