@@ -28,6 +28,12 @@
 		449FFCB628A505A100FE4A1F /* AddCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449FFCAD28A505A100FE4A1F /* AddCardCell.xib */; };
 		449FFCB728A505A100FE4A1F /* SavedCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCAF28A505A100FE4A1F /* SavedCardModel.swift */; };
 		449FFCB828A505A100FE4A1F /* CustomBackendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */; };
+		449FFCBB28A517AE00FE4A1F /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCBA28A517AE00FE4A1F /* UITableViewCell+Extensions.swift */; };
+		449FFCBE28A517E200FE4A1F /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCBD28A517E200FE4A1F /* UITableView+Extensions.swift */; };
+		449FFCC028A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCBF28A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift */; };
+		449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCC328A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift */; };
+		449FFCC628A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCC528A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift */; };
+		449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCC828A5191A00FE4A1F /* UIView+Extensions.swift */; };
 		44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */; };
 		44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691326205F670014645F /* CardsDataCollectingViewController.swift */; };
 		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
@@ -81,6 +87,12 @@
 		449FFCAD28A505A100FE4A1F /* AddCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCardCell.xib; sourceTree = "<group>"; };
 		449FFCAF28A505A100FE4A1F /* SavedCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCardModel.swift; sourceTree = "<group>"; };
 		449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBackendAPIClient.swift; sourceTree = "<group>"; };
+		449FFCBA28A517AE00FE4A1F /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		449FFCBD28A517E200FE4A1F /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		449FFCBF28A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSPaymentOptionCardTableViewCell.swift; sourceTree = "<group>"; };
+		449FFCC328A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSRoundedCheckboxTheme.swift; sourceTree = "<group>"; };
+		449FFCC528A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSPaymentOptionItemContainerView.swift; sourceTree = "<group>"; };
+		449FFCC828A5191A00FE4A1F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
 		44D8691326205F670014645F /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
 		44D8691426205F670014645F /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */,
-				449FFCA928A505A100FE4A1F /* TableViewCells */,
+				449FFCC128A5184F00FE4A1F /* Views */,
 				449FFCAE28A505A100FE4A1F /* Models */,
 				449FFCB028A505A100FE4A1F /* Helpers */,
 			);
@@ -157,6 +169,7 @@
 				449FFCAB28A505A100FE4A1F /* PaymentCardCell.swift */,
 				449FFCAC28A505A100FE4A1F /* PaymentCardCell.xib */,
 				449FFCAD28A505A100FE4A1F /* AddCardCell.xib */,
+				449FFCBF28A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -175,6 +188,48 @@
 				449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		449FFCB928A5179800FE4A1F /* UITableViewCell+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCBA28A517AE00FE4A1F /* UITableViewCell+Extensions.swift */,
+			);
+			path = "UITableViewCell+Extensions";
+			sourceTree = "<group>";
+		};
+		449FFCBC28A517CC00FE4A1F /* UITableView+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCBD28A517E200FE4A1F /* UITableView+Extensions.swift */,
+			);
+			path = "UITableView+Extensions";
+			sourceTree = "<group>";
+		};
+		449FFCC128A5184F00FE4A1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCC228A5185C00FE4A1F /* HelperViews */,
+				449FFCA928A505A100FE4A1F /* TableViewCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		449FFCC228A5185C00FE4A1F /* HelperViews */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCC328A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift */,
+				449FFCC528A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift */,
+			);
+			path = HelperViews;
+			sourceTree = "<group>";
+		};
+		449FFCC728A5190900FE4A1F /* UIView+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCC828A5191A00FE4A1F /* UIView+Extensions.swift */,
+			);
+			path = "UIView+Extensions";
 			sourceTree = "<group>";
 		};
 		44D8691126205F670014645F /* UseCases */ = {
@@ -219,6 +274,9 @@
 		44E292B225CD5BC800717F1C /* UIKit+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				449FFCC728A5190900FE4A1F /* UIView+Extensions */,
+				449FFCBC28A517CC00FE4A1F /* UITableView+Extensions */,
+				449FFCB928A5179800FE4A1F /* UITableViewCell+Extensions */,
 				44E292B325CD5BD900717F1C /* UIColor+Extensions.swift */,
 				446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */,
 			);
@@ -542,15 +600,21 @@
 				449FFCB728A505A100FE4A1F /* SavedCardModel.swift in Sources */,
 				44E292B425CD5BD900717F1C /* UIColor+Extensions.swift in Sources */,
 				322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */,
+				449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */,
 				44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */,
+				449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
+				449FFCC628A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift in Sources */,
 				44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */,
+				449FFCBB28A517AE00FE4A1F /* UITableViewCell+Extensions.swift in Sources */,
 				449FFCB428A505A100FE4A1F /* PaymentCardCell.swift in Sources */,
 				44D8692026205F670014645F /* FilePickerViewController.swift in Sources */,
 				446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */,
 				44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */,
 				44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */,
+				449FFCBE28A517E200FE4A1F /* UITableView+Extensions.swift in Sources */,
 				0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */,
+				449FFCC028A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift in Sources */,
 				449FFCB828A505A100FE4A1F /* CustomBackendAPIClient.swift in Sources */,
 				325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */,
 				44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */,

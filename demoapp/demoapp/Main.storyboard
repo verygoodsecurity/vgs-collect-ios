@@ -1026,47 +1026,34 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="F0E-e8-z2w">
-                                <rect key="frame" x="20" y="188" width="374" height="54"/>
-                                <segments>
-                                    <segment title="50"/>
-                                    <segment title="100"/>
-                                    <segment title="250"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Hn-pFM">
-                                <rect key="frame" x="20" y="271" width="374" height="21.5"/>
+                                <rect key="frame" x="20" y="184" width="374" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lss-re-fEa">
-                                <rect key="frame" x="20" y="313.5" width="374" height="430.5"/>
+                                <rect key="frame" x="20" y="226.5" width="374" height="517.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G6B-HV-k8r"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="F0E-e8-z2w" firstAttribute="height" secondItem="T6C-z2-SyJ" secondAttribute="height" multiplier="0.882353" id="6na-PW-cCy"/>
                             <constraint firstItem="lss-re-fEa" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" id="7uc-6A-I4U"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="lss-re-fEa" secondAttribute="trailing" constant="20" id="AK7-Ev-Ohp"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="Zkj-RW-eTI" secondAttribute="trailing" constant="20" id="ArU-7t-zra"/>
                             <constraint firstItem="T6C-z2-SyJ" firstAttribute="top" secondItem="G6B-HV-k8r" secondAttribute="top" constant="20" id="B2X-MO-Plh"/>
                             <constraint firstItem="lss-re-fEa" firstAttribute="leading" secondItem="T6C-z2-SyJ" secondAttribute="leading" id="BVe-oD-vLQ"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="top" secondItem="T6C-z2-SyJ" secondAttribute="bottom" constant="16" id="Chl-pn-ZJe"/>
                             <constraint firstItem="lss-re-fEa" firstAttribute="top" secondItem="aYg-Hn-pFM" secondAttribute="bottom" constant="21" id="NaU-Ua-tvE"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="bottom" secondItem="Zkj-RW-eTI" secondAttribute="bottom" constant="50" id="Rkn-a8-Azf"/>
                             <constraint firstItem="aYg-Hn-pFM" firstAttribute="leading" secondItem="T6C-z2-SyJ" secondAttribute="leading" id="TSd-rd-bMI"/>
                             <constraint firstItem="Zkj-RW-eTI" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="V1N-nU-sK2"/>
-                            <constraint firstItem="F0E-e8-z2w" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" id="lmX-j7-QTl"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" constant="20" id="maJ-Ot-AZ6"/>
-                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="top" secondItem="F0E-e8-z2w" secondAttribute="bottom" constant="30" id="mbY-Qd-E38"/>
                             <constraint firstItem="Zkj-RW-eTI" firstAttribute="top" secondItem="lss-re-fEa" secondAttribute="bottom" constant="8" id="nzs-XM-nS9"/>
                             <constraint firstItem="T6C-z2-SyJ" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="rJb-XW-QyH"/>
                             <constraint firstItem="aYg-Hn-pFM" firstAttribute="trailing" secondItem="T6C-z2-SyJ" secondAttribute="trailing" id="sOS-cA-ykj"/>
-                            <constraint firstItem="F0E-e8-z2w" firstAttribute="leading" secondItem="T6C-z2-SyJ" secondAttribute="leading" id="xoS-bm-RbR"/>
-                            <constraint firstItem="F0E-e8-z2w" firstAttribute="top" secondItem="T6C-z2-SyJ" secondAttribute="bottom" constant="20" id="zIG-FK-Ad5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tU7-GQ-Azh"/>
