@@ -224,25 +224,30 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		case .initial:
 			hideLoader()
 		case .fetchingToken(let requestState):
-			switch requestState {
-			case .success(let accessToken):
-				hideLoader()
-				payOptAccessToken = accessToken
-			case .error(let errorText):
-				hideLoader()
-				print("Cannot fetch access token: \(errorText ?? "Uknown error")")
-			case .isLoading:
-				displayLoader()
-			}
+			updateUI(with: requestState)
 		case .fetchingSavedCards(let savedCardsRequestState):
 			updateSavedCardsUI(with: savedCardsRequestState)
+		}
+	}
+
+	func updateUI(with fetchingTokenRequestState: RequestResult<String>) {
+		switch fetchingTokenRequestState {
+		case .success(let accessToken):
+			hideLoader()
+			payOptAccessToken = accessToken
+		case .error(let errorText):
+			hideLoader()
+			print("Cannot fetch access token: \(errorText ?? "Uknown error")")
+		case .isLoading:
+			displayLoader()
 		}
 	}
 
 	func updateSavedCardsUI(with savedCardsRequestState: RequestResult<[SavedCardModel]>) {
 		switch savedCardsRequestState {
 		case .success(let fetchedCards):
-			self.savedCards = fetchedCards
+			savedCards = fetchedCards
+			prepareDataSource()
 			tableView.reloadData()
 			hideLoader()
 		case .error(let errorText):
