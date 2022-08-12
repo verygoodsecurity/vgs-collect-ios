@@ -37,6 +37,7 @@
 		449FFCCC28A6230900FE4A1F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCCB28A6230900FE4A1F /* UIColor+Extensions.swift */; };
 		449FFCCF28A6240000FE4A1F /* VGSSavedCardCellActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */; };
 		449FFCD228A6255200FE4A1F /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */; };
+		449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */; };
 		44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */; };
 		44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691326205F670014645F /* CardsDataCollectingViewController.swift */; };
 		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
@@ -98,6 +99,7 @@
 		449FFCCB28A6230900FE4A1F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSSavedCardCellActionView.swift; sourceTree = "<group>"; };
 		449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
 		44D8691326205F670014645F /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
 		44D8691426205F670014645F /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +263,14 @@
 			path = "UIFont+Extensions";
 			sourceTree = "<group>";
 		};
+		449FFCD328A62E5600FE4A1F /* UIViewController+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */,
+			);
+			path = "UIViewController+Extensions";
+			sourceTree = "<group>";
+		};
 		44D8691126205F670014645F /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +313,7 @@
 		44E292B225CD5BC800717F1C /* UIKit+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				449FFCD328A62E5600FE4A1F /* UIViewController+Extensions */,
 				449FFCD028A6254200FE4A1F /* UIFont+Extensions */,
 				449FFCCA28A622F700FE4A1F /* UIColor+Extensions */,
 				449FFCC728A5190900FE4A1F /* UIView+Extensions */,
@@ -646,6 +657,7 @@
 				44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */,
 				449FFCBE28A517E200FE4A1F /* UITableView+Extensions.swift in Sources */,
 				0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */,
+				449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */,
 				449FFCC028A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift in Sources */,
 				449FFCB828A505A100FE4A1F /* CustomBackendAPIClient.swift in Sources */,
 				325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */,

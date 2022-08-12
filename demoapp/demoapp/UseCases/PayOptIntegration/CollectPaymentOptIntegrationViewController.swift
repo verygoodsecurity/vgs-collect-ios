@@ -7,6 +7,12 @@ import Foundation
 import UIKit
 import VGSCollectSDK
 
+enum RequestResult<T> {
+	case success(T)
+	case error(String?)
+	case isLoading
+}
+
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to Payment Orchestration service.
 class CollectPayoptIntegrationViewConroller: UIViewController {
 
@@ -34,6 +40,17 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		return selectedIndexPath.section == (paymentMethodsDataSource.count - 1)
 	}
 
+	var state: ScreenState = ScreenState.initial {
+		didSet {
+			updateUI()
+		}
+	}
+
+	enum ScreenState {
+		case initial
+		case fetchingToken(_ requestState: RequestResult<String>)
+	}
+
 	let apiClient = CustomBackendAPIClient()
 
 	@IBOutlet weak var tableView: UITableView!
@@ -45,14 +62,23 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		VGSCollectLogger.shared.configuration.isExtensiveDebugEnabled = true
 		VGSCollectLogger.shared.configuration.isNetworkDebugEnabled = true
 
-		// Setup UI
+		// Setup UI.
 		prepareDataSource()
 		setupTableView()
 
-		apiClient.fetchToken { token in
-			self.payOptAccessToken = token
-		} failure: { errorMessage in
-			print("error: \(errorMessage)")
+		// Fetch token.
+		fetchAccessToken()
+	}
+
+	/// Fetchs access token for payopt.
+	private func fetchAccessToken() {
+		state = .fetchingToken(.isLoading)
+		apiClient.fetchToken {[weak self] token in
+			guard let strongSelf = self else {return}
+			strongSelf.state = .fetchingToken(.success(token))
+		} failure: {[weak self] errorMessage in
+			guard let strongSelf = self else {return}
+			strongSelf.state = .fetchingToken(.error(errorMessage))
 		}
 	}
 
@@ -174,6 +200,24 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 //		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
 //		let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CompletionViewController")
 //		self.navigationController?.pushViewController(nextViewController, animated: true)
+	}
+
+	fileprivate func updateUI() {
+		switch state {
+		case .initial:
+			hideLoader()
+		case .fetchingToken(let requestState):
+			switch requestState {
+			case .success(let accessToken):
+				hideLoader()
+				payOptAccessToken = accessToken
+			case .error(let errorText):
+				hideLoader()
+				print("Cannot fetch access token: \(errorText ?? "Uknown error")")
+			case .isLoading:
+				displayLoader()
+			}
+		}
 	}
 }
 
