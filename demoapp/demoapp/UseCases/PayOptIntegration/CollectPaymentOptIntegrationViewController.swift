@@ -185,7 +185,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		vgsCollectNewCardFlow.sendData(path: "/financial_instruments", routeId: AppCollectorConfiguration.shared.paymentOrchestrationDefaultRouteId) { [weak self] response in
 			switch response {
 			case .success(_, let data, _):
-				/// Get fin instriment from response data
+				/// Get fin instrument from response data
 				guard let finId = self?.apiClient.financialInstrumentID(from: data) else {
 					print("can't parse fin_id from data!")
 					return
