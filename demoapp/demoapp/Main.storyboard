@@ -1019,13 +1019,13 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Hn-pFM">
-                                <rect key="frame" x="20" y="104" width="196.5" height="21.5"/>
+                                <rect key="frame" x="20" y="96" width="196.5" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lss-re-fEa">
-                                <rect key="frame" x="20" y="133.5" width="374" height="360.5"/>
+                                <rect key="frame" x="20" y="125.5" width="374" height="368.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6a-r0-98K">
@@ -1082,7 +1082,7 @@
                             <constraint firstItem="aYg-Hn-pFM" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="8pd-Fa-MZU"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="lss-re-fEa" secondAttribute="trailing" constant="20" id="AK7-Ev-Ohp"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="Zkj-RW-eTI" secondAttribute="trailing" constant="20" id="ArU-7t-zra"/>
-                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="top" secondItem="G6B-HV-k8r" secondAttribute="top" constant="16" id="DWq-Fd-oga"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="top" secondItem="G6B-HV-k8r" secondAttribute="top" constant="8" id="DWq-Fd-oga"/>
                             <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="r6a-r0-98K" secondAttribute="trailing" constant="20" id="Iu9-DS-0lR"/>
                             <constraint firstItem="r6a-r0-98K" firstAttribute="leading" secondItem="lss-re-fEa" secondAttribute="leading" id="LQL-dO-QCw"/>
                             <constraint firstItem="lss-re-fEa" firstAttribute="top" secondItem="aYg-Hn-pFM" secondAttribute="bottom" constant="8" id="NaU-Ua-tvE"/>

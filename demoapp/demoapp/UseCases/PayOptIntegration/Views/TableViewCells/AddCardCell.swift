@@ -60,10 +60,6 @@ class AddCardCell: UITableViewCell {
     bottomStackView.distribution = .fillEqually
     bottomStackView.spacing = 2
     stackView.addArrangedSubview(bottomStackView)
-
-//		bottomStackView.layer.borderWidth = 1
-//		bottomStackView.layer.cornerRadius = 4
-//		bottomStackView.layer.borderColor = UIColor.lightGray.cgColor
   }
   
   func setupVGSTextFieldsConfiguration(with vgsCollect: VGSCollect) {
@@ -127,16 +123,16 @@ class AddCardCell: UITableViewCell {
 			textField.tintColor = .lightGray
       textField.delegate = self
     }
-//
-//		cvcCardNum.borderWidth = 0
-//		expCardDate.borderWidth = 0
-//		zipCode.borderWidth = 0
   }
 }
 
 extension AddCardCell: VGSTextFieldDelegate {
-  func vgsTextFieldDidChange(_ textField: VGSTextField) {
-    /// Update border after validation
-    textField.borderWidth = 0
-  }
+//  func vgsTextFieldDidChange(_ textField: VGSTextField) {
+//    /// Update border after validation
+//    textField.borderWidth = 0
+//  }
+//
+//	func vgsTextFieldDidEndEditing(_ textField: VGSTextField) {
+//		textField.borderWidth = 1
+//	}
 }
