@@ -22,6 +22,8 @@ internal class SavedCardModel {
 	internal let cardHolder: String
 	/// A Boolean flag, indicates selection state, default is `false`.
 	internal var isSelected = false
+	/// Card brand.
+	internal let cardBrand: VGSPaymentCards.CardBrand
 
 	/// no:doc
 	struct JSONKeys {
@@ -43,13 +45,13 @@ internal class SavedCardModel {
 		let keys = JSONKeys.self
 		guard let dataJSON = json[keys.data] as? JsonData,
 					let id = dataJSON[keys.id] as? String,
-				let cardJSON = dataJSON[keys.card] as? JsonData,
-		let cardNumber = cardJSON[keys.number] as? String,
-		let name = cardJSON[keys.name] as? String,
-		let expYear = cardJSON[keys.expYear] as? Int,
-		let expMonth = cardJSON[keys.expMonth] as? Int,
-		let brand = cardJSON[keys.brand] as? String ,
-		let last4 = cardJSON[keys.last4] as? String else {
+					let cardJSON = dataJSON[keys.card] as? JsonData,
+					let cardNumber = cardJSON[keys.number] as? String,
+					let name = cardJSON[keys.name] as? String,
+					let expYear = cardJSON[keys.expYear] as? Int,
+					let expMonth = cardJSON[keys.expMonth] as? Int,
+					let brand = cardJSON[keys.brand] as? String ,
+					let last4 = cardJSON[keys.last4] as? String else {
 			return nil
 		}
 		self.id = id
@@ -57,6 +59,7 @@ internal class SavedCardModel {
 		self.last4 = last4
 		self.expDate = "\(expMonth)/" + "\(expYear)"
 		self.cardBrandName = brand
+		self.cardBrand = VGSPaymentCards.CardBrand(brand)
 	}
 
 	/// Initializer
@@ -72,6 +75,21 @@ internal class SavedCardModel {
 		self.last4 = last4
 		self.expDate = expDate
 		self.cardHolder = cardHolder
+		self.cardBrand = VGSPaymentCards.CardBrand(cardBrand)
+	}
+
+	/// Payment option cell view model.
+	internal var paymentOptionCellViewModel: VGSPaymentOptionCardCellViewModel {
+		let image = cardBrand.brandIcon
+
+		let last4Text = "•••• \(last4) | \(expDate)"
+
+		return VGSPaymentOptionCardCellViewModel(cardBrandImage: image, cardHolder: cardHolder, last4AndExpDateText: last4Text, isSelected: isSelected, last4: self.last4)
+	}
+
+	/// Masled last 4 digits.
+	internal var maskedLast4: String {
+		return "•••• \(last4)"
 	}
 }
 
@@ -97,6 +115,9 @@ internal extension Array where Element == SavedCardModel {
 /// Card payment option cell view model.
 internal struct VGSPaymentOptionCardCellViewModel {
 
+	/// Card brand image.
+	internal let cardBrandImage: UIImage?
+
 	/// Card holder name text.
 	internal let cardHolder: String?
 
@@ -108,7 +129,83 @@ internal struct VGSPaymentOptionCardCellViewModel {
 
 	/// Last 4.
 	internal let last4: String?
+}
 
-	/// Card brand image.
-	internal let cardBrandImage: UIImage?
+extension VGSPaymentCards.CardBrand {
+
+	/// Normalized brandname.
+	internal var normalizedBrandName: String {
+		switch self {
+		case .elo:
+			return "elo"
+		case .visaElectron:
+			return "visaelectron"
+		case .maestro:
+			return "maestro"
+		case .forbrugsforeningen:
+			return "forbrugsforeningen"
+		case .dankort:
+			return "dankort"
+		case .visa:
+			return "visa"
+		case .mastercard:
+			return "mastercard"
+		case .amex:
+			return "amex"
+		case .hipercard:
+			return "hipercard"
+		case .dinersClub:
+			return "dinersclub"
+		case .discover:
+			return "discover"
+		case .unionpay:
+			return "unionpay"
+		case .jcb:
+			return "jcb"
+		case .unknown:
+			return "uknown"
+			//						case .custom(let brandName):
+			//							return brandName
+		case .custom(brandName: let brandName):
+			return brandName
+		}
+	}
+
+	/// Initializer.
+	/// - Parameter jsonCardBrandName: `String` object, card brand name from JSON.
+	internal init(_ jsonCardBrandName: String) {
+		guard let brand = VGSPaymentCards.CardBrand.allNonCustomBrands.first(where: {return jsonCardBrandName.normalizedCardBrandName == $0.normalizedBrandName}) else {
+			self = .unknown
+			return
+		}
+		self = brand
+	}
+
+	/// An array of non-custom brands.
+	internal static var allNonCustomBrands: [VGSPaymentCards.CardBrand] {
+		return [
+			.elo,
+			.visaElectron,
+			.maestro,
+			.forbrugsforeningen,
+			.dankort,
+			.visa,
+			.mastercard,
+			.amex,
+			.hipercard,
+			.dinersClub,
+			.discover,
+			.unionpay,
+			.jcb
+		]
+	}
+}
+
+/// no:doc
+internal extension String {
+
+	/// Normalized card brand name.
+	var normalizedCardBrandName: String {
+		return lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+	}
 }

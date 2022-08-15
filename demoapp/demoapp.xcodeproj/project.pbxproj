@@ -38,6 +38,7 @@
 		449FFCCF28A6240000FE4A1F /* VGSSavedCardCellActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */; };
 		449FFCD228A6255200FE4A1F /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */; };
 		449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */; };
+		449FFCD728A63DC300FE4A1F /* PaymentOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */; };
 		44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */; };
 		44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691326205F670014645F /* CardsDataCollectingViewController.swift */; };
 		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
@@ -100,6 +101,7 @@
 		449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSSavedCardCellActionView.swift; sourceTree = "<group>"; };
 		449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionModel.swift; sourceTree = "<group>"; };
 		44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
 		44D8691326205F670014645F /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
 		44D8691426205F670014645F /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				449FFCAF28A505A100FE4A1F /* SavedCardModel.swift */,
+				449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */,
 				449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */,
 				44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */,
+				449FFCD728A63DC300FE4A1F /* PaymentOptionModel.swift in Sources */,
 				449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
 				449FFCC628A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift in Sources */,

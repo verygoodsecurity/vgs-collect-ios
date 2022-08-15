@@ -150,7 +150,6 @@ internal class VGSPaymentOptionCardTableViewCell: UITableViewCell {
 	/// Configures cell with view model and theme.
 	/// - Parameters:
 	///   - viewModel: `VGSPaymentOptionCardCellViewModel` object, cell view model.
-	///   - uiTheme: `VGSCheckoutThemeProtocol` object, ui theme.
 	internal func configure(with viewModel: VGSPaymentOptionCardCellViewModel, isEditing: Bool) {
 
 		cardBrandImageView.image = viewModel.cardBrandImage

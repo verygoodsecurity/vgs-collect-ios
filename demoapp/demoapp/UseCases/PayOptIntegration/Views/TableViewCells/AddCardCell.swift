@@ -11,14 +11,14 @@ class AddCardCell: UITableViewCell {
   @IBOutlet weak var title: UILabel!
   @IBOutlet weak var stackView: UIStackView!
   @IBOutlet weak var checkboxImageView: UIImageView!
+	@IBOutlet fileprivate weak var overlayView: UIView!
   
   var cardHolderName = VGSTextField()
   var cardNumber = VGSCardTextField()
   var expCardDate = VGSExpDateTextField()
   var cvcCardNum = VGSTextField()
   var zipCode = VGSTextField()
-  var cardName = UITextField()
-  
+
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
   }
@@ -29,33 +29,34 @@ class AddCardCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+		
     setupStackViewUI()
-    
-    cardName.textColor = .black
-    cardName.backgroundColor = .groupTableViewBackground
-    cardName.font = .systemFont(ofSize: 18)
-    cardName.tintColor = .lightGray
-    cardName.layer.borderWidth = 0
-    cardName.placeholder = "   Card name(optional)"
+		overlayView.layer.borderColor = UIColor.darkGray.cgColor
   }
   
   func setSelected(_ selected: Bool) {
     checkboxImageView.image = selected ? UIImage(named: "circle-checkbox-full") : UIImage(named: "circle-checkbox")
     
     stackView.isHidden = !selected
+
+		if isSelected {
+			overlayView.layer.borderWidth = 1
+		} else {
+			overlayView.layer.borderWidth = 0
+		}
   }
   
   private func setupStackViewUI() {
     stackView.addArrangedSubview(cardHolderName)
     stackView.addArrangedSubview(cardNumber)
     
-    let bottomStackView = UIStackView.init(arrangedSubviews: [expCardDate, cvcCardNum, zipCode])
+    let bottomStackView = UIStackView.init(arrangedSubviews: [expCardDate, cvcCardNum])
     bottomStackView.axis = .horizontal
     bottomStackView.alignment = .fill
     bottomStackView.distribution = .fillEqually
     bottomStackView.spacing = 2
     stackView.addArrangedSubview(bottomStackView)
-    stackView.addArrangedSubview(cardName)
+		stackView.addArrangedSubview(zipCode)
   }
   
   func setupVGSTextFieldsConfiguration(with vgsCollect: VGSCollect) {
@@ -111,14 +112,12 @@ class AddCardCell: UITableViewCell {
     
     /// Setup UI
     vgsCollect.textFields.forEach { textField in
-      textField.textColor = .black
-      textField.backgroundColor = .groupTableViewBackground
-      textField.font = .systemFont(ofSize: 18)
-      textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-      textField.tintColor = .lightGray
-      textField.borderColor = .red
-      textField.borderWidth = 0
-      textField.cornerRadius = 0
+			textField.translatesAutoresizingMaskIntoConstraints = false
+			textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+			textField.textColor = UIColor.inputBlackTextColor
+			textField.font = .systemFont(ofSize: 22)
+			textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+			textField.tintColor = .lightGray
       textField.delegate = self
     }
   }

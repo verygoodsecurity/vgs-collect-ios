@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,15 +10,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddCardCell" rowHeight="317" id="ME1-5I-uvR" customClass="AddCardCell" customModule="CollectPayoptDemo" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddCardCell" rowHeight="317" id="ME1-5I-uvR" customClass="AddCardCell" customModule="demoapp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="644" height="317"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ME1-5I-uvR" id="RhC-vc-HDQ">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ME1-5I-uvR" id="RhC-vc-HDQ">
                 <rect key="frame" x="0.0" y="0.0" width="644" height="317"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pO0-Xa-jkg">
+                        <rect key="frame" x="0.0" y="8" width="644" height="309"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HL-SK-wuu">
-                        <rect key="frame" x="0.0" y="0.0" width="644" height="64"/>
+                        <rect key="frame" x="0.0" y="8" width="644" height="64"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ij8-2n-AoE">
                                 <rect key="frame" x="20" y="4" width="604" height="28"/>
@@ -54,7 +59,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ij8-2n-AoE" firstAttribute="top" secondItem="9HL-SK-wuu" secondAttribute="top" constant="4" id="2eK-7Q-2Ir"/>
                             <constraint firstItem="ij8-2n-AoE" firstAttribute="leading" secondItem="9HL-SK-wuu" secondAttribute="leading" constant="20" symbolic="YES" id="7G2-TA-VeX"/>
@@ -68,24 +73,28 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IEx-Ir-eP9">
-                        <rect key="frame" x="20" y="64" width="604" height="260"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="260" id="EZm-0J-gXQ"/>
-                        </constraints>
+                        <rect key="frame" x="0.0" y="80" width="644" height="237"/>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="9HL-SK-wuu" secondAttribute="trailing" id="44c-Pe-mfp"/>
-                    <constraint firstItem="IEx-Ir-eP9" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" constant="64" id="5k8-qe-GXz"/>
-                    <constraint firstAttribute="trailing" secondItem="IEx-Ir-eP9" secondAttribute="trailing" constant="20" symbolic="YES" id="W0R-JT-ZGj"/>
+                    <constraint firstItem="pO0-Xa-jkg" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" id="KUv-6o-eoI"/>
+                    <constraint firstItem="IEx-Ir-eP9" firstAttribute="top" secondItem="9HL-SK-wuu" secondAttribute="bottom" constant="8" id="NnO-qU-Pht"/>
+                    <constraint firstAttribute="trailing" secondItem="IEx-Ir-eP9" secondAttribute="trailing" id="W0R-JT-ZGj"/>
                     <constraint firstItem="9HL-SK-wuu" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" id="WW8-lE-JI4"/>
-                    <constraint firstAttribute="bottom" secondItem="IEx-Ir-eP9" secondAttribute="bottom" constant="10" id="Y9O-HL-QYS"/>
-                    <constraint firstItem="9HL-SK-wuu" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" id="eD2-cc-m5h"/>
-                    <constraint firstItem="IEx-Ir-eP9" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" constant="20" symbolic="YES" id="yqI-Mn-h6k"/>
+                    <constraint firstAttribute="bottom" secondItem="IEx-Ir-eP9" secondAttribute="bottom" id="Y9O-HL-QYS"/>
+                    <constraint firstAttribute="bottom" secondItem="pO0-Xa-jkg" secondAttribute="bottom" id="d7a-fm-H1L"/>
+                    <constraint firstItem="9HL-SK-wuu" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" constant="8" id="eD2-cc-m5h"/>
+                    <constraint firstAttribute="trailing" secondItem="pO0-Xa-jkg" secondAttribute="trailing" id="eaT-Rm-euT"/>
+                    <constraint firstItem="IEx-Ir-eP9" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" id="yqI-Mn-h6k"/>
+                    <constraint firstItem="pO0-Xa-jkg" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" constant="8" id="zu3-qh-xje"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="checkboxImageView" destination="dtR-Ga-TBW" id="zCn-Ed-H0G"/>
+                <outlet property="overlayView" destination="pO0-Xa-jkg" id="C5V-B2-Y9C"/>
                 <outlet property="stackView" destination="IEx-Ir-eP9" id="Esn-ZB-EE1"/>
                 <outlet property="title" destination="ij8-2n-AoE" id="B8W-x1-LNk"/>
             </connections>

@@ -45,14 +45,21 @@ final class CustomBackendAPIClient {
 			completionHandler: { (data, response, error) in
 				guard let data = data,
 							let json = try? JSONSerialization.jsonObject(with: data, options: [])
-								as? [String: Any],
-							let token = json["access_token"] as? String else {
+								as? [String: Any] else {
 								// Handle error
 								DispatchQueue.main.async {
 									failure("Cannot fetch token")
 								}
 								return
 							}
+
+				print("json: \(json)")
+				guard let token = json["access_token"] as? String else {
+					DispatchQueue.main.async {
+						failure("Cannot find token in JSON: \(json)")
+					}
+					return
+				}
 
 				let multipexingToken = token
 				print("access_token: \(token)")
@@ -173,5 +180,19 @@ final class CustomBackendAPIClient {
 					}
 				})
 		task.resume()
+	}
+
+	/// Financial instrument id from success payment orchestration save card response.
+	/// - Parameter data: `Data?` object, response data.
+	/// - Returns: `String?` object, financial instrument id or `nil`.
+	func financialInstrumentID(from data: Data?) -> String? {
+		if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+			if let dataJSON = jsonData["data"] as? [String: Any] {
+				if let financialInstumentID = dataJSON["id"] as? String {
+					return financialInstumentID
+				}
+			}
+		}
+		return nil
 	}
 }
