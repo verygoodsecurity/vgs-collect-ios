@@ -361,8 +361,41 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		/// deatach cvc field attached with previously selected field
+		let index = indexPath.row
 		vgsCollectSavedCardFlow.unsubscribeAllTextFields()
 		selectedIndexPath = indexPath
+		if let model = savedCards[safe: index] {
+			model.isSelected = true
+
+			// Remove selection from the previous card.
+			for savedCardIndex in 0..<paymentOptions.count {
+				let option = paymentOptions[savedCardIndex]
+				switch option {
+				case .savedCard(let previousCard):
+					//print("savedCardIndex: \(savedCardIndex), index: \(index)")
+					if savedCardIndex != index {
+						//print("unmard card!")
+						previousCard.isSelected = false
+					}
+				case .newCard:
+					continue
+				}
+			}
+		} else {
+			for savedCardIndex in 0..<paymentOptions.count {
+				let option = paymentOptions[savedCardIndex]
+				switch option {
+				case .savedCard(let previousCard):
+					//print("savedCardIndex: \(savedCardIndex), index: \(index)")
+					if savedCardIndex != index {
+						//print("unmard card!")
+						previousCard.isSelected = false
+					}
+				case .newCard:
+					continue
+				}
+			}
+		}
 		tableView.reloadData()
 	}
 }

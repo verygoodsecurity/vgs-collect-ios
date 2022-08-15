@@ -39,6 +39,7 @@
 		449FFCD228A6255200FE4A1F /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */; };
 		449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */; };
 		449FFCD728A63DC300FE4A1F /* PaymentOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */; };
+		449FFCDB28AA234500FE4A1F /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCDA28AA234500FE4A1F /* Collection+Extensions.swift */; };
 		44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */; };
 		44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691326205F670014645F /* CardsDataCollectingViewController.swift */; };
 		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
@@ -102,6 +103,7 @@
 		449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionModel.swift; sourceTree = "<group>"; };
+		449FFCDA28AA234500FE4A1F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaymentCardsViewController.swift; sourceTree = "<group>"; };
 		44D8691326205F670014645F /* CardsDataCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsDataCollectingViewController.swift; sourceTree = "<group>"; };
 		44D8691426205F670014645F /* SSNCollectingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSNCollectingViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,22 @@
 			path = "UIViewController+Extensions";
 			sourceTree = "<group>";
 		};
+		449FFCD828AA232000FE4A1F /* Foundation+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCD928AA233100FE4A1F /* Collection+Extensions */,
+			);
+			path = "Foundation+Extensions";
+			sourceTree = "<group>";
+		};
+		449FFCD928AA233100FE4A1F /* Collection+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				449FFCDA28AA234500FE4A1F /* Collection+Extensions.swift */,
+			);
+			path = "Collection+Extensions";
+			sourceTree = "<group>";
+		};
 		44D8691126205F670014645F /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +326,7 @@
 		44E292B125CD5BC300717F1C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				449FFCD828AA232000FE4A1F /* Foundation+Extensions */,
 				44E292B225CD5BC800717F1C /* UIKit+Extensions */,
 			);
 			path = Extensions;
@@ -642,6 +661,7 @@
 				449FFCB328A505A100FE4A1F /* AddCardCell.swift in Sources */,
 				449FFCB228A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift in Sources */,
 				449FFCB728A505A100FE4A1F /* SavedCardModel.swift in Sources */,
+				449FFCDB28AA234500FE4A1F /* Collection+Extensions.swift in Sources */,
 				322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */,
 				449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */,
 				44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */,
