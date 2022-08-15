@@ -166,10 +166,10 @@
 			isa = PBXGroup;
 			children = (
 				449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */,
+				449FFCDC28AA250B00FE4A1F /* Collect+PaymentOrchestration.md */,
 				449FFCC128A5184F00FE4A1F /* Views */,
 				449FFCAE28A505A100FE4A1F /* Models */,
 				449FFCB028A505A100FE4A1F /* Helpers */,
-				449FFCDC28AA250B00FE4A1F /* Collect+PaymentOrchestration.md */,
 			);
 			path = PayOptIntegration;
 			sourceTree = "<group>";

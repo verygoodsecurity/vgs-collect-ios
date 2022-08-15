@@ -73,7 +73,7 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IEx-Ir-eP9">
-                        <rect key="frame" x="0.0" y="80" width="644" height="237"/>
+                        <rect key="frame" x="0.0" y="80" width="644" height="221"/>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,7 +83,7 @@
                     <constraint firstItem="IEx-Ir-eP9" firstAttribute="top" secondItem="9HL-SK-wuu" secondAttribute="bottom" constant="8" id="NnO-qU-Pht"/>
                     <constraint firstAttribute="trailing" secondItem="IEx-Ir-eP9" secondAttribute="trailing" id="W0R-JT-ZGj"/>
                     <constraint firstItem="9HL-SK-wuu" firstAttribute="leading" secondItem="RhC-vc-HDQ" secondAttribute="leading" id="WW8-lE-JI4"/>
-                    <constraint firstAttribute="bottom" secondItem="IEx-Ir-eP9" secondAttribute="bottom" id="Y9O-HL-QYS"/>
+                    <constraint firstAttribute="bottom" secondItem="IEx-Ir-eP9" secondAttribute="bottom" constant="16" id="Y9O-HL-QYS"/>
                     <constraint firstAttribute="bottom" secondItem="pO0-Xa-jkg" secondAttribute="bottom" id="d7a-fm-H1L"/>
                     <constraint firstItem="9HL-SK-wuu" firstAttribute="top" secondItem="RhC-vc-HDQ" secondAttribute="top" constant="8" id="eD2-cc-m5h"/>
                     <constraint firstAttribute="trailing" secondItem="pO0-Xa-jkg" secondAttribute="trailing" id="eaT-Rm-euT"/>

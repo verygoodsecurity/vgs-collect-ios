@@ -29,7 +29,7 @@ class AddCardCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-		
+
     setupStackViewUI()
 		overlayView.layer.borderColor = UIColor.darkGray.cgColor
   }
@@ -37,7 +37,8 @@ class AddCardCell: UITableViewCell {
   func setSelected(_ selected: Bool) {
     checkboxImageView.image = selected ? UIImage(named: "circle-checkbox-full") : UIImage(named: "circle-checkbox")
     
-    stackView.isHidden = !selected
+      stackView.isHidden = !selected
+			// stackView.isHidden = true
 
 		if isSelected {
 			overlayView.layer.borderWidth = 1
@@ -49,14 +50,20 @@ class AddCardCell: UITableViewCell {
   private func setupStackViewUI() {
     stackView.addArrangedSubview(cardHolderName)
     stackView.addArrangedSubview(cardNumber)
+
+		stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+		stackView.isLayoutMarginsRelativeArrangement = true
     
-    let bottomStackView = UIStackView.init(arrangedSubviews: [expCardDate, cvcCardNum])
+    let bottomStackView = UIStackView.init(arrangedSubviews: [expCardDate, cvcCardNum, zipCode])
     bottomStackView.axis = .horizontal
     bottomStackView.alignment = .fill
     bottomStackView.distribution = .fillEqually
     bottomStackView.spacing = 2
     stackView.addArrangedSubview(bottomStackView)
-		stackView.addArrangedSubview(zipCode)
+
+//		bottomStackView.layer.borderWidth = 1
+//		bottomStackView.layer.cornerRadius = 4
+//		bottomStackView.layer.borderColor = UIColor.lightGray.cgColor
   }
   
   func setupVGSTextFieldsConfiguration(with vgsCollect: VGSCollect) {
@@ -120,6 +127,10 @@ class AddCardCell: UITableViewCell {
 			textField.tintColor = .lightGray
       textField.delegate = self
     }
+//
+//		cvcCardNum.borderWidth = 0
+//		expCardDate.borderWidth = 0
+//		zipCode.borderWidth = 0
   }
 }
 
