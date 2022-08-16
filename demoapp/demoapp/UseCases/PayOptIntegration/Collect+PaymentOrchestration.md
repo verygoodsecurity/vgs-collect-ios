@@ -13,8 +13,8 @@ In some cases you may want to build your own custom UI&UX checkout experience wi
 Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use VGS Collect iOS SDK with payment optimization.
 
 <p align="center">
-	<img src="../../../images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK State" hspace="20">
-	<img src="images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+	<img src="./images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK State" hspace="20">
+	<img src="./images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
 </p>
 
 
