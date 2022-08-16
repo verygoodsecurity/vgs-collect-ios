@@ -13,18 +13,18 @@ In some cases you may want to build your own custom UI&UX checkout experience wi
 Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use VGS Collect iOS SDK with payment optimization.
 
 <p align="center">
-	<img src="images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK State" hspace="20">
+	<img src="../../../images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK State" hspace="20">
 	<img src="images/collect_pay_opt_img_1" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
 </p>
 
 
 ## Steps to integrate Collect with Payment Orchestration
 
-###1.Implement your custom backend and iOS API client to fetch access token valid for Payment Orchestration operations.  
+### 1.Implement your custom backend and iOS API client to fetch access token valid for Payment Orchestration operations.  
 
-###2. Setup VGS Collect instance.
+### 2. Setup VGS Collect instance.
 
-###3. Build your own UI with `VGSTextFields` and connect `VGSCollect` instance to text fields. ayload structure for payment optimization should match the following structure:
+### 3. Build your own UI with `VGSTextFields` and connect `VGSCollect` instance to text fields. ayload structure for payment optimization should match the following structure:
 
 ```JSON
 {
@@ -40,7 +40,7 @@ Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use
 
 Set proper fielnames to match payment optimization JSON.
 
-###4. Collect and submit card data to Payment Orchestration to create financial instrument. Don't forget to set authorization token. 
+### 4. Collect and submit card data to Payment Orchestration to create financial instrument. Don't forget to set authorization token. 
 
 ```swift
    		vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessToken)"]
