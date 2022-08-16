@@ -12,12 +12,17 @@ class AddCardCell: UITableViewCell {
   @IBOutlet weak var stackView: UIStackView!
   @IBOutlet weak var checkboxImageView: UIImageView!
 	@IBOutlet fileprivate weak var overlayView: UIView!
+	@IBOutlet fileprivate weak var topContainerView: UIView!
   
   var cardHolderName = VGSTextField()
   var cardNumber = VGSCardTextField()
   var expCardDate = VGSExpDateTextField()
   var cvcCardNum = VGSTextField()
   var zipCode = VGSTextField()
+
+	fileprivate let actionView = VGSSavedCardCellActionView()
+
+	// MARK: - Initialization
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,12 +31,22 @@ class AddCardCell: UITableViewCell {
   required init?(coder: NSCoder) {
     super.init(coder: coder)
   }
+
+	// MARK: - Awaking
   
   override func awakeFromNib() {
     super.awakeFromNib()
 
     setupStackViewUI()
-		overlayView.layer.borderColor = UIColor.darkGray.cgColor
+		overlayView.layer.borderColor = UIColor.systemBlue.cgColor
+		overlayView.layer.cornerRadius = 8
+
+		actionView.translatesAutoresizingMaskIntoConstraints = false
+		actionView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+		topContainerView.addSubview(actionView)
+		actionView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor).isActive = true
+
+		actionView.rightAnchor.constraint(equalTo: topContainerView.rightAnchor, constant: -12).isActive = true
   }
   
   func setSelected(_ selected: Bool) {
@@ -40,7 +55,8 @@ class AddCardCell: UITableViewCell {
       stackView.isHidden = !selected
 			// stackView.isHidden = true
 
-		if isSelected {
+		actionView.actionViewState = .selected(selected)
+		if selected {
 			overlayView.layer.borderWidth = 1
 		} else {
 			overlayView.layer.borderWidth = 0
@@ -48,18 +64,25 @@ class AddCardCell: UITableViewCell {
   }
   
   private func setupStackViewUI() {
-    stackView.addArrangedSubview(cardHolderName)
-    stackView.addArrangedSubview(cardNumber)
-
 		stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
 		stackView.isLayoutMarginsRelativeArrangement = true
-    
+
+    stackView.addArrangedSubview(cardNumber)
+
+    stackView.addArrangedSubview(cardNumber)
+
     let bottomStackView = UIStackView.init(arrangedSubviews: [expCardDate, cvcCardNum, zipCode])
+		bottomStackView.translatesAutoresizingMaskIntoConstraints = false
     bottomStackView.axis = .horizontal
     bottomStackView.alignment = .fill
     bottomStackView.distribution = .fillEqually
     bottomStackView.spacing = 2
     stackView.addArrangedSubview(bottomStackView)
+
+		[cardHolderName, cardNumber, expCardDate, cvcCardNum, zipCode].forEach { textField in
+			textField.translatesAutoresizingMaskIntoConstraints = false
+			textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+		}
   }
   
   func setupVGSTextFieldsConfiguration(with vgsCollect: VGSCollect) {
@@ -115,8 +138,6 @@ class AddCardCell: UITableViewCell {
     
     /// Setup UI
     vgsCollect.textFields.forEach { textField in
-			textField.translatesAutoresizingMaskIntoConstraints = false
-			textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
 			textField.textColor = UIColor.inputBlackTextColor
 			textField.font = .systemFont(ofSize: 22)
 			textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)

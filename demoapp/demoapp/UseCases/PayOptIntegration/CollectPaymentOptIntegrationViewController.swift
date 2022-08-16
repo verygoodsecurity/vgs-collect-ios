@@ -55,6 +55,8 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		case initial
 		case fetchingToken(_ requestState: RequestResult<String>)
 		case fetchingSavedCards(_ requestState: RequestResult<[SavedCardModel]>)
+		case sendingNewCard(_ requestState: RequestResult<String>)
+		case sendingSavedCard(_ requestState: RequestResult<String>)
 	}
 
 	let apiClient = CustomBackendAPIClient()
@@ -77,6 +79,9 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 
 		// Fetch token and cards.
 		fetchAccessTokenAndCards()
+
+		// Setup collect state logs.
+		setupCollectStateLogs()
 	}
 
 	/// Fetches access token for payopt.
@@ -84,7 +89,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		state = .fetchingToken(.isLoading)
 
 		let models = 	[SavedCardModel(id: "1", cardBrand: "visa", last4: "1231", expDate: "12/22", cardHolder: "John Smith"),
-				SavedCardModel(id: "2", cardBrand: "maestro", last4: "1488", expDate: "01/23", cardHolder: "John Smith")]
+				SavedCardModel(id: "2", cardBrand: "maestro", last4: "1411", expDate: "01/23", cardHolder: "John Smith")]
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 			self.state = .fetchingSavedCards(.success(models))
@@ -130,6 +135,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 	}
 
 	// MARK: - Init UI
+
 	private func setupTableView() {
 		tableView.register(UINib(nibName: "PaymentCardCell", bundle: nil), forCellReuseIdentifier: "PaymentCardCell")
 		tableView.register(UINib(nibName: "AddCardCell", bundle: nil), forCellReuseIdentifier: "AddCardCell")
@@ -151,15 +157,17 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 	@IBAction func uploadAction(_ sender: Any) {
 		// hide kayboard
 		hideKeyboard()
-		if isAddCardCellSelected {
+		let selectedIndex = selectedIndexPath.row
+		guard let paymentOption = paymentOptions[safe: selectedIndex] else {
+			return
+		}
+
+		switch paymentOption {
+		case .newCard:
 			// create financial instrument
 			createFinId()
-		} else if selectedIndexPath.section != 0{
-			// collect cvc and pay
-			let selectedFinId = savedCards[selectedIndexPath.section - 1]
-			depositWithSavedCard(selectedFinId.id, amount: 50)
-		} else {
-			/// deposit with PayPal
+		case .savedCard(let card):
+			depositWithSavedCard(card.id, amount: 50)
 		}
 	}
 
@@ -167,6 +175,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 	/// Create financial instrument with AddCard fields
 	private func createFinId() {
 		guard !payOptAccessToken.isEmpty else {
+			assertionFailure("Cannot create fin_id without access_token")
 			return
 		}
 		/// Validate fields
@@ -181,23 +190,42 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 
 		/// Create fin instrument
 		vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessToken)"]
+
+		state = .sendingNewCard(.isLoading)
 		/// Send card data to "financial_instruments" path
 		vgsCollectNewCardFlow.sendData(path: "/financial_instruments", routeId: AppCollectorConfiguration.shared.paymentOrchestrationDefaultRouteId) { [weak self] response in
 			switch response {
 			case .success(_, let data, _):
 				/// Get fin instrument from response data
 				guard let finId = self?.apiClient.financialInstrumentID(from: data) else {
-					print("can't parse fin_id from data!")
+					print("Can't parse fin_id from data!")
+					self?.state = .sendingNewCard(.error("Can't parse fin_id from data!"))
 					return
 				}
 				/// Save fin instrument in shared config
 				AppCollectorConfiguration.shared.savedFinancialInstruments.append(finId)
 				/// Make deposit request
-				self?.deposit(50, finId: finId)
+				// self?.deposit(50, finId: finId)
+				self?.state = .sendingNewCard(.success(finId))
 			case .failure(let code,  _, _, let error):
 				print("\(code) + \(String(describing: error))")
+				self?.state = .sendingNewCard(.error(error?.localizedDescription))
 				return
 			}
+		}
+	}
+
+	private func setupCollectStateLogs() {
+		// Observing text fields. The call back return all textfields with updated states. You also can you VGSTextFieldDelegate
+		vgsCollectNewCardFlow.observeStates = { [weak self] form in
+			guard let strongSelf = self else {return}
+
+			strongSelf.textView.text = ""
+				form.forEach({ textField in
+					let text = textField.state.description
+					strongSelf.textView.text = strongSelf.textView.text + text
+					strongSelf.textView.text.append("\n")
+				})
 		}
 	}
 
@@ -220,13 +248,17 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		let extraData: [String : Any] = ["fin_id": findId, "amount": amount]
 		///  You should create new route in VGS Dashboard to tokenize CVC.
 		let cvcRouteId = "<route-id>"
+
+		state = .sendingSavedCard(.isLoading)
 		///  CVC data will be tokenized and redirected to upstream url(custom backend).
 		vgsCollectSavedCardFlow.sendData(path: "/post", routeId: cvcRouteId, extraData: extraData) { response in
 			switch response {
 			case .success(let code, let data, _):
 				print("success: \(code) \(data)")
+				self.state = .sendingSavedCard(.success(findId))
 			case .failure(let code, _, _, let error):
 				print("error: \(code) \(error)")
+				self.state = .sendingSavedCard(.error(error?.localizedDescription))
 			}
 		}
 	}
@@ -241,6 +273,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		//		self.navigationController?.pushViewController(nextViewController, animated: true)
 	}
 
+	/// Updates UI with current state.
 	fileprivate func updateUI() {
 		switch state {
 		case .initial:
@@ -249,6 +282,10 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 			updateUI(with: requestState)
 		case .fetchingSavedCards(let savedCardsRequestState):
 			updateSavedCardsUI(with: savedCardsRequestState)
+		case .sendingNewCard(let requestState):
+			updateUISendNewCard(requestState)
+		case .sendingSavedCard(let requestState):
+			updateUISendSavedCard(requestState)
 		}
 	}
 
@@ -285,6 +322,40 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 			displayLoader()
 		}
 	}
+
+	func updateUISendNewCard(_ requestState: RequestResult<String>) {
+		switch requestState {
+		case .success(let finId):
+			AppCollectorConfiguration.shared.savedFinancialInstruments.append(finId)
+			hideLoader()
+
+			textView.text = "Successfully created fin_id: \(finId)."
+			// Refetch cards
+			fetchSavedCards()
+		case .error(let errorText):
+			let text = "Cannot create fin instrument: \(errorText ?? "Uknown error")"
+			print(text)
+			textView.text = text
+			hideLoader()
+		case .isLoading:
+			displayLoader()
+		}
+	}
+
+	func updateUISendSavedCard(_ requestState: RequestResult<String>) {
+		switch requestState {
+		case .success(let finId):
+			hideLoader()
+			textView.text = "Successfully send fin_id: \(finId)."
+		case .error(let errorText):
+			let text = "Cannot use fin instrument: \(errorText ?? "Uknown error")"
+			print(text)
+			textView.text = text
+			hideLoader()
+		case .isLoading:
+			displayLoader()
+		}
+	}
 }
 
 // MARK: - UITableView
@@ -301,12 +372,21 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 		return UIView(frame: .zero)
 	}
 
-//	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-////		if indexPath == selectedIndexPath {
-////			return UITableView.automaticDimension
-////		}
-//		return UITableView.automaticDimension
-//	}
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+		let index = indexPath.row
+		let paymentOption = paymentOptions[index]
+		switch paymentOption {
+		case .newCard:
+			if selectedIndexPath.row == index {
+				return 192
+			} else {
+				return 64
+			}
+		case .savedCard:
+			return UITableView.automaticDimension
+		}
+	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let paymentOption = paymentOptions[indexPath.row]

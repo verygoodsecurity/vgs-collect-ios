@@ -50,6 +50,17 @@ internal extension UIColor {
 		}
 	}
 
+	///:nodoc: Input text color (black).
+	static var vgsBorderColor: UIColor {
+		if #available(iOS 13.0, *) {
+			return UIColor {(traits) -> UIColor in
+				return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
+			}
+		} else {
+			return .black
+		}
+	}
+
 	///:nodoc: VGS section title color (with fallback to earlier versions).
 	static var vgsSectionTitleColor: UIColor {
 		if #available(iOS 13.0, *) {

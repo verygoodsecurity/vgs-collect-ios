@@ -51,7 +51,7 @@
                                     <constraint firstAttribute="width" constant="150" id="vym-kI-64g"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-Ga-TBW">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-Ga-TBW">
                                 <rect key="frame" x="599" y="7" width="25" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="CkY-PF-Qrq"/>
@@ -97,6 +97,7 @@
                 <outlet property="overlayView" destination="pO0-Xa-jkg" id="C5V-B2-Y9C"/>
                 <outlet property="stackView" destination="IEx-Ir-eP9" id="Esn-ZB-EE1"/>
                 <outlet property="title" destination="ij8-2n-AoE" id="B8W-x1-LNk"/>
+                <outlet property="topContainerView" destination="9HL-SK-wuu" id="geS-15-gSo"/>
             </connections>
             <point key="canvasLocation" x="-314.49275362318843" y="-53.90625"/>
         </tableViewCell>
