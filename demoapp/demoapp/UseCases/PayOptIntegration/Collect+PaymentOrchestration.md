@@ -22,13 +22,13 @@ Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use
 
 #### 1.Implement your custom backend.
   
-  Implement your iOS API client to fetch access token valid for Payment Orchestration operations.  
+Implement your iOS API client to fetch access token valid for Payment Orchestration operations.  
 
 #### 2.Setup VGS Collect instance.
 
-#### 3.Build your own UI with `VGSTextFields`.
+#### 3.Build your own UI with VGSTextFields.
 
-		Add `VGSTextFields` and and connect `VGSCollect` instance to text fields. ayload structure for payment optimization should match the following structure:
+Add `VGSTextFields` and and connect `VGSCollect` instance to text fields. Payload structure for payment optimization should match the following structure:
 
 ```JSON
 {
@@ -42,7 +42,7 @@ Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use
 }
 ```
 
-Set proper fielnames to match payment optimization JSON.
+Set proper fieldnames to match payment optimization JSON.
 
 #### 4.Submit data.
      
@@ -72,7 +72,4 @@ vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessTo
 
 #### 5. Save financial instrument. 
    
-   If needed store created financial instruments on your side to display saved cards in future.
-
-
-
+If needed store created financial instruments on your side to display saved cards in future.
