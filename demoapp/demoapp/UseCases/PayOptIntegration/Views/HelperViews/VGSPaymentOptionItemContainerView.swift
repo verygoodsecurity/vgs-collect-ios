@@ -38,6 +38,6 @@ internal class VGSPaymentOptionItemContainerView: UIView {
 	/// Setup UI.
 	private func setupUI() {
 		addSubview(stackView)
-		stackView.checkout_constraintViewToSuperviewEdges()
+		stackView.demoapp_constraintViewToSuperviewEdges()
 	}
 }

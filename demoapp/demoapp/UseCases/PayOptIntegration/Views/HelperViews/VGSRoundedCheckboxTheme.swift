@@ -65,7 +65,7 @@ internal class VGSRoundedCheckbox: UIView {
 		super.init(frame: .zero)
 
 		addSubview(imageView)
-		imageView.checkout_constraintViewToSuperviewEdges()
+		imageView.demoapp_constraintViewToSuperviewEdges()
 		addSubview(checkmarkImageView)
 		checkmarkImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 		checkmarkImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

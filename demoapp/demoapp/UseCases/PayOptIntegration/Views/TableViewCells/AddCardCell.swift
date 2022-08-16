@@ -41,6 +41,7 @@ class AddCardCell: UITableViewCell {
 		overlayView.layer.borderColor = UIColor.systemBlue.cgColor
 		overlayView.layer.cornerRadius = 8
 
+		overlayView.backgroundColor = UIColor.vgsPaymentOptionBackgroundColor
 		actionView.translatesAutoresizingMaskIntoConstraints = false
 		actionView.widthAnchor.constraint(equalToConstant: 30).isActive = true
 		topContainerView.addSubview(actionView)

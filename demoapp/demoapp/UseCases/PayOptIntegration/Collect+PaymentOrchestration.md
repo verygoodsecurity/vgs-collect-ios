@@ -20,11 +20,15 @@ Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use
 
 ## Steps to integrate Collect with Payment Orchestration
 
-### 1.Implement your custom backend and iOS API client to fetch access token valid for Payment Orchestration operations.  
+#### 1.Implement your custom backend.
+  
+  Implement your iOS API client to fetch access token valid for Payment Orchestration operations.  
 
-### 2. Setup VGS Collect instance.
+#### 2.Setup VGS Collect instance.
 
-### 3. Build your own UI with `VGSTextFields` and connect `VGSCollect` instance to text fields. ayload structure for payment optimization should match the following structure:
+#### 3.Build your own UI with `VGSTextFields`.
+
+		Add `VGSTextFields` and and connect `VGSCollect` instance to text fields. ayload structure for payment optimization should match the following structure:
 
 ```JSON
 {
@@ -40,14 +44,16 @@ Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use
 
 Set proper fielnames to match payment optimization JSON.
 
-### 4. Collect and submit card data to Payment Orchestration to create financial instrument. Don't forget to set authorization token. 
+#### 4.Submit data.
+     
+     Collect and submit card data to Payment Orchestration to create financial instrument. Don't forget to set authorization token. 
 
 ```swift
-   		vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessToken)"]
+vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessToken)"]
 		/// Send card data to "financial_instruments" path
 		vgsCollectNewCardFlow.sendData(path: "/financial_instruments", routeId: AppCollectorConfiguration.shared.paymentOrchestrationDefaultRouteId) { [weak self] response in
 			switch response {
-			case .success(_, let data, _):
+		case .success(_, let data, _):
 				/// Get fin instrument from response data
 				guard let finId = self?.apiClient.financialInstrumentID(from: data) else {
 					print("can't parse fin_id from data!")
@@ -57,14 +63,16 @@ Set proper fielnames to match payment optimization JSON.
 				AppCollectorConfiguration.shared.savedFinancialInstruments.append(finId)
 				/// Make deposit request
 				self?.deposit(50, finId: finId)
-			case .failure(let code,  _, _, let error):
+		case .failure(let code,  _, _, let error):
 				print("\(code) + \(String(describing: error))")
 				return
-			}
 		}
+}
 ```
 
-###5. If needed store created financial instruments on your side to display saved cards in future.
+#### 5. Save financial instrument. 
+   
+   If needed store created financial instruments on your side to display saved cards in future.
 
 
 

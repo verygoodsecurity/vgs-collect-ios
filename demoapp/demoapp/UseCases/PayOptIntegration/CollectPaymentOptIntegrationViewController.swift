@@ -381,7 +381,7 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 			if selectedIndexPath.row == index {
 				return 192
 			} else {
-				return 64
+				return 90
 			}
 		case .savedCard:
 			return UITableView.automaticDimension

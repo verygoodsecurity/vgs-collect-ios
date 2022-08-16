@@ -12,7 +12,7 @@ import UIKit
 internal extension UIView {
 
 	/// Constraints view to super view.
-	func checkout_constraintViewToSuperviewEdges() {
+	func demoapp_constraintViewToSuperviewEdges() {
 		guard let view = superview else {
 			assertionFailure("No superview!")
 			return
@@ -29,7 +29,7 @@ internal extension UIView {
 	}
 
 	/// Constraints view to super view center.
-	func checkout_constraintViewToSuperviewCenter() {
+	func demoapp_constraintViewToSuperviewCenter() {
 		guard let view = superview else {
 			assertionFailure("No superview!")
 			return
@@ -44,7 +44,7 @@ internal extension UIView {
 	}
 
 	/// Constraints view to super view safe area layout guide.
-	func checkout_constraintViewToSafeAreaLayoutGuideEdges() {
+	func demoapp_constraintViewToSafeAreaLayoutGuideEdges() {
 		guard let view = superview else {
 			assertionFailure("No superview!")
 			return
@@ -78,7 +78,7 @@ internal extension UIView {
 	///   - trailing: `CGFloat` object, trailing inset.
 	///   - bottom: `CGFloat` object, bottom inset.
 	///   - top: `CGFloat` object, top inset.
-	func checkout_constraintViewWithPaddingsToSuperview(_ leading: CGFloat, trailing: CGFloat, bottom: CGFloat, top: CGFloat) {
+	func demoapp_constraintViewWithPaddingsToSuperview(_ leading: CGFloat, trailing: CGFloat, bottom: CGFloat, top: CGFloat) {
 		guard let view = superview else {
 			assertionFailure("No superview!")
 			return
@@ -96,7 +96,7 @@ internal extension UIView {
 
 	/// Setups default section insets.
 	func checkout_defaultSectionViewConstraints() {
-		checkout_constraintViewWithPaddingsToSuperview(16, trailing: -16, bottom: 0, top: 16)
+		demoapp_constraintViewWithPaddingsToSuperview(16, trailing: -16, bottom: 0, top: 16)
 	}
 }
 

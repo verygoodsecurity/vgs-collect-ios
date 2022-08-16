@@ -96,13 +96,13 @@ internal class VGSSavedCardCellActionView: UIView {
 	private func setupCheckboxUI() {
 		addSubview(checkbox)
 		checkbox.translatesAutoresizingMaskIntoConstraints = false
-		checkbox.checkout_constraintViewToSuperviewCenter()
+		checkbox.demoapp_constraintViewToSuperviewCenter()
 	}
 
 	/// Setups remove button UI.
 	private func setupRemoveButtonUI() {
 		addSubview(removeCardButton)
-		removeCardButton.checkout_constraintViewToSuperviewEdges()
+		removeCardButton.demoapp_constraintViewToSuperviewEdges()
 		removeCardButton.addTarget(self, action: #selector(removeCardButtonDidTap), for: .touchUpInside)
 	}
 
