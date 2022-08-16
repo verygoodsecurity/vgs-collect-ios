@@ -2,13 +2,21 @@
 
 ## Overview
 
-VGS Collect iOS SDK can be used with VGS Payment Orchestration Service.
+[VGS Collect iOS SDK](https://github.com/verygoodsecurity/vgs-collect-ios) can be used with [VGS Payment Orchestration Service](https://www.verygoodsecurity.com/payment-optimization), our payment optimization solution.
 VGS Payment Orchestration offers an API to facilitate the routing of your payment transactions to 180+ gateways. With payment orchestration, payment facilitators and merchants are able to minimize their payment processing costs.
 
-VGS offers Universal Checkout experience with VGS Checkout iOS SDK, complete checkout experience that is fully integrated with our payment optimization solution. 
+VGS offers Universal Checkout experience with [VGS Checkout iOS SDK](https://github.com/verygoodsecurity/vgs-checkout-ios), complete checkout experience that is fully integrated with our payment optimization solution. 
 VGS Checkout iOS SDK provides a separate presented page with Checkout form to collect card and billing information from customer.
 
 In some cases you may want to build your own custom UI&UX checkout experience with VGS Payment Orchestration. For this purpose you can use VGS Collect iOS SDK to collect PCI card data and send it to Payment Orchestration. 
+
+Check `CollectPayoptIntegrationViewConroller` class which illustrates how to use VGS Collect iOS SDK with payment optimization.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20">
+	<img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+</p>
+
 
 ## Steps to integrate Collect with Payment Orchestration
 
@@ -16,11 +24,7 @@ In some cases you may want to build your own custom UI&UX checkout experience wi
 
 ###2. Setup VGS Collect instance.
 
-###3. Build your own UI with `VGSTextFields` and connect `VGSCollect` instance with fields.
-
-###4. Build your own UI with `VGSTextFields` and connect `VGSCollect` instance with fields. 
-
-###5. Collect payment data. Payload structure collected with VGS Collect should meet Payment Orchestration requirements.
+###3. Build your own UI with `VGSTextFields` and connect `VGSCollect` instance to text fields. ayload structure for payment optimization should match the following structure:
 
 ```JSON
 {
@@ -34,7 +38,9 @@ In some cases you may want to build your own custom UI&UX checkout experience wi
 }
 ```
 
-###5. Send collected data to Payment Orchestration and create financial instrument. Don't forget to set authorization token. 
+Set proper fielnames to match payment optimization JSON.
+
+###4. Collect and submit card data to Payment Orchestration to create financial instrument. Don't forget to set authorization token. 
 
 ```swift
    		vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessToken)"]
@@ -58,9 +64,7 @@ In some cases you may want to build your own custom UI&UX checkout experience wi
 		}
 ```
 
-###6. If needed store created financial instruments on your side to display saved cards in future.
-
-### 7.Check `CollectPayoptIntegrationViewConroller` for more info.
+###5. If needed store created financial instruments on your side to display saved cards in future.
 
 
-  
+
