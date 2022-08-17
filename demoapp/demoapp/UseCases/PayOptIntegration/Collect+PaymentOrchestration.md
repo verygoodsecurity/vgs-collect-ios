@@ -46,7 +46,7 @@ Set proper fieldnames to match payment optimization JSON.
 
 #### 4.Submit data.
      
-     Collect and submit card data to Payment Orchestration to create financial instrument. Don't forget to set authorization token. 
+Collect and submit card&billing info to Payment Orchestration to create financial instrument. Don't forget to set authorization token in `customHeaders`. 
 
 ```swift
 vgsCollectNewCardFlow.customHeaders = ["Authorization": "Bearer \(payOptAccessToken)"]

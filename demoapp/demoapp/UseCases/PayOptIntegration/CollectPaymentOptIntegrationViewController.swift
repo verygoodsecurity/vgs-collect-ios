@@ -7,12 +7,6 @@ import Foundation
 import UIKit
 import VGSCollectSDK
 
-enum RequestResult<T> {
-	case success(T)
-	case error(String?)
-	case isLoading
-}
-
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to Payment Orchestration service.
 class CollectPayoptIntegrationViewConroller: UIViewController {
 
@@ -394,8 +388,6 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 		case .newCard:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "AddCardCell", for: indexPath) as! AddCardCell
 			cell.title.text = "Add credit or debit card"
-//			cell.layer.borderWidth = 1
-//			cell.layer.borderColor = UIColor.darkGray.cgColor
 			cell.setupVGSTextFieldsConfiguration(with: vgsCollectNewCardFlow)
 			cell.setSelected(isAddCardCellSelected)
 
@@ -446,36 +438,28 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 		selectedIndexPath = indexPath
 		if let model = savedCards[safe: index] {
 			model.isSelected = true
-
-			// Remove selection from the previous card.
-			for savedCardIndex in 0..<paymentOptions.count {
-				let option = paymentOptions[savedCardIndex]
-				switch option {
-				case .savedCard(let previousCard):
-					//print("savedCardIndex: \(savedCardIndex), index: \(index)")
-					if savedCardIndex != index {
-						//print("unmard card!")
-						previousCard.isSelected = false
-					}
-				case .newCard:
-					continue
-				}
-			}
+			removeSelection(at: index)
 		} else {
-			for savedCardIndex in 0..<paymentOptions.count {
-				let option = paymentOptions[savedCardIndex]
-				switch option {
-				case .savedCard(let previousCard):
-					//print("savedCardIndex: \(savedCardIndex), index: \(index)")
-					if savedCardIndex != index {
-						//print("unmard card!")
-						previousCard.isSelected = false
-					}
-				case .newCard:
-					continue
-				}
-			}
+			// Remove selection from the previous card.
+			removeSelection(at: index)
 		}
 		tableView.reloadData()
+	}
+
+	func removeSelection(at index: Int) {
+		// Remove selection from the previous card.
+		for savedCardIndex in 0..<paymentOptions.count {
+			let option = paymentOptions[savedCardIndex]
+			switch option {
+			case .savedCard(let previousCard):
+				//print("savedCardIndex: \(savedCardIndex), index: \(index)")
+				if savedCardIndex != index {
+					//print("unmard card!")
+					previousCard.isSelected = false
+				}
+			case .newCard:
+				continue
+			}
+		}
 	}
 }

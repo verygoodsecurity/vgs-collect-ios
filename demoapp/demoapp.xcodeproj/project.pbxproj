@@ -20,6 +20,7 @@
 		44241E9525B1B39D00FC85D9 /* XCUITestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9425B1B39C00FC85D9 /* XCUITestCase+Extensions.swift */; };
 		44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */; };
 		44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */; };
+		443B3D4328ACBA1400DED31A /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443B3D4228ACBA1400DED31A /* RequestResult.swift */; };
 		446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */; };
 		449FFCB228A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */; };
 		449FFCB328A505A100FE4A1F /* AddCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCAA28A505A100FE4A1F /* AddCardCell.swift */; };
@@ -84,6 +85,7 @@
 		44241E9425B1B39C00FC85D9 /* XCUITestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUITestCase+Extensions.swift"; sourceTree = "<group>"; };
 		44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsMockedDataProvider.swift; sourceTree = "<group>"; };
 		44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UITestsMockedData.plist; sourceTree = "<group>"; };
+		443B3D4228ACBA1400DED31A /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectPaymentOptIntegrationViewController.swift; sourceTree = "<group>"; };
 		449FFCAA28A505A100FE4A1F /* AddCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardCell.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */,
+				443B3D4228ACBA1400DED31A /* RequestResult.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443B3D4328ACBA1400DED31A /* RequestResult.swift in Sources */,
 				44D8691E26205F670014645F /* CollectMultiplexingViewController.swift in Sources */,
 				449FFCB328A505A100FE4A1F /* AddCardCell.swift in Sources */,
 				449FFCB228A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift in Sources */,
