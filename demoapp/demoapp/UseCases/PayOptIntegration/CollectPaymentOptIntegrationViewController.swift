@@ -80,19 +80,20 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 
 	/// Fetches access token for payopt.
 	private func fetchAccessTokenAndCards() {
+//		state = .fetchingToken(.isLoading)
+//
+//		let models = 	[SavedCardModel(id: "1", cardBrand: "visa", last4: "1231", expDate: "12/22", cardHolder: "John Smith"),
+//				SavedCardModel(id: "2", cardBrand: "maestro", last4: "1411", expDate: "01/23", cardHolder: "John Smith")]
+//
+//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//			self.state = .fetchingSavedCards(.success(models))
+//		}
+//
+//		return
+//		return
+		//state = .fetchingSavedCards(.success(models))
+
 		state = .fetchingToken(.isLoading)
-
-		let models = 	[SavedCardModel(id: "1", cardBrand: "visa", last4: "1231", expDate: "12/22", cardHolder: "John Smith"),
-				SavedCardModel(id: "2", cardBrand: "maestro", last4: "1411", expDate: "01/23", cardHolder: "John Smith")]
-
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-			self.state = .fetchingSavedCards(.success(models))
-		}
-
-		return
-		return
-		state = .fetchingSavedCards(.success(models))
-
 		apiClient.fetchToken {[weak self] token in
 			guard let strongSelf = self else {return}
 			strongSelf.state = .fetchingToken(.success(token))
@@ -320,7 +321,6 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 	func updateUISendNewCard(_ requestState: RequestResult<String>) {
 		switch requestState {
 		case .success(let finId):
-			AppCollectorConfiguration.shared.savedFinancialInstruments.append(finId)
 			hideLoader()
 
 			textView.text = "Successfully created fin_id: \(finId)."
@@ -373,7 +373,7 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 		switch paymentOption {
 		case .newCard:
 			if selectedIndexPath.row == index {
-				return 192
+				return 250
 			} else {
 				return 90
 			}

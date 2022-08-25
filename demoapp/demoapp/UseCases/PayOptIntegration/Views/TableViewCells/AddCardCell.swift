@@ -68,6 +68,7 @@ class AddCardCell: UITableViewCell {
 		stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
 		stackView.isLayoutMarginsRelativeArrangement = true
 
+		stackView.addArrangedSubview(cardHolderName)
     stackView.addArrangedSubview(cardNumber)
 
     stackView.addArrangedSubview(cardNumber)
