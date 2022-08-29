@@ -140,6 +140,26 @@
                                             <segue destination="vFh-aa-X7w" kind="show" id="Yn2-cK-Ogi"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="p8n-ja-fci" rowHeight="55" style="IBUITableViewCellStyleDefault" id="JxW-4O-iLg">
+                                        <rect key="frame" x="20" y="348" width="374" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JxW-4O-iLg" id="pOB-Ub-iK0">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Collect Payment Orchestration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p8n-ja-fci">
+                                                    <rect key="frame" x="20" y="0.0" width="317.5" height="55"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="MhQ-Uk-aP9" kind="push" id="amI-mj-Nh2"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -967,12 +987,130 @@
             </objects>
             <point key="canvasLocation" x="2445" y="181"/>
         </scene>
+        <!--Deposit-->
+        <scene sceneID="vrK-jB-y7b">
+            <objects>
+                <viewController storyboardIdentifier="PayOptIntegrationViewController" title="Deposit" id="MhQ-Uk-aP9" customClass="CollectPayoptIntegrationViewConroller" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y5B-rN-5rB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-RW-eTI">
+                                <rect key="frame" x="20" y="752" width="374" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-nC-VqL">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="DEPOSIT"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="uploadAction:" destination="MhQ-Uk-aP9" eventType="touchUpInside" id="bY0-QY-gxk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="kca-rY-9wg"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Hn-pFM">
+                                <rect key="frame" x="20" y="96" width="196.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lss-re-fEa">
+                                <rect key="frame" x="20" y="125.5" width="374" height="368.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6a-r0-98K">
+                                <rect key="frame" x="20" y="494" width="374" height="250"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFH-PO-jzO">
+                                        <rect key="frame" x="20" y="46" width="334" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="nrF-gL-otI"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for data..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z35-nn-F7M">
+                                        <rect key="frame" x="20" y="8" width="334" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Aic-2q-ALF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="10z-BH-BAM">
+                                        <rect key="frame" x="0.0" y="50" width="374" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="pMj-3s-iqo"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Z35-nn-F7M" firstAttribute="leading" secondItem="r6a-r0-98K" secondAttribute="leading" constant="20" symbolic="YES" id="Fy5-LS-brN"/>
+                                    <constraint firstItem="Z35-nn-F7M" firstAttribute="top" secondItem="r6a-r0-98K" secondAttribute="top" constant="8" id="PYK-Qd-ncb"/>
+                                    <constraint firstAttribute="trailing" secondItem="10z-BH-BAM" secondAttribute="trailing" id="SDY-0u-gmd"/>
+                                    <constraint firstAttribute="trailing" secondItem="jFH-PO-jzO" secondAttribute="trailing" constant="20" symbolic="YES" id="UkO-Tl-jCK"/>
+                                    <constraint firstAttribute="height" constant="250" id="cjR-rO-xm1"/>
+                                    <constraint firstItem="10z-BH-BAM" firstAttribute="leading" secondItem="r6a-r0-98K" secondAttribute="leading" id="dzg-mu-yNK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Z35-nn-F7M" secondAttribute="trailing" constant="20" symbolic="YES" id="ge7-2R-SO7"/>
+                                    <constraint firstItem="jFH-PO-jzO" firstAttribute="leading" secondItem="r6a-r0-98K" secondAttribute="leading" constant="20" symbolic="YES" id="kDI-1w-cav"/>
+                                    <constraint firstAttribute="bottom" secondItem="10z-BH-BAM" secondAttribute="bottom" id="lma-BH-n37"/>
+                                    <constraint firstItem="jFH-PO-jzO" firstAttribute="top" secondItem="Z35-nn-F7M" secondAttribute="bottom" constant="8" symbolic="YES" id="rWB-hu-AFO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="G6B-HV-k8r"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lss-re-fEa" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="2Ir-vM-sb2"/>
+                            <constraint firstItem="r6a-r0-98K" firstAttribute="bottom" secondItem="yCJ-nC-VqL" secondAttribute="top" constant="-8" id="63C-Eg-47n"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="8pd-Fa-MZU"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="lss-re-fEa" secondAttribute="trailing" constant="20" id="AK7-Ev-Ohp"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="Zkj-RW-eTI" secondAttribute="trailing" constant="20" id="ArU-7t-zra"/>
+                            <constraint firstItem="aYg-Hn-pFM" firstAttribute="top" secondItem="G6B-HV-k8r" secondAttribute="top" constant="8" id="DWq-Fd-oga"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="trailing" secondItem="r6a-r0-98K" secondAttribute="trailing" constant="20" id="Iu9-DS-0lR"/>
+                            <constraint firstItem="r6a-r0-98K" firstAttribute="leading" secondItem="lss-re-fEa" secondAttribute="leading" id="LQL-dO-QCw"/>
+                            <constraint firstItem="lss-re-fEa" firstAttribute="top" secondItem="aYg-Hn-pFM" secondAttribute="bottom" constant="8" id="NaU-Ua-tvE"/>
+                            <constraint firstItem="G6B-HV-k8r" firstAttribute="bottom" secondItem="Zkj-RW-eTI" secondAttribute="bottom" constant="50" id="Rkn-a8-Azf"/>
+                            <constraint firstItem="Zkj-RW-eTI" firstAttribute="leading" secondItem="G6B-HV-k8r" secondAttribute="leading" constant="20" id="V1N-nU-sK2"/>
+                            <constraint firstItem="lss-re-fEa" firstAttribute="bottom" secondItem="r6a-r0-98K" secondAttribute="top" id="m5O-wO-XBl"/>
+                            <constraint firstItem="r6a-r0-98K" firstAttribute="leading" secondItem="Zkj-RW-eTI" secondAttribute="leading" id="yjd-6T-u2m"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Collect with Payment Orchestration" id="tU7-GQ-Azh"/>
+                    <connections>
+                        <outlet property="tableView" destination="lss-re-fEa" id="RkP-IR-x4v"/>
+                        <outlet property="textView" destination="10z-BH-BAM" id="b1d-fx-UgW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlV-at-8Iq" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657.9710144927537" y="180.80357142857142"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bank_card" width="25" height="25"/>
         <image name="cloud-upload" width="25" height="25"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
