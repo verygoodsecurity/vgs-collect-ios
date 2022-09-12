@@ -14,6 +14,6 @@ import UIKit
 
 /// :nodoc: Public protocol to present scanners modules view controllers.
 public protocol VGSScanHandlerProtocol {
-    func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
+    func presentScanVC(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle, completion: (() -> Void)?)
     func dismissScanVC(animated: Bool, completion: (() -> Void)?)
 }
