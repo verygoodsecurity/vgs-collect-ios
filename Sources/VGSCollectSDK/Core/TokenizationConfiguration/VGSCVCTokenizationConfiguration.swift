@@ -12,7 +12,7 @@ public struct VGSCVCTokenizationParameters: VGSTokenizationParametersProtocol {
     public let storage: String = VGSVaultStorageType.VOLATILE.rawValue
   
     /// Data alies format.
-    public let format: String = VGSVaultAliasFormat.NUM_LENGTH_PRESERVING.rawValue
+    public var format: String = VGSVaultAliasFormat.NUM_LENGTH_PRESERVING.rawValue
 }
 
 /// `VGSCVCTokenizationConfiguration` - textfield configuration for textfield with type `.cvc`, required for work with tokenization api.
