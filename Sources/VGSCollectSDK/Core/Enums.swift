@@ -147,7 +147,7 @@ internal extension FieldType {
   // field types with sensitive data that should not ignore tokenization.
   var sensitive: Bool {
     switch self {
-    case .cardNumber, .cvc, .ssn:
+    case .cardNumber, .cvc:
       return true
     default:
       return false
