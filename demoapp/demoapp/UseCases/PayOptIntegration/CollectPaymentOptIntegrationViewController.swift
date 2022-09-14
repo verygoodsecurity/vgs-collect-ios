@@ -386,12 +386,13 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 		let paymentOption = paymentOptions[indexPath.row]
 		switch paymentOption {
 		case .newCard:
-			let cell = tableView.dequeueReusableCell(withIdentifier: "AddCardCell", for: indexPath) as! AddCardCell
+      if let cell = tableView.dequeueReusableCell(withIdentifier: "AddCardCell", for: indexPath) as? AddCardCell {
 			cell.title.text = "Add credit or debit card"
 			cell.setupVGSTextFieldsConfiguration(with: vgsCollectNewCardFlow)
 			cell.setSelected(isAddCardCellSelected)
 
 			return cell
+     }
 		case .savedCard(let savedCardModel):
 			let cell: VGSPaymentOptionCardTableViewCell = tableView.dequeue(cellForRowAt: indexPath)
 			cell.configure(with: savedCardModel.paymentOptionCellViewModel, isEditing: false)

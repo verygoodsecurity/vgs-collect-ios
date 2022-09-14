@@ -30,7 +30,7 @@ internal class VGSCardScanHandler: NSObject, VGSScanHandlerProtocol {
 			}
     }
     
-    func presentScanVC(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+  func presentScanVC(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle = .automatic, completion: (() -> Void)?) {
 
 			if #available(iOS 11.2, *) {
 				guard let vc = ScanViewController.createViewController(withDelegate: self) else {
