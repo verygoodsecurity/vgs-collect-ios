@@ -80,7 +80,21 @@ internal extension VGSCollect {
     }
     // Convert textfields into dict with output value as a key, fieldname as a value.
     let fieldValuesDict = textFieds.reduce(into: JsonData()) { (dict, element) in
-      dict[element.getOutputText()] = element.fieldName
+
+      if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize  {
+        let output = element.getOutputText()
+        let resultJSON = serialazable.serialize(output ?? "")
+
+        for json in resultJSON {
+          if let value = json.value as? String {
+            dict[value] = json.key
+          }
+        }
+      } else {
+        if let value = element.getOutputText() {
+          dict[value] = element.fieldName
+        }
+      }
     }
     // Combine fieldValuesDict with textFileds' fildNames, map into dict with fieldName as a key, alias as a value.
     let result: JsonData = tokenizedData.reduce(into: JsonData()) { (dict, element) in
@@ -115,8 +129,22 @@ internal extension VGSCollect {
         continue
       }
       var fieldData = tokenizationParameters.mapToJSON()
-      fieldData["value"] = textField.getOutputText()
-      fieldsData.append(fieldData)
+
+      let output = textField.getOutputText()
+
+      /// Check if any serialization should be done before data will be send
+      if let serialazable = textField.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+        let resultJSON = serialazable.serialize(output ?? "")
+
+        for json in resultJSON {
+          var fieldData = tokenizationParameters.mapToJSON()
+          fieldData["value"] = json.value
+          fieldsData.append(fieldData)
+        }
+      } else {
+        fieldData["value"] = output
+        fieldsData.append(fieldData)
+      }
     }
     return ["data": fieldsData]
   }
