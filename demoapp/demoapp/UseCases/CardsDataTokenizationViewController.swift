@@ -79,7 +79,7 @@ class CardsDataTokenizationViewController: UIViewController {
       
         cardNumber.becomeFirstResponder()
         /// Use `VGSExpDateTokenizationConfiguration`for tokenization
-        let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
+        let expDateConfiguration = VGSExpDateTokenizationConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         /// Edit default tokenization parameters
 //        expDateConfiguration.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
       expDateConfiguration.serializers = [VGSExpDateSeparateSerializer.init(monthFieldName: "MONTH", yearFieldName: "YEAR")]
