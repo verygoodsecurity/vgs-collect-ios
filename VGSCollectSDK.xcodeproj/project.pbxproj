@@ -137,6 +137,8 @@
 		44D521212681B803005AB588 /* VGSExpDateSerialization_MapWithArrayOverwrite.json in Resources */ = {isa = PBXBuildFile; fileRef = 44D521182681B803005AB588 /* VGSExpDateSerialization_MapWithArrayOverwrite.json */; };
 		44D521222681B803005AB588 /* VGSExpDateSerialization_MapWithArrayMerge.json in Resources */ = {isa = PBXBuildFile; fileRef = 44D521192681B803005AB588 /* VGSExpDateSerialization_MapWithArrayMerge.json */; };
 		44D521232681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 44D5211A2681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json */; };
+		44EAE09C28FE666200FC6BBB /* VGSExpDateTokenizationSerialization_DefaultConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 44EAE09B28FE666200FC6BBB /* VGSExpDateTokenizationSerialization_DefaultConfig.json */; };
+		44EAE09E28FE8B2700FC6BBB /* VGSExpDateTokenizationSerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EAE09D28FE8B2700FC6BBB /* VGSExpDateTokenizationSerializerTests.swift */; };
 		44ECD5FE27D9C18C00460FDF /* VGSPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD5F627D9C18C00460FDF /* VGSPaymentCardModel.swift */; };
 		44ECD5FF27D9C18C00460FDF /* VGSPaymentCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD5F727D9C18C00460FDF /* VGSPaymentCards.swift */; };
 		44ECD60027D9C18C00460FDF /* VGSCustomPaymentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD5F827D9C18C00460FDF /* VGSCustomPaymentCardModel.swift */; };
@@ -330,6 +332,8 @@
 		44D521182681B803005AB588 /* VGSExpDateSerialization_MapWithArrayOverwrite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VGSExpDateSerialization_MapWithArrayOverwrite.json; sourceTree = "<group>"; };
 		44D521192681B803005AB588 /* VGSExpDateSerialization_MapWithArrayMerge.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VGSExpDateSerialization_MapWithArrayMerge.json; sourceTree = "<group>"; };
 		44D5211A2681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VGSExpDateSerialization_CustomConfig.json; sourceTree = "<group>"; };
+		44EAE09B28FE666200FC6BBB /* VGSExpDateTokenizationSerialization_DefaultConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VGSExpDateTokenizationSerialization_DefaultConfig.json; sourceTree = "<group>"; };
+		44EAE09D28FE8B2700FC6BBB /* VGSExpDateTokenizationSerializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTokenizationSerializerTests.swift; sourceTree = "<group>"; };
 		44ECD5F627D9C18C00460FDF /* VGSPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSPaymentCardModel.swift; sourceTree = "<group>"; };
 		44ECD5F727D9C18C00460FDF /* VGSPaymentCards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSPaymentCards.swift; sourceTree = "<group>"; };
 		44ECD5F827D9C18C00460FDF /* VGSCustomPaymentCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCustomPaymentCardModel.swift; sourceTree = "<group>"; };
@@ -492,6 +496,7 @@
 				3215C4E82611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift */,
 				4459728926135BE600139EAA /* VGSExpDateSerializersDataProvider.swift */,
 				44168FBE2632945D0088E515 /* VGSExpirationDateTextFieldUtilsTests.swift */,
+				44EAE09D28FE8B2700FC6BBB /* VGSExpDateTokenizationSerializerTests.swift */,
 			);
 			path = SerializersTest;
 			sourceTree = "<group>";
@@ -780,6 +785,7 @@
 		44D5210B2681B803005AB588 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				44EAE09A28FE65B900FC6BBB /* ExpDateTokenizationJSON */,
 				44D5210C2681B803005AB588 /* TestJSONs */,
 				44D521152681B803005AB588 /* ExpDateSplitSerializerTestJSONs */,
 				442BB2C5287314DC001FD26B /* MockedData.plist */,
@@ -840,6 +846,14 @@
 				44D5211A2681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json */,
 			);
 			path = ExpDateSplitSerializerTestJSONs;
+			sourceTree = "<group>";
+		};
+		44EAE09A28FE65B900FC6BBB /* ExpDateTokenizationJSON */ = {
+			isa = PBXGroup;
+			children = (
+				44EAE09B28FE666200FC6BBB /* VGSExpDateTokenizationSerialization_DefaultConfig.json */,
+			);
+			path = ExpDateTokenizationJSON;
 			sourceTree = "<group>";
 		};
 		44ECD5F427D9C18C00460FDF /* VGSPaymentCards */ = {
@@ -1354,6 +1368,7 @@
 				44D521232681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json in Resources */,
 				44D5211F2681B803005AB588 /* VGSExpDateSerialization_DefaultConfig.json in Resources */,
 				44D5211D2681B803005AB588 /* OverwriteArraysTestJSONs.json in Resources */,
+				44EAE09C28FE666200FC6BBB /* VGSExpDateTokenizationSerialization_DefaultConfig.json in Resources */,
 				44D5211E2681B803005AB588 /* VGSFieldNameToJSONTestData.json in Resources */,
 				44D521222681B803005AB588 /* VGSExpDateSerialization_MapWithArrayMerge.json in Resources */,
 				44D5211B2681B803005AB588 /* DeepMergeMergeArrayTestJSONs.json in Resources */,
@@ -1595,6 +1610,7 @@
 				441A727D272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift in Sources */,
 				32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */,
 				32448009244606E4003A0676 /* CardHolderNameFieldTests.swift in Sources */,
+				44EAE09E28FE8B2700FC6BBB /* VGSExpDateTokenizationSerializerTests.swift in Sources */,
 				32C894DE256D4AE400DC5648 /* UIDevice+extension.swift in Sources */,
 				FDE247CD2467439D008D75B0 /* ApiClientTests.swift in Sources */,
 				44A67DDB25DCE3D100906957 /* VGSAPIClientSatelliteTests.swift in Sources */,
