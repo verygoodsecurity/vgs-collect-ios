@@ -32,6 +32,7 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     let submitJSON: JsonData
     let outputFormat: VGSCardExpDateFormat
     let comment: String
+    let tokenizedPayloads: [JsonData]
 
     init?(json: JsonData) {
       guard let submitJSON = json["expectedResult"] as? JsonData else {
@@ -49,6 +50,11 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
       self.submitJSON = submitJSON
       self.outputFormat = format
       self.comment = json["comment"] as? String ?? ""
+      guard let tokenizedPayloads  = submitJSON["data"] as? [JsonData] else {
+        XCTFail("Invalid payload")
+        return nil
+      }
+      self.tokenizedPayloads = tokenizedPayloads
     }
   }
 
@@ -84,9 +90,24 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
       textField.setText(test.fieldValue)
 
       let submitJSON = collector.mapFieldsToTokenizationRequestBodyJSON(collector.textFields)
-//      print("submitJSON: \(submitJSON)")
-//      print("test.submitJSON: \(test.submitJSON)")
-      XCTAssertTrue(submitJSON == test.submitJSON, "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON) \nComment: \(test.comment)")
+
+      guard let tokenizedPayloads = submitJSON["data"] as? [JsonData] else {
+        XCTFail("Cannot find tokenized data array.")
+        return
+      }
+
+      var matchedPayloads = 0
+      // mapFieldsToTokenizationRequestBodyJSON can produce array of tokenized data in different order. So we need to iterate through payloads and check them one by one to get 2 matches (one is for month, another one is for year).
+      for payload in tokenizedPayloads {
+        for expectedPayload in test.tokenizedPayloads {
+          if payload == expectedPayload {
+            matchedPayloads += 1
+          }
+        }
+      }
+
+      // Should be at least 2 matches of payloads.
+      XCTAssertTrue(matchedPayloads == 2, "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON) \nComment: \(test.comment)")
     }
   }
 }

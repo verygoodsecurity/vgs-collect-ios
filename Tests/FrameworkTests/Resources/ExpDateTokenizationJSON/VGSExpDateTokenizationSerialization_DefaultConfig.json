@@ -30,7 +30,7 @@
               "expectedResult": {
               "data" :
                 [
-                   {
+                  {
                     "format" : "UUID",
                     "value" : "12",
                     "storage" : "PERSISTENT"
@@ -52,7 +52,7 @@
               "expectedResult": {
               "data" :
                 [
-                   {
+                  {
                     "format" : "UUID",
                     "value" : "12",
                     "storage" : "PERSISTENT",
@@ -74,7 +74,7 @@
               "expectedResult": {
               "data" :
                 [
-                   {
+                  {
                     "format" : "UUID",
                     "value" : "12",
                     "storage" : "PERSISTENT",
