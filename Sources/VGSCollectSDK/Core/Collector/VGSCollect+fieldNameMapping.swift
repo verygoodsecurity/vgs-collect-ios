@@ -81,7 +81,7 @@ internal extension VGSCollect {
     // Convert textfields into dict with output value as a key, fieldname as a value.
     let fieldValuesDict = textFieds.reduce(into: JsonData()) { (dict, element) in
 
-      if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize  {
+      if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
         let output = element.getOutputText()
         let resultJSON = serialazable.serialize(output ?? "")
 
