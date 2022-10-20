@@ -81,9 +81,9 @@ internal extension VGSCollect {
     // Convert textfields into dict with output value as a key, fieldname as a value.
     let fieldValuesDict = textFieds.reduce(into: JsonData()) { (dict, element) in
 
-      if let serialazable = element.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
+      if let serializable = element.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
         let output = element.getOutputText()
-        let resultJSON = serialazable.serialize(output ?? "")
+        let resultJSON = serializable.serialize(output ?? "")
 
         for json in resultJSON {
           if let value = json.value as? String {
@@ -133,8 +133,8 @@ internal extension VGSCollect {
       let output = textField.getOutputText()
 
       /// Check if any serialization should be done before data will be send
-      if let serialazable = textField.configuration as? VGSFormatSerializableProtocol, serialazable.shouldSerialize {
-        let resultJSON = serialazable.serialize(output ?? "")
+      if let serializable = textField.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
+        let resultJSON = serializable.serialize(output ?? "")
 
         for json in resultJSON {
           var fieldData = tokenizationParameters.mapToJSON()
