@@ -76,7 +76,16 @@ internal extension VGSCollect {
   /// - Returns: `JsonData` to submit.
   func mapTokenizationResponseDataWithTextField(_ data: Data?, textFieds: [VGSTextField]) -> JsonData? {
     guard let tokenizedDict = mapTokenizationResponseDataToDict(data) else {return nil}
-   
+
+    return mapTokenizationResponseJSONWithTextField(tokenizedDict, textFieds: textFieds)
+  }
+
+  /// Maps tokenization response result to JsonData, filter result from input values.
+  /// - Parameters:
+  ///   - tokenizedDict: `JsonData` object, json.
+  ///   - textFieds: `[VGSTextField]` object, an array of text fields.
+  /// - Returns: `JsonData?` object, json.
+  func mapTokenizationResponseJSONWithTextField(_ tokenizedDict: JsonData, textFieds: [VGSTextField]) -> JsonData? {
     var result = JsonData()
     for textField in textFields {
       guard let tokenizationParameters = textField.tokenizationParameters,
