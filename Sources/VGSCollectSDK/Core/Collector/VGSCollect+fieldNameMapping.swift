@@ -58,7 +58,7 @@ internal extension VGSCollect {
   /// - Returns: `JsonData` result JSON.
   func buildTokenizationResponseBody(_ tokenizedData: Data?, tokenizedFields: [VGSTextField], notTokenizedFields: [VGSTextField]) -> JsonData? {
     let tokenizedFieldResponse: JsonData? = mapTokenizationResponseDataWithTextField(tokenizedData, textFieds: tokenizedFields)
-    let notTokenizedFieldResponse: JsonData? = mapNotTokenazibleFieldsToResponseBody(notTokenizedFields)
+    let notTokenizedFieldResponse: JsonData? = mapNotTokenizableFieldsToResponseBody(notTokenizedFields)
       
     switch(tokenizedFieldResponse, notTokenizedFieldResponse) {
     case(.some(let dict1), .some(let dict2)):
@@ -128,10 +128,10 @@ internal extension VGSCollect {
   
   /// Map  not tokenizable JSON with key reprsent `textField.fieldName` and value is output text.
   /// - Parameters:
-  ///   - notTokenazibleFields - an array of VGSTextField that should not be tokenized.
+  ///   - notTokenizableFields - an array of VGSTextField that should not be tokenized.
   /// - Returns: `JsonData?` to submit.
-  func mapNotTokenazibleFieldsToResponseBody(_ notTokenazibleFields: [VGSTextField]) -> JsonData {
-      return notTokenazibleFields.reduce(into: JsonData()) { (dict, element) in
+  func mapNotTokenizableFieldsToResponseBody(_ notTokenizableFields: [VGSTextField]) -> JsonData {
+      return notTokenizableFields.reduce(into: JsonData()) { (dict, element) in
         dict[element.fieldName] = element.getOutputText()
     }
   }
