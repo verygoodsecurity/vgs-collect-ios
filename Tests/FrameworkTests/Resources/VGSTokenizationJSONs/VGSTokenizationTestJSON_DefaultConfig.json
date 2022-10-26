@@ -9,11 +9,11 @@
     },
       {
         "field_name": "exp_date",
-        "value": "122030",
+        "value": "12\/30",
         "storage": "PERSISTENT",
         "format": "UUID",
         "is_serialization_enabled": true,
-        "outputFotmat": "longYear"
+        "outputFotmat": "shortYear"
       },
       {
         "field_name": "cvc",
@@ -42,7 +42,7 @@
       },
          {
           "storage": "PERSISTENT",
-          "value": "2030",
+          "value": "30",
           "classifiers": [
 
           ],
@@ -113,11 +113,11 @@
       },
         {
           "field_name": "exp_date",
-          "value": "122030",
+          "value": "12\/30",
           "storage": "PERSISTENT",
           "format": "UUID",
           "is_serialization_enabled": false,
-          "outputFotmat": "longYear"
+          "outputFotmat": "shortYear"
         },
         {
           "field_name": "cvc",
@@ -144,7 +144,7 @@
           },
           {
             "storage" : "PERSISTENT",
-            "value" : "12\/2030",
+            "value" : "12\/30",
             "classifiers" : [
 
             ],
@@ -175,7 +175,7 @@
       "expected_mapped_response": {
         "card_number": "4111114086991111",
         "cvc": "888",
-        "exp_year": "tok_sandbox_EXP_YEAR"
+        "exp_date": "tok_sandbox_EXP_YEAR"
       }
     },
     {
@@ -187,11 +187,11 @@
       },
         {
           "field_name": "exp_date",
-          "value": "122030",
+          "value": "12\/30",
           "storage": "PERSISTENT",
           "format": "UUID",
           "is_serialization_enabled": false,
-          "outputFotmat": "longYear"
+          "outputFotmat": "shortYear"
         },
         {
           "field_name": "cvc",
@@ -222,7 +222,7 @@
           },
           {
             "storage" : "PERSISTENT",
-            "value" : "12\/2030",
+            "value" : "12\/30",
             "classifiers" : [
 
             ],
@@ -257,7 +257,7 @@
       "expected_mapped_response": {
         "card_number": "4111114086991111",
         "cvc": "888",
-        "exp_year": "tok_sandbox_EXP_YEAR"
+        "exp_date": "tok_sandbox_EXP_YEAR"
       }
     }
   ]

@@ -118,7 +118,7 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
 
     print(testData)
 
-    for index in 0...testData.count - 1 {
+    for index in 0...1 {
       let test = testData[index]
       let tokenizedResponse = test.tokenizedResponseBody
       let expectedJSON = test.expectedMappedResponse
@@ -131,16 +131,16 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
           config.tokenizationParameters.format = textFieldData.storage
           config.tokenizationParameters.format = textFieldData.format
           cardNumberTextField.configuration = config
-          print("textFieldData.inputValue \(textFieldData.inputValue)")
           cardNumberTextField.setText(textFieldData.inputValue)
-          print("cardNumberTextField.getOutputText() \(cardNumberTextField.getOutputText())")
         case "exp_date":
           var config = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: fieldName)
 
           if textFieldData.isSerializationEnabled {
             config.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "month", yearFieldName: "year")]
-            config.outputDateFormat = textFieldData.outputFormat
+          } else {
+            config.serializers = []
           }
+          config.outputDateFormat = textFieldData.outputFormat
           config.tokenizationParameters.format = textFieldData.storage
           config.tokenizationParameters.format = textFieldData.format
           config.formatPattern = "##/##"
@@ -159,6 +159,8 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
 
       collector.registerTextFields(textField: [
         cardNumberTextField,
+        expDateTextField,
+        cvcTextField
       ])
 
       let data = jsonToData(json: tokenizedResponse)
@@ -168,8 +170,6 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
         XCTFail("No json!")
         return
       }
-
-      print("Actual json: \(json)")
 
       XCTAssertTrue(json == expectedJSON, "Tokenization data mapping error:\n - Index: \(index)\n - Actual JSON: \(actualJSON)\n - Expected: \(expectedJSON)")
     }
@@ -181,6 +181,6 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
       } catch let myJSONError {
           print(myJSONError)
       }
-      return nil;
+      return nil
   }
 }
