@@ -88,7 +88,7 @@ internal extension VGSCollect {
         for json in resultJSON {
           guard let key = json.value as? String,
                 let alias = getTokenizedAlias(from: tokenizedDict, key: key, format: tokenizationParameters.format) else {continue}
-          result[key] = alias
+          result[json.key] = alias
         }
       } else {
         guard let alias = getTokenizedAlias(from: tokenizedDict, key: output, format: tokenizationParameters.format) else {continue}
