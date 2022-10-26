@@ -75,39 +75,57 @@ internal extension VGSCollect {
   /// Map tokenization response result to JsonData, filter result from input values.
   /// - Returns: `JsonData` to submit.
   func mapTokenizationResponseDataWithTextField(_ data: Data?, textFieds: [VGSTextField]) -> JsonData? {
-    guard let tokenizedData = data?.serializeToJsonData?["data"] as? [JsonData] else {
-      return nil
-    }
-    // Convert textfields into dict with output value as a key, fieldname as a value.
-    let fieldValuesDict = textFieds.reduce(into: JsonData()) { (dict, element) in
-
-      if let serializable = element.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
-        let output = element.getOutputText()
-        let resultJSON = serializable.serialize(output ?? "")
-
+    guard let tokenizedDict = mapTokenizationResponseDataToDict(data) else {return nil}
+   
+    var result = JsonData()
+    for textField in textFields {
+      guard let tokenizationParameters = textField.tokenizationParameters,
+            let output = textField.getOutputText() else {continue}
+      /// Check if field serializable and should have different tokens
+      if let serializable = textField.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
+        let resultJSON = serializable.serialize(output)
+        /// json - {fieldName:fieldValue}
         for json in resultJSON {
-          if let value = json.value as? String {
-            dict[value] = json.key
-          }
+          guard let key = json.value as? String,
+                let alias = getTokenizedAlias(from: tokenizedDict, key: key, format: tokenizationParameters.format) else {continue}
+          result[key] = alias
         }
       } else {
-        if let value = element.getOutputText() {
-          dict[value] = element.fieldName
-        }
-      }
-    }
-    // Combine fieldValuesDict with textFileds' fildNames, map into dict with fieldName as a key, alias as a value.
-    let result: JsonData = tokenizedData.reduce(into: JsonData()) { (dict, element) in
-      if let fieldValue = element["value"] as? String,
-         let fieldName = fieldValuesDict[fieldValue] as? String,
-         let aliases = element["aliases"] as? [JsonData],
-         let alias = aliases.first?["alias"] as? String {
-        
-        dict[fieldName] = alias
+        guard let alias = getTokenizedAlias(from: tokenizedDict, key: output, format: tokenizationParameters.format) else {continue}
+        result[textField.fieldName] = alias
       }
     }
     return result
   }
+  
+  /// Get alias for required field with required alias fromat.
+  private func getTokenizedAlias(from tokenizedDict: JsonData, key: String, format: String) -> String? {
+    guard  let tokenizedField = tokenizedDict[key] as? JsonData,
+           let aliases = tokenizedField["aliases"] as? [JsonData] else {return nil}
+    
+    /// Map aliases array to dict
+    let aliasesDict: [String: String] = aliases.reduce(into: [String: String]()) { (dict, element) in
+      if let aliasValue = element["alias"] as? String,
+         let aliasFormat = element["format"] as? String {
+        dict[aliasFormat] = aliasValue
+      }
+    }
+    return aliasesDict[format]
+  }
+  
+  /// Serialize response data and map it to dict: {"outputValue": {tokenizedData}}
+  private func mapTokenizationResponseDataToDict(_ data: Data?) -> JsonData? {
+    /// Get tokenized data array
+    guard let tokenizedData = data?.serializeToJsonData?["data"] as? [JsonData] else { return nil }
+    /// Map tokenized array into dict: {"outputValue": {tokenizedData}}
+    let tokenizedDict: JsonData = tokenizedData.reduce(into: JsonData()) { (dict, element) in
+      if let fieldValue = element["value"] as? String {
+        dict[fieldValue] = element
+      }
+    }
+    return tokenizedDict
+  }
+  
   /// Map  not tokenizable JSON with key reprsent `textField.fieldName` and value is output text.
   /// - Parameters:
   ///   - notTokenazibleFields - an array of VGSTextField that should not be tokenized.
@@ -125,27 +143,34 @@ internal extension VGSCollect {
   func mapFieldsToTokenizationRequestBodyJSON(_ textFields: [VGSTextField]) -> JsonData {
     var fieldsData = [JsonData]()
     for textField in textFields {
-      guard let tokenizationParameters = textField.tokenizationParameters else {
+      guard let fieldData = mapFieldTokenizationParameters(textField), !fieldData.isEmpty else {
         continue
       }
-      var fieldData = tokenizationParameters.mapToJSON()
-
-      let output = textField.getOutputText()
-
-      /// Check if any serialization should be done before data will be send
-      if let serializable = textField.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
-        let resultJSON = serializable.serialize(output ?? "")
-
-        for json in resultJSON {
-          var fieldData = tokenizationParameters.mapToJSON()
-          fieldData["value"] = json.value
-          fieldsData.append(fieldData)
-        }
-      } else {
-        fieldData["value"] = output
-        fieldsData.append(fieldData)
-      }
+      fieldsData.append(contentsOf: fieldData)
     }
     return ["data": fieldsData]
+  }
+  
+  /// Map field tokenization parameters required in a fromat required for tokenization request
+  private func mapFieldTokenizationParameters(_ textField: VGSTextField) -> [JsonData]? {
+    guard let tokenizationParameters = textField.tokenizationParameters else {
+      return nil
+    }
+    var fieldsData = [JsonData]()
+    let output = textField.getOutputText()
+    /// Check if any serialization should be done
+    if let serializable = textField.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
+      let resultJSON = serializable.serialize(output ?? "")
+      for json in resultJSON {
+        var fieldData = tokenizationParameters.mapToJSON()
+        fieldData["value"] = json.value
+        fieldsData.append(fieldData)
+      }
+    } else {
+      var fieldData = tokenizationParameters.mapToJSON()
+      fieldData["value"] = output
+      fieldsData.append(fieldData)
+    }
+    return fieldsData
   }
 }
