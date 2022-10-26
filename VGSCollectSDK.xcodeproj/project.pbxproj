@@ -102,6 +102,7 @@
 		441B26DD25DB88DB0099AA3A /* VGSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26DC25DB88DB0099AA3A /* VGSResponse.swift */; };
 		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
 		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
+		442A39132909718F007CCC58 /* VGSTokenizationTestJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 442A39122909718F007CCC58 /* VGSTokenizationTestJSON.json */; };
 		442BB2C6287314DC001FD26B /* MockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442BB2C5287314DC001FD26B /* MockedData.plist */; };
 		442BB2C82873158A001FD26B /* MockedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442BB2C72873158A001FD26B /* MockedDataProvider.swift */; };
 		443FDDB625DD43D5006932C4 /* VGSCollect+SatelliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */; };
@@ -296,6 +297,7 @@
 		441B26DC25DB88DB0099AA3A /* VGSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSResponse.swift; sourceTree = "<group>"; };
 		441B26E825DB8D950099AA3A /* APIClient+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+Utils.swift"; sourceTree = "<group>"; };
 		441B26EF25DB956B0099AA3A /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		442A39122909718F007CCC58 /* VGSTokenizationTestJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VGSTokenizationTestJSON.json; sourceTree = "<group>"; };
 		442BB2C5287314DC001FD26B /* MockedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MockedData.plist; sourceTree = "<group>"; };
 		442BB2C72873158A001FD26B /* MockedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedDataProvider.swift; sourceTree = "<group>"; };
 		443FDDB525DD43D5006932C4 /* VGSCollect+SatelliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSCollect+SatelliteTests.swift"; sourceTree = "<group>"; };
@@ -690,6 +692,14 @@
 			path = APIHostName;
 			sourceTree = "<group>";
 		};
+		442A391129097167007CCC58 /* VGSTokenizationJSONs */ = {
+			isa = PBXGroup;
+			children = (
+				442A39122909718F007CCC58 /* VGSTokenizationTestJSON.json */,
+			);
+			path = VGSTokenizationJSONs;
+			sourceTree = "<group>";
+		};
 		44447F7D25F7648700D4CE68 /* Test Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,6 +795,7 @@
 		44D5210B2681B803005AB588 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				442A391129097167007CCC58 /* VGSTokenizationJSONs */,
 				44EAE09A28FE65B900FC6BBB /* ExpDateTokenizationJSON */,
 				44D5210C2681B803005AB588 /* TestJSONs */,
 				44D521152681B803005AB588 /* ExpDateSplitSerializerTestJSONs */,
@@ -1368,6 +1379,7 @@
 				44D521232681B803005AB588 /* VGSExpDateSerialization_CustomConfig.json in Resources */,
 				44D5211F2681B803005AB588 /* VGSExpDateSerialization_DefaultConfig.json in Resources */,
 				44D5211D2681B803005AB588 /* OverwriteArraysTestJSONs.json in Resources */,
+				442A39132909718F007CCC58 /* VGSTokenizationTestJSON.json in Resources */,
 				44EAE09C28FE666200FC6BBB /* VGSExpDateTokenizationSerialization_DefaultConfig.json in Resources */,
 				44D5211E2681B803005AB588 /* VGSFieldNameToJSONTestData.json in Resources */,
 				44D521222681B803005AB588 /* VGSExpDateSerialization_MapWithArrayMerge.json in Resources */,
