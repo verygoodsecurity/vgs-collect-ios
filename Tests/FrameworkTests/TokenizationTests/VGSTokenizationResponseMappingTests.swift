@@ -32,15 +32,14 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
     let inputValue: String
     let storage: String
     let format: String
-    let isSerializationEbabled: Bool
+    let isSerializationEnabled: Bool
     var outputFormat: VGSCardExpDateFormat?
 
     init?(json: JsonData) {
       guard let fieldName = json["field_name"] as? String,
             let inputValue = json["value"] as? String,
             let storage = json["storage"] as? String,
-            let format = json["format"] as? String,
-            let isSerializationEbabled = json["is_serialization_enabled"] as? Bool else  {
+            let format = json["format"] as? String else  {
               return nil
             }
 
@@ -48,7 +47,7 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
       self.inputValue = inputValue
       self.storage = storage
       self.format = format
-      self.isSerializationEbabled = isSerializationEbabled
+      self.isSerializationEnabled = json["is_serialization_enabled"] as? Bool ?? false
       if let outputFormatName = json["outputFormat"] as? String {
         self.outputFormat = VGSCardExpDateFormat(name: outputFormatName)
       }
@@ -132,16 +131,19 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
           config.tokenizationParameters.format = textFieldData.storage
           config.tokenizationParameters.format = textFieldData.format
           cardNumberTextField.configuration = config
+          print("textFieldData.inputValue \(textFieldData.inputValue)")
           cardNumberTextField.setText(textFieldData.inputValue)
+          print("cardNumberTextField.getOutputText() \(cardNumberTextField.getOutputText())")
         case "exp_date":
           var config = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: fieldName)
 
-          if textFieldData.isSerializationEbabled {
+          if textFieldData.isSerializationEnabled {
             config.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "month", yearFieldName: "year")]
             config.outputDateFormat = textFieldData.outputFormat
           }
           config.tokenizationParameters.format = textFieldData.storage
           config.tokenizationParameters.format = textFieldData.format
+          config.formatPattern = "##/##"
           expDateTextField.configuration = config
           expDateTextField.setText(textFieldData.inputValue)
         case "cvc":
@@ -157,11 +159,10 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
 
       collector.registerTextFields(textField: [
         cardNumberTextField,
-        expDateTextField,
-        cvcTextField
       ])
 
-      let actualJSON = collector.mapTokenizationResponseJSONWithTextField(tokenizedResponse, textFieds: collector.textFields)
+      let data = jsonToData(json: tokenizedResponse)
+      let actualJSON = collector.buildTokenizationResponseBody(data, tokenizedFields: collector.storage.tokenizableTextFields, notTokenizedFields: [])
 
       guard let json = actualJSON else {
         XCTFail("No json!")
@@ -172,5 +173,14 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
 
       XCTAssertTrue(json == expectedJSON, "Tokenization data mapping error:\n - Index: \(index)\n - Actual JSON: \(actualJSON)\n - Expected: \(expectedJSON)")
     }
+  }
+
+  func jsonToData(json: Any) -> Data? {
+      do {
+          return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+      } catch let myJSONError {
+          print(myJSONError)
+      }
+      return nil;
   }
 }
