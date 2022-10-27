@@ -1,0 +1,264 @@
+
+{
+  "test_data": [{
+    "input_data": [{
+      "field_name": "card_number",
+      "value": "4111111111111111",
+      "storage": "PERSISTENT",
+      "format": "FPE_SIX_T_FOUR"
+    },
+      {
+        "field_name": "exp_date",
+        "value": "12\/30",
+        "storage": "PERSISTENT",
+        "format": "UUID",
+        "is_serialization_enabled": true,
+        "outputFotmat": "shortYear"
+      },
+      {
+        "field_name": "cvc",
+        "value": "333",
+        "storage": "VOLATILE",
+        "format": "NUM_LENGTH_PRESERVING"
+      }
+    ],
+    "tokenized_response": {
+      "data": [{
+        "storage": "PERSISTENT",
+        "value": "4111111111111111",
+        "classifiers": [
+
+        ],
+        "aliases": [{
+          "alias": "tok_sandbox_DUMMY",
+          "format": "UUID"
+        },
+          {
+            "alias": "4111114086991111",
+            "format": "FPE_SIX_T_FOUR"
+          }
+        ],
+        "created_at": "2022-06-21T14:59:20Z"
+      },
+         {
+          "storage": "PERSISTENT",
+          "value": "30",
+          "classifiers": [
+
+          ],
+          "aliases": [{
+            "alias": "816379c3-419a-4597-92f5-DUMMY",
+            "format": "FPE_ALPHANUMERIC_ACC_NUM_T_FOUR"
+          },
+            {
+              "alias": "5145",
+              "format": "NUM_LENGTH_PRESERVING"
+            },
+            {
+              "alias": "tok_sandbox_DUMMY_YEAR",
+              "format": "UUID"
+            }
+          ],
+          "created_at": "2022-10-24T18:14:48Z"
+        },
+        {
+          "storage": "PERSISTENT",
+          "value": "12",
+          "classifiers": [
+
+          ],
+          "aliases": [{
+            "alias": "tok_sandbox_DUMMY_MONTH",
+            "format": "UUID"
+          },
+            {
+              "alias": "d55555555-5555-4378-777",
+              "format": "FPE_ALPHANUMERIC_ACC_NUM_T_FOUR"
+            }
+          ],
+          "created_at": "2022-10-17T13:19:24Z"
+        },
+        {
+          "storage": "VOLATILE",
+          "value": "333",
+          "classifiers": [
+
+          ],
+          "aliases": [{
+            "alias": "tok_sandbox_DUMMY_CVC",
+            "format": "UUID"
+          },
+            {
+              "alias": "888",
+              "format": "NUM_LENGTH_PRESERVING"
+            }
+          ],
+          "created_at": "1970-01-01T00:00:00Z"
+        }
+      ]
+    },
+    "expected_mapped_response": {
+      "card_number": "4111114086991111",
+      "month": "tok_sandbox_DUMMY_MONTH",
+      "cvc": "888",
+      "year": "tok_sandbox_DUMMY_YEAR"
+    }
+  },
+  {
+      "input_data": [{
+        "field_name": "card_number",
+        "value": "4111111111111111",
+        "storage": "PERSISTENT",
+        "format": "FPE_SIX_T_FOUR"
+      },
+        {
+          "field_name": "exp_date",
+          "value": "12\/30",
+          "storage": "PERSISTENT",
+          "format": "UUID",
+          "is_serialization_enabled": false,
+          "outputFotmat": "shortYear"
+        },
+        {
+          "field_name": "cvc",
+          "value": "333",
+          "storage": "VOLATILE",
+          "format": "NUM_LENGTH_PRESERVING"
+        }
+      ],
+      "tokenized_response": {
+        "data" : [
+          {
+            "storage" : "PERSISTENT",
+            "value" : "4111111111111111",
+            "classifiers" : [
+
+            ],
+            "aliases" : [
+              {
+                "alias" : "4111114086991111",
+                "format" : "FPE_SIX_T_FOUR"
+              }
+            ],
+            "created_at" : "2022-06-21T14:59:20Z"
+          },
+          {
+            "storage" : "PERSISTENT",
+            "value" : "12\/30",
+            "classifiers" : [
+
+            ],
+            "aliases" : [
+              {
+                "alias" : "tok_sandbox_EXP_YEAR",
+                "format" : "UUID"
+              }
+            ],
+            "created_at" : "2022-10-26T13:47:44Z"
+          },
+          {
+            "storage" : "VOLATILE",
+            "value" : "333",
+            "classifiers" : [
+
+            ],
+            "aliases" : [
+              {
+                "alias" : "888",
+                "format" : "NUM_LENGTH_PRESERVING"
+              }
+            ],
+            "created_at" : "1970-01-01T00:00:00Z"
+          }
+        ]
+      },
+      "expected_mapped_response": {
+        "card_number": "4111114086991111",
+        "cvc": "888",
+        "exp_date": "tok_sandbox_EXP_YEAR"
+      }
+    },
+    {
+      "input_data": [{
+        "field_name": "card_number",
+        "value": "4111111111111111",
+        "storage": "PERSISTENT",
+        "format": "FPE_SIX_T_FOUR"
+      },
+        {
+          "field_name": "exp_date",
+          "value": "12\/30",
+          "storage": "PERSISTENT",
+          "format": "UUID",
+          "is_serialization_enabled": false,
+          "outputFotmat": "shortYear"
+        },
+        {
+          "field_name": "cvc",
+          "value": "333",
+          "storage": "VOLATILE",
+          "format": "NUM_LENGTH_PRESERVING"
+        }
+      ],
+      "tokenized_response": {
+        "data" : [
+          {
+            "storage" : "PERSISTENT",
+            "value" : "4111111111111111",
+            "classifiers" : [
+
+            ],
+            "aliases" : [
+              {
+                "alias" : "4111114086991111",
+                "format" : "FPE_SIX_T_FOUR"
+              },
+              {
+                "alias" : "tok_sandbox_EXP_YEAR",
+                "format" : "UUID"
+              }
+            ],
+            "created_at" : "2022-06-21T14:59:20Z"
+          },
+          {
+            "storage" : "PERSISTENT",
+            "value" : "12\/30",
+            "classifiers" : [
+
+            ],
+            "aliases" : [
+              {
+                "alias" : "tok_sandbox_EXP_YEAR",
+                "format" : "UUID"
+              },
+              {
+                "alias" : "4111114086991111",
+                "format" : "FPE_SIX_T_FOUR"
+              }
+            ],
+            "created_at" : "2022-10-26T13:47:44Z"
+          },
+          {
+            "storage" : "VOLATILE",
+            "value" : "333",
+            "classifiers" : [
+
+            ],
+            "aliases" : [
+              {
+                "alias" : "888",
+                "format" : "NUM_LENGTH_PRESERVING"
+              }
+            ],
+            "created_at" : "1970-01-01T00:00:00Z"
+          }
+        ]
+      },
+      "expected_mapped_response": {
+        "card_number": "4111114086991111",
+        "cvc": "888",
+        "exp_date": "tok_sandbox_EXP_YEAR"
+      }
+    }
+  ]
+}

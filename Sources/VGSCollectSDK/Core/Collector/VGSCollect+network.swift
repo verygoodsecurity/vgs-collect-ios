@@ -197,7 +197,7 @@ extension VGSCollect {
     // Check if there are fields for tokenization. Return data from not tokenizable fields.
     if tokenizableFields.count == 0 {
       let code = 200
-      let responseBody = mapNotTokenazibleFieldsToResponseBody(notTokenizableFields)
+      let responseBody = mapNotTokenizableFieldsToResponseBody(notTokenizableFields)
       VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
       block(.success(code, responseBody, nil))
       return

@@ -15,7 +15,7 @@ public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtoco
 }
 
 /// `VGSExpDateTokenizationConfiguration` - textfield configuration for textfield with type `.expDate`, required for work with tokenization api.
-public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, VGSTextFieldTokenizationConfigurationProtocol {
+public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
   
   // MARK: - Attributes
   /// `FieldType.expDate` type of `VGSTextField`tokenization  configuration.
@@ -40,5 +40,36 @@ public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExp
 
   internal var tokenizationConfiguration: VGSTokenizationParametersProtocol {
     return tokenizationParameters
+  }
+
+  // MARK: - VGSFormatSerializableProtocol
+  /// Output date format.
+  public var serializers: [VGSFormatSerializerProtocol] = []
+
+  // MARK: - `VGSExpDateConfiguration` implementation
+  /// Serialize Expiration Date
+  internal func serialize(_ content: String) -> [String: Any] {
+    return ExpDateFormatConvertor.serialize(content, serializers: serializers, outputFormat: outputFormat)
+  }
+
+  /// Returns if Content should be Serialized
+  internal var shouldSerialize: Bool {
+    return !serializers.isEmpty
+  }
+}
+
+/// Implement `FormatConvertable` protocol.
+extension VGSExpDateTokenizationConfiguration: FormatConvertable {
+
+  internal var outputFormat: VGSCardExpDateFormat? {
+    return outputDateFormat
+  }
+
+  internal var inputFormat: VGSCardExpDateFormat? {
+    return inputDateFormat
+  }
+
+  internal var convertor: TextFormatConvertor {
+    return ExpDateFormatConvertor()
   }
 }

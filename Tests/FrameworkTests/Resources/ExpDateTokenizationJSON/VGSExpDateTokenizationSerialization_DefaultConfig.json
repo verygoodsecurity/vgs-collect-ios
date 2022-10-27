@@ -1,0 +1,92 @@
+{
+    "test_data": [
+          {
+              "monthFieldName": "month",
+              "yearFieldName": "year",
+              "fieldValue": "12/30",
+              "outputFormat": "shortYear",
+              "expectedResult": {
+              "data" :
+                [
+                  {
+                    "format" : "UUID",
+                    "value" : "12",
+                    "storage" : "PERSISTENT"
+                  },
+                  {
+                    "value" : "30",
+                    "storage" : "PERSISTENT",
+                    "format" : "UUID"
+                  }
+                ]
+              },
+              "comment": "Serialized date shortYear."
+          },
+          {
+              "monthFieldName": "month",
+              "yearFieldName": "year",
+              "fieldValue": "12/30",
+              "outputFormat": "shortYearThenMonth",
+              "expectedResult": {
+              "data" :
+                [
+                  {
+                    "format" : "UUID",
+                    "value" : "12",
+                    "storage" : "PERSISTENT"
+                  },
+                  {
+                    "value" : "30",
+                    "storage" : "PERSISTENT",
+                    "format" : "UUID"
+                  }
+                ]
+              },
+              "comment": "Serialized date shortYearThenMonth."
+          },
+          {
+              "monthFieldName": "month",
+              "yearFieldName": "year",
+              "fieldValue": "12/30",
+              "outputFormat": "longYear",
+              "expectedResult": {
+              "data" :
+                [
+                  {
+                    "format" : "UUID",
+                    "value" : "12",
+                    "storage" : "PERSISTENT",
+                  },
+                  {
+                    "value" : "2030",
+                    "storage" : "PERSISTENT",
+                    "format" : "UUID"
+                  }
+                ]
+              },
+              "comment": "Serialized date longYear."
+          },
+          {
+              "monthFieldName": "month",
+              "yearFieldName": "year",
+              "fieldValue": "12/30",
+              "outputFormat": "longYearThenMonth",
+              "expectedResult": {
+              "data" :
+                [
+                  {
+                    "format" : "UUID",
+                    "value" : "12",
+                    "storage" : "PERSISTENT",
+                  },
+                  {
+                    "value" : "2030",
+                    "storage" : "PERSISTENT",
+                    "format" : "UUID"
+                  }
+                ]
+              },
+              "comment": "Serialized date longYearThenMonth."
+          }
+      ]
+}
