@@ -36,7 +36,7 @@ public class VGSBlinkCardController {
     ///   - licenseKey: key required for BlinkCard  SDK usage.
     ///   - delegate: `VGSBlinkCardControllerDelegate`. Default is `nil`.
     ///   - errorCallback: Error callback with Int error code(represents `MBCLicenseError` enum), triggered only when error occured.
-  public required init(licenseKey: String, delegate: VGSBlinkCardControllerDelegate? = nil, errorCallback: @escaping ((NSInteger) -> Void)) {
+  public required init(licenseKey: String, delegate: VGSBlinkCardControllerDelegate? = nil, onError errorCallback: @escaping ((NSInteger) -> Void)) {
       self.scanHandler = VGSBlinkCardHandler(licenseKey: licenseKey, errorCallback: errorCallback)
       self.delegate = delegate
     }

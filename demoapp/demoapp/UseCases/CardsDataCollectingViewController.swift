@@ -25,7 +25,7 @@ class CardsDataCollectingViewController: UIViewController {
     var cvcCardNum = VGSCVCTextField()
     var cardHolderName = VGSTextField()
     
-    /// MicroBlink Card Scanner
+    /// BlinkCard Card Scanner
     var scanController: VGSBlinkCardController?
   
     var consoleMessage: String = "" {
@@ -42,15 +42,6 @@ class CardsDataCollectingViewController: UIViewController {
       vgsCollect.customHeaders = [
         "my custome header": "some custom data"
       ]
-
-      // set VGSCardScanDelegate
-
-      if let licenseKey = AppCollectorConfiguration.shared.microBlinkLicanseKey {
-        scanController = VGSBlinkCardController(licenseKey: licenseKey) { error in
-          print(error)
-        }
-        scanController?.delegate = self
-      }
           
       // Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
       vgsCollect.observeStates = { [weak self] form in
@@ -62,6 +53,15 @@ class CardsDataCollectingViewController: UIViewController {
               self?.consoleMessage.append(textField.state.description)
               self?.consoleMessage.append("\n")
           })
+      }
+      
+      // Init VGSBlinkCardController with BlinkCard license key
+      if let licenseKey = AppCollectorConfiguration.shared.blinkCardLicenseKey {
+        scanController = VGSBlinkCardController(licenseKey: licenseKey, delegate: self, onError: { errorCode in
+          print("BlinkCard license error, code: \(errorCode)")
+        })
+      } else {
+        print("⚠️ VGSBlinkCardController not initialized. Check license key!")
       }
       
   //      // If you need to set your own card brand icons
@@ -156,11 +156,13 @@ class CardsDataCollectingViewController: UIViewController {
         }
     }
     
-    // Start CardIO scanning
+    // Start BlinkCard scanning
     @IBAction func scanAction(_ sender: Any) {
-      scanController?.presentCardScanner(on: self, animated: true) {
+      guard let scanController = scanController else {
+        print("⚠️ VGSBlinkCardController not initialized. Check license key!")
         return
       }
+      scanController.presentCardScanner(on: self, animated: true, completion: nil)
     }
     
     // Upload data from TextFields to VGS
