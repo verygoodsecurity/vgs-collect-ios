@@ -39,6 +39,7 @@ public class VGSBlinkCardController {
   public required init(licenseKey: String, delegate: VGSBlinkCardControllerDelegate? = nil, onError errorCallback: @escaping ((NSInteger) -> Void)) {
       self.scanHandler = VGSBlinkCardHandler(licenseKey: licenseKey, errorCallback: errorCallback)
       self.delegate = delegate
+    
     }
     
     // MARK: - Methods
@@ -58,5 +59,10 @@ public class VGSBlinkCardController {
     ///   - completion: the block to execute after the dismiss finishes.
     public func dismissCardScanner(animated: Bool, completion: (() -> Void)?) {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
+    }
+  
+    /// Set custom localization fileName.
+    public static func setCustomLocalization(fileName: String) {
+      VGSBlinkCardHandler.setCustomLocalization(fileName: fileName)
     }
 }

@@ -57,6 +57,11 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
     func dismissScanVC(animated: Bool, completion: (() -> Void)?) {
         view?.dismiss(animated: animated, completion: completion)
     }
+  
+    /// Set custom localization fileName.
+    static func setCustomLocalization(fileName: String) {
+      MBCMicroblinkApp.shared().customLocalizationFileName = fileName
+    }
 }
 
 /// :nodoc:
@@ -108,10 +113,13 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
         textField.setText(date.mapLongExpirationDateWithLongYearFirst())
       }
       if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationYear) {
+        textField.setText(String(date.shortYear))
+      }
+      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationYearLong) {
         textField.setText(String(date.year))
       }
       if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationMonth) {
-        textField.setText(String(date.month))
+        textField.setText(date.monthString)
       }
       // notify scan is finished
       self?.delegate?.userDidFinishScan()

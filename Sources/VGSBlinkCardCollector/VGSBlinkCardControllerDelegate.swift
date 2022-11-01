@@ -33,12 +33,12 @@ public enum VGSBlinkCardDataType: Int {
     /// Credit Card Expiration Year. String in format "yy", e.g: "21".
     case expirationYear
   
-    /// Credit Card Expiration Date. String in format "mm/yyyy", e.g:"01/2021".
-    case expirationDateLong
-  
     /// Credit Card Expiration Year. String in format "yyyy", e.g:"2021".
     case expirationYearLong
   
+    /// Credit Card Expiration Date. String in format "mm/yyyy", e.g:"01/2021".
+    case expirationDateLong
+    
     /// Credit Card Expiration Date. String in format "yy/mm", e.g:"21/01".
     case expirationDateShortYearThenMonth
 
