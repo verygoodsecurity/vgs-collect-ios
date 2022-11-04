@@ -112,26 +112,26 @@ class CardsDataCollectingViewController: UIViewController {
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
-				expDateConfiguration.inputDateFormat = .longYear
+				expDateConfiguration.inputDateFormat = .shortYear
         expDateConfiguration.outputDateFormat = .longYear
 
         /// Default .expDate format is "##/##"
-        expDateConfiguration.formatPattern = "##/####"
+        expDateConfiguration.formatPattern = "##/##"
         
         /// Update validation rules
         expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
-          VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: VGSValidationErrorType.expDate.rawValue)
+          VGSValidationRuleCardExpirationDate(dateFormat: .shortYear, error: VGSValidationErrorType.expDate.rawValue)
         ])
 
         expCardDate.configuration = expDateConfiguration
-        expCardDate.placeholder = "MM/YYYY"
+        expCardDate.placeholder = "MM/YY"
         expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
-        cvcCardNum.isSecureTextEntry = false
+        cvcCardNum.isSecureTextEntry = true
         cvcCardNum.placeholder = "CVC"
         cvcCardNum.tintColor = .lightGray
 
