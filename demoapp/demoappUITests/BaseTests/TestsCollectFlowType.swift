@@ -21,7 +21,7 @@ enum TestsCollectFlowType {
   var name: String {
     switch self {
     case .paymentCards:
-      return "Collect Payment Cards"
+      return "Collect Payment Cards Data"
     case .ssn:
       return "Collect Social Security Number"
     case .customPaymentCards:
