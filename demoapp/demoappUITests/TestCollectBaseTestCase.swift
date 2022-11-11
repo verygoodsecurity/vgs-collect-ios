@@ -30,4 +30,12 @@ class TestCollectBaseTestCase: XCTestCase {
 	func fillInTestData() {
 		wait(forTimeInterval: 0.3)
 	}
+
+  func fillInCorrectDateWithDatePicker() {
+    app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "March")
+    app.pickerWheels.element(boundBy: 0).tap()
+
+    app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "2027")
+    app.pickerWheels.element(boundBy: 1).tap()
+  }
 }
