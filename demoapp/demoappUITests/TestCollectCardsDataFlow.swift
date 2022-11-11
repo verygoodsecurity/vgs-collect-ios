@@ -86,11 +86,11 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     /// Tap on upload button.
     UIElements.Buttons.upload.find(in: app).tap()
 
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
-
     // Wait for request.
     wait(forTimeInterval: 30)
+    
+    // Find response label.
+    let responseLabel = app.staticTexts[UIElements.Labels.response]
 
     // Verify success response.
     let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
