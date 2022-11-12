@@ -41,7 +41,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
         static let expirationDate: VGSUITestElement = .init(type: .textField, identifier: "MM / YY")
 
         /// CVC.
-        static let cvc: VGSUITestElement = .init(type: .secureTextField, identifier: "CVV")
+        static let cvc: VGSUITestElement = .init(type: .textField, identifier: "CVV")
       }
     }
 
