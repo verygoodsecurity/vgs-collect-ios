@@ -13,7 +13,7 @@
 		3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */; };
 		325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */; };
 		326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */; };
-		32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */; };
+		32B5E17F24D466F500DA1239 /* TestCollectSSNFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E17E24D466F500DA1239 /* TestCollectSSNFlow.swift */; };
 		32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */; };
 		36854589CD95C20D0657DAE4 /* libPods-demoappUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9EC63EB636126947A436E7 /* libPods-demoappUITests.a */; };
 		44241E9025B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */; };
@@ -82,7 +82,7 @@
 		3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataFlow.swift; sourceTree = "<group>"; };
 		325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectorConfiguration.swift; sourceTree = "<group>"; };
 		326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCustomCardNumbersDataFlow.swift; sourceTree = "<group>"; };
-		32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCustomDataFlow.swift; sourceTree = "<group>"; };
+		32B5E17E24D466F500DA1239 /* TestCollectSSNFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectSSNFlow.swift; sourceTree = "<group>"; };
 		32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectSSNDataFlow.swift; sourceTree = "<group>"; };
 		44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectBaseTestCase.swift; sourceTree = "<group>"; };
 		44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsMockedDataProvider.swift; sourceTree = "<group>"; };
@@ -454,7 +454,7 @@
 				44D0E340291E9315001AF8ED /* Extensions */,
 				44D0E33B291E92DF001AF8ED /* UITestUtils */,
 				3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */,
-				32B5E17E24D466F500DA1239 /* TestCollectCustomDataFlow.swift */,
+				32B5E17E24D466F500DA1239 /* TestCollectSSNFlow.swift */,
 				32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */,
 				326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */,
 				FD12B9992304616E00B670DD /* Info.plist */,
@@ -737,7 +737,7 @@
 				3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */,
 				326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */,
 				44D0E343291E9315001AF8ED /* XCTestCase+Extensions.swift in Sources */,
-				32B5E17F24D466F500DA1239 /* TestCollectCustomDataFlow.swift in Sources */,
+				32B5E17F24D466F500DA1239 /* TestCollectSSNFlow.swift in Sources */,
 				32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */,
 				44D0E33F291E92DF001AF8ED /* VGSUITestElementType.swift in Sources */,
 				44D0E347291E9694001AF8ED /* TestsCollectFlowType.swift in Sources */,
