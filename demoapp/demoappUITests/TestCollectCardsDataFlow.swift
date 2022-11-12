@@ -88,14 +88,12 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
 
     // Wait for request.
     wait(forTimeInterval: 30)
-    
+
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]
 
     // Verify success response.
-    let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
-    let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
-    XCTAssert(successResponseLabel.exists)
+    verifySuccessResponse()
   }
 
   /// Fills in correct card data.

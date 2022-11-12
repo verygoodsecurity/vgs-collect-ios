@@ -38,4 +38,11 @@ class TestCollectBaseTestCase: XCTestCase {
     app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "2027")
     app.pickerWheels.element(boundBy: 1).tap()
   }
+
+  /// Verifies success response exist.
+  func verifySuccessResponse() {
+    let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
+    let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
+    XCTAssert(successResponseLabel.exists)
+  }
 }

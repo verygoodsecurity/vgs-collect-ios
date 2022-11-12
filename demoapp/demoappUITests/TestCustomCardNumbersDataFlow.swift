@@ -31,6 +31,18 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
         /// CVC.
         static let cvc: VGSUITestElement = .init(type: .secureTextField, identifier: "CVC")
       }
+
+      /// CardIO fields.
+      enum CardIO {
+        /// Card number.
+        static let cardNumber: VGSUITestElement = .init(type: .textField, identifier: "Card Number")
+
+        /// Expiration date.
+        static let expirationDate: VGSUITestElement = .init(type: .textField, identifier: "MM / YY")
+
+        /// CVC.
+        static let cvc: VGSUITestElement = .init(type: .secureTextField, identifier: "CVV")
+      }
     }
 
     /// Navigation bar elements.
@@ -41,6 +53,9 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
 
       /// Title.
       static let title = "Collect Payment Cards"
+
+      /// CardIO navigation bar.
+      static let cardIOBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Card")
     }
 
     /// Labels.
@@ -61,10 +76,27 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
 
       /// Upload.
       static let upload: VGSUITestElement = .init(type: .button, identifier: "UPLOAD")
+
+      /// Scan.
+      static let scan: VGSUITestElement = .init(type: .button, identifier: "SCAN")
+
+      /// Done.
+      static let done: VGSUITestElement = .init(type: .button, identifier: "Done")
+    }
+
+    /// Card numbers.
+    enum CardNumbers {
+
+      /// Visa.
+      static let visa = "4111 1111 1111 1111"
+
+      /// Visa for cardIO without spaces.
+      static let cardIOVisa = "4111111111111111"
+
+      /// Custom brand.
+      static let uknownBrand = "9111 1111 1111 111"
     }
   }
-
-	let flowType = "Customize Payment Cards"
 
   /// Tests valid custom brand.
   func testValidCustomBrand() {
@@ -73,7 +105,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     app.tables.staticTexts[TestsCollectFlowType.customPaymentCards.name].tap()
 
     // Fill in correct data.
-    fillInCorrectCardData()
+    fillInCorrectCardData(with: UIElements.CardNumbers.visa)
 
     // Tap on state.
     app.staticTexts[UIElements.Labels.state].tap()
@@ -88,86 +120,82 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     let responseLabel = app.staticTexts[UIElements.Labels.response]
 
     // Verify success response.
-    let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
-    let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
-    XCTAssert(successResponseLabel.exists)
+    verifySuccessResponse()
   }
 
+  // Verify uknown brand can be used for card data.
   func testValidUnknownBrand() {
-     app.tables.staticTexts[flowType].tap()
-     
-     let cardHolderNameField = app.textFields["Cardholder Name"]
-     let cardNumberField = app.textFields["4111 1111 1111 1111"]
-     let expDateField = app.textFields["MM/YYYY"]
-     let cvcField = app.secureTextFields["CVC"]
-     
-     cardHolderNameField.tap()
-     cardHolderNameField.typeText("Joe B")
+    // Navigate to payment cards.
+    app.tables.staticTexts[TestsCollectFlowType.customPaymentCards.name].tap()
 
-     cardNumberField.tap()
-     cardNumberField.typeText("9111 1111 1111 111")
+    // Fill in correct data.
+    fillInCorrectCardData(with: UIElements.CardNumbers.uknownBrand)
 
-     expDateField.tap()
-     
-     app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "2030")
-     app.pickerWheels.element(boundBy: 1).tap()
-    
-     app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "May")
-     app.pickerWheels.element(boundBy: 0).tap()
+    // Tap on state.
+    app.staticTexts[UIElements.Labels.state].tap()
 
-     cvcField.tap()
-     cvcField.typeText("1234")
-     
-     app.staticTexts["STATE"].tap()
-     
-     app.buttons["UPLOAD"].tap()
-     let responseLabel = app.staticTexts["RESPONSE"]
-     responseLabel.waitForExistence(timeout: 30)
-     
-     let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
-     let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
-     XCTAssert(successResponseLabel.exists)
-    
+    /// Tap on upload button.
+    UIElements.Buttons.upload.find(in: app).tap()
+
+    // Wait for request.
+    wait(forTimeInterval: 30)
+
+    // Find response label.
+    let responseLabel = app.staticTexts[UIElements.Labels.response]
+
+    // Verify success response.
+    verifySuccessResponse()
   }
-  
+
+  /// Verify input card data through CardIO.
   func testValidInputThroughCardIO() {
-      app.tables.staticTexts[flowType].tap()
-    
-      let cardHolderNameField = app.textFields["Cardholder Name"]
-      
-      cardHolderNameField.tap()
-      cardHolderNameField.typeText("Joe B")
+    // Navigate to payment cards.
+    app.tables.staticTexts[TestsCollectFlowType.customPaymentCards.name].tap()
 
-      app.staticTexts["STATE"].tap()
-    
-      app.buttons["SCAN"].tap()
-      let cardIOCardNumField =  app.tables.textFields["Card Number"]
-      let cardIOExpDateField =  app.tables.textFields["MM / YY"]
-      let cardIOCVVField =  app.tables.textFields["CVV"]
+    // Enter card holder name.
+    let cardHolderNameField = UIElements.VGSTextField.CardDetails.cardHolderName.find(in: app)
 
-      cardIOCardNumField.tap()
-      cardIOCardNumField.typeText("4111111111111111")
-    
-      cardIOExpDateField.tap()
-      cardIOExpDateField.typeText("0130")
+    cardHolderNameField.tap()
+    cardHolderNameField.typeText("Joe B")
 
-      cardIOCVVField.tap()
-      cardIOCVVField.typeText("123")
+    // Dismiss keyboard.
+    app.staticTexts[UIElements.Labels.state].tap()
+
+    // Tap to scan.
+    UIElements.Buttons.scan.find(in: app).tap()
+
+    // Wait for CardIO screen to be presented.
+    wait(forTimeInterval: 0.5)
+
+    // Find CardIO fields.
+    let cardIOCardNumField =  UIElements.VGSTextField.CardIO.cardNumber.find(in: app)
+    let cardIOExpDateField =  UIElements.VGSTextField.CardIO.expirationDate.find(in: app)
+    let cardIOCVVField =  UIElements.VGSTextField.CardIO.cvc.find(in: app)
+
+    // Enter data.
+    cardIOCardNumField.tap()
+    cardIOCardNumField.typeText("4111111111111111")
     
-      app.navigationBars["Card"].buttons["Done"].tap()
-            
-      app.buttons["UPLOAD"].tap()
-      let responseLabel = app.staticTexts["RESPONSE"]
-      responseLabel.waitForExistence(timeout: 30)
-      
-      let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
-      let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
-      XCTAssert(successResponseLabel.exists)
+    cardIOExpDateField.tap()
+    cardIOExpDateField.typeText("0130")
+
+    cardIOCVVField.tap()
+    cardIOCVVField.typeText("123")
+
+    // Tap on done.
+    UIElements.Buttons.done.find(in: app).tap()
+
+    // Wait for CardIO screen to be dismissed.
+    wait(forTimeInterval: 0.5)
+
+    // Tap on upload.
+    UIElements.Buttons.upload.find(in: app).tap()
+
+    verifySuccessResponse()
   }
-
 
   /// Fills in correct card data.
-  func fillInCorrectCardData() {
+  func fillInCorrectCardData(with cardNumber: String) {
     let cardHolderNameField = UIElements.VGSTextField.CardDetails.cardHolderName.find(in: app)
     let cardNumberField = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
     let expDateField = UIElements.VGSTextField.CardDetails.expirationDate.find(in: app)
@@ -177,7 +205,8 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     cardHolderNameField.tap()
     cardHolderNameField.typeText("Joe B")
 
-    typeInVisa()
+    cardNumberField.tap()
+    cardNumberField.typeText(cardNumber)
 
     expDateField.tap()
 
@@ -185,13 +214,5 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
 
     cvcField.tap()
     cvcField.typeText("1234")
-  }
-
-  /// Types in visa.
-  func typeInVisa() {
-    let cardNumberField = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
-
-    cardNumberField.tap()
-    cardNumberField.typeText("4111 1111 1111 1111")
   }
 }
