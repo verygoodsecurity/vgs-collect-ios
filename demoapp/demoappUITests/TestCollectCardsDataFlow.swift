@@ -9,45 +9,112 @@
 import XCTest
 @testable import demoapp
 
+/// Payment cards flow.
 class TestCollectCardsDataFlow: TestCollectBaseTestCase {
 
-			let flowType = "Collect Payment Cards"
+  /// UI elements.
+  enum UIElements {
 
-      func testPutCorrectData() {
-      app.tables.staticTexts["Collect Payment Cards Data"].tap()
+    /// VGSText field.
+    enum VGSTextField {
 
-      let cardHolderNameField = app.textFields["Cardholder Name"]
-      let cardNumberField = app.textFields["4111 1111 1111 1111"]
-      let expDateField = app.textFields["MM/YY"]
-      let cvcField = app.secureTextFields["CVC"]
-      let consoleLabel = app.staticTexts.matching(identifier: "ConsoleLabelIdentifire")
-      let navigationBar = app.navigationBars["Collect Payment Cards"].staticTexts["Collect Payment Cards"]
+      /// Card Details fields.
+      enum CardDetails {
+        /// Card holder name.
+        static let cardHolderName: VGSUITestElement = .init(type: .textField, identifier: "Cardholder Name")
 
-      cardHolderNameField.tap()
-      cardHolderNameField.typeText("Joe B")
+        /// Card number.
+        static let cardNumber: VGSUITestElement = .init(type: .textField, identifier: "4111 1111 1111 1111")
 
-      cardNumberField.tap()
-      cardNumberField.typeText("378282246310005")
+        /// Expiration date.
+        static let expirationDate: VGSUITestElement = .init(type: .textField, identifier: "MM/YY")
 
-      expDateField.tap()
-
-      app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "March")
-      app.pickerWheels.element(boundBy: 0).tap()
-
-      app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "2027")
-      app.pickerWheels.element(boundBy: 1).tap()
-
-      cvcField.tap()
-      cvcField.typeText("1234")
-
-      app.staticTexts["STATE"].tap()
-
-      app.buttons["UPLOAD"].tap()
-      let responseLabel = app.staticTexts["RESPONSE"]
-      responseLabel.waitForExistence(timeout: 30)
-
-      let successResponsePredicate = NSPredicate(format: "label BEGINSWITH 'Success: '")
-      let successResponseLabel = app.staticTexts.element(matching: successResponsePredicate)
-      XCTAssert(successResponseLabel.exists)
+        /// CVC.
+        static let cvc: VGSUITestElement = .init(type: .secureTextField, identifier: "CVC")
+      }
     }
+
+    /// Navigation bar elements.
+    enum NavigationBar {
+
+      /// Expiration date.
+      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Payment Cards")
+
+      /// Title.
+      static let title = "Collect Payment Cards"
+    }
+
+    /// Labels.
+    enum Labels {
+
+      /// Console label identifier.
+      static let consoleLabelIdentifier = "ConsoleLabelIdentifire"
+
+      /// State label.
+      static let state = "STATE"
+
+      /// Response label.
+      static let response = "RESPONSE"
+    }
+
+    /// Buttons.
+    enum Buttons {
+
+      /// Upload.
+      static let upload: VGSUITestElement = .init(type: .button, identifier: "UPLOAD")
+    }
+  }
+
+  /// Test valid data flow.
+  func testPutCorrectData() {
+
+    // Navigate to payment cards.
+    app.tables.staticTexts[TestsCollectFlowType.paymentCards.name].tap()
+
+    // Select console label.
+    let consoleLabel = app.staticTexts.matching(identifier: UIElements.Labels.consoleLabelIdentifier)
+
+    // Tap on nav bar.
+    let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
+
+    // Fill in correct data.
+    fillInCorrectCardData()
+
+    // Tap on state.
+    app.staticTexts[UIElements.Labels.state].tap()
+
+    /// Tap on upload button.
+    UIElements.Buttons.upload.find(in: app).tap()
+
+    // Wait for request.
+    wait(forTimeInterval: 30)
+
+    // Find response label.
+    let responseLabel = app.staticTexts[UIElements.Labels.response]
+
+    // Verify success response.
+    verifySuccessResponse()
+  }
+
+  /// Fills in correct card data.
+  func fillInCorrectCardData() {
+    let cardHolderNameField = UIElements.VGSTextField.CardDetails.cardHolderName.find(in: app)
+    let cardNumberField = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
+    let expDateField = UIElements.VGSTextField.CardDetails.expirationDate.find(in: app)
+    let cvcField = UIElements.VGSTextField.CardDetails.cvc.find(in: app)
+
+
+    cardHolderNameField.tap()
+    cardHolderNameField.typeText("Joe B")
+
+    cardNumberField.tap()
+    cardNumberField.typeText("378282246310005")
+
+    expDateField.tap()
+
+    fillInCorrectDateWithDatePicker()
+
+    cvcField.tap()
+    cvcField.typeText("1234")
+  }
 }

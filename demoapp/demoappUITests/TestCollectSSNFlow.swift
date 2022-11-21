@@ -1,5 +1,5 @@
 //
-//  TestCollectSSNDataFlow.swift
+//  TestCollectSSNFlow.swift
 //  demoappUITests
 //
 //  Created by Dima on 31.07.2020.
@@ -8,8 +8,8 @@
 
 import XCTest
 
-/// Tests for SSN data flow.
-class TestCollectSSNDataFlow: TestCollectBaseTestCase {
+/// Test SSN flow.
+class TestCollectSSNFlow: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
@@ -48,22 +48,23 @@ class TestCollectSSNDataFlow: TestCollectBaseTestCase {
     enum Texts {
 
       /// Raw ssn.
-      static let rawSSN = "111558899"
+      static let rawSSN = "123448899"
 
       /// Masked ssn.
       static let maskedSSN = "SSN: XXX-XX-8899"
     }
   }
 
-  /// Verifies correct data flow works for ssn.
+  /// Verifies ssn flow work for valid ssn.
   func testPutCorrectData() {
+
     // Navigate to SSN.
     app.tables.staticTexts[TestsCollectFlowType.ssn.name].tap()
 
     let ssnField = UIElements.VGSTextField.SSN.ssn.find(in: app)
     ssnField.tap()
     ssnField.typeText(UIElements.Texts.rawSSN)
-    
+
     app.staticTexts[UIElements.Texts.maskedSSN].tap()
     UIElements.Buttons.upload.find(in: app).tap()
 
