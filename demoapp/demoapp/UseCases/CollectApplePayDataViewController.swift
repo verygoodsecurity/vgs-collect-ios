@@ -39,9 +39,6 @@ class CollectApplePayData: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    VGSCollectLogger.shared.configuration.isNetworkDebugEnabled = true
-    VGSCollectLogger.shared.configuration.level = .info
     
     /// Check if ApplePay option available
     let result = Self.applePayStatus()
@@ -68,7 +65,7 @@ class CollectApplePayData: UIViewController {
     let paymentRequest = PKPaymentRequest()
     paymentRequest.paymentSummaryItems = paymentSummaryItems
     /// Merchand id associated with ApplePay Payment Processing Certificate.
-    paymentRequest.merchantIdentifier = "merchant.com.vgs-checkout-ios-test"
+    paymentRequest.merchantIdentifier = "<merchant-id>"
     paymentRequest.merchantCapabilities = .capability3DS
     paymentRequest.countryCode = "US"
     paymentRequest.currencyCode = "USD"
