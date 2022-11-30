@@ -22,6 +22,28 @@ public enum VGSCardExpDateFormat {
   
   /// Exp.Date in format yy/mm: 2022/01
   case longYearThenMonth
+
+  /// Initializer
+  /// - Parameter name: String object, exp date format name.
+  internal init?(name: String) {
+    switch name {
+    case "shortYear":
+      self = .shortYear
+      return
+    case "longYear":
+      self = .longYear
+      return
+    case "shortYearThenMonth":
+      self = .shortYearThenMonth
+      return
+    case "longYearThenMonth":
+      self = .longYearThenMonth
+      return
+    default:
+      print("WRONG name!: \(name)")
+      return nil
+    }
+  }
   
   var yearCharacters: Int {
     switch self {
