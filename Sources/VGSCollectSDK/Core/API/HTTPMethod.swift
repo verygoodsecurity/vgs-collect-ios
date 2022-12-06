@@ -18,7 +18,7 @@ public typealias HTTPHeaders = [String: String]
 internal typealias BodyData = [String: Any]
 
 /// HTTP request methods
-public enum HTTPMethod: String {
+public enum VGSCollectHTTPMethod: String {
 		/// GET method.
 		case get     = "GET"
 		/// POST method.
