@@ -123,7 +123,7 @@ class APIClient {
 
 	// MARK: - Send request
 
-  func sendRequest(path: String, method: HTTPMethod = .post, routeId: String? = nil, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+  func sendRequest(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
 
     let sendRequestBlock: (URL?) -> Void = {url in
 			guard var requestURL = url else {
@@ -172,7 +172,7 @@ class APIClient {
 		}
 	}
 
-	private  func sendRequest(to url: URL, method: HTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+	private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
 
 		// Add headers.
 		var headers = APIClient.defaultHttpHeaders

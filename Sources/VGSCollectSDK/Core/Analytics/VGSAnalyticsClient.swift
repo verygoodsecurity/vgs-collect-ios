@@ -120,7 +120,7 @@ public class VGSAnalyticsClient {
 internal extension VGSAnalyticsClient {
   
   // send events
-  func sendAnalyticsRequest(method: HTTPMethod = .post, path: String = "vgs", data: [String: Any] ) {
+  func sendAnalyticsRequest(method: VGSCollectHTTPMethod = .post, path: String = "vgs", data: [String: Any] ) {
     
       // Check if tracking events enabled
       guard shouldCollectAnalytics else {

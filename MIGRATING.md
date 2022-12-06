@@ -7,6 +7,7 @@ Bin length expanded from 6 to 8 digits for [Visa](https://ht.visa.com/dam/VCOM/g
 ### Migrating from versions < v1.9.7
 #### Swift PM modules updates.
 For SDK integration with Swift Package Manager you don't need to import `VGSPaymentCards` module.
+### Migrating from versions < v1.11.3
 
 Before:
 
@@ -161,3 +162,7 @@ let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "c
 expDateConfiguration.type = .expDate
 expDateConfiguration.divider = ""
 ```
+
+### Migrating from versions < v1.11.3
+#### Rename enum 
+`HTTPMethod` -> `VGSCollectHTTPMethod`
