@@ -15,7 +15,7 @@ extension VGSCollect {
      
      - Parameters:
         - path: Inbound rout path for your organization vault.
-        - method: HTTPMethod, default is `.post`.
+        - method: VGSCollectHTTPMethod, default is `.post`.
         - routeId: id of VGS Proxy Route, default is `nil`.
         - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
 	      - requestOptions: `VGSCollectRequestOptions` object, holds additional request options. Default options are `.nestedJSON`.
@@ -24,7 +24,7 @@ extension VGSCollect {
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-  public func sendData(path: String, method: HTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
+  public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
       
         // Content analytics.
         var content: [String] = ["textField"]
@@ -80,7 +80,7 @@ extension VGSCollect {
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-    public func sendFile(path: String, method: HTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+    public func sendFile(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
 
         var content: [String] = ["file"]
         if !(extraData?.isEmpty ?? true) {
@@ -181,7 +181,7 @@ extension VGSCollect {
   public func tokenizeData(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
     // Default request params
     let path = "tokens"
-    let method = HTTPMethod.post
+    let method = VGSCollectHTTPMethod.post
     
     // Check fields validation status
     if let error = validateStoredInputData() {
