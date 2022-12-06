@@ -1,5 +1,5 @@
 //
-//  HTTPMethod.swift
+//  VGSCollectHTTPMethod.swift
 //  VGSCollectSDK
 //
 //  Created on 16.02.2021.
