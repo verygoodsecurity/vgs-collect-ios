@@ -2,21 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "BlinkCard",
+        "repositoryURL": "https://github.com/blinkcard/blinkcard-swift-package",
+        "state": {
+          "branch": null,
+          "revision": "009590bad4b264607932dd2b3c567aaf8cfd1b34",
+          "version": "2.6.0"
+        }
+      },
+      {
         "package": "CardIOSDK",
         "repositoryURL": "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
         "state": {
           "branch": null,
           "revision": "9f21bec2d2f12d14ffbe8305c44ceff9b60e35af",
           "version": "5.5.7"
-        }
-      },
-      {
-        "package": "CardScan",
-        "repositoryURL": "https://github.com/getbouncer/cardscan-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "84e7d1e7805675274edd85bc786b2dd1e4d864e0",
-          "version": "2.0.9"
         }
       }
     ]

@@ -11,7 +11,7 @@ import VGSCollectSDK
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
 class CardsDataCollectingViewController: UIViewController {
-    
+
     @IBOutlet weak var cardDataStackView: UIStackView!
     @IBOutlet weak var consoleStatusLabel: UILabel!
     @IBOutlet weak var consoleLabel: UILabel!
@@ -29,8 +29,9 @@ class CardsDataCollectingViewController: UIViewController {
         didSet { consoleLabel.text = consoleMessage }
     }
     
-    // Init CardScan controller with API KEY. Details: https://cardscan.io
-    var scanController = VGSCardIOScanController()
+    var scanController = VGSBlinkCardController(licenseKey: "<license_key>") { error in
+      print(error)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,30 +125,30 @@ class CardsDataCollectingViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.cardIconLocation = .right
       
-        cardNumber.becomeFirstResponder()
+//        cardNumber.becomeFirstResponder()
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
-				expDateConfiguration.inputDateFormat = .shortYear
+				expDateConfiguration.inputDateFormat = .longYear
         expDateConfiguration.outputDateFormat = .longYear
 
         /// Default .expDate format is "##/##"
-        expDateConfiguration.formatPattern = "##/##"
+        expDateConfiguration.formatPattern = "##/####"
         
         /// Update validation rules
         expDateConfiguration.validationRules = VGSValidationRuleSet(rules: [
-          VGSValidationRuleCardExpirationDate(dateFormat: .shortYear, error: VGSValidationErrorType.expDate.rawValue)
+          VGSValidationRuleCardExpirationDate(dateFormat: .longYear, error: VGSValidationErrorType.expDate.rawValue)
         ])
 
         expCardDate.configuration = expDateConfiguration
-        expCardDate.placeholder = "MM/YY"
+        expCardDate.placeholder = "MM/YYYY"
         expCardDate.monthPickerFormat = .longSymbols
       
         let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "card_cvc")
         cvcConfiguration.type = .cvc
 
         cvcCardNum.configuration = cvcConfiguration
-        cvcCardNum.isSecureTextEntry = true
+        cvcCardNum.isSecureTextEntry = false
         cvcCardNum.placeholder = "CVC"
         cvcCardNum.tintColor = .lightGray
 
@@ -174,7 +175,9 @@ class CardsDataCollectingViewController: UIViewController {
     
     // Start CardIO scanning
     @IBAction func scanAction(_ sender: Any) {
-        scanController.presentCardScanner(on: self, animated: true, completion: nil)
+      scanController.presentCardScanner(on: self, animated: true) {
+        return
+      }
     }
     
     // Upload data from TextFields to VGS
@@ -227,7 +230,6 @@ class CardsDataCollectingViewController: UIViewController {
 // MARK: - VGSTextFieldDelegate
 extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
-    print(textField.state.description)
     textField.borderColor = textField.state.isValid  ? .gray : .red
     
     /// Update CVC field UI in case if valid cvc digits change, e.g.: input card number brand changed form Visa(3 digints CVC) to Amex(4 digits CVC) )
@@ -242,33 +244,32 @@ extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   }
 }
 
-// MARK: - VGSCardIOScanControllerDelegate
-extension CardsDataCollectingViewController: VGSCardIOScanControllerDelegate {
+extension CardsDataCollectingViewController: VGSBlinkCardControllerDelegate {
+  func textFieldForScannedData(type: VGSCollectSDK.VGSBlinkCardDataType) -> VGSCollectSDK.VGSTextField? {
+      // match VGSTextField with scanned data
+      switch type {
+      case .expirationDateLong:
+          return expCardDate
+      case .cardNumber:
+          return cardNumber
+      case .cvc:
+        return cvcCardNum
+      case .name:
+        return cardHolderName
+      default:
+          return nil
+      }
+  }
   
-  //When user press Done button on CardIO screen
   func userDidFinishScan() {
       scanController.dismissCardScanner(animated: true, completion: {
           // add actions on scan controller dismiss completion
       })
   }
   
-  //When user press Cancel button on CardIO screen
   func userDidCancelScan() {
-      scanController.dismissCardScanner(animated: true, completion: nil)
-  }
-  
-  //Asks VGSTextField where scanned data with type need to be set.
-  func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
-      switch type {
-      case .expirationDateLong:
-          return expCardDate
-      case .cvc:
-          return cvcCardNum
-      case .cardNumber:
-          return cardNumber
-      default:
-          return nil
-      }
+      scanController.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
   }
 }
-

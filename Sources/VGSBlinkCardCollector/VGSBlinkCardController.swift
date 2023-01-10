@@ -1,9 +1,6 @@
 //
-//  VGSCardScanController.swift
-//  VGSCardScanCollector
-//
-//  Created by Dima on 18.08.2020.
-//  Copyright © 2020 VGS. All rights reserved.
+//  VGSBlinkCardController.swift
+//  VGSBlinkCardCollector
 //
 
 import Foundation
@@ -14,15 +11,16 @@ import VGSCollectSDK
 import UIKit
 #endif
 
-/// Controller responsible for managing CardScan scanner
-public class VGSCardScanController {
+/// Controller responsible for managing `BlinkCard` scanner.
+public class VGSBlinkCardController {
     
     // MARK: - Attributes
+  
+    /// Handle card scanner events.
+    internal var scanHandler: VGSBlinkCardHandler?
     
-    internal var scanHandler: VGSCardScanHandler?
-    
-    /// `VGSCardScanControllerDelegate` - handle user interaction with `CardScan` scanner
-    public var delegate: VGSCardScanControllerDelegate? {
+    /// `VGSBlinkCardControllerDelegate` - handle user interaction with `BlinkCard` scanner.
+    public var delegate: VGSBlinkCardControllerDelegate? {
       set {
         scanHandler?.delegate = newValue
       }
@@ -32,21 +30,20 @@ public class VGSCardScanController {
     }
     
     // MARK: - Initialization
+    
     /// Initialization
-    ///
     /// - Parameters:
-    ///   - apiKey: key required for CardScan  SDK usage.
-    ///   - delegate: `VGSCardScanControllerDelegate`. Default is `nil`.
-  @available(*, deprecated, message: "CardScan support will be droped in future versions, migrate to card.io.")
-    public required init(apiKey: String, delegate: VGSCardScanControllerDelegate? = nil) {
-          
-      self.scanHandler = VGSCardScanHandler(apiKey: apiKey)
+    ///   - licenseKey: key required for BlinkCard  SDK usage.
+    ///   - delegate: `VGSBlinkCardControllerDelegate`. Default is `nil`.
+    ///   - errorCallback: Error callback with Int error code(represents `MBCLicenseError` enum), triggered only when error occured.
+  public required init(licenseKey: String, delegate: VGSBlinkCardControllerDelegate? = nil, errorCallback: @escaping ((NSInteger) -> Void)) {
+      self.scanHandler = VGSBlinkCardHandler(licenseKey: licenseKey, errorCallback: errorCallback)
       self.delegate = delegate
     }
     
     // MARK: - Methods
     
-    /// Present `CardScan` scanner.
+    /// Present `BlinkCard` scanner.
     /// - Parameters:
     ///   - viewController: `UIViewController` that will present card scanner.
     ///   - animated: pass `true` to animate the presentation; otherwise, pass `false`.
@@ -55,17 +52,11 @@ public class VGSCardScanController {
         scanHandler?.presentScanVC(on: viewController, animated: animated, completion: completion)
     }
     
-    /// Dismiss `CardScan` scanner.
-    ///
+    /// Dismiss `BlinkCard` scanner.
     /// - Parameters:
     ///   - animated: pass `true` to animate the dismiss of presented viewcontroller; otherwise, pass `false`.
     ///   - completion: the block to execute after the dismiss finishes.
     public func dismissCardScanner(animated: Bool, completion: (() -> Void)?) {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
-    }
-  
-    /// Check if CardScan can run on current device.
-    static public func isCompatible() -> Bool {
-      return VGSCardScanHandler.isCompatible()
     }
 }
