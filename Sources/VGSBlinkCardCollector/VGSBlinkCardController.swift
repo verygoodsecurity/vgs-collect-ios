@@ -12,6 +12,7 @@ import UIKit
 #endif
 
 /// Controller responsible for managing `BlinkCard` scanner.
+@available(iOS 13.0, *)
 public class VGSBlinkCardController {
     
     // MARK: - Attributes

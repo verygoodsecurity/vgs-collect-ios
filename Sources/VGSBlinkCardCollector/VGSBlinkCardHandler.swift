@@ -14,6 +14,7 @@ import UIKit
 #endif
 
 /// BlinkCard wrapper, manages communication between public API and BlinkCard.
+@available(iOS 13.0, *)
 internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
     /// VGS BlinkCard Controller Delegate.
     weak var delegate: VGSBlinkCardControllerDelegate?
@@ -66,6 +67,7 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
 }
 
 /// :nodoc:
+@available(iOS 13.0, *)
 extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
 
   /// When BlinkCard finish card recognition.
