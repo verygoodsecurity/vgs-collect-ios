@@ -37,7 +37,7 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
     }
     
     /// Setup BlinlCard params and present scanner.
-    func presentScanVC(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle = .overCurrentContext, completion: (() -> Void)?) {
+    func presentScanVC(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle, completion: (() -> Void)?) {
        // Create BlinkCard settings
        let settings : MBCBlinkCardOverlaySettings = MBCBlinkCardOverlaySettings()
        settings.enableEditScreen = false
@@ -48,6 +48,7 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
        let blinkCardOverlayViewController = MBCBlinkCardOverlayViewController(settings: settings, recognizerCollection: recognizerCollection, delegate: self)
         // Create recognizer view controller with wanted overlay view controller
        let recognizerRunneViewController : UIViewController = MBCViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: blinkCardOverlayViewController)!
+        recognizerRunneViewController.modalPresentationStyle = modalPresentationStyle
         self.view = recognizerRunneViewController
         // Present the recognizer runner view controller
         viewController.present(recognizerRunneViewController, animated: true, completion: completion)

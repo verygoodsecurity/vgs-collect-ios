@@ -162,7 +162,7 @@ class CardsDataCollectingViewController: UIViewController {
         print("⚠️ VGSBlinkCardController not initialized. Check license key!")
         return
       }
-      scanController.presentCardScanner(on: self, animated: true, completion: nil)
+      scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
     }
     
     // Upload data from TextFields to VGS
