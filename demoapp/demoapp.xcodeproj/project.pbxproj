@@ -337,10 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				449FFCA728A505A100FE4A1F /* PayOptIntegration */,
-				44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */,
 				44D8691326205F670014645F /* CardsDataCollectingViewController.swift */,
-				0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */,
+				44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */,
 				44D8691426205F670014645F /* SSNCollectingViewController.swift */,
+				0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */,
 				44D8691526205F670014645F /* CustomDataCollectingViewController.swift */,
 				44D8691926205F670014645F /* FilePickerViewController.swift */,
 				03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */,

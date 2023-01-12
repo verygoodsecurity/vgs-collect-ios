@@ -21,10 +21,7 @@
 		03B10C0E28E31B74009B409B /* VGSBlinkCardControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE628E2E36E009B409B /* VGSBlinkCardControllerDelegate.swift */; };
 		03B10C1028E31B74009B409B /* VGSBlinkCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE728E2E36E009B409B /* VGSBlinkCardController.swift */; };
 		03B10C1128E31B8F009B409B /* VGSBlinkCardCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		03B10C1628E3405C009B409B /* BlinkCard in Frameworks */ = {isa = PBXBuildFile; productRef = 03B10C1528E3405C009B409B /* BlinkCard */; };
-		03DDAAF928632DF800337BA8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26CD25DB88C50099AA3A /* HTTPMethod.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
-		32059CD12417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
 		32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */; };
 		32093D7A25CD9F88006CD242 /* VGSCollectLoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7425CD9F88006CD242 /* VGSCollectLoggingConfiguration.swift */; };
@@ -378,7 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B10C0228E31B1A009B409B /* VGSCollectSDK.framework in Frameworks */,
-				03B10C1628E3405C009B409B /* BlinkCard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1147,7 +1143,6 @@
 			);
 			name = VGSBlinkCardCollector;
 			packageProductDependencies = (
-				03B10C1528E3405C009B409B /* BlinkCard */,
 			);
 			productName = VGSCardScanCollector;
 			productReference = 03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */;
@@ -1264,7 +1259,6 @@
 			);
 			mainGroup = FD12B9A52304619100B670DD;
 			packageReferences = (
-				03B10C1428E3405C009B409B /* XCRemoteSwiftPackageReference "blinkcard-swift-package" */,
 			);
 			productRefGroup = FD12B9B02304619100B670DD /* Products */;
 			projectDirPath = "";
@@ -1566,7 +1560,6 @@
 				324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */,
 				443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */,
 				4459728A26135BE600139EAA /* VGSExpDateSerializersDataProvider.swift in Sources */,
-				32059CD12417E02E003E9481 /* Utils.swift in Sources */,
 				327C9E182407FC62004C641C /* VGSErrorInfoKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1604,7 +1597,7 @@
 				);
 				INFOPLIST_FILE = VGSBlinkCardCollector/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1637,7 +1630,7 @@
 				);
 				INFOPLIST_FILE = VGSBlinkCardCollector/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2055,25 +2048,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		03B10C1428E3405C009B409B /* XCRemoteSwiftPackageReference "blinkcard-swift-package" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/blinkcard/blinkcard-swift-package";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		03B10C1528E3405C009B409B /* BlinkCard */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03B10C1428E3405C009B409B /* XCRemoteSwiftPackageReference "blinkcard-swift-package" */;
-			productName = BlinkCard;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD12B9A62304619100B670DD /* Project object */;
 }

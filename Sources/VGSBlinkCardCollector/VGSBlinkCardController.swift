@@ -12,6 +12,7 @@ import UIKit
 #endif
 
 /// Controller responsible for managing `BlinkCard` scanner.
+@available(iOS 13.0, *)
 public class VGSBlinkCardController {
     
     // MARK: - Attributes
@@ -48,9 +49,10 @@ public class VGSBlinkCardController {
     /// - Parameters:
     ///   - viewController: `UIViewController` that will present card scanner.
     ///   - animated: pass `true` to animate the presentation; otherwise, pass `false`.
+    ///   - modalPresentationStyle: `UIModalPresentationStyle` object, modal presentation style. Default is `.overCurrentContext`.
     ///   - completion: the block to execute after the presentation finishes.
-    public func presentCardScanner(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        scanHandler?.presentScanVC(on: viewController, animated: animated, completion: completion)
+    public func presentCardScanner(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle = .overCurrentContext, completion: (() -> Void)?) {
+      scanHandler?.presentScanVC(on: viewController, animated: animated, modalPresentationStyle: modalPresentationStyle, completion: completion)
     }
     
     /// Dismiss `BlinkCard` scanner.
