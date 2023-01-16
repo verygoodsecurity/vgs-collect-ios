@@ -74,9 +74,15 @@ class VGSTokenizationConfigurationsTest: VGSCollectBaseTestCase {
   }
   
   func testExpDateTokenizationConfiguration() {
+    textField = VGSExpDateTextField()
+
     // set configuration
     let configuration = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: "fieldName")
-    textField = VGSExpDateTextField()
+    configuration.inputSource = .keyboard
+    configuration.keyboardType = .namePhonePad
+    configuration.returnKeyType = .go
+    configuration.keyboardAppearance = .dark
+    
     textField.configuration = configuration
     
     // Test field type is correct
@@ -90,6 +96,11 @@ class VGSTokenizationConfigurationsTest: VGSCollectBaseTestCase {
     let defaultTokenizationParams = VGSExpDateTokenizationParameters()
     XCTAssertTrue(tokenizationConfiguration.tokenizationParameters.format == defaultTokenizationParams.format, "Error: wrong tokenization format!")
     XCTAssertTrue(tokenizationConfiguration.tokenizationParameters.storage == defaultTokenizationParams.storage, "Error: wrong tokenization storage!")
+    
+    // Test configuration params
+    XCTAssertTrue(textField.textField.keyboardType == configuration.keyboardType, "Wrong keyboardType!")
+    XCTAssertTrue(textField.textField.returnKeyType == configuration.returnKeyType, "Wrong returnKeyType!")
+    XCTAssertTrue(textField.textField.keyboardAppearance == configuration.keyboardAppearance, "Wrong keyboardAppearance!")
   }
   
   func testCardNumberTokenizationConfiguration() {

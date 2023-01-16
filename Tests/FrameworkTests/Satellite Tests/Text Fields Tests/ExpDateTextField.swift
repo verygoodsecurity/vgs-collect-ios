@@ -2,9 +2,6 @@
 //  ExpDateTextField.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 17.06.2020.
-//  Copyright © 2020 VGS. All rights reserved.
-//
 
 import XCTest
 @testable import VGSCollectSDK
@@ -83,4 +80,26 @@ class ExpDateTextField: VGSCollectBaseTestCase {
         XCTAssertTrue(Int(monthComponent) == currentMonth)
         XCTAssertTrue(Int(yearComponent) == currentYear)
     }
+  
+  func testExpDateKeyboardConfiguration() {
+    let customExpDateConfiguration = VGSExpDateConfiguration(collector: collector, fieldName: "textField")
+    customExpDateConfiguration.inputSource = .keyboard
+    customExpDateConfiguration.keyboardType = .namePhonePad
+    customExpDateConfiguration.returnKeyType = .go
+    customExpDateConfiguration.keyboardAppearance = .dark
+    textField.configuration = customExpDateConfiguration
+
+    XCTAssertTrue(textField.textField.keyboardType == customExpDateConfiguration.keyboardType, "Wrong keyboardType!")
+    XCTAssertTrue(textField.textField.returnKeyType == customExpDateConfiguration.returnKeyType, "Wrong returnKeyType!")
+    XCTAssertTrue(textField.textField.keyboardAppearance == customExpDateConfiguration.keyboardAppearance, "Wrong keyboardAppearance!")
+  }
+  
+  func testExpDateConfigurationWithDatePicker() {
+    let customExpDateConfiguration = VGSExpDateConfiguration(collector: collector, fieldName: "textField")
+    customExpDateConfiguration.inputSource = .datePicker
+    textField.configuration = customExpDateConfiguration
+
+    XCTAssertTrue(textField.textField.inputView != nil, "Date picker not set!")
+    XCTAssertTrue(textField.textField.inputView is UIPickerView, "Wrong date picker view!")
+  }
 }
