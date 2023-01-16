@@ -138,11 +138,9 @@ internal extension VGSCVCTextField {
     func updatecvcIconViewSize() {
       if let widthConstraint = cvcIconImageView.constraints.filter({ $0.identifier == "widthConstraint" }).first {
           widthConstraint.constant = cvcIconSize.width
-        print("widthConstraint.constant: \(widthConstraint.constant)")
       }
       if let heightConstraint = cvcIconImageView.constraints.filter({ $0.identifier == "heightConstraint" }).first {
           heightConstraint.constant = cvcIconSize.height
-        print("heightConstraint.constant: \(heightConstraint.constant)")
       }
     }
     
