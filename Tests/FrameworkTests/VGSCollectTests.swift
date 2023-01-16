@@ -2,9 +2,6 @@
 //  FormTests.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 9/17/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 import XCTest
 @testable import VGSCollectSDK
@@ -180,6 +177,22 @@ class VGSCollectTests: VGSCollectBaseTestCase {
       XCTAssertTrue(collector.storage.textFields.count == 0)
       XCTAssertTrue(collector.textFields.count == 0)
     }
+  
+  func testUnassignAllTextFields() {
+    let config = VGSConfiguration(collector: collector, fieldName: "test")
+    let tf1 = VGSTextField()
+    tf1.configuration = config
+  
+    let tf2 = VGSExpDateTextField()
+    tf2.configuration = config
+  
+    XCTAssertTrue(collector.storage.textFields.count == 2)
+    XCTAssertTrue(collector.textFields.count == 2)
+    
+    collector.unsubscribeAllTextFields()
+    XCTAssertTrue(collector.storage.textFields.count == 0)
+    XCTAssertTrue(collector.textFields.count == 0)
+  }
     
     func testCustomJsonMapping() {
         let cardConfiguration = VGSConfiguration(collector: collector, fieldName: "user.card_data.card_number")
