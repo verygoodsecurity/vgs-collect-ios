@@ -127,13 +127,13 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
         let fieldName = textFieldData.fieldName
         switch fieldName {
         case "card_number":
-          var config = VGSCardNumberTokenizationConfiguration(collector: collector, fieldName: fieldName)
+          let config = VGSCardNumberTokenizationConfiguration(collector: collector, fieldName: fieldName)
           config.tokenizationParameters.format = textFieldData.storage
           config.tokenizationParameters.format = textFieldData.format
           cardNumberTextField.configuration = config
           cardNumberTextField.setText(textFieldData.inputValue)
         case "exp_date":
-          var config = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: fieldName)
+          let config = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: fieldName)
 
           if textFieldData.isSerializationEnabled {
             config.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "month", yearFieldName: "year")]
@@ -147,7 +147,7 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
           expDateTextField.configuration = config
           expDateTextField.setText(textFieldData.inputValue)
         case "cvc":
-          var config = VGSCVCTokenizationConfiguration(collector: collector, fieldName: fieldName)
+          let config = VGSCVCTokenizationConfiguration(collector: collector, fieldName: fieldName)
           config.tokenizationParameters.format = textFieldData.storage
           config.tokenizationParameters.format = textFieldData.format
           cvcTextField.configuration = config
@@ -171,7 +171,7 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
         return
       }
 
-      XCTAssertTrue(json == expectedJSON, "Tokenization data mapping error:\n - Index: \(index)\n - Actual JSON: \(actualJSON)\n - Expected: \(expectedJSON)")
+      XCTAssertTrue(json == expectedJSON, "Tokenization data mapping error:\n - Index: \(index)\n - Actual JSON: \(String(describing: actualJSON))\n - Expected: \(expectedJSON)")
     }
   }
 

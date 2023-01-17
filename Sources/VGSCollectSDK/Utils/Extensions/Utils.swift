@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import VGSCollectSDK
 
 /// Merge two  <key:value> objects and their nested values. Returns [String: Any]. Values in d2 will override values in d1 if keys are same!!!!
 func deepMerge(_ d1: [String: Any], _ d2: [String: Any]) -> [String: Any] {

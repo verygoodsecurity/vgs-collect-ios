@@ -13,25 +13,24 @@ let package = Package(
         .library(
             name: "VGSCollectSDK",
             targets: ["VGSCollectSDK"]),
-				.library(
-						name: "VGSCardScanCollector",
-						targets: ["VGSCardScanCollector"]
-			),
-			.library(
-				name: "VGSCardIOCollector",
-				targets: ["VGSCardIOCollector"])
+        .library(
+          name: "VGSCardIOCollector",
+          targets: ["VGSCardIOCollector"]),
+        .library(
+          name: "VGSBlinkCardCollector",
+          targets: ["VGSBlinkCardCollector"])
     ],
     dependencies: [
-			.package(
-				name: "CardScan",
-				url: "https://github.com/getbouncer/cardscan-ios.git",
-				.exact("2.0.9")
-			),
 			.package(
 						name: "CardIOSDK",
 						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
 						.exact("5.5.7")
-			)
+			),
+      .package(
+            name: "BlinkCard",
+            url: "https://github.com/blinkcard/blinkcard-swift-package",
+            .exact("2.7.0")
+      )
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -49,18 +48,16 @@ let package = Package(
 						"Info.plist",
 						"FrameworkTests.xctestplan"
 					  ],
-				  	resources: [.process("Resources")]
-				),
-				.target(
-						name: "VGSCardScanCollector",
-						dependencies: ["VGSCollectSDK",
-											.product(name: "CardScan", package: "CardScan")],
-						path: "Sources/VGSCardScanCollector/"
-		 ),
-			.target(
-				name: "VGSCardIOCollector",
-				dependencies: ["VGSCollectSDK",
-											 .product(name: "CardIOSDK", package: "CardIOSDK")],
-				path: "Sources/VGSCardIOCollector/")
+				  	resources: [.process("Resources")]),
+        .target(
+          name: "VGSCardIOCollector",
+          dependencies: ["VGSCollectSDK",
+                         .product(name: "CardIOSDK", package: "CardIOSDK")],
+          path: "Sources/VGSCardIOCollector/"),
+        .target(
+            name: "VGSBlinkCardCollector",
+            dependencies: ["VGSCollectSDK",
+                      .product(name: "BlinkCard", package: "BlinkCard")],
+            path: "Sources/VGSBlinkCardCollector/")
 		]
 )
