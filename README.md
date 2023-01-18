@@ -4,7 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
 [![swift](https://img.shields.io/badge/swift-5-orange)]()
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat)](https://cocoapods.org/pods/VGSCollectSDK)
-<img src="./VGSZeroData.png" height="20">
+<img src="./images/VGSZeroData.png" height="20">
 
 # VGS Collect iOS SDK
 
@@ -30,8 +30,8 @@ Table of contents
 <!--te-->
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20">
-	<img src="https://raw.githubusercontent.com/verygoodsecurity/vgs-collect-ios/canary/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+	<img src="images/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20">
+	<img src="images/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
 </p>
 
 
@@ -93,7 +93,7 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
   </tr>
   <tr>
     <td>Customize  VGSTextFields...</td>
-     <th rowspan="2"><img src="add-card.gif"></th>
+     <th rowspan="2"><img src="images/add-card.gif"></th>
   </tr>
   <tr>
     <td>
@@ -131,7 +131,7 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
   </tr>
   <tr>
     <td>... observe filed states </td>
-     <th rowspan="2"><img src="state.gif"></th>
+     <th rowspan="2"><img src="images/state.gif"></th>
   </tr>
   <tr>
     <td>
@@ -213,14 +213,16 @@ Add 'VGSCollectSDK' alongside with one of scan modules pod:
 ```ruby
 pod 'VGSCollectSDK'
 
-# Add CardIO module to use Card.io as scan provider
-pod 'VGSCollectSDK/CardIO' 
+# Add one of available scan providers
+pod 'VGSCollectSDK/CardIO'
+pod 'VGSCollectSDK/BlinkCard'  
 ```
 #### Integrate with Swift Package Manager
 
 Starting with the 1.7.11 release, `VGSCollectSDK` supports  [CardIO](https://github.com/verygoodsecurity/card.io-iOS-source) integration via Swift PM.
 
 To use **CardIO** add `VGSCollectSDK`, `VGSCardIOCollector` packages to your target. 
+To use **BlinkCard** add `VGSCollectSDK`, `VGSBlinkCardCollector` packages to your target. 
 
 #### Code Example
 
@@ -231,7 +233,7 @@ To use **CardIO** add `VGSCollectSDK`, `VGSCardIOCollector` packages to your tar
   </tr>
   <tr>
     <td>Setup  VGSCardIOScanController...</td>
-    <th rowspan="2"><img src="card-scan.gif"></th>
+    <th rowspan="2"><img src="images/card-scan.gif"></th>
   </tr>
   <tr>
     <td>
@@ -392,7 +394,7 @@ You can add a file uploading functionality to your application with **VGSFilePic
 	}
    
   </td>
-  <td><img src="file-picker.gif"></td>
+  <td><img src="images/file-picker.gif"></td>
   </tr>
   <tr>
     <td colspan="2">... send file to your Vault</td>
@@ -453,6 +455,7 @@ VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 - Swift 5
 - Optional 3rd party libraries:
   - [CardIO](https://github.com/card-io/card.io-iOS-SDK)
+  - [BlinkCard](https://github.com/blinkcard/blinkcard-ios)
 
 ## License
 
