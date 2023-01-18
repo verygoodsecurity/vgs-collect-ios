@@ -1,5 +1,9 @@
 ## Migration Guides
 
+### Migrating from versions < v1.12.0
+#### `VGSCollectSDK/CardScan` scan module deprecated.
+Use `VGSCollectSDK/CardIO` or `VGSCollectSDK/BlinkCard` as card scan solution instead.
+
 ### Migrating from versions < v1.11.3
 #### Rename enum 
 `HTTPMethod` -> `VGSCollectHTTPMethod`
