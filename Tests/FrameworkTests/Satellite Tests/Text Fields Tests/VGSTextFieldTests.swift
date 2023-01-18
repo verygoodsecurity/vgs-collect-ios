@@ -40,9 +40,12 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
     }
     
     func testSetText() {
+      let placeholder = "card numner"
       configuration.type = .cardNumber
       textfield.configuration = configuration
+      textfield.placeholder = placeholder
       textfield.setText("4111111111111111")
+      XCTAssertTrue(textfield.textField.placeholder == placeholder)
       XCTAssertTrue(textfield.textField.secureText == "4111 1111 1111 1111")
       XCTAssertTrue(textfield.state.inputLength == 16)
       XCTAssertTrue(textfield.state.isDirty == true)

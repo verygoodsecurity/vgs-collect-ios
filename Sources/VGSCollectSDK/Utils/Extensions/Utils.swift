@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import VGSCollectSDK
 
 /// Merge two  <key:value> objects and their nested values. Returns [String: Any]. Values in d2 will override values in d1 if keys are same!!!!
 func deepMerge(_ d1: [String: Any], _ d2: [String: Any]) -> [String: Any] {
@@ -47,7 +46,7 @@ internal class Utils {
   
   /// VGS Collect SDK Version.
 	/// Necessary since SPM doesn't track info plist correctly: https://forums.swift.org/t/add-info-plist-on-spm-bundle/40274/5
-  static let vgsCollectVersion: String = "1.11.3"
+  static let vgsCollectVersion: String = "1.12.0"
 }
 
 extension Dictionary {

@@ -2,10 +2,6 @@
 //  ExpDateTextFieldTests.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 9/19/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
-
 import XCTest
 @testable import VGSCollectSDK
 
@@ -140,4 +136,5 @@ class ExpDateTextFieldTests: VGSCollectBaseTestCase {
             XCTAssertFalse(expDateTextField.state.isEmpty)
         }
     }
+  
 }

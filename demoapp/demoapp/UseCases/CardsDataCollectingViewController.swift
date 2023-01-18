@@ -11,7 +11,7 @@ import VGSCollectSDK
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
 class CardsDataCollectingViewController: UIViewController {
-    
+
     @IBOutlet weak var cardDataStackView: UIStackView!
     @IBOutlet weak var consoleStatusLabel: UILabel!
     @IBOutlet weak var consoleLabel: UILabel!
@@ -25,65 +25,49 @@ class CardsDataCollectingViewController: UIViewController {
     var cvcCardNum = VGSCVCTextField()
     var cardHolderName = VGSTextField()
     
+    /// BlinkCard Card Scanner
+    var scanController: VGSBlinkCardController?
+  
     var consoleMessage: String = "" {
         didSet { consoleLabel.text = consoleMessage }
     }
-    
-    // Init CardScan controller with API KEY. Details: https://cardscan.io
-    var scanController = VGSCardIOScanController()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
-        setupElementsConfiguration()
-        
-        // set custom headers
-        vgsCollect.customHeaders = [
-            "my custome header": "some custom data"
-        ]
-        
-        // set VGSCardScanDelegate
-        scanController.delegate = self
+      super.viewDidLoad()
 
-        // Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
-        vgsCollect.observeStates = { [weak self] form in
+      setupUI()
+      setupElementsConfiguration()
 
-            self?.consoleMessage = ""
-            self?.consoleStatusLabel.text = "STATE"
+      // set custom headers
+      vgsCollect.customHeaders = [
+        "my custome header": "some custom data"
+      ]
+          
+      // Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
+      vgsCollect.observeStates = { [weak self] form in
 
-            form.forEach({ textField in
-                self?.consoleMessage.append(textField.state.description)
-                self?.consoleMessage.append("\n")
-            })
-        }
+          self?.consoleMessage = ""
+          self?.consoleStatusLabel.text = "STATE"
+
+          form.forEach({ textField in
+              self?.consoleMessage.append(textField.state.description)
+              self?.consoleMessage.append("\n")
+          })
+      }
       
-//      // If you need to set your own card brand icons
-//
-//      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
-//      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
-//
-//      //OR
-//
-//        // use the closure below
-//        cardNumber.cardsIconSource = { cardBrand in
-//            switch cardBrand {
-//            case .mastercard:
-//                return UIImage(named: "bank_card")
-//            case .custom(brandName: let name):
-//              switch name {
-//              case "Visa2":
-//                return UIImage(named: "bank_card")
-//              default:
-//                return nil
-//              }
-//            default:
-//                return UIImage(named: "cloud-upload")
-//
-//            }
-//        }
-//
+      // Init VGSBlinkCardController with BlinkCard license key
+      if let licenseKey = AppCollectorConfiguration.shared.blinkCardLicenseKey {
+        scanController = VGSBlinkCardController(licenseKey: licenseKey, delegate: self, onError: { errorCode in
+          print("BlinkCard license error, code: \(errorCode)")
+        })
+      } else {
+        print("⚠️ VGSBlinkCardController not initialized. Check license key!")
+      }
       
+  //      // If you need to set your own card brand icons
+  //
+  //      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
+  //      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
     }
 
 	override func awakeFromNib() {
@@ -124,7 +108,7 @@ class CardsDataCollectingViewController: UIViewController {
         cardNumber.textAlignment = .natural
         cardNumber.cardIconLocation = .right
       
-        cardNumber.becomeFirstResponder()
+//        cardNumber.becomeFirstResponder()
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
@@ -172,9 +156,13 @@ class CardsDataCollectingViewController: UIViewController {
         }
     }
     
-    // Start CardIO scanning
+    // Start BlinkCard scanning
     @IBAction func scanAction(_ sender: Any) {
-        scanController.presentCardScanner(on: self, animated: true, completion: nil)
+      guard let scanController = scanController else {
+        print("⚠️ VGSBlinkCardController not initialized. Check license key!")
+        return
+      }
+      scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
     }
     
     // Upload data from TextFields to VGS
@@ -227,7 +215,6 @@ class CardsDataCollectingViewController: UIViewController {
 // MARK: - VGSTextFieldDelegate
 extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
-    print(textField.state.description)
     textField.borderColor = textField.state.isValid  ? .gray : .red
     
     /// Update CVC field UI in case if valid cvc digits change, e.g.: input card number brand changed form Visa(3 digints CVC) to Amex(4 digits CVC) )
@@ -242,33 +229,32 @@ extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   }
 }
 
-// MARK: - VGSCardIOScanControllerDelegate
-extension CardsDataCollectingViewController: VGSCardIOScanControllerDelegate {
-  
-  //When user press Done button on CardIO screen
-  func userDidFinishScan() {
-      scanController.dismissCardScanner(animated: true, completion: {
-          // add actions on scan controller dismiss completion
-      })
-  }
-  
-  //When user press Cancel button on CardIO screen
-  func userDidCancelScan() {
-      scanController.dismissCardScanner(animated: true, completion: nil)
-  }
-  
-  //Asks VGSTextField where scanned data with type need to be set.
-  func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
+extension CardsDataCollectingViewController: VGSBlinkCardControllerDelegate {
+  func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
+      // match VGSTextField with scanned data
       switch type {
       case .expirationDateLong:
           return expCardDate
-      case .cvc:
-          return cvcCardNum
       case .cardNumber:
           return cardNumber
+      case .cvc:
+        return cvcCardNum
+      case .name:
+        return cardHolderName
       default:
           return nil
       }
   }
+  
+  func userDidFinishScan() {
+      scanController?.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+  }
+  
+  func userDidCancelScan() {
+      scanController?.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+  }
 }
-
