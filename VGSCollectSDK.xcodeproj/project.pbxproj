@@ -1145,8 +1145,6 @@
 			dependencies = (
 			);
 			name = VGSBlinkCardCollector;
-			packageProductDependencies = (
-			);
 			productName = VGSCardScanCollector;
 			productReference = 03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1261,8 +1259,6 @@
 				Base,
 			);
 			mainGroup = FD12B9A52304619100B670DD;
-			packageReferences = (
-			);
 			productRefGroup = FD12B9B02304619100B670DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
