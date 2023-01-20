@@ -3,14 +3,15 @@
 //  VGSBlinkCardCollector
 //
 
-
 import Foundation
+#if os(iOS)
+import UIKit
+#endif
+
+#if canImport(BlinkCard)
 import BlinkCard
 #if !COCOAPODS
 import VGSCollectSDK
-#endif
-#if os(iOS)
-import UIKit
 #endif
 
 /// BlinkCard wrapper, manages communication between public API and BlinkCard.
@@ -40,15 +41,15 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
     /// Setup BlinlCard params and present scanner.
     func presentScanVC(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle, completion: (() -> Void)?) {
        // Create BlinkCard settings
-       let settings : MBCBlinkCardOverlaySettings = MBCBlinkCardOverlaySettings()
+       let settings: MBCBlinkCardOverlaySettings = MBCBlinkCardOverlaySettings()
        settings.enableEditScreen = false
        // Crate recognizer collection
        let recognizerList = [cardRecognizer]
-       let recognizerCollection : MBCRecognizerCollection = MBCRecognizerCollection(recognizers: recognizerList)
+       let recognizerCollection: MBCRecognizerCollection = MBCRecognizerCollection(recognizers: recognizerList)
         // Create  overlay view controller
        let blinkCardOverlayViewController = MBCBlinkCardOverlayViewController(settings: settings, recognizerCollection: recognizerCollection, delegate: self)
         // Create recognizer view controller with wanted overlay view controller
-       let recognizerRunneViewController : UIViewController = MBCViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: blinkCardOverlayViewController)!
+       let recognizerRunneViewController: UIViewController = MBCViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: blinkCardOverlayViewController)!
         recognizerRunneViewController.modalPresentationStyle = modalPresentationStyle
         self.view = recognizerRunneViewController
         // Present the recognizer runner view controller
@@ -135,3 +136,4 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
     delegate?.userDidCancelScan()
   }
 }
+#endif

@@ -142,7 +142,7 @@ class CardsDataCollectingViewController: UIViewController {
       
         cardHolderName.textAlignment = .natural
 				// Set max input length
-				//holderConfiguration.maxInputLength = 32
+				// holderConfiguration.maxInputLength = 32
         cardHolderName.configuration = holderConfiguration
         cardHolderName.placeholder = "Cardholder Name"
         

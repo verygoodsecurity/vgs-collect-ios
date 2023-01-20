@@ -70,7 +70,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?
     
-    ///Preferred UIReturnKeyType for `VGSTextField`.
+    /// Preferred UIReturnKeyType for `VGSTextField`.
     public var returnKeyType: UIReturnKeyType?
     
     /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
@@ -89,7 +89,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
 	  /// Logs warning when both `.formatPattern` and `.maxInputLength` are used.
 		internal func logWarningForFormatPatternIfNeeded() {
 			if !formatPattern.isNilOrEmpty && maxInputLength != nil {
-				let message = "Format pattern (\(formatPattern)) and maxInputLength (\(maxInputLength)) can conflict when both are in use!"
+				let message = "Format pattern (\(formatPattern ?? "")) and maxInputLength (\(maxInputLength ?? 0)) can conflict when both are in use!"
 				let event = VGSLogEvent(level: .warning, text: message, severityLevel: .warning)
 				VGSCollectLogger.shared.forwardLogEvent(event)
 			}

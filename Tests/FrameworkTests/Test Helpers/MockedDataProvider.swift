@@ -23,7 +23,7 @@ final class MockedDataProvider {
 	}
 
 	/// Provided mocked data.
-	private func provideMockedData() -> () {
+	private func provideMockedData() {
 		#if SWIFT_PACKAGE
 			let bundle = Bundle.module
 		#else

@@ -145,7 +145,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content,"upstream": "custom"])
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
           block(.failure(error.code, nil, nil, error))
             return
         }

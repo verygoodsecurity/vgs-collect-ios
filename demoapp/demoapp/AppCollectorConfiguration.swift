@@ -21,7 +21,7 @@ class AppCollectorConfiguration {
     var environment = Environment.sandbox
   
   ///  Set BlinkCard license key to test card scanner
-  var blinkCardLicenseKey: String? = nil
+  var blinkCardLicenseKey: String?
 
 	var paymentOrchestrationDefaultRouteId = "4880868f-d88b-4333-ab70-d9deecdbffc4"
 	

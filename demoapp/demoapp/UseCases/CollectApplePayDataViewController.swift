@@ -96,7 +96,7 @@ extension CollectApplePayData: PKPaymentAuthorizationControllerDelegate {
 
   func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
       /// Prepapre payment data required to collect for your use-case
-    guard let paymentDataDictionary: [String: Any] = try? JSONSerialization.jsonObject(with: payment.token.paymentData, options: .mutableContainers) as? [String : Any] else {
+    guard let paymentDataDictionary: [String: Any] = try? JSONSerialization.jsonObject(with: payment.token.paymentData, options: .mutableContainers) as? [String: Any] else {
       print("Error: can't parse payment.token.paymentData")
       completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
       return
@@ -132,4 +132,3 @@ extension CollectApplePayData: PKPaymentAuthorizationControllerDelegate {
     controller.dismiss(completion: nil)
   }
 }
-
