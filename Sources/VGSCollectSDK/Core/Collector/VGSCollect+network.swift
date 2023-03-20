@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 // MARK: - Send data
 extension VGSCollect {
@@ -222,6 +223,31 @@ extension VGSCollect {
           block(.failure(code, data, response, error))
           return
         }
+      }
+    }
+  }
+}
+
+/// VGSCollect + Combine
+extension VGSCollect {
+  /**
+   Send data from VGSTextFields to your organization vault using the Combine framework.
+   
+   - Parameters:
+      - path: Inbound rout path for your organization vault.
+      - method: VGSCollectHTTPMethod, default is `.post`.
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
+      - requestOptions: `VGSCollectRequestOptions` object, holds additional request options. Default options are `.nestedJSON`.
+   - Returns: A `Future` publisher that emits a single `VGSResponse`.
+
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func sendDataPublisher(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) -> Future<VGSResponse, Never> {
+    return Future { [weak self] completion in
+      self?.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
+        completion(.success(response))
       }
     }
   }
