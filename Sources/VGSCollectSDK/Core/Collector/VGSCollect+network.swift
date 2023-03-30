@@ -244,6 +244,7 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  @available(iOS 13, *)
   public func sendDataPublisher(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) -> Future<VGSResponse, Never> {
     return Future { [weak self] completion in
       self?.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in

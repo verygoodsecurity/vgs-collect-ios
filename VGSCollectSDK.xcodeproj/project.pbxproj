@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0313A1202975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */; };
+		033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */; };
 		0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */; };
 		0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */; };
 		035179A1285920F100394BFC /* VGSCardTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */; };
@@ -195,6 +196,7 @@
 
 /* Begin PBXFileReference section */
 		0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfigurationTests.swift; sourceTree = "<group>"; };
+		033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+statePublisher.swift"; sourceTree = "<group>"; };
 		0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTokenizationProtocol.swift; sourceTree = "<group>"; };
 		0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTokenizationConfiguration.swift; sourceTree = "<group>"; };
@@ -1093,6 +1095,7 @@
 				321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */,
 				FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
+				033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */,
 				FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */,
 				FD362EDE2401659100B4A640 /* VGSTextFieldDelegate.swift */,
 			);
@@ -1445,6 +1448,7 @@
 				3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */,
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				32C894DD256D4AE400DC5648 /* UIDevice+extension.swift in Sources */,
+				033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */,
 				32093D7E25CD9F88006CD242 /* VGSCollectRequestLogger.swift in Sources */,
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				441B26D425DB88C50099AA3A /* APIHostURLPolicy.swift in Sources */,
