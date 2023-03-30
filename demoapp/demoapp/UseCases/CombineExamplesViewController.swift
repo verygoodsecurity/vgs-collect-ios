@@ -15,7 +15,9 @@ class CombineExamplesViewController: UIViewController {
     @IBOutlet weak var consoleStatusLabel: UILabel!
     @IBOutlet weak var consoleLabel: UILabel!
     
-     var cancellables = Set<AnyCancellable>()
+    @IBOutlet weak var uploadButton: UIButton!
+  
+    var cancellables = Set<AnyCancellable>()
   
     // Init VGS Collector
     var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
@@ -38,22 +40,43 @@ class CombineExamplesViewController: UIViewController {
       setupUI()
       setupElementsConfiguration()
 
+      /// Track textfield state changes
+      cardHolderName.statePublisher.sink { [weak self] state in
+        self?.cardHolderName.borderColor = state.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      /// Map State to CardState to get access for card attributes
+      cardNumber.statePublisher.compactMap { state -> CardState? in
+        return state as? CardState
+      }.sink { [weak self] cardState in
+        self?.cardHolderName.borderColor = cardState.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      expCardDate.statePublisher.sink { [weak self] state in
+        self?.expCardDate.borderColor = state.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      cvcCardNum.statePublisher.sink { [weak self] state in
+        self?.cvcCardNum.borderColor = state.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      /// Enable Upload Button when all fields are valid
+      Publishers.CombineLatest4(cardHolderName.statePublisher,
+                               cardNumber.statePublisher,
+                               expCardDate.statePublisher,
+                               cvcCardNum.statePublisher)
+                              .map { state1, state2, state3, state4 in
+                                return state1.isValid && state2.isValid && state2.isValid && state3.isValid
+                              }
+                              .sink { [weak self] allValid in
+                                  self?.uploadButton.isEnabled = allValid
+                              }.store(in: &cancellables)
+      
+      
       // set custom headers
       vgsCollect.customHeaders = [
         "my custome header": "some custom data"
       ]
-          
-      // Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
-      vgsCollect.observeStates = { [weak self] form in
-
-          self?.consoleMessage = ""
-          self?.consoleStatusLabel.text = "STATE"
-
-          form.forEach({ textField in
-              self?.consoleMessage.append(textField.state.description)
-              self?.consoleMessage.append("\n")
-          })
-      }
       
       // Init VGSBlinkCardController with BlinkCard license key
       if let licenseKey = AppCollectorConfiguration.shared.blinkCardLicenseKey {
@@ -68,6 +91,7 @@ class CombineExamplesViewController: UIViewController {
   //
   //      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
   //      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
+
     }
 
   override func awakeFromNib() {
@@ -151,18 +175,7 @@ class CombineExamplesViewController: UIViewController {
           textField.font = .systemFont(ofSize: 22)
           textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
           textField.tintColor = .lightGray
-          /// Implement VGSTextFieldDelegate methods
-          textField.delegate = self
         }
-    }
-    
-    // Start BlinkCard scanning
-    @IBAction func scanAction(_ sender: Any) {
-      guard let scanController = scanController else {
-        print("⚠️ VGSBlinkCardController not initialized. Check license key!")
-        return
-      }
-      scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
     }
     
     // Upload data from TextFields to VGS
@@ -178,7 +191,7 @@ class CombineExamplesViewController: UIViewController {
     // send extra data
     var extraData = [String: Any]()
     extraData["customKey"] = "Custom Value"
-    
+        
     vgsCollect.sendDataPublisher(path: "/post", extraData: extraData).sink(
       receiveCompletion: { completion in
           switch completion {
@@ -192,59 +205,16 @@ class CombineExamplesViewController: UIViewController {
           print("Response: \(response)")
       }
     ).store(in: &cancellables)
-
-    
-    vgsCollect.sendDataPublisher(path: "/post", extraData: extraData).sink(receiveCompletion: { (completion) in
-
-      print(completion)
-    }, receiveValue: { (response) in
-      DispatchQueue.main.async {
-        self.consoleStatusLabel.text = "RESPONSE"
-        switch response {
-        case .success(_, let data, _):
-          if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            // swiftlint:disable force_try
-            let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-            self.consoleLabel.text = "Success: \n\(response)"
-            print(response)
-            // swiftlint:enable force_try
-          }
-        case .failure(let code, _, _, let error):
-          switch code {
-          case 400..<499:
-            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-            self.consoleLabel.text = "Error: Wrong Request, code: \(code)"
-          case VGSErrorType.inputDataIsNotValid.rawValue:
-            if let error = error as? VGSError {
-              self.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
-            }
-          default:
-            self.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
-          }
-          print("Submit request error: \(code), \(String(describing: error))")
-        }
-      }
-    }).store(in: &cancellables)
-  }
-}
-
-// MARK: - VGSTextFieldDelegate
-extension CombineExamplesViewController: VGSTextFieldDelegate {
-
-  func vgsTextFieldDidChange(_ textField: VGSTextField) {
-    textField.borderColor = textField.state.isValid  ? .gray : .red
-    
-    /// Update CVC field UI in case if valid cvc digits change, e.g.: input card number brand changed form Visa(3 digints CVC) to Amex(4 digits CVC) )
-    if textField == cardNumber, cvcCardNum.state.isDirty {
-      cvcCardNum.borderColor =  cvcCardNum.state.isValid  ? .gray : .red
-    }
-
-    /// Check Card Number Field State with addition attributes
-    if let cardState = textField.state as? CardState, cardState.isValid {
-        print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
-    }
   }
   
+  // Start BlinkCard scanning
+  @IBAction func scanAction(_ sender: Any) {
+    guard let scanController = scanController else {
+      print("⚠️ VGSBlinkCardController not initialized. Check license key!")
+      return
+    }
+    scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
+  }
 }
 
 extension CombineExamplesViewController: VGSBlinkCardControllerDelegate {
@@ -276,4 +246,3 @@ extension CombineExamplesViewController: VGSBlinkCardControllerDelegate {
       })
   }
 }
-

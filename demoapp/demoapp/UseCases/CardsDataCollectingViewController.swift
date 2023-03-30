@@ -43,7 +43,8 @@ class CardsDataCollectingViewController: UIViewController {
         "my custome header": "some custom data"
       ]
           
-      // Observing text fields. The call back return all textfields with updated states. You also can use VGSTextFieldDelegate
+      // Observing text fields. The call back return all textfields with updated states.
+      // You also can use VGSTextFieldDelegate instead.
       vgsCollect.observeStates = { [weak self] form in
 
           self?.consoleMessage = ""
