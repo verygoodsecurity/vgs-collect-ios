@@ -14,6 +14,7 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
+  // swiftlint:disable nesting
 
     /// VGSText field.
     enum VGSTextField {
@@ -63,6 +64,7 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
       /// Upload.
       static let upload: VGSUITestElement = .init(type: .button, identifier: "UPLOAD")
     }
+    // swiftlint:enable nesting
   }
 
   /// Test valid data flow.
@@ -102,7 +104,6 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     let cardNumberField = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
     let expDateField = UIElements.VGSTextField.CardDetails.expirationDate.find(in: app)
     let cvcField = UIElements.VGSTextField.CardDetails.cvc.find(in: app)
-
 
     cardHolderNameField.tap()
     cardHolderNameField.typeText("Joe B")

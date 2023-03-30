@@ -62,17 +62,6 @@ class FilePickerViewController: UIViewController {
         return
         }
       }
-      
-      /// Deprecated
-//        vgsForm.submitFile(path: "/post", method: .post, extraData: extraData) { [weak self](json, error) in
-//            if error == nil, let json = json?["json"] {
-//                self?.stateLabel.text = "Success!!!\n" + (String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8)!)
-//                self?.vgsForm.cleanFiles()
-//            } else {
-//                print("Error: \(String(describing: error?.localizedDescription))")
-//                self?.stateLabel.text = "Something went wrong!"
-//            }
-//        }
     }
     
     // Show file picker for specific source type
@@ -105,9 +94,9 @@ class FilePickerViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
 				if let popoverController = alert.popoverPresentationController {
-					popoverController.sourceView = self.view //to set the source of your alert
+					popoverController.sourceView = self.view // to set the source of your alert
 					popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
-					popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+					popoverController.permittedArrowDirections = [] // to hide the arrow of any particular direction
 				}
 			
         present(alert, animated: true, completion: nil)

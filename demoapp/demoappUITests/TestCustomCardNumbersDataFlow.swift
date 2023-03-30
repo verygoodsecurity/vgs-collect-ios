@@ -2,9 +2,6 @@
 //  TestCustomCardNumbersDataFlow.swift
 //  demoappUITests
 //
-//  Created by Dima on 04.08.2020.
-//  Copyright © 2020 Very Good Security. All rights reserved.
-//
 
 import XCTest
 
@@ -13,7 +10,8 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
-
+    // swiftlint:disable nesting
+    
     /// VGSText field.
     enum VGSTextField {
 
@@ -96,6 +94,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
       /// Custom brand.
       static let uknownBrand = "9111 1111 1111 111"
     }
+    // swiftlint:enable nesting
   }
 
   /// Tests valid custom brand.
@@ -207,7 +206,6 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     let cardNumberField = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
     let expDateField = UIElements.VGSTextField.CardDetails.expirationDate.find(in: app)
     let cvcField = UIElements.VGSTextField.CardDetails.cvc.find(in: app)
-
 
     cardHolderNameField.tap()
     cardHolderNameField.typeText("Joe B")

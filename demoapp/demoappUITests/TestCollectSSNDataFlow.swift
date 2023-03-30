@@ -13,7 +13,8 @@ class TestCollectSSNDataFlow: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
-
+  // swiftlint:disable nesting
+    
     /// VGSText field.
     enum VGSTextField {
 
@@ -53,6 +54,7 @@ class TestCollectSSNDataFlow: TestCollectBaseTestCase {
       /// Masked ssn.
       static let maskedSSN = "SSN: XXX-XX-8899"
     }
+    // swiftlint:enable nesting
   }
 
   /// Verifies correct data flow works for ssn.

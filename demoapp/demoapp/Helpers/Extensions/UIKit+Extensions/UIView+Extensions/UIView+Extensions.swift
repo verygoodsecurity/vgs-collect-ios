@@ -37,7 +37,7 @@ internal extension UIView {
 
 		let constraints = [
 			centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			centerYAnchor.constraint(equalTo: view.centerYAnchor)
 		]
 
 		NSLayoutConstraint.activate(constraints)
@@ -103,7 +103,7 @@ internal extension UIView {
 /// no:doc
 internal extension UIView {
 
-	///:nodoc: System background color (white).
+	/// :nodoc: System background color (white).
 	var vgsSystemBackground: UIColor {
 			if #available(iOS 13, *) {
 								return .systemGroupedBackground
@@ -147,19 +147,19 @@ internal extension UIView {
 		let overlayView: UIView = self.overlayView
 		let activityIndicatorView: UIActivityIndicatorView = self.activityIndicatorView
 
-		//add subviews
+		// add subviews
 		overlayView.addSubview(activityIndicatorView)
 		addSubview(overlayView)
 
-		//add overlay constraints
+		// add overlay constraints
 		overlayView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 		overlayView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
 
-		//add indicator constraints
+		// add indicator constraints
 		activityIndicatorView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
 		activityIndicatorView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
 
-		//animate indicator
+		// animate indicator
 		activityIndicatorView.startAnimating()
 	}
 
@@ -172,9 +172,10 @@ internal extension UIView {
 			overlayView.alpha = 0.0
 			activityIndicator.stopAnimating()
 		}) { _ in
+      // swiftlint:disable:previous multiple_closures_with_trailing_closure
 			activityIndicator.removeFromSuperview()
 			overlayView.removeFromSuperview()
-		}
+    }
 	}
 
 	/// Checks if loader is displayed.

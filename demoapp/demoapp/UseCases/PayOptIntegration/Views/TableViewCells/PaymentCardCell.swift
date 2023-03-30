@@ -2,7 +2,6 @@
 //  PaymentCardCell.swift
 //  demoapp
 
-
 import UIKit
 import VGSCollectSDK
 

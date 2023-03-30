@@ -58,7 +58,7 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       
         let expectation = XCTestExpectation(description: "Sending data...")
         
-        collector.tokenizeData() { result in
+        collector.tokenizeData { result in
               switch result {
               case .success(let code, let jsonData, let response):
                 XCTAssertTrue(code == 200)
@@ -131,8 +131,8 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       someNumberTextField.textField.secureText = someNumber
     
       let expectation = XCTestExpectation(description: "Sending data...")
-      
-      collector.tokenizeData() { result in
+
+      collector.tokenizeData { result in
             switch result {
             case .success(let code, let jsonData, let response):
               guard let json = jsonData as? [String: String] else {

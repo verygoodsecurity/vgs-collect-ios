@@ -22,11 +22,11 @@ public class VGSBlinkCardController {
     
     /// `VGSBlinkCardControllerDelegate` - handle user interaction with `BlinkCard` scanner.
     public var delegate: VGSBlinkCardControllerDelegate? {
-      set {
-        scanHandler?.delegate = newValue
-      }
       get {
         return scanHandler?.delegate
+      }
+      set {
+        scanHandler?.delegate = newValue
       }
     }
     

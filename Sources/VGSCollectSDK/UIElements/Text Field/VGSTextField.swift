@@ -25,7 +25,7 @@ public class VGSTextField: UIView {
     internal var horizontalConstraints = [NSLayoutConstraint]()
     internal var verticalConstraint = [NSLayoutConstraint]()
     internal var validationRules = VGSValidationRuleSet()
-    internal var tokenizationParameters: VGSTokenizationParametersProtocol? = nil
+    internal var tokenizationParameters: VGSTokenizationParametersProtocol?
 
     // MARK: - UI Attributes
     
@@ -284,11 +284,11 @@ internal extension VGSTextField {
   
     @objc
     func addTextFieldObservers() {
-      //delegates
+      // delegates
 			textField.delegate = textField
 			textField.customDelegate = self
 			textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
-      //Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
+      // Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
       NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: UITextField.textDidChangeNotification, object: textField)
@@ -385,6 +385,7 @@ internal extension VGSTextField {
 		return !textField.formatPattern.isEmpty
 	}
 }
+// swiftlint:disable file_length
 
 // MARK: - MaskedTextFieldDelegate
 

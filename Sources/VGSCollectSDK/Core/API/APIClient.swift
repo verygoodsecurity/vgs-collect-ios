@@ -136,7 +136,7 @@ class APIClient {
 			}
 
       // Check if routeId is set and should be attached to request url
-      if case .vaultURL(_) = self.hostURLPolicy,
+      if case .vaultURL = self.hostURLPolicy,
          let routeId = routeId {
         
         guard let newUrl = APIClient.buildVaultURL(tenantId: self.vaultId, regionalEnvironment: self.environment, routeId: routeId) else {

@@ -91,7 +91,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 //
 //		return
 //		return
-		//state = .fetchingSavedCards(.success(models))
+//    state = .fetchingSavedCards(.success(models))
 
 		state = .fetchingToken(.isLoading)
 		apiClient.fetchToken {[weak self] token in
@@ -199,10 +199,10 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 				}
 				/// Save fin instrument in shared config
 				AppCollectorConfiguration.shared.savedFinancialInstruments.append(finId)
-				/// Make deposit request
+				// Make deposit request
 				// self?.deposit(50, finId: finId)
 				self?.state = .sendingNewCard(.success(finId))
-			case .failure(let code,  _, _, let error):
+			case .failure(let code, _, _, let error):
 				print("\(code) + \(String(describing: error))")
 				self?.state = .sendingNewCard(.error(error?.localizedDescription))
 				return
@@ -240,7 +240,7 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 		///    vgsCollectNewCardFlow.customHeaders = ["Authorization": "<custom-backend-token-if-needed>"]
 
 		///  Include all data required for transaction in extradata attribute.
-		let extraData: [String : Any] = ["fin_id": findId, "amount": amount]
+		let extraData: [String: Any] = ["fin_id": findId, "amount": amount]
 		///  You should create new route in VGS Dashboard to tokenize CVC.
 		let cvcRouteId = "<route-id>"
 
@@ -260,9 +260,9 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 
 	/// Send deposit request to custom backend
 	private func deposit(_ sum: Int, finId: String) {
-		// TODO: make API call to custom backend, backend should use fin_id and sum to make transfer via payopt API.
+		// NOTE: make API call to custom backend, backend should use fin_id and sum to make transfer via payopt API.
 		print("🔼 Send transfer with deposit: \(sum) fin_id: \(finId)")
-		/// Navigate to completion VC
+		//  Navigate to completion VC
 		//		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
 		//		let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CompletionViewController")
 		//		self.navigationController?.pushViewController(nextViewController, animated: true)
@@ -303,19 +303,19 @@ class CollectPayoptIntegrationViewConroller: UIViewController {
 	}
 
 	func updateSavedCardsUI(with savedCardsRequestState: RequestResult<[SavedCardModel]>) {
-		switch savedCardsRequestState {
-		case .success(let fetchedCards):
-			savedCards = fetchedCards
-			paymentOptions = fetchedCards.map({return PaymentOption.savedCard($0)}) + [.newCard]
-			prepareDataSource()
-			tableView.reloadData()
-			hideLoader()
-		case .error(let errorText):
-			print("Cannot fetch saved cards: \(errorText ?? "Uknown error")")
-			hideLoader()
-	  case .isLoading:
-			displayLoader()
-		}
+    switch savedCardsRequestState {
+    case .success(let fetchedCards):
+      savedCards = fetchedCards
+      paymentOptions = fetchedCards.map({return PaymentOption.savedCard($0)}) + [.newCard]
+      prepareDataSource()
+      tableView.reloadData()
+      hideLoader()
+    case .error(let errorText):
+      print("Cannot fetch saved cards: \(errorText ?? "Uknown error")")
+      hideLoader()
+    case .isLoading:
+      displayLoader()
+    }
 	}
 
 	func updateUISendNewCard(_ requestState: RequestResult<String>) {
@@ -396,11 +396,11 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 		case .savedCard(let savedCardModel):
 			let cell: VGSPaymentOptionCardTableViewCell = tableView.dequeue(cellForRowAt: indexPath)
 			cell.configure(with: savedCardModel.paymentOptionCellViewModel, isEditing: false)
-			//cell.delegate = self
+			// cell.delegate = self
 
 			return cell
 		}
-
+// swiftlint:disable file_length
 
 //		if indexPath.section == paymentMethodsDataSource.count - 1,  let cell = tableView.dequeueReusableCell(withIdentifier: "AddCardCell", for: indexPath) as? AddCardCell  {
 //			cell.title.text = cellData.title
@@ -453,9 +453,9 @@ extension CollectPayoptIntegrationViewConroller: UITableViewDelegate, UITableVie
 			let option = paymentOptions[savedCardIndex]
 			switch option {
 			case .savedCard(let previousCard):
-				//print("savedCardIndex: \(savedCardIndex), index: \(index)")
+				// print("savedCardIndex: \(savedCardIndex), index: \(index)")
 				if savedCardIndex != index {
-					//print("unmard card!")
+					// print("unmard card!")
 					previousCard.isSelected = false
 				}
 			case .newCard:

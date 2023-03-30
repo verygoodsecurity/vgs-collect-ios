@@ -54,11 +54,11 @@ class VGSFieldNameToJSONTests: XCTestCase {
 }
 
 class VGSFieldNameMapperTestDataProvider {
-	static func provideTestDataForVGSFieldNameToJSON() -> [VGSFieldNameToJSONTests.VGSFieldNameTestData]  {
+	static func provideTestDataForVGSFieldNameToJSON() -> [VGSFieldNameToJSONTests.VGSFieldNameTestData] {
 		return provideFieldNameTestData(for: "VGSFieldNameToJSONTestData")
 	}
 
-	static func provideFieldNameTestData(for fileName: String) -> [VGSFieldNameToJSONTests.VGSFieldNameTestData]  {
+	static func provideFieldNameTestData(for fileName: String) -> [VGSFieldNameToJSONTests.VGSFieldNameTestData] {
 		guard let rootTestJSON = JsonData(jsonFileName: fileName), let testDataJSONArray = rootTestJSON["test_data"] as? [JsonData] else {
 			XCTFail("cannot build data for file VGSFieldNameToJSONTestData")
 			return []

@@ -118,7 +118,7 @@ extension VGSValidationRuleCardExpirationDate: VGSRuleValidator {
         guard let inputMM = Int(mm), (1...12).contains(inputMM), var inputYY = Int(yy) else {
             return false
         }
-        ///convert input year to long format if needed
+        /// convert input year to long format if needed
         inputYY = self.dateFormat.yearCharacters == 2 ? (inputYY + 2000) : inputYY
         if inputYY < todayYY || inputYY > (todayYY + 20) {
             return false

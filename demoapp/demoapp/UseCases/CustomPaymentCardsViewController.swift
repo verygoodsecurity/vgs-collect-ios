@@ -38,7 +38,6 @@ class CustomPaymentCardsViewController: UIViewController {
         setupUI()
         setupElementsConfiguration()
 
-
         // set custom headers
         vgsCollect.customHeaders = [
             "my custome header": "some custom data"
@@ -234,19 +233,19 @@ class CustomPaymentCardsViewController: UIViewController {
 
 extension CustomPaymentCardsViewController: VGSCardIOScanControllerDelegate {
     
-    //When user press Done button on CardIO screen
+    // When user press Done button on CardIO screen
     func userDidFinishScan() {
         scanController.dismissCardScanner(animated: true, completion: {
             // add actions on scan controller dismiss completion
         })
     }
     
-    //When user press Cancel button on CardIO screen
+    // When user press Cancel button on CardIO screen
     func userDidCancelScan() {
         scanController.dismissCardScanner(animated: true, completion: nil)
     }
     
-    //Asks VGSTextField where scanned data with type need to be set.
+    // Asks VGSTextField where scanned data with type need to be set.
     func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
         switch type {
         case .expirationDateLong:
