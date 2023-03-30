@@ -27,7 +27,7 @@ class FilePickerTests: VGSCollectBaseTestCase {
     
     // MARK: - Upload file
     func testUpload() {
-        //The Bundle for your current class
+        // The Bundle for your current class
         let bundle = AssetsBundle.main.iconBundle
         let testImage = UIImage(named: "visa", in: bundle, compatibleWith: nil)?.jpegData(compressionQuality: 1)
         

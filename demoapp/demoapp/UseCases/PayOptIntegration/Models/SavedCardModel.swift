@@ -50,7 +50,7 @@ internal class SavedCardModel {
 					let name = cardJSON[keys.name] as? String,
 					let expYear = cardJSON[keys.expYear] as? Int,
 					let expMonth = cardJSON[keys.expMonth] as? Int,
-					let brand = cardJSON[keys.brand] as? String ,
+					let brand = cardJSON[keys.brand] as? String,
 					let last4 = cardJSON[keys.last4] as? String else {
 			return nil
 		}
@@ -101,10 +101,8 @@ internal extension Array where Element == SavedCardModel {
 	func reorderByIds(_ cardIds: [String]) -> [SavedCardModel] {
 		var orderedArray: [SavedCardModel] = []
 		cardIds.forEach { id in
-			for card in self {
-				if card.id == id {
+			for card in self where card.id == id {
 					orderedArray.append(card)
-				}
 			}
 		}
 

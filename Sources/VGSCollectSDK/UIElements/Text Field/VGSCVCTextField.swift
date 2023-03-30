@@ -120,7 +120,6 @@ internal extension VGSCVCTextField {
         return stack
     }
 
-  
     func updateCVCImage(for cardBrand: VGSPaymentCards.CardBrand) {
         cvcIconImageView.image = (cvcIconSource == nil) ? cardBrand.cvcIcon :  cvcIconSource?(cardBrand)
     }

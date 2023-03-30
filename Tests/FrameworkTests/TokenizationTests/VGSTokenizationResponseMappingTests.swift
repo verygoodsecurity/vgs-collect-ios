@@ -39,7 +39,7 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
       guard let fieldName = json["field_name"] as? String,
             let inputValue = json["value"] as? String,
             let storage = json["storage"] as? String,
-            let format = json["format"] as? String else  {
+            let format = json["format"] as? String else {
               return nil
             }
 

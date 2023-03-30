@@ -44,7 +44,7 @@ public final class VGSExpDateTextField: VGSTextField {
         }
     }
     
-    ///:nodoc:
+    /// :nodoc:
     public override var configuration: VGSConfiguration? {
         didSet {
             fieldType = .expDate
@@ -127,7 +127,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-// MARK: -  Configuration
+// MARK: - Configuration
 
 private extension VGSExpDateTextField {
   
@@ -151,7 +151,7 @@ private extension VGSExpDateTextField {
   }
 }
 
-// MARK: -  Date Picker
+// MARK: - Date Picker
 private extension VGSExpDateTextField {
     func makePicker() -> UIPickerView {
         let picker = UIPickerView()

@@ -28,8 +28,7 @@ final class CustomBackendAPIClient {
 	typealias FetchSavedCardsCompletionFailure = ( _ error: Error?) -> Void
 
 	/// Main url.
-	private let baseUrl = URL(string:  AppCollectorConfiguration.shared.customBackendBaseUrl)!
-
+	private let baseUrl = URL(string: AppCollectorConfiguration.shared.customBackendBaseUrl)!
 
 	/// Fetch payment orchestration token from your own backend.
 	/// - Parameters:
@@ -42,7 +41,7 @@ final class CustomBackendAPIClient {
 		request.httpMethod = "POST"
 		let task = URLSession.shared.dataTask(
 			with: request,
-			completionHandler: { (data, response, error) in
+			completionHandler: { (data, _, _) in
 				guard let data = data,
 							let json = try? JSONSerialization.jsonObject(with: data, options: [])
 								as? [String: Any] else {
@@ -85,7 +84,7 @@ final class CustomBackendAPIClient {
 					fetchPaymentInstrument(with: finId, accessToken: accessToken) { savedCard in
 						fetchedSavedCards.append(savedCard)
 						dispatchGroup.leave()
-					} failure: { error in
+					} failure: { _ in
 						dispatchGroup.leave()
 					}
 			}
@@ -129,7 +128,6 @@ final class CustomBackendAPIClient {
 		})
 	}
 
-
 	// MARK: - Private
 
 	/// Sends API request.
@@ -144,7 +142,7 @@ final class CustomBackendAPIClient {
 		let requestUrl = url.appendingPathComponent(path)
 		var request = URLRequest(url: requestUrl)
 		request.httpMethod = httpMethod
-		var requestHeaders: [String:String] = [:]
+		var requestHeaders: [String: String] = [:]
 		requestHeaders["Content-Type"] = "application/json"
 
 		if let customerHeaders = headers, customerHeaders.count > 0 {
@@ -161,7 +159,7 @@ final class CustomBackendAPIClient {
 
 		let task = URLSession.shared.dataTask(
 				with: request,
-				completionHandler: {(data, response, error) in
+				completionHandler: {(data, _, _) in
 						guard let data = data,
 								let json = try? JSONSerialization.jsonObject(with: data, options: [])
 										as? [String: Any] else {

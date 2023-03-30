@@ -164,7 +164,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     textField.configuration = configuration
     
     let expectation = XCTestExpectation(description: "Sending data...")
-    collector.sendData(path: "/post", routeId: routeId) { [weak self]respose in
+    collector.sendData(path: "/post", routeId: routeId) { [weak self] _ in
       // check base url not changed and don't include routeid
       let url = self?.collector.apiClient.baseURL
       XCTAssertTrue(baseUrl?.absoluteString == url?.absoluteString, "-testBaseUrlNotChangedAfterRouteIdSet url error: \(String(describing: url))")

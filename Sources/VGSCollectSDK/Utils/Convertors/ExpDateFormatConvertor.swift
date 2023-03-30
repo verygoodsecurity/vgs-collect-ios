@@ -29,8 +29,6 @@ internal class ExpDateFormatConvertor: TextFormatConvertor {
   
   /// Convert Exp Date String with input `CardExpDateFormat` to Output `CardExpDateFormat`
   func convert(_ input: String, inputFormat: VGSCardExpDateFormat, outputFormat: VGSCardExpDateFormat) -> String {
-    
-    
     let inputYear = inputFormat.isYearFirst ? String(input.prefix(inputFormat.yearCharacters)) : String(input.suffix(inputFormat.yearCharacters))
     let inputMonth = inputFormat.isYearFirst ? input.suffix(inputFormat.monthCharacters) : input.prefix(inputFormat.monthCharacters)
     let divider = inputFormat.isYearFirst ? String(input.dropLast(inputFormat.monthCharacters)).dropFirst(inputFormat.yearCharacters) : String(input.dropLast(inputFormat.yearCharacters)).dropFirst(inputFormat.monthCharacters)

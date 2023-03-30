@@ -22,24 +22,24 @@ internal final class VGSCardIODataMapUtils {
 	///   - scannedDataType: `CradIODataType` object, CardIO data type.
 	/// - Returns: `String?`, formatted string or `nil`.
 	internal static func mapCardExpirationData(_ data: VGSCardIOExpirationDate, scannedDataType: CradIODataType) -> String? {
-		switch scannedDataType {
-		case .cardNumber, .cvc:
-			return nil
-		case  .expirationDate:
-			return mapDefaultExpirationDate(data.month, scannedExpYear: data.year)
-		case .expirationDateLong:
-			return mapLongExpirationDate(data.month, scannedExpYear: data.year)
-		case .expirationMonth:
-			return mapMonth(data.month)
-		case .expirationYear:
-			return mapYear(data.year)
-		case .expirationYearLong:
-			return mapYearLong(data.year)
+    switch scannedDataType {
+    case .cardNumber, .cvc:
+      return nil
+    case  .expirationDate:
+      return mapDefaultExpirationDate(data.month, scannedExpYear: data.year)
+    case .expirationDateLong:
+      return mapLongExpirationDate(data.month, scannedExpYear: data.year)
+    case .expirationMonth:
+      return mapMonth(data.month)
+    case .expirationYear:
+      return mapYear(data.year)
+    case .expirationYearLong:
+      return mapYearLong(data.year)
     case .expirationDateShortYearThenMonth:
       return mapExpirationDateWithShortYearFirst(data.month, scannedExpYear: data.year)
     case .expirationDateLongYearThenMonth:
       return mapLongExpirationDateWithLongYearFirst(data.month, scannedExpYear: data.year)
-		}
+    }
 	}
 
 	// MARK: - Helpers

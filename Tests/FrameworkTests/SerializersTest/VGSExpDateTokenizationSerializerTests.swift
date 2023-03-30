@@ -99,10 +99,8 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
       var matchedPayloads = 0
       // mapFieldsToTokenizationRequestBodyJSON can produce array of tokenized data in different order. So we need to iterate through payloads and check them one by one to get 2 matches (one is for month, another one is for year).
       for payload in tokenizedPayloads {
-        for expectedPayload in test.tokenizedPayloads {
-          if payload == expectedPayload {
+        for expectedPayload in test.tokenizedPayloads where payload == expectedPayload {
             matchedPayloads += 1
-          }
         }
       }
 
