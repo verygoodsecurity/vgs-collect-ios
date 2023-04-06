@@ -14,7 +14,6 @@ public extension VGSTextField {
     }
 }
 
-
 /// A custom publisher that emits `State` of a given `VGSTextField`.
 @available(iOS 13, *)
 public struct VGSTextFieldStatePublisher: Publisher {

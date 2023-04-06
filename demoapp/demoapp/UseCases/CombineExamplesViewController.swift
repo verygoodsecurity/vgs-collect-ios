@@ -3,7 +3,6 @@
 //  demoapp
 //
 
-
 import UIKit
 import VGSCollectSDK
 import Combine
@@ -49,7 +48,7 @@ class CombineExamplesViewController: UIViewController {
       cardNumber.statePublisher.compactMap { state -> CardState? in
         return state as? CardState
       }.sink { [weak self] cardState in
-        self?.cardHolderName.borderColor = cardState.isValid ? .lightGray : .red
+        self?.cardNumber.borderColor = cardState.isValid ? .lightGray : .red
       }.store(in: &cancellables)
       
       expCardDate.statePublisher.sink { [weak self] state in
@@ -60,18 +59,17 @@ class CombineExamplesViewController: UIViewController {
         self?.cvcCardNum.borderColor = state.isValid ? .lightGray : .red
       }.store(in: &cancellables)
       
-      /// Enable Upload Button when all fields are valid
-      Publishers.CombineLatest4(cardHolderName.statePublisher,
-                               cardNumber.statePublisher,
-                               expCardDate.statePublisher,
-                               cvcCardNum.statePublisher)
-                              .map { state1, state2, state3, state4 in
-                                return state1.isValid && state2.isValid && state2.isValid && state3.isValid
-                              }
-                              .sink { [weak self] allValid in
-                                  self?.uploadButton.isEnabled = allValid
-                              }.store(in: &cancellables)
-      
+//      /// Enable Upload Button when all fields are valid
+//      Publishers.CombineLatest4(cardHolderName.statePublisher,
+//                               cardNumber.statePublisher,
+//                               expCardDate.statePublisher,
+//                               cvcCardNum.statePublisher)
+//                              .map { state1, state2, state3, state4 in
+//                                return state1.isValid && state2.isValid && state3.isValid && state4.isValid
+//                              }
+//                              .sink { [weak self] allValid in
+//                                  self?.uploadButton.isEnabled = allValid
+//                              }.store(in: &cancellables)
       
       // set custom headers
       vgsCollect.customHeaders = [
