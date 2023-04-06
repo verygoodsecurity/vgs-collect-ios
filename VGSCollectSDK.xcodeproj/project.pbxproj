@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0313A1202975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */; };
+		031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */; };
 		033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */; };
 		0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */; };
 		0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */; };
@@ -196,6 +197,7 @@
 
 /* Begin PBXFileReference section */
 		0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfigurationTests.swift; sourceTree = "<group>"; };
+		031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldStatePublisherTests.swift; sourceTree = "<group>"; };
 		033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+statePublisher.swift"; sourceTree = "<group>"; };
 		0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTokenizationProtocol.swift; sourceTree = "<group>"; };
 		0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTokenizationConfiguration.swift; sourceTree = "<group>"; };
@@ -416,6 +418,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031795D429DF00D800BD1215 /* VGSTextFieldStatePublisherTests */ = {
+			isa = PBXGroup;
+			children = (
+				031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */,
+			);
+			path = VGSTextFieldStatePublisherTests;
+			sourceTree = "<group>";
+		};
 		035179992858B39100394BFC /* TokenizationConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,6 +999,7 @@
 				44D521092681B7F5005AB588 /* FrameworkTests.xctestplan */,
 				FDF696E42346461D00063507 /* StorageTests.swift */,
 				FD24955D2330CC62009024E6 /* VGSCollectTests.swift */,
+				031795D429DF00D800BD1215 /* VGSTextFieldStatePublisherTests */,
 				44D5210B2681B803005AB588 /* Resources */,
 				3213001A24190BE50062FEF0 /* VGSCollectTest+Validation.swift */,
 				32059CD22417EACC003E9481 /* UtilsTest.swift */,
@@ -1541,6 +1552,7 @@
 				FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */,
 				44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */,
 				FD1BE48923462F21006D8658 /* CVVTextFieldTests.swift in Sources */,
+				031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */,
 				3215C4E92611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift in Sources */,
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
 				038EDA0D286F2EFF00AF3CF2 /* TokenizationApiTests.swift in Sources */,
