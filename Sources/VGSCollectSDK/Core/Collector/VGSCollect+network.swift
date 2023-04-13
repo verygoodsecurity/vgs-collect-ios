@@ -81,7 +81,7 @@ extension VGSCollect {
      - Note:
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
-    public func sendFile(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, completion block: @escaping (VGSResponse) -> Void) {
+    public func sendFile(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
 
         var content: [String] = ["file"]
         if !(extraData?.isEmpty ?? true) {
@@ -228,7 +228,73 @@ extension VGSCollect {
   }
 }
 
-/// VGSCollect + Combine
+// MARK: VGSCollect + async
+@available(iOS 13, *)
+extension VGSCollect {
+  /**
+   Asynchronously send data from VGSTextFields to your organization vault.
+   
+   - Parameters:
+      - path: Inbound rout path for your organization vault.
+      - method: VGSCollectHTTPMethod, default is `.post`.
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
+      - requestOptions: `VGSCollectRequestOptions` object, holds additional request options. Default options are `.nestedJSON`.
+    - Returns:
+      -   VGSResponse: response completion block, returns `VGSResponse`.
+   
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) async throws -> VGSResponse {
+    return try await withCheckedThrowingContinuation { continuation in
+      self.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
+        continuation.resume(returning: response)
+      }
+    }
+  }
+  
+  /**
+   Asynchronously send file to your organization vault. Only send one file at a time.
+   
+   - Parameters:
+      - path: Inbound rout path for your organization vault.
+      - method: HTTPMethod, default is `.post`.
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
+      - completion: response completion block, returns `VGSResponse`.
+   
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func sendFile(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil) async throws -> VGSResponse {
+    return try await withCheckedThrowingContinuation { continuation in
+      self.sendFile(path: path, method: method, routeId: routeId, extraData: extraData) { response in
+        continuation.resume(returning: response)
+      }
+    }
+  }
+  
+  /**
+   Asynchronously send tokenization request with data from VGSTextFields.
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - completion: response completion block, returns `VGSTokenizationResponse`.
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func tokenizeData(routeId: String? = nil) async throws -> VGSTokenizationResponse {
+    return try await withCheckedThrowingContinuation { continuation in
+      self.tokenizeData() { response in
+        continuation.resume(returning: response)
+      }
+    }
+  }
+}
+  
+
+// MARK: VGSCollect + Combine
+@available(iOS 13, *)
 extension VGSCollect {
   /**
    Send data from VGSTextFields to your organization vault using the Combine framework.
@@ -244,7 +310,6 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  @available(iOS 13, *)
   public func sendDataPublisher(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) -> Future<VGSResponse, Never> {
     return Future { [weak self] completion in
       self?.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
