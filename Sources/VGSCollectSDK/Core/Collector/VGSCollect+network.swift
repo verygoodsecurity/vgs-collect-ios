@@ -172,7 +172,7 @@ extension VGSCollect {
     }
   
   /**
-   Makes tokenization response with data from VGSTextFields.
+   Send tokenization request with data from VGSTextFields.
    - Parameters:
       - routeId: id of VGS Proxy Route, default is `nil`.
       - completion: response completion block, returns `VGSTokenizationResponse`.
@@ -263,7 +263,7 @@ extension VGSCollect {
       - routeId: id of VGS Proxy Route, default is `nil`.
       - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
       - completion: response completion block, returns `VGSResponse`.
-   
+
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
@@ -285,14 +285,13 @@ extension VGSCollect {
   */
   public func tokenizeData(routeId: String? = nil) async throws -> VGSTokenizationResponse {
     return try await withCheckedThrowingContinuation { continuation in
-      self.tokenizeData() { response in
+      self.tokenizeData {response in
         continuation.resume(returning: response)
       }
     }
   }
 }
   
-
 // MARK: VGSCollect + Combine
 @available(iOS 13, *)
 extension VGSCollect {
@@ -313,6 +312,46 @@ extension VGSCollect {
   public func sendDataPublisher(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) -> Future<VGSResponse, Never> {
     return Future { [weak self] completion in
       self?.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
+        completion(.success(response))
+      }
+    }
+  }
+  
+  /**
+   Send file to your organization vault using the Combine framework.
+   
+   - Parameters:
+      - path: Inbound rout path for your organization vault.
+      - method: VGSCollectHTTPMethod, default is `.post`.
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
+      - requestOptions: `VGSCollectRequestOptions` object, holds additional request options. Default options are `.nestedJSON`.
+   - Returns: A `Future` publisher that emits a single `VGSResponse`.
+
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func sendFilePublisher(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) -> Future<VGSResponse, Never> {
+    return Future { [weak self] completion in
+      self?.sendFile(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
+        completion(.success(response))
+      }
+    }
+  }
+  
+  /**
+   Send tokenization request with data from VGSTextFields to your organization vault using the Combine framework.
+   
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+   - Returns: A `Future` publisher that emits a single `VGSTokenizationResponse`.
+
+   - Note:
+      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func tokenizeDataPublisher(routeId: String? = nil) -> Future<VGSTokenizationResponse, Never> {
+    return Future { [weak self] completion in
+      self?.tokenizeData(routeId: routeId) { response in
         completion(.success(response))
       }
     }
