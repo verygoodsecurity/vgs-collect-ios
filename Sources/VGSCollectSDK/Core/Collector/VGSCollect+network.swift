@@ -52,7 +52,7 @@ extension VGSCollect {
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
       
         // Send request.
-    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
+        apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
           
           // Analytics
           if let strongSelf = self {
@@ -248,8 +248,12 @@ extension VGSCollect {
   */
   public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) async throws -> VGSResponse {
     return try await withCheckedThrowingContinuation { continuation in
-      self.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
-        continuation.resume(returning: response)
+      /// We need to use main thread since we grab data from UI elements
+      DispatchQueue.main.async {
+        self.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
+          continuation.resume(returning: response)
+          
+        }
       }
     }
   }
@@ -285,8 +289,11 @@ extension VGSCollect {
   */
   public func tokenizeData(routeId: String? = nil) async throws -> VGSTokenizationResponse {
     return try await withCheckedThrowingContinuation { continuation in
-      self.tokenizeData {response in
-        continuation.resume(returning: response)
+      /// We need to use main thread since we grab data from UI elements
+      DispatchQueue.main.async {
+        self.tokenizeData {response in
+          continuation.resume(returning: response)
+        }
       }
     }
   }
