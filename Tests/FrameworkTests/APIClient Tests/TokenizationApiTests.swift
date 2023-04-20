@@ -57,11 +57,15 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
         wait(for: [expectation], timeout: 60.0)
     }
   
-    func testAsyncTokenizeCardToEchoServer() async throws {
+    func testAsyncTokenizeCardToEchoServer() {
       self.configureCardTextFields()
-      let result = try await collector.tokenizeData()
-      self.validateTokenizeDataResponseResults(result)
-
+      let expectation = XCTestExpectation(description: "Sending data...")
+      Task {
+        let result = try await collector.tokenizeData()
+        self.validateTokenizeDataResponseResults(result)
+        expectation.fulfill()
+      }
+      wait(for: [expectation], timeout: 60)
     }
     
     func testCardSendPublisherToEchoServer() {
