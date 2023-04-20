@@ -29,10 +29,17 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
 
     override func setUp() {
 			collector = VGSCollect(id: MockedDataProvider.shared.tokenizationVaultId, environment: .sandbox)
+      cancellables = Set<AnyCancellable>()
+      cardTextField = VGSCardTextField()
+      cvcTextField = VGSCVCTextField()
+      expDateTextField = VGSExpDateTextField()
+      cardHolderTextField = VGSTextField()
+      numbersTextField = VGSCardTextField()
     }
   
     override func tearDown() {
       collector = nil
+      cancellables = nil
       cardTextField = nil
       expDateTextField = nil
       cvcTextField = nil

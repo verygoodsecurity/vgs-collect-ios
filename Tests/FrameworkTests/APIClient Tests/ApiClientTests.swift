@@ -2,9 +2,7 @@
 //  ApiClientTests.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 9/19/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
+
 
 import XCTest
 import Combine
@@ -34,8 +32,12 @@ class ApiClientTests: VGSCollectBaseTestCase {
     var cancellables: Set<AnyCancellable>!
   
     override func setUp() {
-        collector = VGSCollect(id: "tntva5wfdrp", environment: .sandbox)
-        cancellables = Set<AnyCancellable>()
+      collector = VGSCollect(id:  MockedDataProvider.shared.vaultId, environment: .sandbox)
+      cancellables = Set<AnyCancellable>()
+      cardTextField = VGSCardTextField()
+      expDateTextField = VGSExpDateTextField()
+      cardHolderTextField = VGSTextField()
+      numbersTextField = VGSCardTextField()
     }
   
     override func tearDown() {
@@ -83,7 +85,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     ]
     let extraData = [extraDataKey: extraDataValue]
     let expectation = XCTestExpectation(description: "Sending data...")
-    collector.sendDataPublisher(path: "post", method: .post)
+    collector.sendDataPublisher(path: "post", method: .post, extraData: extraData)
                 .sink {[weak self] result in
                     self?.validateSendDataResponseResults(result)
                     expectation.fulfill()
@@ -97,7 +99,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     let form = VGSCollect(id: "wrongId")
     let conf = VGSConfiguration(collector: form, fieldName: "cardField")
     conf.type = .cardNumber
-    let field = VGSTextField(frame: .zero)
+    let field = VGSTextField()
     field.configuration = conf
     field.textField.secureText = "5252"
     
@@ -119,7 +121,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     func testWrongPath() {
         let conf = VGSConfiguration(collector: collector, fieldName: "cardField")
         conf.type = .cardNumber
-        let field = VGSTextField(frame: .zero)
+        let field = VGSTextField()
         field.configuration = conf
         field.textField.secureText = "5252"
         
@@ -173,7 +175,6 @@ class ApiClientTests: VGSCollectBaseTestCase {
       let cardNum = testCardNumber
       let cardConfig = VGSConfiguration(collector: collector, fieldName: "cardNumber")
       cardConfig.type = .cardNumber
-      cardTextField = VGSCardTextField(frame: .zero)
       cardTextField.configuration = cardConfig
       cardTextField.textField.secureText = cardNum
     
@@ -182,21 +183,18 @@ class ApiClientTests: VGSCollectBaseTestCase {
       someNumberConfig.type = .none
       someNumberConfig.divider = "-"
       someNumberConfig.formatPattern = "### #### ##"
-      numbersTextField = VGSCardTextField(frame: .zero)
       numbersTextField.configuration = someNumberConfig
       numbersTextField.textField.secureText = someNumber
     
       let expDate = testExpDate
       let expDateConfig = VGSConfiguration(collector: collector, fieldName: "expDate")
       expDateConfig.type = .expDate
-      expDateTextField = VGSTextField(frame: .zero)
       expDateTextField.configuration = expDateConfig
       expDateTextField.textField.secureText = expDate
     
       let cardHolder = testCardHolder
       let cardHolderConfig = VGSConfiguration(collector: collector, fieldName: "not_secured_cardHolder")
       cardHolderConfig.type = .cardHolderName
-      cardHolderTextField = VGSTextField(frame: .zero)
       cardHolderTextField.configuration = cardHolderConfig
       cardHolderTextField.textField.secureText = cardHolder
   }
