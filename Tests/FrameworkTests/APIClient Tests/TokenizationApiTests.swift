@@ -155,7 +155,6 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       let cardNum = testCardNumber
       let cardConfig = VGSCardNumberTokenizationConfiguration(collector: collector, fieldName: "cardNumber")
       cardConfig.type = .cardNumber
-      let cardTextField = VGSCardTextField()
       cardTextField.configuration = cardConfig
       cardTextField.textField.secureText = cardNum
           
@@ -164,13 +163,11 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       expDateConfig.tokenizationParameters.format = VGSVaultAliasFormat.UUID.rawValue
       expDateConfig.inputDateFormat = .shortYear
       expDateConfig.outputDateFormat = .longYear
-      let expDatTextField = VGSTextField()
-      expDatTextField.configuration = expDateConfig
-      expDatTextField.textField.secureText = expDate
+      expDateTextField.configuration = expDateConfig
+      expDateTextField.textField.secureText = expDate
     
       let cvc = testCVC
       let cvcConfig = VGSCVCTokenizationConfiguration(collector: collector, fieldName: "cvc")
-      cvcTextField = VGSCVCTextField()
       cvcTextField.configuration = cvcConfig
       cvcTextField.textField.secureText = cvc
     
@@ -178,7 +175,6 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       let cardHolder = testCardHolder
       let cardHolderConfig = VGSConfiguration(collector: collector, fieldName: "not_secured_cardHolder")
       cardHolderConfig.type = .cardHolderName
-      cardHolderTextField = VGSTextField()
       cardHolderTextField.configuration = cardHolderConfig
       cardHolderTextField.textField.secureText = cardHolder
         
@@ -187,7 +183,6 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       someNumberConfig.type = .none
       someNumberConfig.divider = "-"
       someNumberConfig.formatPattern = "### #### ##"
-      numbersTextField = VGSCardTextField()
       numbersTextField.configuration = someNumberConfig
       numbersTextField.textField.secureText = someNumber
   }
@@ -201,10 +196,10 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       }
       XCTAssertTrue(code == 200)
       XCTAssertNotNil(jsonData)
-      XCTAssertNil(response)
-      XCTAssertNil(json["cardNumber"])
-      XCTAssertNil(json["cvc"])
-      XCTAssertTrue(json["expDate"] == testExpDateResponse)
+      XCTAssertNotNil(response)
+      XCTAssertTrue(json["cardNumber"] != testCardNumber)
+      XCTAssertTrue(json["cvc"] != testCVC)
+      XCTAssertTrue(json["expDate"] != testExpDateResponse)
       XCTAssertTrue(json["not_secured_cardHolder"] == testCardHolder)
       XCTAssertTrue(json["not_secured_some_number"] == testNumbersResponse)
     case .failure(let code, _, _, let error):

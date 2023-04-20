@@ -3,7 +3,6 @@
 //  FrameworkTests
 //
 
-
 import XCTest
 import Combine
 @testable import VGSCollectSDK
@@ -32,7 +31,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     var cancellables: Set<AnyCancellable>!
   
     override func setUp() {
-      collector = VGSCollect(id:  MockedDataProvider.shared.vaultId, environment: .sandbox)
+      collector = VGSCollect(id: MockedDataProvider.shared.vaultId, environment: .sandbox)
       cancellables = Set<AnyCancellable>()
       cardTextField = VGSCardTextField()
       expDateTextField = VGSExpDateTextField()
