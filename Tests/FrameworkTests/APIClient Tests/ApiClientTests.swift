@@ -65,16 +65,14 @@ class ApiClientTests: VGSCollectBaseTestCase {
           wait(for: [expectation], timeout: 60.0)
     }
   
-  func testAsyncSendCardToEchoServer() async {
+  func testAsyncSendCardToEchoServer() async throws {
     self.configureCardTextFields()
     collector.customHeaders = [
         customHeaderKey: customHeaderValue
     ]
     let extraData = [extraDataKey: extraDataValue]
-    Task {
-      let result = try await collector.sendData(path: "post", method: .post, extraData: extraData)
-      self.validateSendDataResponseResults(result)
-    }
+    let result = try await collector.sendData(path: "post", method: .post, extraData: extraData)
+    self.validateSendDataResponseResults(result)
   }
   
   func testCardSendPublisherToEchoServer() {
