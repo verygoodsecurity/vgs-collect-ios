@@ -78,7 +78,6 @@ public final class VGSExpDateTextField: VGSTextField {
       guard let config  = configuration as? VGSExpDateConfiguration else {
         return
       }
-      
       // setup input source
       switch config.inputSource {
       case .datePicker:
