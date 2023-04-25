@@ -11,9 +11,10 @@ import Foundation
 /// Mocked data provider.
 final class MockedDataProvider {
 
+  /// Mocked tokenization vault id.
+  var vaultId: String = ""
 	/// Mocked tokenization vault id.
 	var tokenizationVaultId: String = ""
-
 	/// Shared instance.
 	static let shared = MockedDataProvider()
 
@@ -35,7 +36,7 @@ final class MockedDataProvider {
 					assertionFailure("Mocked data not found!")
 					return
 			}
-
+      vaultId = dictionary["vaultID"] as? String ?? ""
 			tokenizationVaultId = dictionary["tokenization_vaultId"] as? String ?? ""
 		} else {
 			assertionFailure("Mocked data not found!")

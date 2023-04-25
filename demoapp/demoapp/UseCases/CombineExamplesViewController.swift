@@ -1,21 +1,23 @@
 //
-//  CardsDataCollectingViewController.swift
+//  CombineExamplesViewController.swift
 //  demoapp
-//
-//  Created by Dima on 29.07.2020.
-//  Copyright © 2020 Very Good Security. All rights reserved.
 //
 
 import UIKit
 import VGSCollectSDK
+import Combine
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
-class CardsDataCollectingViewController: UIViewController {
+class CombineExamplesViewController: UIViewController {
 
     @IBOutlet weak var cardDataStackView: UIStackView!
     @IBOutlet weak var consoleStatusLabel: UILabel!
     @IBOutlet weak var consoleLabel: UILabel!
-
+    
+    @IBOutlet weak var uploadButton: UIButton!
+  
+    var cancellables = Set<AnyCancellable>()
+  
     // Init VGS Collector
     var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
     
@@ -34,27 +36,45 @@ class CardsDataCollectingViewController: UIViewController {
 
     override func viewDidLoad() {
       super.viewDidLoad()
-
       setupUI()
       setupElementsConfiguration()
 
+      /// Track textfield state changes
+      cardHolderName.statePublisher.sink { [weak self] state in
+        self?.cardHolderName.borderColor = state.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      /// Map State to CardState to get access for card attributes
+      cardNumber.statePublisher.compactMap { state -> CardState? in
+        return state as? CardState
+      }.sink { [weak self] cardState in
+        self?.cardNumber.borderColor = cardState.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      expCardDate.statePublisher.sink { [weak self] state in
+        self?.expCardDate.borderColor = state.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+      cvcCardNum.statePublisher.sink { [weak self] state in
+        self?.cvcCardNum.borderColor = state.isValid ? .lightGray : .red
+      }.store(in: &cancellables)
+      
+//      /// Enable Upload Button when all fields are valid
+//      Publishers.CombineLatest4(cardHolderName.statePublisher,
+//                               cardNumber.statePublisher,
+//                               expCardDate.statePublisher,
+//                               cvcCardNum.statePublisher)
+//                              .map { state1, state2, state3, state4 in
+//                                return state1.isValid && state2.isValid && state3.isValid && state4.isValid
+//                              }
+//                              .sink { [weak self] allValid in
+//                                  self?.uploadButton.isEnabled = allValid
+//                              }.store(in: &cancellables)
+      
       // set custom headers
       vgsCollect.customHeaders = [
         "my custome header": "some custom data"
       ]
-          
-      // Observing text fields. The call back return all textfields with updated states.
-      // You also can use VGSTextFieldDelegate instead.
-      vgsCollect.observeStates = { [weak self] form in
-
-          self?.consoleMessage = ""
-          self?.consoleStatusLabel.text = "STATE"
-
-          form.forEach({ textField in
-              self?.consoleMessage.append(textField.state.description)
-              self?.consoleMessage.append("\n")
-          })
-      }
       
       // Init VGSBlinkCardController with BlinkCard license key
       if let licenseKey = AppCollectorConfiguration.shared.blinkCardLicenseKey {
@@ -69,16 +89,17 @@ class CardsDataCollectingViewController: UIViewController {
   //
   //      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
   //      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
+
     }
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
+  override func awakeFromNib() {
+    super.awakeFromNib()
 
-		let view = self.view
-		if UITestsMockedDataProvider.isRunningUITest {
-			view?.accessibilityIdentifier = "CardsDataCollectingViewController.Screen.RootView"
-		}
-	}
+    let view = self.view
+    if UITestsMockedDataProvider.isRunningUITest {
+      view?.accessibilityIdentifier = "CombineExamplesViewController.Screen.RootView"
+    }
+  }
     
     // MARK: - Init UI
     private func setupUI() {
@@ -113,7 +134,7 @@ class CardsDataCollectingViewController: UIViewController {
         /// Use `VGSExpDateConfiguration` if you need to convert output date format
         let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "card_expirationDate")
         expDateConfiguration.type = .expDate
-				expDateConfiguration.inputDateFormat = .shortYear
+        expDateConfiguration.inputDateFormat = .shortYear
         expDateConfiguration.outputDateFormat = .longYear
 
         /// Default .expDate format is "##/##"
@@ -142,95 +163,59 @@ class CardsDataCollectingViewController: UIViewController {
         /// Required to be not empty
       
         cardHolderName.textAlignment = .natural
-				// Set max input length
-				// holderConfiguration.maxInputLength = 32
+        // Set max input length
+        // holderConfiguration.maxInputLength = 32
         cardHolderName.configuration = holderConfiguration
         cardHolderName.placeholder = "Cardholder Name"
         
         vgsCollect.textFields.forEach { textField in
-					textField.textColor = UIColor.inputBlackTextColor
+          textField.textColor = UIColor.inputBlackTextColor
           textField.font = .systemFont(ofSize: 22)
           textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
           textField.tintColor = .lightGray
-          /// Implement VGSTextFieldDelegate methods
-          textField.delegate = self
         }
-    }
-    
-    // Start BlinkCard scanning
-    @IBAction func scanAction(_ sender: Any) {
-      guard let scanController = scanController else {
-        print("⚠️ VGSBlinkCardController not initialized. Check license key!")
-        return
-      }
-      scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
     }
     
     // Upload data from TextFields to VGS
-    @IBAction func uploadAction(_ sender: Any) {
-      // hide kayboard
-      hideKeyboard()
-
-      // check if textfields are valid
-      vgsCollect.textFields.forEach { textField in
-        textField.borderColor = textField.state.isValid ? .lightGray : .red
-      }
-
-      // send extra data
-      var extraData = [String: Any]()
-      extraData["customKey"] = "Custom Value"
-
-      /// New sendRequest func
-      vgsCollect.sendData(path: "/post", extraData: extraData) { [weak self](response) in
-        
-        self?.consoleStatusLabel.text = "RESPONSE"
-        switch response {
-        case .success(_, let data, _):
-          if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            // swiftlint:disable force_try
-            let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-            self?.consoleLabel.text = "Success: \n\(response)"
-            print(response)
-            // swiftlint:enable force_try
-            }
-            return
-        case .failure(let code, _, _, let error):
-          switch code {
-          case 400..<499:
-            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
-            self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
-          case VGSErrorType.inputDataIsNotValid.rawValue:
-            if let error = error as? VGSError {
-              self?.consoleLabel.text = "Error: Input data is not valid. Details:\n \(error)"
-            }
-          default:
-            self?.consoleLabel.text = "Error: Something went wrong. Code: \(code)"
-          }
-          print("Submit request error: \(code), \(String(describing: error))")
-          return
-        }
-      }
-    }
-}
-
-// MARK: - VGSTextFieldDelegate
-extension CardsDataCollectingViewController: VGSTextFieldDelegate {
-  func vgsTextFieldDidChange(_ textField: VGSTextField) {
-    textField.borderColor = textField.state.isValid  ? .gray : .red
+  @IBAction func uploadAction(_ sender: Any) {
+    // hide kayboard
+    hideKeyboard()
     
-    /// Update CVC field UI in case if valid cvc digits change, e.g.: input card number brand changed form Visa(3 digints CVC) to Amex(4 digits CVC) )
-    if textField == cardNumber, cvcCardNum.state.isDirty {
-      cvcCardNum.borderColor =  cvcCardNum.state.isValid  ? .gray : .red
+    // check if textfields are valid
+    vgsCollect.textFields.forEach { textField in
+      textField.borderColor = textField.state.isValid ? .lightGray : .red
     }
-
-    /// Check Card Number Field State with addition attributes
-    if let cardState = textField.state as? CardState, cardState.isValid {
-        print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
+    
+    // send extra data
+    var extraData = [String: Any]()
+    extraData["customKey"] = "Custom Value"
+        
+    vgsCollect.sendDataPublisher(path: "/post", extraData: extraData).sink(
+      receiveCompletion: { completion in
+          switch completion {
+          case .finished:
+              break
+          case .failure(let error):
+              print("Error: \(error.localizedDescription)")
+          }
+      },
+      receiveValue: { response in
+          print("Response: \(response)")
+      }
+    ).store(in: &cancellables)
+  }
+  
+  // Start BlinkCard scanning
+  @IBAction func scanAction(_ sender: Any) {
+    guard let scanController = scanController else {
+      print("⚠️ VGSBlinkCardController not initialized. Check license key!")
+      return
     }
+    scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
   }
 }
 
-extension CardsDataCollectingViewController: VGSBlinkCardControllerDelegate {
+extension CombineExamplesViewController: VGSBlinkCardControllerDelegate {
   func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
       // match VGSTextField with scanned data
       switch type {
