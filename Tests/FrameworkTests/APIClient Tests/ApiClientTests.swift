@@ -73,7 +73,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     let extraData = [extraDataKey: extraDataValue]
     let expectation = XCTestExpectation(description: "Sending data...")
     Task {
-      let result = try await collector.sendData(path: "post", method: .post, extraData: extraData)
+      let result = await collector.sendData(path: "post", method: .post, extraData: extraData)
       validateSendDataResponseResults(result)
       expectation.fulfill()
     }

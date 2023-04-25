@@ -2,9 +2,6 @@
 //  VGSCollect+network.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 09.05.2020.
-//  Copyright © 2020 VGS. All rights reserved.
-//
 
 import Foundation
 import Combine
@@ -246,9 +243,9 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) async throws -> VGSResponse {
-    return try await withCheckedThrowingContinuation { continuation in
-      /// We need to use main thread since we grab data from UI elements
+  public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) async -> VGSResponse {
+    return await withCheckedContinuation { continuation in
+      //NOTE:  We need to use main thread since data will be collected  from UI elements
       DispatchQueue.main.async {
         self.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
           continuation.resume(returning: response)
@@ -271,8 +268,8 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func sendFile(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil) async throws -> VGSResponse {
-    return try await withCheckedThrowingContinuation { continuation in
+  public func sendFile(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil) async -> VGSResponse {
+    return await withCheckedContinuation { continuation in
       self.sendFile(path: path, method: method, routeId: routeId, extraData: extraData) { response in
         continuation.resume(returning: response)
       }
@@ -287,9 +284,9 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func tokenizeData(routeId: String? = nil) async throws -> VGSTokenizationResponse {
-    return try await withCheckedThrowingContinuation { continuation in
-      /// We need to use main thread since we grab data from UI elements
+  public func tokenizeData(routeId: String? = nil) async -> VGSTokenizationResponse {
+    return await withCheckedContinuation { continuation in
+      //NOTE:  We need to use main thread since data will be collected  from UI elements
       DispatchQueue.main.async {
         self.tokenizeData {response in
           continuation.resume(returning: response)

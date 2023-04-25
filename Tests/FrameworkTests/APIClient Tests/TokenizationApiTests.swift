@@ -61,7 +61,7 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       self.configureCardTextFields()
       let expectation = XCTestExpectation(description: "Sending data...")
       Task {
-        let result = try await collector.tokenizeData()
+        let result = await collector.tokenizeData()
         self.validateTokenizeDataResponseResults(result)
         expectation.fulfill()
       }
