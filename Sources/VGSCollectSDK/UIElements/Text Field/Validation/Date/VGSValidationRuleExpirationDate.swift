@@ -9,7 +9,7 @@
 import Foundation
 
 /// Payment Card Expiration Date Format
-public enum VGSCardExpDateFormat {
+public enum VGSCardExpDateFormat: InputConvertableFormat, OutputConvertableFormat {
   
   /// Exp.Date in format mm/yy: 01/22
   case shortYear
@@ -88,7 +88,7 @@ public struct VGSValidationRuleCardExpirationDate: VGSValidationRuleProtocol {
   /// Validation Error
   public let error: VGSValidationError
 
-  /// Initialzation
+  /// Initialization
   ///
   /// - Parameters:
   ///   - error:`VGSValidationError` - error on failed validation relust.

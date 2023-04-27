@@ -181,7 +181,8 @@ private extension VGSExpDateTextField {
       let inputDateFormat: VGSCardExpDateFormat
       
       /// Check if specific `.inputFormat` is set in field configuration
-      if let config = configuration as? VGSExpDateConfiguration, let fieldDateFormat = config.inputFormat {
+      if let config = configuration as? VGSExpDateConfiguration,
+            let fieldDateFormat = config.inputFormat as? VGSCardExpDateFormat {
           inputDateFormat = fieldDateFormat
       } else {
         /// Default format could be mm/yy or mm/yyyy. In other case `.inputDateFormat` should be specified

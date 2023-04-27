@@ -19,7 +19,7 @@ public struct VGSValidationRuleLengthMatch: VGSValidationRuleProtocol {
     /// Validation Error
     public let error: VGSValidationError
 
-    /// Initialzation
+    /// Initialization
     ///
     /// - Parameters:
     ///   - error:`VGSValidationError` - error on failed validation relust.
