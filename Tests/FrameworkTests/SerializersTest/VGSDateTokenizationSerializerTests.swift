@@ -1,51 +1,63 @@
 //
-//  VGSExpDateTokenizationSerializerTests.swift
+//  VGSDateTokenizationSerializerTests.swift
 //  FrameworkTests
+//
 
-import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
-class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
-    var collector: VGSCollect!
-    var textField: VGSExpDateTextField!
+class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     
-    enum TestFlow {
-        case defaultConfiguration
+    // MARK: - Properties
+    private var collector: VGSCollect!
+    private var textField: VGSDateTextField!
+    
+    // MARK: - Inner objects
+    /// Define the file names with JSON data for testing
+    private enum TestFlow {
+        case defaultConfig
         
+        /// Name of the JSON file
         var jsonFileName: String {
-            return "VGSExpDateTokenizationSerialization_" + jsonFileNameSuffix
+            return "VGSDateTokenizationSerialization_" + jsonFileNameSuffix
         }
         
-        var jsonFileNameSuffix: String {
+        /// JSON file name
+        private var jsonFileNameSuffix: String {
             switch self {
-            case .defaultConfiguration:
+            case .defaultConfig:
                 return "DefaultConfig"
             }
         }
     }
     
-    struct TestJSONData: TestJSONDataProtocol {
+    /// Store the JSON data for testing
+    private struct TestJSONData: TestJSONDataProtocol {
+        
+        // MARK: - Properties
         let fieldValue: String
         let monthFieldName: String
+        let dayFieldName: String
         let yearFieldName: String
         let submitJSON: JsonData
-        let outputFormat: VGSCardExpDateFormat
+        let outputFormat: VGSDateFormat
         let comment: String
         let tokenizedPayloads: [JsonData]
         
+        /// Initializer
         init?(json: JsonData) {
             guard let submitJSON = json["expectedResult"] as? JsonData else {
                 XCTFail("Cannot parse test data.")
                 return nil
             }
             guard let formatName = json["outputFormat"] as? String,
-                  let format = VGSCardExpDateFormat(name: formatName) else {
+                  let format = VGSDateFormat(name: formatName) else {
                 XCTFail("Cannot parse output format from test json")
                 return nil
             }
             self.fieldValue = json["fieldValue"] as? String ?? ""
             self.monthFieldName = json["monthFieldName"] as? String ?? ""
+            self.dayFieldName = json["dayFieldName"] as? String ?? ""
             self.yearFieldName = json["yearFieldName"] as? String ?? ""
             self.submitJSON = submitJSON
             self.outputFormat = format
@@ -58,12 +70,12 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
         }
     }
     
-    // MARK: - Override
-    
+    // MARK: - Overrides
     override func setUp() {
         super.setUp()
+        
         collector = VGSCollect(id: "any")
-        textField = VGSExpDateTextField()
+        textField = VGSDateTextField()
     }
     
     override func tearDown() {
@@ -72,40 +84,52 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     }
     
     // MARK: - Tests
-    
-    /// Test default configuration.
-    func testSplitExpDateSerializerWithDefaultConfig() {
-        let fileName = TestFlow.defaultConfiguration.jsonFileName
+    /// Test default configuration
+    func testSplitDateSerializerWithDefaultConfig() {
+        /// Get JSON test data
+        let fileName = TestFlow.defaultConfig.jsonFileName
         let testData: [TestJSONData] = SerializersDataProvider.provideTestData(for: fileName)
         
-        let config = VGSExpDateTokenizationConfiguration(collector: collector, fieldName: "expDate")
-        config.formatPattern = "##/##"
-        config.inputDateFormat = .shortYear
+        /// Prepare configuration
+        let config = VGSDateTokenizationConfiguration(collector: collector, fieldName: "date")
+        config.inputDateFormat = VGSDateFormat.default
+        config.formatPattern = VGSDateFormat.default.formatPattern
         
+        /// Run test for each case from JSON
         for test in testData {
-            config.serializers = [VGSExpDateSeparateSerializer(monthFieldName: test.monthFieldName, yearFieldName: test.yearFieldName)]
+            /// Prepare serializer
+            config.serializers = [
+                VGSDateSeparateSerializer(
+                    dayFieldName: test.dayFieldName,
+                    monthFieldName: test.monthFieldName,
+                    yearFieldName: test.yearFieldName
+                )
+            ]
             config.outputDateFormat = test.outputFormat
+            /// Update configuration
             textField.configuration = config
-            
+            /// Setup test value
             textField.setText(test.fieldValue)
-            
+            /// Get JSON from collector using serializer
             let submitJSON = collector.mapFieldsToTokenizationRequestBodyJSON(collector.textFields)
             
+            /// Get payloads
             guard let tokenizedPayloads = submitJSON["data"] as? [JsonData] else {
                 XCTFail("Cannot find tokenized data array.")
                 return
             }
-            
             var matchedPayloads = 0
-            // mapFieldsToTokenizationRequestBodyJSON can produce array of tokenized data in different order. So we need to iterate through payloads and check them one by one to get 2 matches (one is for month, another one is for year).
+            /// mapFieldsToTokenizationRequestBodyJSON can produce array of tokenized data in different
+            /// order. So we need to iterate through payloads and check them one by one to get 3 matches
+            /// (one is for month, one for day and another one for year).
             for payload in tokenizedPayloads {
                 for expectedPayload in test.tokenizedPayloads where payload == expectedPayload {
                     matchedPayloads += 1
                 }
             }
             
-            // Should be at least 2 matches of payloads.
-            XCTAssertTrue(matchedPayloads == 2, "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON) \nComment: \(test.comment)")
+            /// Assert: Should be at least 3 matches of payloads
+            XCTAssertEqual(matchedPayloads, 3)
         }
     }
 }

@@ -24,6 +24,9 @@ public enum VGSValidationErrorType: String {
   
   /// Default Validation error for `VGSValidationRuleCardExpirationDate`
   case expDate = "EXPIRATION_DATE_VALIDATION_ERROR"
+    
+  /// Default Validation error for `VGSValidationRuleDateRange`
+  case date = "DATE_VALIDATION_ERROR"
   
   /// Default Validation error for `VGSValidationRulePaymentCard`
   case cardNumber = "CARD_NUMBER_VALIDATION_ERROR"

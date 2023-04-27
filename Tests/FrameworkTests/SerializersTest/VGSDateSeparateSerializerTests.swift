@@ -1,20 +1,16 @@
 //
-//  VGSExpDateSeparateSerializerTests.swift
+//  VGSDateSeparateSerializerTests.swift
 //  FrameworkTests
 //
-//  Created by Dima on 27.03.2021.
-//  Copyright © 2021 VGS. All rights reserved.
-//
 
-import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
-class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
+class VGSDateSeparateSerializerTests: VGSCollectBaseTestCase {
     
     // MARK: - Properties
     private var collector: VGSCollect!
-    private var textField: VGSExpDateTextField!
+    private var textField: VGSDateTextField!
     
     // MARK: - Inner objects
     /// Define the file names with JSON data for testing
@@ -27,11 +23,11 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
         
         /// Name of the JSON file
         var jsonFileName: String {
-            return "VGSExpDateSerialization_" + jsonFileNameSuffix
+            return "VGSDateSerialization_" + jsonFileNameSuffix
         }
         
         /// JSON file name
-        var jsonFileNameSuffix: String {
+        private var jsonFileNameSuffix: String {
             switch self {
             case .defaultConfig:
                 return "DefaultConfig"
@@ -53,6 +49,7 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
         // MARK: - Properties
         let fieldValue: String
         let monthFieldName: String
+        let dayFieldName: String
         let yearFieldName: String
         let submitJSON: JsonData
         
@@ -64,17 +61,18 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
             }
             self.fieldValue = json["fieldValue"] as? String ?? ""
             self.monthFieldName = json["monthFieldName"] as? String ?? ""
+            self.dayFieldName = json["dayFieldName"] as? String ?? ""
             self.yearFieldName = json["yearFieldName"] as? String ?? ""
             self.submitJSON = submitJSON
         }
     }
     
-    // MARK: - Override
+    // MARK: - Overrides
     override func setUp() {
         super.setUp()
         
         collector = VGSCollect(id: "any")
-        textField = VGSExpDateTextField()
+        textField = VGSDateTextField()
     }
     
     override func tearDown() {
@@ -83,21 +81,22 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
     }
     
     // MARK: - Tests
-    /// Test default configuration.
-    func testSplitExpDateSerializerWithDefaultConfig() {
+    /// Test default configuration
+    func testSplitDateSerializerWithDefaultConfig() {
         /// Get JSON test data
         let fileName = TestFlow.defaultConfig.jsonFileName
         let testData: [TestJSONData] = SerializersDataProvider.provideTestData(for: fileName)
         
         /// Prepare configuration
-        let config = VGSExpDateConfiguration(collector: collector, fieldName: "expDate")
-        config.formatPattern = "##/##"
+        let config = VGSDateConfiguration(collector: collector, fieldName: "date")
+        config.formatPattern = VGSDateFormat.default.formatPattern
         
         /// Run test for each case from JSON
         for test in testData {
             /// Prepare serializer
             config.serializers = [
-                VGSExpDateSeparateSerializer(
+                VGSDateSeparateSerializer(
+                    dayFieldName: test.dayFieldName,
                     monthFieldName: test.monthFieldName,
                     yearFieldName: test.yearFieldName
                 )
@@ -109,29 +108,29 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
             /// Get JSON from collector using serializer
             let submitJSON = collector.mapFieldsToBodyJSON(with: .nestedJSON, extraData: nil)
             /// Assert: Test JSON content should be equals to the JSON from the collector
-            XCTAssertTrue(submitJSON == test.submitJSON,
-                          "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON)")
+            XCTAssertTrue(NSDictionary(dictionary: submitJSON).isEqual(to: test.submitJSON))
         }
     }
     
-    /// Test custom exp date configuration.
-    func testSplitExpDateSerializerWithCustomConfig() {
+    /// Test custom configuration
+    func testSplitDateSerializerWithCustomConfig() {
         /// Get JSON test data
         let fileName = TestFlow.customConfig.jsonFileName
         let testData: [TestJSONData] = SerializersDataProvider.provideTestData(for: fileName)
         
         /// Prepare configuration
-        let config = VGSExpDateConfiguration(collector: collector, fieldName: "card.expDate")
-        config.formatPattern = "##/##"
-        config.inputDateFormat = .shortYear
-        config.outputDateFormat = .longYear
+        let config = VGSDateConfiguration(collector: collector, fieldName: "card.date")
+        config.formatPattern = VGSDateFormat.default.formatPattern
+        config.inputDateFormat = .yyyymmdd
+        config.outputDateFormat = .ddmmyyyy
         config.divider = "-/-"
         
         /// Run test for each case from JSON
         for test in testData {
             /// Prepare serializer
             config.serializers = [
-                VGSExpDateSeparateSerializer(
+                VGSDateSeparateSerializer(
+                    dayFieldName: test.dayFieldName,
                     monthFieldName: test.monthFieldName,
                     yearFieldName: test.yearFieldName
                 )
@@ -143,29 +142,29 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
             /// Get JSON from collector using serializer
             let submitJSON = collector.mapFieldsToBodyJSON(with: .nestedJSON, extraData: nil)
             /// Assert: Test JSON content should be equals to the JSON from the collector
-            XCTAssertTrue(submitJSON == test.submitJSON,
-                          "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON)")
+            XCTAssertTrue(NSDictionary(dictionary: submitJSON).isEqual(to: test.submitJSON))
         }
     }
     
-    /// Test custom exp date output format.
-    func testSplitCustomExpDateOutputSerializerWithCustomConfig() {
+    /// Test custom output format.
+    func testSplitCustomDateOutputSerializerWithCustomConfig() {
         /// Get JSON test data
         let fileName = TestFlow.customExpDateOutputConfig.jsonFileName
         let testData: [TestJSONData] = SerializersDataProvider.provideTestData(for: fileName)
         
         /// Prepare configuration
-        let config = VGSExpDateConfiguration(collector: collector, fieldName: "card.expDate")
-        config.formatPattern = "####/##"
-        config.inputDateFormat = .longYearThenMonth
-        config.outputDateFormat = .shortYearThenMonth
+        let config = VGSDateConfiguration(collector: collector, fieldName: "card.date")
+        config.formatPattern = VGSDateFormat.default.formatPattern
+        config.inputDateFormat = .yyyymmdd
+        config.outputDateFormat = .ddmmyyyy
         config.divider = "-/-"
         
         /// Run test for each case from JSON
         for test in testData {
             /// Prepare serializer
             config.serializers = [
-                VGSExpDateSeparateSerializer(
+                VGSDateSeparateSerializer(
+                    dayFieldName: test.dayFieldName,
                     monthFieldName: test.monthFieldName,
                     yearFieldName: test.yearFieldName
                 )
@@ -177,8 +176,7 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
             /// Get JSON from collector using serializer
             let submitJSON = collector.mapFieldsToBodyJSON(with: .nestedJSON, extraData: nil)
             /// Assert: Test JSON content should be equals to the JSON from the collector
-            XCTAssertTrue(submitJSON == test.submitJSON,
-                          "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON)")
+            XCTAssertTrue(NSDictionary(dictionary: submitJSON).isEqual(to: test.submitJSON))
         }
     }
     
@@ -189,8 +187,11 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
         let testData: [TestJSONData] = SerializersDataProvider.provideTestData(for: fileName)
         
         /// Prepare configuration
-        let config = VGSExpDateConfiguration(collector: collector, fieldName: "expDate")
-        config.formatPattern = "##/##"
+        let config = VGSDateConfiguration(collector: collector, fieldName: "date")
+        config.formatPattern = VGSDateFormat.default.formatPattern
+        config.inputDateFormat = .mmddyyyy
+        config.outputDateFormat = .mmddyyyy
+        config.divider = "/"
         
         /// Setup extra data
         let extraData = ["card_data": [["user_id": "123"]]]
@@ -199,7 +200,8 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
         for test in testData {
             /// Prepare serializer
             config.serializers = [
-                VGSExpDateSeparateSerializer(
+                VGSDateSeparateSerializer(
+                    dayFieldName: test.dayFieldName,
                     monthFieldName: test.monthFieldName,
                     yearFieldName: test.yearFieldName
                 )
@@ -211,8 +213,7 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
             /// Get JSON from collector using serializer
             let submitJSON = collector.mapFieldsToBodyJSON(with: .nestedJSONWithArrayMerge, extraData: extraData)
             /// Assert: Test JSON content should be equals to the JSON from the collector
-            XCTAssertTrue(submitJSON == test.submitJSON,
-                          "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON)")
+            XCTAssertTrue(NSDictionary(dictionary: submitJSON).isEqual(to: test.submitJSON))
         }
     }
     
@@ -223,8 +224,11 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
         let testData: [TestJSONData] = SerializersDataProvider.provideTestData(for: fileName)
         
         /// Prepare configuration
-        let config = VGSExpDateConfiguration(collector: collector, fieldName: "expDate")
-        config.formatPattern = "##/##"
+        let config = VGSDateConfiguration(collector: collector, fieldName: "date")
+        config.formatPattern = VGSDateFormat.default.formatPattern
+        config.inputDateFormat = .mmddyyyy
+        config.outputDateFormat = .mmddyyyy
+        config.divider = "/"
         
         /// Setup extra data
         let extraData = ["card_data": [["month": "3", "year": "2033"]]]
@@ -233,7 +237,8 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
         for test in testData {
             /// Prepare serializer
             config.serializers = [
-                VGSExpDateSeparateSerializer(
+                VGSDateSeparateSerializer(
+                    dayFieldName: test.dayFieldName,
                     monthFieldName: test.monthFieldName,
                     yearFieldName: test.yearFieldName
                 )
@@ -245,8 +250,7 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
             /// Get JSON from collector using serializer
             let submitJSON = collector.mapFieldsToBodyJSON(with: .nestedJSONWithArrayOverwrite, extraData: extraData)
             /// Assert: Test JSON content should be equals to the JSON from the collector
-            XCTAssertTrue(submitJSON == test.submitJSON,
-                          "Expiration date convert error:\n - Input: \(test.fieldValue)\n - Output: \(test.submitJSON)\n - Result: \(submitJSON)")
+            XCTAssertTrue(NSDictionary(dictionary: submitJSON).isEqual(to: test.submitJSON))
         }
     }
 }
