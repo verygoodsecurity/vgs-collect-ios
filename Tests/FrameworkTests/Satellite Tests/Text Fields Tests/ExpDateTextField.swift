@@ -44,9 +44,9 @@ class ExpDateTextField: VGSCollectBaseTestCase {
     }
 
     func testYearFormat() {
-        textField.yearPickeFormat = .long
+        textField.yearPickerFormat = .long
         XCTAssertTrue(textField.yearsDataSource.first == String(Calendar.currentYear))
-        textField.yearPickeFormat = .short
+        textField.yearPickerFormat = .short
         XCTAssertTrue(textField.yearsDataSource.first == String(Calendar.currentYear - 2000))
     }
     
