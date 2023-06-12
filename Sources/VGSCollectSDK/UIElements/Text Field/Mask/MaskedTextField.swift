@@ -12,8 +12,7 @@ import UIKit
 
 /// Defines interface for masked text field delegate.
 internal protocol MaskedTextFieldDelegate: AnyObject {
-	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange,
-												 replacementString string: String) -> Bool
+	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
 }
 
 /// :nodoc: Internal wrapper for `UITextField`.
@@ -75,20 +74,20 @@ internal class MaskedTextField: UITextField {
      */
     @available(*, deprecated, message: "Don't use this method.")
     override var text: String? {
+        get { return nil }
         set {
             secureText = newValue
         }
-        get { return nil }
     }
         
     /// set/get text just for internal using
     internal var secureText: String? {
+        get {
+            return super.text
+        }
         set {
             super.text = newValue
             self.updateTextFormat()
-        }
-        get {
-            return super.text
         }
     }
     
@@ -278,8 +277,7 @@ internal class MaskedTextField: UITextField {
 // MARK: - UITextFieldDelegate
 
 extension MaskedTextField: UITextFieldDelegate {
-	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
-								 replacementString string: String) -> Bool {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		guard let customTextFieldDelegate = customDelegate else {
 			return true
 		}

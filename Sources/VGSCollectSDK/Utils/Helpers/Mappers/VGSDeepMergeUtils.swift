@@ -27,7 +27,7 @@ final internal class VGSDeepMergeUtils {
 			if let v1 = result[k2] as? JsonData, let v2 = v2 as? JsonData {
 				result[k2] = deepMerge(target: v1, source: v2, mergeArrayPolicy: mergeArrayPolicy)
 				// Try to merge Array1 and Array2.
-			} else if let array1 = result[k2] as? Array<Any?>, let array2 = v2 as? Array<Any?> {
+			} else if let array1 = result[k2] as? [Any?], let array2 = v2 as? [Any?] {
 				switch mergeArrayPolicy {
 				case .merge:
 					result[k2] = deepArrayMerge(target: array1, source: array2, mergeArrayPolicy: mergeArrayPolicy)
@@ -48,7 +48,7 @@ final internal class VGSDeepMergeUtils {
 	///   - source: `Array<Any>` object, source to merge.
 	///   - mergeArrayPolicy: `VGSCollectArrayMergePolicy` object, array merge policy.
 	/// - Returns: `Array<Any>` object, merged arrays.
-	static func deepArrayMerge(target: Array<Any?>, source: Array<Any?>, mergeArrayPolicy: VGSCollectArrayMergePolicy) -> Array<Any?> {
+	static func deepArrayMerge(target: [Any?], source: [Any?], mergeArrayPolicy: VGSCollectArrayMergePolicy) -> [Any?] {
 		var result = target
 
 		// Iterate through source array.

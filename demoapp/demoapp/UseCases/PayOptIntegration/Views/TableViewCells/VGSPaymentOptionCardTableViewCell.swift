@@ -8,7 +8,8 @@ import VGSCollectSDK
 
 /// A set of methods to notify about changes in `VGSPaymentOptionCardTableViewCell` cell.
 internal protocol VGSPaymentOptionCardTableViewCellDelegate: AnyObject {
-
+// swiftlint:disable:previous type_name
+  
 	/// Tells the delegate that user tappped removed card.
 	/// - Parameter savedCardCell: `VGSPaymentOptionCardTableViewCell` object, saved card cell.
 	func removeCardDidTap(in savedCardCell: VGSPaymentOptionCardTableViewCell)

@@ -22,12 +22,12 @@ internal class Storage {
     
     /// TextFields attached to `VGSCollect` instance, with configuration that implements `VGSTextFieldTokenizationConfigurationProtocol`.
     var tokenizableTextFields: [VGSTextField] {
-      return textFields.filter{$0.tokenizationParameters != nil}
+      return textFields.filter {$0.tokenizationParameters != nil}
     }
   
     /// TextFields attached to `VGSCollect` instance, with configuration that DOES NOT  implements `VGSTextFieldTokenizationConfigurationProtocol`.
     var notTokenizibleTextFields: [VGSTextField] {
-      return textFields.filter{
+      return textFields.filter {
         $0.tokenizationParameters == nil &&
         $0.fieldType.sensitive == false
       }

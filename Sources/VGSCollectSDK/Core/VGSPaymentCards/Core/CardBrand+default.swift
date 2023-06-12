@@ -42,7 +42,7 @@ extension VGSPaymentCards.CardBrand {
         return "^(384100|384140|384160|606282|637095|637568|60(?!11))\\d*$"
       case .unknown:
          return "^\\d*$"
-      case .custom(brandName: _):
+      case .custom:
           return ""
       }
   }
@@ -77,7 +77,7 @@ extension VGSPaymentCards.CardBrand {
           return [14, 15, 16, 17, 18, 19]
         case .unknown:
             return [16, 17, 18, 19]
-        case .custom(brandName: _):
+        case .custom:
           return []
         }
     }
@@ -145,7 +145,7 @@ extension VGSPaymentCards.CardBrand {
           return "HiperCard"
         case .unknown:
           return "Unknown"
-        case .custom(brandName: _):
+        case .custom:
           return ""
         }
     }

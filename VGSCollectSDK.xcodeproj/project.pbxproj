@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0313A1202975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */; };
+		031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */; };
+		033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */; };
 		0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */; };
 		0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */; };
 		035179A1285920F100394BFC /* VGSCardTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */; };
@@ -99,7 +101,6 @@
 		441B26E925DB8D950099AA3A /* APIClient+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26E825DB8D950099AA3A /* APIClient+Utils.swift */; };
 		441B26F025DB956B0099AA3A /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B26EF25DB956B0099AA3A /* URL+Extensions.swift */; };
 		441B4E9B293EFD050011EFAC /* VGSCollectHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B4E9A293EFD050011EFAC /* VGSCollectHTTPMethod.swift */; };
-		441B4E9D293EFD2B0011EFAC /* VGSCollectHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441B4E9C293EFD2B0011EFAC /* VGSCollectHTTPMethod.swift */; };
 		442A39132909718F007CCC58 /* VGSTokenizationTestJSON_DefaultConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 442A39122909718F007CCC58 /* VGSTokenizationTestJSON_DefaultConfig.json */; };
 		442A391729097425007CCC58 /* VGSTokenizationResponseMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A391629097425007CCC58 /* VGSTokenizationResponseMappingTests.swift */; };
 		442BB2C6287314DC001FD26B /* MockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442BB2C5287314DC001FD26B /* MockedData.plist */; };
@@ -196,6 +197,8 @@
 
 /* Begin PBXFileReference section */
 		0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfigurationTests.swift; sourceTree = "<group>"; };
+		031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldStatePublisherTests.swift; sourceTree = "<group>"; };
+		033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+statePublisher.swift"; sourceTree = "<group>"; };
 		0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTokenizationProtocol.swift; sourceTree = "<group>"; };
 		0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTokenizationConfiguration.swift; sourceTree = "<group>"; };
@@ -415,6 +418,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031795D429DF00D800BD1215 /* VGSTextFieldStatePublisherTests */ = {
+			isa = PBXGroup;
+			children = (
+				031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */,
+			);
+			path = VGSTextFieldStatePublisherTests;
+			sourceTree = "<group>";
+		};
 		035179992858B39100394BFC /* TokenizationConfiguration */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,6 +999,7 @@
 				44D521092681B7F5005AB588 /* FrameworkTests.xctestplan */,
 				FDF696E42346461D00063507 /* StorageTests.swift */,
 				FD24955D2330CC62009024E6 /* VGSCollectTests.swift */,
+				031795D429DF00D800BD1215 /* VGSTextFieldStatePublisherTests */,
 				44D5210B2681B803005AB588 /* Resources */,
 				3213001A24190BE50062FEF0 /* VGSCollectTest+Validation.swift */,
 				32059CD22417EACC003E9481 /* UtilsTest.swift */,
@@ -1094,6 +1106,7 @@
 				321FE73925DE45FC00B138E9 /* VGSCVCTextField.swift */,
 				FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */,
 				FD1B44652327D9B0009AA04A /* VGSTextField+state.swift */,
+				033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */,
 				FDD42A3C233F67BA0005D631 /* VGSTextField+UIBuilder.swift */,
 				FD362EDE2401659100B4A640 /* VGSTextFieldDelegate.swift */,
 			);
@@ -1157,7 +1170,7 @@
 				326FFAEE24F904430024A4F9 /* Sources */,
 				326FFAEF24F904430024A4F9 /* Frameworks */,
 				326FFAF024F904430024A4F9 /* Resources */,
-				326FFB0E24F90DB60024A4F9 /* ShellScript */,
+				03AA85BF29799568006DC673 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -1212,6 +1225,7 @@
 				FD24954D2330CB49009024E6 /* Sources */,
 				FD24954E2330CB49009024E6 /* Frameworks */,
 				FD24954F2330CB49009024E6 /* Resources */,
+				03AA85C029799580006DC673 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1230,7 +1244,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = VGS;
 				TargetAttributes = {
 					326FFAF124F904430024A4F9 = {
@@ -1326,8 +1340,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03B10C0628E31B1A009B409B /* SwiftLint */ = {
+		03AA85BF29799568006DC673 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1342,29 +1357,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		326FFB0E24F90DB60024A4F9 /* ShellScript */ = {
+		03AA85C029799580006DC673 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/CardIO.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CardIO.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		03B10C0628E31B1A009B409B /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		32C89470256C34EC00DC5648 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1379,7 +1413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1425,6 +1459,7 @@
 				3219D73D2404279700F4A7E5 /* VGSError.swift in Sources */,
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				32C894DD256D4AE400DC5648 /* UIDevice+extension.swift in Sources */,
+				033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */,
 				32093D7E25CD9F88006CD242 /* VGSCollectRequestLogger.swift in Sources */,
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				441B26D425DB88C50099AA3A /* APIHostURLPolicy.swift in Sources */,
@@ -1448,7 +1483,6 @@
 				44ECD60427D9C18C00460FDF /* CheckSumAlgoritmType.swift in Sources */,
 				3215C4BC260DAF3D00F21259 /* VGSFormatSerializerProtocol.swift in Sources */,
 				441B4E9B293EFD050011EFAC /* VGSCollectHTTPMethod.swift in Sources */,
-				441B4E9D293EFD2B0011EFAC /* VGSCollectHTTPMethod.swift in Sources */,
 				32093D8625CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift in Sources */,
 				FD3C01C323AFC0980096B4A4 /* VGSTextField+CVC.swift in Sources */,
 				44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */,
@@ -1518,6 +1552,7 @@
 				FD790B9A243BB432006A30CB /* _CardBrandDataSource.swift in Sources */,
 				44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */,
 				FD1BE48923462F21006D8658 /* CVVTextFieldTests.swift in Sources */,
+				031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */,
 				3215C4E92611B50A00F21259 /* VGSExpDateSeparateSerializerTests.swift in Sources */,
 				FD1BE48723462F1A006D8658 /* CardNumerTextFieldTests.swift in Sources */,
 				038EDA0D286F2EFF00AF3CF2 /* TokenizationApiTests.swift in Sources */,
@@ -1591,10 +1626,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = VGSBlinkCardCollector/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1624,10 +1655,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = VGSBlinkCardCollector/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1656,13 +1683,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = VGSCardIOCollector/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1689,13 +1712,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = VGSCardIOCollector/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1810,8 +1829,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MARKETING_VERSION = 1.12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1872,8 +1891,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MARKETING_VERSION = 1.12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1898,13 +1917,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Sources/VGSCollectSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1934,13 +1949,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Sources/VGSCollectSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -74,7 +74,9 @@ internal final class VGSFieldNameToSubscriptMapper {
 					let regex = try NSRegularExpression(pattern: regex, options: [])
 					let nsString = text as NSString
 				let results = regex.matches(in: text,
-																							options: [], range: NSMakeRange(0, nsString.length))
+                                    options: [],
+                                    range: NSMakeRange(0, nsString.length))
+        // swiftlint:disable:previous legacy_constructor
 				return results.map { nsString.substring(with: $0.range)}
 			} catch let error as NSError {
 					print("invalid regex: \(error.localizedDescription)")

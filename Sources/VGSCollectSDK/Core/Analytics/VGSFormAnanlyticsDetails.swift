@@ -8,7 +8,7 @@
 
 import Foundation
 
-///:nodoc:  VGSCollect Form Analytics Details
+/// :nodoc:  VGSCollect Form Analytics Details
 public struct VGSFormAnanlyticsDetails {
   public let formId: String
   public let tenantId: String

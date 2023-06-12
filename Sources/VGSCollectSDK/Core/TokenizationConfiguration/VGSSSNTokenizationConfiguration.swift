@@ -3,7 +3,6 @@
 //  VGSCollectSDK
 //
 
-
 import Foundation
 
 /// `VGSSSNTokenizationParameters` - parameters required for tokenization api.

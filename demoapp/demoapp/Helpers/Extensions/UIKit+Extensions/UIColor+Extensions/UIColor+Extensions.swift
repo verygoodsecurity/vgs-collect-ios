@@ -30,7 +30,7 @@ internal extension UIColor {
 // Copyright (c) 2019 Noah Gilmore <noah.w.gilmore@gmail.com>
 internal extension UIColor {
 
-	///:nodoc: System background color (white).
+	/// :nodoc: System background color (white).
 	static var vgsSystemBackground: UIColor {
 		if #available(iOS 13, *) {
 			return .systemGroupedBackground
@@ -39,7 +39,7 @@ internal extension UIColor {
 		return .groupTableViewBackground
 	}
 
-	///:nodoc: Input text color (black).
+	/// :nodoc: Input text color (black).
 	static var vgsInputBlackTextColor: UIColor {
 		if #available(iOS 13.0, *) {
 			return UIColor {(traits) -> UIColor in
@@ -50,7 +50,7 @@ internal extension UIColor {
 		}
 	}
 
-	///:nodoc: Input text color (black).
+	/// :nodoc: Input text color (black).
 	static var vgsBorderColor: UIColor {
 		if #available(iOS 13.0, *) {
 			return UIColor {(traits) -> UIColor in
@@ -61,7 +61,7 @@ internal extension UIColor {
 		}
 	}
 
-	///:nodoc: VGS section title color (with fallback to earlier versions).
+	/// :nodoc: VGS section title color (with fallback to earlier versions).
 	static var vgsSectionTitleColor: UIColor {
 		if #available(iOS 13.0, *) {
 			return label
@@ -70,7 +70,7 @@ internal extension UIColor {
 		}
 	}
 
-	///:nodoc: VGS section background color (with fallback to earlier versions).
+	/// :nodoc: VGS section background color (with fallback to earlier versions).
 	static var vgsSectionBackgroundColor: UIColor {
 		if #available(iOS 13.0, *) {
 			return UIColor.secondarySystemGroupedBackground
@@ -79,7 +79,7 @@ internal extension UIColor {
 		}
 	}
 
-	///:nodoc:
+	/// :nodoc:
 	static var vgsPaymentOptionBackgroundColor: UIColor {
 		if #available(iOS 13.0, *) {
 			return UIColor.secondarySystemGroupedBackground
@@ -88,7 +88,7 @@ internal extension UIColor {
 		}
 	}
 
-	///:nodoc: VGS systemGray2 color (with fallback to earlier versions).
+	/// :nodoc: VGS systemGray2 color (with fallback to earlier versions).
 	static var vgsSystemGray2Color: UIColor {
 		if #available(iOS 13.0, *) {
 			return UIColor.systemGray2
@@ -97,7 +97,7 @@ internal extension UIColor {
 		}
 	}
 
-	///:nodoc: VGS systemGray color (with fallback to earlier versions).
+	/// :nodoc: VGS systemGray color (with fallback to earlier versions).
 	static var vgsSystemGrayColor: UIColor {
 		if #available(iOS 13.0, *) {
 			return UIColor.systemGray

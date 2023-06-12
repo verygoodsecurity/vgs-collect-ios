@@ -3,31 +3,31 @@ version: 2
 jobs:
   build-and-test-sdk:
     macos:
-      xcode: "14.0"
+      xcode: "14.2"
     steps:
       - checkout
       - run:
           name: Run Tests iOS 16
           command: >
-            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.0' -testPlan FrameworkTests
+            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -testPlan FrameworkTests
   build-and-ui-test-demo-app-ios-16-iphone14:
     macos:
-      xcode: "14.0"
+      xcode: "14.2"
     steps:
       - checkout
       - run:
-          name: Run UI Tests on iPhone 14 iOS 16.0
+          name: Run UI Tests on iPhone 14 iOS 16.2
           command: >
             cd demoapp &&
             cd demoapp &&
             plutil -insert vaultID -string ${vaultID} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPhone 14 (16.0) [" || true &&
+            xcrun instruments -w "iPhone 14 (16.2) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.0'
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
 
 workflows:
   version: 2
