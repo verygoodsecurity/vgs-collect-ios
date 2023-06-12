@@ -26,18 +26,18 @@ class VGSExpDateSeparateSerializerTests: VGSCollectBaseTestCase {
 		}
 
 		var jsonFileNameSuffix: String {
-			switch self {
-			case .defaultConfiguration:
-				return "DefaultConfig"
-			case .customConfiguration:
-				return "CustomConfig"
+      switch self {
+      case .defaultConfiguration:
+        return "DefaultConfig"
+      case .customConfiguration:
+        return "CustomConfig"
       case .customExpDateOutputConfiguration:
         return "CustomExpDateOutputConfig"
-			case .mapWithArrayOverwrite:
-				return "MapWithArrayOverwrite"
-			case .mapWithArrayMerge:
-				return "MapWithArrayMerge"
-			}
+      case .mapWithArrayOverwrite:
+        return "MapWithArrayOverwrite"
+      case .mapWithArrayMerge:
+        return "MapWithArrayMerge"
+      }
 		}
 	}
 

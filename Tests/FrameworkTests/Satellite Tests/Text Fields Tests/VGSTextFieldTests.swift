@@ -101,13 +101,14 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
     let testField4 = VGSTextField()
     
     let testFields = [testField1, testField2, testField3, testField4]
-    
+    // swiftlint:disable identifier_name
     for i in 0 ..< testFields.count - 1 {
       let field1 = testFields[i]
       
       for j in (i+1) ..< testFields.count {
         let field2 = testFields[j]
-
+        // swiftlint:enable identifier_name
+        
         /// Test positive case with equal input
         field1.textField.secureText = input1
         field2.textField.secureText = input1

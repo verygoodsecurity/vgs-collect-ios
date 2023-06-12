@@ -8,7 +8,6 @@ import Foundation
 import UIKit
 #endif
 
-
 /// An object that describes `VGSTextField` state.  State attributes are read-only.
 public class State {
     
@@ -119,8 +118,8 @@ public class CardState: State {
         - cardBrand: `VGSPaymentCards.CardBrand`, card brand.
     */
     private func getBin(_ cardNumber: String, cardBrand: VGSPaymentCards.CardBrand) -> String {
-      switch cardBrand{
-      case .visa, .mastercard, .maestro:
+      switch cardBrand {
+      case .visa, .visaElectron, .mastercard, .maestro:
         /// check min card length allowed
         guard cardNumber.count >= 16 else {
           return ""

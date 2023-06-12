@@ -30,11 +30,37 @@ custom_categories:
   - VGSTextField
   - VGSCardTextField
   - VGSExpDateTextField
+  - VGSDateTextField
   - VGSCVCTextField
   - VGSTextFieldDelegate
   - VGSConfiguration
   - VGSExpDateConfiguration
+  - VGSDateConfiguration
+  - VGSCardHolderNameTokenizationConfiguration
+  - VGSCardNumberTokenizationConfiguration
+  - VGSCVCTokenizationConfiguration
+  - VGSDateTokenizationConfiguration
+  - VGSExpDateTokenizationConfiguration
+  - VGSSSNTokenizationConfiguration
+  - VGSTokenizationConfiguration
+  - VGSDateConfigurationProtocol
+  - VGSExpDateConfigurationProtocol
   - FieldType
+  - VGSDateFormat
+  - VGSDate
+  - VGSTextFieldInputSource
+- name: Tokenization Parameters
+  children:
+  - VGSTokenizationParametersProtocol
+  - VGSCVCTokenizationParameters
+  - VGSCardHolderNameTokenizationParameters
+  - VGSCardNumberTokenizationParameters
+  - VGSDateTokenizationParameters
+  - VGSExpDateTokenizationParameters
+  - VGSSSNTokenizationParameters
+  - VGSTokenizationParameters
+  - VGSVaultAliasFormat
+  - VGSVaultStorageType
 - name: Card Scan
   children:
   - VGSCardIOScanController
@@ -54,10 +80,12 @@ custom_categories:
   - State
   - SSNState
   - CardState
+  - VGSTextFieldStatePublisher
   - VGSResponse
+  - VGSTokenizationResponse
   - VGSCollectRequestOptions
   - JsonData
-  - HTTPMethod
+  - VGSCollectHTTPMethod
   - HTTPHeaders
 - name: Payment Cards
   children:
@@ -78,6 +106,7 @@ custom_categories:
   - VGSValidationRulePaymentCard
   - VGSValidationRuleLuhnCheck
   - VGSValidationRuleCardExpirationDate
+  - VGSValidationRuleDateRange
   - CheckSumAlgorithmType
   - CardExpDateFormat
 - name: Errors

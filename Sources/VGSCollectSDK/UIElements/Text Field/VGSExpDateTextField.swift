@@ -38,13 +38,13 @@ public final class VGSExpDateTextField: VGSTextField {
     }
   
     /// UIPickerView Year Label format
-    public var yearPickeFormat: YearFormat = .long {
+    public var yearPickerFormat: YearFormat = .long {
         didSet {
           updateYearsDataSource()
         }
     }
     
-    ///:nodoc:
+    /// :nodoc:
     public override var configuration: VGSConfiguration? {
         didSet {
             fieldType = .expDate
@@ -78,7 +78,6 @@ public final class VGSExpDateTextField: VGSTextField {
       guard let config  = configuration as? VGSExpDateConfiguration else {
         return
       }
-      
       // setup input source
       switch config.inputSource {
       case .datePicker:
@@ -127,7 +126,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-// MARK: -  Configuration
+// MARK: - Configuration
 
 private extension VGSExpDateTextField {
   
@@ -151,7 +150,7 @@ private extension VGSExpDateTextField {
   }
 }
 
-// MARK: -  Date Picker
+// MARK: - Date Picker
 private extension VGSExpDateTextField {
     func makePicker() -> UIPickerView {
         let picker = UIPickerView()
@@ -172,7 +171,7 @@ private extension VGSExpDateTextField {
     }
     
     func updateYearsDataSource() {
-      let suffixLength = yearPickeFormat == .short ? 2 : 4
+      let suffixLength = yearPickerFormat == .short ? 2 : 4
       yearsDataSource = years.map { String(String($0).suffix(suffixLength))}
     }
   

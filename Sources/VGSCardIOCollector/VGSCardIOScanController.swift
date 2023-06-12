@@ -25,11 +25,11 @@ public class VGSCardIOScanController {
     
     /// `VGSCardIOScanControllerDelegate` - handle user interaction with `Card.io` scanner
     public var delegate: VGSCardIOScanControllerDelegate? {
-        set {
-          scanHandler?.delegate = newValue
-        }
         get {
           return scanHandler?.delegate
+        }
+        set {
+          scanHandler?.delegate = newValue
         }
     }
     
@@ -50,7 +50,7 @@ public class VGSCardIOScanController {
   
     /// Defines preferred language for all strings appearing in the CardIO user interface.
     /// If not set, or if set to nil, defaults to the device's current language setting.
-    public var languageOrLocale: String? = nil {
+    public var languageOrLocale: String? {
         didSet {
             scanHandler?.languageOrLocale = languageOrLocale
         }

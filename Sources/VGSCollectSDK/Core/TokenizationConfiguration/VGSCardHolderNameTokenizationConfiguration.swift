@@ -16,7 +16,8 @@ public struct VGSCardHolderNameTokenizationParameters: VGSTokenizationParameters
 
 /// `VGSCardHolderNameTokenizationConfiguration` - textfield configuration for textfield with type `.cardHolderName`, required for work with tokenization api.
 public class VGSCardHolderNameTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
-  
+// swiftlint:disable:previous type_name
+
   /// `VGSCardHolderNameTokenizationParameters` - tokenization configuration parameters.
   public var tokenizationParameters = VGSCardHolderNameTokenizationParameters()
 

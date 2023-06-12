@@ -4,8 +4,6 @@
 //
 
 import Foundation
-
-import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
@@ -14,7 +12,6 @@ class VGSTokenizationConfigurationsTest: VGSCollectBaseTestCase {
   var textField: VGSTextField!
   var collector = VGSCollect(id: "testVaultId")
 
-  
   override func tearDown() {
       super.tearDown()
       textField = nil
