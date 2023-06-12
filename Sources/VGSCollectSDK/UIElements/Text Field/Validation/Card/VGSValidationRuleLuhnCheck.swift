@@ -16,7 +16,7 @@ public struct VGSValidationRuleLuhnCheck: VGSValidationRuleProtocol {
   /// Validation Error
   public var error: VGSValidationError
 
-  /// Initialization
+  /// Initialzation
   ///
   /// - Parameters:
   ///   - error:`VGSValidationError` - error on failed validation relust.

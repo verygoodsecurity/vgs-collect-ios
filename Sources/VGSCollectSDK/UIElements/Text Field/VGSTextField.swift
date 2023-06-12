@@ -10,7 +10,6 @@
 import UIKit
 #endif
 
-// swiftlint:disable file_length
 /// An object that displays an editable text area in user interface.
 public class VGSTextField: UIView {
     
@@ -169,16 +168,13 @@ public class VGSTextField: UIView {
     public func isContentEqual(_ textField: VGSTextField) -> Bool {
       return self.textField.getSecureRawText == textField.textField.getSecureRawText
     }
-    
-    internal func getOutputText() -> String? {
-        if let config = configuration as? VGSTextFormatConvertable,
-           let input = textField.getSecureTextWithDivider,
-           let inputFormat = config.inputFormat,
-           let outputFormat = config.outputFormat {
-            return config.convertor.convert(input, inputFormat: inputFormat, outputFormat: outputFormat)
-        }
-        return textField.getSecureTextWithDivider
+  
+  internal func getOutputText() -> String? {
+    if let config = configuration as? FormatConvertable, let input = textField.getSecureTextWithDivider, let outputFormat = config.outputFormat, let inputFormat = config.inputFormat {
+      return config.convertor.convert(input, inputFormat: inputFormat, outputFormat: outputFormat)
     }
+    return textField.getSecureTextWithDivider
+  }
   
   /// Field Configuration
   internal func setupField(with configuration: VGSConfiguration) {
@@ -389,6 +385,7 @@ internal extension VGSTextField {
 		return !textField.formatPattern.isEmpty
 	}
 }
+// swiftlint:disable file_length
 
 // MARK: - MaskedTextFieldDelegate
 
@@ -425,4 +422,3 @@ extension UIView {
         layer.cornerRadius = 4
     }
 }
-// swiftlint:enable file_length

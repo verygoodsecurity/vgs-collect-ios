@@ -52,9 +52,9 @@ public class VGSCollect {
       return storage.textFields
     }
   
-    // MARK: - Initialization
+    // MARK: - Initialzation
     
-    /// Initialization.
+    /// Initialzation.
     ///
     /// - Parameters:
     ///   - id: `String` object, your organization vault id.
@@ -72,7 +72,7 @@ public class VGSCollect {
 			}
     }
       
-    /// Initialization.
+    /// Initialzation.
     ///
     /// - Parameters:
     ///   - id: `String` object, your organization vault id.
