@@ -32,6 +32,9 @@ public enum FieldType: Int, CaseIterable {
     /// Field type that requires Expiration Date input formatting and validation.
     case expDate
     
+    /// Field type that requires Date input formatting and validation.
+    case date
+    
     /// Field type that requires Credit Card CVC input formatting and validation.
     case cvc
     
@@ -64,6 +67,8 @@ internal extension FieldType {
             return DateFormatPattern.shortYear.rawValue
         case .ssn:
             return "###-##-####"
+        case .date:
+            return VGSDateFormat.default.formatPattern
         default:
             return ""
         }
@@ -71,7 +76,7 @@ internal extension FieldType {
     
     var defaultDivider: String {
       switch self {
-      case .expDate:
+      case .expDate, .date:
         return "/"
       case .ssn:
         return "-"
@@ -86,6 +91,8 @@ internal extension FieldType {
             return "^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$"
         case .expDate:
             return "^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$"
+        case .date:
+            return "^([0-9]{4}|[0-9]{2})\\/?([0-9]{2})\\/?([0-9]{4}|[0-9]{2})$"
         case .cardHolderName:
             return "^([a-zA-Z0-9\\ \\,\\.\\-\\']{2,})$"
         case .ssn:
@@ -100,7 +107,7 @@ internal extension FieldType {
     
     var keyboardType: UIKeyboardType {
         switch self {
-        case .cardNumber, .cvc, .expDate, .ssn:
+        case .cardNumber, .cvc, .expDate, .date, .ssn:
             return .asciiCapableNumberPad
         default:
             return .alphabet
@@ -115,6 +122,9 @@ internal extension FieldType {
       case .expDate:
         rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
         rules.add(rule: VGSValidationRuleCardExpirationDate(error: VGSValidationErrorType.expDate.rawValue))
+      case .date:
+        rules.add(rule: VGSValidationRulePattern(pattern: self.defaultRegex, error: VGSValidationErrorType.pattern.rawValue))
+        rules.add(rule: VGSValidationRuleDateRange(error: VGSValidationErrorType.date.rawValue))
       case .cardNumber:
         rules.add(rule: VGSValidationRulePaymentCard(error: VGSValidationErrorType.cardNumber.rawValue))
       case .cvc:
@@ -137,6 +147,8 @@ internal extension FieldType {
          return "card-security-code"
       case .expDate:
          return "card-expiration-date"
+      case .date:
+         return "date"
       case .ssn:
          return "ssn"
       case .none:

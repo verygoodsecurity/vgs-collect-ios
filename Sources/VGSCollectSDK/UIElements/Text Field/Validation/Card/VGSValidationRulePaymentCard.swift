@@ -21,7 +21,7 @@ public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
   /// Turn on/off validation of cards that are not defined in SDK - `CardBrand.unknown`
   public var validateUnknownCardBrand = false
 
-  /// Initialzation
+  /// Initialization
   ///
   /// - Parameters:
   ///   - error:`VGSValidationError` - error on failed validation relust.
@@ -29,7 +29,7 @@ public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
     self.error = error
   }
 
-  /// Initialzation
+  /// Initialization
   ///
   /// - Parameters:
   ///   - error:`VGSValidationError` - error on failed validation relust.
