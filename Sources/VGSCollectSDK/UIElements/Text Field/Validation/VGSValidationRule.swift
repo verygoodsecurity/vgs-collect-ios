@@ -20,10 +20,10 @@ public struct VGSValidationRuleSet {
     
     internal var rules = [AnyValidationRule]()
     
-    /// Initialzation
+    /// Initialization
     public init() { }
     
-    /// Initialzation
+    /// Initialization
     ///
     /// - Parameters:
     ///   - rules: array of validation rules
