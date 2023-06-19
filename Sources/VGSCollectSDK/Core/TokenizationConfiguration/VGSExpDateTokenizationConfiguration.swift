@@ -49,7 +49,7 @@ public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExp
   // MARK: - `VGSExpDateConfiguration` implementation
   /// Serialize Expiration Date
   internal func serialize(_ content: String) -> [String: Any] {
-    return ExpDateFormatConvertor.serialize(content, serializers: serializers, outputFormat: outputFormat)
+    return ExpDateFormatConvertor.serialize(content, serializers: serializers, outputFormat: outputDateFormat)
   }
 
   /// Returns if Content should be Serialized
@@ -58,18 +58,18 @@ public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExp
   }
 }
 
-/// Implement `FormatConvertable` protocol.
-extension VGSExpDateTokenizationConfiguration: FormatConvertable {
+/// Implement `TextFormatConvertable` protocol.
+extension VGSExpDateTokenizationConfiguration: VGSTextFormatConvertable {
+    
+    var inputFormat: InputConvertableFormat? {
+        return inputDateFormat
+    }
+    
+    var outputFormat: OutputConvertableFormat? {
+        return outputDateFormat
+    }
 
-  internal var outputFormat: VGSCardExpDateFormat? {
-    return outputDateFormat
-  }
-
-  internal var inputFormat: VGSCardExpDateFormat? {
-    return inputDateFormat
-  }
-
-  internal var convertor: TextFormatConvertor {
-    return ExpDateFormatConvertor()
-  }
+    internal var convertor: TextFormatConvertor {
+        return ExpDateFormatConvertor()
+    }
 }
