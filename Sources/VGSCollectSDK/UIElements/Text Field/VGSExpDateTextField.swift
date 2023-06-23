@@ -48,6 +48,7 @@ public final class VGSExpDateTextField: VGSTextField {
     public override var configuration: VGSConfiguration? {
         didSet {
             fieldType = .expDate
+            setupAccessibilityLabel()
         }
     }
   
@@ -71,6 +72,41 @@ public final class VGSExpDateTextField: VGSTextField {
       super.mainInitialization()
       // default behaviour in case field setup with VGSConfiguration
       setupDatePicker()
+    }
+    
+    override func updateAccessibilityValues() {
+        super.updateAccessibilityValues()
+        
+        /// If the text is secure, avoid talk over the value
+        if textField.isSecureTextEntry {
+            textFieldAccessibilityValue = ""
+            return
+        }
+        
+        /// Get input format
+        var inputFormat = VGSCardExpDateFormat.longYear
+        
+        /// Check if specific `.inputFormat` is set in field configuration
+        if let config = configuration as? VGSExpDateConfiguration,
+           let fieldDateFormat = config.inputFormat as? VGSCardExpDateFormat {
+            inputFormat = fieldDateFormat
+        } else {
+            /// Default format could be mm/yy or mm/yyyy. In other case `.inputDateFormat` should be specified
+            let format = textField.formatPattern.components(separatedBy: "/").last ?? FieldType.expDate.defaultFormatPattern
+            let defaultDateFormat: VGSCardExpDateFormat = (format.count == 4) ? .longYear : .shortYear
+            inputFormat = defaultDateFormat
+        }
+        
+        /// Get current text
+        let secureText = textField.secureText ?? ""
+        let expectedCount = inputFormat.yearCharacters + inputFormat.monthCharacters + 1
+        if secureText.isEmpty {
+            textFieldAccessibilityValue = inputFormat.accessibilityValue
+        } else if secureText.count == expectedCount {
+            textFieldAccessibilityValue = inputFormat.accessibilityDateFromInput(input: secureText)
+        } else {
+            textFieldAccessibilityValue = secureText
+        }
     }
   
     override func setupField(with configuration: VGSConfiguration) {
@@ -127,7 +163,6 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 // MARK: - Configuration
-
 private extension VGSExpDateTextField {
   
   /// setup date picker configuration
@@ -148,6 +183,20 @@ private extension VGSExpDateTextField {
     textField.inputView = nil
     textField.inputAccessoryView  = nil
   }
+    
+    /// Setup accessibility label
+    func setupAccessibilityLabel() {
+        guard let config  = configuration as? VGSExpDateConfiguration, textField.isAccessibilityElement else {
+            return
+        }
+        // setup input source
+        switch config.inputSource {
+        case .datePicker:
+            textFieldAccessibilityLabel = Localization.FieldTypeAccessibility.expDatePicker
+        case .keyboard:
+            textFieldAccessibilityLabel = Localization.FieldTypeAccessibility.expDate
+        }
+    }
 }
 
 // MARK: - Date Picker

@@ -173,7 +173,6 @@ class CustomPaymentCardsViewController: UIViewController {
         
         vgsCollect.textFields.forEach { textField in
           textField.textColor = UIColor.inputBlackTextColor
-          textField.font = .systemFont(ofSize: 22)
           textField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
           textField.tintColor = .lightGray
           textField.delegate = self

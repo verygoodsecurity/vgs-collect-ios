@@ -20,7 +20,11 @@ public class VGSTextField: UIView {
     internal var isRequired: Bool = false
     internal var isRequiredValidOnly: Bool = false
     internal var isDirty: Bool = false
-    internal var fieldType: FieldType = .none
+    internal var fieldType: FieldType = .none {
+        didSet {
+            textFieldAccessibilityLabel = fieldType.accessibilityLabel
+        }
+    }
     internal var fieldName: String!
     internal var token: String?
     internal var horizontalConstraints = [NSLayoutConstraint]()
@@ -32,7 +36,10 @@ public class VGSTextField: UIView {
     
     /// Textfield placeholder string.
     public var placeholder: String? {
-        didSet { textField.placeholder = placeholder }
+        didSet {
+            textField.placeholder = placeholder
+            updateAccessibilityValues()
+        }
     }
 
 	/// Textfield autocapitalization type. Default is `.sentences`.
@@ -93,19 +100,42 @@ public class VGSTextField: UIView {
       }
     }
 
-		/// A succinct label in a localized string that identifies the accessibility text field.
-		public var textFieldAccessibilityLabel: String? {
-			didSet {
-				textField.accessibilityLabel = textFieldAccessibilityLabel
-			}
-		}
-
-		/// A localized string that contains a brief description of the result of performing an action on the accessibility text field.
-		public var textFieldAccessibilityHint: String? {
-			didSet {
-				textField.accessibilityHint = textFieldAccessibilityHint
-			}
-		}
+    // MARK: - Accessibility Attributes
+    /// A succinct label in a localized string that identifies the accessibility text field.
+    public var textFieldAccessibilityLabel: String? {
+        didSet {
+            textField.accessibilityLabel = textFieldAccessibilityLabel
+        }
+    }
+    
+    /// A localized string that contains a brief description of the result of performing an action on the accessibility text field.
+    public var textFieldAccessibilityHint: String? {
+        didSet {
+            textField.accessibilityHint = textFieldAccessibilityHint
+        }
+    }
+    
+    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
+    public var textFieldIsAccessibilityElement: Bool = true {
+        didSet {
+            textField.isAccessibilityElement = textFieldIsAccessibilityElement
+        }
+    }
+    
+    /// A collection of accessibility trait masks that best describes the characterize of the element
+    /// See `UIAccessibilityConstants.h` for a list of possible traits.
+    public var textFieldAccessibilityTraits: UIAccessibilityTraits = .none {
+        didSet {
+            textField.accessibilityTraits = textFieldAccessibilityTraits
+        }
+    }
+    
+    /// Localized string that represents the value of the element
+    public var textFieldAccessibilityValue: String? {
+        didSet {
+            textField.accessibilityValue = textFieldAccessibilityValue
+        }
+    }
 
     // MARK: - Functional Attributes
     
@@ -277,6 +307,10 @@ internal extension VGSTextField {
         buildTextFieldUI()
         // add otextfield observers and delegates
         addTextFieldObservers()
+        // setup accessibility
+        setupAccessibility()
+        // setup default dynamic font
+        setupDynamicFont()
     }
   
     @objc
@@ -328,6 +362,10 @@ internal extension VGSTextField {
         updateFormatPattern()
         // update status
         vgsCollector?.updateStatus(for: self)
+        // Update accessibility values
+        if textField.isAccessibilityElement {
+            updateAccessibilityValues()
+        }
     }
   
   func updateFormatPattern() {
@@ -423,6 +461,40 @@ extension UIView {
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 4
+    }
+}
+
+// MARK: - Accessibility implementation
+internal extension VGSTextField {
+    /// Turn on accessibility by default with no traits
+    @objc
+    func setupAccessibility() {
+        textFieldIsAccessibilityElement = true
+        textFieldAccessibilityTraits = .none
+    }
+    
+    /// Use default dynamic font and update it automatically for accessibility
+    @objc
+    func setupDynamicFont() {
+        adjustsFontForContentSizeCategory = true
+        font = UIFont.preferredFont(forTextStyle: .body)
+    }
+    
+    /// Update accessibility values
+    @objc
+    func updateAccessibilityValues() {
+        // Add valid status to the hint
+        textFieldAccessibilityHint = state.isValid ?
+        Localization.FieldStatus.valid :
+        Localization.FieldStatus.invalid
+        
+        /// If the text is secure, avoid talk over the value
+        if textField.isSecureTextEntry {
+            textFieldAccessibilityValue = ""
+        } else {
+            // By default the accessibility value is the secure text or empty
+            textFieldAccessibilityValue = textField.secureText ?? ""
+        }
     }
 }
 // swiftlint:enable file_length

@@ -43,6 +43,26 @@ public enum FieldType: Int, CaseIterable {
   
     /// Field type that requires US Social Security Number input formatting and validation.
     case ssn
+    
+    /// Accessibility label for type
+    internal var accessibilityLabel: String {
+        switch self {
+        case .none:
+            return Localization.FieldTypeAccessibility.none
+        case .cardNumber:
+            return Localization.FieldTypeAccessibility.cardNumber
+        case .expDate:
+            return Localization.FieldTypeAccessibility.expDate
+        case .date:
+            return Localization.FieldTypeAccessibility.date
+        case .cvc:
+            return Localization.FieldTypeAccessibility.cvc
+        case .cardHolderName:
+            return Localization.FieldTypeAccessibility.cardHolderName
+        case .ssn:
+            return Localization.FieldTypeAccessibility.ssn
+        }
+    }
 }
 
 /// Type of `VGSTextField` input source.

@@ -146,6 +146,43 @@ public enum VGSDateFormat: InputConvertableFormat, OutputConvertableFormat {
         }
     }
     
+    /// Accessibility value
+    internal var accessibilityValue: String {
+        switch self {
+        case .mmddyyyy:
+            return Localization.DateFormatAccessibility.mmddyyyy
+        case .ddmmyyyy:
+            return Localization.DateFormatAccessibility.ddmmyyyy
+        case .yyyymmdd:
+            return Localization.DateFormatAccessibility.yyyymmdd
+        }
+    }
+    
+    /// Accessibility date from input
+    internal func accessibilityDateFromInput(input: String) -> String? {
+        /// Find the divider in the input
+        let divider = VGSDateFormat.dividerInInput(input)
+        /// There must be only 1 divider
+        guard !divider.isEmpty else {
+            return input
+        }
+        
+        /// Create input date formatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.dateFormat = displayFormat.replacingOccurrences(of: "-", with: divider)
+        
+        /// Parse input to date
+        guard let date = dateFormatter.date(from: input) else {
+            return input
+        }
+        
+        /// Parse date to accessibility string
+        let accessibilityDateFormatter = DateFormatter()
+        accessibilityDateFormatter.dateFormat = "MMMM dd yyyy"
+        return accessibilityDateFormatter.string(from: date)
+    }
+    
     /// Date format pattern used to display in the text field
     internal var formatPattern: String {
         switch self {
