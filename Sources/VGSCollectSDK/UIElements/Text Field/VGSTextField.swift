@@ -103,37 +103,53 @@ public class VGSTextField: UIView {
     // MARK: - Accessibility Attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     public var textFieldAccessibilityLabel: String? {
-        didSet {
-            textField.accessibilityLabel = textFieldAccessibilityLabel
+        get {
+            return textField.accessibilityLabel
+        }
+        set {
+            textField.accessibilityLabel = newValue
         }
     }
     
-    /// A localized string that contains a brief description of the result of performing an action on the accessibility text field.
+    /// A localized string that contains a brief description of the result of
+    /// performing an action on the accessibility text field.
     public var textFieldAccessibilityHint: String? {
-        didSet {
-            textField.accessibilityHint = textFieldAccessibilityHint
+        get {
+            return textField.accessibilityHint
+        }
+        set {
+            textField.accessibilityHint = newValue
         }
     }
     
     /// Boolean value that determinates if the text field should be exposed as an accesibility element.
-    public var textFieldIsAccessibilityElement: Bool = true {
-        didSet {
-            textField.isAccessibilityElement = textFieldIsAccessibilityElement
+    public var textFieldIsAccessibilityElement: Bool {
+        get {
+            return textField.isAccessibilityElement
+        }
+        set {
+            textField.isAccessibilityElement = newValue
         }
     }
     
     /// A collection of accessibility trait masks that best describes the characterize of the element
     /// See `UIAccessibilityConstants.h` for a list of possible traits.
-    public var textFieldAccessibilityTraits: UIAccessibilityTraits = .none {
-        didSet {
-            textField.accessibilityTraits = textFieldAccessibilityTraits
+    public var textFieldAccessibilityTraits: UIAccessibilityTraits {
+        get {
+            return textField.accessibilityTraits
+        }
+        set {
+            textField.accessibilityTraits = newValue
         }
     }
     
     /// Localized string that represents the value of the element
     public var textFieldAccessibilityValue: String? {
-        didSet {
-            textField.accessibilityValue = textFieldAccessibilityValue
+        get {
+            return textField.accessibilityValue
+        }
+        set {
+            textField.accessibilityValue = newValue
         }
     }
 
