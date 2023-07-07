@@ -48,7 +48,6 @@ public final class VGSExpDateTextField: VGSTextField {
     public override var configuration: VGSConfiguration? {
         didSet {
             fieldType = .expDate
-            setupAccessibilityLabel()
         }
     }
   
@@ -100,9 +99,7 @@ public final class VGSExpDateTextField: VGSTextField {
         /// Get current text
         let secureText = textField.secureText ?? ""
         let expectedCount = inputFormat.yearCharacters + inputFormat.monthCharacters + 1
-        if secureText.isEmpty {
-            textFieldAccessibilityValue = inputFormat.accessibilityValue
-        } else if secureText.count == expectedCount {
+        if secureText.count == expectedCount {
             textFieldAccessibilityValue = inputFormat.accessibilityDateFromInput(input: secureText)
         } else {
             textFieldAccessibilityValue = secureText
@@ -183,20 +180,6 @@ private extension VGSExpDateTextField {
     textField.inputView = nil
     textField.inputAccessoryView  = nil
   }
-    
-    /// Setup accessibility label
-    func setupAccessibilityLabel() {
-        guard let config  = configuration as? VGSExpDateConfiguration, textField.isAccessibilityElement else {
-            return
-        }
-        // setup input source
-        switch config.inputSource {
-        case .datePicker:
-            textFieldAccessibilityLabel = Localization.FieldTypeAccessibility.expDatePicker
-        case .keyboard:
-            textFieldAccessibilityLabel = Localization.FieldTypeAccessibility.expDate
-        }
-    }
 }
 
 // MARK: - Date Picker

@@ -20,11 +20,7 @@ public class VGSTextField: UIView {
     internal var isRequired: Bool = false
     internal var isRequiredValidOnly: Bool = false
     internal var isDirty: Bool = false
-    internal var fieldType: FieldType = .none {
-        didSet {
-            textFieldAccessibilityLabel = fieldType.accessibilityLabel
-        }
-    }
+    internal var fieldType: FieldType = .none
     internal var fieldName: String!
     internal var token: String?
     internal var horizontalConstraints = [NSLayoutConstraint]()
@@ -499,11 +495,6 @@ internal extension VGSTextField {
     /// Update accessibility values
     @objc
     func updateAccessibilityValues() {
-        // Add valid status to the hint
-        textFieldAccessibilityHint = state.isValid ?
-        Localization.FieldStatus.valid :
-        Localization.FieldStatus.invalid
-        
         /// If the text is secure, avoid talk over the value
         if textField.isSecureTextEntry {
             textFieldAccessibilityValue = ""

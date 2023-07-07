@@ -114,6 +114,9 @@ private extension DateValidationViewController {
         dateField.placeholder = "MM-DD-YYYY"
         dateField.monthPickerFormat = .longSymbols
         
+        // Setup accessibility
+        dateField.textFieldAccessibilityLabel = "expiration date input"
+        
         /// Add logging
         vgsCollect.textFields.forEach { textField in
             textField.textColor = UIColor.inputBlackTextColor

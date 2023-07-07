@@ -147,8 +147,6 @@
 		44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */; };
 		44F8F52F25DBE8770052647A /* VGSCollectSatelliteUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */; };
 		A01CE3F729E5D67E0059700F /* VGSDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01CE3F629E5D67E0059700F /* VGSDateTextField.swift */; };
-		A02E03FD2A45E7DE004E51C2 /* VGSLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A02E03FF2A45E7DE004E51C2 /* VGSLocalizable.strings */; };
-		A02E04022A45EF90004E51C2 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02E04012A45EF90004E51C2 /* Localization.swift */; };
 		A0752C7329EF373400337C99 /* VGSTextFormatConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0752C7229EF373400337C99 /* VGSTextFormatConvertable.swift */; };
 		A0752C7529EF376100337C99 /* VGSDateSeparateSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0752C7429EF376100337C99 /* VGSDateSeparateSerializer.swift */; };
 		A0752C7829EF3C9200337C99 /* DateTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0752C7629EF3AC300337C99 /* DateTextFieldTest.swift */; };
@@ -361,8 +359,6 @@
 		44F8F51B25DBD1950052647A /* VGSCollectSatelliteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtils.swift; sourceTree = "<group>"; };
 		44F8F52325DBE7E40052647A /* VGSCollectSatelliteUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCollectSatelliteUtilsTests.swift; sourceTree = "<group>"; };
 		A01CE3F629E5D67E0059700F /* VGSDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDateTextField.swift; sourceTree = "<group>"; };
-		A02E03FE2A45E7DE004E51C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/VGSLocalizable.strings; sourceTree = "<group>"; };
-		A02E04012A45EF90004E51C2 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		A0752C7229EF373400337C99 /* VGSTextFormatConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSTextFormatConvertable.swift; sourceTree = "<group>"; };
 		A0752C7429EF376100337C99 /* VGSDateSeparateSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSDateSeparateSerializer.swift; sourceTree = "<group>"; };
 		A0752C7629EF3AC300337C99 /* DateTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextFieldTest.swift; sourceTree = "<group>"; };
@@ -784,7 +780,6 @@
 			isa = PBXGroup;
 			children = (
 				44ECD60527D9E87000460FDF /* CardIcon.xcassets */,
-				A02E03FF2A45E7DE004E51C2 /* VGSLocalizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -966,14 +961,6 @@
 			path = "Satellite Tests";
 			sourceTree = "<group>";
 		};
-		A02E04002A45EF3C004E51C2 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				A02E04012A45EF90004E51C2 /* Localization.swift */,
-			);
-			path = Localization;
-			sourceTree = "<group>";
-		};
 		A08DA9F829F1CC2A00DA62A5 /* DateTokenizationJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -1019,7 +1006,6 @@
 		FD05F9382316CE5A000EAF52 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A02E04002A45EF3C004E51C2 /* Localization */,
 				441B26CB25DB88C50099AA3A /* API */,
 				FDE247D024674AA7008D75B0 /* Collector */,
 				3281541125013E96004E9AD4 /* Analytics */,
@@ -1425,7 +1411,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				44ECD60627D9E87000460FDF /* CardIcon.xcassets in Resources */,
-				A02E03FD2A45E7DE004E51C2 /* VGSLocalizable.strings in Resources */,
 				32EFFD002510D97B007F4DA2 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1617,7 +1602,6 @@
 				44ECD60027D9C18C00460FDF /* VGSCustomPaymentCardModel.swift in Sources */,
 				035179A1285920F100394BFC /* VGSCardTokenizationConfiguration.swift in Sources */,
 				3262B2FD23F5A36E00D4A73D /* VGSImagePicker.swift in Sources */,
-				A02E04022A45EF90004E51C2 /* Localization.swift in Sources */,
 				035179A92859BD5500394BFC /* VGSTokenizationConfiguration.swift in Sources */,
 				3262B2FB23F5A32400D4A73D /* VGSFileSource.swift in Sources */,
 				327CDD4D256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
@@ -1750,17 +1734,6 @@
 			targetProxy = FD2495572330CB49009024E6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A02E03FF2A45E7DE004E51C2 /* VGSLocalizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A02E03FE2A45E7DE004E51C2 /* en */,
-			);
-			name = VGSLocalizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		03B10C0828E31B1A009B409B /* Debug */ = {

@@ -146,18 +146,6 @@ public enum VGSDateFormat: InputConvertableFormat, OutputConvertableFormat {
         }
     }
     
-    /// Accessibility value
-    internal var accessibilityValue: String {
-        switch self {
-        case .mmddyyyy:
-            return Localization.DateFormatAccessibility.mmddyyyy
-        case .ddmmyyyy:
-            return Localization.DateFormatAccessibility.ddmmyyyy
-        case .yyyymmdd:
-            return Localization.DateFormatAccessibility.yyyymmdd
-        }
-    }
-    
     /// Accessibility date from input
     internal func accessibilityDateFromInput(input: String) -> String? {
         /// Find the divider in the input

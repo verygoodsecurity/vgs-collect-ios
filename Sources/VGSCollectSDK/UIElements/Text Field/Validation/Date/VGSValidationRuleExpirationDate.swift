@@ -76,24 +76,6 @@ public enum VGSCardExpDateFormat: InputConvertableFormat, OutputConvertableForma
     }
   }
     
-    /// Accessibility value
-    internal var accessibilityValue: String {
-        switch self {
-        case .shortYear:
-            // MM/YY
-            return Localization.ExpirationDateFormatAccessibility.shortYear
-        case .longYear:
-            // MM/YYYY
-            return Localization.ExpirationDateFormatAccessibility.longYear
-        case .shortYearThenMonth:
-            // YY/MM
-            return Localization.ExpirationDateFormatAccessibility.shortYearThenMonth
-        case .longYearThenMonth:
-            // YYYY/MM
-            return Localization.ExpirationDateFormatAccessibility.longYearThenMonth
-        }
-    }
-    
     /// Date format
     internal var dateFormat: String {
         switch self {

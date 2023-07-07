@@ -57,7 +57,6 @@ public final class VGSDateTextField: VGSTextField {
     public override var configuration: VGSConfiguration? {
         didSet {
             fieldType = .date
-            setupAccessibilityLabel()
         }
     }
     
@@ -88,9 +87,7 @@ public final class VGSDateTextField: VGSTextField {
         inputFormat.yearCharacters +
         inputFormat.dividerCharacters
         
-        if secureText.isEmpty {
-            textFieldAccessibilityValue = inputFormat.accessibilityValue
-        } else if secureText.count == expectedCount {
+        if secureText.count == expectedCount {
             textFieldAccessibilityValue = inputFormat.accessibilityDateFromInput(input: secureText)
         } else {
             textFieldAccessibilityValue = secureText
@@ -390,20 +387,6 @@ private extension VGSDateTextField {
         // Remove date picker if any
         textField.inputView = nil
         textField.inputAccessoryView  = nil
-    }
-    
-    /// Setup accessibility label
-    func setupAccessibilityLabel() {
-        guard let config  = configuration as? VGSDateConfiguration, textField.isAccessibilityElement else {
-            return
-        }
-        // setup input source
-        switch config.inputSource {
-        case .datePicker:
-            textFieldAccessibilityLabel = Localization.FieldTypeAccessibility.datePicker
-        case .keyboard:
-            textFieldAccessibilityLabel = Localization.FieldTypeAccessibility.date
-        }
     }
 }
 // swiftlint:enable file_length

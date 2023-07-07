@@ -53,7 +53,6 @@
 		44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691526205F670014645F /* CustomDataCollectingViewController.swift */; };
 		44D8692026205F670014645F /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691926205F670014645F /* FilePickerViewController.swift */; };
 		A01CE3F529E5C50D0059700F /* DateValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01CE3F429E5C50D0059700F /* DateValidationViewController.swift */; };
-		A02E040D2A46384C004E51C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A02E040F2A46384C004E51C2 /* Localizable.strings */; };
 		C8CBAAC0A0A75BF9CF5A7FA4 /* Pods_demoapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */; };
 		FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9772304616C00B670DD /* AppDelegate.swift */; };
 		FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD12B97E2304616E00B670DD /* Assets.xcassets */; };
@@ -133,9 +132,7 @@
 		971F95F0CD23156BC2F071A3 /* Pods-demoappUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappUITests.release.xcconfig"; path = "Target Support Files/Pods-demoappUITests/Pods-demoappUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E14BE9AC3107988B3A45EBF /* Pods-demoapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.release.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.release.xcconfig"; sourceTree = "<group>"; };
 		A01CE3F429E5C50D0059700F /* DateValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValidationViewController.swift; sourceTree = "<group>"; };
-		A02E040E2A46384C004E51C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A02E04112A46398C004E51C2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		A02E04122A46398C004E51C2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A06681532A58BB6500B93FC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B96EAC87AAF5BF889451003A /* Pods-demoapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.debug.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.debug.xcconfig"; sourceTree = "<group>"; };
 		C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9742304616C00B670DD /* demoapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demoapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +146,6 @@
 		FD12B9992304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDD398EF247D7A7100B55057 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FDD398F2247D7A7C00B55057 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FDD398F4247D877800B55057 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FDD398F6247D877900B55057 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -449,7 +445,6 @@
 				325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */,
 				44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */,
 				44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */,
-				A02E040F2A46384C004E51C2 /* Localizable.strings */,
 			);
 			path = demoapp;
 			sourceTree = "<group>";
@@ -570,7 +565,6 @@
 				en,
 				Base,
 				ar,
-				es,
 			);
 			mainGroup = FD12B96B2304616C00B670DD;
 			productRefGroup = FD12B9752304616C00B670DD /* Products */;
@@ -592,7 +586,6 @@
 				FDD398F0247D7A7100B55057 /* Main.storyboard in Resources */,
 				FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */,
 				449FFCB528A505A100FE4A1F /* PaymentCardCell.xib in Resources */,
-				A02E040D2A46384C004E51C2 /* Localizable.strings in Resources */,
 				449FFCB628A505A100FE4A1F /* AddCardCell.xib in Resources */,
 				FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */,
 				44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */,
@@ -782,22 +775,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A02E040F2A46384C004E51C2 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A02E040E2A46384C004E51C2 /* en */,
-				A02E04122A46398C004E51C2 /* es */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		FD12B9802304616E00B670DD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				FDD398F2247D7A7C00B55057 /* Base */,
-				FDD398F4247D877800B55057 /* en */,
 				FDD398F6247D877900B55057 /* ar */,
-				A02E04112A46398C004E51C2 /* es */,
+				A06681532A58BB6500B93FC6 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
