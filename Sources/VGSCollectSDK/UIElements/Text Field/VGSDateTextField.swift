@@ -65,35 +65,6 @@ public final class VGSDateTextField: VGSTextField {
         setupDatePicker()
     }
     
-    override func updateAccessibilityValues() {
-        super.updateAccessibilityValues()
-        
-        /// If the text is secure, avoid talk over the value
-        if textField.isSecureTextEntry {
-            textFieldAccessibilityValue = ""
-            return
-        }
-        
-        /// Get input format
-        var inputFormat = VGSDateFormat.default
-        if let config = configuration as? VGSDateConfiguration {
-            inputFormat = config.inputFormat as? VGSDateFormat ?? VGSDateFormat.default
-        }
-        
-        /// Get current text
-        let secureText = textField.secureText ?? ""
-        let expectedCount = inputFormat.daysCharacters +
-        inputFormat.monthCharacters +
-        inputFormat.yearCharacters +
-        inputFormat.dividerCharacters
-        
-        if secureText.count == expectedCount {
-            textFieldAccessibilityValue = inputFormat.accessibilityDateFromInput(input: secureText)
-        } else {
-            textFieldAccessibilityValue = secureText
-        }
-    }
-    
     override func setupField(with configuration: VGSConfiguration) {
         super.setupField(with: configuration)
         guard let config = configuration as? VGSDateConfigurationProtocol else {

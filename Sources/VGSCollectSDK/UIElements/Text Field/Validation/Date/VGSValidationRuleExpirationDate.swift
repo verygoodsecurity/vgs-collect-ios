@@ -75,45 +75,6 @@ public enum VGSCardExpDateFormat: InputConvertableFormat, OutputConvertableForma
       return true
     }
   }
-    
-    /// Date format
-    internal var dateFormat: String {
-        switch self {
-        case .shortYear:
-            return "MM/yy"
-        case .longYear:
-            return "MM/yyyy"
-        case .shortYearThenMonth:
-            return "yy/MM"
-        case .longYearThenMonth:
-            return "yyyy/MM"
-        }
-    }
-    
-    /// Accessibility date from input
-    internal func accessibilityDateFromInput(input: String) -> String? {
-        /// Find the divider in the input
-        let dividers = input.components(separatedBy: CharacterSet.decimalDigits).split(separator: "")
-        /// There must be only 1 divider
-        guard dividers.count == 1, let divider = dividers.first?.first else {
-            return input
-        }
-        
-        /// Create input date formatter
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = Calendar(identifier: .gregorian)
-        dateFormatter.dateFormat = dateFormat.replacingOccurrences(of: "/", with: divider)
-        
-        /// Parse input to date
-        guard let date = dateFormatter.date(from: input) else {
-            return input
-        }
-        
-        /// Parse date to accessibility string
-        let accessibilityDateFormatter = DateFormatter()
-        accessibilityDateFormatter.dateFormat = "MMMM yyyy"
-        return accessibilityDateFormatter.string(from: date)
-    }
 }
 
 /**

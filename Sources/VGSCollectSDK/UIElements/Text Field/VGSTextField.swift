@@ -32,10 +32,7 @@ public class VGSTextField: UIView {
     
     /// Textfield placeholder string.
     public var placeholder: String? {
-        didSet {
-            textField.placeholder = placeholder
-            updateAccessibilityValues()
-        }
+        didSet { textField.placeholder = placeholder }
     }
 
 	/// Textfield autocapitalization type. Default is `.sentences`.
@@ -319,10 +316,6 @@ internal extension VGSTextField {
         buildTextFieldUI()
         // add otextfield observers and delegates
         addTextFieldObservers()
-        // setup accessibility
-        setupAccessibility()
-        // setup default dynamic font
-        setupDynamicFont()
     }
   
     @objc
@@ -374,10 +367,6 @@ internal extension VGSTextField {
         updateFormatPattern()
         // update status
         vgsCollector?.updateStatus(for: self)
-        // Update accessibility values
-        if textField.isAccessibilityElement {
-            updateAccessibilityValues()
-        }
     }
   
   func updateFormatPattern() {
@@ -473,35 +462,6 @@ extension UIView {
         layer.borderColor = UIColor.lightGray.cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 4
-    }
-}
-
-// MARK: - Accessibility implementation
-internal extension VGSTextField {
-    /// Turn on accessibility by default with no traits
-    @objc
-    func setupAccessibility() {
-        textFieldIsAccessibilityElement = true
-        textFieldAccessibilityTraits = .none
-    }
-    
-    /// Use default dynamic font and update it automatically for accessibility
-    @objc
-    func setupDynamicFont() {
-        adjustsFontForContentSizeCategory = true
-        font = UIFont.preferredFont(forTextStyle: .body)
-    }
-    
-    /// Update accessibility values
-    @objc
-    func updateAccessibilityValues() {
-        /// If the text is secure, avoid talk over the value
-        if textField.isSecureTextEntry {
-            textFieldAccessibilityValue = ""
-        } else {
-            // By default the accessibility value is the secure text or empty
-            textFieldAccessibilityValue = textField.secureText ?? ""
-        }
     }
 }
 // swiftlint:enable file_length
