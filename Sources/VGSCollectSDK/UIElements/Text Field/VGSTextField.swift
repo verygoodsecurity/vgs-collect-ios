@@ -139,7 +139,7 @@ public class VGSTextField: UIView {
     /// Localized string that represents the value of the element
     public var textFieldAccessibilityValue: String? {
         get {
-            return textField.accessibilityValue
+            return nil
         }
         set {
             textField.accessibilityValue = newValue
