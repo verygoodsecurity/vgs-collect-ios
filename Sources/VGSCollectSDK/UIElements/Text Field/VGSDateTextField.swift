@@ -5,7 +5,6 @@
 
 import UIKit
 
-// swiftlint:disable file_length
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show picker view with a Date. It support to define a range of valid dates to select from.
 public final class VGSDateTextField: VGSTextField {
     
@@ -67,7 +66,7 @@ public final class VGSDateTextField: VGSTextField {
     
     override func setupField(with configuration: VGSConfiguration) {
         super.setupField(with: configuration)
-        guard let config = configuration as? VGSDateConfigurationProtocol else {
+        guard let config  = configuration as? VGSDateConfigurationProtocol else {
             return
         }
         
@@ -360,4 +359,3 @@ private extension VGSDateTextField {
         textField.inputAccessoryView  = nil
     }
 }
-// swiftlint:enable file_length
