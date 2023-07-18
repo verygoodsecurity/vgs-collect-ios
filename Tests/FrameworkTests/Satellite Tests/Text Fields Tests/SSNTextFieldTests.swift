@@ -102,4 +102,29 @@ class SSNTextFieldTests: VGSCollectBaseTestCase {
         }
       }
     }
+    
+    /// Test accessibility properties
+    func testAccessibilityAttributes() {
+        // Hint
+        let accHint = "accessibility hint"
+        ssnTextField.textFieldAccessibilityHint = accHint
+        XCTAssertNotNil(ssnTextField.textFieldAccessibilityHint)
+        XCTAssertEqual(ssnTextField.textFieldAccessibilityHint, accHint)
+        
+        // Label
+        let accLabel = "accessibility label"
+        ssnTextField.textFieldAccessibilityLabel = accLabel
+        XCTAssertNotNil(ssnTextField.textFieldAccessibilityLabel)
+        XCTAssertEqual(ssnTextField.textFieldAccessibilityLabel, accLabel)
+        
+        // Element
+        ssnTextField.textFieldIsAccessibilityElement = true
+        XCTAssertTrue(ssnTextField.textFieldIsAccessibilityElement)
+        
+        // Value
+        let accValue = "accessibility value"
+        ssnTextField.textField.secureText = accValue
+        XCTAssertTrue(ssnTextField.textField.secureText!.isEmpty)
+        XCTAssertNil(ssnTextField.textField.accessibilityValue)
+    }
 }

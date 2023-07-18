@@ -107,4 +107,29 @@ class CVVTextFieldTests: VGSCollectBaseTestCase {
         cardNumberTextField.focusOn()
         XCTAssert(cvvTextField.textField.formatPattern == "####", "Default format is wrong. Should be ####")
     }
+    
+    /// Test accessibility properties
+    func testAccessibilityAttributes() {
+        // Hint
+        let accHint = "accessibility hint"
+        cvvTextField.textFieldAccessibilityHint = accHint
+        XCTAssertNotNil(cvvTextField.textFieldAccessibilityHint)
+        XCTAssertEqual(cvvTextField.textFieldAccessibilityHint, accHint)
+        
+        // Label
+        let accLabel = "accessibility label"
+        cvvTextField.textFieldAccessibilityLabel = accLabel
+        XCTAssertNotNil(cvvTextField.textFieldAccessibilityLabel)
+        XCTAssertEqual(cvvTextField.textFieldAccessibilityLabel, accLabel)
+        
+        // Element
+        cvvTextField.textFieldIsAccessibilityElement = true
+        XCTAssertTrue(cvvTextField.textFieldIsAccessibilityElement)
+        
+        // Value
+        let accValue = "accessibility value"
+        cvvTextField.textField.secureText = accValue
+        XCTAssertTrue(cvvTextField.textField.secureText!.isEmpty)
+        XCTAssertNil(cvvTextField.textField.accessibilityValue)
+    }
 }

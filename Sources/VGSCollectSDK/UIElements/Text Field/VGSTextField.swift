@@ -124,27 +124,6 @@ public class VGSTextField: UIView {
             textField.isAccessibilityElement = newValue
         }
     }
-    
-    /// A collection of accessibility trait masks that best describes the characterize of the element
-    /// See `UIAccessibilityConstants.h` for a list of possible traits.
-    public var textFieldAccessibilityTraits: UIAccessibilityTraits {
-        get {
-            return textField.accessibilityTraits
-        }
-        set {
-            textField.accessibilityTraits = newValue
-        }
-    }
-    
-    /// Localized string that represents the value of the element
-    public var textFieldAccessibilityValue: String? {
-        get {
-            return nil
-        }
-        set {
-            textField.accessibilityValue = newValue
-        }
-    }
 
     // MARK: - Functional Attributes
     
