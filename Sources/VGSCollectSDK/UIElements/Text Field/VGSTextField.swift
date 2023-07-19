@@ -93,19 +93,37 @@ public class VGSTextField: UIView {
       }
     }
 
-		/// A succinct label in a localized string that identifies the accessibility text field.
-		public var textFieldAccessibilityLabel: String? {
-			didSet {
-				textField.accessibilityLabel = textFieldAccessibilityLabel
-			}
-		}
-
-		/// A localized string that contains a brief description of the result of performing an action on the accessibility text field.
-		public var textFieldAccessibilityHint: String? {
-			didSet {
-				textField.accessibilityHint = textFieldAccessibilityHint
-			}
-		}
+    // MARK: - Accessibility Attributes
+    /// A succinct label in a localized string that identifies the accessibility text field.
+    public var textFieldAccessibilityLabel: String? {
+        get {
+            return textField.accessibilityLabel
+        }
+        set {
+            textField.accessibilityLabel = newValue
+        }
+    }
+    
+    /// A localized string that contains a brief description of the result of
+    /// performing an action on the accessibility text field.
+    public var textFieldAccessibilityHint: String? {
+        get {
+            return textField.accessibilityHint
+        }
+        set {
+            textField.accessibilityHint = newValue
+        }
+    }
+    
+    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
+    public var textFieldIsAccessibilityElement: Bool {
+        get {
+            return textField.isAccessibilityElement
+        }
+        set {
+            textField.isAccessibilityElement = newValue
+        }
+    }
 
     // MARK: - Functional Attributes
     

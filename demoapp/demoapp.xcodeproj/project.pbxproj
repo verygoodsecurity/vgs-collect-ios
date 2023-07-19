@@ -132,6 +132,7 @@
 		971F95F0CD23156BC2F071A3 /* Pods-demoappUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoappUITests.release.xcconfig"; path = "Target Support Files/Pods-demoappUITests/Pods-demoappUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E14BE9AC3107988B3A45EBF /* Pods-demoapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.release.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.release.xcconfig"; sourceTree = "<group>"; };
 		A01CE3F429E5C50D0059700F /* DateValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValidationViewController.swift; sourceTree = "<group>"; };
+		A06681532A58BB6500B93FC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B96EAC87AAF5BF889451003A /* Pods-demoapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.debug.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.debug.xcconfig"; sourceTree = "<group>"; };
 		C0DAC2D9D525DA573788F57B /* Pods_demoapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD12B9742304616C00B670DD /* demoapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demoapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +146,6 @@
 		FD12B9992304616E00B670DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDD398EF247D7A7100B55057 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FDD398F2247D7A7C00B55057 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FDD398F4247D877800B55057 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FDD398F6247D877900B55057 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -779,8 +779,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				FDD398F2247D7A7C00B55057 /* Base */,
-				FDD398F4247D877800B55057 /* en */,
 				FDD398F6247D877900B55057 /* ar */,
+				A06681532A58BB6500B93FC6 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -100,4 +100,29 @@ class CardHolderNameFieldTests: VGSCollectBaseTestCase {
         XCTAssertFalse(cardHolderTextField.state.isValid)
         XCTAssertFalse(cardHolderTextField.state.isEmpty)
     }
+    
+    /// Test accessibility properties
+    func testAccessibilityAttributes() {
+        // Hint
+        let accHint = "accessibility hint"
+        cardHolderTextField.textFieldAccessibilityHint = accHint
+        XCTAssertNotNil(cardHolderTextField.textFieldAccessibilityHint)
+        XCTAssertEqual(cardHolderTextField.textFieldAccessibilityHint, accHint)
+        
+        // Label
+        let accLabel = "accessibility label"
+        cardHolderTextField.textFieldAccessibilityLabel = accLabel
+        XCTAssertNotNil(cardHolderTextField.textFieldAccessibilityLabel)
+        XCTAssertEqual(cardHolderTextField.textFieldAccessibilityLabel, accLabel)
+        
+        // Element
+        cardHolderTextField.textFieldIsAccessibilityElement = true
+        XCTAssertTrue(cardHolderTextField.textFieldIsAccessibilityElement)
+        
+        // Value
+        let accValue = "accessibility value"
+        cardHolderTextField.textField.secureText = accValue
+        XCTAssertFalse(cardHolderTextField.textField.secureText!.isEmpty)
+        XCTAssertNil(cardHolderTextField.textField.accessibilityValue)
+    }
 }
