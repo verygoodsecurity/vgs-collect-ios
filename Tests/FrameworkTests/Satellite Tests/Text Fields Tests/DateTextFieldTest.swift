@@ -222,7 +222,7 @@ class DateTextFieldTest: VGSCollectBaseTestCase {
         XCTAssertTrue(textField.textField.inputView != nil, "Date picker not set!")
         XCTAssertTrue(textField.textField.inputView is UIPickerView, "Wrong date picker view!")
     }
-    
+  
     /// Test accessibility properties
     func testAccessibilityAttributes() {
         // Hint

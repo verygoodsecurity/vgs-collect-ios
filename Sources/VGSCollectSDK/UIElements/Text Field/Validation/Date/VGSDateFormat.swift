@@ -2,6 +2,7 @@
 //  VGSDateFormat.swift
 //  VGSCollectSDK
 //
+
 import Foundation
 
 /// Format used to validate a VGS date text input
