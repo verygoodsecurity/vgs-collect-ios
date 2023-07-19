@@ -86,7 +86,6 @@ class SSNCollectingViewController: UIViewController {
         ssnField.textAlignment = .center
 
         ssnField.textColor = UIColor.inputBlackTextColor
-        ssnField.font = .systemFont(ofSize: 22)
         ssnField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         ssnField.tintColor = .lightGray
         ssnField.delegate = self

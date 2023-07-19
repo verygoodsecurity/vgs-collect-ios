@@ -308,4 +308,29 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
         }
       }
   }
+    
+    /// Test accessibility properties
+    func testAccessibilityAttributes() {
+        // Hint
+        let accHint = "accessibility hint"
+        cardNumerTextField.textFieldAccessibilityHint = accHint
+        XCTAssertNotNil(cardNumerTextField.textFieldAccessibilityHint)
+        XCTAssertEqual(cardNumerTextField.textFieldAccessibilityHint, accHint)
+        
+        // Label
+        let accLabel = "accessibility label"
+        cardNumerTextField.textFieldAccessibilityLabel = accLabel
+        XCTAssertNotNil(cardNumerTextField.textFieldAccessibilityLabel)
+        XCTAssertEqual(cardNumerTextField.textFieldAccessibilityLabel, accLabel)
+        
+        // Element
+        cardNumerTextField.textFieldIsAccessibilityElement = true
+        XCTAssertTrue(cardNumerTextField.textFieldIsAccessibilityElement)
+        
+        // Value
+        let accValue = "accessibility value"
+        cardNumerTextField.textField.secureText = accValue
+        XCTAssertTrue(cardNumerTextField.textField.secureText!.isEmpty)
+        XCTAssertNil(cardNumerTextField.textField.accessibilityValue)
+    }
 }

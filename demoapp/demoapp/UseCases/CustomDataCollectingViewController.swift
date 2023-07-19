@@ -91,7 +91,6 @@ class CustomDataCollectingViewController: UIViewController {
         customDataField.textAlignment = .center
 
         customDataField.textColor = UIColor.inputBlackTextColor
-        customDataField.font = .systemFont(ofSize: 22)
         customDataField.padding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         customDataField.tintColor = .lightGray
         customDataField.delegate = self

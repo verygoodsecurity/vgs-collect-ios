@@ -3,6 +3,8 @@
 //  VGSCollectSDK
 //
 
+import Foundation
+
 /// Format used to validate a VGS date text input
 public enum VGSDateFormat: InputConvertableFormat, OutputConvertableFormat {
     case mmddyyyy
