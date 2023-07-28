@@ -1,5 +1,5 @@
 #!/bin/sh
-METRIC_VALUE=$(awk -F '[:,]' '{print $2*100}' ./project/xcov_report/report.json | head -1)
+METRIC_VALUE=$(awk -F '[:,]' '{print $2*100}' ../project/xcov_report/report.json | head -1)
 
 curl --request POST \
 --url https://verygoodsecurity.atlassian.net/gateway/api/compass/v1/metrics \
