@@ -33,7 +33,7 @@ jobs:
             cd .. &&
             pod install &&
             xcrun instruments -w "iPhone 14 (16.2) [" || true &&
-            xcodebuild test -workspace demoapp.xcworkspace
+            xcodebuild test -workspace demoapp.xcworkspace -enableCodeCoverage YES
             -scheme demoappUITests
             -sdk iphonesimulator
             -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
