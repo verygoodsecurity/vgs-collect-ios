@@ -13,8 +13,7 @@ jobs:
       - run:
           name: Run Tests iOS 16
           command: >
-            xcodebuild test -workspace demoapp.xcworkspace -enableCodeCoverage YES
-            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -testPlan FrameworkTests
+            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -enableCodeCoverage YES -testPlan FrameworkTests
       - run:
           name: Calculate Test Coverage
           command: >
