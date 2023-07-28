@@ -7,9 +7,18 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install xcov
+          command: >
+            gem install xcov
+      - run:
           name: Run Tests iOS 16
           command: >
             cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' -testPlan FrameworkTests
+      - run:
+          name: Run Tests iOS 16
+          command: >
+            xcov -p VGSCollectSDK.xcodeproj -s VGSCollectSDK --json_report
+            
   build-and-ui-test-demo-app-ios-16-iphone14:
     macos:
       xcode: "14.2"
