@@ -18,6 +18,10 @@ jobs:
           name: Calculate Test Coverage
           command: >
             xcov -p VGSCollectSDK.xcodeproj -s VGSCollectSDK --json_report
+      - run:
+          name: Push Test Coverage to Compass
+          command: >
+            ./ops/publish-test-coverage.sh 
             
   build-and-ui-test-demo-app-ios-16-iphone14:
     macos:
