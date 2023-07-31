@@ -7,7 +7,7 @@ curl --request POST \
 --header "Accept: application/json" \
 --header "Content-Type: application/json" \
 --data "{
-  \"metricSourceId\": $METRIC_SOURCE_ID,
+  \"metricSourceId\": \"$METRIC_SOURCE_ID",
   \"value\": $METRIC_VALUE,
   \"timestamp\": \"$(date -u +'%Y-%m-%dT%H:%M:%SZ')\"
 }"
