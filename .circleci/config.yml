@@ -19,9 +19,9 @@ jobs:
           command: >
             xcov -p VGSCollectSDK.xcodeproj -s VGSCollectSDK --json_report
       - run:
-          name: Show Current Git Branch
-          command: >
-            echo << pipeline.git.branch >>
+          name: Show Git Branch
+          command: |
+            echo "Branch: << pipeline.git.branch >>"
       - run:
           name: Push Test Coverage to Compass
           command: >
