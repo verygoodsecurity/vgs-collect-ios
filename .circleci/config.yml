@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Show Current git Branch
           command: >
-            echo "Current git branch: << pipeline.git.branch >>"
+            echo "Current git branch: " << pipeline.git.branch >>
       - run:
           name: Push Test Coverage to Compass
           command: >
