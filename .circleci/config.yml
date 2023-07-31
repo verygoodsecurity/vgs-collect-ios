@@ -19,9 +19,12 @@ jobs:
           command: >
             xcov -p VGSCollectSDK.xcodeproj -s VGSCollectSDK --json_report
       - run:
-          name: Push Test Coverage to Compass
+          name: Show Current git Branch
           command: >
             echo "Current git branch: << pipeline.git.branch >>"
+      - run:
+          name: Push Test Coverage to Compass
+          command: >
             if [ "<< pipeline.git.branch >>" == "master" ]; then
               ./ops/publish-test-coverage.sh 
             else
