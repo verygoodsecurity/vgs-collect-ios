@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Push Test Coverage to Compass
           command: >
-            if [ "<< pipeline.git.branch >>" != "master" ]; then
+            if [ "<< pipeline.git.branch >>" == "master" ]; then
               ./ops/publish-test-coverage.sh 
             else
               echo "Code coverage will only be pushed to compass on the main branch."
