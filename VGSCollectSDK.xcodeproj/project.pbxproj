@@ -10,6 +10,7 @@
 		0313A1202975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */; };
 		031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */; };
 		033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */; };
+		0342C4022A8D033F00B1D603 /* VGSTextFieldSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342C4012A8D033F00B1D603 /* VGSTextFieldSwiftUI.swift */; };
 		0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */; };
 		0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */; };
 		035179A1285920F100394BFC /* VGSCardTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */; };
@@ -221,6 +222,7 @@
 		0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfigurationTests.swift; sourceTree = "<group>"; };
 		031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldStatePublisherTests.swift; sourceTree = "<group>"; };
 		033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+statePublisher.swift"; sourceTree = "<group>"; };
+		0342C4012A8D033F00B1D603 /* VGSTextFieldSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldSwiftUI.swift; sourceTree = "<group>"; };
 		0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTokenizationProtocol.swift; sourceTree = "<group>"; };
 		0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		035179A0285920F100394BFC /* VGSCardTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardTokenizationConfiguration.swift; sourceTree = "<group>"; };
@@ -467,6 +469,14 @@
 				031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */,
 			);
 			path = VGSTextFieldStatePublisherTests;
+			sourceTree = "<group>";
+		};
+		0342C4002A8CFF5B00B1D603 /* SwiftUIElements */ = {
+			isa = PBXGroup;
+			children = (
+				0342C4012A8D033F00B1D603 /* VGSTextFieldSwiftUI.swift */,
+			);
+			path = SwiftUIElements;
 			sourceTree = "<group>";
 		};
 		035179992858B39100394BFC /* TokenizationConfiguration */ = {
@@ -992,6 +1002,7 @@
 			isa = PBXGroup;
 			children = (
 				FD05F9382316CE5A000EAF52 /* Core */,
+				0342C4002A8CFF5B00B1D603 /* SwiftUIElements */,
 				FD05F9432316CE5A000EAF52 /* UIElements */,
 				447A81102589438000BC77C7 /* Resources */,
 				326FFB0124F90B270024A4F9 /* Integrations */,
@@ -1646,6 +1657,7 @@
 				324B5E7324A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift in Sources */,
 				FD148A07232EC53600FD7781 /* State.swift in Sources */,
 				322F94BB25BABE97001CDF12 /* ExpDateFormatConvertor.swift in Sources */,
+				0342C4022A8D033F00B1D603 /* VGSTextFieldSwiftUI.swift in Sources */,
 				32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */,
 				324B5E6D24A23CC50036867E /* VGSValidationError.swift in Sources */,
 				035179A32859BABC00394BFC /* VGSSSNTokenizationConfiguration.swift in Sources */,

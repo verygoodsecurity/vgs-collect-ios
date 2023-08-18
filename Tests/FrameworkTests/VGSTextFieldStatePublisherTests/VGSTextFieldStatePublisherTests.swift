@@ -25,7 +25,7 @@ class VGSTextFieldStatePublisherTests: XCTestCase {
 
         let textField = VGSTextField()
         textField.configuration = config
-        var states: [State] = []
+        var states: [VGSTextFieldState] = []
         
         textField.statePublisher
             .prepend(textField.state) // Emit the initial state

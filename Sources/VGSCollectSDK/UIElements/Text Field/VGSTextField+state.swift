@@ -22,8 +22,8 @@ public extension VGSTextField {
     // MARK: - State
   
     /// Describes `VGSTextField` input   `State`
-    var state: State {
-        var result: State
+    var state: VGSTextFieldState {
+        var result: VGSTextFieldState
         
         switch fieldType {
         case .cardNumber:
@@ -31,7 +31,7 @@ public extension VGSTextField {
         case .ssn:
             result = SSNState(tf: self)
         default:
-            result = State(tf: self)
+            result = VGSTextFieldState(tf: self)
         }
         return result
     }
