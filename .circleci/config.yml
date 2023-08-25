@@ -1,5 +1,11 @@
 version: 2.1
 
+# === Scheduled Pipeline Parameters ===
+parameters:
+  nightly-security-scan:
+    type: boolean
+    default: false
+
 jobs:
   build-and-test-sdk:
     macos:
@@ -31,7 +37,7 @@ jobs:
               echo "Code coverage will only be pushed to compass on the main branch."
             fi
             
-            
+
   build-and-ui-test-demo-app-ios-16-iphone14:
     macos:
       xcode: "14.2"
@@ -51,9 +57,64 @@ jobs:
             -sdk iphonesimulator
             -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2'
 
+  scan-sast-pr:
+    parameters:
+      default_branch:
+        type: string
+        default: master
+    environment:
+      SEMGREP_REPO_URL: << pipeline.project.git_url >>
+      SEMGREP_BRANCH: << pipeline.git.branch >>
+      SEMGREP_BASELINE_REF: << parameters.default_branch >>
+    docker:
+      - image: returntocorp/semgrep
+    steps:
+      - checkout
+      - run:
+          name: "Semgrep diff scan"
+          command: semgrep ci
+
+  scan-sast-full:
+    parameters:
+      default_branch:
+        type: string
+        default: master
+    environment:
+      SEMGREP_REPO_URL: << pipeline.project.git_url >>
+      SEMGREP_BRANCH: << pipeline.git.branch >>
+    docker:
+      - image: returntocorp/semgrep
+    steps:
+      - checkout
+      - run:
+          name: "Semgrep full scan"
+          command: semgrep ci
+
 workflows:
-  version: 2
   build-and-test:
+    when:
+      not: << pipeline.parameters.nightly-security-scan >>
     jobs:
       - build-and-test-sdk
       - build-and-ui-test-demo-app-ios-16-iphone14
+      - scan-sast-pr:
+          context:
+            - security-tools
+
+      - scan-sast-full:
+          filters:
+            # ignore any commit on any branch by default
+            branches:
+              ignore: /.*/
+            tags:
+              only:
+                - /production-.*/
+          context:
+            - security-tools
+
+  scheduled-security-scan:
+    when: << pipeline.parameters.nightly-security-scan >>
+    jobs:
+      - scan-sast-full:
+          context:
+            - security-tools
