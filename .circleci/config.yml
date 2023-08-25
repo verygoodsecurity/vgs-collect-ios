@@ -91,7 +91,6 @@ jobs:
           command: semgrep ci
 
 workflows:
-  version: 2
   build-and-test:
     when:
       not: << pipeline.parameters.nightly-security-scan >>
@@ -117,5 +116,5 @@ workflows:
     when: << pipeline.parameters.nightly-security-scan >>
     jobs:
       - scan-sast-full:
-        context:
-          - security-tools
+          context:
+            - security-tools
