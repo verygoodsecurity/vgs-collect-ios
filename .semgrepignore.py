@@ -1,18 +1,13 @@
 # Common large paths
-node_modules/
 build/
-dist/
-vendor/
+docs/
 .env/
-.venv/
-.tox/
-*.min.js
-.npm/
+
 
 # Common test paths
-test/
-tests/
-*_test.go
+VGSCardIOCollectorTests/
+Tests/
+xcov_report/
 
 # Semgrep rules folder
 .semgrep
