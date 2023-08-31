@@ -55,6 +55,13 @@ public class VGSTextField: UIView {
             textField.attributedPlaceholder = attributedPlaceholder
         }
     }
+  
+    /// The natural size for the Textfield, considering only properties of the view itself.
+    public override var intrinsicContentSize: CGSize {
+      get {
+        return textField.intrinsicContentSize
+      }
+    }
     
     /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
