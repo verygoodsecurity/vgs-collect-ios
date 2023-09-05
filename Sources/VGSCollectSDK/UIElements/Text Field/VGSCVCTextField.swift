@@ -60,6 +60,13 @@ public final class VGSCVCTextField: VGSTextField {
             updatecvcIconViewSize()
         }
     }
+  
+    /// The natural size for the Textfield, considering only properties of the view itself.
+    public override var intrinsicContentSize: CGSize {
+      get {
+        return getIntrinsicContentSize()
+      }
+    }
     
     // MARK: Custom CVC images for specific card brands
     /// Asks custom image for specific `VGSPaymentCards.CardBrand`
@@ -166,5 +173,12 @@ internal extension VGSCVCTextField {
                                                 constant: cvcIconSize.height)
       heightConstraint.identifier = "heightConstraint"
       cvcIconImageView.addConstraints([widthConstraint, heightConstraint])
+    }
+  
+    private func getIntrinsicContentSize() -> CGSize {
+      let size = super.intrinsicContentSize
+      let height = max(size.height, (cvcIconSize.height + padding.bottom + padding.top))
+      let width = size.width + cvcIconSize.width + padding.left + padding.right
+      return CGSize(width: width, height: height)
     }
 }

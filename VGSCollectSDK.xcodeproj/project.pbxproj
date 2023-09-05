@@ -400,7 +400,6 @@
 		FD3C01C223AFC0980096B4A4 /* VGSTextField+CVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+CVC.swift"; sourceTree = "<group>"; };
 		FD4ED0E22373662500AEAD24 /* MaskedTextField+security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MaskedTextField+security.swift"; sourceTree = "<group>"; };
 		FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldSecurity.swift; sourceTree = "<group>"; };
-		FD6F5656238E7FBB00C24123 /* CardType+icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardType+icon.swift"; sourceTree = "<group>"; };
 		FD790B96243BB403006A30CB /* CardBrandTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrandTest.swift; sourceTree = "<group>"; };
 		FD790B98243BB42B006A30CB /* _CardBrandDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CardBrandDataSource.swift; sourceTree = "<group>"; };
 		FD8B62462497CD580097C9AB /* VGSExpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTextField.swift; sourceTree = "<group>"; };
@@ -1121,7 +1120,6 @@
 		FD2495632330E313009024E6 /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				FD6F5656238E7FBB00C24123 /* CardType+icon.swift */,
 				324B5E7224A23F6B0036867E /* VGSValidationRuleLuhnCheck.swift */,
 				324B5E9C24A64A600036867E /* VGSValidationRulePaymentCard.swift */,
 			);

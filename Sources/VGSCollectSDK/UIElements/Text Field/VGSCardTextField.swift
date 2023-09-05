@@ -13,47 +13,54 @@ import UIKit
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
 public final class VGSCardTextField: VGSTextField {
   
-    internal let cardIconView = UIImageView()
-    internal lazy var stackView = self.makeStackView()
-    internal let stackSpacing: CGFloat = 8.0
-    internal lazy var defaultUnknowBrandImage: UIImage? = {
-      return VGSPaymentCards.CardBrand.unknown.brandIcon
-    }()
+  internal let cardIconView = UIImageView()
+  internal lazy var stackView = self.makeStackView()
+  internal let stackSpacing: CGFloat = 8.0
+  internal lazy var defaultUnknowBrandImage: UIImage? = {
+    return VGSPaymentCards.CardBrand.unknown.brandIcon
+  }()
   
-    // MARK: - Enum cases
-    /// Available Card brand icon positions enum.
-    public enum CardIconLocation {
-        /// Card brand icon at left side of `VGSCardTextField`.
-        case left
-      
-        /// Card brand icon at right side of `VGSCardTextField`.
-        case right
-    }
+  // MARK: - Enum cases
+  /// Available Card brand icon positions enum.
+  public enum CardIconLocation {
+    /// Card brand icon at left side of `VGSCardTextField`.
+    case left
     
-    // MARK: Attributes
-    /// Card brand icon position inside `VGSCardTextField`.
-    public var cardIconLocation = CardIconLocation.right {
-      didSet {
-        setCardIconAtLocation(cardIconLocation)
-      }
-    }
+    /// Card brand icon at right side of `VGSCardTextField`.
+    case right
+  }
   
-    /// Card brand icon size.
-    public var cardIconSize: CGSize = CGSize(width: 45, height: 45) {
-        didSet {
-            updateCardIconViewSize()
-        }
+  // MARK: Attributes
+  /// Card brand icon position inside `VGSCardTextField`.
+  public var cardIconLocation = CardIconLocation.right {
+    didSet {
+      setCardIconAtLocation(cardIconLocation)
     }
-    
-    // MARK: Custom card brand images
-    /// Asks custom image for specific `VGSPaymentCards.CardBrand`
-    public var cardsIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
-    
-    /// :nodoc:
-    public override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        updateCardImage()
+  }
+  
+  /// Card brand icon size.
+  public var cardIconSize: CGSize = CGSize(width: 45, height: 45) {
+    didSet {
+      updateCardIconViewSize()
     }
+  }
+  
+  // MARK: Custom card brand images
+  /// Asks custom image for specific `VGSPaymentCards.CardBrand`
+  public var cardsIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
+  
+  /// :nodoc:
+  public override func didMoveToSuperview() {
+    super.didMoveToSuperview()
+    updateCardImage()
+  }
+  
+  /// The natural size for the Textfield, considering only properties of the view itself.
+  public override var intrinsicContentSize: CGSize {
+    get {
+      return getIntrinsicContentSize()
+    }
+  }
 }
 
 internal extension VGSCardTextField {
@@ -92,6 +99,13 @@ internal extension VGSCardTextField {
                                                               views: views)
       NSLayoutConstraint.activate(verticalConstraint)
       self.layoutIfNeeded()
+    }
+  
+    private func getIntrinsicContentSize() -> CGSize {
+      let size = super.intrinsicContentSize
+      let height = max(size.height, (cardIconSize.height + padding.bottom + padding.top))
+      let width = size.width + cardIconSize.width + padding.left + padding.right
+      return CGSize(width: width, height: height)
     }
   
     private func makeStackView() -> UIStackView {

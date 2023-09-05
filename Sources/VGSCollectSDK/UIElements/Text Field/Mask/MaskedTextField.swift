@@ -105,7 +105,21 @@ internal class MaskedTextField: UITextField {
     internal var getSecureTextWithDivider: String? {
         return getRawTextWithDivider()
     }
-    
+  
+    /// The natural size for the Textfield, considering only properties of the view itself.
+    override var intrinsicContentSize: CGSize {
+      get {
+        let text: String!
+        if secureText.isNilOrEmpty {
+          guard let plc = placeholder else {return super.intrinsicContentSize}
+          text = plc
+        } else {
+          text = secureText
+        }
+        return text.size()
+      }
+    }
+  
     // MARK: - Text Padding
     var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
