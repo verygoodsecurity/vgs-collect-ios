@@ -57,9 +57,7 @@ public final class VGSCardTextField: VGSTextField {
   
   /// The natural size for the Textfield, considering only properties of the view itself.
   public override var intrinsicContentSize: CGSize {
-    get {
-      return getIntrinsicContentSize()
-    }
+    return getIntrinsicContentSize()
   }
 }
 
@@ -101,10 +99,13 @@ internal extension VGSCardTextField {
       self.layoutIfNeeded()
     }
   
+    /// Calculate IntrinsicContentSize
     private func getIntrinsicContentSize() -> CGSize {
+      // Text size with paddings
       let size = super.intrinsicContentSize
-      let height = max(size.height, (cardIconSize.height + padding.bottom + padding.top))
-      let width = size.width + cardIconSize.width + padding.left + padding.right
+      // Add icon size
+      let height = size.height + cardIconSize.height
+      let width = size.width + cardIconSize.width + stackSpacing
       return CGSize(width: width, height: height)
     }
   

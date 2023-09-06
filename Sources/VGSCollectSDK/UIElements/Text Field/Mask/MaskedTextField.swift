@@ -108,16 +108,7 @@ internal class MaskedTextField: UITextField {
   
     /// The natural size for the Textfield, considering only properties of the view itself.
     override var intrinsicContentSize: CGSize {
-      get {
-        let text: String!
-        if secureText.isNilOrEmpty {
-          guard let plc = placeholder else {return super.intrinsicContentSize}
-          text = plc
-        } else {
-          text = secureText
-        }
-        return text.size()
-      }
+      return getIntrinsicContentSize()
     }
   
     // MARK: - Text Padding
@@ -286,6 +277,17 @@ internal class MaskedTextField: UITextField {
             }
         }
     }
+  
+  // Calculate IntrinsicContentSize
+  fileprivate func getIntrinsicContentSize() -> CGSize {
+    if secureText.isNilOrEmpty && placeholder.isNilOrEmpty {
+      return super.intrinsicContentSize
+    }
+    /// If there is placeholder in field, intrinsicContentSize  should return max width between placeholder and input text
+    let placeholderSize = placeholder?.size() ?? .zero
+    let secureTextSize = secureText?.size() ?? .zero
+    return secureTextSize.width >= placeholderSize.width ? secureTextSize : placeholderSize
+  }
 }
 
 // MARK: - UITextFieldDelegate
