@@ -55,6 +55,11 @@ public class VGSTextField: UIView {
             textField.attributedPlaceholder = attributedPlaceholder
         }
     }
+  
+    /// The natural size for the Textfield, considering only properties of the view itself.
+    public override var intrinsicContentSize: CGSize {
+      return getIntrinsicContentSize()
+    }
     
     /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
@@ -338,6 +343,14 @@ internal extension VGSTextField {
                                                                 views: views)
       NSLayoutConstraint.activate(verticalConstraint)
       self.layoutIfNeeded()
+    }
+  
+    /// Calculate IntrinsicContentSize
+    private func getIntrinsicContentSize() -> CGSize {
+      /// Add paddings
+      let width = textField.intrinsicContentSize.width + padding.left + padding.right
+      let height = textField.intrinsicContentSize.height + padding.bottom + padding.top
+      return CGSize(width: width, height: height)
     }
 
     @objc
