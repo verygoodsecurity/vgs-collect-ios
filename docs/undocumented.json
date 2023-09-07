@@ -44,21 +44,21 @@
     },
     {
       "file": "/Users/donald.rodriguez/Documents/Projects/VGS/repos/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
-      "line": 9,
+      "line": 10,
       "symbol": "VGSDateFormat.mmddyyyy",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/donald.rodriguez/Documents/Projects/VGS/repos/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
-      "line": 10,
+      "line": 11,
       "symbol": "VGSDateFormat.ddmmyyyy",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/donald.rodriguez/Documents/Projects/VGS/repos/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
-      "line": 11,
+      "line": 12,
       "symbol": "VGSDateFormat.yyyymmdd",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"

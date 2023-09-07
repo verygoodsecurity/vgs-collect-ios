@@ -105,7 +105,12 @@ internal class MaskedTextField: UITextField {
     internal var getSecureTextWithDivider: String? {
         return getRawTextWithDivider()
     }
-    
+  
+    /// The natural size for the Textfield, considering only properties of the view itself.
+    override var intrinsicContentSize: CGSize {
+      return getIntrinsicContentSize()
+    }
+  
     // MARK: - Text Padding
     var padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
@@ -272,6 +277,17 @@ internal class MaskedTextField: UITextField {
             }
         }
     }
+  
+  // Calculate IntrinsicContentSize
+  fileprivate func getIntrinsicContentSize() -> CGSize {
+    if secureText.isNilOrEmpty && placeholder.isNilOrEmpty {
+      return super.intrinsicContentSize
+    }
+    /// If there is placeholder in field, intrinsicContentSize  should return max width between placeholder and input text
+    let placeholderSize = placeholder?.size() ?? .zero
+    let secureTextSize = secureText?.size() ?? .zero
+    return secureTextSize.width >= placeholderSize.width ? secureTextSize : placeholderSize
+  }
 }
 
 // MARK: - UITextFieldDelegate
