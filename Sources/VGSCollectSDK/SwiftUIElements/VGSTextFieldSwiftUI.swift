@@ -20,10 +20,11 @@ public struct VGSTextFieldSwiftUI: View {
     @StateObject private var inputStore = SecureInputStore()
     @State private var input: String = ""
     @State private var isValid: Bool = true
+    @State var placeholder: String = ""
     
     var configuration: VGSConfiguration
 
-    init(configuration: VGSConfiguration) {
+    public init(configuration: VGSConfiguration) {
         self.configuration = configuration
     }
 
