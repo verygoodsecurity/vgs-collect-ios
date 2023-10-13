@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */; };
 		0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */; };
+		038541CD2AD54AED00DE9F72 /* CollectCardDataSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038541CC2AD54AED00DE9F72 /* CollectCardDataSwiftUI.swift */; };
+		038541CF2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */; };
+		038541D12AD5725D00DE9F72 /* CardDataFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038541D02AD5725D00DE9F72 /* CardDataFormViewModel.swift */; };
 		03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */; };
 		03DBB7B4292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */; };
 		322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DD24D19CE900A66EC9 /* InitialViewController.swift */; };
@@ -80,6 +83,9 @@
 
 /* Begin PBXFileReference section */
 		0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDataTokenizationViewController.swift; sourceTree = "<group>"; };
+		038541CC2AD54AED00DE9F72 /* CollectCardDataSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectCardDataSwiftUI.swift; sourceTree = "<group>"; };
+		038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectCardDataSwiftUIHostingVC.swift; sourceTree = "<group>"; };
+		038541D02AD5725D00DE9F72 /* CardDataFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataFormViewModel.swift; sourceTree = "<group>"; };
 		03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExamplesViewController.swift; sourceTree = "<group>"; };
 		03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectApplePayDataViewController.swift; sourceTree = "<group>"; };
 		03DBB7B5292FC41600F4DCA2 /* demoapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = demoapp.entitlements; sourceTree = "<group>"; };
@@ -177,6 +183,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		038541CB2AD54ACD00DE9F72 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				038541CC2AD54AED00DE9F72 /* CollectCardDataSwiftUI.swift */,
+				038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */,
+				038541D02AD5725D00DE9F72 /* CardDataFormViewModel.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		449FFCA728A505A100FE4A1F /* PayOptIntegration */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +356,7 @@
 		44D8691126205F670014645F /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				038541CB2AD54ACD00DE9F72 /* SwiftUI */,
 				449FFCA728A505A100FE4A1F /* PayOptIntegration */,
 				44D8691326205F670014645F /* CardsDataCollectingViewController.swift */,
 				44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */,
@@ -725,9 +742,12 @@
 				A01CE3F529E5C50D0059700F /* DateValidationViewController.swift in Sources */,
 				44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */,
 				449FFCBE28A517E200FE4A1F /* UITableView+Extensions.swift in Sources */,
+				038541CD2AD54AED00DE9F72 /* CollectCardDataSwiftUI.swift in Sources */,
 				0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */,
 				449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */,
 				449FFCC028A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift in Sources */,
+				038541CF2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift in Sources */,
+				038541D12AD5725D00DE9F72 /* CardDataFormViewModel.swift in Sources */,
 				449FFCB828A505A100FE4A1F /* CustomBackendAPIClient.swift in Sources */,
 				325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */,
 				44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */,
@@ -840,7 +860,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -896,7 +916,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -917,7 +937,7 @@
 				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7S7622HN85;
 				INFOPLIST_FILE = demoapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -943,7 +963,7 @@
 				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7S7622HN85;
 				INFOPLIST_FILE = demoapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
