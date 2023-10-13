@@ -20,15 +20,26 @@ public struct VGSTextFieldSwiftUI: View {
     @StateObject private var inputStore = SecureInputStore()
     @State private var input: String = ""
     @State private var isValid: Bool = true
-    @State var placeholder: String = ""
+  
+    var text: Binding<String> {
+            Binding<String>(
+                get: { self.input },
+                set: { newValue in
+                    self.input = newValue
+                }
+            )
+        }
     
-    var configuration: VGSConfiguration
+    public var placeholder: String = ""
+    public var borderColor: String = ""
+    public let configuration: VGSConfiguration
 
-    public init(configuration: VGSConfiguration) {
-        self.configuration = configuration
-    }
+    public init(configuration: VGSConfiguration, placeholder: String = "") {
+          self.configuration = configuration
+          self.placeholder = placeholder
+      }
 
-    private func validateInput(_ input: String) -> Bool {
+    private func validateInput() -> Bool {
       return true
     }
 
@@ -38,18 +49,14 @@ public struct VGSTextFieldSwiftUI: View {
     }
 
     public var body: some View {
-        TextField("VGSTextField", text: $input, onCommit: {
-            inputStore.updateInput(input)
-            isValid = validateInput(input)
+        TextField(placeholder, text: text, onCommit: {
+//          inputStore.updateInput(text)
         })
-//        .padding()
-//        .textFieldStyle(RoundedBorderTextFieldStyle())
-//        .background(isValid ? Color.clear : Color.red.opacity(0.2))
-        .onChange(of: input) { newValue in
-            inputStore.updateInput(newValue)
-            isValid = validateInput(newValue)
-        }
-        .onAppear(perform: applyConfiguration)
+//        .onChange(of: input) { newValue in
+//            inputStore.updateInput(newValue)
+////            isValid = validateInput(newValue)
+//        }
+//        .onAppear(perform: applyConfiguration)
     }
 }
 
