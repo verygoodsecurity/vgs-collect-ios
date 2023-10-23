@@ -81,6 +81,8 @@ class SSNTextFieldTests: VGSCollectBaseTestCase {
       ssnTextField.configuration = config
       
       let validSSN = [
+        "111111112",
+        "222232222",
         "112111112",
         "221232222",
         "455555555",
@@ -95,7 +97,8 @@ class SSNTextFieldTests: VGSCollectBaseTestCase {
         "123456780",
         "219099998",
         "078051125",
-        "457555465"
+        "457555465",
+        "234567890123456789"
       ]
       
       for ssn in validSSN {
