@@ -23,15 +23,15 @@ extension VGSPaymentCards.CardBrand {
       case .unionpay:
           return "^62\\d*$"
       case .jcb:
-          return "^35\\d*$"
+          return "^(2131|1800|35)\\d*$"
       case .mastercard:
-          return  "^(5[1-5]|677189)\\d*$|^(222[1-9]|2[3-6]\\d{2,}|27[0-1]\\d|2720)([0-9]{2,})\\d*$"
+          return  "^(5[1-5][0-9]{4})\\d*$|^(222[1-9]|22[3-9]|2[3-6]\\d{2}|27[0-1]\\d|2720)([0-9]{2})\\d*$"
       case .visaElectron:
           return "^4(026|17500|405|508|844|91[37])\\d*$"
       case .visa:
           return "^4\\d*$"
       case .maestro:
-          return "^(5018|5020|5038|56|57|58|6304|6390[0-9]{2,}|67[0-9]{4,})\\d*$"
+          return "^(5018|5020|5038|6304|6390[0-9]{2}|67[0-9]{4})\\d*$"
       case .forbrugsforeningen:
         return "^600\\d*$"
       case .dankort:
@@ -58,7 +58,7 @@ extension VGSPaymentCards.CardBrand {
         case .unionpay:
             return [16, 17, 18, 19]
         case .jcb:
-            return [16, 17, 18, 19]
+            return [15, 16]
         case .mastercard:
             return [16]
         case .visaElectron:
