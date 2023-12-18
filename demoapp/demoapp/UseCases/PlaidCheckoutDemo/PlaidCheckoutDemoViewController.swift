@@ -20,7 +20,6 @@ class PlaidCheckoutDemoViewController: UIViewController {
     var cardHolderName = VGSTextField()
   
     var linkHandler: VGSPlaidLinkHandler?
-    var plaidAccountsData: [String: Any]?
 
 
     override func viewDidLoad() {
@@ -108,13 +107,13 @@ class PlaidCheckoutDemoViewController: UIViewController {
         }
     }
   @IBAction func nextButtonAction(_ sender: Any) {
-
+      // Insert Link SDK token here
       self.linkHandler = VGSPlaidLinkHandler(collector: vgsCollect, linkToken: "<PLAID_LINK_TOKEN>", delegate: self)
       self.linkHandler?.open(on: self)
     }
     
     // Upload data from TextFields to VGS
-    func uploadAction() {
+    func sendPaymentData(_ plaidAccountsData: [String: Any]?, completion: @escaping() -> Void?) {
       // hide kayboard
       hideKeyboard()
 
@@ -131,9 +130,10 @@ class PlaidCheckoutDemoViewController: UIViewController {
           if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
             // swiftlint:disable force_try
             let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
-            print(response)
+              print(response)
             // swiftlint:enable force_try
             }
+            completion()
             return
         case .failure(let code, _, _, let error):
           switch code {
@@ -148,6 +148,7 @@ class PlaidCheckoutDemoViewController: UIViewController {
             print("Error: Something went wrong. Code: \(code)")
           }
           print("Submit request error: \(code), \(String(describing: error))")
+          completion()
           return
         }
       }
@@ -177,12 +178,11 @@ extension PlaidCheckoutDemoViewController: VGSTextFieldDelegate {
   }
 }
 
-
 extension PlaidCheckoutDemoViewController: VGSPlaidLinkHandlerDelegate {
   func didFinish(with metadata: [String : Any]) {
-//    let response = (String(data: try! JSONSerialization.data(withJSONObject: metadata, options: .prettyPrinted), encoding: .utf8)!)
-    plaidAccountsData = metadata
     print(metadata)
-    showPlaceOrderVC()
+    sendPaymentData(metadata) { [weak self] in
+      self?.showPlaceOrderVC()
+    }
   }
 }
