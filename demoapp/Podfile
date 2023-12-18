@@ -12,6 +12,7 @@ target 'demoapp' do
   pod 'VGSCollectSDK', :path => "../"
   pod 'VGSCollectSDK/CardIO', :path => "../"
   pod 'VGSCollectSDK/BlinkCard', :path => "../"
+  pod 'VGSCollectSDK/PlaidLink', :path => "../"
 
 
 end
