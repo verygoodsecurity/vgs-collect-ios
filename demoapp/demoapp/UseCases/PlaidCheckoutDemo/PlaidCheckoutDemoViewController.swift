@@ -5,6 +5,16 @@
 import UIKit
 import VGSCollectSDK
 
+
+/// Prerequisites
+///
+/// Run 'pod install'
+/// Setup VGS routes https://dashboard.verygoodsecurity.com/
+/// Set your 'vaultId' in AppCollectorConfiguration.swift file
+/// Get Link token from https://dashboard.plaid.com/developers/keys and replace <PLAID_LINK_TOKEN> string
+/// Run the demo
+
+
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
 class PlaidCheckoutDemoViewController: UIViewController {
 
