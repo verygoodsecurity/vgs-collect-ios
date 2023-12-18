@@ -11,7 +11,8 @@ import VGSCollectSDK
 /// Run 'pod install'
 /// Setup VGS routes https://dashboard.verygoodsecurity.com/
 /// Set your 'vaultId' in AppCollectorConfiguration.swift file
-/// Get Link token from https://dashboard.plaid.com/developers/keys and replace <PLAID_LINK_TOKEN> string
+/// Get Link token from https://dashboard.plaid.com/developers/keys
+/// Generate 'link token'    https://plaid.com/docs/api/tokens/#linktokencreate and replace <PLAID_LINK_TOKEN> string in the code below
 /// Run the demo
 
 
