@@ -39,5 +39,12 @@ Pod::Spec.new do |spec|
     cardIO.source_files  = "Sources/VGSCardIOCollector", "Sources/VGSCardIOCollector/**/*.{swift}", "Sources/VGSCardIOCollector/**/*.{h, m}"
     cardIO.dependency "VGSCollectSDK/Core"
     cardIO.dependency "CardIOSDK", "5.5.7"
+  end 
+  
+  spec.subspec 'PlaidLink' do |pl|
+    pl.source_files  = "Sources/VGSPlaidLinkCollector", "Sources/VGSPlaidLinkCollector/**/*.{swift}"
+    pl.dependency "VGSCollectSDK/Core"
+    pl.dependency "Plaid", "5.0.0"
+    pl.ios.deployment_target = "13.0"
   end
 end

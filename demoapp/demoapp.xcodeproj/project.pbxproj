@@ -11,6 +11,9 @@
 		0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */; };
 		03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */; };
 		03DBB7B4292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */; };
+		03DC38BC2B18AFEE00012FC9 /* PlaidDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC38BB2B18AFEE00012FC9 /* PlaidDataCollectingViewController.swift */; };
+		03DC38BE2B232A6100012FC9 /* PlaidCheckoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC38BD2B232A6100012FC9 /* PlaidCheckoutDemoViewController.swift */; };
+		03DC38C12B234C2D00012FC9 /* PlaidCheckoutPlaceOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC38C02B234C2D00012FC9 /* PlaidCheckoutPlaceOrderViewController.swift */; };
 		322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DD24D19CE900A66EC9 /* InitialViewController.swift */; };
 		3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */; };
 		325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */; };
@@ -83,6 +86,9 @@
 		03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExamplesViewController.swift; sourceTree = "<group>"; };
 		03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectApplePayDataViewController.swift; sourceTree = "<group>"; };
 		03DBB7B5292FC41600F4DCA2 /* demoapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = demoapp.entitlements; sourceTree = "<group>"; };
+		03DC38BB2B18AFEE00012FC9 /* PlaidDataCollectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidDataCollectingViewController.swift; sourceTree = "<group>"; };
+		03DC38BD2B232A6100012FC9 /* PlaidCheckoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidCheckoutDemoViewController.swift; sourceTree = "<group>"; };
+		03DC38C02B234C2D00012FC9 /* PlaidCheckoutPlaceOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidCheckoutPlaceOrderViewController.swift; sourceTree = "<group>"; };
 		218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		322196DD24D19CE900A66EC9 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataFlow.swift; sourceTree = "<group>"; };
@@ -177,6 +183,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03DC38BF2B232A7300012FC9 /* PlaidCheckoutDemo */ = {
+			isa = PBXGroup;
+			children = (
+				03DC38BD2B232A6100012FC9 /* PlaidCheckoutDemoViewController.swift */,
+				03DC38C02B234C2D00012FC9 /* PlaidCheckoutPlaceOrderViewController.swift */,
+			);
+			path = PlaidCheckoutDemo;
+			sourceTree = "<group>";
+		};
 		449FFCA728A505A100FE4A1F /* PayOptIntegration */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +365,8 @@
 				03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */,
 				03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */,
 				A01CE3F429E5C50D0059700F /* DateValidationViewController.swift */,
+				03DC38BB2B18AFEE00012FC9 /* PlaidDataCollectingViewController.swift */,
+				03DC38BF2B232A7300012FC9 /* PlaidCheckoutDemo */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -706,8 +723,11 @@
 				449FFCDB28AA234500FE4A1F /* Collection+Extensions.swift in Sources */,
 				322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */,
 				449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */,
+				03DC38C12B234C2D00012FC9 /* PlaidCheckoutPlaceOrderViewController.swift in Sources */,
+				03DC38BE2B232A6100012FC9 /* PlaidCheckoutDemoViewController.swift in Sources */,
 				44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */,
 				03DBB7B4292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift in Sources */,
+				03DC38BC2B18AFEE00012FC9 /* PlaidDataCollectingViewController.swift in Sources */,
 				449FFCD728A63DC300FE4A1F /* PaymentOptionModel.swift in Sources */,
 				03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */,
 				449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */,
