@@ -25,6 +25,12 @@ internal extension Optional where Wrapped == String {
     }
 }
 
+internal extension Optional where Wrapped == NSAttributedString {
+    var isNilOrEmpty: Bool {
+      return self?.string.isEmpty ?? true
+    }
+}
+
 internal extension String {
 	func normalizedHostname() -> String? {
 
