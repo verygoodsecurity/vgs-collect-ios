@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0306C3AB2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306C3AA2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift */; };
 		0313A1202975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */; };
 		031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */; };
 		033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */; };
@@ -219,6 +220,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0306C3AA2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentable.swift; sourceTree = "<group>"; };
 		0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfigurationTests.swift; sourceTree = "<group>"; };
 		031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldStatePublisherTests.swift; sourceTree = "<group>"; };
 		033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+statePublisher.swift"; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				0342C4012A8D033F00B1D603 /* VGSTextFieldSwiftUI.swift */,
+				0306C3AA2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift */,
 			);
 			path = SwiftUIElements;
 			sourceTree = "<group>";
@@ -1582,6 +1585,7 @@
 				449C8A3825F2513300BE009F /* VGSFieldNameToSubscriptMapper.swift in Sources */,
 				44ECD60327D9C18C00460FDF /* VGSUnknownPaymentCardModel.swift in Sources */,
 				327C9E162407F43A004C641C /* VGSErrorInfoKey.swift in Sources */,
+				0306C3AB2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift in Sources */,
 				32059CD02417E02E003E9481 /* Utils.swift in Sources */,
 				324B5E6724A2393C0036867E /* VGSValidatior.swift in Sources */,
 				32093D7A25CD9F88006CD242 /* VGSCollectLoggingConfiguration.swift in Sources */,
