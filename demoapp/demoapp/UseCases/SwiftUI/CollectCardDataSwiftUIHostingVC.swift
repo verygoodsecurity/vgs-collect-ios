@@ -11,7 +11,7 @@ class CollectCardDataSwiftUIHostingVC: UIViewController {
   override func viewDidLoad() {
           super.viewDidLoad()
 
-          let swiftUIView = CollectCardDataSwiftUI()
+          let swiftUIView = CardDataCollectionSwiftUI()
           let hostingController = UIHostingController(rootView: swiftUIView)
           addChild(hostingController)
           hostingController.view.translatesAutoresizingMaskIntoConstraints = false
