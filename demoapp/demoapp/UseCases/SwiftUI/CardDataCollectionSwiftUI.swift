@@ -11,8 +11,12 @@ import VGSCollectSDK
 
 struct CardDataCollectionSwiftUI: View {
     let vgsCollect = VGSCollect(id: "tnt")
-    let borderColor = Color.gray
     @State private var cardTextFieldState: VGSTextFieldState? = nil
+  
+    let paddings = UIEdgeInsets(top: 2,left: 8,bottom: 2,right: 8)
+    var borderColor: UIColor {
+      cardTextFieldState?.isValid ?? true ? .lightGray : .red
+    }
   
     var cardNumConfiguration: VGSConfiguration {
       let config = VGSConfiguration(collector: vgsCollect, fieldName: "cardNumber")
@@ -27,20 +31,19 @@ struct CardDataCollectionSwiftUI: View {
     }
 
     var body: some View {
-      return VStack(spacing: 20) {
-      VGSTextFieldRepresentable(configuration: cardNumConfiguration)
+      return VStack(spacing: 8) {
+      VGSCardTextFieldRepresentable(configuration: cardNumConfiguration)
         .placeholder("4111 1111 1111 1111")
         .onStateChange { newState in
           cardTextFieldState = newState
           print(newState.isValid)
         }
-        .setSecureTextEntry(true)
-        .padding(UIEdgeInsets(top: 2,left: 8,bottom: 2,right: 8))
-        .frame(height: 34)
-        .overlay(
-          RoundedRectangle(cornerRadius: 8)
-            .stroke((cardTextFieldState?.isValid ?? false) ? borderColor : .red, lineWidth: 1)
-        ).padding()
+          .cardIconSize(CGSize(width: 40, height: 20))
+        .cardIconLocation(.right)
+        .padding(paddings)
+        .border(color: borderColor, lineWidth: 1)
+        .frame(height: 50)
+        .padding()
       VGSTextFieldRepresentable(configuration: expDateConfiguration)
         .onEditingEnd{
           print("onEditingEnd")
@@ -49,14 +52,11 @@ struct CardDataCollectionSwiftUI: View {
           print("onEditingStart")
 
         }
+        .padding(paddings)
         .placeholder("10/25")
         .frame(height: 34)
-        .overlay(
-          RoundedRectangle(cornerRadius: 8)
-            .stroke(borderColor, lineWidth: 1)
-        ).padding()
-
-        
+        .padding()
+      
       Button(action: sendData) {
         Text("Submit")
       }
