@@ -78,8 +78,15 @@ internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresen
   var yearPickerFormat: VGSExpDateTextField.YearFormat {get set}
 }
 
-
 // MARK: - VGSCVCTextFieldRepresentable.
 
+internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+  /// Card brand icon size.
+  var cvcIconSize: CGSize {get set}
+  /// Card brand icon positions enum.
+  var cvcIconLocation: VGSCVCTextField.CVCIconLocation {get set}
+  /// Asks custom image for specific `VGSPaymentCards.CardBrand`.
+  var cvcIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)? {get set}
+}
 
 // MARK: - VGSDateTextFieldRepresentable.
