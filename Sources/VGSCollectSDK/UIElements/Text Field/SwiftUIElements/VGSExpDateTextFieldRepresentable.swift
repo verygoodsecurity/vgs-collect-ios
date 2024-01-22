@@ -186,13 +186,13 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
       return newRepresentable
   }
   // MARK: - VGSExpDateTextField specific methods
-  /// Set `VGSExpDateTextField.MonthFormat`  UIPicker format.
+  /// Set `VGSExpDateTextField.MonthFormat`  UIPicker format.  Default is `.longSymbols`.
   public func monthPickerFormat(_ format: VGSExpDateTextField.MonthFormat) -> VGSExpDateTextFieldRepresentable {
     var newRepresentable = self
     newRepresentable.monthPickerFormat = format
     return newRepresentable
   }
-  /// Set `VGSExpDateTextField.YearFormat`  UIPicker format.
+  /// Set `VGSExpDateTextField.YearFormat`  UIPicker format.  Default is `.long`.
   public func yearPickerFormat(_ format: VGSExpDateTextField.YearFormat) -> VGSExpDateTextFieldRepresentable {
     var newRepresentable = self
     newRepresentable.yearPickerFormat = format

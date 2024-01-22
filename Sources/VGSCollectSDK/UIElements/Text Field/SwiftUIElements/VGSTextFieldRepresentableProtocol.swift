@@ -90,3 +90,7 @@ internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentabl
 }
 
 // MARK: - VGSDateTextFieldRepresentable.
+internal protocol VGSDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+  /// UIPickerView Month Label format.
+  var monthPickerFormat: VGSDateTextField.MonthFormat {get set}
+}
