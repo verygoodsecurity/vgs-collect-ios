@@ -42,7 +42,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     /// Field border line width.
     var bodrerWidth: CGFloat?
   
-    // MARK: - Accessibility Attributes
+    // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
 //    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
@@ -73,6 +73,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
         let vgsTextField = VGSTextField()
         vgsTextField.configuration = configuration
         vgsTextField.delegate = context.coordinator
+        vgsTextField.font = font
         vgsTextField.textAlignment = textAlignment
         vgsTextField.autocorrectionType = autocorrectionType
         vgsTextField.autocapitalizationType = autocapitalizationType
@@ -84,6 +85,8 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
         vgsTextField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory
         vgsTextField.keyboardAccessoryView = keyboardAccessoryView
         vgsTextField.textFieldAccessibilityLabel = textFieldAccessibilityLabel
+        if let color = borderColor {vgsTextField.borderColor = color}
+        if let lineWidth = bodrerWidth {vgsTextField.borderWidth = lineWidth}
         if !attributedPlaceholder.isNilOrEmpty { vgsTextField.attributedPlaceholder = attributedPlaceholder }
         if !placeholder.isNilOrEmpty { vgsTextField.placeholder = placeholder}
 
@@ -104,7 +107,12 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     }
   
     // MARK: - Configuration methods
-    
+    /// Set `UIFont` value.
+    public func font(_ font: UIFont) -> VGSTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.font = font
+        return newRepresentable
+    }
     /// Set `placeholder` string.
     public func placeholder(_ text: String) -> VGSTextFieldRepresentable {
         var newRepresentable = self
@@ -164,6 +172,13 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
       var newRepresentable = self
       newRepresentable.textFieldAccessibilityLabel = label
       return newRepresentable
+    }
+    /// Set `borderColor` and `lineWidth`.
+    public func border(color: UIColor, lineWidth: CGFloat) -> VGSTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.borderColor = color
+        newRepresentable.bodrerWidth = lineWidth
+        return newRepresentable
     }
   
     // MARK: - Handle editing events

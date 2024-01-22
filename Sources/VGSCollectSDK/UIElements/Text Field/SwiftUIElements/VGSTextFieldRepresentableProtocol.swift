@@ -5,8 +5,8 @@
 
 import Foundation
 
+// MARK: - VGSCardTextFieldRepresentable.
 internal protocol VGSTextFieldRepresentableProtocol {
-  
   /// Textfiled text font.
   var font: UIFont? {get set}
   /// Placeholder string.
@@ -36,7 +36,7 @@ internal protocol VGSTextFieldRepresentableProtocol {
   /// Field border line width.
   var bodrerWidth: CGFloat? {get set}
 
-  // MARK: - Accessibility Attributes
+  // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
   var textFieldAccessibilityLabel: String? {get set}
 }
@@ -57,6 +57,7 @@ internal protocol VGSTextFieldEditingRepresentableProtocol: VGSTextFieldDelegate
   var onStateChange: ((VGSTextFieldState) -> Void)? {get set}
 }
 
+// MARK: - VGSCardTextFieldRepresentable.
 /// A  set of optional methods to manage editing text and validation in a card  text field object.
 internal protocol VGSCardTextFieldEditingRepresentableProtocol: VGSTextFieldDelegateRepresentableProtocol {
   /// Returns new `VGSTextFieldState` object on change.
@@ -69,3 +70,16 @@ internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentab
   /// Card brand icon positions enum.
   var cardIconLocation: VGSCardTextField.CardIconLocation {get set}
 }
+// MARK: - VGSExpDateTextFieldRepresentable.
+internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+  /// UIPickerView Month Label format.
+  var monthPickerFormat: VGSExpDateTextField.MonthFormat {get set}
+  /// UIPickerView Year Label format.
+  var yearPickerFormat: VGSExpDateTextField.YearFormat {get set}
+}
+
+
+// MARK: - VGSCVCTextFieldRepresentable.
+
+
+// MARK: - VGSDateTextFieldRepresentable.

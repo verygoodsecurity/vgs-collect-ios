@@ -43,7 +43,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     /// Field border line width.
     var bodrerWidth: CGFloat?
   
-    // MARK: - Accessibility Attributes
+    // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
 //    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
@@ -185,8 +185,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       newRepresentable.textFieldAccessibilityLabel = label
       return newRepresentable
     }
-  
-    /// Set `UITextAutocapitalizationType` type.
+    /// Set `borderColor` and `lineWidth`.
     public func border(color: UIColor, lineWidth: CGFloat) -> VGSCardTextFieldRepresentable {
         var newRepresentable = self
         newRepresentable.borderColor = color
@@ -194,6 +193,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
         return newRepresentable
     }
   
+    // MARK: - VGSCardTextField specific methods
     /// Set `size` of card icon.
     public func cardIconSize(_ size: CGSize) -> VGSCardTextFieldRepresentable {
       var newRepresentable = self
