@@ -61,7 +61,7 @@ class VGSCollectValidationTests: XCTestCase {
 
         let expDateField = VGSTextField()
         expDateField.configuration = expDateConfiguration
-        expDateField.textField.secureText = "1123"
+        expDateField.textField.secureText = "1128"
 
         let cvcConfiguration = VGSConfiguration(collector: collector, fieldName: "cvc")
         cvcConfiguration.type = .cvc
