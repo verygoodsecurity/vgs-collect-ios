@@ -67,6 +67,31 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       }
       wait(for: [expectation], timeout: 60)
     }
+  
+    func testAsyncTokenizeCardURL() {
+      let vaultId = MockedDataProvider.shared.tokenizationVaultId
+      let routeId = UUID().uuidString.lowercased()
+      let environment = "sandbox"
+      let proxy = "verygoodproxy.com"
+      let path = "tokens"
+      let expectedUrl = URL(string: "https://\(vaultId)-\(routeId).\(environment).\(proxy)/\(path)")?.absoluteString
+      
+      self.configureCardTextFields()
+      let expectation = XCTestExpectation(description: "Sending data...")
+      Task {
+        let result = await collector.tokenizeData(routeId: routeId)
+        let responeURL: String?
+        switch result {
+        case .success(_, _, let response):
+          responeURL = response?.url?.absoluteString
+        case .failure(_, _, let response, _):
+          responeURL = response?.url?.absoluteString
+        }
+        XCTAssertTrue(expectedUrl == responeURL, "-testAsyncTokenizeCardURL error: wrong resopnseURL \(responeURL)")
+        expectation.fulfill()
+      }
+      wait(for: [expectation], timeout: 60)
+    }
     
     func testCardSendPublisherToEchoServer() {
       self.configureCardTextFields()
