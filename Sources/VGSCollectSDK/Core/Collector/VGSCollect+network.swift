@@ -286,9 +286,9 @@ extension VGSCollect {
   */
   public func tokenizeData(routeId: String? = nil) async -> VGSTokenizationResponse {
     return await withCheckedContinuation { continuation in
-      //NOTE:  We need to use main thread since data will be collected  from UI elements
+      // NOTE:  We need to use main thread since data will be collected  from UI elements
       DispatchQueue.main.async {
-        self.tokenizeData {response in
+        self.tokenizeData(routeId: routeId) {response in
           continuation.resume(returning: response)
         }
       }
