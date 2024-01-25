@@ -30,6 +30,7 @@
 		03B10C0E28E31B74009B409B /* VGSBlinkCardControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE628E2E36E009B409B /* VGSBlinkCardControllerDelegate.swift */; };
 		03B10C1028E31B74009B409B /* VGSBlinkCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE728E2E36E009B409B /* VGSBlinkCardController.swift */; };
 		03B10C1128E31B8F009B409B /* VGSBlinkCardCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
 		32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */; };
@@ -248,6 +249,7 @@
 		03B10BE828E2E36E009B409B /* VGSBlinkCardHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSBlinkCardHandler.swift; sourceTree = "<group>"; };
 		03B10BF528E30891009B409B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSBlinkCardCollector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectLogLevel.swift; sourceTree = "<group>"; };
@@ -678,6 +680,7 @@
 				44AF14A72616199B0055CD91 /* CardIODataMapper */,
 				326FFAFB24F908E30024A4F9 /* VGSCardIOHandler.swift */,
 				326FFAFC24F908E30024A4F9 /* VGSCardIOScanController.swift */,
+				03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */,
 				326FFAFD24F908E30024A4F9 /* VGSCardIOScanControllerDelegate.swift */,
 			);
 			path = VGSCardIOCollector;
@@ -1565,6 +1568,7 @@
 				327CDD4F256FF8FB00ACB373 /* VGSFormAnanlyticsDetails.swift in Sources */,
 				326FFB0024F908E40024A4F9 /* VGSCardIOScanControllerDelegate.swift in Sources */,
 				44AF14A9261619FA0055CD91 /* VGSCardIODataMapUtils.swift in Sources */,
+				03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */,
 				44AF14B526161A580055CD91 /* VGSCardIOExpirationDate.swift in Sources */,
 				326FFAFF24F908E40024A4F9 /* VGSCardIOScanController.swift in Sources */,
 			);
