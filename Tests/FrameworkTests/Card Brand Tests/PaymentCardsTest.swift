@@ -38,7 +38,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     
     cardTextField.setText("911111111111111111111111")
     
-    if let state = cardTextField.state as? CardState {
+    if let state = cardTextField.state as? VGSCardState {
       XCTAssertTrue(state.cardBrand == VGSPaymentCards.CardBrand.visa)
       XCTAssertTrue(state.cardBrand.stringValue == "cutomized-visa")
       XCTAssertTrue(state.cardBrand.cardLengths == [15])
@@ -52,7 +52,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     VGSPaymentCards.visa.cardNumberLengths = [12]
     cardTextField.setText("900000000012")
     
-    if let state = cardTextField.state as? CardState {
+    if let state = cardTextField.state as? VGSCardState {
       XCTAssertTrue(state.cardBrand == VGSPaymentCards.CardBrand.visa)
       XCTAssertTrue(state.cardBrand.stringValue == "cutomized-visa")
       XCTAssertTrue(state.cardBrand.cardLengths == [12])
@@ -77,7 +77,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     VGSPaymentCards.cutomPaymentCardModels = [customBrand]
     cardTextField.setText("4111111")
     
-    if let state = cardTextField.state as? CardState {
+    if let state = cardTextField.state as? VGSCardState {
       XCTAssertTrue(state.cardBrand == VGSPaymentCards.CardBrand.custom(brandName: customBrandName))
     } else {
       XCTFail("Failt state card text files")
@@ -97,7 +97,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
 
     cardTextField.setText("911111")
     
-    if let state = cardTextField.state as? CardState {
+    if let state = cardTextField.state as? VGSCardState {
       XCTAssertTrue(state.cardBrand == VGSPaymentCards.CardBrand.custom(brandName: customBrandName2))
     } else {
       XCTFail("Failt state card text files")
@@ -124,7 +124,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     VGSPaymentCards.cutomPaymentCardModels = customBrands
     cardTextField.setText("9111 1111 1111 111")
     
-    if let state = cardTextField.state as? CardState {
+    if let state = cardTextField.state as? VGSCardState {
       XCTAssertTrue(state.cardBrand == .custom(brandName: "custom-brand-1"))
       XCTAssertTrue(state.cardBrand.stringValue == "custom-brand-1")
       XCTAssertTrue(state.cardBrand.cardLengths == [15, 19])
@@ -136,7 +136,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     
     cardTextField.setText("92222222222222222222222222")
     
-    if let state = cardTextField.state as? CardState {
+    if let state = cardTextField.state as? VGSCardState {
       XCTAssertTrue(state.cardBrand == .custom(brandName: "custom-brand-2"))
       XCTAssertTrue(state.cardBrand.stringValue == "custom-brand-2")
       XCTAssertTrue(state.cardBrand.cardLengths == Array(12...16))
@@ -150,7 +150,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
     func testUnknownBrands() {
       cardTextField.setText("9111 1111 1111 111")
       
-      if let state = cardTextField.state as? CardState {
+      if let state = cardTextField.state as? VGSCardState {
         XCTAssertTrue(state.cardBrand == .unknown)
         XCTAssertFalse(state.isValid)
         XCTAssertTrue(state.inputLength == 15)
@@ -162,7 +162,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
       VGSPaymentCards.unknown.checkSumAlgorithm = .luhn
       
       cardTextField.setText("9111 1111 1111 111")
-      if let state = cardTextField.state as? CardState {
+      if let state = cardTextField.state as? VGSCardState {
         XCTAssertTrue(state.cardBrand == .unknown)
         XCTAssertFalse(state.isValid)
         XCTAssertTrue(state.inputLength == 15)
@@ -175,7 +175,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
       ])
       
       cardTextField.setText("9111 1111 1111 111")
-      if let state = cardTextField.state as? CardState {
+      if let state = cardTextField.state as? VGSCardState {
         XCTAssertTrue(state.cardBrand == .unknown)
         XCTAssertTrue(state.isValid)
         XCTAssertTrue(state.inputLength == 15)
@@ -187,7 +187,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
       VGSPaymentCards.unknown.checkSumAlgorithm = .none
       
       cardTextField.setText("123456789012")
-      if let state = cardTextField.state as? CardState {
+      if let state = cardTextField.state as? VGSCardState {
         XCTAssertTrue(state.cardBrand == .unknown)
         XCTAssertTrue(state.isValid)
         XCTAssertTrue(state.inputLength == 12)
@@ -196,7 +196,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
       }
       
       cardTextField.setText("0000 1111 0000 1111 000")
-       if let state = cardTextField.state as? CardState {
+       if let state = cardTextField.state as? VGSCardState {
          XCTAssertTrue(state.cardBrand == .unknown)
          XCTAssertTrue(state.isValid)
          XCTAssertTrue(state.inputLength == 19)
@@ -205,7 +205,7 @@ class PaymentCardsTest: VGSCollectBaseTestCase {
        }
       
       cardTextField.setText("0000 1111 0000 1111 0009")
-       if let state = cardTextField.state as? CardState {
+       if let state = cardTextField.state as? VGSCardState {
          XCTAssertTrue(state.cardBrand == .unknown)
          XCTAssertFalse(state.isValid)
          XCTAssertTrue(state.inputLength == 20)

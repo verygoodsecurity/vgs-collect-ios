@@ -43,7 +43,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
     
       let state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertTrue(st.isEmpty)
           XCTAssertFalse(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -54,7 +54,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "")
           XCTAssertTrue(st.cardBrand == .unknown)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
   }
   
@@ -64,7 +64,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
       
         let state = cardNumerTextField.state
         
-        if let st = state as? CardState {
+        if let st = state as? VGSCardState {
             XCTAssertTrue(st.isEmpty)
             XCTAssertTrue(st.isDirty)
             XCTAssertFalse(st.isValid)
@@ -75,7 +75,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
             XCTAssertTrue(st.last4 == "")
             XCTAssertTrue(st.cardBrand == .unknown)
         } else {
-            XCTAssert(false, "CardState not valid")
+            XCTAssert(false, "VGSCardState not valid")
         }
     }
   
@@ -85,7 +85,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
            
       var state = cardNumerTextField.state
 
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
          XCTAssertFalse(st.isEmpty)
          XCTAssertTrue(st.isDirty)
          XCTAssertTrue(st.isValid)
@@ -98,14 +98,14 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
          XCTAssertTrue(st.last4 == "1111")
          XCTAssertTrue(st.cardBrand == .visa)
       } else {
-         XCTAssert(false, "CardState not valid")
+         XCTAssert(false, "VGSCardState not valid")
       }
       
       cardNumerTextField.setText("3400 0009 9900 036")
       
       state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertFalse(st.isEmpty)
           XCTAssertTrue(st.isDirty)
           XCTAssertTrue(st.isValid)
@@ -116,14 +116,14 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "0036")
           XCTAssertTrue(st.cardBrand == .amex)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
       
       // Test with mask.
       cardNumerTextField.setText("5555 3412 4444 1115")
       state = cardNumerTextField.state
 
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
          XCTAssertFalse(st.isEmpty)
          XCTAssertTrue(st.isDirty)
          XCTAssertTrue(st.isValid)
@@ -135,7 +135,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
          XCTAssertTrue(st.last4 == "1115")
          XCTAssertTrue(st.cardBrand == .mastercard)
       } else {
-         XCTAssert(false, "CardState not valid")
+         XCTAssert(false, "VGSCardState not valid")
       }
     }
   
@@ -144,7 +144,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
       
       var state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertFalse(st.isEmpty)
           XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -162,7 +162,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
       
       state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertFalse(st.isEmpty)
           XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -173,7 +173,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "")
           XCTAssertTrue(st.cardBrand == .visa)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
       
       let newValue = cardNumerTextField.textField.secureText! + "111"
@@ -181,7 +181,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
       
       state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertFalse(st.isEmpty)
           XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -192,14 +192,14 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "")
           XCTAssertTrue(st.cardBrand == .visa)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
       
       cardNumerTextField.setText("")
       
       state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertTrue(st.isEmpty)
           XCTAssertTrue(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -210,7 +210,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "")
           XCTAssertTrue(st.cardBrand == .unknown)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
     }
   
@@ -219,7 +219,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
       cardNumerTextField.becomeFirstResponder()
       var state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertTrue(st.isEmpty)
           XCTAssertFalse(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -230,13 +230,13 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "")
           XCTAssertTrue(st.cardBrand == .unknown)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
       
       cardNumerTextField.resignFirstResponder()
       state = cardNumerTextField.state
       
-      if let st = state as? CardState {
+      if let st = state as? VGSCardState {
           XCTAssertTrue(st.isEmpty)
           XCTAssertFalse(st.isDirty)
           XCTAssertFalse(st.isValid)
@@ -247,7 +247,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
           XCTAssertTrue(st.last4 == "")
           XCTAssertTrue(st.cardBrand == .unknown)
       } else {
-          XCTAssert(false, "CardState not valid")
+          XCTAssert(false, "VGSCardState not valid")
       }
       
       func testCardNumberStateWithEditingOnFirstResponderChange() {
@@ -257,7 +257,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
 
         var state = cardNumerTextField.state
 
-        if let st = state as? CardState {
+        if let st = state as? VGSCardState {
            XCTAssertFalse(st.isEmpty)
            XCTAssertTrue(st.isDirty)
            XCTAssertFalse(st.isValid)
@@ -268,14 +268,14 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
            XCTAssertTrue(st.last4 == "")
            XCTAssertTrue(st.cardBrand == .visa)
         } else {
-           XCTAssert(false, "CardState not valid")
+           XCTAssert(false, "VGSCardState not valid")
         }
         
         cardNumerTextField.resignFirstResponder()
         
         state = cardNumerTextField.state
 
-        if let st = state as? CardState {
+        if let st = state as? VGSCardState {
            XCTAssertFalse(st.isEmpty)
            XCTAssertTrue(st.isDirty)
            XCTAssertFalse(st.isValid)
@@ -286,14 +286,14 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
            XCTAssertTrue(st.last4 == "")
            XCTAssertTrue(st.cardBrand == .visa)
         } else {
-           XCTAssert(false, "CardState not valid")
+           XCTAssert(false, "VGSCardState not valid")
         }
         
         cardNumerTextField.becomeFirstResponder()
 
         state = cardNumerTextField.state
 
-        if let st = state as? CardState {
+        if let st = state as? VGSCardState {
            XCTAssertFalse(st.isEmpty)
            XCTAssertTrue(st.isDirty)
            XCTAssertFalse(st.isValid)
@@ -304,7 +304,7 @@ class CardNumerTextFieldTests: VGSCollectBaseTestCase {
            XCTAssertTrue(st.last4 == "")
            XCTAssertTrue(st.cardBrand == .visa)
         } else {
-           XCTAssert(false, "CardState not valid")
+           XCTAssert(false, "VGSCardState not valid")
         }
       }
   }

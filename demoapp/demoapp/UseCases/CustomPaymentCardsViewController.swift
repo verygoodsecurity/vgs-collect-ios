@@ -263,7 +263,7 @@ extension CustomPaymentCardsViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
     textField.borderColor = textField.state.isValid  ? .gray : .red
     
-    if let cardState = textField.state as? CardState {
+    if let cardState = textField.state as? VGSCardState {
       if cardState.isValid {
         print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
         

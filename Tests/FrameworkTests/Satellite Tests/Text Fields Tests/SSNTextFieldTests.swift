@@ -46,7 +46,7 @@ class SSNTextFieldTests: VGSCollectBaseTestCase {
         XCTAssertTrue(state.isValid)
         XCTAssertTrue(state.isRequired)
         XCTAssertNotNil(state.description)
-        XCTAssertTrue(state is SSNState, "SSNState should be available for .ssn configuration")
+        XCTAssertTrue(state is VGSSSNState, "SSNState should be available for .ssn configuration")
     }
   
     func testNotValidSSNReturnsFalse() {
@@ -69,7 +69,7 @@ class SSNTextFieldTests: VGSCollectBaseTestCase {
         ssnTextField.focusOn()
         XCTAssertFalse(ssnTextField.state.isValid)
         XCTAssertFalse(ssnTextField.state.isEmpty)
-        if let state = ssnTextField.state as? SSNState {
+        if let state = ssnTextField.state as? VGSSSNState {
           XCTAssertTrue(state.last4 == "")
         }
       }
@@ -97,7 +97,7 @@ class SSNTextFieldTests: VGSCollectBaseTestCase {
         XCTAssertTrue(ssnTextField.state.inputLength == 9)
         XCTAssertFalse(ssnTextField.state.isEmpty)
         
-        if let state = ssnTextField.state as? SSNState {
+        if let state = ssnTextField.state as? VGSSSNState {
           XCTAssertTrue(state.last4.count == 4)
         }
       }

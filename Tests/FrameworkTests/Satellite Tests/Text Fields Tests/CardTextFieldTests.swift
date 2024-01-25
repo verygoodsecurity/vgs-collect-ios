@@ -54,7 +54,7 @@ class CardTextFieldTests: VGSCollectBaseTestCase {
         cardTextField.textField.secureText! += "111111111111111"
         cardTextField.focusOn()
         
-        if let state = cardTextField.state as? CardState {
+        if let state = cardTextField.state as? VGSCardState {
             XCTAssertTrue(state.cardBrand == .visa)
         } else {
             XCTFail("Failt state card text files")
