@@ -132,7 +132,7 @@ public class VGSCardState: VGSTextFieldState {
 }
 
 /// An object that describes `VGSTextField` state with configuration `FieldType.ssn` .  State attributes are read-only.
-public class SSNState: VGSTextFieldState {
+public class VGSSSNState: VGSTextFieldState {
     
     /// Last 4 digits of the valid ssn from associated `VGSTextField` with field configuration type `FieldType.ssn`.
     internal(set) open var last4: String = ""
@@ -148,7 +148,7 @@ public class SSNState: VGSTextFieldState {
         }
     }
   
-    /// Message that contains `SSNState` attributes and their values.
+    /// Message that contains `VGSSSNState` attributes and their values.
     override public var description: String {
         var result = super.description
         if isValid {

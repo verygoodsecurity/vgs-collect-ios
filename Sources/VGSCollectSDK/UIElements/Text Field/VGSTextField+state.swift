@@ -29,7 +29,7 @@ public extension VGSTextField {
         case .cardNumber:
             result = VGSCardState(tf: self)
         case .ssn:
-            result = SSNState(tf: self)
+            result = VGSSSNState(tf: self)
         default:
             result = VGSTextFieldState(tf: self)
         }

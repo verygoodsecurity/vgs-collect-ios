@@ -46,7 +46,7 @@ class SSNCollectingViewController: UIViewController {
             self?.consoleMessage.append(textField.state.description)
             self?.consoleMessage.append("\n")
 
-            if let ssnState = textField.state as? SSNState, ssnState.isValid {
+            if let ssnState = textField.state as? VGSSSNState, ssnState.isValid {
               self?.hiddenNumberLabel.text = "SSN: XXX-XX-\(ssnState.last4)"
             } else {
                self?.hiddenNumberLabel.text = ""
