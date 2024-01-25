@@ -84,7 +84,10 @@ struct CardDataCollectionSwiftUI: View {
             .border(color: (cvcTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
             .frame(height: 54)
         }
-        Button(action: { sendData()}) {
+        Button(action: {
+          UIApplication.shared.endEditing()
+          sendData()
+        }) {
             Text("Send data")
                 .padding()
                 .cornerRadius(8)

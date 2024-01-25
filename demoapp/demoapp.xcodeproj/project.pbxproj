@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */; };
+		030228AE2B62A5D300358CEF /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030228AD2B62A5D300358CEF /* UIApplication+Extension.swift */; };
 		0306C3AD2B5171AC0099E45D /* CardDataCollectionSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306C3AC2B5171AC0099E45D /* CardDataCollectionSwiftUI.swift */; };
 		0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */; };
 		038541CF2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030228AD2B62A5D300358CEF /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		0306C3AC2B5171AC0099E45D /* CardDataCollectionSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataCollectionSwiftUI.swift; sourceTree = "<group>"; };
 		0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDataTokenizationViewController.swift; sourceTree = "<group>"; };
 		038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectCardDataSwiftUIHostingVC.swift; sourceTree = "<group>"; };
@@ -181,6 +183,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		030228AC2B62A5AF00358CEF /* UIApplication+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				030228AD2B62A5D300358CEF /* UIApplication+Extension.swift */,
+			);
+			path = "UIApplication+Extension";
+			sourceTree = "<group>";
+		};
 		038541CB2AD54ACD00DE9F72 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +405,7 @@
 				449FFCBC28A517CC00FE4A1F /* UITableView+Extensions */,
 				449FFCB928A5179800FE4A1F /* UITableViewCell+Extensions */,
 				446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */,
+				030228AC2B62A5AF00358CEF /* UIApplication+Extension */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -726,6 +737,7 @@
 				03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */,
 				449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
+				030228AE2B62A5D300358CEF /* UIApplication+Extension.swift in Sources */,
 				449FFCC628A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift in Sources */,
 				449FFCD228A6255200FE4A1F /* UIFont+Extensions.swift in Sources */,
 				449FFCCF28A6240000FE4A1F /* VGSSavedCardCellActionView.swift in Sources */,
