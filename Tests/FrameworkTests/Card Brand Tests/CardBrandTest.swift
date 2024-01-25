@@ -36,7 +36,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
           let numbers = card.brand.cardNumbers
             numbers.forEach { number in
                 cardTextField.textField.secureText = number
-                guard let state = cardTextField.state as? CardState else {
+                guard let state = cardTextField.state as? VGSCardState else {
                     XCTFail("Guard fail")
                     return
                 }
@@ -51,7 +51,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
           let numbers = card.brand.firsDigitsInCardNumber
             numbers.forEach { number in
                 cardTextField.textField.secureText = number
-                guard let state = cardTextField.state as? CardState else {
+                guard let state = cardTextField.state as? VGSCardState else {
                     XCTFail("Guard fail")
                     return
                 }
@@ -66,7 +66,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
             let numbers = card.brand.cardNumbers
             numbers.forEach { number in
                 cardTextField.textField.secureText = number
-                guard let state = cardTextField.state as? CardState else {
+                guard let state = cardTextField.state as? VGSCardState else {
                     XCTFail("Guard fail")
                     return
                 }
@@ -88,7 +88,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
                                 
                 let input = String(number.prefix(number.count - 1))
                 cardTextField.textField.secureText = input
-                guard let state = cardTextField.state as? CardState else {
+                guard let state = cardTextField.state as? VGSCardState else {
                     XCTFail("Guard fail")
                     return
                 }
@@ -113,7 +113,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
                 let newNum = randomNums.randomElement()!
                 let input = number.prefix(replaceCharIndex - 1) + "\(newNum)" + number.dropFirst(replaceCharIndex)
                 cardTextField.textField.secureText = String(input)
-                guard let state = cardTextField.state as? CardState else {
+                guard let state = cardTextField.state as? VGSCardState else {
                     XCTFail("Guard fail")
                     return
                 }
@@ -126,7 +126,7 @@ class CardBrandTest: VGSCollectBaseTestCase {
         let numbers = VGSPaymentCards.specificNotValidCardNumbers
         numbers.forEach { number in
             cardTextField.textField.secureText = number
-            guard let state = cardTextField.state as? CardState else {
+            guard let state = cardTextField.state as? VGSCardState else {
                 XCTFail("Guard fail")
                 return
             }
@@ -174,8 +174,8 @@ class CardBrandTest: VGSCollectBaseTestCase {
         for cardNumber in testCardNumbers {
           cardTextField.setText(cardNumber)
         
-          guard let state = cardTextField.state as? CardState else {
-            XCTFail("Can't cast to CardState")
+          guard let state = cardTextField.state as? VGSCardState else {
+            XCTFail("Can't cast to VGSCardState")
             return
           }
           XCTAssertTrue(state.isValid == isValidModel, "\(cardNumber) state.isValid = \(state.isValid), but should be \(isValidModel) for \(state.cardBrand)")
@@ -198,8 +198,8 @@ class CardBrandTest: VGSCollectBaseTestCase {
       for card in testCards {
         cardTextField.setText(card)
         
-        guard let state = cardTextField.state as? CardState else {
-          XCTFail("Can't cast to CardState")
+        guard let state = cardTextField.state as? VGSCardState else {
+          XCTFail("Can't cast to VGSCardState")
           return
         }
         XCTAssertFalse(state.isValid, "\(card) - is valid card but not included to valid card brands")
@@ -223,8 +223,8 @@ class CardBrandTest: VGSCollectBaseTestCase {
     VGSPaymentCards.validCardBrands = [ VGSPaymentCards.visa, customBrandModel]
 
     cardTextField.setText(testCardNumber)
-    guard let state1 = cardTextField.state as? CardState else {
-      XCTFail("Can't cast to CardState")
+    guard let state1 = cardTextField.state as? VGSCardState else {
+      XCTFail("Can't cast to VGSCardState")
       return
     }
     XCTAssertTrue(state1.cardBrand == .visa)
@@ -234,8 +234,8 @@ class CardBrandTest: VGSCollectBaseTestCase {
     
     cardTextField.setText(testCardNumber)
     
-    guard let state2 = cardTextField.state as? CardState else {
-      XCTFail("Can't cast to CardState")
+    guard let state2 = cardTextField.state as? VGSCardState else {
+      XCTFail("Can't cast to VGSCardState")
       return
     }
     XCTAssertTrue(state2.cardBrand == customBrandModel.brand)

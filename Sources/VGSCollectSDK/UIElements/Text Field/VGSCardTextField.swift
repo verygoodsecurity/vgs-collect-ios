@@ -126,7 +126,7 @@ internal extension VGSCardTextField {
     }
   
     func updateCardImage() {
-       if let state = state as? CardState {
+       if let state = state as? VGSCardState {
           cardIconView.image = (cardsIconSource == nil) ? state.cardBrand.brandIcon :  cardsIconSource?(state.cardBrand)
        } else {
         cardIconView.image = VGSPaymentCards.unknown.brandIcon

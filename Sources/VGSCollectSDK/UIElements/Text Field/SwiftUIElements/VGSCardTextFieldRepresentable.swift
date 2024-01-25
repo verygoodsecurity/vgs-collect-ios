@@ -57,7 +57,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     /// `VGSCardTextFieldRepresentable` did resign first responder.
     var onEditingEnd: (() -> Void)?
     /// Returns new `VGSTextFieldState` object on change.
-    var onStateChange: ((CardState) -> Void)?
+    var onStateChange: ((VGSCardState) -> Void)?
     
     // MARK: - Card TextField specific attributes
     /// Card brand icon size.
@@ -99,8 +99,8 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
 
         vgsTextField.statePublisher
                 .receive(on: DispatchQueue.main)
-                .compactMap { state -> CardState? in
-                  return state as? CardState
+                .compactMap { state -> VGSCardState? in
+                  return state as? VGSCardState
                 }
                 .sink { newState in
                   self.onStateChange?(newState)
@@ -228,7 +228,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       return newRepresentable
     }
     /// Handle `VGSTextFieldState` changes.
-    public func onStateChange(_ action: ((VGSTextFieldState) -> Void)?) -> VGSCardTextFieldRepresentable {
+    public func onStateChange(_ action: ((VGSCardState) -> Void)?) -> VGSCardTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.onStateChange = action
       return newRepresentable

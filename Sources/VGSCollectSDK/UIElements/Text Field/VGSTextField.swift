@@ -363,7 +363,7 @@ internal extension VGSTextField {
   
   func updateFormatPattern() {
     // update card number and cvc format dynamically based on card brand
-    if self.fieldType == .cardNumber, let cardState = self.state as? CardState {
+    if self.fieldType == .cardNumber, let cardState = self.state as? VGSCardState {
         
       if let cardModel = VGSPaymentCards.getCardModelFromAvailableModels(brand: cardState.cardBrand) {
         self.textField.formatPattern = cardModel.formatPattern

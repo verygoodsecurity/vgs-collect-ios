@@ -59,10 +59,10 @@ class VGSTextFieldStatePublisherTests: XCTestCase {
         let cardTextField = VGSCardTextField()
         cardTextField.configuration = config
       
-        var states: [CardState] = []
+        var states: [VGSCardState] = []
         cardTextField.statePublisher
             .prepend(cardTextField.state) // Emit the initial state
-            .compactMap { $0 as? CardState }
+            .compactMap { $0 as? VGSCardState }
             .sink { cardState in
                 states.append(cardState)
                 if states.count == 2 {

@@ -61,7 +61,7 @@ internal protocol VGSTextFieldEditingRepresentableProtocol: VGSTextFieldDelegate
 /// A  set of optional methods to manage editing text and validation in a card  text field object.
 internal protocol VGSCardTextFieldEditingRepresentableProtocol: VGSTextFieldDelegateRepresentableProtocol {
   /// Returns new `VGSTextFieldState` object on change.
-  var onStateChange: ((CardState) -> Void)? {get set}
+  var onStateChange: ((VGSCardState) -> Void)? {get set}
 }
 
 internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {

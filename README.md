@@ -152,8 +152,8 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
                     textField.borderColor = .red
                 }
 
-                /// CardState is available for VGSCardTextField
-                if let cardState = textField.state as? CardState {
+                /// VGSCardState is available for VGSCardTextField
+                if let cardState = textField.state as? VGSCardState {
                     print(cardState.bin)
                     print(cardState.last4)
                     print(cardState.brand.stringValue)
