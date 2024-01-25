@@ -26,7 +26,7 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
 //    /// The natural size for the Textfield, considering only properties of the view itself.
 //    override var intrinsicContentSize: CGSize
   /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
-  var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+  var textFieldPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   /// The technique to use for aligning the text.
   var textAlignment: NSTextAlignment = .natural
   /// Sets when the clear button shows up. Default is `UITextField.ViewMode.never`
@@ -83,7 +83,7 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
       vgsTextField.autocorrectionType = autocorrectionType
       vgsTextField.autocapitalizationType = autocapitalizationType
       vgsTextField.spellCheckingType = spellCheckingType
-      vgsTextField.padding = padding
+      vgsTextField.padding = textFieldPadding
       vgsTextField.textAlignment = textAlignment
       vgsTextField.clearButtonMode = clearButtonMode
       vgsTextField.isSecureTextEntry = isSecureTextEntry
@@ -146,9 +146,9 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
       return newRepresentable
   }
   /// Set `UIEdgeInsets` insets.
-  public func padding(_ insets: UIEdgeInsets) -> VGSCVCTextFieldRepresentable {
+  public func textFieldPadding(_ insets: UIEdgeInsets) -> VGSCVCTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.padding = insets
+      newRepresentable.textFieldPadding = insets
       return newRepresentable
   }
   /// Set `NSTextAlignment` type.

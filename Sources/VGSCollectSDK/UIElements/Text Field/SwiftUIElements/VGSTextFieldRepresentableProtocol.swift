@@ -20,7 +20,7 @@ internal protocol VGSTextFieldRepresentableProtocol {
   /// Textfield spell checking type.
   var spellCheckingType: UITextSpellCheckingType {get set}
    /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
-  var padding: UIEdgeInsets  {get set}
+  var textFieldPadding: UIEdgeInsets  {get set}
   /// The technique to use for aligning the text.
   var textAlignment: NSTextAlignment {get set}
   /// Sets when the clear button shows up.
