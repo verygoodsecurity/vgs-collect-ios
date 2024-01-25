@@ -223,7 +223,7 @@ extension CardsDataCollectingViewController: VGSTextFieldDelegate {
     }
 
     /// Check Card Number Field State with addition attributes
-    if let cardState = textField.state as? CardState, cardState.isValid {
+    if let cardState = textField.state as? VGSCardState, cardState.isValid {
         print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
     }
   }

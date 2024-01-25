@@ -45,8 +45,8 @@ class CombineExamplesViewController: UIViewController {
       }.store(in: &cancellables)
       
       /// Map State to CardState to get access for card attributes
-      cardNumber.statePublisher.compactMap { state -> CardState? in
-        return state as? CardState
+      cardNumber.statePublisher.compactMap { state -> VGSCardState? in
+        return state as? VGSCardState
       }.sink { [weak self] cardState in
         self?.cardNumber.borderColor = cardState.isValid ? .lightGray : .red
       }.store(in: &cancellables)

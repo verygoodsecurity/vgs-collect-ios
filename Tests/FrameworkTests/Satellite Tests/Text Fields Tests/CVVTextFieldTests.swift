@@ -49,8 +49,8 @@ class CVVTextFieldTests: VGSCollectBaseTestCase {
         XCTAssertTrue(state.isRequired)
         XCTAssertNotNil(state.description)
       
-        if state is CardState {
-            XCTFail("CardState shouldn't be available for .cvc configuration")
+        if state is VGSCardState {
+            XCTFail("VGSCardState shouldn't be available for .cvc configuration")
         }
     }
     

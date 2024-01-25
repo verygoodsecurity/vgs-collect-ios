@@ -9,7 +9,7 @@ import UIKit
 #endif
 
 /// An object that describes `VGSTextField` state.  State attributes are read-only.
-public class State {
+public class VGSTextFieldState {
     
     /// `VGSConfiguration.fieldName` associated  with `VGSTextField`
     internal(set) open var fieldName: String!
@@ -70,7 +70,7 @@ public class State {
 }
 
 /// An object that describes `VGSTextField` state with configuration `FieldType.cardNumber` .  State attributes are read-only.
-public class CardState: State {
+public class VGSCardState: VGSTextFieldState {
     
     /// Last 4 digits of the valid card number from associated `VGSTextField` with field configuration type `FieldType.cardNumber`.
     internal(set) open var last4: String = ""
@@ -95,7 +95,7 @@ public class CardState: State {
         }
     }
     
-    /// Message that contains `CardState` attributes and their values.
+    /// Message that contains `VGSCardState` attributes and their values.
     override public var description: String {
         var result = super.description
         if isValid {
@@ -132,7 +132,7 @@ public class CardState: State {
 }
 
 /// An object that describes `VGSTextField` state with configuration `FieldType.ssn` .  State attributes are read-only.
-public class SSNState: State {
+public class VGSSSNState: VGSTextFieldState {
     
     /// Last 4 digits of the valid ssn from associated `VGSTextField` with field configuration type `FieldType.ssn`.
     internal(set) open var last4: String = ""
@@ -148,7 +148,7 @@ public class SSNState: State {
         }
     }
   
-    /// Message that contains `SSNState` attributes and their values.
+    /// Message that contains `VGSSSNState` attributes and their values.
     override public var description: String {
         var result = super.description
         if isValid {
