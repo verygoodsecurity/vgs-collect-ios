@@ -1,5 +1,10 @@
 ## Migration Guides
 
+### Migrating from versions < v1.16.0
+#### Rename state classes 
+`CardState` -> `VGSCardState`
+`SSNState` -> `VGSSSNState`
+
 ### Migrating from versions < v1.12.0
 #### `VGSCollectSDK/CardScan` scan module deprecated.
 Use `VGSCollectSDK/CardIO` or `VGSCollectSDK/BlinkCard` as card scan solution instead.
