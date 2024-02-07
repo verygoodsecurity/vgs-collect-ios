@@ -17,6 +17,9 @@ let package = Package(
           name: "VGSCardIOCollector",
           targets: ["VGSCardIOCollector"]),
         .library(
+          name: "VGSPlaidLinkCollector",
+          targets: ["VGSPlaidLinkCollector"]),
+        .library(
           name: "VGSBlinkCardCollector",
           targets: ["VGSBlinkCardCollector"])
     ],
@@ -26,6 +29,11 @@ let package = Package(
 						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
 						.exact("5.5.7")
 			),
+      .package(
+            name: "Plaid",
+            url: "https://github.com/plaid/plaid-link-ios.git",
+            .exact("5.0.0")
+      ),
       .package(
             name: "BlinkCard",
             url: "https://github.com/blinkcard/blinkcard-swift-package",
@@ -49,6 +57,11 @@ let package = Package(
 						"FrameworkTests.xctestplan"
 					  ],
 				  	resources: [.process("Resources")]),
+        .target(
+          name: "VGSPlaidLinkCollector",
+          dependencies: ["VGSCollectSDK",
+                         .product(name: "LinkKit", package: "Plaid")],
+          path: "Sources/VGSPlaidLinkCollector/"),
         .target(
           name: "VGSCardIOCollector",
           dependencies: ["VGSCollectSDK",
