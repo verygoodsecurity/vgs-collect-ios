@@ -28,7 +28,7 @@ import VGSCollectSDK
 
 /* Test Card Details:
 Swith Account Flow: 4003 9000 0000 0000
-RememberMe Flow: 1113 3333 4567 8912
+RememberMe Flow: 1113 3333 4567 8913
 Full Flow: 4111 1111 1111 1111
  
 Test phone number: 4155550011
