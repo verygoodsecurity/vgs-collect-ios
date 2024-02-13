@@ -271,7 +271,7 @@ class PlaidCheckoutDemoViewController: UIViewController {
     // create plaid link token
     createLinkToken(with: bin, phoneNumber: phoneNumber, havePlaidAccount: havePlaidAccount) { [weak self] in
       // open plaid link flow
-      self?.openPlaid()
+      self?.openLinkAuth()
     }
   }
   
@@ -308,8 +308,8 @@ class PlaidCheckoutDemoViewController: UIViewController {
     return
   }
   
-  // Open Plaid Auth Screen
-  func openPlaid() {
+  // Open Plaid Link Auth Screen
+  func openLinkAuth() {
     guard let token = linkToken else {return}
     // Insert Link SDK token here
     self.linkHandler = VGSPlaidLinkHandler(collector: vgsCollect, linkToken: token, delegate: self)
