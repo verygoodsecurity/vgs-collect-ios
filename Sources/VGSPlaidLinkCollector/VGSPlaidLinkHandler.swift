@@ -34,7 +34,7 @@ public class VGSPlaidLinkHandler: NSObject {
     let result = Plaid.create(configuration)
     switch result {
     case .failure(let error):
-        print("Unable to create Plaid handler due to: \(error)")
+        print("❗Unable to create Plaid handler due to: \(error)")
     case .success(let handler):
       self.handler = handler
     }
@@ -53,8 +53,10 @@ public class VGSPlaidLinkHandler: NSObject {
           // Closure is called when a user successfully links an Item. It should take a single LinkSuccess argument,
           // containing the publicToken String and a metadata of type SuccessMetadata.
           // Ref - https://plaid.com/docs/link/ios/#onsuccess
-//        print("public-token: \(success.publicToken) metadata: \(success.metadata.metadataJSON)")
-        guard let metadataJSON = success.metadata.metadataJSON?.convertToDictionary() else {return}
+        guard let metadataJSON = success.metadata.metadataJSON?.convertToDictionary() else {
+          print("❗Link Flow metadataJSON error.")
+          return
+        }
         self.delegate?.didFinish(with: metadataJSON)
       }
 
@@ -62,22 +64,22 @@ public class VGSPlaidLinkHandler: NSObject {
       // or when an error occurs during Link initialization. It should take a single LinkExit argument,
       // containing an optional error and a metadata of type ExitMetadata.
       // Ref - https://plaid.com/docs/link/ios/#onexit
-      linkConfiguration.onExit = { exit in
-          if let error = exit.error {
-              print("exit with \(error)\n\(exit.metadata)")
-          } else {
-              // User exited the flow without an error.
-              print("exit with \(exit.metadata)")
-          }
-      }
+//      linkConfiguration.onExit = { exit in
+//          if let error = exit.error {
+//              print("exit with \(error)\n\(exit.metadata)")
+//          } else {
+//              // User exited the flow without an error.
+//              print("exit with \(exit.metadata)")
+//          }
+//      }
 
       // Optional closure is called when certain events in the Plaid Link flow have occurred, for example,
       // when the user selected an institution. This enables your application to gain further insight into
       // what is going on as the user goes through the Plaid Link flow.
       // Ref - https://plaid.com/docs/link/ios/#onevent
-      linkConfiguration.onEvent = { event in
-          print("Link Event: \(event)")
-      }
+//      linkConfiguration.onEvent = { event in
+//          print("Link Event: \(event)")
+//      }
 
       return linkConfiguration
   }
