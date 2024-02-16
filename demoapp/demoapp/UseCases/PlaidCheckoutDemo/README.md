@@ -48,6 +48,7 @@ func openLinkAuth() {
 
 ### Handle Link flow results with `VGSPlaidLinkHandlerDelegate`
 
+```
 extension ViewController: VGSPlaidLinkHandlerDelegate {
   func didFinish(with metadata: [String : Any]) {
     /// Get public token on success Plaid Auth  flow completion
@@ -62,3 +63,4 @@ extension ViewController: VGSPlaidLinkHandlerDelegate {
     ...
   }
 }
+```
