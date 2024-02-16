@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */; };
 		034FCBAC2B7BBBBB003CD68B /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FCBAB2B7BBBBB003CD68B /* UITextField+Extensions.swift */; };
+		034FCBAE2B7FCA08003CD68B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 034FCBAD2B7FCA08003CD68B /* README.md */; };
 		0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */; };
 		03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */; };
 		03DBB7B4292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		034FCBAB2B7BBBBB003CD68B /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		034FCBAD2B7FCA08003CD68B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDataTokenizationViewController.swift; sourceTree = "<group>"; };
 		03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExamplesViewController.swift; sourceTree = "<group>"; };
 		03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectApplePayDataViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				03DC38BD2B232A6100012FC9 /* PlaidCheckoutDemoViewController.swift */,
 				03DC38C02B234C2D00012FC9 /* PlaidCheckoutPlaceOrderViewController.swift */,
+				034FCBAD2B7FCA08003CD68B /* README.md */,
 			);
 			path = PlaidCheckoutDemo;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				FDD398F0247D7A7100B55057 /* Main.storyboard in Resources */,
 				FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */,
 				449FFCB528A505A100FE4A1F /* PaymentCardCell.xib in Resources */,
+				034FCBAE2B7FCA08003CD68B /* README.md in Resources */,
 				449FFCB628A505A100FE4A1F /* AddCardCell.xib in Resources */,
 				FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */,
 				44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */,
