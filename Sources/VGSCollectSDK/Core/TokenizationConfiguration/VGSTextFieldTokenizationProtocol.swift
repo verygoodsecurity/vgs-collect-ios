@@ -49,6 +49,12 @@ public enum VGSVaultAliasFormat: String {
   case UUID = "UUID"
   
   /// no:doc
+  case GENERIC_T_FOUR = "GENERIC_T_FOUR"
+  
+  /// no:doc
+  case ALPHANUMERIC_SIX_T_FOUR = "ALPHANUMERIC_SIX_T_FOUR"
+
+  /// no:doc
   case ALPHANUMERIC_LENGTH_PRESERVING = "ALPHANUMERIC_LENGTH_PRESERVING"
   
   /// no:doc
