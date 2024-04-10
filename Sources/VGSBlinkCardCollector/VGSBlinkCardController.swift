@@ -30,6 +30,30 @@ public class VGSBlinkCardController {
       }
     }
     
+    // MARK: - MBCBlinkCardRecognizer params
+    /// https://blinkcard.github.io/blinkcard-ios/Classes/MBCBlinkCardRecognizer.html
+
+    /// Should extract the card owner information.
+    public var extractOwner: Bool {
+      didSet {scanHandler?.cardRecognizer.extractOwner = extractOwner }
+    }
+    /// Should extract the payment card’s month of expiry.
+    public var extractExpiryDate: Bool {
+      didSet {scanHandler?.cardRecognizer.extractExpiryDate = extractExpiryDate }
+    }
+    /// Should extract CVV.
+    public var extractCvv: Bool {
+      didSet {scanHandler?.cardRecognizer.extractCvv = extractCvv }
+    }
+    /// Should extract the payment card’s IBAN.
+    public var extractIban: Bool {
+      didSet {scanHandler?.cardRecognizer.extractIban = extractIban }
+    }
+    /// Whether invalid card number is accepted.
+    public var allowInvalidCardNumber: Bool {
+      didSet {scanHandler?.cardRecognizer.allowInvalidCardNumber = allowInvalidCardNumber }
+    }
+    
     // MARK: - Initialization
     
     /// Initialization
@@ -40,7 +64,6 @@ public class VGSBlinkCardController {
   public required init(licenseKey: String, delegate: VGSBlinkCardControllerDelegate? = nil, onError errorCallback: @escaping ((NSInteger) -> Void)) {
       self.scanHandler = VGSBlinkCardHandler(licenseKey: licenseKey, errorCallback: errorCallback)
       self.delegate = delegate
-    
     }
     
     // MARK: - Methods
