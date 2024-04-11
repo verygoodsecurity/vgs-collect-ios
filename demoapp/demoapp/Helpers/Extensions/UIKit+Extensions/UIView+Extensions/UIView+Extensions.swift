@@ -105,11 +105,7 @@ internal extension UIView {
 
 	/// :nodoc: System background color (white).
 	var vgsSystemBackground: UIColor {
-			if #available(iOS 13, *) {
-								return .systemGroupedBackground
-			}
-
-		return .groupTableViewBackground
+		return .systemGroupedBackground
 	}
 
 	/// Loading view tag.

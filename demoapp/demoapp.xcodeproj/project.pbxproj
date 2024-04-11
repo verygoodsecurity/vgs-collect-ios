@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,26 +24,13 @@
 		44241E9025B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */; };
 		44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */; };
 		44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */; };
-		443B3D4328ACBA1400DED31A /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443B3D4228ACBA1400DED31A /* RequestResult.swift */; };
 		446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */; };
-		449FFCB228A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */; };
-		449FFCB328A505A100FE4A1F /* AddCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCAA28A505A100FE4A1F /* AddCardCell.swift */; };
-		449FFCB428A505A100FE4A1F /* PaymentCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCAB28A505A100FE4A1F /* PaymentCardCell.swift */; };
-		449FFCB528A505A100FE4A1F /* PaymentCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449FFCAC28A505A100FE4A1F /* PaymentCardCell.xib */; };
-		449FFCB628A505A100FE4A1F /* AddCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449FFCAD28A505A100FE4A1F /* AddCardCell.xib */; };
-		449FFCB728A505A100FE4A1F /* SavedCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCAF28A505A100FE4A1F /* SavedCardModel.swift */; };
-		449FFCB828A505A100FE4A1F /* CustomBackendAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */; };
 		449FFCBB28A517AE00FE4A1F /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCBA28A517AE00FE4A1F /* UITableViewCell+Extensions.swift */; };
 		449FFCBE28A517E200FE4A1F /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCBD28A517E200FE4A1F /* UITableView+Extensions.swift */; };
-		449FFCC028A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCBF28A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift */; };
-		449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCC328A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift */; };
-		449FFCC628A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCC528A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift */; };
 		449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCC828A5191A00FE4A1F /* UIView+Extensions.swift */; };
 		449FFCCC28A6230900FE4A1F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCCB28A6230900FE4A1F /* UIColor+Extensions.swift */; };
-		449FFCCF28A6240000FE4A1F /* VGSSavedCardCellActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */; };
 		449FFCD228A6255200FE4A1F /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */; };
 		449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */; };
-		449FFCD728A63DC300FE4A1F /* PaymentOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */; };
 		449FFCDB28AA234500FE4A1F /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449FFCDA28AA234500FE4A1F /* Collection+Extensions.swift */; };
 		44D0E33E291E92DF001AF8ED /* VGSUITestElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D0E33C291E92DF001AF8ED /* VGSUITestElement.swift */; };
 		44D0E33F291E92DF001AF8ED /* VGSUITestElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D0E33D291E92DF001AF8ED /* VGSUITestElementType.swift */; };
@@ -99,28 +86,14 @@
 		44241E8F25B1A2AF00FC85D9 /* TestCollectBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectBaseTestCase.swift; sourceTree = "<group>"; };
 		44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsMockedDataProvider.swift; sourceTree = "<group>"; };
 		44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UITestsMockedData.plist; sourceTree = "<group>"; };
-		443B3D4228ACBA1400DED31A /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		446FE1D525D557080021C7C0 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
-		449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectPaymentOptIntegrationViewController.swift; sourceTree = "<group>"; };
-		449FFCAA28A505A100FE4A1F /* AddCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardCell.swift; sourceTree = "<group>"; };
-		449FFCAB28A505A100FE4A1F /* PaymentCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentCardCell.swift; sourceTree = "<group>"; };
-		449FFCAC28A505A100FE4A1F /* PaymentCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCardCell.xib; sourceTree = "<group>"; };
-		449FFCAD28A505A100FE4A1F /* AddCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCardCell.xib; sourceTree = "<group>"; };
-		449FFCAF28A505A100FE4A1F /* SavedCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedCardModel.swift; sourceTree = "<group>"; };
-		449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBackendAPIClient.swift; sourceTree = "<group>"; };
 		449FFCBA28A517AE00FE4A1F /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCBD28A517E200FE4A1F /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
-		449FFCBF28A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSPaymentOptionCardTableViewCell.swift; sourceTree = "<group>"; };
-		449FFCC328A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSRoundedCheckboxTheme.swift; sourceTree = "<group>"; };
-		449FFCC528A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSPaymentOptionItemContainerView.swift; sourceTree = "<group>"; };
 		449FFCC828A5191A00FE4A1F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCCB28A6230900FE4A1F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
-		449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSSavedCardCellActionView.swift; sourceTree = "<group>"; };
 		449FFCD128A6255200FE4A1F /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		449FFCD428A62E6F00FE4A1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionModel.swift; sourceTree = "<group>"; };
 		449FFCDA28AA234500FE4A1F /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
-		449FFCDC28AA250B00FE4A1F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		44D0E33C291E92DF001AF8ED /* VGSUITestElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSUITestElement.swift; sourceTree = "<group>"; };
 		44D0E33D291E92DF001AF8ED /* VGSUITestElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSUITestElementType.swift; sourceTree = "<group>"; };
 		44D0E341291E9315001AF8ED /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
@@ -200,48 +173,6 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		449FFCA728A505A100FE4A1F /* PayOptIntegration */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCA828A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift */,
-				449FFCDC28AA250B00FE4A1F /* README.md */,
-				449FFCC128A5184F00FE4A1F /* Views */,
-				449FFCAE28A505A100FE4A1F /* Models */,
-				449FFCB028A505A100FE4A1F /* Helpers */,
-			);
-			path = PayOptIntegration;
-			sourceTree = "<group>";
-		};
-		449FFCA928A505A100FE4A1F /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCAA28A505A100FE4A1F /* AddCardCell.swift */,
-				449FFCAB28A505A100FE4A1F /* PaymentCardCell.swift */,
-				449FFCAC28A505A100FE4A1F /* PaymentCardCell.xib */,
-				449FFCAD28A505A100FE4A1F /* AddCardCell.xib */,
-				449FFCBF28A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift */,
-			);
-			path = TableViewCells;
-			sourceTree = "<group>";
-		};
-		449FFCAE28A505A100FE4A1F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCAF28A505A100FE4A1F /* SavedCardModel.swift */,
-				449FFCD628A63DC300FE4A1F /* PaymentOptionModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		449FFCB028A505A100FE4A1F /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCB128A505A100FE4A1F /* CustomBackendAPIClient.swift */,
-				443B3D4228ACBA1400DED31A /* RequestResult.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		449FFCB928A5179800FE4A1F /* UITableViewCell+Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,25 +189,6 @@
 			path = "UITableView+Extensions";
 			sourceTree = "<group>";
 		};
-		449FFCC128A5184F00FE4A1F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCCD28A623F100FE4A1F /* SavedCardCellActionView */,
-				449FFCC228A5185C00FE4A1F /* HelperViews */,
-				449FFCA928A505A100FE4A1F /* TableViewCells */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		449FFCC228A5185C00FE4A1F /* HelperViews */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCC328A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift */,
-				449FFCC528A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift */,
-			);
-			path = HelperViews;
-			sourceTree = "<group>";
-		};
 		449FFCC728A5190900FE4A1F /* UIView+Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,14 +203,6 @@
 				449FFCCB28A6230900FE4A1F /* UIColor+Extensions.swift */,
 			);
 			path = "UIColor+Extensions";
-			sourceTree = "<group>";
-		};
-		449FFCCD28A623F100FE4A1F /* SavedCardCellActionView */ = {
-			isa = PBXGroup;
-			children = (
-				449FFCCE28A6240000FE4A1F /* VGSSavedCardCellActionView.swift */,
-			);
-			path = SavedCardCellActionView;
 			sourceTree = "<group>";
 		};
 		449FFCD028A6254200FE4A1F /* UIFont+Extensions */ = {
@@ -364,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				038541CB2AD54ACD00DE9F72 /* SwiftUI */,
-				449FFCA728A505A100FE4A1F /* PayOptIntegration */,
 				44D8691326205F670014645F /* CardsDataCollectingViewController.swift */,
 				44D8691226205F670014645F /* CustomPaymentCardsViewController.swift */,
 				44D8691426205F670014645F /* SSNCollectingViewController.swift */,
@@ -610,8 +513,6 @@
 			files = (
 				FDD398F0247D7A7100B55057 /* Main.storyboard in Resources */,
 				FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */,
-				449FFCB528A505A100FE4A1F /* PaymentCardCell.xib in Resources */,
-				449FFCB628A505A100FE4A1F /* AddCardCell.xib in Resources */,
 				FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */,
 				44241EA225B1B8FB00FC85D9 /* UITestsMockedData.plist in Resources */,
 			);
@@ -724,27 +625,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				443B3D4328ACBA1400DED31A /* RequestResult.swift in Sources */,
-				449FFCB328A505A100FE4A1F /* AddCardCell.swift in Sources */,
-				449FFCB228A505A100FE4A1F /* CollectPaymentOptIntegrationViewController.swift in Sources */,
-				449FFCB728A505A100FE4A1F /* SavedCardModel.swift in Sources */,
 				449FFCDB28AA234500FE4A1F /* Collection+Extensions.swift in Sources */,
 				322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */,
 				449FFCC928A5191A00FE4A1F /* UIView+Extensions.swift in Sources */,
 				44D8691B26205F670014645F /* CardsDataCollectingViewController.swift in Sources */,
 				03DBB7B4292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift in Sources */,
-				449FFCD728A63DC300FE4A1F /* PaymentOptionModel.swift in Sources */,
 				03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */,
-				449FFCC428A5186A00FE4A1F /* VGSRoundedCheckboxTheme.swift in Sources */,
 				FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */,
 				030228AE2B62A5D300358CEF /* UIApplication+Extension.swift in Sources */,
-				449FFCC628A518E800FE4A1F /* VGSPaymentOptionItemContainerView.swift in Sources */,
 				449FFCD228A6255200FE4A1F /* UIFont+Extensions.swift in Sources */,
-				449FFCCF28A6240000FE4A1F /* VGSSavedCardCellActionView.swift in Sources */,
 				449FFCCC28A6230900FE4A1F /* UIColor+Extensions.swift in Sources */,
 				44D8691A26205F670014645F /* CustomPaymentCardsViewController.swift in Sources */,
 				449FFCBB28A517AE00FE4A1F /* UITableViewCell+Extensions.swift in Sources */,
-				449FFCB428A505A100FE4A1F /* PaymentCardCell.swift in Sources */,
 				44D8692026205F670014645F /* FilePickerViewController.swift in Sources */,
 				446FE1D625D557080021C7C0 /* UIDevice+Extensions.swift in Sources */,
 				44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */,
@@ -754,9 +646,7 @@
 				449FFCBE28A517E200FE4A1F /* UITableView+Extensions.swift in Sources */,
 				0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */,
 				449FFCD528A62E6F00FE4A1F /* UIViewController+Extensions.swift in Sources */,
-				449FFCC028A5182200FE4A1F /* VGSPaymentOptionCardTableViewCell.swift in Sources */,
 				038541CF2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift in Sources */,
-				449FFCB828A505A100FE4A1F /* CustomBackendAPIClient.swift in Sources */,
 				325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */,
 				44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */,
 			);
