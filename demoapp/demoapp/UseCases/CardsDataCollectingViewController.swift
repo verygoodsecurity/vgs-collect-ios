@@ -64,7 +64,7 @@ class CardsDataCollectingViewController: UIViewController {
       } else {
         print("⚠️ VGSBlinkCardController not initialized. Check license key!")
       }
-      
+      scanController?.allowInvalidCardNumber = false
   //      // If you need to set your own card brand icons
   //
   //      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")

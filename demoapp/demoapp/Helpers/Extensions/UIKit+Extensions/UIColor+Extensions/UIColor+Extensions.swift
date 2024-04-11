@@ -36,7 +36,7 @@ internal extension UIColor {
 			return .systemGroupedBackground
 		}
 
-		return .groupTableViewBackground
+    return .systemGroupedBackground
 	}
 
 	/// :nodoc: Input text color (black).
