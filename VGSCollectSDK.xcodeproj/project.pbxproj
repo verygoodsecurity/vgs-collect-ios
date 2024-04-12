@@ -24,7 +24,7 @@
 		039AB3482B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB3472B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift */; };
 		039AB34A2B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB3492B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift */; };
 		039AB34C2B5EBB950048CF15 /* VGSCVCTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB34B2B5EBB950048CF15 /* VGSCVCTextFieldRepresentable.swift */; };
-		03A119762BC97D0E00A2C085 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 03A119752BC97D0E00A2C085 /* PrivacyInfo.xcprivacy */; };
+		03A119782BC98F8F00A2C085 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 03A119772BC98F8F00A2C085 /* PrivacyInfo.xcprivacy */; };
 		03B10C0228E31B1A009B409B /* VGSCollectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSCollectSDK.framework */; };
 		03B10C0C28E31B74009B409B /* VGSBlinkCardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE828E2E36E009B409B /* VGSBlinkCardHandler.swift */; };
 		03B10C0D28E31B74009B409B /* VGSBlinkCardExpirationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE428E2E36E009B409B /* VGSBlinkCardExpirationDate.swift */; };
@@ -243,7 +243,7 @@
 		039AB3472B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTextFieldRepresentable.swift; sourceTree = "<group>"; };
 		039AB3492B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDateTextFieldRepresentable.swift; sourceTree = "<group>"; };
 		039AB34B2B5EBB950048CF15 /* VGSCVCTextFieldRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTextFieldRepresentable.swift; sourceTree = "<group>"; };
-		03A119752BC97D0E00A2C085 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		03A119772BC98F8F00A2C085 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VGSBlinkCardCollector.h; sourceTree = "<group>"; };
 		03B10BE428E2E36E009B409B /* VGSBlinkCardExpirationDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSBlinkCardExpirationDate.swift; sourceTree = "<group>"; };
 		03B10BE628E2E36E009B409B /* VGSBlinkCardControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSBlinkCardControllerDelegate.swift; sourceTree = "<group>"; };
@@ -1028,6 +1028,7 @@
 				32C894D5256D4AA500DC5648 /* Utils */,
 				FD05F93F2316CE5A000EAF52 /* VGSCollectSDK.h */,
 				FD05F9402316CE5A000EAF52 /* Info.plist */,
+				03A119772BC98F8F00A2C085 /* PrivacyInfo.xcprivacy */,
 			);
 			path = VGSCollectSDK;
 			sourceTree = "<group>";
@@ -1172,7 +1173,6 @@
 				03B10BE228E2E36E009B409B /* VGSBlinkCardCollector */,
 				FD05F9372316CE5A000EAF52 /* VGSCollectSDK */,
 				326FFAFA24F908AB0024A4F9 /* VGSCardIOCollector */,
-				03A119752BC97D0E00A2C085 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1440,7 +1440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03A119762BC97D0E00A2C085 /* PrivacyInfo.xcprivacy in Resources */,
+				03A119782BC98F8F00A2C085 /* PrivacyInfo.xcprivacy in Resources */,
 				44ECD60627D9E87000460FDF /* CardIcon.xcassets in Resources */,
 				32EFFD002510D97B007F4DA2 /* README.md in Resources */,
 			);
