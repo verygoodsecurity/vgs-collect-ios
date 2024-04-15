@@ -34,7 +34,7 @@ class CustomDataCollectingViewController: UIViewController {
         
         // set custom headers
         vgsCollect.customHeaders = [
-            "my custome header": "some custom data"
+          "custom_header": "some custom data"
         ]
       
         /// Observe VGSTextFields changes

@@ -40,7 +40,8 @@ let package = Package(
   					exclude: [
               "Info.plist",
 							"VGSCollectSDK.h"
-	 				]),
+	 				],
+          resources: [.copy("PrivacyInfo.xcprivacy")]),
         .testTarget(
             name: "FrameworkTests",
             dependencies: ["VGSCollectSDK"],
