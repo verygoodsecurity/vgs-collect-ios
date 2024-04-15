@@ -40,7 +40,7 @@ class CustomPaymentCardsViewController: UIViewController {
 
         // set custom headers
         vgsCollect.customHeaders = [
-            "my custome header": "some custom data"
+          "custom_header": "some custom data"
         ]
 
         // set VGSCardIOScanDelegate
@@ -77,7 +77,7 @@ class CustomPaymentCardsViewController: UIViewController {
     /// New payment card prand - VGS Platinum
     /// Will be detected for any card numer starting from 41. You can test this one: 41111111111111111
     /// Card will be valid when it pass Luhn Check and is 16 digits long
-    /// NOTE: Custome brands have priority on default brands. Since by default all Visa card number starts on 4 and our custom brand starts on 41, all card numbers starting on 41 will be detected as our Custom Brand
+    /// NOTE: Custom brands have priority on default brands. Since by default all Visa card number starts on 4 and our custom brand starts on 41, all card numbers starting on 41 will be detected as our Custom Brand
     let customBrand = VGSCustomPaymentCardModel(name: "VGS Platinum",
                                                 regex: "^41\\d*$",
                                                 formatPattern: "## ### #### #######",

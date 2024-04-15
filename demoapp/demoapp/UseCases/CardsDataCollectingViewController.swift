@@ -40,7 +40,7 @@ class CardsDataCollectingViewController: UIViewController {
 
       // set custom headers
       vgsCollect.customHeaders = [
-        "my custome header": "some custom data"
+        "custom_header": "some custom data"
       ]
           
       // Observing text fields. The call back return all textfields with updated states.

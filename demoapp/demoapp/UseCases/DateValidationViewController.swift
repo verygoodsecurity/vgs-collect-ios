@@ -37,7 +37,7 @@ class DateValidationViewController: UIViewController {
         
         /// Set custom headers
         vgsCollect.customHeaders = [
-            "my custome header": "some custom data"
+          "custom_header": "some custom data"
         ]
         
         /// Observe VGSTextFields changes
