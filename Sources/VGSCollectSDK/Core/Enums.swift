@@ -101,7 +101,7 @@ internal extension FieldType {
           return "\\d*$"
         case .none:
           return ""
-      }
+        }
     }
     
     var keyboardType: UIKeyboardType {

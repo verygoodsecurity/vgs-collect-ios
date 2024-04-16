@@ -245,7 +245,7 @@ extension VGSCollect {
   */
   public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) async -> VGSResponse {
     return await withCheckedContinuation { continuation in
-      //NOTE:  We need to use main thread since data will be collected  from UI elements
+      // NOTE:  We need to use main thread since data will be collected  from UI elements
       DispatchQueue.main.async {
         self.sendData(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
           continuation.resume(returning: response)
