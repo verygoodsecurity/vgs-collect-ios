@@ -20,7 +20,7 @@ public struct VGSCardIOViewControllerRepresentable: UIViewControllerRepresentabl
     
     public var onCardScanned: (() -> Void)?
   
-    public init(fieldMappingPolicy: [CradIODataType : VGSTextField] = [CradIODataType: VGSTextField]()) {
+    public init(fieldMappingPolicy: [CradIODataType: VGSTextField] = [CradIODataType: VGSTextField]()) {
       self.fieldMappingPolicy = fieldMappingPolicy
     }
   

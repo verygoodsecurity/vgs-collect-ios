@@ -258,4 +258,3 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
     }
   }
 }
-
