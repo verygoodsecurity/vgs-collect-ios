@@ -38,16 +38,6 @@ class VGSExpirationDateTextFieldUtilsTests: VGSCollectBaseTestCase {
 		TestDateFormatItem(month: 3, year: 2026, format: .longYearThenMonth, expectedOutput: "202603")
 	]
 
-	// MARK: - Override
-
-	override func setUp() {
-			super.setUp()
-	}
-
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	// MARK: - Tests
 
 	/// Test date mapping utils.

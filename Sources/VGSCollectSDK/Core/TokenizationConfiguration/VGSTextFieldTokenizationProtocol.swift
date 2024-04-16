@@ -47,6 +47,25 @@ public enum VGSVaultAliasFormat: String {
 
 	/// no:doc
   case UUID = "UUID"
+  
+  /// no:doc
+  case GENERIC_T_FOUR = "GENERIC_T_FOUR"
+  
+  /// no:doc
+  case ALPHANUMERIC_SIX_T_FOUR = "ALPHANUMERIC_SIX_T_FOUR"
+
+  /// no:doc
+  case ALPHANUMERIC_LENGTH_PRESERVING = "ALPHANUMERIC_LENGTH_PRESERVING"
+  
+  /// no:doc
+  case ALPHANUMERIC_LENGTH_PRESERVING_T_FOUR = "ALPHANUMERIC_LENGTH_PRESERVING_T_FOUR"
+  
+  /// no:doc
+  case ALPHANUMERIC_SSN_T_FOUR = "ALPHANUMERIC_SSN_T_FOUR"
+  
+  /// no:doc
+  case ALPHANUMERIC_LENGTH_PRESERVING_SIX_T_FOUR = "ALPHANUMERIC_LENGTH_PRESERVING_SIX_T_FOUR"
+  
 }
 
 internal protocol VGSTextFieldTokenizationConfigurationProtocol {

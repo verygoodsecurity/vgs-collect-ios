@@ -3,7 +3,6 @@
 //  demoapp
 //
 
-
 import Foundation
 import SwiftUI
 
@@ -24,8 +23,6 @@ class CollectCardDataSwiftUIHostingVC: UIViewController {
           hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
       ])
 
-
     hostingController.didMove(toParent: self)
   }
 }
-

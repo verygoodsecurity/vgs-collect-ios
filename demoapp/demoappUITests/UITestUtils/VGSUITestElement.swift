@@ -41,7 +41,7 @@ struct VGSUITestElement {
         return app.tabBars[identifier]
       case .navigationBar:
         return app.navigationBars[identifier]
-		}
+      }
 	}
 
 	/// Check if element exists in app.

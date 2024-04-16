@@ -10,13 +10,13 @@ struct CardDataCollectionSwiftUI: View {
     let vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
   
     // MARK: - State
-    @State private var holderTextFieldState: VGSTextFieldState? = nil
-    @State private var cardTextFieldState: VGSCardState? = nil
-    @State private var expDateTextFieldState: VGSTextFieldState? = nil
-    @State private var cvcTextFieldState: VGSTextFieldState? = nil
+    @State private var holderTextFieldState: VGSTextFieldState?
+    @State private var cardTextFieldState: VGSCardState?
+    @State private var expDateTextFieldState: VGSTextFieldState?
+    @State private var cvcTextFieldState: VGSTextFieldState?
 
     // MARK: - Textfield UI attributes
-    let paddings = UIEdgeInsets(top: 2,left: 8,bottom: 2,right: 8)
+    let paddings = UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8)
     let validColor = UIColor.lightGray
     let invalidColor = UIColor.red
         
@@ -53,7 +53,7 @@ struct CardDataCollectionSwiftUI: View {
           .onEditingStart {
             print("- Cardholder name onEditingStart")
           }
-          .onEditingEnd{
+          .onEditingEnd {
             print("- Cardholder name onEditingEnd")
           }
           .textFieldPadding(paddings)

@@ -40,7 +40,7 @@ class CardsDataCollectingViewController: UIViewController {
 
       // set custom headers
       vgsCollect.customHeaders = [
-        "my custome header": "some custom data"
+        "custom_header": "some custom data"
       ]
           
       // Observing text fields. The call back return all textfields with updated states.
@@ -64,7 +64,7 @@ class CardsDataCollectingViewController: UIViewController {
       } else {
         print("⚠️ VGSBlinkCardController not initialized. Check license key!")
       }
-      
+      scanController?.allowInvalidCardNumber = false
   //      // If you need to set your own card brand icons
   //
   //      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")

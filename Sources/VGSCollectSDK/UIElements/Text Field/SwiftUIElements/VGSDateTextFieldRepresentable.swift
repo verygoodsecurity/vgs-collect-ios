@@ -239,4 +239,3 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
     }
   }
 }
-

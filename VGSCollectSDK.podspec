@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.16.0'
+  spec.version = '1.16.1'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -22,7 +22,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Core' do |core|
   #set as default podspec to prevent from downloading additional modules
-    core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}", "Sources/VGSCollectSDK/**/*.{h, m}"
+    core.source_files = "Sources/VGSCollectSDK", "Sources/VGSCollectSDK/**/*.{swift}", "Sources/VGSCollectSDK/**/*.{h, m}", "Sources/VGSCollectSDK/PrivacyInfo.xcprivacy"
 		core.resource_bundles = {
       'CardIcon' => ['Sources/VGSCollectSDK/Resources/*']
 		}
@@ -31,7 +31,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'BlinkCard' do |blinkcard|
       blinkcard.source_files  = "Sources/VGSBlinkCardCollector", "Sources/VGSBlinkCardCollector/**/*.{swift}"
       blinkcard.dependency "VGSCollectSDK/Core"
-      blinkcard.dependency "MBBlinkCard", "2.7.0"
+      blinkcard.dependency "MBBlinkCard", "2.9.1"
       blinkcard.ios.deployment_target = "13.0"
   end
   
