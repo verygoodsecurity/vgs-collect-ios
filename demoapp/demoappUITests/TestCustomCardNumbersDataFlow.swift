@@ -116,7 +116,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.
-    wait(forTimeInterval: 30)
+    wait(forTimeInterval: 15)
 
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]
@@ -143,7 +143,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.
-    wait(forTimeInterval: 30)
+    wait(forTimeInterval: 15)
 
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]
@@ -164,7 +164,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     cardHolderNameField.typeText("Joe B")
 
     // Dismiss keyboard.
-    app.staticTexts[UIElements.Labels.state].tap()
+    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
 
     // Tap to scan.
     UIElements.Buttons.scan.find(in: app).tap()
@@ -197,7 +197,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.
-    wait(forTimeInterval: 30)
+    wait(forTimeInterval: 15)
 
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]

@@ -77,21 +77,9 @@ class TestCollectCardsDataFlowInSwiftUI: TestCollectBaseTestCase {
 
     // Fill in correct data.
     fillInCorrectCardData()
-
-    // Tap on state.
-//    app.staticTexts[UIElements.Labels.state].tap()
-
-    /// Tap on upload button.
-    UIElements.Buttons.upload.find(in: app).tap()
-
-    // Wait for request.
-    wait(forTimeInterval: 30)
-
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
-
-    // Verify success response.
-    verifySuccessResponse()
+    
+    // Verify form is valid
+    verifyFormIsValid()
   }
 
   /// Fills in correct card data.

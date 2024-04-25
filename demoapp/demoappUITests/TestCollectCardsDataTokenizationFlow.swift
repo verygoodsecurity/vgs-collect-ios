@@ -33,10 +33,10 @@ class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
     enum NavigationBar {
 
       /// Expiration date.
-      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Payment Cards")
+      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Card Tokenization")
 
       /// Title.
-      static let title = "Collect Payment Cards"
+      static let title = "Collect Card Tokenization"
     }
 
     /// Labels.
@@ -56,7 +56,7 @@ class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
     enum Buttons {
 
       /// Upload.
-      static let upload: VGSUITestElement = .init(type: .button, identifier: "UPLOAD")
+      static let upload: VGSUITestElement = .init(type: .button, identifier: "TOKENIZE")
     }
     // swiftlint:enable nesting
   }
@@ -65,7 +65,7 @@ class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
   func testPutCorrectData() {
 
     // Navigate to payment cards.
-    app.tables.staticTexts[TestsCollectFlowType.paymentCards.name].tap()
+    app.tables.staticTexts[TestsCollectFlowType.paymentCardsTokenization.name].tap()
 
     // Tap on nav bar.
     let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
@@ -83,7 +83,7 @@ class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.
-    wait(forTimeInterval: 30)
+    wait(forTimeInterval: 15)
 
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]

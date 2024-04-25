@@ -67,7 +67,7 @@ class TestCollectCardsDataWithCombine: TestCollectBaseTestCase {
   func testPutCorrectData() {
 
     // Navigate to payment cards.
-    app.tables.staticTexts[TestsCollectFlowType.paymentCardsTokenization.name].tap()
+    app.tables.staticTexts[TestsCollectFlowType.paymentCardsWithCombine.name].tap()
 
     // Tap on nav bar.
     let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
@@ -85,7 +85,7 @@ class TestCollectCardsDataWithCombine: TestCollectBaseTestCase {
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.
-    wait(forTimeInterval: 30)
+    wait(forTimeInterval: 15)
 
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]
