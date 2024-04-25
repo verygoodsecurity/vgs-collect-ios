@@ -15,7 +15,7 @@ class CardsDataTokenizationViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector
-    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.tokenizationVaultId, environment: AppCollectorConfiguration.shared.environment)
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
