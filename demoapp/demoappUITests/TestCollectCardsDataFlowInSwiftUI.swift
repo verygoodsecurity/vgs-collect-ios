@@ -1,26 +1,25 @@
 //
-//  TestCollectCardsDataFlow.swift
+//  TestCollectCardsDataFlowInSwiftUI.swift
 //  demoappUITests
 //
-
 
 import XCTest
 
 /// Payment cards flow.
-class TestCollectCardsDataFlow: TestCollectBaseTestCase {
+class TestCollectCardsDataFlowInSwiftUI: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
   // swiftlint:disable nesting
 
     /// VGSText field.
-    enum VGSTextField {
+    enum VGSTextFieldRepresentable {
 
       /// Card Details fields.
       enum CardDetails {
         /// Card holder name.
         static let cardHolderName: VGSUITestElement = .init(type: .textField, identifier: "Cardholder Name")
-
+        
         /// Card number.
         static let cardNumber: VGSUITestElement = .init(type: .textField, identifier: "4111 1111 1111 1111")
 
@@ -36,10 +35,10 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     enum NavigationBar {
 
       /// Expiration date.
-      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Payment Cards")
+      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Card Data in SwiftUI")
 
       /// Title.
-      static let title = "Collect Payment Cards"
+      static let title = "Collect Card Data in SwiftUI"
     }
 
     /// Labels.
@@ -68,7 +67,10 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
   func testPutCorrectData() {
 
     // Navigate to payment cards.
-    app.tables.staticTexts[TestsCollectFlowType.paymentCards.name].tap()
+    app.tables.staticTexts[TestsCollectFlowType.paymentCardsInSwiftUI.name].tap()
+
+    // Select console label.
+    let consoleLabel = app.staticTexts.matching(identifier: UIElements.Labels.consoleLabelIdentifier)
 
     // Tap on nav bar.
     let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
@@ -76,11 +78,8 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     // Fill in correct data.
     fillInCorrectCardData()
 
-    /// Verify all fields are valid.
-    verifyFormIsValid()
-    
-    // Tap on console.
-    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
+    // Tap on state.
+//    app.staticTexts[UIElements.Labels.state].tap()
 
     /// Tap on upload button.
     UIElements.Buttons.upload.find(in: app).tap()
@@ -97,10 +96,10 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
 
   /// Fills in correct card data.
   func fillInCorrectCardData() {
-    let cardHolderNameField = UIElements.VGSTextField.CardDetails.cardHolderName.find(in: app)
-    let cardNumberField = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
-    let expDateField = UIElements.VGSTextField.CardDetails.expirationDate.find(in: app)
-    let cvcField = UIElements.VGSTextField.CardDetails.cvc.find(in: app)
+    let cardHolderNameField = UIElements.VGSTextFieldRepresentable.CardDetails.cardHolderName.find(in: app)
+    let cardNumberField = UIElements.VGSTextFieldRepresentable.CardDetails.cardNumber.find(in: app)
+    let expDateField = UIElements.VGSTextFieldRepresentable.CardDetails.expirationDate.find(in: app)
+    let cvcField = UIElements.VGSTextFieldRepresentable.CardDetails.cvc.find(in: app)
 
     cardHolderNameField.tap()
     cardHolderNameField.typeText("Joe B")

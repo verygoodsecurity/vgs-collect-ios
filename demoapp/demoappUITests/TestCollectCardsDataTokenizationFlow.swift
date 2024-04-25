@@ -1,13 +1,10 @@
 //
-//  TestCollectCardsDataFlow.swift
+//  TestCollectCardsDataTokenizationFlow.swift
 //  demoappUITests
 //
 
-
-import XCTest
-
 /// Payment cards flow.
-class TestCollectCardsDataFlow: TestCollectBaseTestCase {
+class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {

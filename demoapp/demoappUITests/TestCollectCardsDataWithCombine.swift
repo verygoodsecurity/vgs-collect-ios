@@ -1,13 +1,12 @@
 //
-//  TestCollectCardsDataFlow.swift
+//  TestCollectCardsDataWithCombine.swift
 //  demoappUITests
 //
-
 
 import XCTest
 
 /// Payment cards flow.
-class TestCollectCardsDataFlow: TestCollectBaseTestCase {
+class TestCollectCardsDataWithCombine: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
@@ -36,10 +35,10 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     enum NavigationBar {
 
       /// Expiration date.
-      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Payment Cards")
+      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Card Tokenization")
 
       /// Title.
-      static let title = "Collect Payment Cards"
+      static let title = "Collect Card Tokenization"
     }
 
     /// Labels.
@@ -68,7 +67,7 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
   func testPutCorrectData() {
 
     // Navigate to payment cards.
-    app.tables.staticTexts[TestsCollectFlowType.paymentCards.name].tap()
+    app.tables.staticTexts[TestsCollectFlowType.paymentCardsTokenization.name].tap()
 
     // Tap on nav bar.
     let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
@@ -76,12 +75,12 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     // Fill in correct data.
     fillInCorrectCardData()
 
+    // Tap on console.
+    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
+    
     /// Verify all fields are valid.
     verifyFormIsValid()
     
-    // Tap on console.
-    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
-
     /// Tap on upload button.
     UIElements.Buttons.upload.find(in: app).tap()
 
@@ -116,3 +115,4 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     cvcField.typeText("1234")
   }
 }
+

@@ -53,14 +53,14 @@ class CardsDataTokenizationViewController: UIViewController {
         }
     }
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+    override func awakeFromNib() {
+      super.awakeFromNib()
 
-    let view = self.view
-    if UITestsMockedDataProvider.isRunningUITest {
-      view?.accessibilityIdentifier = "CardsDataTokenizationViewController.Screen.RootView"
+      let view = self.view
+      if UITestsMockedDataProvider.isRunningUITest {
+        view?.accessibilityIdentifier = "CardsDataTokenizationViewController.Screen.RootView"
+      }
     }
-  }
     
     // MARK: - Init UI
     private func setupUI() {
