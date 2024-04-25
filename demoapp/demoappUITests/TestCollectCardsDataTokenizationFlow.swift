@@ -73,12 +73,12 @@ class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
     // Fill in correct data.
     fillInCorrectCardData()
 
+    // Tap on console.
+    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
+    
     /// Verify all fields are valid.
     verifyFormIsValid()
     
-    // Tap on console.
-    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
-
     /// Tap on upload button.
     UIElements.Buttons.upload.find(in: app).tap()
 

@@ -68,18 +68,17 @@ class TestCollectCardsDataFlowInSwiftUI: TestCollectBaseTestCase {
 
     // Navigate to payment cards.
     app.tables.staticTexts[TestsCollectFlowType.paymentCardsInSwiftUI.name].tap()
-
-    // Select console label.
-    let consoleLabel = app.staticTexts.matching(identifier: UIElements.Labels.consoleLabelIdentifier)
-
-    // Tap on nav bar.
-    let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
-
+ 
     // Fill in correct data.
     fillInCorrectCardData()
     
-    // Verify form is valid
-    verifyFormIsValid()
+    UIElements.Buttons.upload.find(in: app).tap()
+
+    // Wait for request.
+    wait(forTimeInterval: 15)
+
+    // Verify success response.
+    verifySuccessResponse()
   }
 
   /// Fills in correct card data.
