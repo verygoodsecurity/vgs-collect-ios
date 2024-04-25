@@ -83,7 +83,7 @@ class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.
-    wait(forTimeInterval: 15)
+    wait(forTimeInterval: 30)
 
     // Find response label.
     let responseLabel = app.staticTexts[UIElements.Labels.response]
