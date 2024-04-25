@@ -49,7 +49,7 @@ struct CardDataCollectionSwiftUI: View {
       
       return VStack(spacing: 8) {
         VGSTextFieldRepresentable(configuration: holderNameConfiguration)
-          .placeholder("Cardholder name")
+          .placeholder("Cardholder Name")
           .onEditingStart {
             print("- Cardholder name onEditingStart")
           }
@@ -72,12 +72,12 @@ struct CardDataCollectionSwiftUI: View {
           .frame(height: 54)
         HStack(spacing: 20) {
           VGSExpDateTextFieldRepresentable(configuration: expDateConfiguration)
-            .placeholder("10/25")
+            .placeholder("MM/YY")
             .textFieldPadding(paddings)
             .border(color: (expDateTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
             .frame(height: 54)
           VGSCVCTextFieldRepresentable(configuration: cvcConfiguration)
-            .placeholder("CVC/CVV")
+            .placeholder("CVC")
             .setSecureTextEntry(true)
             .cvcIconSize(CGSize(width: 30, height: 20))
             .textFieldPadding(paddings)
@@ -88,7 +88,7 @@ struct CardDataCollectionSwiftUI: View {
           UIApplication.shared.endEditing()
           sendData()
         }) {
-            Text("Send data")
+            Text("UPLOAD")
                 .padding()
                 .cornerRadius(8)
                 .overlay(

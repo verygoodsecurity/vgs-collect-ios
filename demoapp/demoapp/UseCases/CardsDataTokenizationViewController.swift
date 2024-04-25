@@ -37,6 +37,20 @@ class CardsDataTokenizationViewController: UIViewController {
         vgsCollect.customHeaders = [
           "custom_header": "some custom data"
         ]
+      
+        // Observing text fields. The call back return all textfields with updated states.
+        // You also can use VGSTextFieldDelegate instead.
+        vgsCollect.observeStates = { [weak self] textFields in
+            var invalidTextFieldsCount = 0
+            self?.consoleMessage = ""
+            textFields.forEach({ textField in
+                self?.consoleMessage.append(textField.state.description)
+                self?.consoleMessage.append("\n")
+                if !textField.state.isValid {invalidTextFieldsCount+=1}
+            })
+            let formStateMsg = invalidTextFieldsCount > 0 ? "Not valid fields - \(invalidTextFieldsCount)!" : "All Valid!"
+            self?.consoleStatusLabel.text = "STATE: \(formStateMsg)"
+        }
     }
 
   override func awakeFromNib() {

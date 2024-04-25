@@ -41,16 +41,26 @@ class DateValidationViewController: UIViewController {
         ]
         
         /// Observe VGSTextFields changes
-        vgsCollect.observeStates = { [weak self] form in
-            
+        vgsCollect.observeStates = { [weak self] textFields in
+            var invalidTextFieldsCount = 0
             self?.consoleMessage = ""
-            self?.consoleStatusLabel.text = "STATE"
-            
-            form.forEach({ textField in
+            textFields.forEach({ textField in
                 self?.consoleMessage.append(textField.state.description)
                 self?.consoleMessage.append("\n")
+                if !textField.state.isValid {invalidTextFieldsCount+=1}
             })
+            let formStateMsg = invalidTextFieldsCount > 0 ? "Not valid fields - \(invalidTextFieldsCount)!" : "All Valid!"
+            self?.consoleStatusLabel.text = "STATE: \(formStateMsg)"
         }
+    }
+  
+    override func awakeFromNib() {
+      super.awakeFromNib()
+
+      let view = self.view
+      if UITestsMockedDataProvider.isRunningUITest {
+        view?.accessibilityIdentifier = "DateValidationViewController.Screen.RootView"
+      }
     }
 }
 
@@ -78,7 +88,7 @@ private extension DateValidationViewController {
         
         /// Start and end dates
         let startDate = VGSDate(day: 1, month: 1, year: 2010)
-        let endDate = VGSDate(day: 20, month: 12, year: 2025)
+        let endDate = VGSDate(day: 20, month: 12, year: 2035)
         
         // Date format
         let inputDateFormat = VGSDateFormat.mmddyyyy
