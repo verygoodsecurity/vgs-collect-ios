@@ -38,15 +38,16 @@ class CustomDataCollectingViewController: UIViewController {
         ]
       
         /// Observe VGSTextFields changes
-        vgsCollect.observeStates = { [weak self] form in
-
-            self?.consoleMessage = ""
-            self?.consoleStatusLabel.text = "STATE"
-
-            form.forEach({ textField in
-                self?.consoleMessage.append(textField.state.description)
-                self?.consoleMessage.append("\n")
-            })
+        vgsCollect.observeStates = { [weak self] textFields in
+          var invalidTextFieldsCount = 0
+          self?.consoleMessage = ""
+          textFields.forEach({ textField in
+              self?.consoleMessage.append(textField.state.description)
+              self?.consoleMessage.append("\n")
+              if !textField.state.isValid {invalidTextFieldsCount+=1}
+          })
+          let formStateMsg = invalidTextFieldsCount > 0 ? "Not valid fields - \(invalidTextFieldsCount)!" : "All Valid!"
+          self?.consoleStatusLabel.text = "STATE: \(formStateMsg)"
         }
   }
     

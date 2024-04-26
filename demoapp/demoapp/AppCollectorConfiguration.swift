@@ -16,6 +16,8 @@ class AppCollectorConfiguration {
     
     /// Set your vault id here https://www.verygoodsecurity.com/terminology/nomenclature#vault
     var vaultId = "vaultId"
+  
+    var tokenizationVaultId = "tokenization_vaultId"
     
     ///  Set environment - `.sandbox` for testing or `.live` for production
     var environment = Environment.sandbox

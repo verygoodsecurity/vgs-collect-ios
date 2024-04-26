@@ -42,14 +42,15 @@ class SSNCollectingViewController: UIViewController {
         vgsCollect.observeFieldState = { [weak self] textField in
 
             self?.consoleMessage = ""
-            self?.consoleStatusLabel.text = "STATE"
             self?.consoleMessage.append(textField.state.description)
             self?.consoleMessage.append("\n")
 
             if let ssnState = textField.state as? VGSSSNState, ssnState.isValid {
               self?.hiddenNumberLabel.text = "SSN: XXX-XX-\(ssnState.last4)"
+              self?.consoleStatusLabel.text = "STATE: All Valid!"
             } else {
                self?.hiddenNumberLabel.text = ""
+               self?.consoleStatusLabel.text = "STATE: Not Valid!"
             }
         }
   }
