@@ -68,6 +68,9 @@ class TestCollectSSNFlow: TestCollectBaseTestCase {
     ssnField.typeText(UIElements.Texts.rawSSN)
 
     app.staticTexts[UIElements.Texts.maskedSSN].tap()
+    
+    verifyFormIsValid()
+    
     UIElements.Buttons.upload.find(in: app).tap()
 
     // Wait for request.

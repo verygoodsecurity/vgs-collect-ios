@@ -14,6 +14,8 @@ struct CardDataCollectionSwiftUI: View {
     @State private var cardTextFieldState: VGSCardState?
     @State private var expDateTextFieldState: VGSTextFieldState?
     @State private var cvcTextFieldState: VGSTextFieldState?
+  
+    @State private var consoleMessage = ""
 
     // MARK: - Textfield UI attributes
     let paddings = UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8)
@@ -49,7 +51,7 @@ struct CardDataCollectionSwiftUI: View {
       
       return VStack(spacing: 8) {
         VGSTextFieldRepresentable(configuration: holderNameConfiguration)
-          .placeholder("Cardholder name")
+          .placeholder("Cardholder Name")
           .onEditingStart {
             print("- Cardholder name onEditingStart")
           }
@@ -72,12 +74,12 @@ struct CardDataCollectionSwiftUI: View {
           .frame(height: 54)
         HStack(spacing: 20) {
           VGSExpDateTextFieldRepresentable(configuration: expDateConfiguration)
-            .placeholder("10/25")
+            .placeholder("MM/YY")
             .textFieldPadding(paddings)
             .border(color: (expDateTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
             .frame(height: 54)
           VGSCVCTextFieldRepresentable(configuration: cvcConfiguration)
-            .placeholder("CVC/CVV")
+            .placeholder("CVC")
             .setSecureTextEntry(true)
             .cvcIconSize(CGSize(width: 30, height: 20))
             .textFieldPadding(paddings)
@@ -88,7 +90,7 @@ struct CardDataCollectionSwiftUI: View {
           UIApplication.shared.endEditing()
           sendData()
         }) {
-            Text("Send data")
+            Text("UPLOAD")
                 .padding()
                 .cornerRadius(8)
                 .overlay(
@@ -96,6 +98,7 @@ struct CardDataCollectionSwiftUI: View {
                         .stroke(Color.blue, lineWidth: 2)
                 )
         }.padding(.top, 50)
+        Text("\(consoleMessage)")
       }.padding(.leading, 20)
        .padding(.trailing, 20)
   }
@@ -114,21 +117,28 @@ struct CardDataCollectionSwiftUI: View {
           // swiftlint:disable force_try
           let response = (String(data: try! JSONSerialization.data(withJSONObject: jsonData["json"]!, options: .prettyPrinted), encoding: .utf8)!)
           print("Success: \n\(response)")
+          self.consoleMessage = "Success: \n\(response)"
           // swiftlint:enable force_try
-          }
-          return
+        } else {
+          self.consoleMessage = "Parsing ERROR, response: \n\(response)"
+        }
+        return
       case .failure(let code, _, _, let error):
         switch code {
         case 400..<499:
           // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+          self.consoleMessage = "Error: Wrong Request, code: \(code)"
           print("Error: Wrong Request, code: \(code)")
         case VGSErrorType.inputDataIsNotValid.rawValue:
           if let error = error as? VGSError {
+            self.consoleMessage = "Error: Input data is not valid. Details:\n \(error)"
             print("Error: Input data is not valid. Details:\n \(error)")
           }
         default:
-                    print("Error: Something went wrong. Code: \(code)")
+          self.consoleMessage = "Error: Something went wrong. Code: \(code)"
+          print("Error: Something went wrong. Code: \(code)")
         }
+        self.consoleMessage = "Submit request error: \(code), \(String(describing: error))"
         print("Submit request error: \(code), \(String(describing: error))")
         return
       }

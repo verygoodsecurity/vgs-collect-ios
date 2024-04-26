@@ -15,7 +15,7 @@ class CardsDataTokenizationViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector
-    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.tokenizationVaultId, environment: AppCollectorConfiguration.shared.environment)
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
@@ -37,16 +37,30 @@ class CardsDataTokenizationViewController: UIViewController {
         vgsCollect.customHeaders = [
           "custom_header": "some custom data"
         ]
+      
+        // Observing text fields. The call back return all textfields with updated states.
+        // You also can use VGSTextFieldDelegate instead.
+        vgsCollect.observeStates = { [weak self] textFields in
+            var invalidTextFieldsCount = 0
+            self?.consoleMessage = ""
+            textFields.forEach({ textField in
+                self?.consoleMessage.append(textField.state.description)
+                self?.consoleMessage.append("\n")
+                if !textField.state.isValid {invalidTextFieldsCount+=1}
+            })
+            let formStateMsg = invalidTextFieldsCount > 0 ? "Not valid fields - \(invalidTextFieldsCount)!" : "All Valid!"
+            self?.consoleStatusLabel.text = "STATE: \(formStateMsg)"
+        }
     }
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+    override func awakeFromNib() {
+      super.awakeFromNib()
 
-    let view = self.view
-    if UITestsMockedDataProvider.isRunningUITest {
-      view?.accessibilityIdentifier = "CardsDataTokenizationViewController.Screen.RootView"
+      let view = self.view
+      if UITestsMockedDataProvider.isRunningUITest {
+        view?.accessibilityIdentifier = "CardsDataTokenizationViewController.Screen.RootView"
+      }
     }
-  }
     
     // MARK: - Init UI
     private func setupUI() {

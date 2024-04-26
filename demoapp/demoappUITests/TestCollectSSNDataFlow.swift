@@ -67,15 +67,7 @@ class TestCollectSSNDataFlow: TestCollectBaseTestCase {
     ssnField.typeText(UIElements.Texts.rawSSN)
     
     app.staticTexts[UIElements.Texts.maskedSSN].tap()
-    UIElements.Buttons.upload.find(in: app).tap()
-
-    // Wait for request.
-    wait(forTimeInterval: 30)
-
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
-
-    // Verify success response.
-    verifySuccessResponse()
+    
+    verifyFormIsValid()
   }
 }

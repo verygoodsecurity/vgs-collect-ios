@@ -25,6 +25,7 @@ Table of contents
       * [Demo Application](#demo-application)
       * [Documentation](#documentation)
       * [Releases](#releases)
+      * [Privacy](#privacy)
    * [Dependencies](#dependencies)
    * [License](#license)
 <!--te-->
@@ -442,9 +443,11 @@ Demo application for collecting card data on iOS is <a href="https://github.com/
 ### Releases
 To follow `VGSCollectSDK` updates and changes check the [releases](https://github.com/verygoodsecurity/vgs-collect-ios/releases) page.
 
-### Metrics
+### Privacy
 VGSCollectSDK tracks a few key metrics to understand SDK features usage, which helps us know what areas need improvement. No personal information is tracked.
-You can easily opt-out of metrics collection in `VGSAnalyticsClient`:
+You can read more about VGS Privacy details ans iOS Privacy Manifest file at our [web site](https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/privacy-details).
+
+You can opt-out of metrics collection in `VGSAnalyticsClient`:
 ```
 VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 ```

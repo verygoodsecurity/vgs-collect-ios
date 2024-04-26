@@ -10,6 +10,10 @@
 		00A95AF26E4AD1DA30D2AD0C /* libPods-demoappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218005F91E53ACAA92DB30A8 /* libPods-demoappTests.a */; };
 		030228AE2B62A5D300358CEF /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030228AD2B62A5D300358CEF /* UIApplication+Extension.swift */; };
 		0306C3AD2B5171AC0099E45D /* CardDataCollectionSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306C3AC2B5171AC0099E45D /* CardDataCollectionSwiftUI.swift */; };
+		03516CEB2BD91EF60077896A /* TestDateValidationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03516CEA2BD91EF60077896A /* TestDateValidationFlow.swift */; };
+		03516CED2BD96FA50077896A /* TestCollectCardsDataFlowInSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03516CEC2BD96FA50077896A /* TestCollectCardsDataFlowInSwiftUI.swift */; };
+		03516CEF2BDA8DF60077896A /* TestCollectCardsDataWithCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03516CEE2BDA8DF60077896A /* TestCollectCardsDataWithCombine.swift */; };
+		03516CF12BDA90FA0077896A /* TestCollectCardsDataTokenizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03516CF02BDA90FA0077896A /* TestCollectCardsDataTokenizationFlow.swift */; };
 		0351799F2858D53C00394BFC /* CardsDataTokenizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */; };
 		038541CF2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */; };
 		03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */; };
@@ -71,6 +75,10 @@
 /* Begin PBXFileReference section */
 		030228AD2B62A5D300358CEF /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		0306C3AC2B5171AC0099E45D /* CardDataCollectionSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataCollectionSwiftUI.swift; sourceTree = "<group>"; };
+		03516CEA2BD91EF60077896A /* TestDateValidationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDateValidationFlow.swift; sourceTree = "<group>"; };
+		03516CEC2BD96FA50077896A /* TestCollectCardsDataFlowInSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataFlowInSwiftUI.swift; sourceTree = "<group>"; };
+		03516CEE2BDA8DF60077896A /* TestCollectCardsDataWithCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataWithCombine.swift; sourceTree = "<group>"; };
+		03516CF02BDA90FA0077896A /* TestCollectCardsDataTokenizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataTokenizationFlow.swift; sourceTree = "<group>"; };
 		0351799E2858D53C00394BFC /* CardsDataTokenizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsDataTokenizationViewController.swift; sourceTree = "<group>"; };
 		038541CE2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectCardDataSwiftUIHostingVC.swift; sourceTree = "<group>"; };
 		03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineExamplesViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +401,10 @@
 				44D0E340291E9315001AF8ED /* Extensions */,
 				44D0E33B291E92DF001AF8ED /* UITestUtils */,
 				3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */,
+				03516CF02BDA90FA0077896A /* TestCollectCardsDataTokenizationFlow.swift */,
+				03516CEE2BDA8DF60077896A /* TestCollectCardsDataWithCombine.swift */,
+				03516CEC2BD96FA50077896A /* TestCollectCardsDataFlowInSwiftUI.swift */,
+				03516CEA2BD91EF60077896A /* TestDateValidationFlow.swift */,
 				32B5E17E24D466F500DA1239 /* TestCollectSSNFlow.swift */,
 				32B5E18024D468E700DA1239 /* TestCollectSSNDataFlow.swift */,
 				326DDC7A24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift */,
@@ -669,9 +681,13 @@
 				3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */,
 				326DDC7B24D978F8006505F7 /* TestCustomCardNumbersDataFlow.swift in Sources */,
 				44D0E343291E9315001AF8ED /* XCTestCase+Extensions.swift in Sources */,
+				03516CF12BDA90FA0077896A /* TestCollectCardsDataTokenizationFlow.swift in Sources */,
+				03516CEF2BDA8DF60077896A /* TestCollectCardsDataWithCombine.swift in Sources */,
 				32B5E17F24D466F500DA1239 /* TestCollectSSNFlow.swift in Sources */,
 				32B5E18124D468E700DA1239 /* TestCollectSSNDataFlow.swift in Sources */,
+				03516CEB2BD91EF60077896A /* TestDateValidationFlow.swift in Sources */,
 				44D0E33F291E92DF001AF8ED /* VGSUITestElementType.swift in Sources */,
+				03516CED2BD96FA50077896A /* TestCollectCardsDataFlowInSwiftUI.swift in Sources */,
 				44D0E347291E9694001AF8ED /* TestsCollectFlowType.swift in Sources */,
 				44D0E344291E9315001AF8ED /* XCUIElement+Extensions.swift in Sources */,
 			);

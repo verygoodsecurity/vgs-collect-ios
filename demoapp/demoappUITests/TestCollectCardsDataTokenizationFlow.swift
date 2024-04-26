@@ -1,13 +1,10 @@
 //
-//  TestCollectCardsDataFlow.swift
+//  TestCollectCardsDataTokenizationFlow.swift
 //  demoappUITests
 //
 
-
-import XCTest
-
 /// Payment cards flow.
-class TestCollectCardsDataFlow: TestCollectBaseTestCase {
+class TestCollectCardsDataTokenizationFlow: TestCollectBaseTestCase {
 
   /// UI elements.
   enum UIElements {
@@ -36,10 +33,10 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     enum NavigationBar {
 
       /// Expiration date.
-      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Payment Cards")
+      static let navigationBar: VGSUITestElement = .init(type: .navigationBar, identifier: "Collect Card Tokenization")
 
       /// Title.
-      static let title = "Collect Payment Cards"
+      static let title = "Collect Card Tokenization"
     }
 
     /// Labels.
@@ -59,7 +56,7 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     enum Buttons {
 
       /// Upload.
-      static let upload: VGSUITestElement = .init(type: .button, identifier: "UPLOAD")
+      static let upload: VGSUITestElement = .init(type: .button, identifier: "TOKENIZE")
     }
     // swiftlint:enable nesting
   }
@@ -68,7 +65,7 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
   func testPutCorrectData() {
 
     // Navigate to payment cards.
-    app.tables.staticTexts[TestsCollectFlowType.paymentCards.name].tap()
+    app.tables.staticTexts[TestsCollectFlowType.paymentCardsTokenization.name].tap()
 
     // Tap on nav bar.
     let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]

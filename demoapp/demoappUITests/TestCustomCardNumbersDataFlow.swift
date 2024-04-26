@@ -106,8 +106,11 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     // Fill in correct data.
     fillInCorrectCardData(with: UIElements.CardNumbers.visa)
 
-    // Tap on state.
-    app.staticTexts[UIElements.Labels.state].tap()
+    // Tap on console.
+    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
+    
+    //  Verify form is valid
+    verifyFormIsValid()
 
     /// Tap on upload button.
     UIElements.Buttons.upload.find(in: app).tap()
@@ -130,8 +133,11 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     // Fill in correct data.
     fillInCorrectCardData(with: UIElements.CardNumbers.uknownBrand)
 
-    // Tap on state.
-    app.staticTexts[UIElements.Labels.state].tap()
+    // Tap on console.
+    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
+    
+    //  Verify form is valid
+    verifyFormIsValid()
 
     /// Tap on upload button.
     UIElements.Buttons.upload.find(in: app).tap()
@@ -158,7 +164,7 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     cardHolderNameField.typeText("Joe B")
 
     // Dismiss keyboard.
-    app.staticTexts[UIElements.Labels.state].tap()
+    app.staticTexts[UIElements.Labels.consoleLabelIdentifier].tap()
 
     // Tap to scan.
     UIElements.Buttons.scan.find(in: app).tap()
