@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import VGSCollectSDK
 
 /// Holds mapping utils for scanned card data.
 internal final class VGSCardIODataMapUtils {
