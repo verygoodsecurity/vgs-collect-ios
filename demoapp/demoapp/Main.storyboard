@@ -229,7 +229,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Demo" id="eHx-3e-A7m">
-                        <barButtonItem key="rightBarButtonItem" title="VaultID" style="plain" id="85W-f4-WNM">
+                        <barButtonItem key="rightBarButtonItem" title="VaultID" style="done" id="85W-f4-WNM">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eYN-TC-oua">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

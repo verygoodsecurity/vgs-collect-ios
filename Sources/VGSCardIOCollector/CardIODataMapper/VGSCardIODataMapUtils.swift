@@ -4,7 +4,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
 import VGSCollectSDK
+#endif
 
 /// Holds mapping utils for scanned card data.
 internal final class VGSCardIODataMapUtils {
