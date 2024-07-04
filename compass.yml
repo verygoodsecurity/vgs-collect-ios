@@ -1,0 +1,27 @@
+name: VGS Collect iOS
+id: 'ari:cloud:compass:83673fa7-fd28-4f4a-9738-f584064570a7:component/db43f86d-85fe-42e1-954d-457f5a4082b8/276b046b-f44e-4d7b-9059-c8189c944c8f'
+description: |-
+  iOS SDK that allows to collect end-user's PCI data and send to VGS Proxy.
+configVersion: 1
+typeId: LIBRARY
+ownerId: 'ari:cloud:teams::team/61e34c25-3af2-4d60-bfed-39429d934c8b'
+fields:
+  lifecycle: Active
+  tier: 1
+links:
+  - name: null
+    type: REPOSITORY
+    url: 'https://github.com/verygoodsecurity/vgs-collect-ios'
+  - name: Public Docs
+    type: DOCUMENT
+    url: 'https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk'
+  - name: CircleCI
+    type: PROJECT
+    url: 'https://app.circleci.com/pipelines/github/verygoodsecurity/vgs-collect-ios'
+  - name: Jira
+    type: PROJECT
+    url: 'https://verygoodsecurity.atlassian.net/browse/DEVX'
+relationships: {}
+labels:
+  - 'language:swift'
+customFields: null
