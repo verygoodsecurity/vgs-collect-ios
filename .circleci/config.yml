@@ -9,9 +9,12 @@ parameters:
 jobs:
   build-and-test-sdk:
     macos:
-      xcode: "15.3"
+      xcode: 15.4
     steps:
       - checkout
+      - run:
+          name: Install Rosetta translation environment on Apple Silicon Mac
+          command: softwareupdate --install-rosetta --agree-to-license
       - run:
           name: Install xcov
           command: >
@@ -19,7 +22,7 @@ jobs:
       - run:
           name: Run Tests iOS 17
           command: >
-            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.4' -enableCodeCoverage YES -testPlan FrameworkTests
+            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' -enableCodeCoverage YES -testPlan FrameworkTests
       - run:
           name: Calculate Test Coverage
           command: >
@@ -36,15 +39,14 @@ jobs:
             else
               echo "Code coverage will only be pushed to compass on the main branch."
             fi
-            
 
   build-and-ui-test-demo-app-ios-17-iphone15:
     macos:
-      xcode: "15.3"
+      xcode: "15.4"
     steps:
       - checkout
       - run:
-          name: Run UI Tests on iPhone 15 iOS 17.4
+          name: Run UI Tests on iPhone 15 iOS 17.5
           command: >
             cd demoapp &&
             cd demoapp &&
@@ -52,11 +54,11 @@ jobs:
             plutil -insert tokenization_vaultId -string ${tokenization_vaultId} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPhone 15 (17.4) [" || true &&
+            xcrun instruments -w "iPhone 15 (17.5) [" || true &&
             xcodebuild test -workspace demoapp.xcworkspace
             -scheme demoappUITests
             -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.4'
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5'
 
   scan-sast-pr:
     parameters:
