@@ -10,10 +10,11 @@ jobs:
   build-and-test-sdk:
     macos:
       xcode: 15.4
-      resource_class: macos.m1.medium.gen1
     steps:
-      - macos/install-rosetta
       - checkout
+      - run:
+          name: Install Rosetta translation environment on Apple Silicon Mac
+          command: softwareupdate --install-rosetta --agree-to-license
       - run:
           name: Install xcov
           command: >
@@ -38,7 +39,6 @@ jobs:
             else
               echo "Code coverage will only be pushed to compass on the main branch."
             fi
-            
 
   build-and-ui-test-demo-app-ios-17-iphone15:
     macos:
