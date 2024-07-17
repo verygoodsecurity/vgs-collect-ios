@@ -98,8 +98,12 @@ workflows:
     when:
       not: << pipeline.parameters.nightly-security-scan >>
     jobs:
-      - build-and-test-sdk
-      - build-and-ui-test-demo-app-ios-17-iphone15
+      - build-and-test-sdk:
+          context:
+            - circleci
+      - build-and-ui-test-demo-app-ios-17-iphone15:
+          context:
+            - circleci
       - scan-sast-pr:
           context:
             - security-tools
