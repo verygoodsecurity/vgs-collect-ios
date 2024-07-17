@@ -15,6 +15,12 @@ links:
   - name: Public Docs
     type: DOCUMENT
     url: 'https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk'
+  - name: CircleCI
+    type: PROJECT
+    url: 'https://app.circleci.com/pipelines/github/verygoodsecurity/vgs-collect-ios'
+  - name: Jira
+    type: PROJECT
+    url: 'https://verygoodsecurity.atlassian.net/browse/DEVX'
 relationships: {}
 labels:
   - 'language:swift'
