@@ -98,7 +98,7 @@ workflows:
     when:
       not: << pipeline.parameters.nightly-security-scan >>
     jobs:
-      - build-and-test-sdk:
+      - build-and-test-sdk
           context:
             - frontend-deploy
             - circleci
