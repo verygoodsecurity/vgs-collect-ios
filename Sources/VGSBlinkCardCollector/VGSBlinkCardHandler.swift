@@ -80,50 +80,19 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
       // get scan result and delegate
       guard let result = self?.cardRecognizer.result,
             let blinkCardDelegate = self?.delegate else { return }
-      // card number
-      let number = result.cardNumber.trimmingCharacters(in: .whitespacesAndNewlines)
-      if !number.isEmpty, let textfield = blinkCardDelegate.textFieldForScannedData(type: .cardNumber) {
-        if let form = textfield.configuration?.vgsCollector {
-          VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "BlinkCard"])
+        
+      let dataDict = Self.mapScanResult(result)
+      
+      for dataType in VGSBlinkCardDataType.allCases {
+        if let textfield = blinkCardDelegate.textFieldForScannedData(type: dataType), let value = dataDict[dataType] {
+          textfield.setText(value)
+          /// analytics event, send once
+          if dataType == .cardNumber {
+            if let form = textfield.configuration?.vgsCollector {
+              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "BlinkCard"])
+            }
+          }
         }
-        textfield.setText(number)
-      }
-      // card holder name
-      let name = result.owner
-      if !name.isEmpty, let textfield =
-        blinkCardDelegate.textFieldForScannedData(type: .name) {
-        textfield.setText(name)
-      }
-      // cvv
-      let cvv = result.cvv
-      if !cvv.isEmpty, let textfield =
-        blinkCardDelegate.textFieldForScannedData(type: .cvc) {
-        textfield.setText(cvv)
-      }
-      // exp.date
-      let month = result.expiryDate.month
-      let year = result.expiryDate.year
-      let date = VGSBlinkCardExpirationDate(month, year: year)
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationDate) {
-        textField.setText(date.mapDefaultExpirationDate())
-      }
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationDateLong) {
-        textField.setText(date.mapLongExpirationDate())
-      }
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationDateShortYearThenMonth) {
-        textField.setText(date.mapExpirationDateWithShortYearFirst())
-      }
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationDateLongYearThenMonth) {
-        textField.setText(date.mapLongExpirationDateWithLongYearFirst())
-      }
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationYear) {
-        textField.setText(String(date.shortYear))
-      }
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationYearLong) {
-        textField.setText(String(date.year))
-      }
-      if let textField = blinkCardDelegate.textFieldForScannedData(type: .expirationMonth) {
-        textField.setText(date.monthString)
       }
       // notify scan is finished
       self?.delegate?.userDidFinishScan()
@@ -134,6 +103,32 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
   func blinkCardOverlayViewControllerDidTapClose(_ blinkCardOverlayViewController: MBCBlinkCardOverlayViewController) {
     VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "BlinkCard"])
     delegate?.userDidCancelScan()
+  }
+  
+  static func mapScanResult(_ result: MBCBlinkCardRecognizerResult) -> [VGSBlinkCardDataType: String] {
+    var data = [VGSBlinkCardDataType: String]()
+  
+    let number = result.cardNumber.trimmingCharacters(in: .whitespacesAndNewlines)
+    if !number.isEmpty {data[.cardNumber] = number}
+    
+    let name = result.owner
+    if !name.isEmpty {data[.name] = name}
+    
+    let cvv = result.cvv
+    if !cvv.isEmpty {data[.cvc] = cvv}
+
+    let month = result.expiryDate.month
+    let year = result.expiryDate.year
+    let date = VGSBlinkCardExpirationDate(month, year: year)
+    
+    data[.expirationDate] = date.mapDefaultExpirationDate()
+    data[.expirationDateLong] = date.mapLongExpirationDate()
+    data[.expirationDateShortYearThenMonth] = date.mapExpirationDateWithShortYearFirst()
+    data[.expirationDateLongYearThenMonth] = date.mapLongExpirationDateWithLongYearFirst()
+    data[.expirationYear] = String(date.shortYear)
+    data[.expirationYearLong] = String(date.year)
+    data[.expirationMonth] = (date.monthString)
+    return data
   }
 }
 #endif

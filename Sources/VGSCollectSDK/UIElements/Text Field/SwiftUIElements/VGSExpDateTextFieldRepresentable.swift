@@ -41,6 +41,8 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
   var borderColor: UIColor?
   /// Field border line width.
   var bodrerWidth: CGFloat?
+  /// Coordinates connection between scan data and text field.
+  var cardScanCoordinator: VGSCardScanCoordinator?
 
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
@@ -94,7 +96,7 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
       if let lineWidth = bodrerWidth {vgsTextField.borderWidth = lineWidth}
       if !attributedPlaceholder.isNilOrEmpty { vgsTextField.attributedPlaceholder = attributedPlaceholder }
       if !placeholder.isNilOrEmpty { vgsTextField.placeholder = placeholder}
-
+      cardScanCoordinator?.registerTextField(vgsTextField)
       vgsTextField.statePublisher
               .receive(on: DispatchQueue.main)
               .sink { newState in
@@ -184,6 +186,12 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
       newRepresentable.borderColor = color
       newRepresentable.bodrerWidth = lineWidth
       return newRepresentable
+  }
+  /// Coordinates connection between scan data and text field.
+  public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSExpDateTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.cardScanCoordinator = coordinator
+    return newRepresentable
   }
   // MARK: - VGSExpDateTextField specific methods
   /// Set `VGSExpDateTextField.MonthFormat`  UIPicker format.  Default is `.longSymbols`.
