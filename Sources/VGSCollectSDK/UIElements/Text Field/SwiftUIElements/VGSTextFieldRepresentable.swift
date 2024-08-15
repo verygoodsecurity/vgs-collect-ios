@@ -8,7 +8,7 @@ import Combine
 
 @available(iOS 14.0, *)
 public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepresentableProtocol, VGSTextFieldEditingRepresentableProtocol {
-    /// A class responsible for configuration VGSTextFieldRepresentable.
+      /// A class responsible for configuration VGSTextFieldRepresentable.
     var configuration: VGSConfiguration
     /// `VGSTextFieldRepresentable` text font.
     var font: UIFont?
@@ -41,6 +41,8 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
+    /// Coordinates connection between scan data and text field.
+    var cardScanCoordinator: VGSCardScanCoordinator?
   
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
@@ -58,7 +60,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     
     /// Returns new `VGSTextFieldState` object on change.
     public var onStateChange: ((VGSTextFieldState) -> Void)?
-    
+      
     // MARK: - Initialization
     
     /// Initialization
@@ -89,7 +91,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
         if let lineWidth = bodrerWidth {vgsTextField.borderWidth = lineWidth}
         if !attributedPlaceholder.isNilOrEmpty { vgsTextField.attributedPlaceholder = attributedPlaceholder }
         if !placeholder.isNilOrEmpty { vgsTextField.placeholder = placeholder}
-
+        cardScanCoordinator?.registerTextField(vgsTextField)
         vgsTextField.statePublisher
                 .receive(on: DispatchQueue.main)
                 .sink { newState in
@@ -204,6 +206,13 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     public func onStateChange(_ action: ((VGSTextFieldState) -> Void)?) -> VGSTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.onStateChange = action
+      return newRepresentable
+    }
+  
+    /// Coordinates connection between scan data and text field.
+    public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cardScanCoordinator = coordinator
       return newRepresentable
     }
     

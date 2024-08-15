@@ -7,8 +7,7 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
-public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFieldRepresentableProtocol, VGSCardTextFieldEditingRepresentableProtocol {  
-  
+public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFieldRepresentableProtocol, VGSCardTextFieldEditingRepresentableProtocol {
     /// A class responsible for configuration VGSCardTextFieldRepresentable.
     var configuration: VGSConfiguration
     /// `VGSCardTextFieldRepresentable` text font.
@@ -42,7 +41,8 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
-  
+  /// Coordinates connection between scan data and text field.
+    var cardScanCoordinator: VGSCardScanCoordinator?
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
@@ -96,7 +96,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
         if let lineWidth = bodrerWidth {vgsTextField.borderWidth = lineWidth}
         if !attributedPlaceholder.isNilOrEmpty { vgsTextField.attributedPlaceholder = attributedPlaceholder }
         if !placeholder.isNilOrEmpty { vgsTextField.placeholder = placeholder}
-
+        cardScanCoordinator?.registerTextField(vgsTextField)
         vgsTextField.statePublisher
                 .receive(on: DispatchQueue.main)
                 .compactMap { state -> VGSCardState? in
@@ -191,6 +191,13 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
         newRepresentable.borderColor = color
         newRepresentable.bodrerWidth = lineWidth
         return newRepresentable
+    }
+  
+    /// Coordinates connection between scan data and text field.
+    public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSCardTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cardScanCoordinator = coordinator
+      return newRepresentable
     }
   
     // MARK: - VGSCardTextField specific methods

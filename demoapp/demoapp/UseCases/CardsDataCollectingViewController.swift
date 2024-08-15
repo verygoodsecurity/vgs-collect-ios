@@ -234,7 +234,7 @@ extension CardsDataCollectingViewController: VGSBlinkCardControllerDelegate {
   func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
       // match VGSTextField with scanned data
       switch type {
-      case .expirationDateLong:
+      case .expirationDate:
           return expCardDate
       case .cardNumber:
           return cardNumber

@@ -13,7 +13,7 @@ import UIKit
 
 /// Supported scan data fields by BlinkCard.
 @objc
-public enum VGSBlinkCardDataType: Int {
+public enum VGSBlinkCardDataType: Int, CaseIterable {
     
     /// Credit Card Number. Digits string.
     case cardNumber
