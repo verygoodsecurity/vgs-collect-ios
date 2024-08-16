@@ -17,6 +17,7 @@ import UIKit
 import AVFoundation.AVCaptureDevice
 
 /// Controller responsible for managing Card.io scanner
+@available(*, deprecated, message: "use VGSBlinkCardController or VGSBlinkCardControllerRepresentable instead")
 public class VGSCardIOScanController {
     
     // MARK: - Attributes

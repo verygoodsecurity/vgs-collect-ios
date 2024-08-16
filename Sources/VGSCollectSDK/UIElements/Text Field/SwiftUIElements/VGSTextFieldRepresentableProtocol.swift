@@ -40,6 +40,9 @@ internal protocol VGSTextFieldRepresentableProtocol {
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
   var textFieldAccessibilityLabel: String? {get set}
+  // MARK: - Card Scan integration
+  @available(iOS 13.0, *)
+  var cardScanCoordinator: VGSCardScanCoordinator? {get set}
 }
 
 /// A base set of optional methods to manage editing text in a text field object.

@@ -14,8 +14,15 @@ struct CardDataCollectionSwiftUI: View {
     @State private var cardTextFieldState: VGSCardState?
     @State private var expDateTextFieldState: VGSTextFieldState?
     @State private var cvcTextFieldState: VGSTextFieldState?
-  
+    @State private var showingBlinkCardScanner = false
     @State private var consoleMessage = ""
+    /// Match scanned data with apropriate text fields.
+    @State private var scanedDataCoordinators: [VGSBlinkCardDataType: VGSCardScanCoordinator] = [
+            .cardNumber: VGSCardScanCoordinator(),
+            .name: VGSCardScanCoordinator(),
+            .cvc: VGSCardScanCoordinator(),
+            .expirationDate: VGSCardScanCoordinator()
+        ]
 
     // MARK: - Textfield UI attributes
     let paddings = UIEdgeInsets(top: 2, left: 8, bottom: 2, right: 8)
@@ -52,6 +59,7 @@ struct CardDataCollectionSwiftUI: View {
       return VStack(spacing: 8) {
         VGSTextFieldRepresentable(configuration: holderNameConfiguration)
           .placeholder("Cardholder Name")
+          .cardScanCoordinator(scanedDataCoordinators[.name]!)
           .onEditingStart {
             print("- Cardholder name onEditingStart")
           }
@@ -63,6 +71,7 @@ struct CardDataCollectionSwiftUI: View {
           .frame(height: 54)
         VGSCardTextFieldRepresentable(configuration: cardNumConfiguration)
           .placeholder("4111 1111 1111 1111")
+          .cardScanCoordinator(scanedDataCoordinators[.cardNumber]!)
           .onStateChange { newState in
             cardTextFieldState = newState
             print(newState.isValid)
@@ -75,28 +84,55 @@ struct CardDataCollectionSwiftUI: View {
         HStack(spacing: 20) {
           VGSExpDateTextFieldRepresentable(configuration: expDateConfiguration)
             .placeholder("MM/YY")
+            .cardScanCoordinator(scanedDataCoordinators[.expirationDate]!)
             .textFieldPadding(paddings)
             .border(color: (expDateTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
             .frame(height: 54)
           VGSCVCTextFieldRepresentable(configuration: cvcConfiguration)
             .placeholder("CVC")
+            .cardScanCoordinator(scanedDataCoordinators[.cvc]!)
             .setSecureTextEntry(true)
             .cvcIconSize(CGSize(width: 30, height: 20))
             .textFieldPadding(paddings)
             .border(color: (cvcTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
             .frame(height: 54)
         }
-        Button(action: {
-          UIApplication.shared.endEditing()
-          sendData()
-        }) {
-            Text("UPLOAD")
-                .padding()
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
+        HStack(spacing: 20) {
+          Button(action: {
+            UIApplication.shared.endEditing()
+            showingBlinkCardScanner = true
+          }) {
+              Text("SCAN")
+                  .padding()
+                  .cornerRadius(8)
+                  .overlay(
+                      RoundedRectangle(cornerRadius: 10)
+                          .stroke(Color.blue, lineWidth: 2)
+                  )
+          }
+          .fullScreenCover(isPresented: $showingBlinkCardScanner) {
+            VGSBlinkCardControllerRepresentable(licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!, dataCoordinators: scanedDataCoordinators) { (errorCode) in
+              print(errorCode)
+            }.allowInvalidCardNumber(true)
+            .onCardScanned({
+              showingBlinkCardScanner = false
+            })
+            .onCardScanCanceled({
+              showingBlinkCardScanner = false
+            })
+          }
+          Button(action: {
+            UIApplication.shared.endEditing()
+            sendData()
+          }) {
+              Text("UPLOAD")
+                  .padding()
+                  .cornerRadius(8)
+                  .overlay(
+                      RoundedRectangle(cornerRadius: 10)
+                          .stroke(Color.blue, lineWidth: 2)
+                  )
+          }
         }.padding(.top, 50)
         Text("\(consoleMessage)")
       }.padding(.leading, 20)
