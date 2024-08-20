@@ -52,22 +52,24 @@ extension VGSCollect {
     print(body)
     print(content)
     print("=== ==================== ===")
-      
-        // Send request.
-        apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
-          
-          // Analytics
-          if let strongSelf = self {
-            switch response {
-            case .success(let code, _, _):
-              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content])
-            case .failure(let code, _, _, let error):
-              let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
-            }
-        }
-        block(response)
-      }
+    
+    block(.failure(999, nil, nil, nil))
+//      
+//        // Send request.
+//        apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
+//          
+//          // Analytics
+//          if let strongSelf = self {
+//            switch response {
+//            case .success(let code, _, _):
+//              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content])
+//            case .failure(let code, _, _, let error):
+//              let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+//              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
+//            }
+//        }
+//        block(response)
+//      }
     }
     
     /**
