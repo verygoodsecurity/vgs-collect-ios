@@ -47,6 +47,11 @@ extension VGSCollect {
         let body = mapFieldsToBodyJSON(with: fieldMappingPolicy, extraData: extraData)
 
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
+    
+    print("=== VGS COLLECT OVERRIDE ===")
+    print(body)
+    print(content)
+    print("=== ==================== ===")
       
         // Send request.
         apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
