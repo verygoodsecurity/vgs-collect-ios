@@ -23,6 +23,8 @@ extension VGSCollect {
         Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
     */
   public func sendData(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions(), completion block: @escaping (VGSResponse) -> Void) {
+    
+        print("=== VGS COLLECT OVERRIDE ===")
       
         // Content analytics.
         var content: [String] = ["textField"]
@@ -48,28 +50,27 @@ extension VGSCollect {
 
         VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
     
-    print("=== VGS COLLECT OVERRIDE ===")
-    print(body)
-    print(content)
-    print("=== ==================== ===")
+        print(body)
+        print(content)
+        print("=== ==================== ===")
     
-    block(.failure(999, nil, nil, nil))
-//      
-//        // Send request.
-//        apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
-//          
-//          // Analytics
-//          if let strongSelf = self {
-//            switch response {
-//            case .success(let code, _, _):
-//              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content])
-//            case .failure(let code, _, _, let error):
-//              let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-//              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
-//            }
-//        }
-//        block(response)
-//      }
+//        block(.failure(999, nil, nil, nil))
+    
+        // Send request.
+        apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
+          
+          // Analytics
+          if let strongSelf = self {
+            switch response {
+            case .success(let code, _, _):
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content])
+            case .failure(let code, _, _, let error):
+              let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
+            }
+        }
+        block(response)
+      }
     }
     
     /**
