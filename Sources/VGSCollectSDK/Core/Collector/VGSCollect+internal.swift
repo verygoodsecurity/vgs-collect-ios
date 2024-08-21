@@ -36,6 +36,7 @@ internal extension VGSCollect {
         var isRequiredValidOnlyErrorFields = [String]()
         
         for textField in input {
+            print("=== Attempt to validate \(textField.fieldName) isRequired: \(textField.isRequired) isNilOrEmpty: \(textField.textField.getSecureRawText.isNilOrEmpty) isRequiredValidOnly \(textField.isRequiredValidOnly) isValid \(textField.state.isValid)")
             if textField.isRequired, textField.textField.getSecureRawText.isNilOrEmpty {
                 isRequiredErrorFields.append(textField.fieldName)
             }
@@ -46,6 +47,8 @@ internal extension VGSCollect {
         
         var errorFields = [String: [String]]()
         if isRequiredErrorFields.count > 0 {
+        
+            print("=== VGS validation failed because required field isNilOrEmpty \(isRequiredErrorFields)")
           
             let eventText = "NOT VALID FIELDS CONTENT!!!. Next fields configuration set as **isRequired** but fields' content is **nil** or **empty**: \(isRequiredErrorFields)"
             let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
@@ -54,6 +57,9 @@ internal extension VGSCollect {
             errorFields[VGSSDKErrorInputDataRequired] = isRequiredErrorFields
         }
         if isRequiredValidOnlyErrorFields.count > 0 {
+          
+            print("=== VGS validation failed because requiredValid field is not valid \(isRequiredValidOnlyErrorFields)")
+          
             let eventText = "NOT VALID FIELDS CONTENT!!!. Next fields configuration set as **sRequiredValidOnly** but fields' content didn't pass validation: \(isRequiredValidOnlyErrorFields)"
             let event = VGSLogEvent(level: .warning, text: eventText, severityLevel: .error)
             VGSCollectLogger.shared.forwardLogEvent(event)
@@ -61,6 +67,8 @@ internal extension VGSCollect {
         }
         
         if errorFields.count > 0 {
+            print("=== VGS validation failed because errorFields \(errorFields)")
+          
             // swiftlint: disable superfluous_disable_command
             return VGSError(type: .inputDataIsNotValid, userInfo: VGSErrorInfo(key: VGSSDKErrorInputDataIsNotValid, description: "Input data is not valid", extraInfo: errorFields))
             // swiftlint: enable superfluous_disable_command
