@@ -1,10 +1,4 @@
-## Fixes [chXXXX]
+## ISSUE [DEVX-](<LINK>)
 
 ## Description of changes
-(insert text here)
-
-## Value being added
-(insert text here)
-
-## Testing
 (insert text here)
