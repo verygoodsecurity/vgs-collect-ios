@@ -1,8 +1,9 @@
-[![CircleCI](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52)](https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master)
-[![UT](https://img.shields.io/badge/Unit_Test-pass-green)]()
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/verygoodsecurity/vgs-collect-ios/tree/master)
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg)]()
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
 [![swift](https://img.shields.io/badge/swift-5-orange)]()
+[![swiftui](https://img.shields.io/badge/SwiftUI-524520?logo=swift)]()
+[![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen)]()
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat)](https://cocoapods.org/pods/VGSCollectSDK)
 <img src="./images/VGSZeroData.png" height="20">
 
@@ -16,12 +17,13 @@ Table of contents
 <!--ts-->
    * [Before you start](#before-you-start)
    * [Integration](#integration)
-      * [CocoaPods](#cocoapods)
       * [Swift Package Manager](#swift-package-manager) 
+      * [CocoaPods](#cocoapods)
    * [Usage](#usage)
       * [Create VGSCollect instance and VGS UI Elements](#create-vgscollect-instance-and-vgs-ui-elements)
       * [Scan Credit Card Data](#scan-credit-card-data)
       * [Upload Files](#upload-files)
+      * [SwiftUI support](#swiftui-support)
       * [Demo Application](#demo-application)
       * [Documentation](#documentation)
       * [Releases](#releases)
@@ -41,14 +43,6 @@ You should have your organization registered at <a href="https://dashboard.veryg
 
 # Integration
 
-### CocoaPods
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'VGSCollectSDK'
-```
-
 ### Swift Package Manager
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
@@ -59,10 +53,6 @@ To check your current Swift tools version run in your terminal:
 xcrun swift -version
 ```
 
-> NOTE: In some cases you can have multiple Swift tools versions installed.
-
-
-Follow the official Apple SPM guide [instructions](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) for more details.  
 To use Swift Package Manager, in Xcode add the https://github.com/verygoodsecurity/vgs-collect-ios.git dependency and choose the `Exact` version.
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_1.png" width="70%">
@@ -73,6 +63,14 @@ Select `VGSCollectSDK` and optionally other packages provided with `VGSCollectSD
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_2.png" width="70%">
 </p>
+
+### CocoaPods
+
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit CocoaPods website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+pod 'VGSCollectSDK'
+```
 
 ## Usage
 
@@ -139,29 +137,22 @@ Use your `<vaultId>` to initialize VGSCollect instance. You can get it in your [
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-        ...  
-		
-        /// Observing text fields
-        vgsCollect.observeStates = { textFields in
-
-            textFields.forEach({ textField in
-                print(textdField.state.description)
-                if textdField.state.isValid {
-                    textField.borderColor = .grey
-                } else {
-                    textField.borderColor = .red
-                }
-
-                /// VGSCardState is available for VGSCardTextField
-                if let cardState = textField.state as? VGSCardState {
-                    print(cardState.bin)
-                    print(cardState.last4)
-                    print(cardState.brand.stringValue)
-                }
-            })
-        }
+        ...
+        
+        /// Setup delegate
+        cardNumberField.delegate = self
     }
+    
+  extension ViewController: VGSTextFieldDelegate {
+    func vgsTextFieldDidChange(_ textField: VGSTextField) {
+      textField.borderColor = textField.state.isValid  ? .gray : .red
+
+      /// Check Card Number Field State with addition attributes
+      if let cardState = textField.state as? VGSCardState, cardState.isValid {
+          print("THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)")
+      }
+    }
+  }
   </td>
   </tr>
   <tr>
@@ -215,14 +206,10 @@ Add 'VGSCollectSDK' alongside with one of scan modules pod:
 pod 'VGSCollectSDK'
 
 # Add one of available scan providers
-pod 'VGSCollectSDK/CardIO'
 pod 'VGSCollectSDK/BlinkCard'  
 ```
 #### Integrate with Swift Package Manager
 
-Starting with the 1.7.11 release, `VGSCollectSDK` supports  [CardIO](https://github.com/verygoodsecurity/card.io-iOS-source) integration via Swift PM.
-
-To use **CardIO** add `VGSCollectSDK`, `VGSCardIOCollector` packages to your target. 
 To use **BlinkCard** add `VGSCollectSDK`, `VGSBlinkCardCollector` packages to your target. 
 
 #### Code Example
@@ -233,82 +220,79 @@ To use **BlinkCard** add `VGSCollectSDK`, `VGSBlinkCardCollector` packages to yo
     <th width="25%">In Action</th>
   </tr>
   <tr>
-    <td>Setup  VGSCardIOScanController...</td>
+    <td>Setup  VGSBlinkCardController...</td>
     <th rowspan="2"><img src="images/card-scan.gif"></th>
   </tr>
   <tr>
     <td>
     
     class ViewController: UIViewController {
-    	 
-        var vgsCollect = VGSCollect(id: "vauiltId", environment: .sandbox)
-
-        /// Init VGSCardIOScanController
-        var scanController = VGSCardIOScanController()
+        /// Init VGSBlinkCardController
+        var scanController: VGSBlinkCardController?
 
         /// Init VGSTextFields...
 
         override func viewDidLoad() {
-            super.viewDidLoad()
+          super.viewDidLoad()
 
-            /// set VGSCardIOScanDelegate
-            canController.delegate = self
+          // Init VGSBlinkCardController with BlinkCard license key and delegate
+            scanController = VGSBlinkCardController(licenseKey: "<blinkCardLicenseKey>", delegate: self, onError: { errorCode in
+              print("BlinkCard license error, code: \(errorCode)")
+            })
         }
 
         /// Present scan controller 
         func scanData() {
-            scanController.presentCardScanner(on: self,
-					animated: true,
-				      completion: nil)
-        }
-
-        // MARK: - Send data  
-        func sendData() {
-            /// Send data from VGSTextFields to your Vault
-            vgsCollect.sendData{...}
+          scanController?.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
         }
     }
     ...
   </td>
   </tr>
   <tr>
-    <td colspan="2">... handle VGSCardIOScanControllerDelegate</td>
+    <td colspan="2">... handle VGSBlinkCardControllerDelegate</td>
   </tr>
   <tr>
     <td colspan="2">
 	    
     // ...
     
-    /// Implement VGSCardIOScanControllerDelegate methods
-    extension ViewController: VGSCardIOScanControllerDelegate {
-
-	    ///Asks VGSTextField where scanned data with type need to be set.
-	    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
-		switch type {
-		case .expirationDate:
-		    return expCardDateField
-		case .cvc:
-		    return cvcField
-		case .cardNumber:
-		    return cardNumberField
-		default:
-		    return nil
-		}
-	    }
-
-	    /// When user press Done button on CardIO screen
-	    func userDidFinishScan() {
-		scanController.dismissCardScanner(animated: true, completion: { [weak self] in
-		    /// self?.sendData()
-		})
-	    }
+    /// Implement VGSBlinkCardControllerDelegate methods
+  extension ViewController: VGSBlinkCardControllerDelegate {
+    func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
+      // match VGSTextField with scanned data
+      switch type {
+      case .expirationDate:
+          return expCardDate
+      case .cardNumber:
+          return cardNumber
+      case .cvc:
+        return cvcCardNum
+      case .name:
+        return cardHolderName
+      default:
+          return nil
+      }
     }
-   
+  
+    func userDidFinishScan() {
+      scanController?.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+    }
+  
+    func userDidCancelScan() {
+      scanController?.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+    }
+  }
+
   </td>
   </tr>
 </table>
 
-Handle `VGSCardIOScanControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `CradIODataType` to get available scand data types.
+Handle `VGSBlinkCardControllerDelegate` functions. To setup scanned data into specific  VGSTextField implement `textFieldForScannedData:` . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  `VGSBlinkCardDataType` to get available scand data types.
 
 Don't forget to add **NSCameraUsageDescription** key and description into your App ``Info.plist``.
 
@@ -432,6 +416,10 @@ You can add a file uploading functionality to your application with **VGSFilePic
 
 Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.
 
+### SwiftUI support
+
+VGS Collect iOS SDK provide support for integration with apps that are buid with SwiftUI toolkit by providing SwiftUI wrappers for all VGS textfields. Follow examples [here](./demoapp/demoapp/UseCases/SwiftUI/README.md).
+
 ## Demo Application
 Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food-iOS">here</a>.
 
@@ -456,7 +444,6 @@ VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 - iOS 12+
 - Swift 5
 - Optional 3rd party libraries:
-  - [CardIO](https://github.com/card-io/card.io-iOS-SDK)
   - [BlinkCard](https://github.com/blinkcard/blinkcard-ios)
 
 ## License
