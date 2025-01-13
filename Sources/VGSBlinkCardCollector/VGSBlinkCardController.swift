@@ -53,7 +53,17 @@ public class VGSBlinkCardController {
     public var allowInvalidCardNumber: Bool = false {
       didSet {scanHandler?.cardRecognizer.allowInvalidCardNumber = allowInvalidCardNumber }
     }
-    
+  
+    // MARK: - Overlay settings
+    /// Defines whether button for presenting onboarding screens will be present on screen. Default: true.
+    public var showOnboardingInfo: Bool = true {
+      didSet {scanHandler?.overlaySettings.showOnboardingInfo = showOnboardingInfo }
+    }
+    /// Defines whether tutorial alert will be presented on appear. Default: true.
+    public var showIntroductionDialog: Bool = true {
+      didSet {scanHandler?.overlaySettings.showIntroductionDialog = showIntroductionDialog }
+    }
+  
     // MARK: - Initialization
     
     /// Initialization

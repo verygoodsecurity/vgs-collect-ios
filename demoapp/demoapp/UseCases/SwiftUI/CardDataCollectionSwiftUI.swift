@@ -114,6 +114,8 @@ struct CardDataCollectionSwiftUI: View {
             VGSBlinkCardControllerRepresentable(licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!, dataCoordinators: scanedDataCoordinators) { (errorCode) in
               print(errorCode)
             }.allowInvalidCardNumber(true)
+              .showOnboardingInfo(false)
+              .showIntroductionDialog(false)
             .onCardScanned({
               showingBlinkCardScanner = false
             })

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.16.3'
+  spec.version = '1.16.4'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.0'
   spec.description  = <<-DESC
@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'BlinkCard' do |blinkcard|
       blinkcard.source_files  = "Sources/VGSBlinkCardCollector", "Sources/VGSBlinkCardCollector/**/*.{swift}"
       blinkcard.dependency "VGSCollectSDK/Core"
-      blinkcard.dependency "MBBlinkCard", "2.9.1"
+      blinkcard.dependency "MBBlinkCard", "2.10.0"
       blinkcard.ios.deployment_target = "13.0"
   end
   
