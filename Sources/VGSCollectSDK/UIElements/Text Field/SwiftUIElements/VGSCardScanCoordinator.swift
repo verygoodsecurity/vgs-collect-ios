@@ -23,7 +23,8 @@ public class VGSCardScanCoordinator: ObservableObject {
     }
 }
 @available(iOS 13.0, *)
-internal extension VGSCardScanCoordinator {
+/// :nodoc:
+public extension VGSCardScanCoordinator {
   func trackAnalyticsEvent(scannerType: String) {
     if let form = textField?.configuration?.vgsCollector {
       VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": scannerType])
