@@ -78,10 +78,6 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
   }
   
   public func makeUIViewController(context: Context) -> UIViewController {
-
-    // Create BlinkCard settings
-    let settings: MBCBlinkCardOverlaySettings = MBCBlinkCardOverlaySettings()
-    settings.enableEditScreen = false
     // Set card recognizer
     context.coordinator.parent.cardRecognizer.extractOwner = extractOwner
     context.coordinator.parent.cardRecognizer.extractCvv = extractCvv
@@ -95,7 +91,7 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
     let recognizerList = [context.coordinator.parent.cardRecognizer]
     let recognizerCollection: MBCRecognizerCollection = MBCRecognizerCollection(recognizers: recognizerList)
      // Create  overlay view controller
-    let blinkCardOverlayViewController = MBCBlinkCardOverlayViewController(settings: settings, recognizerCollection: recognizerCollection, delegate: context.coordinator)
+    let blinkCardOverlayViewController = MBCBlinkCardOverlayViewController(settings: context.coordinator.parent.overlaySettings, recognizerCollection: recognizerCollection, delegate: context.coordinator)
      // Create recognizer view controller with wanted overlay view controller
     let recognizerRunneViewController: UIViewController = MBCViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: blinkCardOverlayViewController)!
     return recognizerRunneViewController
