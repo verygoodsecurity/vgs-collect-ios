@@ -7,6 +7,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 13.0, *)
+/// :nodoc:
 public class VGSCardScanCoordinator: ObservableObject {
     private weak var textField: VGSTextField?
   
@@ -17,8 +18,7 @@ public class VGSCardScanCoordinator: ObservableObject {
         self.textField = textField
     }
     
-    // Set text for the text field
-    internal func setText(_ text: String) {
+    public func setText(_ text: String) {
         textField?.setText(text)
     }
 }
