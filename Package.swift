@@ -29,7 +29,7 @@ let package = Package(
       .package(
             name: "BlinkCard",
             url: "https://github.com/blinkcard/blinkcard-swift-package",
-            .exact("2.9.1")
+            .exact("2.10.0")
       )
     ],
     targets: [
