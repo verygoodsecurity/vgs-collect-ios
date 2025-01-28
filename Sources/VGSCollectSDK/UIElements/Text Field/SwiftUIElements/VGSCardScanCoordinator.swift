@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftUI
+import VGSClientSDKAnalytics
 
 @available(iOS 13.0, *)
 /// :nodoc:
@@ -27,7 +28,7 @@ public class VGSCardScanCoordinator: ObservableObject {
 public extension VGSCardScanCoordinator {
   func trackAnalyticsEvent(scannerType: String) {
     if let form = textField?.configuration?.vgsCollector {
-      VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": scannerType])
+      VGSAnalyticsClient.shared.capture(form.formAnalyticsDetails, event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.ok, scanId: "", scanDetails: "", scannerType: scannerType))
     }
   }
 }
