@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class VGSCSDKAVGSAnalyticsEvent, VGSCSDKADefaultEventParams, VGSCSDKAKotlinEnumCompanion, VGSCSDKAKotlinEnum<E>, VGSCSDKAVGSAnalyticsCopyFormat, VGSCSDKAKotlinArray<T>, VGSCSDKAVGSAnalyticsStatus, VGSCSDKAVGSAnalyticsEventAttachFile, VGSCSDKAVGSAnalyticsEventAutofill, VGSCSDKAVGSAnalyticsEventCname, VGSCSDKAVGSAnalyticsEventContentRendering, VGSCSDKAVGSAnalyticsEventContentSharing, VGSCSDKAVGSAnalyticsEventCopyToClipboard, VGSCSDKAVGSAnalyticsEventFieldAttach, VGSCSDKAVGSAnalyticsEventFieldDetach, VGSCSDKAVGSAnalyticsUpstream, VGSCSDKAVGSAnalyticsEventRequest, VGSCSDKAVGSAnalyticsEventRequestBuilder, VGSCSDKAVGSAnalyticsMappingPolicy, VGSCSDKAVGSAnalyticsEventResponse, VGSCSDKAVGSAnalyticsEventScan, VGSCSDKAVGSAnalyticsEventSecureTextRange, VGSCSDKAVGSAnalyticsUpstreamCompanion, VGSCSDKAVGSAnalyticsSession;
+@class VGSCSDKAVGSAnalyticsEvent, VGSCSDKADefaultEventParams, VGSCSDKAKotlinEnumCompanion, VGSCSDKAKotlinEnum<E>, VGSCSDKAVGSAnalyticsCopyFormat, VGSCSDKAKotlinArray<T>, VGSCSDKAVGSAnalyticsStatus, VGSCSDKAVGSAnalyticsEventAttachFile, VGSCSDKAVGSAnalyticsEventAutofill, VGSCSDKAVGSAnalyticsEventCname, VGSCSDKAVGSAnalyticsEventContentRendering, VGSCSDKAVGSAnalyticsEventContentSharing, VGSCSDKAVGSAnalyticsEventCopyToClipboard, VGSCSDKAVGSAnalyticsEventFieldAttach, VGSCSDKAVGSAnalyticsEventFieldDetach, VGSCSDKAVGSAnalyticsUpstream, VGSCSDKAVGSAnalyticsEventRequest, VGSCSDKAVGSAnalyticsEventRequestBuilder, VGSCSDKAVGSAnalyticsMappingPolicy, VGSCSDKAVGSAnalyticsEventResponse, VGSCSDKAVGSAnalyticsScannerType, VGSCSDKAVGSAnalyticsEventScan, VGSCSDKAVGSAnalyticsEventSecureTextRange, VGSCSDKAVGSAnalyticsUpstreamCompanion, VGSCSDKAVGSAnalyticsSession;
 
 @protocol VGSCSDKAKotlinComparable, VGSCSDKAKotlinIterator;
 
@@ -438,19 +438,22 @@ __attribute__((swift_name("VGSAnalyticsEvent.Response")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("VGSAnalyticsEvent.Scan")))
 @interface VGSCSDKAVGSAnalyticsEventScan : VGSCSDKAVGSAnalyticsEvent
-- (instancetype)initWithStatus:(VGSCSDKAVGSAnalyticsStatus *)status scanId:(NSString *)scanId scanDetails:(NSString *)scanDetails scannerType:(NSString *)scannerType __attribute__((swift_name("init(status:scanId:scanDetails:scannerType:)"))) __attribute__((objc_designated_initializer));
-- (VGSCSDKAVGSAnalyticsEventScan *)doCopyStatus:(VGSCSDKAVGSAnalyticsStatus *)status scanId:(NSString *)scanId scanDetails:(NSString *)scanDetails scannerType:(NSString *)scannerType __attribute__((swift_name("doCopy(status:scanId:scanDetails:scannerType:)")));
+- (instancetype)initWithStatus:(VGSCSDKAVGSAnalyticsStatus *)status scannerType:(VGSCSDKAVGSAnalyticsScannerType *)scannerType __attribute__((swift_name("init(status:scannerType:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithStatus:(VGSCSDKAVGSAnalyticsStatus *)status scannerType:(VGSCSDKAVGSAnalyticsScannerType *)scannerType errorCode:(int32_t)errorCode __attribute__((swift_name("init(status:scannerType:errorCode:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithStatus:(VGSCSDKAVGSAnalyticsStatus *)status scannerType:(VGSCSDKAVGSAnalyticsScannerType *)scannerType scanId:(NSString * _Nullable)scanId scanDetails:(NSString * _Nullable)scanDetails errorCode:(VGSCSDKAInt * _Nullable)errorCode __attribute__((swift_name("init(status:scannerType:scanId:scanDetails:errorCode:)"))) __attribute__((objc_designated_initializer));
+- (VGSCSDKAVGSAnalyticsEventScan *)doCopyStatus:(VGSCSDKAVGSAnalyticsStatus *)status scannerType:(VGSCSDKAVGSAnalyticsScannerType *)scannerType scanId:(NSString * _Nullable)scanId scanDetails:(NSString * _Nullable)scanDetails errorCode:(VGSCSDKAInt * _Nullable)errorCode __attribute__((swift_name("doCopy(status:scannerType:scanId:scanDetails:errorCode:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) VGSCSDKAInt * _Nullable errorCode __attribute__((swift_name("errorCode")));
 
 /**
  * @note This property has protected visibility in Kotlin source and is intended only for use by subclasses.
 */
 @property (readonly) VGSCSDKAMutableDictionary<NSString *, id> *params __attribute__((swift_name("params")));
-@property (readonly) NSString *scanDetails __attribute__((swift_name("scanDetails")));
-@property (readonly) NSString *scanId __attribute__((swift_name("scanId")));
-@property (readonly) NSString *scannerType __attribute__((swift_name("scannerType")));
+@property (readonly) NSString * _Nullable scanDetails __attribute__((swift_name("scanDetails")));
+@property (readonly) NSString * _Nullable scanId __attribute__((swift_name("scanId")));
+@property (readonly) VGSCSDKAVGSAnalyticsScannerType *scannerType __attribute__((swift_name("scannerType")));
 @property (readonly) VGSCSDKAVGSAnalyticsStatus *status __attribute__((swift_name("status")));
 
 /**
@@ -493,6 +496,19 @@ __attribute__((swift_name("VGSAnalyticsMappingPolicy")))
 @property (class, readonly) VGSCSDKAVGSAnalyticsMappingPolicy *nestedJsonArraysOverwrite __attribute__((swift_name("nestedJsonArraysOverwrite")));
 + (VGSCSDKAKotlinArray<VGSCSDKAVGSAnalyticsMappingPolicy *> *)values __attribute__((swift_name("values()")));
 @property (class, readonly) NSArray<VGSCSDKAVGSAnalyticsMappingPolicy *> *entries __attribute__((swift_name("entries")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("VGSAnalyticsScannerType")))
+@interface VGSCSDKAVGSAnalyticsScannerType : VGSCSDKAKotlinEnum<VGSCSDKAVGSAnalyticsScannerType *>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@property (class, readonly) VGSCSDKAVGSAnalyticsScannerType *blinkCard __attribute__((swift_name("blinkCard")));
+@property (class, readonly) VGSCSDKAVGSAnalyticsScannerType *cardIo __attribute__((swift_name("cardIo")));
++ (VGSCSDKAKotlinArray<VGSCSDKAVGSAnalyticsScannerType *> *)values __attribute__((swift_name("values()")));
+@property (class, readonly) NSArray<VGSCSDKAVGSAnalyticsScannerType *> *entries __attribute__((swift_name("entries")));
+@property (readonly) NSString *analyticsValue __attribute__((swift_name("analyticsValue")));
 @end
 
 __attribute__((objc_subclassing_restricted))

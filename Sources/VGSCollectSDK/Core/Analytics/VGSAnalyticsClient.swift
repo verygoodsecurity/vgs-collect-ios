@@ -48,7 +48,7 @@ public class VGSAnalyticsClient {
   private init() {}
 
   /// :nodoc: Track events related to specific VGSCollect instance
-  public func capture(_ form: VGSFormAnanlyticsDetails, event: VGSAnalyticsEvent) {
+  public func capture(_ form: VGSFormAnanlyticsDetails = VGSFormAnanlyticsDetails(formId: "", tenantId: "", environment: ""), event: VGSAnalyticsEvent) {
     sharedAnalyticsManager.capture(vault: form.tenantId, environment: form.environment, formId: form.formId, event: event)
   }
 
