@@ -33,15 +33,13 @@ public class VGSAnalyticsClient {
     dependencyManager: sdkIntegration)
     
   /// Enable or disable VGS analytics tracking
-  public var shouldCollectAnalytics: Bool {
+  public var shouldCollectAnalytics: Bool = true {
     didSet {
       sharedAnalyticsManager.setIsEnabled(isEnabled: shouldCollectAnalytics)
     }
   }
   
-  private init() {
-    self.shouldCollectAnalytics = true
-  }
+  private init() {}
 
   /// :nodoc: Track events related to specific VGSCollect instance
   public func capture(_ form: VGSFormAnanlyticsDetails = VGSFormAnanlyticsDetails(formId: "", tenantId: "", environment: ""), event: VGSAnalyticsEvent) {
