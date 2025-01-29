@@ -31,21 +31,17 @@ public class VGSAnalyticsClient {
     source: Constants.Metadata.source,
     sourceVersion: osVersion,
     dependencyManager: sdkIntegration)
-  
-  private var _shouldCollectAnalytics: Bool = true
-  
+    
   /// Enable or disable VGS analytics tracking
   public var shouldCollectAnalytics: Bool {
-    get {
-      return _shouldCollectAnalytics
-    }
-    set {
-      _shouldCollectAnalytics = newValue
-      sharedAnalyticsManager.setIsEnabled(isEnabled: newValue)
+    didSet {
+      sharedAnalyticsManager.setIsEnabled(isEnabled: shouldCollectAnalytics)
     }
   }
   
-  private init() {}
+  private init() {
+    self.shouldCollectAnalytics = true
+  }
 
   /// :nodoc: Track events related to specific VGSCollect instance
   public func capture(_ form: VGSFormAnanlyticsDetails = VGSFormAnanlyticsDetails(formId: "", tenantId: "", environment: ""), event: VGSAnalyticsEvent) {
