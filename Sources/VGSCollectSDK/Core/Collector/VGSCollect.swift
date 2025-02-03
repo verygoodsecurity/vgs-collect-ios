@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import VGSClientSDKAnalytics
 #if os(iOS)
 import UIKit
 #endif
@@ -66,10 +67,6 @@ public class VGSCollect {
       self.regionalEnvironment = environment
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
       self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails, satellitePort: satellitePort)
-
-			if case .satelliteURL = self.apiClient.hostURLPolicy {
-				self.formAnalyticsDetails.isSatelliteMode = true
-			}
     }
       
     /// Initialization.

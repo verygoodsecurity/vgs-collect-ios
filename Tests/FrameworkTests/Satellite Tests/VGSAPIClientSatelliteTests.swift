@@ -59,8 +59,6 @@ class VGSAPIClientSatelliteTests: VGSCollectBaseTestCase {
 			let outputText = "index: \(index) satellite configuration with environment: \(config.environment) hostname: \(config.hostname ?? "*nil*") port: \(config.port!) should produce: \(config.url)"
 			let client = APIClient(tenantId: tenantID, regionalEnvironment: config.environment, hostname: config.hostname, formAnalyticsDetails: mockedFormData, satellitePort: config.port)
 
-			XCTAssertTrue(client.formAnalyticDetails.isSatelliteMode == true, "\(outputText) should produce *satellite* mode in analytics")
-
 			switch client.hostURLPolicy {
 			case .satelliteURL(let url):
 				XCTAssertTrue(url == config.url, outputText)
@@ -97,8 +95,6 @@ class VGSAPIClientSatelliteTests: VGSCollectBaseTestCase {
 			let mockedFormData = VGSFormAnanlyticsDetails(formId: "123", tenantId: tenantID, environment: config.environment)
 			let outputText = "index: \(index) satellite configuration with environment: \(config.environment) hostname: \(config.hostname ?? "*nil*") port: \(portText) should produce *nil*"
 			let client = APIClient(tenantId: tenantID, regionalEnvironment: config.environment, hostname: config.hostname, formAnalyticsDetails: mockedFormData, satellitePort: config.port)
-
-			XCTAssertTrue(client.formAnalyticDetails.isSatelliteMode == false, "\(outputText) should NOT produce satellite mode in analytics")
 
 			switch client.hostURLPolicy {
 			case .vaultURL(let url):

@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import CardIO
+import VGSClientSDKAnalytics
 
 #if !COCOAPODS
 import VGSCollectSDK
@@ -64,7 +65,7 @@ public struct VGSCardIOViewControllerRepresentable: UIViewControllerRepresentabl
 
         if !cardInfo.cardNumber.isEmpty, let textfield = fields[CradIODataType.cardNumber] {
             if let form = textfield.configuration?.vgsCollector {
-              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+              VGSAnalyticsClient.shared.capture(form.formAnalyticsDetails, event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.ok, scannerType: VGSAnalyticsScannerType.cardIo))
             }
             textfield.setText(cardInfo.cardNumber)
         }

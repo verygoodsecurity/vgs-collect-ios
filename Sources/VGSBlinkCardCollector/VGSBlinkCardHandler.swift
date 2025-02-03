@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import VGSClientSDKAnalytics
 #if os(iOS)
 import UIKit
 #endif
@@ -39,7 +40,7 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
     required init(licenseKey: String, errorCallback: @escaping ((NSInteger) -> Void)) {
       super.init()
       MBCMicroblinkSDK.shared().setLicenseKey(licenseKey) { error in
-        VGSAnalyticsClient.shared.trackEvent(.scan, status: .failed, extraData: ["scannerType": "BlinkCard", "errorCode": error])
+        VGSAnalyticsClient.shared.capture(event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.failed, scannerType: VGSAnalyticsScannerType.blinkCard, errorCode: Int32(error.rawValue)))
         errorCallback(error.rawValue)
       }
     }
@@ -92,7 +93,9 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
           /// analytics event, send once
           if dataType == .cardNumber {
             if let form = textfield.configuration?.vgsCollector {
-              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "BlinkCard"])
+              VGSAnalyticsClient.shared.capture(
+                form.formAnalyticsDetails,
+                event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.ok, scannerType: VGSAnalyticsScannerType.blinkCard))
             }
           }
         }
@@ -104,7 +107,7 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
   
   /// When user tap close button.
   func blinkCardOverlayViewControllerDidTapClose(_ blinkCardOverlayViewController: MBCBlinkCardOverlayViewController) {
-    VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "BlinkCard"])
+    VGSAnalyticsClient.shared.capture(event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.canceled, scannerType: VGSAnalyticsScannerType.blinkCard))
     delegate?.userDidCancelScan()
   }
   

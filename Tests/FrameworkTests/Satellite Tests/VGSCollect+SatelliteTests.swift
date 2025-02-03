@@ -59,15 +59,11 @@ class VGSCollectSatelliteTests: VGSCollectBaseTestCase {
 			// Test init with enum.
 			let collect1 = VGSCollect(id: tenantID, environment: .sandbox, hostname: config.hostname, satellitePort: config.port)
 
-			XCTAssertTrue(collect1.formAnalyticsDetails.isSatelliteMode == true, "\(outputText) should produce *satellite* mode in analytics")
-
 			let url1 = collect1.apiClient.baseURL?.absoluteString ?? ""
 			XCTAssertTrue(url1 == config.url.absoluteString, "\(outputText) - enum init produced produced: \(url1)")
 
 			// Test init with String environment.
 			let collect2 = VGSCollect(id: tenantID, environment: config.environment, hostname: config.hostname, satellitePort: config.port)
-
-			XCTAssertTrue(collect2.formAnalyticsDetails.isSatelliteMode == true, "\(outputText) should produce *satellite* mode in analytics")
 
 			let url2 = collect2.apiClient.baseURL?.absoluteString ?? ""
 			XCTAssertTrue(url2 == config.url.absoluteString, "\(outputText) - string init produced produced: \(url2)")
@@ -100,15 +96,11 @@ class VGSCollectSatelliteTests: VGSCollectBaseTestCase {
 			// Test init with enum.
 			let collect1 = VGSCollect(id: tenantID, environment: .live, hostname: config.hostname, satellitePort: config.port)
 
-			XCTAssertTrue(collect1.formAnalyticsDetails.isSatelliteMode == false, "\(outputText) should NOT produce *satellite* mode in analytics")
-
 			let url1 = collect1.apiClient.baseURL?.absoluteString ?? ""
 			XCTAssertTrue(url1 == config.url.absoluteString, "\(outputText) - produced: \(url1)")
 
 			// Test init with String environment.
 			let collect2 = VGSCollect(id: tenantID, environment: config.environment, hostname: config.hostname, satellitePort: config.port)
-
-			XCTAssertTrue(collect2.formAnalyticsDetails.isSatelliteMode == false, "\(outputText) should NOT produce *satellite* mode in analytics")
 
 			let url2 = collect2.apiClient.baseURL?.absoluteString ?? ""
 			XCTAssertTrue(url2 == config.url.absoluteString, "\(outputText) - produced: \(url2)")

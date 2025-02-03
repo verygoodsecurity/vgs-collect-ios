@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import VGSClientSDKAnalytics
 
 class APIClient {
 
@@ -57,10 +58,13 @@ class APIClient {
 		let version = ProcessInfo.processInfo.operatingSystemVersion
 		let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
 
-		let trStatus = VGSAnalyticsClient.shared.shouldCollectAnalytics ? "default" : "none"
+    let source = VGSAnalyticsClient.Constants.Metadata.source
+    let medium = VGSAnalyticsClient.Constants.Metadata.medium
+    let trStatus = VGSAnalyticsClient.shared.shouldCollectAnalytics ? "default" : "none"
+    let sessionId = VGSAnalyticsSession.shared.id
 
 		return [
-			"vgs-client": "source=iosSDK&medium=vgs-collect&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(VGSAnalyticsClient.shared.vgsCollectSessionId)&tr=\(trStatus)"
+			"vgs-client": "source=\(source)&medium=\(medium)&content=\(Utils.vgsCollectVersion)&osVersion=\(versionString)&vgsCollectSessionId=\(sessionId)&tr=\(trStatus)"
 		]
 	}()
 
@@ -94,7 +98,6 @@ class APIClient {
 			}
 
 			// Use satellite URL and return.
-			self.formAnalyticDetails.isSatelliteMode = true
 			self.hostURLPolicy = .satelliteURL(satelliteURL)
 
 			let message = "Satellite has been configured successfully! Satellite URL is: \(satelliteURL.absoluteString)"
@@ -258,7 +261,7 @@ extension APIClient {
 						let event = VGSLogEvent(level: .info, text: text)
 						VGSCollectLogger.shared.forwardLogEvent(event)
 
-						VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .success, extraData: ["hostname": hostname])
+            VGSAnalyticsClient.shared.capture(strongSelf.formAnalyticDetails, event: VGSAnalyticsEvent.Cname(status: VGSAnalyticsStatus.ok, hostname: hostname, latency: nil))
 					}
 					return
 				} else {
@@ -279,7 +282,7 @@ extension APIClient {
 					let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 					VGSCollectLogger.shared.forwardLogEvent(event)
 
-					VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .failed, extraData: ["hostname": hostname])
+          VGSAnalyticsClient.shared.capture(strongSelf.formAnalyticDetails, event: VGSAnalyticsEvent.Cname(status: VGSAnalyticsStatus.failed, hostname: hostname, latency: nil))
 					return
 				}
 			}
