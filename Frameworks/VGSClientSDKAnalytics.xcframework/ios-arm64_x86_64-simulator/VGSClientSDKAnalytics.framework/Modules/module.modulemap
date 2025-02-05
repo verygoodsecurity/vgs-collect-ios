@@ -1,6 +1,0 @@
-framework module "VGSClientSDKAnalytics" {
-    umbrella header "VGSClientSDKAnalytics.h"
-
-    export *
-    module * { export * }
-}

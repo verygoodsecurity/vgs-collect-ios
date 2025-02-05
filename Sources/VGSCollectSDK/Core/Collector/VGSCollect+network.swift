@@ -5,7 +5,6 @@
 
 import Foundation
 import Combine
-import VGSClientSDKAnalytics
 
 // MARK: - Send data
 extension VGSCollect {
@@ -39,15 +38,7 @@ extension VGSCollect {
 				content.append(fieldMappingPolicy.analyticsName)
         if let error = validateStoredInputData() {
           
-          VGSAnalyticsClient.shared.capture(
-            self.formAnalyticsDetails,
-            event: VGSAnalyticsEvent.Request(
-              status: VGSAnalyticsStatus.failed,
-              code: Int32(error.code),
-              content: content,
-              upstream: VGSAnalyticsUpstream.custom
-            )
-          )
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content])
           
           block(.failure(error.code, nil, nil, error))
             return
@@ -55,16 +46,8 @@ extension VGSCollect {
 
         let body = mapFieldsToBodyJSON(with: fieldMappingPolicy, extraData: extraData)
 
-        VGSAnalyticsClient.shared.capture(
-          self.formAnalyticsDetails,
-          event: VGSAnalyticsEvent.Request(
-            status: VGSAnalyticsStatus.ok,
-            code: 200,
-            content: content,
-            upstream: VGSAnalyticsUpstream.custom
-          )
-        )
-    
+        VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
+      
         // Send request.
         apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
           
@@ -72,26 +55,10 @@ extension VGSCollect {
           if let strongSelf = self {
             switch response {
             case .success(let code, _, _):
-              VGSAnalyticsClient.shared.capture(
-                strongSelf.formAnalyticsDetails,
-                event: VGSAnalyticsEvent.Response(
-                  status: VGSAnalyticsStatus.ok,
-                  code: Int32(code),
-                  upstream: VGSAnalyticsUpstream.custom,
-                  errorMessage: nil
-                )
-              )
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content])
             case .failure(let code, _, _, let error):
               let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-              VGSAnalyticsClient.shared.capture(
-                strongSelf.formAnalyticsDetails,
-                event: VGSAnalyticsEvent.Response(
-                  status: VGSAnalyticsStatus.failed,
-                  code: Int32(code),
-                  upstream: VGSAnalyticsUpstream.custom,
-                  errorMessage: errorMessage
-                )
-              )
+              VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage])
             }
         }
         block(response)
@@ -130,15 +97,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileNotFound,
                                                         description: "File not selected or doesn't exist",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.capture(
-              self.formAnalyticsDetails,
-              event: VGSAnalyticsEvent.Request(
-                status: VGSAnalyticsStatus.failed,
-                code: Int32(error.code),
-                content: content,
-                upstream: VGSAnalyticsUpstream.custom
-              )
-            )
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -152,15 +111,7 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. Cannot convert to Data.",
                                                         extraInfo: [:]))
-            VGSAnalyticsClient.shared.capture(
-              self.formAnalyticsDetails,
-              event: VGSAnalyticsEvent.Request(
-                status: VGSAnalyticsStatus.failed,
-                code: Int32(error.code),
-                content: content,
-                upstream: VGSAnalyticsUpstream.custom
-              )
-            )
+            VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -177,15 +128,7 @@ extension VGSCollect {
                                                         extraInfo: [
                                                             "expectedSize": maxFileSizeInternalLimitInBytes,
                                                             "fileSize": "\(result.count)", "sizeUnits": "bytes"]))
-            VGSAnalyticsClient.shared.capture(
-              self.formAnalyticsDetails,
-              event: VGSAnalyticsEvent.Request(
-                status: VGSAnalyticsStatus.failed,
-                code: Int32(error.code),
-                content: content,
-                upstream: VGSAnalyticsUpstream.custom
-              )
-            )
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
             block(.failure(error.code, nil, nil, error))
             return
         }
@@ -200,29 +143,13 @@ extension VGSCollect {
                                  userInfo: VGSErrorInfo(key: VGSSDKErrorFileTypeNotSupported,
                                                         description: "File format is not supported. File is empty.",
                                                         extraInfo: [:]))
-          VGSAnalyticsClient.shared.capture(
-            self.formAnalyticsDetails,
-            event: VGSAnalyticsEvent.Request(
-              status: VGSAnalyticsStatus.failed,
-              code: Int32(error.code),
-              content: content,
-              upstream: VGSAnalyticsUpstream.custom
-            )
-          )
+          VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "content": content, "upstream": "custom"])
           block(.failure(error.code, nil, nil, error))
             return
         }
         // Make body.
         let body = mapStringKVOToDictionary(key: key, value: encodedData, separator: ".")
-        VGSAnalyticsClient.shared.capture(
-          self.formAnalyticsDetails,
-          event: VGSAnalyticsEvent.Request(
-            status: VGSAnalyticsStatus.ok,
-            code: 200,
-            content: content,
-            upstream: VGSAnalyticsUpstream.custom
-          )
-        )
+        VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content, "upstream": "custom"])
 
         // Send request.
         apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
@@ -231,26 +158,10 @@ extension VGSCollect {
             if let strongSelf = self {
               switch response {
               case .success(let code, _, _):
-                VGSAnalyticsClient.shared.capture(
-                  strongSelf.formAnalyticsDetails,
-                  event: VGSAnalyticsEvent.Response(
-                    status: VGSAnalyticsStatus.ok,
-                    code: Int32(code),
-                    upstream: VGSAnalyticsUpstream.custom,
-                    errorMessage: nil
-                  )
-                )
+                VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "content": content, "upstream": "custom"])
               case .failure(let code, _, _, let error):
                 let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-                VGSAnalyticsClient.shared.capture(
-                  strongSelf.formAnalyticsDetails,
-                  event: VGSAnalyticsEvent.Response(
-                    status: VGSAnalyticsStatus.failed,
-                    code: Int32(code),
-                    upstream: VGSAnalyticsUpstream.custom,
-                    errorMessage: errorMessage
-                  )
-                )
+                VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "content": content, "upstream": "custom"])
               }
           }
           block(response)
@@ -272,15 +183,7 @@ extension VGSCollect {
     
     // Check fields validation status
     if let error = validateStoredInputData() {
-      VGSAnalyticsClient.shared.capture(
-        self.formAnalyticsDetails,
-        event: VGSAnalyticsEvent.Request(
-          status: VGSAnalyticsStatus.failed,
-          code: Int32(error.code),
-          content: [],
-          upstream: VGSAnalyticsUpstream.tokenization
-        )
-      )
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "tokenization"])
       block(.failure(error.code, nil, nil, error))
       return
     }
@@ -293,15 +196,7 @@ extension VGSCollect {
     if tokenizableFields.count == 0 {
       let code = 200
       let responseBody = mapNotTokenizableFieldsToResponseBody(notTokenizableFields)
-      VGSAnalyticsClient.shared.capture(
-        self.formAnalyticsDetails,
-        event: VGSAnalyticsEvent.Response(
-          status: VGSAnalyticsStatus.ok,
-          code: Int32(code),
-          upstream: VGSAnalyticsUpstream.tokenization,
-          errorMessage: nil
-        )
-      )
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
       block(.success(code, responseBody, nil))
       return
     }
@@ -314,30 +209,14 @@ extension VGSCollect {
         switch response {
         case .success(let code, let data, let response):
           // Analytics
-          VGSAnalyticsClient.shared.capture(
-            strongSelf.formAnalyticsDetails,
-            event: VGSAnalyticsEvent.Response(
-              status: VGSAnalyticsStatus.ok,
-              code: Int32(code),
-              upstream: VGSAnalyticsUpstream.tokenization,
-              errorMessage: nil
-            )
-          )
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
           // Build response - combine tokenized data with not tokenized
           let responseBody = strongSelf.buildTokenizationResponseBody(data, tokenizedFields: tokenizableFields, notTokenizedFields: notTokenizableFields)
           block(.success(code, responseBody, response))
           return
         case .failure(let code, let data, let response, let error):
           let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-          VGSAnalyticsClient.shared.capture(
-            strongSelf.formAnalyticsDetails,
-            event: VGSAnalyticsEvent.Response(
-              status: VGSAnalyticsStatus.failed,
-              code: Int32(code),
-              upstream: VGSAnalyticsUpstream.tokenization,
-              errorMessage: errorMessage
-            )
-          )
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "tokenization"])
           block(.failure(code, data, response, error))
           return
         }

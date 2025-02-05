@@ -59,10 +59,6 @@ let package = Package(
             name: "VGSBlinkCardCollector",
             dependencies: ["VGSCollectSDK",
                       .product(name: "BlinkCard", package: "BlinkCard")],
-            path: "Sources/VGSBlinkCardCollector/"),
-        .binaryTarget(
-                    name: "analytics",
-                    path: "./Frameworks/VGSClientSDKAnalytics.xcframework"
-                )
+            path: "Sources/VGSBlinkCardCollector/")
 		]
 )

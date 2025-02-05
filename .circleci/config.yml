@@ -20,15 +20,6 @@ jobs:
           command: >
             gem install xcov
       - run:
-          name: Install Android SDK
-          command: |
-            brew install --cask android-commandlinetools
-            yes | sdkmanager --licenses || true
-            echo "sdk.dir=/opt/homebrew/share/android-commandlinetools" >> local.properties
-      - run:
-          name: Fetch analytics submodule
-          command: git submodule init && git submodule update
-      - run:
           name: Run Tests iOS 17
           command: >
             cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' -enableCodeCoverage YES -testPlan FrameworkTests

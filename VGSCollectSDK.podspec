@@ -19,8 +19,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
   spec.default_subspec = 'Core'
-  
-  spec.vendored_frameworks = 'Frameworks/VGSClientSDKAnalytics.xcframework'
 
   spec.subspec 'Core' do |core|
   #set as default podspec to prevent from downloading additional modules

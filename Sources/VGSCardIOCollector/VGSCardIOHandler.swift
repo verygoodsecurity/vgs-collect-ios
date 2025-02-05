@@ -10,7 +10,6 @@ import Foundation
 import CardIO
 import UIKit
 import AVFoundation.AVCaptureDevice
-import VGSClientSDKAnalytics
 
 #if !COCOAPODS
 import VGSCollectSDK
@@ -49,8 +48,8 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     
     /// :nodoc:
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
-      VGSAnalyticsClient.shared.capture(event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.canceled, scannerType: VGSAnalyticsScannerType.cardIo))
-      delegate?.userDidCancelScan()
+      VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "CardIO"])
+        delegate?.userDidCancelScan()
     }
     
     /// :nodoc:
@@ -62,7 +61,7 @@ extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
 
         if !cardInfo.cardNumber.isEmpty, let textfield = cardIOdelegate.textFieldForScannedData(type: .cardNumber) {
             if let form = textfield.configuration?.vgsCollector {
-              VGSAnalyticsClient.shared.capture(form.formAnalyticsDetails, event: VGSAnalyticsEvent.Scan(status: VGSAnalyticsStatus.ok, scannerType: VGSAnalyticsScannerType.cardIo))
+              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
             }
             textfield.setText(cardInfo.cardNumber)
         }

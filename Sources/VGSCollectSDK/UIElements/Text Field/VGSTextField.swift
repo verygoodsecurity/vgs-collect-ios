@@ -6,7 +6,6 @@
 //  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
 //
 
-import VGSClientSDKAnalytics
 #if os(iOS)
 import UIKit
 #endif
@@ -237,7 +236,7 @@ public class VGSTextField: UIView {
     if let collector = configuration.vgsCollector {
       vgsCollector = collector
       collector.registerTextFields(textField: [self])
-      VGSAnalyticsClient.shared.capture(collector.formAnalyticsDetails, event: VGSAnalyticsEvent.FieldAttach(fieldType: fieldType.stringIdentifier, contentPath: nil, ui: nil))
+      VGSAnalyticsClient.shared.trackFormEvent(collector.formAnalyticsDetails, type: .fieldInit, extraData: ["field": fieldType.stringIdentifier])
     }
     if  let config = configuration as? VGSTextFieldTokenizationConfigurationProtocol {
       tokenizationParameters = config.tokenizationConfiguration
