@@ -32,7 +32,7 @@ Pod::Spec.new do |spec|
   spec.subspec 'BlinkCard' do |blinkcard|
       blinkcard.source_files  = "Sources/VGSBlinkCardCollector", "Sources/VGSBlinkCardCollector/**/*.{swift}"
       blinkcard.dependency "VGSCollectSDK/Core"
-      blinkcard.dependency "MBBlinkCard", "2.10.0"
+      blinkcard.dependency "MBBlinkCard", "2.10.1"
       blinkcard.ios.deployment_target = "13.0"
   end
   
