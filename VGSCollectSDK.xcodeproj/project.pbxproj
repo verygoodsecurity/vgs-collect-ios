@@ -34,6 +34,7 @@
 		03B10C1028E31B74009B409B /* VGSBlinkCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE728E2E36E009B409B /* VGSBlinkCardController.swift */; };
 		03B10C1128E31B8F009B409B /* VGSBlinkCardCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */; };
+		03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
 		32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */; };
@@ -256,6 +257,7 @@
 		03B10BF528E30891009B409B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSBlinkCardCollector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableInitializer.swift; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectLogLevel.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				039AB3492B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift */,
 				039AB34B2B5EBB950048CF15 /* VGSCVCTextFieldRepresentable.swift */,
 				0310EBC82C6E240F00329345 /* VGSCardScanCoordinator.swift */,
+				03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */,
 			);
 			path = SwiftUIElements;
 			sourceTree = "<group>";
@@ -1613,6 +1616,7 @@
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				32C894DD256D4AE400DC5648 /* UIDevice+extension.swift in Sources */,
 				033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */,
+				03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */,
 				32093D7E25CD9F88006CD242 /* VGSCollectRequestLogger.swift in Sources */,
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				A08DA9F329F1B03A00DA62A5 /* VGSDateTokenizationConfiguration.swift in Sources */,

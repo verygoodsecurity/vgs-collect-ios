@@ -16,7 +16,7 @@ import VGSCollectSDK
 #endif
 
 /// UIViewControllerRepresentable responsible for managing `BlinkCard` scanner.
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable {
   
   public typealias UIViewControllerType = UIViewController
