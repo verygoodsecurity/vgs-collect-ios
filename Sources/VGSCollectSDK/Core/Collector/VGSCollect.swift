@@ -19,7 +19,7 @@ public class VGSCollect {
     internal let tenantId: String
 
 	  /// :nodoc: Form analytics details.
-    internal (set) public var formAnalyticsDetails: VGSFormAnanlyticsDetails
+    internal(set) public var formAnalyticsDetails: VGSFormAnanlyticsDetails
   
     /// Max file size limit by proxy. Is static and can't be changed!
     internal let maxFileSizeInternalLimitInBytes = 24_000_000

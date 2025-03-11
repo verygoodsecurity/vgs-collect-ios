@@ -80,25 +80,11 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
       let vgsTextField = VGSCVCTextField()
       vgsTextField.configuration = configuration
       vgsTextField.delegate = context.coordinator
-      vgsTextField.textAlignment = textAlignment
-      vgsTextField.autocorrectionType = autocorrectionType
-      vgsTextField.autocapitalizationType = autocapitalizationType
-      vgsTextField.spellCheckingType = spellCheckingType
-      vgsTextField.padding = textFieldPadding
-      vgsTextField.textAlignment = textAlignment
-      vgsTextField.clearButtonMode = clearButtonMode
-      vgsTextField.isSecureTextEntry = isSecureTextEntry
-      vgsTextField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory
-      vgsTextField.keyboardAccessoryView = keyboardAccessoryView
-      vgsTextField.textFieldAccessibilityLabel = textFieldAccessibilityLabel
       vgsTextField.cvcIconSize = cvcIconSize
       vgsTextField.cvcIconLocation = cvcIconLocation
       vgsTextField.cvcIconSource = cvcIconSource
-      if let color = borderColor {vgsTextField.borderColor = color}
-      if let lineWidth = bodrerWidth {vgsTextField.borderWidth = lineWidth}
-      if !attributedPlaceholder.isNilOrEmpty { vgsTextField.attributedPlaceholder = attributedPlaceholder }
-      if !placeholder.isNilOrEmpty { vgsTextField.placeholder = placeholder}
-      cardScanCoordinator?.registerTextField(vgsTextField)
+      /// Default config
+      VGSTextFieldRepresentableInitializer.configure(vgsTextField, representable: self)
       vgsTextField.statePublisher
               .receive(on: DispatchQueue.main)
               .sink { newState in
