@@ -23,7 +23,7 @@ class APIClient {
 	private let vaultUrl: URL?
 
 	/// Form analytics details.
-	private (set) internal var formAnalyticDetails: VGSFormAnanlyticsDetails
+	private(set) internal var formAnalyticDetails: VGSFormAnanlyticsDetails
 
 	/// Base URL.
 	internal var baseURL: URL? {

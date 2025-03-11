@@ -6,6 +6,22 @@
 	objectVersion = 55;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		03F42F722D79A1D300813F31 /* VGSCollectSDK_XCFramework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 03F42F732D79A1D300813F31 /* Build configuration list for PBXAggregateTarget "VGSCollectSDK_XCFramework" */;
+			buildPhases = (
+				03F42F762D79A23700813F31 /* Run Script */,
+			);
+			dependencies = (
+			);
+			name = VGSCollectSDK_XCFramework;
+			packageProductDependencies = (
+			);
+			productName = VGSCollectSDK_XCFramework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0306C3AB2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306C3AA2B4EE0B20099E45D /* VGSTextFieldRepresentable.swift */; };
 		0306C3AF2B5AF05D0099E45D /* VGSCardTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306C3AE2B5AF05D0099E45D /* VGSCardTextFieldRepresentable.swift */; };
@@ -34,6 +50,8 @@
 		03B10C1028E31B74009B409B /* VGSBlinkCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE728E2E36E009B409B /* VGSBlinkCardController.swift */; };
 		03B10C1128E31B8F009B409B /* VGSBlinkCardCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */; };
+		03F42F9F2D7F014E00813F31 /* BlinkCard.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */; };
+		03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
 		32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */; };
@@ -256,6 +274,8 @@
 		03B10BF528E30891009B409B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSBlinkCardCollector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = BlinkCard.xcframework; sourceTree = "<group>"; };
+		03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableInitializer.swift; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectLogLevel.swift; sourceTree = "<group>"; };
@@ -314,7 +334,6 @@
 		3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldTest.swift; sourceTree = "<group>"; };
 		32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTests.swift; sourceTree = "<group>"; };
 		32C894DC256D4AE400DC5648 /* UIDevice+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+extension.swift"; sourceTree = "<group>"; };
-		32CFC72424EBF3B500457B17 /* CardScan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardScan.framework; path = Carthage/Build/iOS/CardScan.framework; sourceTree = "<group>"; };
 		32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFileInfo.swift; sourceTree = "<group>"; };
 		32EFFCFF2510D97B007F4DA2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		32F23A6C24B60E1100E389F7 /* VGSValidationRuleLengthMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSValidationRuleLengthMatch.swift; sourceTree = "<group>"; };
@@ -442,6 +461,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F42F9F2D7F014E00813F31 /* BlinkCard.xcframework in Frameworks */,
 				03B10C0228E31B1A009B409B /* VGSCollectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +519,7 @@
 				039AB3492B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift */,
 				039AB34B2B5EBB950048CF15 /* VGSCVCTextFieldRepresentable.swift */,
 				0310EBC82C6E240F00329345 /* VGSCardScanCoordinator.swift */,
+				03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */,
 			);
 			path = SwiftUIElements;
 			sourceTree = "<group>";
@@ -755,8 +776,8 @@
 		32CFC72324EBF3B500457B17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */,
 				326FFB0524F90D920024A4F9 /* CardIO.framework */,
-				32CFC72424EBF3B500457B17 /* CardScan.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1389,6 +1410,9 @@
 				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = VGS;
 				TargetAttributes = {
+					03F42F722D79A1D300813F31 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					326FFAF124F904430024A4F9 = {
 						CreatedOnToolsVersion = 11.6;
 						LastSwiftMigration = 1160;
@@ -1424,6 +1448,7 @@
 				326FFAF124F904430024A4F9 /* VGSCardIOCollector */,
 				44AF14CD2616CCFC0055CD91 /* VGSCardIOCollectorTests */,
 				03B10BF728E31B1A009B409B /* VGSBlinkCardCollector */,
+				03F42F722D79A1D300813F31 /* VGSCollectSDK_XCFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -1545,6 +1570,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		03F42F762D79A23700813F31 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nset -e # Exit on error\n\nFRAMEWORK_NAME=\"VGSCollectSDK\" # Your main framework name\nOUTPUT_DIR=\"./build\"\nCHECKSUM_FILE=\"./VGSCollectSDK-checksum.txt\"  # Path to the checksum file\n\nmkdir -p \"${OUTPUT_DIR}\"\n\n# Build for iOS Simulator\nxcodebuild archive \\\n-scheme VGSCollectSDK \\\n-sdk iphonesimulator \\\n-archivePath \"${BUILD_DIR}/VGSCollectSDK-iphonesimulator.xcarchive\" \\\nSKIP_INSTALL=NO \\\nBUILD_LIBRARY_FOR_DISTRIBUTION=YES \\\n| xcpretty\n\n# Build for iOS Device\nxcodebuild archive \\\n-scheme VGSCollectSDK \\\n-sdk iphoneos \\\n-archivePath \"${BUILD_DIR}/VGSCollectSDK-iphoneos.xcarchive\" \\\nSKIP_INSTALL=NO \\\nBUILD_LIBRARY_FOR_DISTRIBUTION=YES \\\n| xcpretty\n\nxcodebuild -create-xcframework \\\n-framework \"${BUILD_DIR}/VGSCollectSDK-iphonesimulator.xcarchive/Products/Library/Frameworks/VGSCollectSDK.framework\" \\\n-framework \"${BUILD_DIR}/${FRAMEWORK_NAME}-iphoneos.xcarchive/Products/Library/Frameworks/VGSCollectSDK.framework\" \\\n-output \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.xcframework\"\n\n# --- ZIP, Checksum, and File Update ---\n\n# 1. Create the ZIP archive using ditto\nditto -c -k --keepParent \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.xcframework\" \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.xcframework.zip\"\n\n# 2. Calculate the SHA-256 checksum\nCHECKSUM=$(shasum -a 256 \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.xcframework.zip\" | awk '{print $1}')\n\n# 3. Write the checksum to the checksum file\necho \"${CHECKSUM}\" > \"${CHECKSUM_FILE}\"\n\n# 4.  (Optional) Print the checksum to the console for easy copying\necho \"Checksum: ${CHECKSUM}\"\n\n# --- End of ZIP/Checksum section ---\n\n# Open the output directory\nopen \"${OUTPUT_DIR}\"\n";
+		};
 		32C89470256C34EC00DC5648 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1562,7 +1605,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/usr/local/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1613,6 +1656,7 @@
 				FD1B44662327D9B0009AA04A /* VGSTextField+state.swift in Sources */,
 				32C894DD256D4AE400DC5648 /* UIDevice+extension.swift in Sources */,
 				033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */,
+				03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */,
 				32093D7E25CD9F88006CD242 /* VGSCollectRequestLogger.swift in Sources */,
 				FD3C01C423AFCEEE0096B4A4 /* Enums.swift in Sources */,
 				A08DA9F329F1B03A00DA62A5 /* VGSDateTokenizationConfiguration.swift in Sources */,
@@ -1811,7 +1855,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSBlinkCardCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1840,10 +1884,28 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSBlinkCardCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		03F42F742D79A1D300813F31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4445Y664U5;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		03F42F752D79A1D300813F31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4445Y664U5;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1954,6 +2016,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2004,7 +2067,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.16.5;
+				MARKETING_VERSION = 1.16.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2022,6 +2085,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2066,7 +2130,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.16.5;
+				MARKETING_VERSION = 1.16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2099,12 +2163,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16.5;
+				MARKETING_VERSION = 1.16.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2131,12 +2195,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16.5;
+				MARKETING_VERSION = 1.16.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2197,6 +2261,15 @@
 			buildConfigurations = (
 				03B10C0828E31B1A009B409B /* Debug */,
 				03B10C0928E31B1A009B409B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03F42F732D79A1D300813F31 /* Build configuration list for PBXAggregateTarget "VGSCollectSDK_XCFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03F42F742D79A1D300813F31 /* Debug */,
+				03F42F752D79A1D300813F31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 /// :nodoc:
 public class VGSCardScanCoordinator: ObservableObject {
     private weak var textField: VGSTextField?
@@ -22,7 +22,7 @@ public class VGSCardScanCoordinator: ObservableObject {
         textField?.setText(text)
     }
 }
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 /// :nodoc:
 public extension VGSCardScanCoordinator {
   func trackAnalyticsEvent(scannerType: String) {

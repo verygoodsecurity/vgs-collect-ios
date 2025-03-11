@@ -29,9 +29,6 @@ class CustomPaymentCardsViewController: UIViewController {
         didSet { consoleLabel.text = consoleMessage }
     }
     
-    // Init CardIO Scan controller
-    var scanController = VGSCardIOScanController()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,9 +39,6 @@ class CustomPaymentCardsViewController: UIViewController {
         vgsCollect.customHeaders = [
           "custom_header": "some custom data"
         ]
-
-        // set VGSCardIOScanDelegate
-        scanController.delegate = self
 
         // Observing text fields. The call back return all textfields with updated states. You also can you VGSTextFieldDelegate
         vgsCollect.observeStates = { [weak self] textFields in
@@ -180,11 +174,6 @@ class CustomPaymentCardsViewController: UIViewController {
         }
     }
     
-    // Start CardIO scanning
-    @IBAction func scanAction(_ sender: Any) {
-        scanController.presentCardScanner(on: self, animated: true, completion: nil)
-    }
-    
     // Upload data from TextFields to VGS
     @IBAction func uploadAction(_ sender: Any) {
       // hide kayboard
@@ -228,35 +217,6 @@ class CustomPaymentCardsViewController: UIViewController {
           return
         }
       }
-    }
-}
-
-extension CustomPaymentCardsViewController: VGSCardIOScanControllerDelegate {
-    
-    // When user press Done button on CardIO screen
-    func userDidFinishScan() {
-        scanController.dismissCardScanner(animated: true, completion: {
-            // add actions on scan controller dismiss completion
-        })
-    }
-    
-    // When user press Cancel button on CardIO screen
-    func userDidCancelScan() {
-        scanController.dismissCardScanner(animated: true, completion: nil)
-    }
-    
-    // Asks VGSTextField where scanned data with type need to be set.
-    func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
-        switch type {
-        case .expirationDateLong:
-            return expCardDate
-        case .cvc:
-            return cvcCardNum
-        case .cardNumber:
-            return cardNumber
-        default:
-            return nil
-        }
     }
 }
 
