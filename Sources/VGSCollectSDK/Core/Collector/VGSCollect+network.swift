@@ -167,6 +167,60 @@ extension VGSCollect {
           block(response)
         }
     }
+  /**
+   This function sends input data for tokenization to API v2 https://www.verygoodsecurity.com/docs/api/vault#description/introduction
+   - Parameters:
+      - completion: response completion block, returns `VGSTokenizationResponse`.
+   - Note:
+      - Requires <authToken> in headers!
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func tokenize(completion block: @escaping (VGSTokenizationResponse) -> Void) {
+    // Default request params
+    let path = "aliases"
+    
+    // Check fields validation status
+    if let error = validateStoredInputData() {
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "tokenization"])
+      block(.failure(error.code, nil, nil, error))
+      return
+    }
+
+    // TextField attached to collect by tokenization protocol implementation
+    let tokenizableFields = storage.tokenizableTextFields
+    let notTokenizableFields = storage.notTokenizibleTextFields
+    
+    // Check if there are fields for tokenization. Return data from not tokenizable fields.
+    if tokenizableFields.count == 0 {
+      let code = 200
+      let responseBody = mapNotTokenizableFieldsToResponseBody(notTokenizableFields)
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
+      block(.success(code, responseBody, nil))
+      return
+    }
+      
+    // Get tokenized textfields params as JSON body
+    let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
+    // Send request to vault api.
+    apiClient.sendTokenizationRequest(path: path, value: tokenizationJSON) { [weak self](response ) in
+      if let strongSelf = self {
+        switch response {
+        case .success(let code, let data, let response):
+          // Analytics
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "tokenization"])
+          // Build response - combine tokenized data with not tokenized
+          let responseBody = strongSelf.buildTokenizationResponseBody(data, tokenizedFields: tokenizableFields, notTokenizedFields: notTokenizableFields)
+          block(.success(code, responseBody, response))
+          return
+        case .failure(let code, let data, let response, let error):
+          let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "tokenization"])
+          block(.failure(code, data, response, error))
+          return
+        }
+      }
+    }
+  }
   
   /**
    Send tokenization request with data from VGSTextFields.
@@ -176,6 +230,7 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  @available(*, deprecated, message: "use -tokenize(:) func instead!")
   public func tokenizeData(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
     // Default request params
     let path = "tokens"
@@ -284,6 +339,7 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  @available(*, deprecated, message: "use -tokenize(:) func instead!")
   public func tokenizeData(routeId: String? = nil) async -> VGSTokenizationResponse {
     return await withCheckedContinuation { continuation in
       // NOTE:  We need to use main thread since data will be collected  from UI elements
@@ -294,6 +350,26 @@ extension VGSCollect {
       }
     }
   }
+  
+  /**
+   Asynchronously send tokenization request with data from VGSTextFields.
+   - Parameters:
+      - completion: response completion block, returns `VGSTokenizationResponse`.
+   - Note:
+      - Requires <authToken> in headers!
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func tokenize() async -> VGSTokenizationResponse {
+    return await withCheckedContinuation { continuation in
+      // NOTE:  We need to use main thread since data will be collected  from UI elements
+      DispatchQueue.main.async {
+        self.tokenize() {response in
+          continuation.resume(returning: response)
+        }
+      }
+    }
+  }
+  
 }
   
 // MARK: VGSCollect + Combine
@@ -351,8 +427,28 @@ extension VGSCollect {
    - Returns: A `Future` publisher that emits a single `VGSTokenizationResponse`.
 
    - Note:
-      Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+      - Requires <authToken> in headers!
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  public func tokenizePublisher(routeId: String? = nil) -> Future<VGSTokenizationResponse, Never> {
+    return Future { [weak self] completion in
+      self?.tokenize() { response in
+        completion(.success(response))
+      }
+    }
+  }
+  
+  /**
+   Send tokenization request with data from VGSTextFields to your organization vault using the Combine framework.
+   
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+   - Returns: A `Future` publisher that emits a single `VGSTokenizationResponse`.
+
+   - Note:
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  @available(*, deprecated, message: "use -tokenize(:) func instead!")
   public func tokenizeDataPublisher(routeId: String? = nil) -> Future<VGSTokenizationResponse, Never> {
     return Future { [weak self] completion in
       self?.tokenizeData(routeId: routeId) { response in

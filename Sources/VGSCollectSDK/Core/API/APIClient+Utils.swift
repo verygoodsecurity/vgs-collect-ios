@@ -13,7 +13,7 @@ internal extension APIClient {
 	// MARK: - Vault Url
 
 	/// Generates API URL with vault id, environment and data region.
-  static func buildVaultURL(tenantId: String, regionalEnvironment: String, routeId: String? = nil) -> URL? {
+  static func buildVaultURL(tenantId: String, regionalEnvironment: String, routeId: String? = nil, baseUrl: String = BASE_VAULT_URL) -> URL? {
 
 		// Check environment is valid.
 		if !VGSCollect.regionalEnironmentStringValid(regionalEnvironment) {
@@ -43,10 +43,10 @@ internal extension APIClient {
         return nil
       }
       // Build url with specifi route id.
-      strUrl = "https://" + tenantId + "-" + "\(routeId)" + "." + regionalEnvironment + ".verygoodproxy.com"
+      strUrl = "https://" + tenantId + "-" + "\(routeId)" + "." + regionalEnvironment + "." + baseUrl
     } else {
       // Build default url.
-      strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
+      strUrl = "https://" + tenantId + "." + regionalEnvironment + "." + baseUrl
     }
 
 		// Check vault url is valid.

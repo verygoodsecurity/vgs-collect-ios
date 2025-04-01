@@ -22,6 +22,8 @@ class CardsDataTokenizationViewController: UIViewController {
     var expCardDate = VGSExpDateTextField()
     var cvcCardNum = VGSCVCTextField()
     var cardHolderName = VGSTextField()
+    /// Tokenization API access token, should be provided from your backend. https://www.verygoodsecurity.com/docs/api/vault
+    let tokenizationAccessToken = "<your_tokenization_access_token>"
     
     var consoleMessage: String = "" {
         didSet { consoleLabel.text = consoleMessage }
@@ -148,9 +150,11 @@ class CardsDataTokenizationViewController: UIViewController {
       vgsCollect.textFields.forEach { textField in
         textField.borderColor = textField.state.isValid ? .lightGray : .red
       }
-
-      vgsCollect.tokenizeData { [weak self](response) in
-        
+      
+      /// Set tokenization access token. Usually your backend should be responsible for providing it.
+      vgsCollect.customHeaders = ["Authorization" : "Bearer \(tokenizationAccessToken)"]
+      /// Send tokenization request
+      vgsCollect.tokenize { [weak self](response) in
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
         case .success(_, let resultBody, _):

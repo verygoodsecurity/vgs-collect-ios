@@ -9,6 +9,10 @@
 import Foundation
 
 class APIClient {
+  /// Vault url
+  static let BASE_VAULT_URL = "verygoodproxy.com";
+  /// Tokenization v2 url
+  static let BASE_TOKENIZATION_URL = "vault-api.verygoodvault.com";
 
 	/// Additional custom headers.
 	var customHeader: HTTPHeaders?
@@ -21,7 +25,7 @@ class APIClient {
 
 	/// Vault URL.
 	private let vaultUrl: URL?
-
+  
 	/// Form analytics details.
 	private(set) internal var formAnalyticDetails: VGSFormAnanlyticsDetails
 
@@ -171,6 +175,16 @@ class APIClient {
 			}
 		}
 	}
+  // Send tokenization request
+  func sendTokenizationRequest(path: String, method: VGSCollectHTTPMethod = .post ,value: BodyData, completion block: ((_ response: VGSResponse) -> Void)?) {
+    guard var requestURL = APIClient.buildVaultURL(tenantId: vaultId, regionalEnvironment: environment, baseUrl: APIClient.BASE_TOKENIZATION_URL) else {
+      let invalidURLError = VGSError(type: .invalidConfigurationURL)
+      block?(.failure(invalidURLError.code, nil, nil, invalidURLError))
+      return
+    }
+    let url = requestURL.appendingPathComponent(path)
+    self.sendRequest(to: url, method: method, value: value, completion: block)
+  }
 
 	private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
 
