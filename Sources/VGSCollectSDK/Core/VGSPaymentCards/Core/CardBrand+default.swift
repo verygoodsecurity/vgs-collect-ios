@@ -52,13 +52,13 @@ extension VGSPaymentCards.CardBrand {
         case .amex:
             return [15]
         case .dinersClub:
-            return [14, 16]
+            return [14, 16, 17, 18, 19]
         case .discover:
-            return [16]
+            return [16, 17, 18, 19]
         case .unionpay:
             return [16, 17, 18, 19]
         case .jcb:
-            return [15, 16]
+            return [16, 17, 18, 19]
         case .mastercard:
             return [16]
         case .visaElectron:
@@ -109,7 +109,9 @@ extension VGSPaymentCards.CardBrand {
       case .amex:
         return "#### ###### #####"
       case .dinersClub:
-        return "#### ###### ######"
+        return "#### ###### #########"
+      case .mastercard, .dankort, .forbrugsforeningen, .elo:
+        return "#### #### #### ####"
       default:
         return "#### #### #### #### ###"
       }
