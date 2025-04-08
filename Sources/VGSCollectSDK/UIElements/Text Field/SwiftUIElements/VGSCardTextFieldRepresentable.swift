@@ -7,7 +7,8 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
-public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFieldRepresentableProtocol, VGSCardTextFieldEditingRepresentableProtocol {
+public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
+
     /// A class responsible for configuration VGSCardTextFieldRepresentable.
     var configuration: VGSConfiguration
     /// `VGSCardTextFieldRepresentable` text font.
@@ -22,9 +23,6 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var autocorrectionType: UITextAutocorrectionType = .default
     /// Textfield spell checking type. Default is `UITextSpellCheckingType.default`.
     var spellCheckingType: UITextSpellCheckingType = .default
-   
-//    /// The natural size for the Textfield, considering only properties of the view itself.
-//    override var intrinsicContentSize: CGSize
     /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
     var textFieldPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     /// The technique to use for aligning the text.
@@ -41,31 +39,28 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
-  /// Coordinates connection between scan data and text field.
+    /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
+  
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
-//    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
-//    var textFieldIsAccessibilityElement: Bool
   
     // MARK: - TextField interaction callbacks
-    /// `VGSCardTextFieldRepresentable` did become first responder.
-    var onEditingStart: (() -> Void)?
-    /// `VGSCardTextFieldRepresentable` input changed.
-    var onCharacterChange: (() -> Void)?
-    /// `VGSCardTextFieldRepresentable` did resign first responder.
-    var onEditingEnd: (() -> Void)?
-    /// Returns new `VGSTextFieldState` object on change.
-    var onStateChange: ((VGSCardState) -> Void)?
-    
+    public typealias StateType = VGSCardState
+    /// `VGSTextFieldRepresentable` callback events. Return state object.
+    public var onEditingEvent: ((VGSTextFieldEditingEvent<VGSCardState>) -> Void)?
+    /// Returns new `VGSCardState` object on change.
+    public var onStateChange: ((VGSCardState) -> Void)?
+    /// Base TextFieldRepresentable Coordinator type
+    public typealias Coordinator = VGSTextFieldRepresentableCoordinator<VGSCardTextFieldRepresentable>
     // MARK: - Card TextField specific attributes
     /// Card brand icon size.
     var cardIconSize = CGSize(width: 45, height: 45)
     /// Card brand icon positions enum.
     var cardIconLocation = VGSCardTextField.CardIconLocation.right
-    // MARK: - Initialization
     
+    // MARK: - Initialization
     /// Initialization
     ///
     /// - Parameters:
@@ -74,33 +69,25 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       self.configuration = configuration
     }
   
+    public func makeCoordinator() -> Coordinator {
+      return VGSTextFieldRepresentableCoordinator(self)
+    }
+  
     public func makeUIView(context: Context) -> VGSCardTextField {
         let vgsTextField = VGSCardTextField()
         vgsTextField.configuration = configuration
-        vgsTextField.delegate = context.coordinator
         vgsTextField.cardIconSize = cardIconSize
         vgsTextField.cardIconLocation = cardIconLocation
         /// Default config
         VGSTextFieldRepresentableInitializer.configure(vgsTextField, representable: self)
-        vgsTextField.statePublisher
-                .receive(on: DispatchQueue.main)
-                .compactMap { state -> VGSCardState? in
-                  return state as? VGSCardState
-                }
-                .sink { newState in
-                  self.onStateChange?(newState)
-                }
-                .store(in: &context.coordinator.cancellables)
+        vgsTextField.delegate = context.coordinator
         return vgsTextField
     }
 
     public func updateUIView(_ uiView: VGSCardTextField, context: Context) {
+      context.coordinator.parent = self
       if let color = borderColor {uiView.borderColor = color}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
-    }
-
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(self)
     }
   
     // MARK: - Configuration methods
@@ -201,53 +188,16 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     }
   
     // MARK: - Handle editing events
-    /// Handle `VGSCardTextFieldRepresentable` did become first responder.
-    public func onEditingStart(_ action: (() -> Void)?) -> VGSCardTextFieldRepresentable {
-      var newRepresentable = self
-      newRepresentable.onEditingStart = action
-      return newRepresentable
-    }
-    /// Handle `VGSCardTextFieldRepresentable` input changed.
-    public func onCharacterChange(_ action: (() -> Void)?) -> VGSCardTextFieldRepresentable {
-      var newRepresentable = self
-      newRepresentable.onCharacterChange = action
-      return newRepresentable
-    }
-    /// Handle `VGSCardTextFieldRepresentable` did resign first responder.
-    public func onEditingEnd(_ action: (() -> Void)?) -> VGSCardTextFieldRepresentable {
-      var newRepresentable = self
-      newRepresentable.onEditingEnd = action
-      return newRepresentable
+    /// Handle  TextField Representable  editing events.
+    public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
+        var newRepresentable = self
+        newRepresentable.onEditingEvent = action
+        return newRepresentable
     }
     /// Handle `VGSTextFieldState` changes.
     public func onStateChange(_ action: ((VGSCardState) -> Void)?) -> VGSCardTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.onStateChange = action
       return newRepresentable
-    }
-    
-    public class Coordinator: NSObject, VGSTextFieldDelegate {
-      var parent: VGSCardTextFieldRepresentable
-      var cancellables = Set<AnyCancellable>()
-
-      init(_ parent: VGSCardTextFieldRepresentable) {
-          self.parent = parent
-      }
-
-      public func vgsTextFieldDidBeginEditing(_ textField: VGSTextField) {
-        parent.onEditingStart?()
-      }
-      
-      public func vgsTextFieldDidChange(_ textField: VGSTextField) {
-        parent.onCharacterChange?()
-      }
-      
-      public func vgsTextFieldDidEndEditing(_ textField: VGSTextField) {
-        parent.onEditingEnd?()
-      }
-      
-      public func vgsTextFieldDidEndEditingOnReturn(_ textField: VGSTextField) {
-        parent.onEditingEnd?()
-      }
     }
 }

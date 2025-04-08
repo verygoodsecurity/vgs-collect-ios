@@ -41,7 +41,7 @@ public struct VGSCardIOViewControllerRepresentable: UIViewControllerRepresentabl
     }
   
     public func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+      return Coordinator(self)
     }
   
     public class Coordinator: NSObject, CardIOPaymentViewControllerDelegate {
