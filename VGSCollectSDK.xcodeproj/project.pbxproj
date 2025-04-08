@@ -52,6 +52,7 @@
 		03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */; };
 		03F42F9F2D7F014E00813F31 /* BlinkCard.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */; };
 		03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */; };
+		03FB86762DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */; };
 		32059CD02417E02E003E9481 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CCF2417E02E003E9481 /* Utils.swift */; };
 		32059CD42417EACC003E9481 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32059CD22417EACC003E9481 /* UtilsTest.swift */; };
 		32093D7925CD9F88006CD242 /* VGSCollectLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */; };
@@ -276,6 +277,7 @@
 		03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = BlinkCard.xcframework; sourceTree = "<group>"; };
 		03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableInitializer.swift; sourceTree = "<group>"; };
+		03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableCoordinator.swift; sourceTree = "<group>"; };
 		32059CCF2417E02E003E9481 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		32059CD22417EACC003E9481 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		32093D7325CD9F88006CD242 /* VGSCollectLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCollectLogLevel.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				039AB34B2B5EBB950048CF15 /* VGSCVCTextFieldRepresentable.swift */,
 				0310EBC82C6E240F00329345 /* VGSCardScanCoordinator.swift */,
 				03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */,
+				03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */,
 			);
 			path = SwiftUIElements;
 			sourceTree = "<group>";
@@ -1704,6 +1707,7 @@
 				3281541325013EA1004E9AD4 /* VGSAnalyticsClient.swift in Sources */,
 				035179A52859BB7D00394BFC /* VGSExpDateTokenizationConfiguration.swift in Sources */,
 				3262B2FF23F5A3B300D4A73D /* VGSDocumentPicker.swift in Sources */,
+				03FB86762DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift in Sources */,
 				FD05F9472316CE5A000EAF52 /* Storage.swift in Sources */,
 				039AB3482B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift in Sources */,
 				449C8A4025F2521900BE009F /* VGSFieldNameSubscriptType.swift in Sources */,
@@ -1927,6 +1931,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1956,6 +1961,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2067,7 +2073,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.16.6;
+				MARKETING_VERSION = 1.17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2130,7 +2136,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.16.6;
+				MARKETING_VERSION = 1.17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2163,7 +2169,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16.6;
+				MARKETING_VERSION = 1.17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2195,7 +2201,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.16.6;
+				MARKETING_VERSION = 1.17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2220,6 +2226,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2243,6 +2250,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

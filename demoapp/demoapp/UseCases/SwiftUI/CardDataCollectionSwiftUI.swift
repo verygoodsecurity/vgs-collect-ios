@@ -60,12 +60,22 @@ struct CardDataCollectionSwiftUI: View {
         VGSTextFieldRepresentable(configuration: holderNameConfiguration)
           .placeholder("Cardholder Name")
           .cardScanCoordinator(scanedDataCoordinators[.name]!)
-          .onEditingStart {
-            print("- Cardholder name onEditingStart")
+          /// Track field editing events and field State
+          .onEditingEvent { event in
+              switch event {
+              case .didBegin(let state):
+                print("Editing began with state: \(state.description)")
+              case .didChange(let state):
+                  print("Editing changed with state: \(state.description)")
+              case .didEnd(let state):
+                  print("Editing ended with state: \(state.description)")
+              }
           }
-          .onEditingEnd {
-            print("- Cardholder name onEditingEnd")
-          }
+          /// Track field State only
+          .onStateChange({ newState in
+            holderTextFieldState = newState
+            print("Field state changed: \(newState.description)")
+          })
           .textFieldPadding(paddings)
           .border(color: (holderTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
           .frame(height: 54)
@@ -74,7 +84,7 @@ struct CardDataCollectionSwiftUI: View {
           .cardScanCoordinator(scanedDataCoordinators[.cardNumber]!)
           .onStateChange { newState in
             cardTextFieldState = newState
-            print(newState.isValid)
+            print(newState.description)
           }
           .cardIconSize(CGSize(width: 40, height: 20))
           .cardIconLocation(.right)
@@ -87,6 +97,10 @@ struct CardDataCollectionSwiftUI: View {
             .cardScanCoordinator(scanedDataCoordinators[.expirationDate]!)
             .textFieldPadding(paddings)
             .border(color: (expDateTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
+            .onStateChange { newState in
+              expDateTextFieldState = newState
+              print(newState.description)
+            }
             .frame(height: 54)
           VGSCVCTextFieldRepresentable(configuration: cvcConfiguration)
             .placeholder("CVC")
@@ -95,6 +109,10 @@ struct CardDataCollectionSwiftUI: View {
             .cvcIconSize(CGSize(width: 30, height: 20))
             .textFieldPadding(paddings)
             .border(color: (cvcTextFieldState?.isValid ?? true) ? validColor : invalidColor, lineWidth: 1)
+            .onStateChange { newState in
+              cvcTextFieldState = newState
+              print(newState.description)
+            }
             .frame(height: 54)
         }
         HStack(spacing: 20) {

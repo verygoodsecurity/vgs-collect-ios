@@ -6,7 +6,7 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
-public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFieldRepresentableProtocol, VGSTextFieldEditingRepresentableProtocol {
+public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   /// A class responsible for configuration VGSDateTextFieldRepresentable.
   var configuration: VGSDateConfiguration
   /// `VGSDateTextFieldRepresentable` text font.
@@ -21,9 +21,6 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
   var autocorrectionType: UITextAutocorrectionType = .default
   /// Textfield spell checking type. Default is `UITextSpellCheckingType.default`.
   var spellCheckingType: UITextSpellCheckingType  = .default
- 
-//    /// The natural size for the Textfield, considering only properties of the view itself.
-//    override var intrinsicContentSize: CGSize
   /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
   var textFieldPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   /// The technique to use for aligning the text.
@@ -42,21 +39,19 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
   var bodrerWidth: CGFloat?
   /// Coordinates connection between scan data and text field.
   var cardScanCoordinator: VGSCardScanCoordinator?
+  
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
   var textFieldAccessibilityLabel: String?
-//    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
-//    var textFieldIsAccessibilityElement: Bool
-
-  // MARK: - TextField editing callbacks
-  /// `VGSDateTextFieldRepresentable` did become first responder.
-  public var onEditingStart: (() -> Void)?
-  /// `VGSDateTextFieldRepresentable` input changed.
-  public var onCharacterChange: (() -> Void)?
-  /// `VGSDateTextFieldRepresentable` did resign first responder.
-  public var onEditingEnd: (() -> Void)?
-  /// Returns new `VGSTextFieldState` object on change.
+  
+  // MARK: - TextField interaction callbacks
+  /// The state type is VGSTextFieldState.
+  public typealias StateType = VGSTextFieldState
+  /// `VGSTextFieldRepresentable` callback events. Return state object.
+  public var onEditingEvent: ((VGSTextFieldEditingEvent<VGSTextFieldState>) -> Void)?
   public var onStateChange: ((VGSTextFieldState) -> Void)?
+  /// Base TextFieldRepresentable Coordinator type
+  public typealias Coordinator = VGSTextFieldRepresentableCoordinator<VGSDateTextFieldRepresentable>
   
   // MARK: - ExpDate TextField specific attributes
   /// UIPickerView Month Label format. Default is `.shortSymbols`.
@@ -70,28 +65,25 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
   public init(configuration: VGSDateConfiguration) {
     self.configuration = configuration
   }
-
+  
+  public func makeCoordinator() -> Coordinator {
+    return VGSTextFieldRepresentableCoordinator(self)
+  }
+  
   public func makeUIView(context: Context) -> VGSDateTextField {
       let vgsTextField = VGSDateTextField()
       vgsTextField.configuration = configuration
-      vgsTextField.delegate = context.coordinator
       vgsTextField.monthPickerFormat = monthPickerFormat
       /// Default config
       VGSTextFieldRepresentableInitializer.configure(vgsTextField, representable: self)
-      vgsTextField.statePublisher
-              .receive(on: DispatchQueue.main)
-              .sink { newState in
-                  self.onStateChange?(newState)
-              }
-              .store(in: &context.coordinator.cancellables)
+      vgsTextField.delegate = context.coordinator
       return vgsTextField
   }
 
   public func updateUIView(_ uiView: VGSDateTextField, context: Context) {
-  }
-
-  public func makeCoordinator() -> Coordinator {
-      Coordinator(self)
+      context.coordinator.parent = self
+      if let color = borderColor {uiView.borderColor = color}
+      if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
   }
 
   // MARK: - Configuration methods
@@ -182,53 +174,16 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
     return newRepresentable
   }
   // MARK: - Handle editing events
-  /// Handle `VGSDateTextFieldRepresentable` did become first responder.
-  public func onEditingStart(_ action: (() -> Void)?) -> VGSDateTextFieldRepresentable {
-    var newRepresentable = self
-    newRepresentable.onEditingStart = action
-    return newRepresentable
-  }
-  /// Handle `VGSDateTextFieldRepresentable` input changed.
-  public func onCharacterChange(_ action: (() -> Void)?) -> VGSDateTextFieldRepresentable {
-    var newRepresentable = self
-    newRepresentable.onCharacterChange = action
-    return newRepresentable
-  }
-  /// Handle `VGSDateTextFieldRepresentable` did resign first responder.
-  public func onEditingEnd(_ action: (() -> Void)?) -> VGSDateTextFieldRepresentable {
-    var newRepresentable = self
-    newRepresentable.onEditingEnd = action
-    return newRepresentable
+  /// Handle  TextField Representable  editing events.
+  public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
+      var newRepresentable = self
+      newRepresentable.onEditingEvent = action
+      return newRepresentable
   }
   /// Handle `VGSTextFieldState` changes.
   public func onStateChange(_ action: ((VGSTextFieldState) -> Void)?) -> VGSDateTextFieldRepresentable {
     var newRepresentable = self
     newRepresentable.onStateChange = action
     return newRepresentable
-  }
-  
-  public class Coordinator: NSObject, VGSTextFieldDelegate {
-    var parent: VGSDateTextFieldRepresentable
-    var cancellables = Set<AnyCancellable>()
-
-    init(_ parent: VGSDateTextFieldRepresentable) {
-        self.parent = parent
-    }
-
-    public func vgsTextFieldDidBeginEditing(_ textField: VGSTextField) {
-      parent.onEditingStart?()
-    }
-    
-    public func vgsTextFieldDidChange(_ textField: VGSTextField) {
-      parent.onCharacterChange?()
-    }
-    
-    public func vgsTextFieldDidEndEditing(_ textField: VGSTextField) {
-      parent.onEditingEnd?()
-    }
-    
-    public func vgsTextFieldDidEndEditingOnReturn(_ textField: VGSTextField) {
-      parent.onEditingEnd?()
-    }
   }
 }

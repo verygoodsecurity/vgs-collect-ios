@@ -74,7 +74,7 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
   }
     
   public func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        return Coordinator(self)
   }
   
   public func makeUIViewController(context: Context) -> UIViewController {

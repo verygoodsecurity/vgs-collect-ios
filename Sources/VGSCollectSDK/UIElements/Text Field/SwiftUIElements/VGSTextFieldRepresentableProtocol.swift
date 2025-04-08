@@ -45,27 +45,23 @@ internal protocol VGSTextFieldRepresentableProtocol {
   var cardScanCoordinator: VGSCardScanCoordinator? {get set}
 }
 
-/// A base set of optional methods to manage editing text in a text field object.
-internal protocol VGSTextFieldDelegateRepresentableProtocol {
-  /// TextField  did become first responder.
-  var onEditingStart: (() -> Void)? {get set}
-  /// TextField input changed.
-  var onCharacterChange: (() -> Void)? {get set}
-  /// TextField did resign first responder.
-  var onEditingEnd: (() -> Void)? {get set}
+/// `VGSTextFieldRepresentable` editing events.
+public enum VGSTextFieldEditingEvent<StateType> {
+    /// When did become first responder.
+    case didBegin(state: StateType)
+    /// When character changed.
+    case didChange(state: StateType)
+    /// When did resign first responder.
+    case didEnd(state: StateType)
 }
 
-/// A  set of optional methods to manage editing text and validation in a text field object.
-internal protocol VGSTextFieldEditingRepresentableProtocol: VGSTextFieldDelegateRepresentableProtocol {
-  /// Returns new `VGSTextFieldState` object on change.
-  var onStateChange: ((VGSTextFieldState) -> Void)? {get set}
-}
-
-// MARK: - VGSCardTextFieldRepresentable.
-/// A  set of optional methods to manage editing text and validation in a card  text field object.
-internal protocol VGSCardTextFieldEditingRepresentableProtocol: VGSTextFieldDelegateRepresentableProtocol {
-  /// Returns new `VGSTextFieldState` object on change.
-  var onStateChange: ((VGSCardState) -> Void)? {get set}
+/// `VGSTextFieldRepresentable` callbacks.
+public protocol VGSTextFieldRepresentableCallbacksProtocol {
+    associatedtype StateType
+    /// On editing events.
+    var onEditingEvent: ((VGSTextFieldEditingEvent<StateType>) -> Void)? { get set }
+    /// On state changes.
+    var onStateChange: ((StateType) -> Void)? { get }
 }
 
 internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
@@ -74,6 +70,7 @@ internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentab
   /// Card brand icon positions enum.
   var cardIconLocation: VGSCardTextField.CardIconLocation {get set}
 }
+
 // MARK: - VGSExpDateTextFieldRepresentable.
 internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
