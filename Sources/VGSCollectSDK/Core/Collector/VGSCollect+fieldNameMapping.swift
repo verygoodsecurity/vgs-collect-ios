@@ -140,9 +140,7 @@ internal extension VGSCollect {
   ///   - notTokenizableFields - an array of VGSTextField that should not be tokenized.
   /// - Returns: `JsonData?` to submit.
   func mapNotTokenizableFieldsToResponseBody(_ notTokenizableFields: [VGSTextField]) -> JsonData {
-      return notTokenizableFields.reduce(into: JsonData()) { (dict, element) in
-        dict[element.fieldName] = element.getOutputText()
-    }
+    return VGSCollect.mapFieldsDataToBody(from: notTokenizableFields)
   }
   
   // MARK: - Tokenization Request mappers
