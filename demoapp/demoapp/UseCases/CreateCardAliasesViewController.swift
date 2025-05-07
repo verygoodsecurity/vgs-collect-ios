@@ -1,5 +1,5 @@
 //
-//  CardsDataTokenizationViewController.swift
+//  CreateCardAliasesViewController.swift
 //  demoapp
 //
 
@@ -8,7 +8,7 @@ import VGSCollectSDK
 
 // swiftlint:disable all
 /// A class that demonstrates how to tokenize  data from VGSTextFields and upload it to VGS.
-class CardsDataTokenizationViewController: UIViewController {
+class CreateCardAliasesViewController: UIViewController {
     
     @IBOutlet weak var cardDataStackView: UIStackView!
     @IBOutlet weak var consoleStatusLabel: UILabel!
@@ -35,11 +35,10 @@ class CardsDataTokenizationViewController: UIViewController {
         setupUI()
         setupElementsConfiguration()
         
-        // set custom headers
-//        vgsCollect.customHeaders = [
-//          "Authorization": "Bearer \(accessToken)"
-//        ]
-      
+        // IMPORTANT: set access_token as custom header. Required for -createAliases() request
+        vgsCollect.customHeaders = [
+          "Authorization": "Bearer \(accessToken)"
+        ]
     
         // Observing text fields. The call back return all textfields with updated states.
         // You also can use VGSTextFieldDelegate instead.
@@ -61,7 +60,7 @@ class CardsDataTokenizationViewController: UIViewController {
 
       let view = self.view
       if UITestsMockedDataProvider.isRunningUITest {
-        view?.accessibilityIdentifier = "CardsDataTokenizationViewController.Screen.RootView"
+        view?.accessibilityIdentifier = "CreateCardAliasesViewController.Screen.RootView"
       }
     }
     
@@ -152,7 +151,8 @@ class CardsDataTokenizationViewController: UIViewController {
         textField.borderColor = textField.state.isValid ? .lightGray : .red
       }
 
-      vgsCollect.tokenizeData{[weak self](response) in
+      // Requires <access_token> in headers
+      vgsCollect.createAliases{[weak self](response) in
         
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
@@ -181,7 +181,7 @@ class CardsDataTokenizationViewController: UIViewController {
 }
 
 // MARK: - VGSTextFieldDelegate
-extension CardsDataTokenizationViewController: VGSTextFieldDelegate {
+extension CreateCardAliasesViewController: VGSTextFieldDelegate {
   func vgsTextFieldDidChange(_ textField: VGSTextField) {
     print(textField.state.description)
     textField.borderColor = textField.state.isValid  ? .gray : .red
