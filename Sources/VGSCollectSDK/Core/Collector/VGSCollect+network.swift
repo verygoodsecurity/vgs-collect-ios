@@ -176,6 +176,7 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  @available(*, deprecated, message: "migrate to -createAliases(:) func instead!")
   public func tokenizeData(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
     // Default request params
     let path = "tokens"
@@ -222,6 +223,59 @@ extension VGSCollect {
         }
       }
     }
+  }
+  
+  /**
+   Create aliases  from VGSTextFields input.
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - completion: response completion block, returns `VGSTokenizationResponse`.
+   - Note:
+      - Requires <access_token> set in custom headers.
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func createAliases(routeId: String? = nil, completion block: @escaping (VGSTokenizationResponse) -> Void) {
+    // Default request params
+    let path = "aliases"
+    // Check fields validation status
+    if let error = validateStoredInputData() {
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "vaultApi"])
+      block(.failure(error.code, nil, nil, error))
+      return
+    }
+    // TextField attached to collect by tokenization protocol implementation
+    let tokenizableFields = storage.tokenizableTextFields
+    let notTokenizableFields = storage.notTokenizibleTextFields
+    // Check if there are fields for tokenization. Return data from not tokenizable fields.
+    if tokenizableFields.count == 0 {
+      let code = 200
+      let responseBody = mapNotTokenizableFieldsToResponseBody(notTokenizableFields)
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "vaultApi"])
+      block(.success(code, responseBody, nil))
+      return
+    }
+    // Get tokenized textfields params as JSON body
+    let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
+    // Send request to vault api.
+    apiClient.sendRequest(path: path, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
+      if let strongSelf = self {
+        switch response {
+        case .success(let code, let data, let response):
+          // Analytics
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "vaultApi"])
+          // Build response - combine tokenized data with not tokenized
+          let responseBody = strongSelf.buildTokenizationResponseBody(data, tokenizedFields: tokenizableFields, notTokenizedFields: notTokenizableFields)
+          block(.success(code, responseBody, response))
+          return
+        case .failure(let code, let data, let response, let error):
+          let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "vaultApi"])
+          block(.failure(code, data, response, error))
+          return
+        }
+      }
+    }
+
   }
 }
 
@@ -272,6 +326,25 @@ extension VGSCollect {
     return await withCheckedContinuation { continuation in
       self.sendFile(path: path, method: method, routeId: routeId, extraData: extraData) { response in
         continuation.resume(returning: response)
+      }
+    }
+  }
+  /**
+   Asynchronously send  request with data from VGSTextFields to create aliases.
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+      - completion: response completion block, returns `VGSTokenizationResponse`.
+   - Note:
+      - Requires <access_token> set in custom headers.
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func createAliases(routeId: String? = nil) async -> VGSTokenizationResponse {
+    return await withCheckedContinuation { continuation in
+      // NOTE:  We need to use main thread since data will be collected  from UI elements
+      DispatchQueue.main.async {
+        self.createAliases(routeId: routeId) {response in
+          continuation.resume(returning: response)
+        }
       }
     }
   }
@@ -338,6 +411,24 @@ extension VGSCollect {
   public func sendFilePublisher(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, extraData: [String: Any]? = nil, requestOptions: VGSCollectRequestOptions = VGSCollectRequestOptions()) -> Future<VGSResponse, Never> {
     return Future { [weak self] completion in
       self?.sendFile(path: path, method: method, routeId: routeId, extraData: extraData, requestOptions: requestOptions) { response in
+        completion(.success(response))
+      }
+    }
+  }
+  
+  /**
+   Send  request with data from VGSTextFields to create aliases using the Combine framework.
+   
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+   - Returns: A `Future` publisher that emits a single `VGSTokenizationResponse`.
+   - Note:
+      - Requires <access_token> set in custom headers.
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func createAliasesPublisher(routeId: String? = nil) -> Future<VGSTokenizationResponse, Never> {
+    return Future { [weak self] completion in
+      self?.createAliases(routeId: routeId) { response in
         completion(.success(response))
       }
     }
