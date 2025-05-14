@@ -36,7 +36,7 @@ enum TestsCollectFlowType {
     case .paymentCardsWithCombine:
       return "Collect+Combine"
     case .paymentCardsTokenization:
-      return "Tokenize Card Data"
+      return "Tokenize Card Data(Vault API v1)"
     case .customPaymentCards:
       return "Customize Payment Cards"
     }
