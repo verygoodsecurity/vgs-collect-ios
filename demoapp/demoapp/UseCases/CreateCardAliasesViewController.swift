@@ -28,7 +28,7 @@ class CreateCardAliasesViewController: UIViewController {
     }
 
     // Should be provided by your backend app: https://www.verygoodsecurity.com/docs/api/vault/#description/authentication-and-authorization
-    private let accessToken = "<your_access_token>"
+    private let authToken = "<your_authentication_token>"
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,9 @@ class CreateCardAliasesViewController: UIViewController {
         setupUI()
         setupElementsConfiguration()
         
-        // IMPORTANT: set access_token as custom header. Required for -createAliases() request
+        // IMPORTANT: set auth_token as custom header. Required for -createAliases() request
         vgsCollect.customHeaders = [
-          "Authorization": "Bearer \(accessToken)"
+          "Authorization": "Bearer \(authToken)"
         ]
     
         // Observing text fields. The call back return all textfields with updated states.
@@ -152,7 +152,7 @@ class CreateCardAliasesViewController: UIViewController {
         textField.borderColor = textField.state.isValid ? .lightGray : .red
       }
 
-      // Requires <access_token> in headers
+      // Requires <auth_token> in headers
       vgsCollect.createAliases{[weak self](response) in
         
         self?.consoleStatusLabel.text = "RESPONSE"
