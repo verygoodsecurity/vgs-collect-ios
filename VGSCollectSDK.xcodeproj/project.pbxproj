@@ -50,6 +50,7 @@
 		03B10C1028E31B74009B409B /* VGSBlinkCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B10BE728E2E36E009B409B /* VGSBlinkCardController.swift */; };
 		03B10C1128E31B8F009B409B /* VGSBlinkCardCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */; };
+		03BC1E2D2DD5EE76003E9D4D /* VaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BC1E2C2DD5EE61003E9D4D /* VaultAPI.swift */; };
 		03F42F9F2D7F014E00813F31 /* BlinkCard.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */; };
 		03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */; };
 		03FB86762DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */; };
@@ -275,6 +276,7 @@
 		03B10BF528E30891009B409B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSBlinkCardCollector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		03BC1E2C2DD5EE61003E9D4D /* VaultAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultAPI.swift; sourceTree = "<group>"; };
 		03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = BlinkCard.xcframework; sourceTree = "<group>"; };
 		03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableInitializer.swift; sourceTree = "<group>"; };
 		03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableCoordinator.swift; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				441B26CE25DB88C50099AA3A /* APIHostName */,
 				441B26DC25DB88DB0099AA3A /* VGSResponse.swift */,
 				441B26E825DB8D950099AA3A /* APIClient+Utils.swift */,
+				03BC1E2C2DD5EE61003E9D4D /* VaultAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1690,6 +1693,7 @@
 				441B4E9B293EFD050011EFAC /* VGSCollectHTTPMethod.swift in Sources */,
 				32093D8625CDA3E6006CD242 /* VGSReadWriteSafeContainer.swift in Sources */,
 				FD3C01C323AFC0980096B4A4 /* VGSTextField+CVC.swift in Sources */,
+				03BC1E2D2DD5EE76003E9D4D /* VaultAPI.swift in Sources */,
 				44F8F51C25DBD1950052647A /* VGSCollectSatelliteUtils.swift in Sources */,
 				A0C1F09C29EE30AB00EE8447 /* VGSDateConfiguration.swift in Sources */,
 				326FFB0424F90B940024A4F9 /* CrardScannerInteractionProtocol.swift in Sources */,
@@ -1931,7 +1935,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1961,7 +1965,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2073,7 +2077,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2136,7 +2140,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2169,7 +2173,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2201,7 +2205,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2226,7 +2230,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2250,7 +2254,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.17.0;
+				MARKETING_VERSION = 1.17.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
