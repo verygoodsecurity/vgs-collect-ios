@@ -19,7 +19,8 @@ internal struct VGSTextFieldRepresentableInitializer {
         textField.adjustsFontForContentSizeCategory = representable.adjustsFontForContentSizeCategory
         textField.keyboardAccessoryView = representable.keyboardAccessoryView
         textField.textFieldAccessibilityLabel = representable.textFieldAccessibilityLabel
-        if let color = representable.borderColor { textField.borderColor = color }
+        if let foregroundColor = representable.foregroundColor { textField.textColor = foregroundColor }
+        if let borderColor = representable.borderColor { textField.borderColor = borderColor }
         if let lineWidth = representable.bodrerWidth { textField.borderWidth = lineWidth }
         if !representable.attributedPlaceholder.isNilOrEmpty { textField.attributedPlaceholder = representable.attributedPlaceholder }
         if !representable.placeholder.isNilOrEmpty { textField.placeholder = representable.placeholder }

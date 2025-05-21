@@ -32,6 +32,10 @@ internal protocol VGSTextFieldRepresentableProtocol {
   var adjustsFontForContentSizeCategory: Bool {get set}
   /// Input Accessory View
   var keyboardAccessoryView: UIView? {get set}
+  /// Field text color.
+  var foregroundColor: UIColor? {get set}
+  /// Field background color.
+  var backgroundColor: UIColor? {get set}
   /// Field border color.
   var borderColor: UIColor? {get set}
   /// Field border line width.
