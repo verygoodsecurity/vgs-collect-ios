@@ -34,6 +34,10 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
   var adjustsFontForContentSizeCategory: Bool = false
   /// Input Accessory View
   var keyboardAccessoryView: UIView?
+  /// Field text color.
+  var foregroundColor: UIColor?
+  /// Field background color.
+  var backgroundColor: UIColor?
   /// Field border color.
   var borderColor: UIColor?
   /// Field border line width.
@@ -87,7 +91,9 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
 
   public func updateUIView(_ uiView: VGSExpDateTextField, context: Context) {
       context.coordinator.parent = self
-      if let color = borderColor {uiView.borderColor = color}
+      if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
+      if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
+      if let brdColor = borderColor {uiView.borderColor = brdColor}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
   }
 
@@ -157,6 +163,18 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
     var newRepresentable = self
     newRepresentable.textFieldAccessibilityLabel = label
     return newRepresentable
+  }
+  /// Set `foregroundColor`.
+  public func foregroundColor(_ color: UIColor) -> VGSExpDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.foregroundColor = color
+      return newRepresentable
+  }
+    /// Set `backgroundColor`.
+  public func backgroundColor(_ color: UIColor) -> VGSExpDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.backgroundColor = color
+      return newRepresentable
   }
   /// Set `borderColor` and `lineWidth`.
   public func border(color: UIColor, lineWidth: CGFloat) -> VGSExpDateTextFieldRepresentable {
