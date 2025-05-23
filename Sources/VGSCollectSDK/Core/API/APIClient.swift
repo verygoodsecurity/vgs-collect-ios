@@ -5,7 +5,11 @@
 
 import Foundation
 
-class APIClient {
+class APIClient: VGSAPIClientProtocol {
+  func setCustomHeaders(headers: HTTPHeaders?) {
+    self.customHeader = headers
+  }
+  
 
 	/// Additional custom headers.
 	var customHeader: HTTPHeaders?

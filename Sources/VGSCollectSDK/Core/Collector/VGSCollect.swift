@@ -13,7 +13,7 @@ import UIKit
 
 /// An object you use for observing `VGSTextField` `State` and send data to your organization vault.
 public class VGSCollect {
-    internal let apiClient: APIClient
+    internal let apiClient: VGSAPIClientProtocol
     internal let storage = Storage()
     internal let regionalEnvironment: String
     internal let tenantId: String
@@ -32,7 +32,7 @@ public class VGSCollect {
     public var customHeaders: [String: String]? {
         didSet {
             if customHeaders != oldValue {
-                apiClient.customHeader = customHeaders
+                apiClient.setCustomHeaders(headers: customHeaders)
             }
         }
     }
@@ -67,9 +67,16 @@ public class VGSCollect {
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
       self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails, satellitePort: satellitePort)
 
-			if case .satelliteURL = self.apiClient.hostURLPolicy {
-				self.formAnalyticsDetails.isSatelliteMode = true
-			}
+//			if case .satelliteURL = self.apiClient.hostURLPolicy {
+//				self.formAnalyticsDetails.isSatelliteMode = true
+//			}
+    }
+  
+    internal init(accountId: String, environment: String) {
+      self.regionalEnvironment = environment
+      self.tenantId = accountId
+      self.formAnalyticsDetails = VGSFormAnanlyticsDetails(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
+      self.apiClient = CardsManagementAPIClient(environment: environment, formAnalyticsDetails: formAnalyticsDetails)
     }
       
     /// Initialization.
