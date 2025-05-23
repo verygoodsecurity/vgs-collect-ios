@@ -220,7 +220,7 @@ extension VGSCollect {
     // Get tokenized textfields params as JSON body
     let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
     // Send request to vault api.
-    apiClient.sendRequest(path: path, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
+    apiClient.sendRequest(path: path, method: .post, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {
         case .success(let code, let data, let response):
@@ -238,6 +238,23 @@ extension VGSCollect {
         }
       }
     }
+  }
+  
+  internal func createCard(authToken: String, completion block: ((_ response: VGSResponse) -> Void)? ) {
+    if let error = validateStoredInputData() {
+      
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code])
+      
+      block?(.failure(error.code, nil, nil, error))
+      return
+    }
+    let fieldsData = mapFieldsToBodyJSON(with: .flatJSON, extraData: nil)
+    let attributes = ["attributes": fieldsData]
+    let body = ["data": attributes]
+
+    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200])
+    apiClient.setCustomHeaders(headers: ["Authorization": "Bearer \(authToken)", "VGS-Sanitize": "true"])
+    apiClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body, completion:block)
   }
 }
 
