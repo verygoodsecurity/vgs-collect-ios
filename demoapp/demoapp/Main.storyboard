@@ -120,8 +120,28 @@
                                             <segue destination="4Zh-MV-egq" kind="show" id="3L8-4M-piK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jt8-3B-vEh" rowHeight="55" style="IBUITableViewCellStyleDefault" id="yr2-tu-xY8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ESQ-Ac-kNK" rowHeight="55" style="IBUITableViewCellStyleDefault" id="3BA-0w-lL4">
                                         <rect key="frame" x="20" y="293" width="374" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3BA-0w-lL4" id="Hcg-uc-3XG">
+                                            <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Card Management API Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ESQ-Ac-kNK">
+                                                    <rect key="frame" x="20" y="0.0" width="315.5" height="55"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="0o3-H9-JGc" kind="show" id="WHS-cI-PkL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jt8-3B-vEh" rowHeight="55" style="IBUITableViewCellStyleDefault" id="yr2-tu-xY8">
+                                        <rect key="frame" x="20" y="348" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yr2-tu-xY8" id="bES-5X-3TC">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
@@ -141,7 +161,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9jE-Zo-4LZ" rowHeight="55" style="IBUITableViewCellStyleDefault" id="tH2-yd-k4e">
-                                        <rect key="frame" x="20" y="348" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="403" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tH2-yd-k4e" id="1pv-JN-CcH">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
@@ -161,7 +181,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MQ6-KE-l68" rowHeight="55" style="IBUITableViewCellStyleDefault" id="uhf-Wd-wHS">
-                                        <rect key="frame" x="20" y="403" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="458" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uhf-Wd-wHS" id="2Jy-ns-PhT">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
@@ -181,7 +201,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="K3b-nf-hXt" rowHeight="55" style="IBUITableViewCellStyleDefault" id="GxH-Pe-9P4">
-                                        <rect key="frame" x="20" y="458" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="513" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GxH-Pe-9P4" id="tHB-f6-hAo">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
@@ -201,7 +221,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="wLj-pH-ZDn" rowHeight="55" style="IBUITableViewCellStyleDefault" id="eSL-x2-ZHR">
-                                        <rect key="frame" x="20" y="513" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="568" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eSL-x2-ZHR" id="vS1-i2-75O">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
@@ -221,7 +241,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="96Z-Zk-gjC" rowHeight="55" style="IBUITableViewCellStyleDefault" id="p8E-QN-enZ">
-                                        <rect key="frame" x="20" y="568" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="623" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p8E-QN-enZ" id="I0c-ZX-alr">
                                             <rect key="frame" x="0.0" y="0.0" width="343.5" height="55"/>
@@ -1486,6 +1506,114 @@
             </objects>
             <point key="canvasLocation" x="1025" y="171"/>
         </scene>
+        <!--Collect Payment Cards-->
+        <scene sceneID="hsv-ay-sUz">
+            <objects>
+                <viewController id="0o3-H9-JGc" customClass="CardManagementDemoViewController" customModule="demoapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ip6-nV-1Pz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FCd-sb-CxY">
+                                <rect key="frame" x="20" y="170" width="374" height="160"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="6EO-yZ-s2Z"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="x4n-QS-NYt">
+                                <rect key="frame" x="20" y="718" width="374" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqK-Za-Dxf">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="Create Card Alias"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitAction:" destination="9Jh-bq-fKs" eventType="touchUpInside" id="8Jb-77-J7C"/>
+                                            <action selector="uploadAction:" destination="0o3-H9-JGc" eventType="touchUpInside" id="ac3-Wq-eUD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="CSE-Tn-gjr"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seP-bh-5Vh">
+                                <rect key="frame" x="20" y="340" width="374" height="368"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQ9-bF-yYv">
+                                        <rect key="frame" x="20" y="46" width="334" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="YlH-e3-zGj"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for data..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txn-q7-rPA">
+                                        <rect key="frame" x="20" y="8" width="334" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="gcw-jd-cwS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="viN-6S-3bn">
+                                        <rect key="frame" x="8" y="56" width="358" height="17"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ConsoleLabelIdentifire"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="txn-q7-rPA" firstAttribute="leading" secondItem="seP-bh-5Vh" secondAttribute="leading" constant="20" symbolic="YES" id="06q-cO-nTi"/>
+                                    <constraint firstAttribute="trailing" secondItem="txn-q7-rPA" secondAttribute="trailing" constant="20" symbolic="YES" id="QAI-kc-NER"/>
+                                    <constraint firstItem="yQ9-bF-yYv" firstAttribute="leading" secondItem="seP-bh-5Vh" secondAttribute="leading" constant="20" symbolic="YES" id="bdc-7D-6hP"/>
+                                    <constraint firstItem="viN-6S-3bn" firstAttribute="leading" secondItem="seP-bh-5Vh" secondAttribute="leading" constant="8" id="cAz-on-IWu"/>
+                                    <constraint firstItem="txn-q7-rPA" firstAttribute="top" secondItem="seP-bh-5Vh" secondAttribute="top" constant="8" id="cJ3-Zx-qIZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="viN-6S-3bn" secondAttribute="trailing" constant="8" id="cbF-GL-FeJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="yQ9-bF-yYv" secondAttribute="trailing" constant="20" symbolic="YES" id="gq7-nw-dVI"/>
+                                    <constraint firstItem="yQ9-bF-yYv" firstAttribute="top" secondItem="txn-q7-rPA" secondAttribute="bottom" constant="8" symbolic="YES" id="jp1-17-ngf"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="viN-6S-3bn" secondAttribute="bottom" constant="2" id="mdl-AN-zYv"/>
+                                    <constraint firstItem="viN-6S-3bn" firstAttribute="top" secondItem="yQ9-bF-yYv" secondAttribute="bottom" constant="8" id="ozi-Wz-bln"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XHY-7c-L2B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="seP-bh-5Vh" firstAttribute="leading" secondItem="XHY-7c-L2B" secondAttribute="leading" constant="20" id="6ka-Th-VvJ"/>
+                            <constraint firstItem="FCd-sb-CxY" firstAttribute="top" secondItem="XHY-7c-L2B" secondAttribute="top" constant="30" id="7Ri-Jd-yBq"/>
+                            <constraint firstItem="seP-bh-5Vh" firstAttribute="top" secondItem="FCd-sb-CxY" secondAttribute="bottom" constant="10" id="MkV-hD-ZnD"/>
+                            <constraint firstItem="XHY-7c-L2B" firstAttribute="bottom" secondItem="x4n-QS-NYt" secondAttribute="bottom" constant="50" id="Utu-ZP-mQf"/>
+                            <constraint firstItem="XHY-7c-L2B" firstAttribute="trailing" secondItem="FCd-sb-CxY" secondAttribute="trailing" constant="20" id="fec-og-Zau"/>
+                            <constraint firstItem="XHY-7c-L2B" firstAttribute="trailing" secondItem="seP-bh-5Vh" secondAttribute="trailing" constant="20" id="iIW-6R-Dkf"/>
+                            <constraint firstItem="FCd-sb-CxY" firstAttribute="leading" secondItem="XHY-7c-L2B" secondAttribute="leading" constant="20" id="maG-mw-y09"/>
+                            <constraint firstItem="XHY-7c-L2B" firstAttribute="trailing" secondItem="x4n-QS-NYt" secondAttribute="trailing" constant="20" id="n9G-Kx-6qK"/>
+                            <constraint firstItem="x4n-QS-NYt" firstAttribute="leading" secondItem="XHY-7c-L2B" secondAttribute="leading" constant="20" id="ucF-KQ-kxM"/>
+                            <constraint firstItem="x4n-QS-NYt" firstAttribute="top" secondItem="seP-bh-5Vh" secondAttribute="bottom" constant="10" id="zTG-XT-A0G"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Card" image="bank_card" id="O1i-Gz-Jgn"/>
+                    <navigationItem key="navigationItem" title="Collect Payment Cards" id="Yst-iy-wwn"/>
+                    <connections>
+                        <outlet property="cardDataStackView" destination="FCd-sb-CxY" id="Ihj-Ih-PYe"/>
+                        <outlet property="consoleLabel" destination="viN-6S-3bn" id="gR9-Kg-9bU"/>
+                        <outlet property="consoleStatusLabel" destination="txn-q7-rPA" id="mhO-57-Ism"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aef-hH-qzQ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3194" y="-1266"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bank_card" width="25" height="25"/>
@@ -1494,25 +1622,25 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
