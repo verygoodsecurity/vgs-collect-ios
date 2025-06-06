@@ -114,7 +114,13 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
       newRepresentable.attributedPlaceholder = text
       return newRepresentable
   }
-  /// Set `UITextAutocapitalizationType` type.
+  /// Set `UITextAutocorrectionType` type.
+  public func autocorrectionType(_ type: UITextAutocorrectionType) -> VGSDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.autocorrectionType = type
+      return newRepresentable
+  }
+    /// Set `UITextAutocapitalizationType` type.
   public func autocapitalizationType(_ type: UITextAutocapitalizationType) -> VGSDateTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.autocapitalizationType = type

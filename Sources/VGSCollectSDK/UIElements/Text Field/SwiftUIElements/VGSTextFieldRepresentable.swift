@@ -109,6 +109,12 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
         newRepresentable.attributedPlaceholder = text
         return newRepresentable
     }
+    /// Set `UITextAutocorrectionType` type.
+    public func autocorrectionType(_ type: UITextAutocorrectionType) -> VGSTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.autocorrectionType = type
+        return newRepresentable
+    }
     /// Set `UITextAutocapitalizationType` type.
     public func autocapitalizationType(_ type: UITextAutocapitalizationType) -> VGSTextFieldRepresentable {
         var newRepresentable = self
