@@ -42,6 +42,8 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
+    /// Field corner radius
+    var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
   
@@ -93,6 +95,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
       if let brdColor = borderColor {uiView.borderColor = brdColor}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+      if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
     }
   
     // MARK: - Configuration methods
@@ -181,14 +184,18 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
         newRepresentable.bodrerWidth = lineWidth
         return newRepresentable
     }
-  
+    /// Set `cornerRadius`.
+    public func cornerRadius(_ cornerRadius: CGFloat) -> VGSCardTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.cornerRadius = cornerRadius
+        return newRepresentable
+    }
     /// Coordinates connection between scan data and text field.
     public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSCardTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.cardScanCoordinator = coordinator
       return newRepresentable
     }
-  
     // MARK: - VGSCardTextField specific methods
     /// Set `size` of card icon.
     public func cardIconSize(_ size: CGSize) -> VGSCardTextFieldRepresentable {
@@ -196,14 +203,12 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       newRepresentable.cardIconSize = size
       return newRepresentable
     }
-  
     /// Set Card brand icon positions `CardIconLocation`.
     public func cardIconLocation(_ location: VGSCardTextField.CardIconLocation) -> VGSCardTextFieldRepresentable {
         var newRepresentable = self
         newRepresentable.cardIconLocation = location
         return newRepresentable
     }
-  
     // MARK: - Handle editing events
     /// Handle  TextField Representable  editing events.
     public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {

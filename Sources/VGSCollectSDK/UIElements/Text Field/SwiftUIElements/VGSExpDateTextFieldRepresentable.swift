@@ -42,6 +42,8 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
   var borderColor: UIColor?
   /// Field border line width.
   var bodrerWidth: CGFloat?
+  /// Field corner radius
+  var cornerRadius: CGFloat?
   /// Coordinates connection between scan data and text field.
   var cardScanCoordinator: VGSCardScanCoordinator?
 
@@ -95,6 +97,7 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
       if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
       if let brdColor = borderColor {uiView.borderColor = brdColor}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+      if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
   }
 
   // MARK: - Configuration methods
@@ -181,6 +184,12 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
       var newRepresentable = self
       newRepresentable.borderColor = color
       newRepresentable.bodrerWidth = lineWidth
+      return newRepresentable
+  }
+  /// Set `cornerRadius`.
+  public func cornerRadius(_ cornerRadius: CGFloat) -> VGSExpDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cornerRadius = cornerRadius
       return newRepresentable
   }
   /// Coordinates connection between scan data and text field.

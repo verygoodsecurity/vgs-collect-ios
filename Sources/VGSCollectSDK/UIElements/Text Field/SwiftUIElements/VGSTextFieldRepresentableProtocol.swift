@@ -40,6 +40,8 @@ internal protocol VGSTextFieldRepresentableProtocol {
   var borderColor: UIColor? {get set}
   /// Field border line width.
   var bodrerWidth: CGFloat? {get set}
+  /// Field corner radius
+  var cornerRadius: CGFloat? {get set}
 
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.

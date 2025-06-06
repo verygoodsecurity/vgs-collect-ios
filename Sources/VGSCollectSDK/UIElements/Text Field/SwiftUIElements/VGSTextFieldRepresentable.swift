@@ -43,13 +43,13 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
+    /// Field corner radius
+    var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
-  
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
-
     // MARK: - TextField interaction callbacks
     /// The state type is VGSTextFieldState.
     public typealias StateType = VGSTextFieldState
@@ -88,6 +88,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
         if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
         if let brdColor = borderColor {uiView.borderColor = brdColor}
         if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+        if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
     }
     // MARK: - Configuration methods
     /// Set `UIFont` value.
@@ -175,7 +176,12 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
         newRepresentable.bodrerWidth = lineWidth
         return newRepresentable
     }
-  
+    /// Set `cornerRadius`.
+    public func cornerRadius(_ cornerRadius: CGFloat) -> VGSTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.cornerRadius = cornerRadius
+        return newRepresentable
+    }
     // MARK: - Handle editing events
     /// Handle  TextField Representable  editing events.
     public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {

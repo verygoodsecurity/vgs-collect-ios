@@ -41,6 +41,8 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
   var borderColor: UIColor?
   /// Field border line width.
   var bodrerWidth: CGFloat?
+  /// Field corner radius
+  var cornerRadius: CGFloat?
   /// Coordinates connection between scan data and text field.
   var cardScanCoordinator: VGSCardScanCoordinator?
   
@@ -90,6 +92,7 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
       if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
       if let brdColor = borderColor {uiView.borderColor = brdColor}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+      if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
   }
 
   // MARK: - Configuration methods
@@ -178,6 +181,12 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
       newRepresentable.bodrerWidth = lineWidth
       return newRepresentable
   }
+  /// Set `cornerRadius`.
+  public func cornerRadius(_ cornerRadius: CGFloat) -> VGSDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cornerRadius = cornerRadius
+      return newRepresentable
+  }
   /// Coordinates connection between scan data and text field.
   public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSDateTextFieldRepresentable {
     var newRepresentable = self
@@ -191,6 +200,7 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
     newRepresentable.monthPickerFormat = format
     return newRepresentable
   }
+
   // MARK: - Handle editing events
   /// Handle  TextField Representable  editing events.
   public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
