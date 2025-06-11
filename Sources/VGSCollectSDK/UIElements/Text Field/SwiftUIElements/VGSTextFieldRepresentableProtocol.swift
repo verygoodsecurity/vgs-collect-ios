@@ -8,6 +8,7 @@ import UIKit
 import SwiftUI
 
 // MARK: - VGSCardTextFieldRepresentable.
+@available(iOS 14.0, *)
 internal protocol VGSTextFieldRepresentableProtocol {
   /// Textfiled text font.
   var font: UIFont? {get set}
@@ -48,7 +49,6 @@ internal protocol VGSTextFieldRepresentableProtocol {
   /// A succinct label in a localized string that identifies the accessibility text field.
   var textFieldAccessibilityLabel: String? {get set}
   // MARK: - Card Scan integration
-  @available(iOS 14.0, *)
   var cardScanCoordinator: VGSCardScanCoordinator? {get set}
   // MARK: - Triggers
   /// Remove text input trigger
@@ -74,6 +74,7 @@ public protocol VGSTextFieldRepresentableCallbacksProtocol {
     var onStateChange: ((StateType) -> Void)? { get }
 }
 
+@available(iOS 14.0, *)
 internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// Card brand icon size.
   var cardIconSize: CGSize {get set}
@@ -82,6 +83,7 @@ internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentab
 }
 
 // MARK: - VGSExpDateTextFieldRepresentable.
+@available(iOS 14.0, *)
 internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
   var monthPickerFormat: VGSExpDateTextField.MonthFormat {get set}
@@ -90,7 +92,7 @@ internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresen
 }
 
 // MARK: - VGSCVCTextFieldRepresentable.
-
+@available(iOS 14.0, *)
 internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// Card brand icon size.
   var cvcIconSize: CGSize {get set}
@@ -101,6 +103,7 @@ internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentabl
 }
 
 // MARK: - VGSDateTextFieldRepresentable.
+@available(iOS 14.0, *)
 internal protocol VGSDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
   var monthPickerFormat: VGSDateTextField.MonthFormat {get set}
