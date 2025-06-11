@@ -43,13 +43,15 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
+    /// Field corner radius
+    var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
-  
+    /// Remove text input trigger
+    internal var clearTextTrigger: Binding<Bool>?
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
-
     // MARK: - TextField interaction callbacks
     /// The state type is VGSTextFieldState.
     public typealias StateType = VGSTextFieldState
@@ -59,7 +61,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
     public var onStateChange: ((VGSTextFieldState) -> Void)?
     /// Base TextFieldRepresentable Coordinator type
     public typealias Coordinator = VGSTextFieldRepresentableCoordinator<VGSTextFieldRepresentable>
-
+  
     // MARK: - Initialization
     /// Initialization
     ///
@@ -82,118 +84,142 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepres
       return vgsTextField
     }
 
-    public func updateUIView(_ uiView: VGSTextField, context: Context) {
-        context.coordinator.parent = self
-        if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
-        if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
-        if let brdColor = borderColor {uiView.borderColor = brdColor}
-        if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+  public func updateUIView(_ uiView: VGSTextField, context: Context) {
+    context.coordinator.parent = self
+    if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
+    if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
+    if let brdColor = borderColor {uiView.borderColor = brdColor}
+    if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+    if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
+    if let binding = self.clearTextTrigger, binding.wrappedValue {
+      uiView.cleanText()
+      DispatchQueue.main.async {
+        binding.wrappedValue = false
+      }
     }
-    // MARK: - Configuration methods
-    /// Set `UIFont` value.
-    public func font(_ font: UIFont) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.font = font
-        return newRepresentable
-    }
-    /// Set `placeholder` string.
-    public func placeholder(_ text: String) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.placeholder = text
-        return newRepresentable
-    }
-    /// Set `attributedPlaceholder` string.
-    public func attributedPlaceholder(_ text: NSAttributedString?) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.attributedPlaceholder = text
-        return newRepresentable
-    }
-    /// Set `UITextAutocapitalizationType` type.
-    public func autocapitalizationType(_ type: UITextAutocapitalizationType) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.autocapitalizationType = type
-        return newRepresentable
-    }
-    /// Set `UITextSpellCheckingType` type.
-    public func spellCheckingType(_ type: UITextSpellCheckingType) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.spellCheckingType = type
-        return newRepresentable
-    }
-    /// Set `UIEdgeInsets` insets.
-    public func textFieldPadding(_ insets: UIEdgeInsets) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.textFieldPadding = insets
-        return newRepresentable
-    }
-    /// Set `NSTextAlignment` type.
-    public func textAlignment(_ alignment: NSTextAlignment) -> VGSTextFieldRepresentable {
+  }
+  /// Removes text from input.
+  public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.textAlignment = alignment
+      newRepresentable.clearTextTrigger = binding
       return newRepresentable
-    }
-      /// Set `isSecureTextEntry` value.
-    public func setSecureTextEntry(_ secure: Bool) -> VGSTextFieldRepresentable {
+  }
+  // MARK: - Configuration methods
+  /// Set `UIFont` value.
+  public func font(_ font: UIFont) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.isSecureTextEntry = secure
+      newRepresentable.font = font
       return newRepresentable
-    }
-    /// Set `adjustsFontForContentSizeCategory` value.
-    public func adjustsFontForContentSizeCategory(_ adjusts: Bool) -> VGSTextFieldRepresentable {
+  }
+  /// Set `placeholder` string.
+  public func placeholder(_ text: String) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.adjustsFontForContentSizeCategory = adjusts
+      newRepresentable.placeholder = text
       return newRepresentable
-    }
-    /// Set `keyboardAccessoryView` view.
-    public func keyboardAccessoryView(_ view: UIView?) -> VGSTextFieldRepresentable {
+  }
+  /// Set `attributedPlaceholder` string.
+  public func attributedPlaceholder(_ text: NSAttributedString?) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.keyboardAccessoryView = view
+      newRepresentable.attributedPlaceholder = text
       return newRepresentable
-    }
-    /// Set `textFieldAccessibilityLabel` string.
-    public func textFieldAccessibilityLabel(_ label: String) -> VGSTextFieldRepresentable {
+  }
+  /// Set `UITextAutocorrectionType` type.
+  public func autocorrectionType(_ type: UITextAutocorrectionType) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.textFieldAccessibilityLabel = label
+      newRepresentable.autocorrectionType = type
       return newRepresentable
-    }
-    /// Set `foregroundColor`.
-    public func foregroundColor(_ color: UIColor) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.foregroundColor = color
-        return newRepresentable
-    }
-    /// Set `backgroundColor`.
-    public func backgroundColor(_ color: UIColor) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.backgroundColor = color
-        return newRepresentable
-    }
-    /// Set `borderColor` and `lineWidth`.
-    public func border(color: UIColor, lineWidth: CGFloat) -> VGSTextFieldRepresentable {
-        var newRepresentable = self
-        newRepresentable.borderColor = color
-        newRepresentable.bodrerWidth = lineWidth
-        return newRepresentable
-    }
-  
-    // MARK: - Handle editing events
-    /// Handle  TextField Representable  editing events.
-    public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
-        var newRepresentable = self
-        newRepresentable.onEditingEvent = action
-        return newRepresentable
-    }
-    /// Handle `VGSTextFieldState` changes.
-    public func onStateChange(_ action: ((VGSTextFieldState) -> Void)?) -> VGSTextFieldRepresentable {
+  }
+  /// Set `UITextAutocapitalizationType` type.
+  public func autocapitalizationType(_ type: UITextAutocapitalizationType) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.onStateChange = action
+      newRepresentable.autocapitalizationType = type
       return newRepresentable
-    }
-  
-    /// Coordinates connection between scan data and text field.
-    public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSTextFieldRepresentable {
+  }
+  /// Set `UITextSpellCheckingType` type.
+  public func spellCheckingType(_ type: UITextSpellCheckingType) -> VGSTextFieldRepresentable {
       var newRepresentable = self
-      newRepresentable.cardScanCoordinator = coordinator
+      newRepresentable.spellCheckingType = type
       return newRepresentable
-    }
+  }
+  /// Set `UIEdgeInsets` insets.
+  public func textFieldPadding(_ insets: UIEdgeInsets) -> VGSTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.textFieldPadding = insets
+      return newRepresentable
+  }
+  /// Set `NSTextAlignment` type.
+  public func textAlignment(_ alignment: NSTextAlignment) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.textAlignment = alignment
+    return newRepresentable
+  }
+    /// Set `isSecureTextEntry` value.
+  public func setSecureTextEntry(_ secure: Bool) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.isSecureTextEntry = secure
+    return newRepresentable
+  }
+  /// Set `adjustsFontForContentSizeCategory` value.
+  public func adjustsFontForContentSizeCategory(_ adjusts: Bool) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.adjustsFontForContentSizeCategory = adjusts
+    return newRepresentable
+  }
+  /// Set `keyboardAccessoryView` view.
+  public func keyboardAccessoryView(_ view: UIView?) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.keyboardAccessoryView = view
+    return newRepresentable
+  }
+  /// Set `textFieldAccessibilityLabel` string.
+  public func textFieldAccessibilityLabel(_ label: String) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.textFieldAccessibilityLabel = label
+    return newRepresentable
+  }
+  /// Set `foregroundColor`.
+  public func foregroundColor(_ color: UIColor) -> VGSTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.foregroundColor = color
+      return newRepresentable
+  }
+  /// Set `backgroundColor`.
+  public func backgroundColor(_ color: UIColor) -> VGSTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.backgroundColor = color
+      return newRepresentable
+  }
+  /// Set `borderColor` and `lineWidth`.
+  public func border(color: UIColor, lineWidth: CGFloat) -> VGSTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.borderColor = color
+      newRepresentable.bodrerWidth = lineWidth
+      return newRepresentable
+  }
+  /// Set `cornerRadius`.
+  public func cornerRadius(_ cornerRadius: CGFloat) -> VGSTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cornerRadius = cornerRadius
+      return newRepresentable
+  }
+  // MARK: - Handle editing events
+  /// Handle  TextField Representable  editing events.
+  public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
+      var newRepresentable = self
+      newRepresentable.onEditingEvent = action
+      return newRepresentable
+  }
+  /// Handle `VGSTextFieldState` changes.
+  public func onStateChange(_ action: ((VGSTextFieldState) -> Void)?) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.onStateChange = action
+    return newRepresentable
+  }
+
+  /// Coordinates connection between scan data and text field.
+  public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSTextFieldRepresentable {
+    var newRepresentable = self
+    newRepresentable.cardScanCoordinator = coordinator
+    return newRepresentable
+  }
 }

@@ -41,8 +41,12 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
   var borderColor: UIColor?
   /// Field border line width.
   var bodrerWidth: CGFloat?
+  /// Field corner radius
+  var cornerRadius: CGFloat?
   /// Coordinates connection between scan data and text field.
-  var cardScanCoordinator: VGSCardScanCoordinator?
+      var cardScanCoordinator: VGSCardScanCoordinator?
+    /// Remove text input trigger
+    internal var clearTextTrigger: Binding<Bool>?
   
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
@@ -85,12 +89,26 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
   }
 
   public func updateUIView(_ uiView: VGSDateTextField, context: Context) {
-      context.coordinator.parent = self
-      if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
-      if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
-      if let brdColor = borderColor {uiView.borderColor = brdColor}
-      if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+    context.coordinator.parent = self
+    if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
+    if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
+    if let brdColor = borderColor {uiView.borderColor = brdColor}
+    if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+    if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
+    if let binding = self.clearTextTrigger, binding.wrappedValue {
+      uiView.cleanText()
+      DispatchQueue.main.async {
+        binding.wrappedValue = false
+      }
+    }
   }
+  /// Removes text from input.
+  public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.clearTextTrigger = binding
+      return newRepresentable
+  }
+
 
   // MARK: - Configuration methods
   /// Set `UIFont` value.
@@ -111,7 +129,13 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
       newRepresentable.attributedPlaceholder = text
       return newRepresentable
   }
-  /// Set `UITextAutocapitalizationType` type.
+  /// Set `UITextAutocorrectionType` type.
+  public func autocorrectionType(_ type: UITextAutocorrectionType) -> VGSDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.autocorrectionType = type
+      return newRepresentable
+  }
+    /// Set `UITextAutocapitalizationType` type.
   public func autocapitalizationType(_ type: UITextAutocapitalizationType) -> VGSDateTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.autocapitalizationType = type
@@ -178,6 +202,12 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
       newRepresentable.bodrerWidth = lineWidth
       return newRepresentable
   }
+  /// Set `cornerRadius`.
+  public func cornerRadius(_ cornerRadius: CGFloat) -> VGSDateTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cornerRadius = cornerRadius
+      return newRepresentable
+  }
   /// Coordinates connection between scan data and text field.
   public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSDateTextFieldRepresentable {
     var newRepresentable = self
@@ -191,6 +221,7 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
     newRepresentable.monthPickerFormat = format
     return newRepresentable
   }
+
   // MARK: - Handle editing events
   /// Handle  TextField Representable  editing events.
   public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
