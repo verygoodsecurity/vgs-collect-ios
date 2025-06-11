@@ -22,6 +22,7 @@ internal struct VGSTextFieldRepresentableInitializer {
         if let foregroundColor = representable.foregroundColor { textField.textColor = foregroundColor }
         if let borderColor = representable.borderColor { textField.borderColor = borderColor }
         if let lineWidth = representable.bodrerWidth { textField.borderWidth = lineWidth }
+        if let cornerRadius = representable.cornerRadius { textField.cornerRadius = cornerRadius }
         if !representable.attributedPlaceholder.isNilOrEmpty { textField.attributedPlaceholder = representable.attributedPlaceholder }
         if !representable.placeholder.isNilOrEmpty { textField.placeholder = representable.placeholder }
         representable.cardScanCoordinator?.registerTextField(textField)

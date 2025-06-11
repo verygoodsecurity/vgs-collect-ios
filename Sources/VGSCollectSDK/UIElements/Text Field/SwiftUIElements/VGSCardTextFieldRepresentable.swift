@@ -42,9 +42,13 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
+    /// Field corner radius
+    var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
-  
+    /// Remove text input trigger
+    internal var clearTextTrigger: Binding<Bool>?
+
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
@@ -93,6 +97,19 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
       if let brdColor = borderColor {uiView.borderColor = brdColor}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+      if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
+      if let binding = self.clearTextTrigger, binding.wrappedValue {
+            uiView.cleanText()
+            DispatchQueue.main.async {
+                binding.wrappedValue = false
+            }
+        }
+    }
+    /// Removes text from input.
+    public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCardTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.clearTextTrigger = binding
+        return newRepresentable
     }
   
     // MARK: - Configuration methods
@@ -112,6 +129,12 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     public func attributedPlaceholder(_ text: NSAttributedString?) -> VGSCardTextFieldRepresentable {
         var newRepresentable = self
         newRepresentable.attributedPlaceholder = text
+        return newRepresentable
+    }
+    /// Set `UITextAutocorrectionType` type.
+    public func autocorrectionType(_ type: UITextAutocorrectionType) -> VGSCardTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.autocorrectionType = type
         return newRepresentable
     }
     /// Set `UITextAutocapitalizationType` type.
@@ -181,14 +204,18 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
         newRepresentable.bodrerWidth = lineWidth
         return newRepresentable
     }
-  
+    /// Set `cornerRadius`.
+    public func cornerRadius(_ cornerRadius: CGFloat) -> VGSCardTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.cornerRadius = cornerRadius
+        return newRepresentable
+    }
     /// Coordinates connection between scan data and text field.
     public func cardScanCoordinator(_ coordinator: VGSCardScanCoordinator) -> VGSCardTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.cardScanCoordinator = coordinator
       return newRepresentable
     }
-  
     // MARK: - VGSCardTextField specific methods
     /// Set `size` of card icon.
     public func cardIconSize(_ size: CGSize) -> VGSCardTextFieldRepresentable {
@@ -196,14 +223,12 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       newRepresentable.cardIconSize = size
       return newRepresentable
     }
-  
     /// Set Card brand icon positions `CardIconLocation`.
     public func cardIconLocation(_ location: VGSCardTextField.CardIconLocation) -> VGSCardTextFieldRepresentable {
         var newRepresentable = self
         newRepresentable.cardIconLocation = location
         return newRepresentable
     }
-  
     // MARK: - Handle editing events
     /// Handle  TextField Representable  editing events.
     public func onEditingEvent(_ action: ((VGSTextFieldEditingEvent<StateType>) -> Void)?) -> Self {
