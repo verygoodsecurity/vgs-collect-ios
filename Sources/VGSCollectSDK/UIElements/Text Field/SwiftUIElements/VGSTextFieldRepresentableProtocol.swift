@@ -5,6 +5,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 // MARK: - VGSCardTextFieldRepresentable.
 internal protocol VGSTextFieldRepresentableProtocol {
@@ -49,6 +50,9 @@ internal protocol VGSTextFieldRepresentableProtocol {
   // MARK: - Card Scan integration
   @available(iOS 14.0, *)
   var cardScanCoordinator: VGSCardScanCoordinator? {get set}
+  // MARK: - Triggers
+  /// Remove text input trigger
+  var clearTextTrigger: Binding<Bool>? {get set}
 }
 
 /// `VGSTextFieldRepresentable` editing events.

@@ -45,7 +45,9 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
   /// Field corner radius
   var cornerRadius: CGFloat?
   /// Coordinates connection between scan data and text field.
-  var cardScanCoordinator: VGSCardScanCoordinator?
+      var cardScanCoordinator: VGSCardScanCoordinator?
+    /// Remove text input trigger
+    internal var clearTextTrigger: Binding<Bool>?
   
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
@@ -95,12 +97,24 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
   }
 
   public func updateUIView(_ uiView: VGSCVCTextField, context: Context) {
-      context.coordinator.parent = self
-      if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
-      if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
-      if let brdColor = borderColor {uiView.borderColor = brdColor}
-      if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
-      if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
+    context.coordinator.parent = self
+    if let frgdColor = foregroundColor {uiView.textColor = frgdColor}
+    if let bkgdColor = backgroundColor {uiView.backgroundColor = bkgdColor}
+    if let brdColor = borderColor {uiView.borderColor = brdColor}
+    if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
+    if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
+    if let binding = self.clearTextTrigger, binding.wrappedValue {
+      uiView.cleanText()
+      DispatchQueue.main.async {
+        binding.wrappedValue = false
+      }
+    }
+  }
+  /// Removes text from input.
+  public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCVCTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.clearTextTrigger = binding
+      return newRepresentable
   }
 
   // MARK: - Configuration methods

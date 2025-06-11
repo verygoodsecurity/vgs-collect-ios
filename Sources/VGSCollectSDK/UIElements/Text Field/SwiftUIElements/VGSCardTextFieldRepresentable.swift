@@ -46,7 +46,9 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
-  
+    /// Remove text input trigger
+    internal var clearTextTrigger: Binding<Bool>?
+
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
@@ -96,6 +98,18 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       if let brdColor = borderColor {uiView.borderColor = brdColor}
       if let lineWidth = bodrerWidth {uiView.borderWidth = lineWidth}
       if let crnRadius = cornerRadius {uiView.cornerRadius = crnRadius}
+      if let binding = self.clearTextTrigger, binding.wrappedValue {
+            uiView.cleanText()
+            DispatchQueue.main.async {
+                binding.wrappedValue = false
+            }
+        }
+    }
+    /// Removes text from input.
+    public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCardTextFieldRepresentable {
+        var newRepresentable = self
+        newRepresentable.clearTextTrigger = binding
+        return newRepresentable
     }
   
     // MARK: - Configuration methods
