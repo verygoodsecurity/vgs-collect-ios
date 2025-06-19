@@ -253,7 +253,7 @@ extension VGSCollect {
     let body = ["data": attributes]
 
     VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200])
-    apiClient.setCustomHeaders(headers: ["Authorization": "Bearer \(authToken)", "VGS-Sanitize": "true"])
+    apiClient.setCustomHeaders(headers: ["Authorization": "Bearer \(authToken)"])
     apiClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body, completion:block)
   }
 }
