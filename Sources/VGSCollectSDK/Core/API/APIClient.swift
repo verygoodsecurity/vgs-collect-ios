@@ -71,8 +71,7 @@ class APIClient: VGSAPIClientProtocol {
 	///   - regionalEnvironment: `String` object, should be valid environment.
 	///   - hostname: `String?` object, should be valid hostname or `nil`.
 	///   - formAnalyticsDetails: `VGSFormAnanlyticsDetails` object, analytics data.
-	///   - satellitePort: `Int?` object, custom port for satellite configuration. **IMPORTANT! Use only with .sandbox environment!**.
-	required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails, satellitePort: Int?) {
+	required init(tenantId: String, regionalEnvironment: String, hostname: String?, formAnalyticsDetails: VGSFormAnanlyticsDetails) {
 		self.vaultUrl = Self.buildVaultURL(tenantId: tenantId, regionalEnvironment: regionalEnvironment)
 		self.vaultId = tenantId
     self.environment = regionalEnvironment
@@ -81,27 +80,6 @@ class APIClient: VGSAPIClientProtocol {
 		guard let validVaultURL = vaultUrl else {
 			// Cannot resolve hostname with invalid Vault URL.
 			self.hostURLPolicy = .invalidVaultURL
-			return
-		}
-
-		// Check satellite port is *nil* for regular API flow.
-		guard satellitePort == nil else {
-			// Try to build satellite URL.
-			guard let port = satellitePort, let satelliteURL = VGSCollectSatelliteUtils.buildSatelliteURL(with: regionalEnvironment, hostname: hostname, satellitePort: port) else {
-
-				// Use vault URL as fallback if cannot resolve satellite flow.
-				self.hostURLPolicy = .vaultURL(validVaultURL)
-				return
-			}
-
-			// Use satellite URL and return.
-			self.formAnalyticDetails.isSatelliteMode = true
-			self.hostURLPolicy = .satelliteURL(satelliteURL)
-
-			let message = "Satellite has been configured successfully! Satellite URL is: \(satelliteURL.absoluteString)"
-			let event = VGSLogEvent(level: .info, text: message)
-			VGSCollectLogger.shared.forwardLogEvent(event)
-
 			return
 		}
 
@@ -157,8 +135,6 @@ class APIClient: VGSAPIClientProtocol {
 			sendRequestBlock(nil)
 		case .vaultURL(let url):
       sendRequestBlock(url)
-		case .satelliteURL(let url):
-			sendRequestBlock(url)
 		case .customHostURL(let status):
 			switch status {
 			case .resolved(let resolvedURL):
