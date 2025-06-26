@@ -66,13 +66,9 @@ public class VGSCollect {
       self.regionalEnvironment = environment
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
       self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails, satellitePort: satellitePort)
-
-//			if case .satelliteURL = self.apiClient.hostURLPolicy {
-//				self.formAnalyticsDetails.isSatelliteMode = true
-//			}
     }
   
-    internal init(accountId: String, environment: String) {
+    public init(accountId: String, environment: String) {
       self.regionalEnvironment = environment
       self.tenantId = accountId
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails(formId: formId, tenantId: tenantId, environment: regionalEnvironment)

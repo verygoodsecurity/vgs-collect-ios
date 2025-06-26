@@ -27,8 +27,6 @@
 		0310EBC92C6E240F00329345 /* VGSCardScanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310EBC82C6E240F00329345 /* VGSCardScanCoordinator.swift */; };
 		0313A1202975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */; };
 		031795D629DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */; };
-		031833EF2DB92A81001815FD /* VGSCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031833EE2DB92A76001815FD /* VGSCardManager.swift */; };
-		031833F42DB94B9B001815FD /* VGSCardManagementConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031833F32DB94B9B001815FD /* VGSCardManagementConfiguration.swift */; };
 		033C979729D5BDC60088E045 /* VGSTextField+statePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */; };
 		0351799B2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */; };
 		0351799D2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */; };
@@ -38,7 +36,6 @@
 		035179A72859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */; };
 		035179A92859BD5500394BFC /* VGSTokenizationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */; };
 		036907D02C6CB12A005C1CF5 /* VGSBlinkCardControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036907CF2C6CB12A005C1CF5 /* VGSBlinkCardControllerRepresentable.swift */; };
-		03819E472DCA2B0A00527363 /* VGSCMPBaseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03819E462DCA2B0A00527363 /* VGSCMPBaseConfiguration.swift */; };
 		038EDA0D286F2EFF00AF3CF2 /* TokenizationApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EDA0C286F2EFF00AF3CF2 /* TokenizationApiTests.swift */; };
 		039AB3482B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB3472B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift */; };
 		039AB34A2B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039AB3492B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift */; };
@@ -257,8 +254,6 @@
 		0310EBC82C6E240F00329345 /* VGSCardScanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardScanCoordinator.swift; sourceTree = "<group>"; };
 		0313A11F2975A22700DB2F2C /* VGSTokenizationConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfigurationTests.swift; sourceTree = "<group>"; };
 		031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldStatePublisherTests.swift; sourceTree = "<group>"; };
-		031833EE2DB92A76001815FD /* VGSCardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardManager.swift; sourceTree = "<group>"; };
-		031833F32DB94B9B001815FD /* VGSCardManagementConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardManagementConfiguration.swift; sourceTree = "<group>"; };
 		033C979629D5BDC60088E045 /* VGSTextField+statePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSTextField+statePublisher.swift"; sourceTree = "<group>"; };
 		0351799A2858B3B700394BFC /* VGSTextFieldTokenizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTokenizationProtocol.swift; sourceTree = "<group>"; };
 		0351799C2858B64600394BFC /* VGSCVCTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCVCTokenizationConfiguration.swift; sourceTree = "<group>"; };
@@ -268,7 +263,6 @@
 		035179A62859BCC400394BFC /* VGSCardHolderNameTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardHolderNameTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		035179A82859BD5500394BFC /* VGSTokenizationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTokenizationConfiguration.swift; sourceTree = "<group>"; };
 		036907CF2C6CB12A005C1CF5 /* VGSBlinkCardControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSBlinkCardControllerRepresentable.swift; sourceTree = "<group>"; };
-		03819E462DCA2B0A00527363 /* VGSCMPBaseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCMPBaseConfiguration.swift; sourceTree = "<group>"; };
 		038EDA0C286F2EFF00AF3CF2 /* TokenizationApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizationApiTests.swift; sourceTree = "<group>"; };
 		039AB3472B5EB0C50048CF15 /* VGSExpDateTextFieldRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSExpDateTextFieldRepresentable.swift; sourceTree = "<group>"; };
 		039AB3492B5EBB810048CF15 /* VGSDateTextFieldRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSDateTextFieldRepresentable.swift; sourceTree = "<group>"; };
@@ -519,23 +513,6 @@
 				031795D529DF00EA00BD1215 /* VGSTextFieldStatePublisherTests.swift */,
 			);
 			path = VGSTextFieldStatePublisherTests;
-			sourceTree = "<group>";
-		};
-		031833ED2DB92A5B001815FD /* CardManager */ = {
-			isa = PBXGroup;
-			children = (
-				031833EE2DB92A76001815FD /* VGSCardManager.swift */,
-			);
-			path = CardManager;
-			sourceTree = "<group>";
-		};
-		031833F02DB94B72001815FD /* CardManagementConfiguration */ = {
-			isa = PBXGroup;
-			children = (
-				031833F32DB94B9B001815FD /* VGSCardManagementConfiguration.swift */,
-				03819E462DCA2B0A00527363 /* VGSCMPBaseConfiguration.swift */,
-			);
-			path = CardManagementConfiguration;
 			sourceTree = "<group>";
 		};
 		0342C4002A8CFF5B00B1D603 /* SwiftUIElements */ = {
@@ -1110,10 +1087,8 @@
 				44ECD5F427D9C18C00460FDF /* VGSPaymentCards */,
 				035179992858B39100394BFC /* TokenizationConfiguration */,
 				FD05F93A2316CE5A000EAF52 /* Enums.swift */,
-				031833ED2DB92A5B001815FD /* CardManager */,
 				A0C1F09829EE30AB00EE8447 /* VGSDate.swift */,
 				FD05F9392316CE5A000EAF52 /* Storage.swift */,
-				031833F02DB94B72001815FD /* CardManagementConfiguration */,
 				FD05F93C2316CE5A000EAF52 /* VGSConfiguration.swift */,
 				322F94B025BABD9D001CDF12 /* VGSExpDateConfiguration.swift */,
 				A0C1F09929EE30AB00EE8447 /* VGSDateConfiguration.swift */,
@@ -1704,7 +1679,6 @@
 				32059CD02417E02E003E9481 /* Utils.swift in Sources */,
 				324B5E6724A2393C0036867E /* VGSValidatior.swift in Sources */,
 				32093D7A25CD9F88006CD242 /* VGSCollectLoggingConfiguration.swift in Sources */,
-				031833EF2DB92A81001815FD /* VGSCardManager.swift in Sources */,
 				44ECD5FF27D9C18C00460FDF /* VGSPaymentCards.swift in Sources */,
 				FD05F94A2316CE5A000EAF52 /* VGSConfiguration.swift in Sources */,
 				A0C1F0A329EE319D00EE8447 /* DateFormatConvertor.swift in Sources */,
@@ -1762,14 +1736,12 @@
 				324B5E6B24A23C2D0036867E /* VGSValidationRulePattern.swift in Sources */,
 				324B5E9D24A64A600036867E /* VGSValidationRulePaymentCard.swift in Sources */,
 				327C9E142407EF92004C641C /* VGSErrorInfo.swift in Sources */,
-				031833F42DB94B9B001815FD /* VGSCardManagementConfiguration.swift in Sources */,
 				32F4B7F424C881FA006086F3 /* Calendar+extension.swift in Sources */,
 				A08DA9FF29F1D4D500DA62A5 /* VGSDateFormat.swift in Sources */,
 				32F23A6D24B60E1100E389F7 /* VGSValidationRuleLengthMatch.swift in Sources */,
 				321300172417F2B70062FEF0 /* VGSTextField.swift in Sources */,
 				328A574023FADC3500714675 /* VGSFilePickerConfiguration.swift in Sources */,
 				449C89DC25F0ABB000BE009F /* Collection+Extensions.swift in Sources */,
-				03819E472DCA2B0A00527363 /* VGSCMPBaseConfiguration.swift in Sources */,
 				A0C1F09A29EE30AB00EE8447 /* VGSDate.swift in Sources */,
 				328A574223FADD3D00714675 /* VGSFilePickerController+internal.swift in Sources */,
 				32093D7B25CD9F88006CD242 /* VGSCollectLogger.swift in Sources */,

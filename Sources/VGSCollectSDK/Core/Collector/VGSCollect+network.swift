@@ -240,7 +240,7 @@ extension VGSCollect {
     }
   }
   
-  internal func createCard(authToken: String, completion block: ((_ response: VGSResponse) -> Void)? ) {
+  public func createCard(completion block: ((_ response: VGSResponse) -> Void)? ) {
     if let error = validateStoredInputData() {
       
       VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code])
@@ -253,7 +253,6 @@ extension VGSCollect {
     let body = ["data": attributes]
 
     VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200])
-    apiClient.setCustomHeaders(headers: ["Authorization": "Bearer \(authToken)"])
     apiClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body, completion:block)
   }
 }
