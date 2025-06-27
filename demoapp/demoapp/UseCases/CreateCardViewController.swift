@@ -31,6 +31,20 @@ class CreateCardViewController: UIViewController {
 
       setupUI()
       setupElementsConfiguration()
+      
+      // Observing text fields. The call back return all textfields with updated states.
+      // You also can use VGSTextFieldDelegate instead.
+      vgsCollect.observeStates = { [weak self] textFields in
+          var invalidTextFieldsCount = 0
+          self?.consoleMessage = ""
+          textFields.forEach({ textField in
+              self?.consoleMessage.append(textField.state.description)
+              self?.consoleMessage.append("\n")
+              if !textField.state.isValid {invalidTextFieldsCount+=1}
+          })
+          let formStateMsg = invalidTextFieldsCount > 0 ? "Not valid fields - \(invalidTextFieldsCount)!" : "All Valid!"
+          self?.consoleStatusLabel.text = "STATE: \(formStateMsg)"
+      }
     }
 
 	override func awakeFromNib() {
@@ -112,6 +126,7 @@ class CreateCardViewController: UIViewController {
       ]
       /// New sendRequest func
       vgsCollect.createCard(completion: { [weak self] response in
+        self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
         case .success(_, let data, _):
           if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {

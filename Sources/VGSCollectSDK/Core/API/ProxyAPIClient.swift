@@ -5,7 +5,7 @@
 
 import Foundation
 
-class APIClient: VGSAPIClientProtocol {
+class ProxyAPIClient: VGSAPIClientProtocol {
   func setCustomHeaders(headers: HTTPHeaders?) {
     self.customHeader = headers
   }
@@ -118,7 +118,7 @@ class APIClient: VGSAPIClientProtocol {
       if case .vaultURL = self.hostURLPolicy,
          let routeId = routeId {
         
-        guard let newUrl = APIClient.buildVaultURL(tenantId: self.vaultId, regionalEnvironment: self.environment, routeId: routeId) else {
+        guard let newUrl = ProxyAPIClient.buildVaultURL(tenantId: self.vaultId, regionalEnvironment: self.environment, routeId: routeId) else {
           let invalidURLError = VGSError(type: .invalidConfigurationURL)
           block?(.failure(invalidURLError.code, nil, nil, invalidURLError))
           return
@@ -152,7 +152,7 @@ class APIClient: VGSAPIClientProtocol {
 	private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
 
 		// Add headers.
-		var headers = APIClient.defaultHttpHeaders
+		var headers = ProxyAPIClient.defaultHttpHeaders
 		headers["Content-Type"] = "application/json"
 		// Add custom headers if needed.
 		if let customerHeaders = customHeader, customerHeaders.count > 0 {
@@ -195,7 +195,7 @@ class APIClient: VGSAPIClientProtocol {
 	}
 }
 
-extension APIClient {
+extension ProxyAPIClient {
 
 	// MARK: - Custom Host Name
 

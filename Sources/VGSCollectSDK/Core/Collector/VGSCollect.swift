@@ -64,14 +64,14 @@ public class VGSCollect {
       self.tenantId = id
       self.regionalEnvironment = environment
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
-      self.apiClient = APIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails)
+      self.apiClient = ProxyAPIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails)
     }
   
     public init(accountId: String, environment: String) {
       self.regionalEnvironment = environment
       self.tenantId = accountId
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
-      self.apiClient = CardsManagementAPIClient(environment: environment, formAnalyticsDetails: formAnalyticsDetails)
+      self.apiClient = CMPAPIClient(environment: environment, formAnalyticsDetails: formAnalyticsDetails)
     }
       
     /// Initialization.

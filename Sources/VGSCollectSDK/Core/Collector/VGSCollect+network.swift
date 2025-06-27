@@ -240,20 +240,40 @@ extension VGSCollect {
     }
   }
   
-  public func createCard(completion block: ((_ response: VGSResponse) -> Void)? ) {
+  /**
+   Send  request with data from VGSTextFields to create card via CMP API(https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards).
+   - Parameters:
+      - completion: response completion block, returns `VGSResponse`.
+   - Note:
+      - Requires <access_token> set in custom headers.
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func createCard(completion block: @escaping ((_ response: VGSResponse) -> Void)) {
     if let error = validateStoredInputData() {
       
-      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code])
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp"])
       
-      block?(.failure(error.code, nil, nil, error))
+      block(.failure(error.code, nil, nil, error))
       return
     }
     let fieldsData = mapFieldsToBodyJSON(with: .flatJSON, extraData: nil)
     let attributes = ["attributes": fieldsData]
     let body = ["data": attributes]
 
-    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200])
-    apiClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body, completion:block)
+    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "upstream" : "cmp"])
+    apiClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self](response ) in
+      // Analytics
+      if let strongSelf = self {
+        switch response {
+        case .success(let code, _, _):
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "cmp"])
+        case .failure(let code, _, _, let error):
+          let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "cmp"])
+        }
+      }
+      block(response)
+    }
   }
 }
 
@@ -345,6 +365,25 @@ extension VGSCollect {
       }
     }
   }
+  
+  /**
+   Asynchronously send  request with data from VGSTextFields to create card via CMP API.
+   - Parameters:
+      - completion: response completion block, returns `VGSResponse`.
+   - Note:
+      - Requires <access_token> set in custom headers.
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func createCard() async -> VGSResponse {
+    return await withCheckedContinuation { continuation in
+      // NOTE:  We need to use main thread since data will be collected  from UI elements
+      DispatchQueue.main.async {
+        self.createCard() {response in
+          continuation.resume(returning: response)
+        }
+      }
+    }
+  }
 }
   
 // MARK: VGSCollect + Combine
@@ -425,6 +464,24 @@ extension VGSCollect {
   public func tokenizeDataPublisher(routeId: String? = nil) -> Future<VGSTokenizationResponse, Never> {
     return Future { [weak self] completion in
       self?.tokenizeData(routeId: routeId) { response in
+        completion(.success(response))
+      }
+    }
+  }
+  
+  /**
+   Send  request with data from VGSTextFields to create card via CMP API  using the Combine framework.
+   
+   - Parameters:
+      - routeId: id of VGS Proxy Route, default is `nil`.
+   - Returns: A `Future` publisher that emits a single `VGSResponse`.
+   - Note:
+      - Requires <access_token> set in custom headers.
+      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
+  */
+  public func createCardPublisher() -> Future<VGSResponse, Never> {
+    return Future { [weak self] completion in
+      self?.createCard() { response in
         completion(.success(response))
       }
     }

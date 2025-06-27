@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CardsManagementAPIClient: VGSAPIClientProtocol {
+class CMPAPIClient: VGSAPIClientProtocol {
   
   internal let urlSession = URLSession(configuration: .ephemeral)
   
@@ -17,9 +17,7 @@ class CardsManagementAPIClient: VGSAPIClientProtocol {
   func setCustomHeaders(headers: HTTPHeaders?) {
     self.customHeader = headers
   }
-  
-//  var analyticsHeaders: HTTPHeaders
-  
+    
   var customHeader: HTTPHeaders?
   
   
@@ -40,7 +38,7 @@ class CardsManagementAPIClient: VGSAPIClientProtocol {
   func sendRequest(path: String, method: VGSCollectHTTPMethod, routeId: String? = nil, value: BodyData, completion block: ((VGSResponse) -> Void)?) {
 
     // Add headers.
-    var headers = APIClient.defaultHttpHeaders
+    var headers = ProxyAPIClient.defaultHttpHeaders
     headers["Content-Type"] = "application/vnd.api+json"
     if let customerHeaders = customHeader, customerHeaders.count > 0 {
       customerHeaders.keys.forEach({ (key) in
