@@ -81,11 +81,6 @@ public class VGSAnalyticsClient {
     } else {
       data = formDetails
     }
-
-		// track only true or both?
-		if form.isSatelliteMode == true {
-			data["vgsSatellite"] = true
-		}
     trackEvent(type, status: status, extraData: data)
   }
 

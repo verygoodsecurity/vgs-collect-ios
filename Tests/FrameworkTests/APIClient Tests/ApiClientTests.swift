@@ -149,7 +149,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     let proxy = "verygoodproxy.com"
     let expectedUrl = URL(string: "https://\(vaultId)-\(routeId).\(environment).\(proxy)")
     // build url
-    let url = APIClient.buildVaultURL(tenantId: vaultId, regionalEnvironment: environment, routeId: routeId)
+    let url = ProxyAPIClient.buildVaultURL(tenantId: vaultId, regionalEnvironment: environment, routeId: routeId)
     XCTAssertTrue(url?.absoluteString != nil)
     XCTAssertTrue(url?.absoluteString == expectedUrl?.absoluteString, "-testValidRouteId error, wrong url: \(String(describing: url))")
   }
