@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal extension APIClient {
+internal extension ProxyAPIClient {
 
 	// MARK: - Vault Url
 
