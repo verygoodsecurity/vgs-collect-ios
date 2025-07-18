@@ -14,7 +14,7 @@ class CreateCardViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector with **accountId** and **environment**
-    var vgsCollect = VGSCollect(accountId: AppCollectorConfiguration.shared.accountId, environment: AppCollectorConfiguration.shared.environment.rawValue)
+    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment.rawValue)
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
     var expCardDate = VGSExpDateTextField()
@@ -77,25 +77,17 @@ class CreateCardViewController: UIViewController {
 
   private func setupElementsConfiguration() {
     
-      let cardConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "pan")
-      cardConfiguration.type = .cardNumber
+      let cardConfiguration = VGSConfiguration.makeCardNumberConfiguration(collector: vgsCollect)
       cardNumber.configuration = cardConfiguration
       cardNumber.placeholder = "4111 1111 1111 1111"
       cardNumber.textAlignment = .natural
-      cardNumber.cardIconLocation = .right
     
-      let expDateConfiguration = VGSExpDateConfiguration(collector: vgsCollect, fieldName: "exp_date")
-      expDateConfiguration.type = .expDate
-      // set serializers that will convert date to format expected by CMP API
-      expDateConfiguration.serializers = [VGSExpDateSeparateSerializer(monthFieldName: "exp_month", yearFieldName: "exp_year")]
-    
+      let expDateConfiguration = VGSConfiguration.makeExpDateConfiguration(collector: vgsCollect)
       expCardDate.configuration = expDateConfiguration
       expCardDate.placeholder = "MM/YY"
       expCardDate.monthPickerFormat = .longSymbols
     
-      let cvcConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "cvc")
-      cvcConfiguration.type = .cvc
-
+      let cvcConfiguration = VGSConfiguration.makeCVCConfiguration(collector: vgsCollect)
       cvcCardNum.configuration = cvcConfiguration
       cvcCardNum.isSecureTextEntry = true
       cvcCardNum.placeholder = "CVC"
@@ -119,13 +111,8 @@ class CreateCardViewController: UIViewController {
       vgsCollect.textFields.forEach { textField in
         textField.borderColor = textField.state.isValid ? .lightGray : .red
       }
-      // set CMP API required headers
-      vgsCollect.customHeaders = [
-        "Content-Type": "application/vnd.api+json",
-        "Authorization": "Bearer \(authToken)"
-      ]
-      /// New sendRequest func
-      vgsCollect.createCard(completion: { [weak self] response in
+      /// Create card request
+      vgsCollect.createCard(authToken: authToken, extraData: ["address": ["city": "aaaa", "country": "bbbb"]], completion: { [weak self] response in
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
         case .success(_, let data, _):
