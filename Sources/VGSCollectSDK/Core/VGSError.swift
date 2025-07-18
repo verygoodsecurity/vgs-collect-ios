@@ -32,6 +32,9 @@ public enum VGSErrorType: Int {
     
     // MARK: - Other errors
   
+    /// When auth token is nil or empty.
+    case invalidAuthToken = 1300
+  
     /// When response type is not supported
     case unexpectedResponseType = 1400
     

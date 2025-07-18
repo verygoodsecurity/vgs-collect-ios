@@ -49,7 +49,7 @@ extension VGSCollect {
     VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content])
     
     // Send request.
-    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
+    proxyAPIClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
       
       // Analytics
       if let strongSelf = self {
@@ -152,7 +152,7 @@ extension VGSCollect {
     VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "content": content, "upstream": "custom"])
     
     // Send request.
-    apiClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
+    proxyAPIClient.sendRequest(path: path, method: method, routeId: routeId, value: body) { [weak self](response ) in
       
       // Analytics.
       if let strongSelf = self {
@@ -220,7 +220,7 @@ extension VGSCollect {
     // Get tokenized textfields params as JSON body
     let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
     // Send request to vault api.
-    apiClient.sendRequest(path: path, method: .post, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
+    proxyAPIClient.sendRequest(path: path, method: .post, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {
         case .success(let code, let data, let response):
@@ -248,28 +248,54 @@ extension VGSCollect {
       - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func createCard(completion block: @escaping ((_ response: VGSResponse) -> Void)) {
-    if let error = validateStoredInputData() {
-      
-      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp"])
+  public func createCard(authToken: String, extraData: [String: Any]? = nil, completion block: @escaping ((_ response: VGSResponse) -> Void)) {
+    // Content analytics.
+    var content: [String] = ["textField"]
+    if !(extraData?.isEmpty ?? true) {
+      content.append("custom_data")
+    }
+    guard !authToken.isEmpty else {
+      let message = "Access token is required for -createCard(:) request!"
+      let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
+      VGSCollectLogger.shared.forwardLogEvent(event)
+      let error = VGSError(type: .invalidAuthToken,
+                           userInfo: VGSErrorInfo(key: VGSSDKErrorInvalidAuthToken,
+                           description: message,
+                           extraInfo: [:]))
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp", "content": content])
       
       block(.failure(error.code, nil, nil, error))
       return
     }
+    if let error = validateStoredInputData() {
+      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp", "content": content])
+      
+      block(.failure(error.code, nil, nil, error))
+      return
+    }
+    /// Make json body from fields data
     let fieldsData = mapFieldsToBodyJSON(with: .flatJSON, extraData: nil)
-    let attributes = ["attributes": fieldsData]
-    let body = ["data": attributes]
-
-    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "upstream" : "cmp"])
-    apiClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self](response ) in
+    let attributes: [String: JsonData] = ["attributes": fieldsData]
+    var body: [String: JsonData] = ["data": attributes]
+    /// Attach custom data if was set by user
+    if let userData = extraData,
+       !userData.isEmpty,
+       let merged = deepMerge(userData, body) as? [String: JsonData] {
+      body = merged
+    }
+    
+    cmpAPIClient.customHeader =  ["Content-Type": "application/vnd.api+json",
+                                  "Authorization": "Bearer \(authToken)"]
+    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "upstream" : "cmp", "content": content])
+    cmpAPIClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self](response ) in
       // Analytics
       if let strongSelf = self {
         switch response {
         case .success(let code, _, _):
-          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "cmp"])
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "cmp", "content": content])
         case .failure(let code, _, _, let error):
           let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "cmp"])
+          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "cmp", "content": content])
         }
       }
       block(response)
@@ -374,11 +400,11 @@ extension VGSCollect {
       - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func createCard() async -> VGSResponse {
+  public func createCard(authToken: String, extraData: [String: Any]? = nil) async -> VGSResponse {
     return await withCheckedContinuation { continuation in
       // NOTE:  We need to use main thread since data will be collected  from UI elements
       DispatchQueue.main.async {
-        self.createCard() {response in
+        self.createCard(authToken: authToken, extraData: extraData) {response in
           continuation.resume(returning: response)
         }
       }
@@ -479,9 +505,9 @@ extension VGSCollect {
       - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func createCardPublisher() -> Future<VGSResponse, Never> {
+  public func createCardPublisher(authToken: String, extraData: [String: Any]? = nil) -> Future<VGSResponse, Never> {
     return Future { [weak self] completion in
-      self?.createCard() { response in
+      self?.createCard(authToken: authToken, extraData: extraData) { response in
         completion(.success(response))
       }
     }
