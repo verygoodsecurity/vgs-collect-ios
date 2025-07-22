@@ -241,25 +241,26 @@ extension VGSCollect {
   }
   
   /**
-   Send  request with data from VGSTextFields to create card via CMP API(https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards).
+   Send  request with data from VGSTextFields to create card via CMP  API(https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards).
    - Parameters:
+      - token: `JWT` access token.
+      - extraData: `[String: Any]` additional data for create card request. Default is `nil`
       - completion: response completion block, returns `VGSResponse`.
    - Note:
-      - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func createCard(authToken: String, extraData: [String: Any]? = nil, completion block: @escaping ((_ response: VGSResponse) -> Void)) {
+  public func createCard(token: String, extraData: [String: Any]? = nil, completion block: @escaping ((_ response: VGSResponse) -> Void)) {
     // Content analytics.
     var content: [String] = ["textField"]
     if !(extraData?.isEmpty ?? true) {
       content.append("custom_data")
     }
-    guard !authToken.isEmpty else {
+    guard !token.isEmpty else {
       let message = "Access token is required for -createCard(:) request!"
       let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
       VGSCollectLogger.shared.forwardLogEvent(event)
-      let error = VGSError(type: .invalidAuthToken,
-                           userInfo: VGSErrorInfo(key: VGSSDKErrorInvalidAuthToken,
+      let error = VGSError(type: .invalidAccessToken,
+                           userInfo: VGSErrorInfo(key: VGSSDKErrorInvalidAccessToken,
                            description: message,
                            extraInfo: [:]))
       VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp", "content": content])
@@ -285,7 +286,7 @@ extension VGSCollect {
     }
     
     cmpAPIClient.customHeader =  ["Content-Type": "application/vnd.api+json",
-                                  "Authorization": "Bearer \(authToken)"]
+                                  "Authorization": "Bearer \(token)"]
     VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "upstream" : "cmp", "content": content])
     cmpAPIClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self](response ) in
       // Analytics
@@ -395,16 +396,17 @@ extension VGSCollect {
   /**
    Asynchronously send  request with data from VGSTextFields to create card via CMP API.
    - Parameters:
+      - token: `JWT` access token.
+      - extraData: `[String: Any]` additional data for create card request. Default is `nil`
       - completion: response completion block, returns `VGSResponse`.
    - Note:
-      - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func createCard(authToken: String, extraData: [String: Any]? = nil) async -> VGSResponse {
+  public func createCard(token: String, extraData: [String: Any]? = nil) async -> VGSResponse {
     return await withCheckedContinuation { continuation in
       // NOTE:  We need to use main thread since data will be collected  from UI elements
       DispatchQueue.main.async {
-        self.createCard(authToken: authToken, extraData: extraData) {response in
+        self.createCard(token: token, extraData: extraData) {response in
           continuation.resume(returning: response)
         }
       }
@@ -499,15 +501,15 @@ extension VGSCollect {
    Send  request with data from VGSTextFields to create card via CMP API  using the Combine framework.
    
    - Parameters:
-      - routeId: id of VGS Proxy Route, default is `nil`.
+      - token: `JWT` access token.
+      - extraData: `[String: Any]` additional data for create card request. Default is `nil`
    - Returns: A `Future` publisher that emits a single `VGSResponse`.
    - Note:
-      - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
-  public func createCardPublisher(authToken: String, extraData: [String: Any]? = nil) -> Future<VGSResponse, Never> {
+  public func createCardPublisher(token: String, extraData: [String: Any]? = nil) -> Future<VGSResponse, Never> {
     return Future { [weak self] completion in
-      self?.createCard(authToken: authToken, extraData: extraData) { response in
+      self?.createCard(token: token, extraData: extraData) { response in
         completion(.success(response))
       }
     }

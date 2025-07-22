@@ -17,7 +17,6 @@ class CMPAPIClient: VGSAPIClientProtocol {
     
   var customHeader: HTTPHeaders?
   
-  
   private static func getBaseURL(env: String) -> URL {
     let environment = env.lowercased()
     switch environment {

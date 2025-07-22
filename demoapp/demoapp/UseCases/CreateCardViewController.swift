@@ -24,7 +24,9 @@ class CreateCardViewController: UIViewController {
         didSet { consoleLabel.text = consoleMessage }
     }
   
-  let authToken = "<your_cpm_authToken>"
+    
+    /// Create card backend API https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards
+    let jwtToken = "<your_cpm_jwtToken>"
 
     override func viewDidLoad() {
       super.viewDidLoad()
@@ -76,7 +78,7 @@ class CreateCardViewController: UIViewController {
     }
 
   private func setupElementsConfiguration() {
-    
+      /// Create default configurations for create card request. Default configurations include proper field names, validation, serializers. You also can edit default configuration.
       let cardConfiguration = VGSConfiguration.makeCardNumberConfiguration(collector: vgsCollect)
       cardNumber.configuration = cardConfiguration
       cardNumber.placeholder = "4111 1111 1111 1111"
@@ -102,7 +104,6 @@ class CreateCardViewController: UIViewController {
       }
   }
     
-    
     // Upload data from TextFields to VGS
     @IBAction func uploadAction(_ sender: Any) {
       // hide kayboard
@@ -112,7 +113,7 @@ class CreateCardViewController: UIViewController {
         textField.borderColor = textField.state.isValid ? .lightGray : .red
       }
       /// Create card request
-      vgsCollect.createCard(authToken: authToken, extraData: ["address": ["city": "aaaa", "country": "bbbb"]], completion: { [weak self] response in
+      vgsCollect.createCard(token: jwtToken, completion: { [weak self] response in
         self?.consoleStatusLabel.text = "RESPONSE"
         switch response {
         case .success(_, let data, _):
