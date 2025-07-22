@@ -13,7 +13,7 @@ class CreateCardViewController: UIViewController {
     @IBOutlet weak var consoleStatusLabel: UILabel!
     @IBOutlet weak var consoleLabel: UILabel!
 
-    // Init VGS Collector with **accountId** and **environment**
+    // Init VGS Collector with **vaultId** and **environment**
     var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment.rawValue)
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
