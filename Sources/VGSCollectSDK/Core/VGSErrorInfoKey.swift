@@ -45,10 +45,13 @@ public let VGSSDKErrorFileSizeExceedsTheLimit: VGSErrorInfoKey = "VGSSDKErrorFil
 /// Error key, used for errors when SDK can't get access to specific source.
 public let VGSSDKErrorSourceNotAvailable: VGSErrorInfoKey = "VGSSDKErrorSourceNotAvailable"
 
+// MARK: - Request errors
+/// Error key, used for errors when access token is not valid.
+public let VGSSDKErrorInvalidAccessToken: VGSErrorInfoKey = "VGSSDKErrorInvalidAccessToken"
+
 // MARK: - Response errors
 /// Error key, used for errors when response for SDK API request is in format that not supported by SDK.
 public let VGSSDKErrorUnexpectedResponseDataFormat: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResponseDataFormat"
-
 
 /// Error key, used for errors when wrong configuration was used, some functionality could be not supported.
 public let VGSSDKErrorWrongConfiguration: VGSErrorInfoKey = "VGSSDKErrorWrongConfiguration"

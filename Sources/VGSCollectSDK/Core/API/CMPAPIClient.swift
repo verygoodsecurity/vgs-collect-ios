@@ -2,9 +2,6 @@
 //  CMPAPIClient.swift
 //  VGSCollectSDK
 //
-//  Created by Dmytro on 16.04.2025.
-//  Copyright © 2025 VGS. All rights reserved.
-//
 
 import Foundation
 
@@ -19,7 +16,6 @@ class CMPAPIClient: VGSAPIClientProtocol {
   }
     
   var customHeader: HTTPHeaders?
-  
   
   private static func getBaseURL(env: String) -> URL {
     let environment = env.lowercased()
@@ -39,14 +35,11 @@ class CMPAPIClient: VGSAPIClientProtocol {
 
     // Add headers.
     var headers = ProxyAPIClient.defaultHttpHeaders
-    headers["Content-Type"] = "application/vnd.api+json"
     if let customerHeaders = customHeader, customerHeaders.count > 0 {
       customerHeaders.keys.forEach({ (key) in
         headers[key] = customerHeaders[key]
       })
     }
-    
-    // Add custom headers if needed.
     // Setup URLRequest.
     let jsonData = try? JSONSerialization.data(withJSONObject: value)
     let url = baseURL!.appendingPathComponent(path)
