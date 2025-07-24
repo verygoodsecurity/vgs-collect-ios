@@ -43,7 +43,7 @@ You should have your organization registered at <a href="https://dashboard.veryg
 
 # Integration
 
-### Swift Package Manager
+### Swift Package Manager 
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
 Xcode with Swift tools version of 5.9+ is required for VGSCollectSDK.
