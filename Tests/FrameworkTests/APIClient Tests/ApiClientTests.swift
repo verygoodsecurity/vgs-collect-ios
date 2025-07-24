@@ -156,7 +156,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
   
   func testBaseUrlNotChangedAfterRouteIdSet() {
     let routeId = UUID().uuidString
-    let baseUrl = collector.apiClient.baseURL
+    let baseUrl = collector.proxyAPIClient.baseURL
     // dummy field
     let configuration = VGSConfiguration(collector: collector, fieldName: "textfield")
     let textField = VGSTextField()
@@ -165,7 +165,7 @@ class ApiClientTests: VGSCollectBaseTestCase {
     let expectation = XCTestExpectation(description: "Sending data...")
     collector.sendData(path: "/post", routeId: routeId) { [weak self] _ in
       // check base url not changed and don't include routeid
-      let url = self?.collector.apiClient.baseURL
+      let url = self?.collector.proxyAPIClient.baseURL
       XCTAssertTrue(baseUrl?.absoluteString == url?.absoluteString, "-testBaseUrlNotChangedAfterRouteIdSet url error: \(String(describing: url))")
       expectation.fulfill()
     }
