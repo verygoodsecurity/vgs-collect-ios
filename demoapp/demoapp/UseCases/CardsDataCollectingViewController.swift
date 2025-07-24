@@ -76,11 +76,12 @@ class CardsDataCollectingViewController: UIViewController {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-
-		let view = self.view
-		if UITestsMockedDataProvider.isRunningUITest {
-			view?.accessibilityIdentifier = "CardsDataCollectingViewController.Screen.RootView"
-		}
+        Task { @MainActor in
+            let view = self.view
+            if UITestsMockedDataProvider.isRunningUITest {
+                view?.accessibilityIdentifier = "CardsDataCollectingViewController.Screen.RootView"
+            }
+        }
 	}
     
     // MARK: - Init UI
@@ -232,6 +233,7 @@ extension CardsDataCollectingViewController: VGSTextFieldDelegate {
   }
 }
 
+@MainActor
 extension CardsDataCollectingViewController: VGSBlinkCardControllerDelegate {
   func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
       // match VGSTextField with scanned data
