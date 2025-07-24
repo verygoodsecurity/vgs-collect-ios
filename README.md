@@ -441,8 +441,8 @@ VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 ```
 
 ## Dependencies
-- iOS 12+
-- Swift 5
+- iOS 13+
+- Swift 5.9
 - Optional 3rd party libraries:
   - [BlinkCard](https://github.com/blinkcard/blinkcard-ios)
 
