@@ -9,7 +9,7 @@
 import Foundation
 
 /// Default CardBrand settings
-extension VGSPaymentCards.CardBrand {
+@MainActor extension VGSPaymentCards.CardBrand {
   
   /// Returns regex for specific card brand detection
   var defaultRegex: String {

@@ -104,8 +104,10 @@ extension VGSBlinkCardHandler: MBCBlinkCardOverlayViewControllerDelegate {
   
   /// When user tap close button.
   func blinkCardOverlayViewControllerDidTapClose(_ blinkCardOverlayViewController: MBCBlinkCardOverlayViewController) {
-    VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "BlinkCard"])
-    delegate?.userDidCancelScan()
+      Task { @MainActor in
+          VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "BlinkCard"])
+          delegate?.userDidCancelScan()
+      }
   }
   
   static func mapScanResult(_ result: MBCBlinkCardRecognizerResult) -> [VGSBlinkCardDataType: String] {

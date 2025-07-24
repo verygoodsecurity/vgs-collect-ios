@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - VGSCardTextFieldRepresentable.
 @available(iOS 14.0, *)
-internal protocol VGSTextFieldRepresentableProtocol {
+@MainActor internal protocol VGSTextFieldRepresentableProtocol {
   /// Textfiled text font.
   var font: UIFont? {get set}
   /// Placeholder string.
@@ -66,7 +66,7 @@ public enum VGSTextFieldEditingEvent<StateType> {
 }
 
 /// `VGSTextFieldRepresentable` callbacks.
-public protocol VGSTextFieldRepresentableCallbacksProtocol {
+@MainActor public protocol VGSTextFieldRepresentableCallbacksProtocol {
     associatedtype StateType
     /// On editing events.
     var onEditingEvent: ((VGSTextFieldEditingEvent<StateType>) -> Void)? { get set }
@@ -75,7 +75,7 @@ public protocol VGSTextFieldRepresentableCallbacksProtocol {
 }
 
 @available(iOS 14.0, *)
-internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+@MainActor internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// Card brand icon size.
   var cardIconSize: CGSize {get set}
   /// Card brand icon positions enum.
@@ -84,7 +84,7 @@ internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentab
 
 // MARK: - VGSExpDateTextFieldRepresentable.
 @available(iOS 14.0, *)
-internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+@MainActor internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
   var monthPickerFormat: VGSExpDateTextField.MonthFormat {get set}
   /// UIPickerView Year Label format.
@@ -93,7 +93,7 @@ internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresen
 
 // MARK: - VGSCVCTextFieldRepresentable.
 @available(iOS 14.0, *)
-internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+@MainActor internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// Card brand icon size.
   var cvcIconSize: CGSize {get set}
   /// Card brand icon positions enum.
@@ -104,7 +104,7 @@ internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentabl
 
 // MARK: - VGSDateTextFieldRepresentable.
 @available(iOS 14.0, *)
-internal protocol VGSDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
+@MainActor internal protocol VGSDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
   var monthPickerFormat: VGSDateTextField.MonthFormat {get set}
 }

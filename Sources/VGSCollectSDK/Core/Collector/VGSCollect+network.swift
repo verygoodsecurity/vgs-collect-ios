@@ -363,13 +363,12 @@ extension VGSCollect {
       - Requires <access_token> set in custom headers.
       - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  @MainActor
   public func createAliases(routeId: String? = nil) async -> VGSTokenizationResponse {
     return await withCheckedContinuation { continuation in
       // NOTE:  We need to use main thread since data will be collected  from UI elements
-      DispatchQueue.main.async {
         self.createAliases(routeId: routeId) {response in
           continuation.resume(returning: response)
-        }
       }
     }
   }
@@ -382,13 +381,12 @@ extension VGSCollect {
    - Note:
       Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
   */
+  @MainActor
   public func tokenizeData(routeId: String? = nil) async -> VGSTokenizationResponse {
     return await withCheckedContinuation { continuation in
       // NOTE:  We need to use main thread since data will be collected  from UI elements
-      DispatchQueue.main.async {
         self.tokenizeData(routeId: routeId) {response in
           continuation.resume(returning: response)
-        }
       }
     }
   }

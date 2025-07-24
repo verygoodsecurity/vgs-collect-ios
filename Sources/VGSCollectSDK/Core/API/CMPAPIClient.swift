@@ -5,7 +5,7 @@
 
 import Foundation
 
-class CMPAPIClient: VGSAPIClientProtocol {
+@MainActor class CMPAPIClient: VGSAPIClientProtocol {
   
   internal let urlSession = URLSession(configuration: .ephemeral)
   

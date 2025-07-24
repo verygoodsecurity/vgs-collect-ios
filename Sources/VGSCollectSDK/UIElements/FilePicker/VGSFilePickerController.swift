@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// Controller responsible for importing files from device sources.
-public class VGSFilePickerController {
+@MainActor public class VGSFilePickerController {
     
     // MARK: - Attributes
 

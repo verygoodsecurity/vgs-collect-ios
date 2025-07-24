@@ -10,6 +10,7 @@ import Foundation
 
 /// Delegates produced by VGSFilePickerController.
 @objc
+@MainActor
 public protocol VGSFilePickerControllerDelegate {
     
     // MARK: - Handle user ineraction.

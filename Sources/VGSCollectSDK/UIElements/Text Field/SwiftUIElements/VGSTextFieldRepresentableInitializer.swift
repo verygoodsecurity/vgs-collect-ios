@@ -6,6 +6,7 @@
 import SwiftUI
 
 @available(iOS 14.0, *)
+@MainActor
 internal struct VGSTextFieldRepresentableInitializer {
     static func configure<T: VGSTextField>(_ textField: T, representable: VGSTextFieldRepresentableProtocol) {
         textField.font = representable.font

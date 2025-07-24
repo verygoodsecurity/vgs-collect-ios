@@ -44,6 +44,7 @@ internal class VGSCardIOHandler: NSObject, VGSScanHandlerProtocol {
 }
 
 /// :nodoc:
+@MainActor
 extension VGSCardIOHandler: CardIOPaymentViewControllerDelegate {
     
     /// :nodoc:

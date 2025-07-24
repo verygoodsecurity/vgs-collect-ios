@@ -11,7 +11,7 @@ import UIKit
 #endif
 
 /// Delegates produced by `VGSTextField` instance.
-@objc
+@objc @MainActor
 public protocol VGSTextFieldDelegate {
     
     // MARK: - Handle user ineraction with VGSTextField

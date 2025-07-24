@@ -17,6 +17,7 @@ public struct VGSSSNTokenizationParameters: VGSTokenizationParametersProtocol {
 }
 
 /// `VGSSSNTokenizationConfiguration` - textfield configuration for textfield with type `.ssn`, required for work with tokenization api.
+@MainActor
 public class VGSSSNTokenizationConfiguration: VGSConfiguration, VGSTextFieldTokenizationConfigurationProtocol {
   
   /// `VGSSSNTokenizationParameters` - tokenization configuration parameters.

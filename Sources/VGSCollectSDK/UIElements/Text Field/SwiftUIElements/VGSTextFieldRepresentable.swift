@@ -7,7 +7,7 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
-public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
+public struct VGSTextFieldRepresentable: UIViewRepresentable, @preconcurrency VGSTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   
     /// A class responsible for configuration VGSTextFieldRepresentable.
     var configuration: VGSConfiguration

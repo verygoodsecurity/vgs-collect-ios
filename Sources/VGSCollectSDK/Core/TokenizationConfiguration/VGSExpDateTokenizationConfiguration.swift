@@ -15,7 +15,7 @@ public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtoco
 }
 
 /// `VGSExpDateTokenizationConfiguration` - textfield configuration for textfield with type `.expDate`, required for work with tokenization api.
-public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
+public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, @preconcurrency VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
   
   // MARK: - Attributes
   /// `FieldType.expDate` type of `VGSTextField`tokenization  configuration.
@@ -59,7 +59,7 @@ public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExp
 }
 
 /// Implement `TextFormatConvertable` protocol.
-extension VGSExpDateTokenizationConfiguration: VGSTextFormatConvertable {
+extension VGSExpDateTokenizationConfiguration: @preconcurrency VGSTextFormatConvertable {
     
     var inputFormat: InputConvertableFormat? {
         return inputDateFormat

@@ -13,7 +13,7 @@ import Foundation
  Supports optional validation of cards that are not defined in SDK - `CardBrand.unknown`.
  To edit validation requirments for `CardBrand.unknown` cards in SDK, setup  `VGSPaymentCards.unknown` model attributes.
  */
-public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
+@MainActor public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
 
   /// Validation Error
   public var error: VGSValidationError
@@ -40,7 +40,7 @@ public struct VGSValidationRulePaymentCard: VGSValidationRuleProtocol {
   }
 }
 
-extension VGSValidationRulePaymentCard: VGSRuleValidator {
+@MainActor extension VGSValidationRulePaymentCard: VGSRuleValidator {
   
   internal func validate(input: String?) -> Bool {
     

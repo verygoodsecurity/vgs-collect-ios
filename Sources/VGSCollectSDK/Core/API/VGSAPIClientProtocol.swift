@@ -6,7 +6,7 @@
 
 import Foundation
 
-protocol VGSAPIClientProtocol {
+@MainActor protocol VGSAPIClientProtocol {
   var baseURL: URL? { get }
   /// Analytics & SDK header only.  Content-Type lives in subclasses.
 //  var analyticsHeaders: HTTPHeaders { get }

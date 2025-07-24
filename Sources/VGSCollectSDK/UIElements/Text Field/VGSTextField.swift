@@ -423,7 +423,7 @@ internal extension VGSTextField {
 
 // MARK: - MaskedTextFieldDelegate
 
-extension VGSTextField: MaskedTextFieldDelegate {
+extension VGSTextField: @preconcurrency MaskedTextFieldDelegate {
 	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
 		guard let maxInputLength = configuration?.maxInputLength, let currentString: NSString = textField.secureText as? NSString else {return true}
 

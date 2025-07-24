@@ -63,10 +63,12 @@ public struct VGSCardIOViewControllerRepresentable: UIViewControllerRepresentabl
         let fields = parent.fieldMappingPolicy
 
         if !cardInfo.cardNumber.isEmpty, let textfield = fields[CradIODataType.cardNumber] {
-            if let form = textfield.configuration?.vgsCollector {
-              VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+            Task { @MainActor in
+                if let form = textfield.configuration?.vgsCollector {
+                    VGSAnalyticsClient.shared.trackFormEvent(form.formAnalyticsDetails, type: .scan, status: .success, extraData: [ "scannerType": "CardIO"])
+                }
+                textfield.setText(cardInfo.cardNumber)
             }
-            textfield.setText(cardInfo.cardNumber)
         }
 
         let expiryDateData = VGSCardIOExpirationDate(month: cardInfo.expiryMonth, year: cardInfo.expiryYear)

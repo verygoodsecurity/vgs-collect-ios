@@ -55,6 +55,7 @@ public enum VGSTextFieldInputSource {
   case datePicker
 }
 
+@MainActor
 internal extension FieldType {
     
     var defaultFormatPattern: String {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class APIHostnameValidator {
+@MainActor internal class APIHostnameValidator {
 
 	/// Constants.
  	internal enum Constants {
@@ -18,7 +18,7 @@ internal class APIHostnameValidator {
 	private static let hostValidatorBaseURL = URL(string: "https://js.verygoodvault.com/collect-configs")!
 
 	/// URLSession object.
-	static private var session = URLSession(configuration: .ephemeral)
+    static private let session = URLSession(configuration: .ephemeral)
 
 	/// Validate custom hostname.
 	/// - Parameters:
@@ -74,7 +74,9 @@ internal class APIHostnameValidator {
 			let statusCode = httpResponse.statusCode
 
 			guard Constants.validStatuses.contains(statusCode) else {
-				logErrorForStatusCode(statusCode, hostname: hostname)
+                Task { @MainActor in
+                    logErrorForStatusCode(statusCode, hostname: hostname)
+                }
 				completion(nil)
 				return
 			}
@@ -103,6 +105,7 @@ internal class APIHostnameValidator {
 	/// - Parameters:
 	///   - statusCode: `Int` object. Status code error.
 	///   - hostname: `String` object, hostname.
+    @MainActor
 	private static func logErrorForStatusCode(_ statusCode: Int, hostname: String) {
 		switch statusCode {
 		case 403:

@@ -6,7 +6,8 @@
 import Foundation
 
 /// Format used to validate a VGS date text input
-public enum VGSDateFormat: InputConvertableFormat, OutputConvertableFormat {
+@MainActor
+public enum VGSDateFormat: InputConvertableFormat, OutputConvertableFormat, Sendable {
     case mmddyyyy
     case ddmmyyyy
     case yyyymmdd

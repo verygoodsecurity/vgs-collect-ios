@@ -67,8 +67,10 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
   ///   - errorCallback: Error callback with Int error code(represents `MBCLicenseError` enum), triggered only when error occured.
   public init(licenseKey: String, dataCoordinators: [VGSBlinkCardDataType: VGSCardScanCoordinator], errorCallback: @escaping ((NSInteger) -> Void)) {
       MBCMicroblinkSDK.shared().setLicenseKey(licenseKey) { error in
-        VGSAnalyticsClient.shared.trackEvent(.scan, status: .failed, extraData: ["scannerType": "BlinkCard", "errorCode": error])
-        errorCallback(error.rawValue)
+        Task { @MainActor in
+            VGSAnalyticsClient.shared.trackEvent(.scan, status: .failed, extraData: ["scannerType": "BlinkCard", "errorCode": error])
+            errorCallback(error.rawValue)
+          }
       }
       self.dataCoordinators = dataCoordinators
   }
@@ -195,8 +197,10 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
     
     /// When user tap close button.
     public func blinkCardOverlayViewControllerDidTapClose(_ blinkCardOverlayViewController: MBCBlinkCardOverlayViewController) {
-      VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "BlinkCard"])
-      parent.onCardScanCanceled?()
+        Task { @MainActor in
+            VGSAnalyticsClient.shared.trackEvent(.scan, status: .cancel, extraData: [ "scannerType": "BlinkCard"])
+            parent.onCardScanCanceled?()
+        }
     }
   }
 }
