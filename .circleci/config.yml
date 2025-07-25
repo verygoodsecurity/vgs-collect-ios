@@ -173,10 +173,6 @@ workflows:
             - frontend-deploy
             - circleci
 
-      - build-and-ui-test-demo-app:
-          name: build-and-ui-test-demo-app-ios-18_4-iphone16
-          xcode: "16.3.0"
-
       - scan-sast-pr:
           context:
             - security-tools
