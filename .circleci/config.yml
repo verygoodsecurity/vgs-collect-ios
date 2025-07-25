@@ -24,21 +24,26 @@ jobs:
         type: string
       ios:
         type: string
-        default: "18.5"
+        default: "17.0"
       device:
         type: string
-        default: "iPhone 16 Pro Max"
+        default: "iPhone 15"
     executor:
       name: macos_arm
       xcode: << parameters.xcode >>
     steps:
       - checkout
 
-      # Preboot the right simulator early to save time
       - macos/preboot-simulator:
           version: << parameters.ios >>
           platform: "iOS"
           device: << parameters.device >>
+
+      - run:
+          name: List installed runtimes & devices (debug)
+          command: |
+            xcrun simctl list runtimes
+            xcrun simctl list devices
 
       - run:
           name: Install xcov
@@ -52,14 +57,14 @@ jobs:
             plutil -insert vaultID -string ${vaultID} MockedData.plist &&
             cd ../../.. &&
             xcodebuild
-            test
-            -project VGSCollectSDK.xcodeproj
-            -scheme FrameworkTests
-            -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>'
-            -enableCodeCoverage YES
-            -testPlan FrameworkTests
-            | tee xcodebuild.log
-            | xcpretty --report junit --output test-results/junit.xml
+              test
+              -project VGSCollectSDK.xcodeproj
+              -scheme FrameworkTests
+              -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>'
+              -enableCodeCoverage YES
+              -testPlan FrameworkTests
+              | tee xcodebuild.log
+              | xcpretty --report junit --output test-results/junit.xml
 
       - run:
           name: Calculate Test Coverage
@@ -80,13 +85,12 @@ jobs:
       - run:
           name: Show Git Branch
           command: |
-            echo "Branch: << pipeline.git.branch >>"
-
+            echo "Branch: ${CIRCLE_BRANCH}"
 
       - run:
           name: Push Test Coverage to Compass (main only)
           command: >
-            if [ "<< pipeline.git.branch >>" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" = "master" ]; then
               ./ops/publish-test-coverage.sh
             else
               echo "Code coverage will only be pushed to compass on the main branch."
@@ -98,10 +102,10 @@ jobs:
         type: string
       ios:
         type: string
-        default: "18.5"
+        default: "17.0"
       device:
         type: string
-        default: "iPhone 16 Pro Max"
+        default: "iPhone 15"
     executor:
       name: macos_arm
       xcode: << parameters.xcode >>
@@ -122,16 +126,17 @@ jobs:
             cd .. &&
             pod install &&
             xcodebuild
-            test
-            -workspace demoapp.xcworkspace
-            -scheme demoappUITests
-            -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>'
-            | tee xcodebuild.log
-            | xcpretty --report junit --output test-results/junit.xml
+              test
+              -workspace demoapp.xcworkspace
+              -scheme demoappUITests
+              -sdk iphonesimulator
+              -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>'
+              | tee xcodebuild.log
+              | xcpretty --report junit --output test-results/junit.xml
 
       - store_test_results:
           path: test-results
+
       - store_artifacts:
           path: xcodebuild.log
           destination: demoapp-ui-tests-xcode-<< parameters.xcode >>.log
@@ -178,17 +183,16 @@ workflows:
           name: build-and-test-sdk-xcode-<< matrix.xcode >>
           matrix:
             parameters:
-              xcode: ["15.0.0", "16.4.0"]
+              xcode: ["15.0.0", "15.4.0"]
           context:
             - frontend-deploy
             - circleci
 
-      # Run UI tests only on the latest
       - build-and-ui-test-demo-app:
-          name: build-and-ui-test-demo-app-ios-18_5-iphone16promax
-          xcode: "16.4.0"
+          name: build-and-ui-test-demo-app-ios-17_0-iphone15
+          xcode: "15.4.0"
           requires:
-            - build-and-test-sdk-xcode-16.4.0
+            - build-and-test-sdk-xcode-15.4.0
 
       - scan-sast-pr:
           context:
