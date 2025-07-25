@@ -79,7 +79,9 @@ jobs:
 
       - run:
           name: Show Git Branch
-          command: echo "Branch: << pipeline.git.branch >>"
+          command: |
+            echo "Branch: << pipeline.git.branch >>"
+
 
       - run:
           name: Push Test Coverage to Compass (main only)
