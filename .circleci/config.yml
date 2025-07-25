@@ -12,7 +12,7 @@ executors:
   macos_arm:
     macos:
       xcode: << parameters.xcode >>
-    resource_class: macos.m1.medium.gen1
+    resource_class: m4pro.medium
     parameters:
       xcode:
         type: string
