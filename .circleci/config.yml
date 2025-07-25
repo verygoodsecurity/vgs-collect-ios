@@ -24,10 +24,10 @@ jobs:
         type: string
       ios:
         type: string
-        default: "17.5"
+        default: "18.3"
       device:
         type: string
-        default: "iPhone 15"
+        default: "iPhone 16"
     executor:
       name: macos_arm
       xcode: << parameters.xcode >>
@@ -102,10 +102,10 @@ jobs:
         type: string
       ios:
         type: string
-        default: "17.5"
+        default: "18.3"
       device:
         type: string
-        default: "iPhone 15"
+        default: "iPhone 16"
     executor:
       name: macos_arm
       xcode: << parameters.xcode >>
@@ -180,17 +180,17 @@ workflows:
       not: << pipeline.parameters.nightly-security-scan >>
     jobs:
       - build-and-test-sdk:
-          name: build-and-test-sdk-xcode-15.4.0
-          xcode: "15.4.0"
+          name: build-and-test-sdk-xcode-16.3.0
+          xcode: "16.3.0"
           context:
             - frontend-deploy
             - circleci
 
       - build-and-ui-test-demo-app:
-          name: build-and-ui-test-demo-app-ios-17_5-iphone15
-          xcode: "15.4.0"
+          name: build-and-ui-test-demo-app-ios-18_3-iphone16
+          xcode: "16.3.0"
           requires:
-            - build-and-test-sdk-xcode-15.4.0
+            - build-and-test-sdk-xcode-16.3.0
 
       - scan-sast-pr:
           context:
