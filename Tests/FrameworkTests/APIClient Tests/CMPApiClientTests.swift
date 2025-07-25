@@ -1,6 +1,6 @@
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class CMPAPIClientTests: VGSCollectBaseTestCase {
     
     var formAnalyticsDetails: VGSFormAnanlyticsDetails!
@@ -40,7 +40,7 @@ class CMPAPIClientTests: VGSCollectBaseTestCase {
         XCTAssertEqual(client.baseURL?.absoluteString, "https://vgsapi.com", "Base URL should be the live URL.")
     }
 }
-
+@MainActor
 class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
     
     var vgsCollect: VGSCollect!

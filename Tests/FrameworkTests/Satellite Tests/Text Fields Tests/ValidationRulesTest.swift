@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class ValidationRulesTest: VGSCollectBaseTestCase {
 
     var form: VGSCollect!

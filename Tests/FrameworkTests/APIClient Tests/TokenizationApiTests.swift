@@ -7,7 +7,7 @@ import XCTest
 import Combine
 @testable import VGSCollectSDK
 
-@available(iOS 13, *)
+@MainActor
 class TokenizationApiTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
   

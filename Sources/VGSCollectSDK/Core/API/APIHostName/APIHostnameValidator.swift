@@ -124,6 +124,7 @@ import Foundation
 	///   - hostname: `String` object, custom hostname.
 	///   - tenantId: `String` object, tenant id.
 	/// - Returns: `URL?` object.
+    @MainActor
 	internal static func buildHostValidationURL(with hostname: String, tenantId: String) -> URL? {
 
 		guard let normalizedHostname = hostname.normalizedHostname() else {return nil}

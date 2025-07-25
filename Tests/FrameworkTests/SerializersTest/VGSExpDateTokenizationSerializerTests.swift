@@ -5,7 +5,7 @@
 import Foundation
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor 
 class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var textField: VGSExpDateTextField!
@@ -24,7 +24,7 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
             }
         }
     }
-    
+    @MainActor
     struct TestJSONData: TestJSONDataProtocol {
         let fieldValue: String
         let monthFieldName: String

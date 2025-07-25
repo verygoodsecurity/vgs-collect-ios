@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class StorageTests: XCTestCase {
     var storage: Storage!
     var textField: VGSTextField!

@@ -5,7 +5,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     
     // MARK: - Properties
@@ -32,6 +32,7 @@ class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     }
     
     /// Store the JSON data for testing
+    @MainActor
     private struct TestJSONData: TestJSONDataProtocol {
         
         // MARK: - Properties
