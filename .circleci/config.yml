@@ -51,20 +51,24 @@ jobs:
 
       - run:
           name: Run Unit Tests (iOS << parameters.ios >> on << parameters.device >>)
-          command: >
-            cd Tests/FrameworkTests/Resources &&
-            plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist &&
-            plutil -insert vaultID -string ${vaultID} MockedData.plist &&
-            cd ../../.. &&
-            xcodebuild
-              test
-              -project VGSCollectSDK.xcodeproj
-              -scheme FrameworkTests
-              -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>'
-              -enableCodeCoverage YES
-              -testPlan FrameworkTests
-              | tee xcodebuild.log
-              | xcpretty --report junit --output test-results/junit.xml
+          command: |
+              set -eo pipefail
+              cd Tests/FrameworkTests/Resources
+              plutil -insert tokenization_vaultId -string "${tokenization_vaultId}" MockedData.plist
+              plutil -insert vaultID -string "${vaultID}" MockedData.plist
+              cd ../../..
+              xcodebuild \
+                test \
+                -project VGSCollectSDK.xcodeproj \
+                -scheme FrameworkTests \
+                -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>' \
+                -enableCodeCoverage YES \
+                -testPlan FrameworkTests \
+                | tee xcodebuild.log \
+                | xcpretty --report junit --output test-results/junit.xml
+              status=${PIPESTATUS[0]}
+              echo "xcodebuild exit status: $status"
+              exit $status
 
       - run:
           name: Calculate Test Coverage
