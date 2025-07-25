@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// no:doc
-extension VGSPaymentCards.CardBrand {
+@MainActor extension VGSPaymentCards.CardBrand {
     static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
   
     static var defaultCVCIcon3Digits = UIImage(named: "cvc3", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
@@ -84,7 +84,7 @@ extension VGSPaymentCards.CardBrand {
 
 /// no:doc
 internal class AssetsBundle {
-    static var main = AssetsBundle()
+    @MainActor static let main = AssetsBundle()
     var iconBundle: Bundle?
 
 		/// no:doc

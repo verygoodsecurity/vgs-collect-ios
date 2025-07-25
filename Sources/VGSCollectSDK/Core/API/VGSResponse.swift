@@ -33,7 +33,7 @@ import Foundation
 }
 
 /// Tokenization response enum cases for SDK requests.
-@frozen public enum VGSTokenizationResponse {
+@frozen public enum VGSTokenizationResponse: @unchecked Sendable {
     /**
      Success response case
 

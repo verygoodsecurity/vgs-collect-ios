@@ -32,7 +32,7 @@ internal extension Optional where Wrapped == NSAttributedString {
 }
 
 internal extension String {
-	func normalizedHostname() -> String? {
+    @MainActor func normalizedHostname() -> String? {
 
 		// Create component.
 		guard var component = URLComponents(string: self) else {return nil}

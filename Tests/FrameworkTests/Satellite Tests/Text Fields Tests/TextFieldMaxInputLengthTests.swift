@@ -7,6 +7,7 @@ import XCTest
 @testable import VGSCollectSDK
 
 /// Tests for max input length.
+@MainActor 
 class TextFieldMaxInputLengthTests: VGSCollectBaseTestCase {
 
 	  /// Collect instance.

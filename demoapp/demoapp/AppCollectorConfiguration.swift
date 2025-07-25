@@ -7,6 +7,7 @@ import Foundation
 import VGSCollectSDK
 
 /// Setup your Vault configuration details here
+@MainActor
 class AppCollectorConfiguration {
     
     static let shared = AppCollectorConfiguration()

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@MainActor
 internal extension VGSCollect {
   
     /// Validate tenant id

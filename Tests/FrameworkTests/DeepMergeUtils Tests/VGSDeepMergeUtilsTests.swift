@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class VGSDeepMergeUtilsTests: XCTestCase {
 
 	struct TestFieldData {

@@ -48,6 +48,7 @@ public enum VGSBlinkCardDataType: Int, CaseIterable {
 
 /// Delegates produced by `VGSBlinkCardController` instance.
 @objc
+@MainActor
 public protocol VGSBlinkCardControllerDelegate {
     
     // MARK: - Handle user ineraction with `BlinkCard`

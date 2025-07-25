@@ -6,7 +6,7 @@
 import Foundation
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor 
 class VGSFlatJSONStructMappingTests: XCTestCase {
 
 	/// Test flat JSON mapping.

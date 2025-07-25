@@ -58,11 +58,12 @@ class CreateCardAliasesViewController: UIViewController {
 
     override func awakeFromNib() {
       super.awakeFromNib()
-
-      let view = self.view
-      if UITestsMockedDataProvider.isRunningUITest {
-        view?.accessibilityIdentifier = "CreateCardAliasesViewController.Screen.RootView"
-      }
+        Task { @MainActor in
+            let view = self.view
+            if UITestsMockedDataProvider.isRunningUITest {
+                view?.accessibilityIdentifier = "CreateCardAliasesViewController.Screen.RootView"
+            }
+        }
     }
     
     // MARK: - Init UI

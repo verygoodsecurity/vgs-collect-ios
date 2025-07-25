@@ -12,7 +12,8 @@ import UIKit
 #endif
 
 /// An object you use for observing `VGSTextField` `State` and send data to your organization vault.
-public class VGSCollect {
+
+@MainActor public class VGSCollect {
     internal let proxyAPIClient: ProxyAPIClient
     internal let cmpAPIClient: CMPAPIClient
     internal let storage = Storage()

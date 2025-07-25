@@ -32,12 +32,13 @@ public class VGSAnalyticsClient {
   }
   
   /// Shared `VGSAnalyticsClient` instance
+  @MainActor
   public static let shared = VGSAnalyticsClient()
   
   /// Enable or disable VGS analytics tracking
   public var shouldCollectAnalytics = true
 
-	/// URL session object with `.urlSession` configuration.
+	/// URL session object with ]ol;`.urlSession` configuration.
 	internal let urlSession = URLSession(configuration: .ephemeral)
 
   /// Uniq id that should stay the same during application rintime
@@ -51,26 +52,28 @@ public class VGSAnalyticsClient {
     return ["Content-Type": "application/x-www-form-urlencoded" ]
   }()
   
-  internal static let userAgentData: [String: Any] = {
+    @MainActor
+    internal static let userAgentData: [String: Any] = {
       let version = ProcessInfo.processInfo.operatingSystemVersion
       let osVersion = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
 
-			var defaultUserAgentData = [
-				"platform": UIDevice.current.systemName,
-				"device": UIDevice.current.model,
-				"deviceModel": UIDevice.current.modelIdentifier,
-				"osVersion": osVersion,
-				"dependencyManager": sdkIntegration]
+            var defaultUserAgentData = [
+                "platform": UIDevice.current.systemName,
+                "device": UIDevice.current.model,
+                "deviceModel": UIDevice.current.modelIdentifier,
+                "osVersion": osVersion,
+                "dependencyManager": sdkIntegration]
 
-				if let locale = Locale.preferredLanguages.first {
-					defaultUserAgentData["deviceLocale"] = locale
-				}
+                if let locale = Locale.preferredLanguages.first {
+                    defaultUserAgentData["deviceLocale"] = locale
+                }
 
       return defaultUserAgentData
       }()
 
   /// :nodoc: Track events related to specific VGSCollect instance
-  public func trackFormEvent(_ form: VGSFormAnanlyticsDetails, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+    @MainActor
+    public func trackFormEvent(_ form: VGSFormAnanlyticsDetails, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       let formDetails = ["formId": form.formId,
                          "tnt": form.tenantId,
                          "env": form.environment
@@ -85,7 +88,8 @@ public class VGSAnalyticsClient {
   }
 
   /// :nodoc: Base function to Track analytics event
-  public func trackEvent(_ type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
+    @MainActor
+    public func trackEvent(_ type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       var data = [String: Any]()
       if let extraData = extraData {
         data = extraData

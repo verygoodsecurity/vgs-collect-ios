@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// :nodoc: Payment Card Model Protocol
-public protocol VGSPaymentCardModelProtocol {
+public protocol VGSPaymentCardModelProtocol: Sendable {
   var brand: VGSPaymentCards.CardBrand { get }
   var name: String { get set }
   var regex: String { get set }
@@ -20,11 +20,12 @@ public protocol VGSPaymentCardModelProtocol {
   var cardNumberLengths: [Int] { get set }
   var cvcLengths: [Int] { get set }
   var checkSumAlgorithm: CheckSumAlgorithmType? { get set }
-  var brandIcon: UIImage? { get set }
-  var cvcIcon: UIImage? { get set }
+  var brandIcon: UIImage? { @MainActor get set }
+  var cvcIcon: UIImage? { @MainActor get set }
 }
 
 /// An object representing Payment Card
+@MainActor
 public struct VGSPaymentCardModel: VGSPaymentCardModelProtocol {
   
   /// Payment Card Brand
@@ -50,10 +51,10 @@ public struct VGSPaymentCardModel: VGSPaymentCardModelProtocol {
   public var formatPattern: String
   
   /// Image, associated with Payment Card Brand.
-  public var brandIcon: UIImage?
+  @MainActor public var brandIcon: UIImage?
   
   /// Image, associated with CVC for Payment Card Brand.
-  public var cvcIcon: UIImage?
+  @MainActor public var cvcIcon: UIImage?
   
   init(brand: VGSPaymentCards.CardBrand) {
     self.brand = brand

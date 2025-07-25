@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// Class Responsible for storing elements registered with VGSCollect instance.
-internal class Storage {
+@MainActor internal class Storage {
     
     /// TextFields attached to `VGSCollect` instance.
     var textFields = [VGSTextField]()

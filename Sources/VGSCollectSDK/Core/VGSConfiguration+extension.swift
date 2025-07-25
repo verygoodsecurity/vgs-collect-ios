@@ -3,6 +3,7 @@
 //  VGSCollectSDK
 //
 
+@MainActor
 public extension VGSConfiguration {
   
   static func makeCardNumberConfiguration(collector: VGSCollect) -> VGSConfiguration {

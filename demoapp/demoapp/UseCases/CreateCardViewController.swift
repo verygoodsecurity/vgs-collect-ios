@@ -23,8 +23,7 @@ class CreateCardViewController: UIViewController {
     var consoleMessage: String = "" {
         didSet { consoleLabel.text = consoleMessage }
     }
-  
-    
+      
     /// Create card backend API https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards
     let jwtToken = "<your_cpm_jwtToken>"
 
@@ -51,11 +50,12 @@ class CreateCardViewController: UIViewController {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-
-		let view = self.view
-		if UITestsMockedDataProvider.isRunningUITest {
-			view?.accessibilityIdentifier = "CreateCardViewController.Screen.RootView"
-		}
+        Task { @MainActor in
+            let view = self.view
+            if UITestsMockedDataProvider.isRunningUITest {
+                view?.accessibilityIdentifier = "CreateCardViewController.Screen.RootView"
+            }
+        }
 	}
     
     // MARK: - Init UI

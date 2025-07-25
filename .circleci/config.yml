@@ -1,64 +1,132 @@
 version: 2.1
 
-# === Scheduled Pipeline Parameters ===
 parameters:
   nightly-security-scan:
     type: boolean
     default: false
 
+orbs:
+  macos: circleci/macos@2
+
+executors:
+  macos_arm:
+    macos:
+      xcode: << parameters.xcode >>
+    resource_class: m4pro.medium
+    parameters:
+      xcode:
+        type: string
+
 jobs:
   build-and-test-sdk:
-    macos:
-      xcode: 15.4
+    parameters:
+      xcode:
+        type: string
+      ios:
+        type: string
+        default: "18.4"
+      device:
+        type: string
+        default: "iPhone 16"
+    executor:
+      name: macos_arm
+      xcode: << parameters.xcode >>
     steps:
       - checkout
+
+      - macos/preboot-simulator:
+          version: << parameters.ios >>
+          platform: "iOS"
+          device: << parameters.device >>
+
       - run:
-          name: Install Rosetta translation environment on Apple Silicon Mac
-          command: softwareupdate --install-rosetta --agree-to-license
+          name: List installed runtimes & devices (debug)
+          command: |
+            xcrun simctl list runtimes
+            xcrun simctl list devices
+
       - run:
           name: Install xcov
-          command: >
-            gem install xcov
+          command: gem install xcov
+
       - run:
-          name: Run Tests iOS 17
-          command: >
-            cd Tests/FrameworkTests/Resources && plutil -insert tokenization_vaultId -string ${tokenization_vaultId} MockedData.plist && plutil -insert vaultID -string ${vaultID} MockedData.plist && cd .. && cd .. && cd .. && xcodebuild test -project VGSCollectSDK.xcodeproj -scheme FrameworkTests -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5' -enableCodeCoverage YES -testPlan FrameworkTests
-      - run:
-          name: Calculate Test Coverage
-          command: >
-            xcov -p VGSCollectSDK.xcodeproj -s VGSCollectSDK --json_report
+          name: Run Unit Tests (iOS << parameters.ios >> on << parameters.device >>)
+          command: |
+              set -eo pipefail
+              cd Tests/FrameworkTests/Resources
+              plutil -insert tokenization_vaultId -string "${tokenization_vaultId}" MockedData.plist
+              plutil -insert vaultID -string "${vaultID}" MockedData.plist
+              cd ../../..
+              xcodebuild \
+                test \
+                -project VGSCollectSDK.xcodeproj \
+                -scheme FrameworkTests \
+                -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>' \
+                -enableCodeCoverage YES \
+                -testPlan FrameworkTests \
+                | tee xcodebuild.log \
+                | xcpretty --report junit --output test-results/junit.xml
+              status=${PIPESTATUS[0]}
+              echo "xcodebuild exit status: $status"
+              exit $status
+
+      - store_test_results:
+          path: test-results
+
+      - store_artifacts:
+          path: xcodebuild.log
+          destination: xcodebuild-<< parameters.xcode >>.log
+
       - run:
           name: Show Git Branch
           command: |
-            echo "Branch: << pipeline.git.branch >>"
-      - run:
-          name: Push Test Coverage to Compass
-          command: >
-            if [ "<< pipeline.git.branch >>" == "master" ]; then
-              ./ops/publish-test-coverage.sh 
-            else
-              echo "Code coverage will only be pushed to compass on the main branch."
-            fi
+            echo "Branch: ${CIRCLE_BRANCH}"
 
-  build-and-ui-test-demo-app-ios-17-iphone15:
-    macos:
-      xcode: "15.4"
+
+  build-and-ui-test-demo-app:
+    parameters:
+      xcode:
+        type: string
+      ios:
+        type: string
+        default: "18.4"
+      device:
+        type: string
+        default: "iPhone 16"
+    executor:
+      name: macos_arm
+      xcode: << parameters.xcode >>
     steps:
       - checkout
+
+      - macos/preboot-simulator:
+          version: << parameters.ios >>
+          platform: "iOS"
+          device: << parameters.device >>
+
       - run:
-          name: Run UI Tests on iPhone 15 iOS 17.5
+          name: Run UI Tests (<< parameters.device >> iOS << parameters.ios >>)
           command: >
-            cd demoapp &&
-            cd demoapp &&
+            cd demoapp/demoapp &&
             plutil -insert vaultID -string ${vaultID} UITestsMockedData.plist &&
             plutil -insert tokenization_vaultId -string ${tokenization_vaultId} UITestsMockedData.plist &&
             cd .. &&
             pod install &&
-            xcrun instruments -w "iPhone 15 (17.5) [" || true &&
-            xcodebuild test -workspace demoapp.xcworkspace
-            -scheme demoappUITests
-            -sdk iphonesimulator
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5'
+            xcodebuild
+              test
+              -workspace demoapp.xcworkspace
+              -scheme demoappUITests
+              -sdk iphonesimulator
+              -destination 'platform=iOS Simulator,name=<< parameters.device >>,OS=<< parameters.ios >>'
+              | tee xcodebuild.log
+              | xcpretty --report junit --output test-results/junit.xml
+
+      - store_test_results:
+          path: test-results
+
+      - store_artifacts:
+          path: xcodebuild.log
+          destination: demoapp-ui-tests-xcode-<< parameters.xcode >>.log
 
   scan-sast-pr:
     parameters:
@@ -74,7 +142,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Semgrep diff scan"
+          name: Semgrep diff scan
           command: semgrep ci
 
   scan-sast-full:
@@ -90,7 +158,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Semgrep full scan"
+          name: Semgrep full scan
           command: semgrep ci
 
 workflows:
@@ -99,17 +167,18 @@ workflows:
       not: << pipeline.parameters.nightly-security-scan >>
     jobs:
       - build-and-test-sdk:
+          name: build-and-test-sdk-xcode-16.3.0
+          xcode: "16.3.0"
           context:
             - frontend-deploy
             - circleci
-      - build-and-ui-test-demo-app-ios-17-iphone15
+
       - scan-sast-pr:
           context:
             - security-tools
 
       - scan-sast-full:
           filters:
-            # ignore any commit on any branch by default
             branches:
               ignore: /.*/
             tags:

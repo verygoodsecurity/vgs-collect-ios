@@ -5,10 +5,11 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 @available(iOS 14.0, *)
 /// :nodoc:
-public class VGSCardScanCoordinator: ObservableObject {
+@MainActor public class VGSCardScanCoordinator: ObservableObject {
     private weak var textField: VGSTextField?
   
     public init() {}

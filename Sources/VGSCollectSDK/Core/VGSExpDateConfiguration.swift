@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// Attributes required to configure date format and input source for field with type  `.expDate`.
-public protocol VGSExpDateConfigurationProtocol {
+@MainActor public protocol VGSExpDateConfigurationProtocol {
   
   /// Input Source type.
   var inputSource: VGSTextFieldInputSource {get set}
@@ -61,7 +61,7 @@ public final class VGSExpDateConfiguration: VGSConfiguration, VGSExpDateConfigur
 }
 
 /// Implement `TextFormatConvertable` protocol.
-extension VGSExpDateConfiguration: VGSTextFormatConvertable {
+@MainActor extension VGSExpDateConfiguration: VGSTextFormatConvertable {
     
     /// :nodoc:
     var inputFormat: InputConvertableFormat? {

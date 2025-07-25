@@ -17,7 +17,7 @@ public struct VGSDateTokenizationParameters: VGSTokenizationParametersProtocol {
 
 /// Class responsible for configuration `VGSDateTextField` or `VGSTextField` with `fieldType = .date`.
 /// Extends `VGSConfiguration`. Required to work with tokenization API.
-public final class VGSDateTokenizationConfiguration: VGSConfiguration, VGSDateConfigurationProtocol, VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
+@MainActor public final class VGSDateTokenizationConfiguration: VGSConfiguration, VGSDateConfigurationProtocol, @preconcurrency VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
     
     // MARK: - Properties
     /// Start date used to fill out the date picker
@@ -73,11 +73,11 @@ public final class VGSDateTokenizationConfiguration: VGSConfiguration, VGSDateCo
     public var outputDateFormat: VGSDateFormat?
     
     // MARK: - VGSFormatSerializableProtocol implementation
-    public var serializers: [VGSFormatSerializerProtocol] = []
-    func serialize(_ content: String) -> [String: Any] {
+    @preconcurrency public var serializers: [VGSFormatSerializerProtocol] = []
+    @preconcurrency func serialize(_ content: String) -> [String: Any] {
         return DateFormatConvertor.serialize(content, serializers: serializers, outputFormat: outputDateFormat)
     }
-    internal var shouldSerialize: Bool {
+    @preconcurrency internal var shouldSerialize: Bool {
         return !serializers.isEmpty
     }
     
@@ -89,7 +89,7 @@ public final class VGSDateTokenizationConfiguration: VGSConfiguration, VGSDateCo
 }
 
 // MARK: - `TextFormatConvertable` implementation
-extension VGSDateTokenizationConfiguration: VGSTextFormatConvertable {
+extension VGSDateTokenizationConfiguration: @preconcurrency VGSTextFormatConvertable {
     
     /// :nodoc:
     var inputFormat: InputConvertableFormat? {

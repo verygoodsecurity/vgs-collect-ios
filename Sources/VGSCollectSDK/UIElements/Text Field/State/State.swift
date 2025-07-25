@@ -9,7 +9,7 @@ import UIKit
 #endif
 
 /// An object that describes `VGSTextField` state.  State attributes are read-only.
-public class VGSTextFieldState {
+@MainActor public class VGSTextFieldState {
     
     /// `VGSConfiguration.fieldName` associated  with `VGSTextField`
     internal(set) open var fieldName: String!

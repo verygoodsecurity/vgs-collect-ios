@@ -56,11 +56,12 @@ class DateValidationViewController: UIViewController {
   
     override func awakeFromNib() {
       super.awakeFromNib()
-
-      let view = self.view
-      if UITestsMockedDataProvider.isRunningUITest {
-        view?.accessibilityIdentifier = "DateValidationViewController.Screen.RootView"
-      }
+        Task { @MainActor in
+            let view = self.view
+            if UITestsMockedDataProvider.isRunningUITest {
+                view?.accessibilityIdentifier = "DateValidationViewController.Screen.RootView"
+            }
+        }
     }
 }
 

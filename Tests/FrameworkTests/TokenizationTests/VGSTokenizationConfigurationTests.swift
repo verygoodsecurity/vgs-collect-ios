@@ -7,6 +7,7 @@ import Foundation
 import XCTest
 @testable import VGSCollectSDK
 
+@MainActor
 class VGSTokenizationConfigurationsTest: VGSCollectBaseTestCase {
   
   var textField: VGSTextField!

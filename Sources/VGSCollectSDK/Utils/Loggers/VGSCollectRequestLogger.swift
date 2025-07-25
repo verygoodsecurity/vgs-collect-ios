@@ -6,7 +6,7 @@
 import Foundation
 
 /// Utilities to log network requests.
-internal class VGSCollectRequestLogger {
+@MainActor internal class VGSCollectRequestLogger {
 
 	/// Log sending request.
 	/// - Parameters:
