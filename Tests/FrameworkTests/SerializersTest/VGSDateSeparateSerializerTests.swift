@@ -5,7 +5,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class VGSDateSeparateSerializerTests: VGSCollectBaseTestCase {
     
     // MARK: - Properties

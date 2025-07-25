@@ -46,7 +46,7 @@ public enum VGSErrorType: Int {
 }
 
 /// An error produced by `VGSCollectSDK`. Works similar to default `NSError` in iOS.
-public class VGSError: NSError {
+public class VGSError: NSError, @unchecked Sendable {
     
     /// `VGSErrorType `-  required for each `VGSError` instance
     public let type: VGSErrorType!

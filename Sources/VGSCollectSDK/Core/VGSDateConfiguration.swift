@@ -6,7 +6,7 @@
 import Foundation
 
 /// Define the methods and properties the date configuration must have
-public protocol VGSDateConfigurationProtocol {
+@MainActor public protocol VGSDateConfigurationProtocol {
     
     /// Input source type.
     var inputSource: VGSTextFieldInputSource {get set}
@@ -19,7 +19,7 @@ public protocol VGSDateConfigurationProtocol {
 }
 
 /// Class responsible for configuration `VGSDateTextField` or `VGSTextField` with `fieldType = .date`. Extends `VGSConfiguration`
-public final class VGSDateConfiguration: VGSConfiguration, VGSDateConfigurationProtocol, VGSFormatSerializableProtocol {
+@MainActor public final class VGSDateConfiguration: VGSConfiguration, VGSDateConfigurationProtocol, VGSFormatSerializableProtocol {
     
     // MARK: - Properties
     /// Start date used to fill out the date picker
@@ -71,8 +71,8 @@ public final class VGSDateConfiguration: VGSConfiguration, VGSDateConfigurationP
     
     // MARK: - VGSDateConfigurationProtocol implementation
     public var inputSource: VGSTextFieldInputSource = .datePicker
-    public var inputDateFormat: VGSDateFormat?
-    public var outputDateFormat: VGSDateFormat?
+    nonisolated public var inputDateFormat: VGSDateFormat?
+    nonisolated public var outputDateFormat: VGSDateFormat?
     
     // MARK: - VGSFormatSerializableProtocol implementation
     public var serializers: [VGSFormatSerializerProtocol] = []
@@ -85,7 +85,7 @@ public final class VGSDateConfiguration: VGSConfiguration, VGSDateConfigurationP
 }
 
 // MARK: - Static properties and methods
-extension VGSDateConfiguration {
+@MainActor extension VGSDateConfiguration {
     
     /// Amount of years used to calculate the minimun and maximun date picker default dates
     public static var validYearsCount = 100
@@ -113,7 +113,7 @@ extension VGSDateConfiguration {
 }
 
 // MARK: - `TextFormatConvertable` implementation
-extension VGSDateConfiguration: VGSTextFormatConvertable {
+@MainActor extension VGSDateConfiguration: VGSTextFormatConvertable {
     
     /// :nodoc:
     var inputFormat: InputConvertableFormat? {

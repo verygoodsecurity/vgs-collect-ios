@@ -8,7 +8,7 @@ import Foundation
 /// Utility class for UITests only.
 final class UITestsMockedDataProvider {
 
-	static func setupMockedDataForTestsIfNeeded() {
+    @MainActor static func setupMockedDataForTestsIfNeeded() {
 		if isRunningUITest {
 			guard let path = Bundle.main.path(forResource: "UITestsMockedData", ofType: "plist") else {
 					print("Path not found")

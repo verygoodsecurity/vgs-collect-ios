@@ -9,7 +9,7 @@
 import Foundation
 
 /// Payment Card Expiration Date Format
-public enum VGSCardExpDateFormat: InputConvertableFormat, OutputConvertableFormat {
+public enum VGSCardExpDateFormat: InputConvertableFormat, OutputConvertableFormat, Sendable {
   
   /// Exp.Date in format mm/yy: 01/22
   case shortYear

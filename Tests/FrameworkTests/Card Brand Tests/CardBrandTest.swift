@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class CardBrandTest: VGSCollectBaseTestCase {
     var storage: VGSCollect!
     var cardTextField: VGSTextField!

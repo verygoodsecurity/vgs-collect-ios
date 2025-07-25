@@ -5,7 +5,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor
 class ExpDateTextField: VGSCollectBaseTestCase {
 
     var collector: VGSCollect!

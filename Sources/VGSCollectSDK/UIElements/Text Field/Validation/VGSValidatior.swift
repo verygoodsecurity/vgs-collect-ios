@@ -8,12 +8,12 @@
 
 import Foundation
 
-internal protocol VGSRuleValidator {
+@MainActor internal protocol VGSRuleValidator {
     
     func validate(input: String?) -> Bool
 }
 
-internal struct VGSValidator {
+@MainActor internal struct VGSValidator {
   
   internal static func validate(input: String?, rule: VGSValidationRuleProtocol) -> [VGSValidationError] {
       

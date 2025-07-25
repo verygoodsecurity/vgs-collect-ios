@@ -43,10 +43,10 @@ You should have your organization registered at <a href="https://dashboard.veryg
 
 # Integration
 
-### Swift Package Manager
+### Swift Package Manager 
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
-Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don't support Swift packages with resources.
+Xcode with Swift tools version of 5.9+ is required for VGSCollectSDK.
 To check your current Swift tools version run in your terminal:
 
 ```ruby
@@ -441,8 +441,8 @@ VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 ```
 
 ## Dependencies
-- iOS 12+
-- Swift 5
+- iOS 13+
+- Swift 5.9
 - Optional 3rd party libraries:
   - [BlinkCard](https://github.com/blinkcard/blinkcard-ios)
 

@@ -11,7 +11,7 @@ import Foundation
 // swiftlint:disable all
 
 /// Type of VGS Vault storage.
-public enum VGSVaultStorageType: String {
+public enum VGSVaultStorageType: String, Sendable {
   /// PERSISTENT data storage.
   case PERSISTENT = "PERSISTENT"
   
@@ -20,7 +20,7 @@ public enum VGSVaultStorageType: String {
 }
 
 /// Type of Alias format. Read more about avaliable formats: https://www.verygoodsecurity.com/docs/terminology/nomenclature#alias-formats .
-public enum VGSVaultAliasFormat: String {
+public enum VGSVaultAliasFormat: String, Sendable {
 	/// no:doc
   case FPE_ACC_NUM_T_FOUR = "FPE_ACC_NUM_T_FOUR"
 
@@ -67,13 +67,14 @@ public enum VGSVaultAliasFormat: String {
   case ALPHANUMERIC_LENGTH_PRESERVING_SIX_T_FOUR = "ALPHANUMERIC_LENGTH_PRESERVING_SIX_T_FOUR"
   
 }
-
+@MainActor
 internal protocol VGSTextFieldTokenizationConfigurationProtocol {
   
   var tokenizationConfiguration: VGSTokenizationParametersProtocol { get }
 }
 
 /// Parameters describing textfield input tokenization.
+@MainActor
 public protocol VGSTokenizationParametersProtocol {
   /// Tokenization format.
   var format: String { get }

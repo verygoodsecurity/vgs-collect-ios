@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor 
 class SSNTextFieldTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!
     var ssnTextField: VGSTextField!

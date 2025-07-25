@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.17.5'
+  spec.version = '1.18.0'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
-  spec.swift_version = '5.0'
+  spec.swift_version = '5.9'
   spec.description  = <<-DESC
   VGS Collect iOS SDK allows you to securely collect data from your users without having to have that data pass through your systems. It provides customizable UI elements for collecting users’ sensitive data securely on mobile devices with iOS.
                    DESC
@@ -13,8 +13,8 @@ Pod::Spec.new do |spec|
     "Very Good Security" => "support@verygoodsecurity.com"
   }
   spec.social_media_url   = "https://twitter.com/getvgs"
-  spec.platform     = :ios, "12.0"
-  spec.ios.deployment_target = "12.0"
+  spec.platform     = :ios, "13.0"
+  spec.ios.deployment_target = "13.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.requires_arc = true
   

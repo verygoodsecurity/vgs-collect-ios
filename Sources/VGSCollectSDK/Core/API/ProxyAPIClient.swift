@@ -53,7 +53,8 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 	}()
 
 	/// Default headers.
-	internal static let defaultHttpHeaders: HTTPHeaders = {
+    @MainActor
+    internal static let defaultHttpHeaders: HTTPHeaders = {
 		// Add Headers.
 		let version = ProcessInfo.processInfo.operatingSystemVersion
 		let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
@@ -127,7 +128,7 @@ class ProxyAPIClient: VGSAPIClientProtocol {
       }
     
 			let url = requestURL.appendingPathComponent(path)
-			self.sendRequest(to: url, method: method, value: value, completion: block)
+        self.sendRequest(to: url, method: method, value: value, block: block)
 		}
 
 		switch hostURLPolicy {
@@ -149,117 +150,121 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 		}
 	}
 
-	private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+    @MainActor private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, block: ((_ response: VGSResponse) -> Void)? ) {
 
 		// Add headers.
-		var headers = ProxyAPIClient.defaultHttpHeaders
-		headers["Content-Type"] = "application/json"
-		// Add custom headers if needed.
-		if let customerHeaders = customHeader, customerHeaders.count > 0 {
-			customerHeaders.keys.forEach({ (key) in
-				headers[key] = customerHeaders[key]
-			})
-		}
-		// Setup URLRequest.
-		let jsonData = try? JSONSerialization.data(withJSONObject: value)
-		var request = URLRequest(url: url)
-		request.httpBody = jsonData
-		request.httpMethod = method.rawValue
-		request.allHTTPHeaderFields = headers
-
-		// Log request.
-		VGSCollectRequestLogger.logRequest(request, payload: value)
-
-		// Send data.
-		urlSession.dataTask(with: request) { (data, response, error) in
-			DispatchQueue.main.async {
-				if let error = error as NSError? {
-					VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
-					block?(.failure(error.code, data, response, error))
-					return
-				}
-				let statusCode = (response as? HTTPURLResponse)?.statusCode ?? VGSErrorType.unexpectedResponseType.rawValue
-
-				switch statusCode {
-				case 200..<300:
-					VGSCollectRequestLogger.logSuccessResponse(response, data: data, code: statusCode)
-					block?(.success(statusCode, data, response))
-					return
-				default:
-					VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: statusCode)
-					block?(.failure(statusCode, data, response, error))
-					return
-				}
-			}
-		}.resume()
+        var headers = ProxyAPIClient.defaultHttpHeaders
+        headers["Content-Type"] = "application/json"
+        // Add custom headers if needed.
+        if let customerHeaders = customHeader, customerHeaders.count > 0 {
+            customerHeaders.keys.forEach({ (key) in
+                headers[key] = customerHeaders[key]
+            })
+        }
+        // Setup URLRequest.
+        let jsonData = try? JSONSerialization.data(withJSONObject: value)
+        var request = URLRequest(url: url)
+        request.httpBody = jsonData
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = headers
+        
+        // Log request.
+        VGSCollectRequestLogger.logRequest(request, payload: value)
+        
+        // Send data.
+        urlSession.dataTask(with: request) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let error = error as NSError? {
+                    VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
+                    block?(.failure(error.code, data, response, error))
+                    return
+                }
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? VGSErrorType.unexpectedResponseType.rawValue
+                
+                switch statusCode {
+                case 200..<300:
+                    VGSCollectRequestLogger.logSuccessResponse(response, data: data, code: statusCode)
+                    block?(.success(statusCode, data, response))
+                    return
+                default:
+                    VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: statusCode)
+                    block?(.failure(statusCode, data, response, error))
+                    return
+                }
+            }
+        }.resume()
 	}
 }
 
 extension ProxyAPIClient {
 
-	// MARK: - Custom Host Name
+  private func updateHost(with hostname: String, completion: ((URL) -> Void)? = nil) {
+    dataSyncQueue.async { [weak self] in
+      guard let self = self else { return }
 
-	private func updateHost(with hostname: String, completion: ((URL) -> Void)? = nil) {
+      // Copy Sendable values outside the async closure
+      let tenantId = self.vaultId
+      let fallbackURL = self.vaultUrl
 
-		dataSyncQueue.async {[weak self] in
-			guard let strongSelf = self else {return}
+      // Enter sync zone
+      self.syncSemaphore.wait()
 
-			// Enter sync zone.
-			strongSelf.syncSemaphore.wait()
+      // Check cache on MainActor
+      Task { @MainActor in
+        if let cachedURL = self.hostURLPolicy.url {
+          completion?(cachedURL)
+          self.syncSemaphore.signal()
+          return
+        }
 
-			// Check if we already have URL. If yes, don't fetch it the same time.
-			if let url = strongSelf.hostURLPolicy.url {
-				completion?(url)
-				// Quite sync zone.
-				strongSelf.syncSemaphore.signal()
-				return
-			}
+      APIHostnameValidator.validateCustomHostname(hostname, tenantId: tenantId) { resolvedURL in
+          // Determine final URL
+          let finalURL: URL
+          if var url = resolvedURL {
+            if !url.hasSecureScheme(), let secure = URL.urlWithSecureScheme(from: url) {
+              url = secure
+            }
+            self.hostURLPolicy = .customHostURL(.resolved(url))
+            finalURL = url
 
-			// Resolve hostname.
-			APIHostnameValidator.validateCustomHostname(hostname, tenantId: strongSelf.vaultId) {[weak self](url) in
-				if var validUrl = url {
+            let logMsg = "✅ Success! VGSSCollectSDK hostname \(hostname) has been successfully resolved and will be used for requests!"
+            let event = VGSLogEvent(level: .info, text: logMsg)
+            VGSCollectLogger.shared.forwardLogEvent(event)
 
-					// Update url scheme if needed.
-					if !validUrl.hasSecureScheme(), let secureURL = URL.urlWithSecureScheme(from: validUrl) {
-						validUrl = secureURL
-					}
+            VGSAnalyticsClient.shared.trackFormEvent(
+              self.formAnalyticDetails,
+              type: .hostnameValidation,
+              status: .success,
+              extraData: ["hostname": hostname]
+            )
 
-					self?.hostURLPolicy = .customHostURL(.resolved(validUrl))
-					completion?(validUrl)
+          } else {
+            guard let fallback = fallbackURL else {
+              let errMsg = "No VGSCollect instance and no valid URL"
+              let event = VGSLogEvent(level: .warning, text: errMsg, severityLevel: .error)
+              VGSCollectLogger.shared.forwardLogEvent(event)
+              self.syncSemaphore.signal()
+              return
+            }
 
-					// Exit sync zone.
-					self?.syncSemaphore.signal()
-					if let strongSelf = self {
+            self.hostURLPolicy = .customHostURL(.useDefaultVault(fallback))
+            finalURL = fallback
 
-						let text = "✅ Success! VGSSCollectSDK hostname \(hostname) has been successfully resolved and will be used for requests!"
-						let event = VGSLogEvent(level: .info, text: text)
-						VGSCollectLogger.shared.forwardLogEvent(event)
+            let warnMsg = "VAULT URL WILL BE USED!"
+            let event = VGSLogEvent(level: .warning, text: warnMsg, severityLevel: .error)
+            VGSCollectLogger.shared.forwardLogEvent(event)
 
-						VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .success, extraData: ["hostname": hostname])
-					}
-					return
-				} else {
-					guard let strongSelf = self, let validVaultURL = self?.vaultUrl else {
-						let text = "No VGSCollect instance and any valid url"
-						let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-						VGSCollectLogger.shared.forwardLogEvent(event)
-						return
-					}
-
-					strongSelf.hostURLPolicy = .customHostURL(.useDefaultVault(validVaultURL))
-					completion?(validVaultURL)
-
-					// Exit sync zone.
-					strongSelf.syncSemaphore.signal()
-
-					let text = "VAULT URL WILL BE USED!"
-					let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
-					VGSCollectLogger.shared.forwardLogEvent(event)
-
-					VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticDetails, type: .hostnameValidation, status: .failed, extraData: ["hostname": hostname])
-					return
-				}
-			}
-		}
-	}
+            VGSAnalyticsClient.shared.trackFormEvent(
+              self.formAnalyticDetails,
+              type: .hostnameValidation,
+              status: .failed,
+              extraData: ["hostname": hostname]
+            )
+          }
+          self.syncSemaphore.signal()
+          completion?(finalURL)
+        }
+      }
+    }
+  }
 }

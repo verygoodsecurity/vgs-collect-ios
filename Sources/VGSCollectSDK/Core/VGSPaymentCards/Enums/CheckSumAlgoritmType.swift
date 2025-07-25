@@ -9,7 +9,7 @@
 import Foundation
 
 /// Check Sum Algorithm Types
-public enum CheckSumAlgorithmType {
+public enum CheckSumAlgorithmType: Sendable {
   
   /// Luhn Algorithm
   case luhn

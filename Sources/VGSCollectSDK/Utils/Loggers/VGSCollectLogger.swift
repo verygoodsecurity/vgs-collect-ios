@@ -12,7 +12,7 @@ public final class VGSCollectLogger {
   // MARK: - vars
 
 	/// Shared instance.
-	public static var shared = VGSCollectLogger()
+    nonisolated(unsafe) public static let shared = VGSCollectLogger()
 
 	/// Logging configuration. Check `VGSCollectLoggingConfiguration` for logging options.
 	public var configuration: VGSCollectLoggingConfiguration = VGSCollectLoggingConfiguration()

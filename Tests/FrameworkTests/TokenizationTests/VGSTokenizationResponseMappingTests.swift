@@ -5,7 +5,7 @@
 import Foundation
 import XCTest
 @testable import VGSCollectSDK
-
+@MainActor 
 class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
   var collector: VGSCollect!
   var cardNumberTextField: VGSCardTextField! = VGSCardTextField(frame: .zero)
@@ -27,7 +27,8 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
     }
   }
 
-  struct TextFieldTestData {
+    @MainActor
+    struct TextFieldTestData {
     let fieldName: String
     let inputValue: String
     let storage: String
@@ -53,7 +54,7 @@ class VGSTokenizationResponseMappingTests: VGSCollectBaseTestCase {
       }
     }
   }
-
+  @MainActor
   struct TestJSONData {
     let textFieldTestData: [TextFieldTestData]
     let tokenizedResponseBody: JsonData

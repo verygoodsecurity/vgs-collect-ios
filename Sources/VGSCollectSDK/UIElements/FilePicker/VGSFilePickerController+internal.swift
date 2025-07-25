@@ -11,13 +11,13 @@ import Foundation
 import UIKit
 #endif
 
-internal protocol VGSFilePickerProtocol {
+@MainActor internal protocol VGSFilePickerProtocol {
     var delegate: VGSFilePickerControllerDelegate? { get set }
     func present(on viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     func dismiss(animated: Bool, completion: (() -> Void)?)
 }
 
-internal extension VGSFilePickerController {
+@MainActor internal extension VGSFilePickerController {
     
     /// Create specific type of picker instance
     func getFilePicker(_ fileSource: VGSFileSource) -> VGSFilePickerProtocol {

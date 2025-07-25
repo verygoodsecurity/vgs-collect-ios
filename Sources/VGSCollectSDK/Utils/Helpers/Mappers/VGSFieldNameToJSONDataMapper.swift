@@ -14,7 +14,7 @@ internal final class VGSFieldNameToJSONDataMapper {
 	/// Provide `JSON` for array of textFields.
 	/// - Parameter textFields: Array of `VGSTextField`.
 	/// - Returns: `JsonData` with textFields data.
-	internal static func provideJSON(for textFields: [VGSTextField]) -> JsonData {
+    @MainActor internal static func provideJSON(for textFields: [VGSTextField]) -> JsonData {
 		var collectFieldsJSON: JsonData = [:]
     
 		for field in textFields {

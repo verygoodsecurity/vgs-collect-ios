@@ -9,14 +9,14 @@
 import Foundation
 
 /// :nodoc: Protocol describing validation rule object
-public protocol VGSValidationRuleProtocol {
+@MainActor public protocol VGSValidationRuleProtocol {
   
     /// Validation Error
     var error: VGSValidationError { get }
 }
 
 /// Set of validation rules
-public struct VGSValidationRuleSet {
+@MainActor public struct VGSValidationRuleSet {
     
     internal var rules = [AnyValidationRule]()
     
@@ -40,7 +40,7 @@ public struct VGSValidationRuleSet {
     }
 }
 
-internal struct AnyValidationRule: VGSValidationRuleProtocol {
+@MainActor internal struct AnyValidationRule: VGSValidationRuleProtocol {
     
     let error: VGSValidationError
     

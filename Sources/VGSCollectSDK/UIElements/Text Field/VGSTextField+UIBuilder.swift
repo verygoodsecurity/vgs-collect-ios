@@ -74,8 +74,10 @@ public extension VGSTextField {
 	  /// :nodoc: Prepare `VGSTextField` for IB with custom styles.
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        layer.borderWidth = borderWidth
-        layer.borderColor = borderColor?.cgColor
-        layer.cornerRadius = cornerRadius
+        Task { @MainActor in
+            layer.borderWidth = borderWidth
+            layer.borderColor = borderColor?.cgColor
+            layer.cornerRadius = cornerRadius
+        }
     }
 }
