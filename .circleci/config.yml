@@ -24,7 +24,7 @@ jobs:
         type: string
       ios:
         type: string
-        default: "17.0"
+        default: "17.5"
       device:
         type: string
         default: "iPhone 15"
@@ -102,7 +102,7 @@ jobs:
         type: string
       ios:
         type: string
-        default: "17.0"
+        default: "17.5"
       device:
         type: string
         default: "iPhone 15"
@@ -180,16 +180,14 @@ workflows:
       not: << pipeline.parameters.nightly-security-scan >>
     jobs:
       - build-and-test-sdk:
-          name: build-and-test-sdk-xcode-<< matrix.xcode >>
-          matrix:
-            parameters:
-              xcode: ["15.0.0", "15.4.0"]
+          name: build-and-test-sdk-xcode-15.4.0
+          xcode: "15.4.0"
           context:
             - frontend-deploy
             - circleci
 
       - build-and-ui-test-demo-app:
-          name: build-and-ui-test-demo-app-ios-17_0-iphone15
+          name: build-and-ui-test-demo-app-ios-17_5-iphone15
           xcode: "15.4.0"
           requires:
             - build-and-test-sdk-xcode-15.4.0
