@@ -150,5 +150,15 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
     XCTAssertFalse(expDate1.isContentEqual(expDate2), "Fields equal error: \(String(describing: expDate1.textField.secureText)) == \(String(describing: expDate1.textField.secureText)))")
     XCTAssertFalse(expDate2.isContentEqual(expDate1), "Fields equal error: \(String(describing: expDate2.textField.secureText)) == \(String(describing: expDate1.textField.secureText)))")
   }
+
+  func testTextContentType() {
+    let customConfiguration = VGSConfiguration(collector: collector, fieldName: "textField")
+    customConfiguration.keyboardType = .numberPad
+    customConfiguration.textContentType = .creditCardNumber
+    textfield.configuration = customConfiguration
+
+    XCTAssertTrue(textfield.textField.keyboardType == customConfiguration.keyboardType, "Wrong keyboardType!")
+    XCTAssertTrue(textfield.textField.textContentType == customConfiguration.textContentType, "Wrong textContentType!")
+  }
 }
        
