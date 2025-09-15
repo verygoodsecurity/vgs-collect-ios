@@ -42,7 +42,9 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
+      <a class="breadcrumb" href="../index.html">VGSCollectSDK</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Validation%20Rules.html">Validation Rules</a>
       <img class="carat" src="../img/carat.png" alt=""/>
       VGSValidationRuleLength Structure Reference
     </p>
@@ -137,6 +139,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../SwiftUI%20Elements.html">SwiftUI Elements</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Tokenization%20Parameters.html">Tokenization Parameters</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -201,13 +214,13 @@
                 <a class="nav-group-task-link" href="../Enums/Environment.html">Environment</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/State.html">State</a>
+                <a class="nav-group-task-link" href="../Classes/VGSTextFieldState.html">VGSTextFieldState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/SSNState.html">SSNState</a>
+                <a class="nav-group-task-link" href="../Classes/VGSSSNState.html">VGSSSNState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/CardState.html">CardState</a>
+                <a class="nav-group-task-link" href="../Classes/VGSCardState.html">VGSCardState</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSTextFieldStatePublisher.html">VGSTextFieldStatePublisher</a>
@@ -342,6 +355,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Error%20Keys.html#/s:13VGSCollectSDK39VGSSDKErrorUnexpectedResponseDataFormatSSvp">VGSSDKErrorUnexpectedResponseDataFormat</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorInvalidAccessTokenSSvp">VGSSDKErrorInvalidAccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorWrongConfigurationSSvp">VGSSDKErrorWrongConfiguration</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -369,6 +388,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Extensions.html#/AppKit">AppKit</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -379,7 +406,8 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSValidationRuleLength</span> <span class="p">:</span> <span class="kt">VGSValidationRuleProtocol</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSValidationRuleLength</span> <span class="p">:</span> <span class="kt">VGSValidationRuleProtocol</span></code></pre>
 
                 </div>
               </div>
@@ -415,7 +443,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -445,7 +474,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -475,7 +505,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span></code></pre>
 
                         </div>
                       </div>
@@ -505,7 +536,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n"><a href="../Structs/VGSValidationRuleLength.html#/s:13VGSCollectSDK23VGSValidationRuleLengthV3maxSivp">max</a></span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n"><a href="../Structs/VGSValidationRuleLength.html#/s:13VGSCollectSDK23VGSValidationRuleLengthV3maxSivp">max</a></span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Errors.html#/s:13VGSCollectSDK18VGSValidationErrora">VGSValidationError</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -566,8 +598,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2023-09-07)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-09-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>
