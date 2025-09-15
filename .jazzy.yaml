@@ -49,6 +49,15 @@ custom_categories:
   - VGSDateFormat
   - VGSDate
   - VGSTextFieldInputSource
+- name: SwiftUI Elements
+  children:
+  - VGSTextFieldRepresentable
+  - VGSCardTextFieldRepresentable
+  - VGSExpDateTextFieldRepresentable
+  - VGSDateTextFieldRepresentable
+  - VGSCVCTextFieldRepresentable
+  - VGSTextFieldEditingEvent
+  - VGSTextFieldRepresentableCallbacksProtocol
 - name: Tokenization Parameters
   children:
   - VGSTokenizationParametersProtocol
@@ -61,11 +70,6 @@ custom_categories:
   - VGSTokenizationParameters
   - VGSVaultAliasFormat
   - VGSVaultStorageType
-- name: Card Scan
-  children:
-  - VGSCardIOScanController
-  - VGSCardIOScanControllerDelegate
-  - CradIODataType
 - name: File Picker
   children:
   - VGSFilePickerController
@@ -77,9 +81,9 @@ custom_categories:
   children:
   - VGSCollect
   - Environment
-  - State
-  - SSNState
-  - CardState
+  - VGSTextFieldState
+  - VGSSSNState
+  - VGSCardState
   - VGSTextFieldStatePublisher
   - VGSResponse
   - VGSTokenizationResponse
@@ -126,6 +130,8 @@ custom_categories:
   - VGSSDKErrorFileSizeExceedsTheLimit
   - VGSSDKErrorSourceNotAvailable
   - VGSSDKErrorUnexpectedResponseDataFormat
+  - VGSSDKErrorInvalidAccessToken
+  - VGSSDKErrorWrongConfiguration
 - name: Debugging
   children:
   - VGSCollectLogger

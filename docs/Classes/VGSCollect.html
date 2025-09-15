@@ -42,7 +42,9 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="../index.html">VGSCollectSDK Reference</a>
+      <a class="breadcrumb" href="../index.html">VGSCollectSDK</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Observe%20State%20and%20Send%20Data.html">Observe State and Send Data</a>
       <img class="carat" src="../img/carat.png" alt=""/>
       VGSCollect Class Reference
     </p>
@@ -137,6 +139,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../SwiftUI%20Elements.html">SwiftUI Elements</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Tokenization%20Parameters.html">Tokenization Parameters</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -201,13 +214,13 @@
                 <a class="nav-group-task-link" href="../Enums/Environment.html">Environment</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/State.html">State</a>
+                <a class="nav-group-task-link" href="../Classes/VGSTextFieldState.html">VGSTextFieldState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/SSNState.html">SSNState</a>
+                <a class="nav-group-task-link" href="../Classes/VGSSSNState.html">VGSSSNState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/CardState.html">CardState</a>
+                <a class="nav-group-task-link" href="../Classes/VGSCardState.html">VGSCardState</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/VGSTextFieldStatePublisher.html">VGSTextFieldStatePublisher</a>
@@ -342,6 +355,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Error%20Keys.html#/s:13VGSCollectSDK39VGSSDKErrorUnexpectedResponseDataFormatSSvp">VGSSDKErrorUnexpectedResponseDataFormat</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorInvalidAccessTokenSSvp">VGSSDKErrorInvalidAccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorWrongConfigurationSSvp">VGSSDKErrorWrongConfiguration</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -369,6 +388,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Extensions.html#/AppKit">AppKit</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -379,14 +406,15 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSCollect</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSCollect</span></code></pre>
 
                 </div>
               </div>
-            <p>An object you use for observing <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> <code><a href="../Classes/State.html">State</a></code> and send data to your organization vault.</p>
+            <p>An object you use for observing <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> <code>State</code> and send data to your organization vault.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L15-L122">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L16-L120">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -424,12 +452,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">customHeaders</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">customHeaders</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L32-L38">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L34-L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -467,12 +496,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">observeFieldState</span><span class="p">:</span> <span class="p">((</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">observeFieldState</span><span class="p">:</span> <span class="p">((</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L43">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -497,12 +527,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">observeStates</span><span class="p">:</span> <span class="p">((</span><span class="n">_</span> <span class="nv">form</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">observeStates</span><span class="p">:</span> <span class="p">((</span><span class="n">_</span> <span class="nv">form</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L46">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -540,12 +571,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textFields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">textFields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L51-L53">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L53-L55">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -566,9 +598,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK0A0C2id11environment8hostname13satellitePortACSS_S2SSgSiSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(id:environment:hostname:satellitePort:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A0C2id11environment8hostname13satellitePortACSS_S2SSgSiSgtcfc">init(id:<wbr>environment:<wbr>hostname:<wbr>satellitePort:<wbr>)</a>
+                    <a name="/s:13VGSCollectSDK0A0C2id11environment8hostnameACSS_S2SSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:environment:hostname:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C2id11environment8hostnameACSS_S2SSgtcfc">init(id:<wbr>environment:<wbr>hostname:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -583,7 +615,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">hostname</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">satellitePort</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">hostname</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -627,23 +660,11 @@
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>satellitePort</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>Int?</code> object, custom port for satellite configuration.  Default is <code>nil</code>. <strong>IMPORTANT! Use only with .sandbox environment! Hostname should be specified for valid <a href="http://localhost">http://localhost</a> or in local IP format  <a href="http://192.168.X.X">http://192.168.X.X</a></strong>.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L64-L73">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L65-L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -651,9 +672,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK0A0C2id11environment10dataRegion8hostname13satellitePortACSS_AA11EnvironmentOSSSgAKSiSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(id:environment:dataRegion:hostname:satellitePort:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A0C2id11environment10dataRegion8hostname13satellitePortACSS_AA11EnvironmentOSSSgAKSiSgtcfc">init(id:<wbr>environment:<wbr>dataRegion:<wbr>hostname:<wbr>satellitePort:<wbr>)</a>
+                    <a name="/s:13VGSCollectSDK0A0C2id11environment10dataRegion8hostnameACSS_AA11EnvironmentOSSSgAJtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:environment:dataRegion:hostname:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C2id11environment10dataRegion8hostnameACSS_AA11EnvironmentOSSSgAJtcfc">init(id:<wbr>environment:<wbr>dataRegion:<wbr>hostname:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -668,7 +689,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="../Enums/Environment.html">Environment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">hostname</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">satellitePort</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="../Enums/Environment.html">Environment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">hostname</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -724,23 +746,11 @@
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>satellitePort</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>Int?</code> object, custom port for satellite configuration. Default is <code>nil</code>. <strong>IMPORTANT! Use only with .sandbox environment! Hostname should be specified for valid <a href="http://localhost">http://localhost</a> or in local IP format <a href="http://192.168.X.X">http://192.168.X.X</a></strong>.</p>
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L83-L86">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L81-L84">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -778,12 +788,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getTextField</span><span class="p">(</span><span class="nv">fieldName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getTextField</span><span class="p">(</span><span class="nv">fieldName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L91-L93">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L89-L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -808,7 +819,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribeTextField</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribeTextField</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -832,7 +844,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L99-L101">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L97-L99">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -857,7 +869,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribeTextFields</span><span class="p">(</span><span class="n">_</span> <span class="nv">textFields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">])</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribeTextFields</span><span class="p">(</span><span class="n">_</span> <span class="nv">textFields</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/VGSTextField.html">VGSTextField</a></span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -881,7 +894,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L107-L109">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L105-L107">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -906,12 +919,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribeAllTextFields</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsubscribeAllTextFields</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L112-L114">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L110-L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -949,12 +963,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cleanFiles</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">cleanFiles</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L119-L121">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L117-L119">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -986,7 +1001,15 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Send data from VGSTextFields to your organization vault.</p>
-<div class="aside aside-note">
+
+<ul>
+<li>path: Inbound rout path for your organization vault.</li>
+<li>method: VGSCollectHTTPMethod, default is <code>.post</code>.</li>
+<li>routeId: id of VGS Proxy Route, default is <code>nil</code>.</li>
+<li>extraData: Any data you want to send together with data from VGSTextFields , default is <code>nil</code>.</li>
+<li>requestOptions: <code><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></code> object, holds additional request options. Default options are <code>.nestedJSON</code>.</li>
+<li><p>completion: response completion block, returns <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p></li>
+</ul><div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</p>
 
@@ -997,88 +1020,10 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendData</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">(),</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendData</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">(),</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Inbound rout path for your organization vault.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>method</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>VGSCollectHTTPMethod, default is <code>.post</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>routeId</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>id of VGS Proxy Route, default is <code>nil</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>extraData</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Any data you want to send together with data from VGSTextFields , default is <code>nil</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>requestOptions</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></code> object, holds additional request options. Default options are <code>.nestedJSON</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>response completion block, returns <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L25-L66">Show on GitHub</a>
@@ -1100,7 +1045,14 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Send file to your organization vault. Only send one file at a time.</p>
-<div class="aside aside-note">
+
+<ul>
+<li>path: Inbound rout path for your organization vault.</li>
+<li>method: HTTPMethod, default is <code>.post</code>.</li>
+<li>routeId: id of VGS Proxy Route, default is <code>nil</code>.</li>
+<li>extraData: Any data you want to send together with data from VGSTextFields , default is <code>nil</code>.</li>
+<li><p>completion: response completion block, returns <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p></li>
+</ul><div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</p>
 
@@ -1111,76 +1063,10 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendFile</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">(),</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendFile</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">(),</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Inbound rout path for your organization vault.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>method</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>HTTPMethod, default is <code>.post</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>routeId</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>id of VGS Proxy Route, default is <code>nil</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>extraData</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Any data you want to send together with data from VGSTextFields , default is <code>nil</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>response completion block, returns <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L81-L169">Show on GitHub</a>
@@ -1188,6 +1074,19 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Tokenization%28Vault%20API%29%20requests"></a>
+                <a name="//apple_ref/swift/Section/Tokenization(Vault API) requests" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Tokenization%28Vault%20API%29%20requests"></a>
+                  <h3 class="section-name"><span>Tokenization(Vault API) requests</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -1201,8 +1100,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Send tokenization request with data from VGSTextFields.</p>
-<div class="aside aside-note">
+                        <p>Send tokenization request with data from VGSTextFields to Vaulr API v1.</p>
+
+<ul>
+<li>routeId: id of VGS Proxy Route, default is <code>nil</code>.</li>
+<li>completion: response completion block, returns <code><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></code>.</li>
+</ul><div class="aside aside-note">
     <p class="aside-title">Note</p>
     Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.
 
@@ -1213,7 +1116,50 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenizeData</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenizeData</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L181-L183">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C13createAliases7routeId10completionySSSg_yAA23VGSTokenizationResponseOctF"></a>
+                    <a name="//apple_ref/swift/Method/createAliases(routeId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C13createAliases7routeId10completionySSSg_yAA23VGSTokenizationResponseOctF">createAliases(routeId:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create aliases  from VGSTextFields input with Vault API v2.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <div class="aside aside-requires">
+    <p class="aside-title">Requires</p>
+    Requires <authentication token> set in custom headers.
+
+</div><ul>
+<li>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createAliases</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1249,7 +1195,88 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L179-L225">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L194-L196">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C10createCard5token9extraData10completionySS_SDySSypGSgyAA11VGSResponseOctF"></a>
+                    <a name="//apple_ref/swift/Method/createCard(token:extraData:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C10createCard5token9extraData10completionySS_SDySSypGSgyAA11VGSResponseOctF">createCard(token:<wbr>extraData:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send  request with data from VGSTextFields to create card via CMP  API(<a href="https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards">https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards</a>).</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <ul>
+<li>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCard</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="n">_</span> <span class="nv">response</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>token</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>JWT</code> access token.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>[String: Any]</code> additional data for create card request. Default is <code>nil</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>response completion block, returns <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L252-L304">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1295,7 +1322,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendData</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">())</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendData</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">())</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1371,7 +1399,7 @@
                         <p></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L246-L256">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L325-L335">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1404,7 +1432,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendFile</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendFile</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1476,7 +1505,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L271-L277">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L350-L356">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1484,9 +1513,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK0A0C12tokenizeData7routeIdAA23VGSTokenizationResponseOSSSg_tYaF"></a>
-                    <a name="//apple_ref/swift/Method/tokenizeData(routeId:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK0A0C12tokenizeData7routeIdAA23VGSTokenizationResponseOSSSg_tYaF">tokenizeData(routeId:<wbr>)</a>
+                    <a name="/s:13VGSCollectSDK0A0C13createAliases7routeIdAA23VGSTokenizationResponseOSSSg_tYaF"></a>
+                    <a name="//apple_ref/swift/Method/createAliases(routeId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C13createAliases7routeIdAA23VGSTokenizationResponseOSSSg_tYaF">createAliases(routeId:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Asynchronous
@@ -1497,10 +1526,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Asynchronously send tokenization request with data from VGSTextFields.</p>
+                        <p>Asynchronously send  request with data from VGSTextFields to create aliases.</p>
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
-    Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.
+    <div class="aside aside-requires">
+    <p class="aside-title">Requires</p>
+    Requires <access_token> set in custom headers.
+
+</div><ul>
+<li>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</li>
+</ul>
 
 </div>
 
@@ -1509,7 +1544,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenizeData</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createAliases</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1545,7 +1581,161 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L287-L296">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L367-L374">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C12tokenizeData7routeIdAA23VGSTokenizationResponseOSSSg_tYaF"></a>
+                    <a name="//apple_ref/swift/Method/tokenizeData(routeId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C12tokenizeData7routeIdAA23VGSTokenizationResponseOSSSg_tYaF">tokenizeData(routeId:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously send tokenization request with data from VGSTextFields.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenizeData</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>routeId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>id of VGS Proxy Route, default is <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>response completion block, returns <code><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L385-L392">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C10createCard5token9extraDataAA11VGSResponseOSS_SDySSypGSgtYaF"></a>
+                    <a name="//apple_ref/swift/Method/createCard(token:extraData:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C10createCard5token9extraDataAA11VGSResponseOSS_SDySSypGSgtYaF">createCard(token:<wbr>extraData:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously send  request with data from VGSTextFields to create card via CMP API.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <ul>
+<li>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCard</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>token</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>JWT</code> access token.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>[String: Any]</code> additional data for create card request. Default is <code>nil</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>response completion block, returns <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L403-L412">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1588,7 +1778,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendDataPublisher</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendDataPublisher</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -1664,7 +1855,7 @@
                         <p>A <code>Future</code> publisher that emits a single <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L316-L322">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L432-L438">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1694,7 +1885,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendFilePublisher</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendFilePublisher</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/VGSCollectHTTPMethod.html">VGSCollectHTTPMethod</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">requestOptions</span><span class="p">:</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -1770,7 +1962,72 @@
                         <p>A <code>Future</code> publisher that emits a single <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L338-L344">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L454-L460">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C22createAliasesPublisher7routeId7Combine6FutureCyAA23VGSTokenizationResponseOs5NeverOGSSSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/createAliasesPublisher(routeId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C22createAliasesPublisher7routeId7Combine6FutureCyAA23VGSTokenizationResponseOs5NeverOGSSSg_tF">createAliasesPublisher(routeId:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send  request with data from VGSTextFields to create aliases using the Combine framework.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <div class="aside aside-requires">
+    <p class="aside-title">Requires</p>
+    Requires <access_token> set in custom headers.
+
+</div><ul>
+<li>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createAliasesPublisher</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>routeId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>id of VGS Proxy Route, default is <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>Future</code> publisher that emits a single <code><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L472-L478">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1800,7 +2057,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenizeDataPublisher</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenizeDataPublisher</span><span class="p">(</span><span class="nv">routeId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -1828,7 +2086,80 @@
                         <p>A <code>Future</code> publisher that emits a single <code><a href="../Enums/VGSTokenizationResponse.html">VGSTokenizationResponse</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L356-L362">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L490-L496">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C19createCardPublisher5token9extraData7Combine6FutureCyAA11VGSResponseOs5NeverOGSS_SDySSypGSgtF"></a>
+                    <a name="//apple_ref/swift/Method/createCardPublisher(token:extraData:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C19createCardPublisher5token9extraData7Combine6FutureCyAA11VGSResponseOs5NeverOGSS_SDySSypGSgtF">createCardPublisher(token:<wbr>extraData:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send  request with data from VGSTextFields to create card via CMP API  using the Combine framework.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <ul>
+<li>Errors can be returned in the <code>NSURLErrorDomain</code> and <code><a href="../Errors.html#/s:13VGSCollectSDK0A14SDKErrorDomainSSvp">VGSCollectSDKErrorDomain</a></code>.</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCardPublisher</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>token</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>JWT</code> access token.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>[String: Any]</code> additional data for create card request. Default is <code>nil</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>Future</code> publisher that emits a single <code><a href="../Enums/VGSResponse.html">VGSResponse</a></code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+network.swift#L508-L514">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1841,8 +2172,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2023-09-07)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-09-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>

@@ -42,7 +42,7 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="index.html">VGSCollectSDK Reference</a>
+      <a class="breadcrumb" href="index.html">VGSCollectSDK</a>
       <img class="carat" src="img/carat.png" alt=""/>
       Observe State and Send Data  Reference
     </p>
@@ -137,6 +137,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="SwiftUI%20Elements.html">SwiftUI Elements</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Tokenization%20Parameters.html">Tokenization Parameters</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -201,13 +212,13 @@
                 <a class="nav-group-task-link" href="Enums/Environment.html">Environment</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/State.html">State</a>
+                <a class="nav-group-task-link" href="Classes/VGSTextFieldState.html">VGSTextFieldState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/SSNState.html">SSNState</a>
+                <a class="nav-group-task-link" href="Classes/VGSSSNState.html">VGSSSNState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/CardState.html">CardState</a>
+                <a class="nav-group-task-link" href="Classes/VGSCardState.html">VGSCardState</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/VGSTextFieldStatePublisher.html">VGSTextFieldStatePublisher</a>
@@ -342,6 +353,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Error%20Keys.html#/s:13VGSCollectSDK39VGSSDKErrorUnexpectedResponseDataFormatSSvp">VGSSDKErrorUnexpectedResponseDataFormat</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorInvalidAccessTokenSSvp">VGSSDKErrorInvalidAccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorWrongConfigurationSSvp">VGSSDKErrorWrongConfiguration</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -366,6 +383,14 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSCollectFieldNameMappingPolicy.html">VGSCollectFieldNameMappingPolicy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Extensions.html#/AppKit">AppKit</a>
               </li>
             </ul>
           </li>
@@ -397,7 +422,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An object you use for observing <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> <code><a href="Classes/State.html">State</a></code> and send data to your organization vault.</p>
+                        <p>An object you use for observing <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> <code>State</code> and send data to your organization vault.</p>
 
                         <a href="Classes/VGSCollect.html" class="slightly-smaller">See more</a>
                       </div>
@@ -405,12 +430,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSCollect</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSCollect</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L15-L122">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L16-L120">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -449,9 +475,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK5StateC"></a>
-                    <a name="//apple_ref/swift/Class/State" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK5StateC">State</a>
+                    <a name="/s:13VGSCollectSDK17VGSTextFieldStateC"></a>
+                    <a name="//apple_ref/swift/Class/VGSTextFieldState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK17VGSTextFieldStateC">VGSTextFieldState</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -461,13 +487,14 @@
                       <div class="abstract">
                         <p>An object that describes <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> state.  State attributes are read-only.</p>
 
-                        <a href="Classes/State.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/VGSTextFieldState.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">State</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSTextFieldState</span></code></pre>
 
                         </div>
                       </div>
@@ -480,9 +507,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK8SSNStateC"></a>
-                    <a name="//apple_ref/swift/Class/SSNState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK8SSNStateC">SSNState</a>
+                    <a name="/s:13VGSCollectSDK11VGSSSNStateC"></a>
+                    <a name="//apple_ref/swift/Class/VGSSSNState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK11VGSSSNStateC">VGSSSNState</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -492,13 +519,14 @@
                       <div class="abstract">
                         <p>An object that describes <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> state with configuration <code><a href="Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO3ssnyA2CmF">FieldType.ssn</a></code> .  State attributes are read-only.</p>
 
-                        <a href="Classes/SSNState.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/VGSSSNState.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SSNState</span> <span class="p">:</span> <span class="kt"><a href="Classes/State.html">State</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSSSNState</span> <span class="p">:</span> <span class="kt"><a href="Classes/VGSTextFieldState.html">VGSTextFieldState</a></span></code></pre>
 
                         </div>
                       </div>
@@ -511,9 +539,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13VGSCollectSDK9CardStateC"></a>
-                    <a name="//apple_ref/swift/Class/CardState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13VGSCollectSDK9CardStateC">CardState</a>
+                    <a name="/s:13VGSCollectSDK12VGSCardStateC"></a>
+                    <a name="//apple_ref/swift/Class/VGSCardState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK12VGSCardStateC">VGSCardState</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -523,13 +551,14 @@
                       <div class="abstract">
                         <p>An object that describes <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> state with configuration <code><a href="Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO10cardNumberyA2CmF">FieldType.cardNumber</a></code> .  State attributes are read-only.</p>
 
-                        <a href="Classes/CardState.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/VGSCardState.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CardState</span> <span class="p">:</span> <span class="kt"><a href="Classes/State.html">State</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">VGSCardState</span> <span class="p">:</span> <span class="kt"><a href="Classes/VGSTextFieldState.html">VGSTextFieldState</a></span></code></pre>
 
                         </div>
                       </div>
@@ -552,7 +581,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A custom publisher that emits <code><a href="Classes/State.html">State</a></code> of a given <code><a href="Classes/VGSTextField.html">VGSTextField</a></code>.</p>
+                        <p>A custom publisher that emits <code>State</code> of a given <code><a href="Classes/VGSTextField.html">VGSTextField</a></code>.</p>
 
                         <a href="Structs/VGSTextFieldStatePublisher.html" class="slightly-smaller">See more</a>
                       </div>
@@ -561,7 +590,8 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">13</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSTextFieldStatePublisher</span> <span class="p">:</span> <span class="kt">Publisher</span></code></pre>
+<span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSTextFieldStatePublisher</span> <span class="p">:</span> <span class="kd">@preconcurrency</span> <span class="kt">Publisher</span></code></pre>
 
                         </div>
                       </div>
@@ -625,7 +655,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@frozen</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSTokenizationResponse</span></code></pre>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSTokenizationResponse</span> <span class="p">:</span> <span class="kd">@unchecked</span> <span class="kt">Sendable</span></code></pre>
 
                         </div>
                       </div>
@@ -765,8 +795,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2023-09-07)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-09-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>
