@@ -41,9 +41,7 @@
     </header>
 
     <p class="breadcrumbs">
-      <a class="breadcrumb" href="index.html">VGSCollectSDK Reference</a>
-      <img class="carat" src="img/carat.png" alt=""/>
-      VGSCollectSDK  Reference
+      <a class="breadcrumb" href="index.html">VGSCollectSDK</a>
     </p>
 
     <div class="content-wrapper">
@@ -136,6 +134,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="SwiftUI%20Elements.html">SwiftUI Elements</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Tokenization%20Parameters.html">Tokenization Parameters</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -200,13 +209,13 @@
                 <a class="nav-group-task-link" href="Enums/Environment.html">Environment</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/State.html">State</a>
+                <a class="nav-group-task-link" href="Classes/VGSTextFieldState.html">VGSTextFieldState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/SSNState.html">SSNState</a>
+                <a class="nav-group-task-link" href="Classes/VGSSSNState.html">VGSSSNState</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/CardState.html">CardState</a>
+                <a class="nav-group-task-link" href="Classes/VGSCardState.html">VGSCardState</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/VGSTextFieldStatePublisher.html">VGSTextFieldStatePublisher</a>
@@ -341,6 +350,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Error%20Keys.html#/s:13VGSCollectSDK39VGSSDKErrorUnexpectedResponseDataFormatSSvp">VGSSDKErrorUnexpectedResponseDataFormat</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorInvalidAccessTokenSSvp">VGSSDKErrorInvalidAccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Error%20Keys.html#/s:13VGSCollectSDK29VGSSDKErrorWrongConfigurationSSvp">VGSSDKErrorWrongConfiguration</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -368,6 +383,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Extensions.html#/AppKit">AppKit</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -375,11 +398,12 @@
         <section class="section">
           <div class="section-content top-matter">
             
-            <p><a href="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master"><img src="https://circleci.com/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg&circle-token=ec7cddc71a1c2f6e99843ef56fdb6898a2ef8f52" alt="CircleCI"></a>
-<a href=""><img src="https://img.shields.io/badge/Unit_Test-pass-green" alt="UT"></a>
+            <p><a href="https://dl.circleci.com/status-badge/redirect/gh/verygoodsecurity/vgs-collect-ios/tree/master"><img src="https://dl.circleci.com/status-badge/img/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg" alt="CircleCI"></a>
 <a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
 <a href="https://github.com/verygoodsecurity/vgs-collect-ios"><img src="https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat" alt="Platform"></a>
 <a href=""><img src="https://img.shields.io/badge/swift-5-orange" alt="swift"></a>
+<a href=""><img src="https://img.shields.io/badge/SwiftUI-524520?logo=swift" alt="swiftui"></a>
+<a href=""><img src="https://img.shields.io/badge/SwiftPM-Compatible-brightgreen" alt="SwiftPM Compatible"></a>
 <a href="https://cocoapods.org/pods/VGSCollectSDK"><img src="https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat" alt="Cocoapods Compatible"></a>
 <img src="./images/VGSZeroData.png" height="20"></p>
 <h1 id='vgs-collect-ios-sdk' class='heading'>VGS Collect iOS SDK</h1>
@@ -394,8 +418,8 @@
 <li><a href="#integration">Integration</a>
 
 <ul>
-<li><a href="#cocoapods">CocoaPods</a></li>
 <li><a href="#swift-package-manager">Swift Package Manager</a></li>
+<li><a href="#cocoapods">CocoaPods</a></li>
 </ul></li>
 <li><a href="#usage">Usage</a>
 
@@ -403,9 +427,11 @@
 <li><a href="#create-vgscollect-instance-and-vgs-ui-elements">Create VGSCollect instance and VGS UI Elements</a></li>
 <li><a href="#scan-credit-card-data">Scan Credit Card Data</a></li>
 <li><a href="#upload-files">Upload Files</a></li>
+<li><a href="#swiftui-support">SwiftUI support</a></li>
 <li><a href="#demo-application">Demo Application</a></li>
 <li><a href="#documentation">Documentation</a></li>
 <li><a href="#releases">Releases</a></li>
+<li><a href="#privacy">Privacy</a></li>
 </ul></li>
 <li><a href="#dependencies">Dependencies</a></li>
 <li><a href="#license">License</a>
@@ -420,26 +446,15 @@
 
 <p>You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your <code>&lt;vaultId&gt;</code> to start collecting data. Follow integration guide below.</p>
 <h1 id='integration' class='heading'>Integration</h1>
-<h3 id='cocoapods' class='heading'>CocoaPods</h3>
-
-<p><a href="https://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
-</code></pre>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
 <p>The <a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for automating the distribution of Swift code and is integrated into the <code>swift</code> compiler.
-Xcode with Swift tools version of 5.3 is required for VGSCollectSDK. Earlier Xcode versions don&rsquo;t support Swift packages with resources.
+Xcode with Swift tools version of 5.9+ is required for VGSCollectSDK.
 To check your current Swift tools version run in your terminal:</p>
 <pre class="highlight ruby"><code><span class="n">xcrun</span> <span class="n">swift</span> <span class="o">-</span><span class="n">version</span>
 </code></pre>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    <p>In some cases you can have multiple Swift tools versions installed.</p>
 
-</div>
-
-<p>Follow the official Apple SPM guide <a href="https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app">instructions</a> for more details.<br>
-To use Swift Package Manager, in Xcode add the <a href="https://github.com/verygoodsecurity/vgs-collect-ios.git">https://github.com/verygoodsecurity/vgs-collect-ios.git</a> dependency and choose the <code>Exact</code> version.</p>
+<p>To use Swift Package Manager, in Xcode add the <a href="https://github.com/verygoodsecurity/vgs-collect-ios.git">https://github.com/verygoodsecurity/vgs-collect-ios.git</a> dependency and choose the <code>Exact</code> version.</p>
 
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_1.png" width="70%">
@@ -450,6 +465,11 @@ To use Swift Package Manager, in Xcode add the <a href="https://github.com/veryg
 <p align="center">
 <img src="images/VGSCollect_CardScan_SPM_2.png" width="70%">
 </p>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p><a href="https://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit CocoaPods website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
+</code></pre>
 <h2 id='usage' class='heading'>Usage</h2>
 <h3 id='import-sdk-into-your-file' class='heading'>Import SDK into your file</h3>
 <pre class="highlight swift"><code>
@@ -513,29 +533,22 @@ To use Swift Package Manager, in Xcode add the <a href="https://github.com/veryg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        &hellip;
         
-        &hellip;  
-        
-        /// Observing text fields
-        vgsCollect.observeStates = { textFields in
-
-            textFields.forEach({ textField in
-                print(textdField.state.description)
-                if textdField.state.isValid {
-                    textField.borderColor = .grey
-                } else {
-                    textField.borderColor = .red
-                }
-
-                /// CardState is available for VGSCardTextField
-                if let cardState = textField.state as? CardState {
-                    print(cardState.bin)
-                    print(cardState.last4)
-                    print(cardState.brand.stringValue)
-                }
-            })
-        }
+        /// Setup delegate
+        cardNumberField.delegate = self
     }
+    
+  extension ViewController: VGSTextFieldDelegate {
+    func vgsTextFieldDidChange(_ textField: VGSTextField) {
+      textField.borderColor = textField.state.isValid  ? .gray : .red
+
+      /// Check Card Number Field State with addition attributes
+      if let cardState = textField.state as? VGSCardState, cardState.isValid {
+          print(&ldquo;THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)&rdquo;)
+      }
+    }
+  }
   </td>
   </tr>
   <tr>
@@ -585,15 +598,11 @@ To use Swift Package Manager, in Xcode add the <a href="https://github.com/veryg
 <pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
 
 <span class="c1"># Add one of available scan providers</span>
-<span class="n">pod</span> <span class="s1">'VGSCollectSDK/CardIO'</span>
 <span class="n">pod</span> <span class="s1">'VGSCollectSDK/BlinkCard'</span>  
 </code></pre>
 <h4 id='integrate-with-swift-package-manager' class='heading'>Integrate with Swift Package Manager</h4>
 
-<p>Starting with the 1.7.11 release, <code>VGSCollectSDK</code> supports  <a href="https://github.com/verygoodsecurity/card.io-iOS-source">CardIO</a> integration via Swift PM.</p>
-
-<p>To use <strong>CardIO</strong> add <code>VGSCollectSDK</code>, <code>VGSCardIOCollector</code> packages to your target. 
-To use <strong>BlinkCard</strong> add <code>VGSCollectSDK</code>, <code>VGSBlinkCardCollector</code> packages to your target. </p>
+<p>To use <strong>BlinkCard</strong> add <code>VGSCollectSDK</code>, <code>VGSBlinkCardCollector</code> packages to your target. </p>
 <h4 id='code-example' class='heading'>Code Example</h4>
 
 <table>
@@ -602,82 +611,79 @@ To use <strong>BlinkCard</strong> add <code>VGSCollectSDK</code>, <code>VGSBlink
     <th width="25%">In Action</th>
   </tr>
   <tr>
-    <td>Setup  VGSCardIOScanController&hellip;</td>
+    <td>Setup  VGSBlinkCardController&hellip;</td>
     <th rowspan="2"><img src="images/card-scan.gif"></th>
   </tr>
   <tr>
     <td>
     
     class ViewController: UIViewController {
-         
-        var vgsCollect = VGSCollect(id: &ldquo;vauiltId&rdquo;, environment: .sandbox)
-
-        /// Init VGSCardIOScanController
-        var scanController = VGSCardIOScanController()
+        /// Init VGSBlinkCardController
+        var scanController: VGSBlinkCardController?
 
         /// Init VGSTextFields&hellip;
 
         override func viewDidLoad() {
-            super.viewDidLoad()
+          super.viewDidLoad()
 
-            /// set VGSCardIOScanDelegate
-            canController.delegate = self
+          // Init VGSBlinkCardController with BlinkCard license key and delegate
+            scanController = VGSBlinkCardController(licenseKey: &ldquo;<blinkCardLicenseKey>&rdquo;, delegate: self, onError: { errorCode in
+              print(&ldquo;BlinkCard license error, code: \(errorCode)&rdquo;)
+            })
         }
 
         /// Present scan controller 
         func scanData() {
-            scanController.presentCardScanner(on: self,
-                    animated: true,
-                      completion: nil)
-        }
-
-        // MARK: - Send data  
-        func sendData() {
-            /// Send data from VGSTextFields to your Vault
-            vgsCollect.sendData{&hellip;}
+          scanController?.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
         }
     }
     &hellip;
   </td>
   </tr>
   <tr>
-    <td colspan="2">&hellip; handle VGSCardIOScanControllerDelegate</td>
+    <td colspan="2">&hellip; handle VGSBlinkCardControllerDelegate</td>
   </tr>
   <tr>
     <td colspan="2">
         
     // &hellip;
     
-    /// Implement VGSCardIOScanControllerDelegate methods
-    extension ViewController: VGSCardIOScanControllerDelegate {
-
-        ///Asks VGSTextField where scanned data with type need to be set.
-        func textFieldForScannedData(type: CradIODataType) -> VGSTextField? {
-        switch type {
-        case .expirationDate:
-            return expCardDateField
-        case .cvc:
-            return cvcField
-        case .cardNumber:
-            return cardNumberField
-        default:
-            return nil
-        }
-        }
-
-        /// When user press Done button on CardIO screen
-        func userDidFinishScan() {
-        scanController.dismissCardScanner(animated: true, completion: { [weak self] in
-            /// self?.sendData()
-        })
-        }
+    /// Implement VGSBlinkCardControllerDelegate methods
+  extension ViewController: VGSBlinkCardControllerDelegate {
+    func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
+      // match VGSTextField with scanned data
+      switch type {
+      case .expirationDate:
+          return expCardDate
+      case .cardNumber:
+          return cardNumber
+      case .cvc:
+        return cvcCardNum
+      case .name:
+        return cardHolderName
+      default:
+          return nil
+      }
     }
-   
+  
+    func userDidFinishScan() {
+      scanController?.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+    }
+  
+    func userDidCancelScan() {
+      scanController?.dismissCardScanner(animated: true, completion: {
+          // add actions on scan controller dismiss completion
+      })
+    }
+  }
+
   </td>
   </tr>
 </table>
 
-<p>Handle <code>VGSCardIOScanControllerDelegate</code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code>CradIODataType</code> to get available scand data types.</p>
+<p>Handle <code>VGSBlinkCardControllerDelegate</code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code>VGSBlinkCardDataType</code> to get available scand data types.</p>
 
 <p>Don&rsquo;t forget to add <strong>NSCameraUsageDescription</strong> key and description into your App <code>Info.plist</code>.</p>
 <h3 id='upload-files' class='heading'>Upload Files</h3>
@@ -798,6 +804,9 @@ To use <strong>BlinkCard</strong> add <code>VGSCollectSDK</code>, <code>VGSBlink
 </table>
 
 <p>Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.</p>
+<h3 id='swiftui-support' class='heading'>SwiftUI support</h3>
+
+<p>VGS Collect iOS SDK provide support for integration with apps that are buid with SwiftUI toolkit by providing SwiftUI wrappers for all VGS textfields. Follow examples <a href="./demoapp/demoapp/UseCases/SwiftUI/README.md">here</a>.</p>
 <h2 id='demo-application' class='heading'>Demo Application</h2>
 
 <p>Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food-iOS">here</a>.</p>
@@ -810,21 +819,22 @@ To use <strong>BlinkCard</strong> add <code>VGSCollectSDK</code>, <code>VGSBlink
 <h3 id='releases' class='heading'>Releases</h3>
 
 <p>To follow <code>VGSCollectSDK</code> updates and changes check the <a href="https://github.com/verygoodsecurity/vgs-collect-ios/releases">releases</a> page.</p>
-<h3 id='metrics' class='heading'>Metrics</h3>
+<h3 id='privacy' class='heading'>Privacy</h3>
 
 <p>VGSCollectSDK tracks a few key metrics to understand SDK features usage, which helps us know what areas need improvement. No personal information is tracked.
-You can easily opt-out of metrics collection in <code>VGSAnalyticsClient</code>:</p>
+You can read more about VGS Privacy details ans iOS Privacy Manifest file at our <a href="https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/privacy-details">web site</a>.</p>
+
+<p>You can opt-out of metrics collection in <code>VGSAnalyticsClient</code>:</p>
 <pre class="highlight plaintext"><code>VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 </code></pre>
 <h2 id='dependencies' class='heading'>Dependencies</h2>
 
 <ul>
-<li>iOS 12+</li>
-<li>Swift 5</li>
+<li>iOS 13+</li>
+<li>Swift 5.9</li>
 <li>Optional 3rd party libraries:
 
 <ul>
-<li><a href="https://github.com/card-io/card.io-iOS-SDK">CardIO</a></li>
 <li><a href="https://github.com/blinkcard/blinkcard-ios">BlinkCard</a></li>
 </ul></li>
 </ul>
@@ -839,8 +849,8 @@ You can easily opt-out of metrics collection in <code>VGSAnalyticsClient</code>:
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2023 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2023-09-07)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-09-15)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
 </html>

@@ -4,7 +4,7 @@
 //
 import SwiftUI
 
-/// Base Class responsinble for handling VGSTextFieldRepresentable editing events and state changes
+/// :nodoc: Base Class responsinble for handling VGSTextFieldRepresentable editing events and state changes
 public class VGSTextFieldRepresentableCoordinator<Parent: VGSTextFieldRepresentableCallbacksProtocol>: NSObject, VGSTextFieldDelegate {
     var parent: Parent
 
