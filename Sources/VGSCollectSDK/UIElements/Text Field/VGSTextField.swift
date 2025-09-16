@@ -213,7 +213,7 @@ public class VGSTextField: UIView {
     textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
     textField.returnKeyType = configuration.returnKeyType ?? .default
     textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
-    
+    textField.textContentType = configuration.textContentType
     if let pattern = configuration.formatPattern {
         textField.formatPattern = pattern
     } else {

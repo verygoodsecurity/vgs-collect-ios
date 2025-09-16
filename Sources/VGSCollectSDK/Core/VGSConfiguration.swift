@@ -35,6 +35,8 @@ internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtoco
     var returnKeyType: UIReturnKeyType? { get set }
     
     var keyboardAppearance: UIKeyboardAppearance? { get set }
+
+    var textContentType: UITextContentType? { get set }
 }
 
 /// A class responsible for configuration VGSTextField.
@@ -75,7 +77,10 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
     public var keyboardAppearance: UIKeyboardAppearance?
-  
+
+    /// Preferred UITextContentType for textfield. By default is `Nil`.
+    public var textContentType: UITextContentType?
+
     /// Validation rules for field input. Defines `State.isValide` result.
     public var validationRules: VGSValidationRuleSet?
 

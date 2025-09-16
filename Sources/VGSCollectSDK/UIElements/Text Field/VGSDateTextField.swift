@@ -354,6 +354,7 @@ private extension VGSDateTextField {
         textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
         textField.returnKeyType = configuration.returnKeyType ?? .default
         textField.keyboardAppearance = configuration.keyboardAppearance ?? .default
+        textField.textContentType = configuration.textContentType
         // Remove date picker if any
         textField.inputView = nil
         textField.inputAccessoryView  = nil
