@@ -44,11 +44,15 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
   var bodrerWidth: CGFloat?
   /// Field corner radius
   var cornerRadius: CGFloat?
+  /// CVC/CVVicon accessibility hint.
+  var cvcIconAccessibilityHint: String = "card cvc icon"
+  /// CVC/CVV icon is AccessibilityElement.
+  var cvcIconViewIsAccessibilityElement = true
   /// Coordinates connection between scan data and text field.
-      var cardScanCoordinator: VGSCardScanCoordinator?
-    /// Remove text input trigger
-    internal var clearTextTrigger: Binding<Bool>?
-  
+  var cardScanCoordinator: VGSCardScanCoordinator?
+  /// Remove text input trigger
+  internal var clearTextTrigger: Binding<Bool>?
+      
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
   var textFieldAccessibilityLabel: String?

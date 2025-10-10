@@ -44,10 +44,22 @@ public final class VGSCardTextField: VGSTextField {
       updateCardIconViewSize()
     }
   }
+    
+  /// Card Icon accissibility view hint. You can change the hint dynamically based on detected card brand.
+    public var cardIconViewIsAccessibilityElement = true {
+        didSet {
+            cardIconView.isAccessibilityElement = cardIconViewIsAccessibilityElement
+        }
+    }
+    
+  /// Card Icon accissibility view hint. You can change the hint dynamically based on detected card brand.
+  public var  cardIconAccessibilityHint = "card brand icon"
+
   
   // MARK: Custom card brand images
   /// Asks custom image for specific `VGSPaymentCards.CardBrand`
   public var cardsIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
+
   
   /// :nodoc:
   public override func didMoveToSuperview() {
@@ -66,7 +78,6 @@ internal extension VGSCardTextField {
     // MARK: - Initialization
     override func mainInitialization() {
         super.mainInitialization()
-        
         setupCardIconView()
         setCardIconAtLocation(cardIconLocation)
         updateCardImage()
@@ -131,6 +142,8 @@ internal extension VGSCardTextField {
        } else {
         cardIconView.image = VGSPaymentCards.unknown.brandIcon
        }
+        /// Update accessibility hint 
+        cardIconView.accessibilityHint = cardIconAccessibilityHint
     }
   
     func setCardIconAtLocation(_ location: CardIconLocation) {

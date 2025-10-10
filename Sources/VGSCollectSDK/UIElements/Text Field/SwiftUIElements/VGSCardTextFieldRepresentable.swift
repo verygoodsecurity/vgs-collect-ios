@@ -42,11 +42,15 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
-    /// Field corner radius
+    /// Field corner radius.
     var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
-    /// Remove text input trigger
+    /// Card icon accessibility hint.
+    var cardIconAccessibilityHint: String = "card brand icon"
+    /// Card icon is AccessibilityElement.
+    var cardIconViewIsAccessibilityElement: Bool = true
+    /// Remove text input trigger.
     internal var clearTextTrigger: Binding<Bool>?
 
     // MARK: - Accessibility attributes
