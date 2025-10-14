@@ -45,13 +45,17 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
   /// Field corner radius
   var cornerRadius: CGFloat?
   /// Coordinates connection between scan data and text field.
-      var cardScanCoordinator: VGSCardScanCoordinator?
-    /// Remove text input trigger
-    internal var clearTextTrigger: Binding<Bool>?
-  
+  var cardScanCoordinator: VGSCardScanCoordinator?
+  /// Remove text input trigger
+  internal var clearTextTrigger: Binding<Bool>?
+      
   // MARK: - Accessibility attributes
   /// A succinct label in a localized string that identifies the accessibility text field.
   var textFieldAccessibilityLabel: String?
+    /// CVC/CVV icon accessibility hint.
+  var cvcIconAccessibilityHint: String = "CVC/CVV icon"
+    /// CVC/CVV icon is AccessibilityElement.
+  var cvcIconViewIsAccessibilityElement: Bool = true
 
   // MARK: - TextField editing callbacks
   /// The state type is VGSTextFieldState.
@@ -90,6 +94,8 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
       vgsTextField.cvcIconSize = cvcIconSize
       vgsTextField.cvcIconLocation = cvcIconLocation
       vgsTextField.cvcIconSource = cvcIconSource
+      vgsTextField.cvcIconAccessibilityHint = cvcIconAccessibilityHint
+      vgsTextField.cvcIconViewIsAccessibilityElement = cvcIconViewIsAccessibilityElement
       /// Default config
       VGSTextFieldRepresentableInitializer.configure(vgsTextField, representable: self)
       vgsTextField.delegate = context.coordinator
@@ -109,6 +115,8 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
         binding.wrappedValue = false
       }
     }
+    uiView.cvcIconAccessibilityHint = cvcIconAccessibilityHint
+    uiView.cvcIconViewIsAccessibilityElement = cvcIconViewIsAccessibilityElement
   }
   /// Removes text from input.
   public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCVCTextFieldRepresentable {
@@ -189,6 +197,18 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
     var newRepresentable = self
     newRepresentable.textFieldAccessibilityLabel = label
     return newRepresentable
+  }
+  /// Set `cvcIconAccessibilityHint` string.
+  public func cvcIconAccessibilityHint(_ hint: String) -> VGSCVCTextFieldRepresentable {
+   var newRepresentable = self
+   newRepresentable.cvcIconAccessibilityHint = hint
+   return newRepresentable
+  }
+  /// Set `cvcIconViewIsAccessibilityElement` bool value.
+  public func cvcIconViewIsAccessibilityElement(_ isAccessibilityElement: Bool) -> VGSCVCTextFieldRepresentable {
+   var newRepresentable = self
+   newRepresentable.cvcIconViewIsAccessibilityElement = isAccessibilityElement
+   return newRepresentable
   }
   /// Set `foregroundColor`.
   public func foregroundColor(_ color: UIColor) -> VGSCVCTextFieldRepresentable {

@@ -65,6 +65,16 @@ public final class VGSCVCTextField: VGSTextField {
     public override var intrinsicContentSize: CGSize {
       return getIntrinsicContentSize()
     }
+        
+    /// CVC/CVV Icon accissibility view hint. You can change the hint dynamically based on detected card brand. Default is true.
+      public var cvcIconViewIsAccessibilityElement = true {
+          didSet {
+              cvcIconImageView.isAccessibilityElement = cvcIconViewIsAccessibilityElement
+          }
+      }
+      
+    /// CVC/CVV Icon accissibility view hint. You can change the hint dynamically based on detected card brand.
+    public var  cvcIconAccessibilityHint = "CVC Icon"
     
     // MARK: Custom CVC images for specific card brands
     /// Asks custom image for specific `VGSPaymentCards.CardBrand`
@@ -126,6 +136,7 @@ internal extension VGSCVCTextField {
     }
 
     func updateCVCImage(for cardBrand: VGSPaymentCards.CardBrand) {
+        cvcIconImageView.accessibilityHint = cvcIconAccessibilityHint
         cvcIconImageView.image = (cvcIconSource == nil) ? cardBrand.cvcIcon :  cvcIconSource?(cardBrand)
     }
   
@@ -150,7 +161,6 @@ internal extension VGSCVCTextField {
     
     // Make image view for a card brand icon
     private func setupCVCIconView() {
-
       // Update only card image view width and height constraint.
       cvcIconImageView.translatesAutoresizingMaskIntoConstraints = false
       cvcIconImageView.contentMode = .scaleAspectFit
