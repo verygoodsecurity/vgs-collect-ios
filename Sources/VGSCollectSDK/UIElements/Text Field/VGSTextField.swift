@@ -210,6 +210,7 @@ public class VGSTextField: UIView {
     isRequired = configuration.isRequired
     isRequiredValidOnly = configuration.isRequiredValidOnly
     fieldType = configuration.type
+    textField.textContentType = configuration.contentType ?? configuration.type.contentType
     textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
     textField.returnKeyType = configuration.returnKeyType ?? .default
     textField.keyboardAppearance = configuration.keyboardAppearance ?? .default

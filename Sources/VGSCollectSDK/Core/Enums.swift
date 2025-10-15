@@ -113,6 +113,30 @@ internal extension FieldType {
             return .alphabet
         }
     }
+    
+    /// Default field text content type for `FieldType`
+    var contentType: UITextContentType? {
+        switch self {
+        case .cardNumber:
+            return .creditCardNumber
+        case .cardHolderName:
+            if #available(iOS 17, *) {
+                return .creditCardName
+            }
+            return .name
+        case .cvc:
+            if #available(iOS 17, *) {
+                return .creditCardSecurityCode
+            }
+        case .expDate:
+            if #available(iOS 17.0, *) {
+                return .creditCardExpiration
+            }
+        default:
+            return nil
+        }
+        return nil
+    }
   
     var defaultValidation: VGSValidationRuleSet {
       var rules = VGSValidationRuleSet()

@@ -35,6 +35,8 @@ internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtoco
     var returnKeyType: UIReturnKeyType? { get set }
     
     var keyboardAppearance: UIKeyboardAppearance? { get set }
+    
+    var contentType: UITextContentType? { get set }
 }
 
 /// A class responsible for configuration VGSTextField.
@@ -66,6 +68,9 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on send request.
     public var divider: String?
+    
+    /// Preferred UITextContentType for or `VGSTextField`. If note set, default value could be set based on `VGSTextField.type` value.
+    public var contentType: UITextContentType?
 
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?
