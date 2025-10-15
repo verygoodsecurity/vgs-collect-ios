@@ -2,9 +2,7 @@
 //  VGSTextField.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 8/14/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
+
 
 #if os(iOS)
 import UIKit
@@ -210,7 +208,7 @@ public class VGSTextField: UIView {
     isRequired = configuration.isRequired
     isRequiredValidOnly = configuration.isRequiredValidOnly
     fieldType = configuration.type
-    textField.textContentType = configuration.contentType ?? configuration.type.contentType
+    textField.textContentType = configuration.isTextContentTypeSet ? configuration.textContentType : configuration.type.textContentType
     textField.keyboardType = configuration.keyboardType ?? configuration.type.keyboardType
     textField.returnKeyType = configuration.returnKeyType ?? .default
     textField.keyboardAppearance = configuration.keyboardAppearance ?? .default

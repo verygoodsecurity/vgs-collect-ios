@@ -2,9 +2,6 @@
 //  Enums.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 8/14/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 #if os(iOS)
 import UIKit
@@ -115,7 +112,7 @@ internal extension FieldType {
     }
     
     /// Default field text content type for `FieldType`
-    var contentType: UITextContentType? {
+    var textContentType: UITextContentType? {
         switch self {
         case .cardNumber:
             return .creditCardNumber
