@@ -2,9 +2,6 @@
 //  VGSModel.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 8/21/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 import Foundation
 #if os(iOS)
@@ -35,6 +32,8 @@ internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtoco
     var returnKeyType: UIReturnKeyType? { get set }
     
     var keyboardAppearance: UIKeyboardAppearance? { get set }
+    
+    var textContentType: UITextContentType? { get set }
 }
 
 /// A class responsible for configuration VGSTextField.
@@ -66,6 +65,12 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on send request.
     public var divider: String?
+    
+    /// Preferred UITextContentType for or `VGSTextField`. If note set, default value could be set based on `VGSTextField.type` value.
+    public var textContentType: UITextContentType? {
+        didSet { isTextContentTypeSet = true }
+    }
+    internal var isTextContentTypeSet = false
 
     /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
     public var keyboardType: UIKeyboardType?

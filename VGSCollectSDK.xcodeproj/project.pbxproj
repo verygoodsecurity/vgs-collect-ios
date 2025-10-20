@@ -1012,14 +1012,6 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		44F8F52225DBE7D10052647A /* Satellite Tests */ = {
-			isa = PBXGroup;
-			children = (
-				FDE890802333A75800FA170D /* Text Fields Tests */,
-			);
-			path = "Satellite Tests";
-			sourceTree = "<group>";
-		};
 		A08DA9F829F1CC2A00DA62A5 /* DateTokenizationJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -1145,7 +1137,7 @@
 				442A391529097408007CCC58 /* TokenizationTests */,
 				44447F7D25F7648700D4CE68 /* Test Helpers */,
 				449C89E225F0AFAE00BE009F /* DeepMergeUtils Tests */,
-				44F8F52225DBE7D10052647A /* Satellite Tests */,
+				FDE890802333A75800FA170D /* TextFieldsTests */,
 				FD790B95243BB3D1006A30CB /* Card Brand Tests */,
 				324CDEE023FB12E200653890 /* File Picker Tests */,
 				322F94D525BAC3C8001CDF12 /* ConvertorsTests */,
@@ -1227,7 +1219,7 @@
 			path = Collector;
 			sourceTree = "<group>";
 		};
-		FDE890802333A75800FA170D /* Text Fields Tests */ = {
+		FDE890802333A75800FA170D /* TextFieldsTests */ = {
 			isa = PBXGroup;
 			children = (
 				FD24956F2330E834009024E6 /* CardNumerTextFieldTests.swift */,
@@ -1248,7 +1240,7 @@
 				32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */,
 				441A727C272AAEEA0036BECB /* TextFieldMaxInputLengthTests.swift */,
 			);
-			path = "Text Fields Tests";
+			path = TextFieldsTests;
 			sourceTree = "<group>";
 		};
 		FDF696E6234A5D7A00063507 /* Text Field */ = {
