@@ -80,6 +80,8 @@ public enum VGSTextFieldEditingEvent<StateType> {
   var cardIconSize: CGSize {get set}
   /// Card brand icon positions enum.
   var cardIconLocation: VGSCardTextField.CardIconLocation {get set}
+  ///
+  var cardIconViewIsAccessibilityElement: Bool {get set}
 }
 
 // MARK: - VGSExpDateTextFieldRepresentable.
@@ -100,6 +102,10 @@ public enum VGSTextFieldEditingEvent<StateType> {
   var cvcIconLocation: VGSCVCTextField.CVCIconLocation {get set}
   /// Asks custom image for specific `VGSPaymentCards.CardBrand`.
   var cvcIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)? {get set}
+  /// CVC/CVV icon accessibility hint.
+  var cvcIconAccessibilityHint: String {get set}
+  /// CVC/CVV icon is AccessibilityElement.
+  var cvcIconViewIsAccessibilityElement: Bool {get set}
 }
 
 // MARK: - VGSDateTextFieldRepresentable.

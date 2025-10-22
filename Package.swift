@@ -21,15 +21,15 @@ let package = Package(
           targets: ["VGSBlinkCardCollector"])
     ],
     dependencies: [
-			.package(
-						name: "CardIOSDK",
-						url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
-						.exact("5.5.7")
-			),
+            .package(
+                        name: "CardIOSDK",
+                        url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
+                        .exact("5.5.7")
+            ),
       .package(
             name: "BlinkCard",
             url: "https://github.com/blinkcard/blinkcard-swift-package",
-            .exact("2.10.1")
+            .exact("2.12.0")
       )
     ],
     targets: [
@@ -37,19 +37,19 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "VGSCollectSDK",
-  					exclude: [
+                      exclude: [
               "Info.plist",
-							"VGSCollectSDK.h"
-	 				],
+                            "VGSCollectSDK.h"
+                     ],
           resources: [.copy("PrivacyInfo.xcprivacy")]),
         .testTarget(
             name: "FrameworkTests",
             dependencies: ["VGSCollectSDK"],
-					  exclude: [
-						"Info.plist",
-						"FrameworkTests.xctestplan"
-					  ],
-				  	resources: [.process("Resources")]),
+                      exclude: [
+                        "Info.plist",
+                        "FrameworkTests.xctestplan"
+                      ],
+                      resources: [.process("Resources")]),
         .target(
           name: "VGSCardIOCollector",
           dependencies: ["VGSCollectSDK",
@@ -60,5 +60,5 @@ let package = Package(
             dependencies: ["VGSCollectSDK",
                       .product(name: "BlinkCard", package: "BlinkCard")],
             path: "Sources/VGSBlinkCardCollector/")
-		]
+        ]
 )

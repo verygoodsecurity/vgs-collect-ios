@@ -42,17 +42,20 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var borderColor: UIColor?
     /// Field border line width.
     var bodrerWidth: CGFloat?
-    /// Field corner radius
+    /// Field corner radius.
     var cornerRadius: CGFloat?
     /// Coordinates connection between scan data and text field.
     var cardScanCoordinator: VGSCardScanCoordinator?
-    /// Remove text input trigger
+    /// Remove text input trigger.
     internal var clearTextTrigger: Binding<Bool>?
 
     // MARK: - Accessibility attributes
     /// A succinct label in a localized string that identifies the accessibility text field.
     var textFieldAccessibilityLabel: String?
-  
+    /// Card icon accessibility hint.
+    var cardIconAccessibilityHint: String = "card brand icon"
+    /// Card icon is AccessibilityElement.
+    var cardIconViewIsAccessibilityElement: Bool = true
     // MARK: - TextField interaction callbacks
     public typealias StateType = VGSCardState
     /// `VGSTextFieldRepresentable` callback events. Return state object.
@@ -66,6 +69,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var cardIconSize = CGSize(width: 45, height: 45)
     /// Card brand icon positions enum.
     var cardIconLocation = VGSCardTextField.CardIconLocation.right
+
     
     // MARK: - Initialization
     /// Initialization
@@ -85,6 +89,8 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
         vgsTextField.configuration = configuration
         vgsTextField.cardIconSize = cardIconSize
         vgsTextField.cardIconLocation = cardIconLocation
+        vgsTextField.cardIconAccessibilityHint = cardIconAccessibilityHint
+        vgsTextField.cardIconViewIsAccessibilityElement = cardIconViewIsAccessibilityElement
         /// Default config
         VGSTextFieldRepresentableInitializer.configure(vgsTextField, representable: self)
         vgsTextField.delegate = context.coordinator
@@ -104,6 +110,8 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
                 binding.wrappedValue = false
             }
         }
+      uiView.cardIconAccessibilityHint = cardIconAccessibilityHint
+      uiView.cardIconViewIsAccessibilityElement = cardIconViewIsAccessibilityElement
     }
     /// Removes text from input.
     public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCardTextFieldRepresentable {
@@ -183,6 +191,18 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     public func textFieldAccessibilityLabel(_ label: String) -> VGSCardTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.textFieldAccessibilityLabel = label
+      return newRepresentable
+    }
+    /// Set `cardIconAccessibilityHint` string.
+    public func cardIconAccessibilityHint(_ hint: String) -> VGSCardTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cardIconAccessibilityHint = hint
+      return newRepresentable
+    }
+    /// Set `cardIconViewIsAccessibilityElement` bool value.
+    public func cardIconViewIsAccessibilityElement(_ isAccessibilityElement: Bool) -> VGSCardTextFieldRepresentable {
+      var newRepresentable = self
+      newRepresentable.cardIconViewIsAccessibilityElement = isAccessibilityElement
       return newRepresentable
     }
     /// Set `foregroundColor`.

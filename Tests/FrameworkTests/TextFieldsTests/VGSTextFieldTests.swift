@@ -37,11 +37,13 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
       XCTAssertTrue(textfield.state.isDirty == false)
       XCTAssertTrue(textfield.state.isEmpty == false)
       XCTAssertTrue(textfield.state.isValid == true)
+      XCTAssertTrue(textfield.textField.textContentType == .creditCardNumber)
     }
     
     func testSetText() {
       let placeholder = "card numner"
       configuration.type = .cardNumber
+      configuration.textContentType = nil
       textfield.configuration = configuration
       textfield.placeholder = placeholder
       textfield.setText("4111111111111111")
@@ -51,6 +53,7 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
       XCTAssertTrue(textfield.state.isDirty == true)
       XCTAssertTrue(textfield.state.isEmpty == false)
       XCTAssertTrue(textfield.state.isValid == true)
+      XCTAssertNil(textfield.textField.textContentType)
   }
   
   func testCleanText() {
