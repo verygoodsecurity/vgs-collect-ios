@@ -1,10 +1,10 @@
 # AGENTS.md
 
-Authoritative Integration & Maintenance Guide for Autonomous Agents
+This guide is tailored for autonomous engineering agents integrating `VGSCollectSDK` into iOS applications. It focuses on deterministic, automatable steps: environment assessment, dependency installation, feature wiring (text fields, scanning, file upload), privacy compliance, testing, maintenance, and safe upgrade workflows.
 
 Scope
 - Use this file as the ONLY high-level instruction source when adding, updating, or testing VGS Collect iOS SDK (`VGSCollectSDK`) usage in a downstream app.
-- Contain ONLY public, non-deprecated APIs (verified via source grep; deprecated signatures like `VGSCardIOScanController` and deprecated masked text field methods MUST NOT be referenced or generated).
+- Contain ONLY public, non-deprecated APIs (verified via source grep; deprecated signatures and deprecated masked text field methods MUST NOT be referenced or generated).
 - Emphasis: security, correctness, determinism, reproducibility.
 
 Success Criteria for Any Agent Task
