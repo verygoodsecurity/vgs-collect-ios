@@ -2,9 +2,7 @@
 //  CardTextFieldTests.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 04.12.2019.
-//  Copyright © 2019 VGS. All rights reserved.
-//
+
 
 import XCTest
 @testable import VGSCollectSDK

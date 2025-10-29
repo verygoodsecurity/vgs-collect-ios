@@ -2,9 +2,6 @@
 //  VGSCardTextField.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 24.11.2019.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 #if os(iOS)
 import UIKit
