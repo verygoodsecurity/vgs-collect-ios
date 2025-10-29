@@ -4,7 +4,7 @@ Authoritative Integration & Maintenance Guide for Autonomous Agents
 
 Scope
 - Use this file as the ONLY high-level instruction source when adding, updating, or testing VGS Collect iOS SDK (`VGSCollectSDK`) usage in a downstream app.
-- Contain ONLY public, non-deprecated APIs (verified via source grep; deprecated signatures and deprecated masked text field methods MUST NOT be referenced or generated).
+- Contain ONLY public, non-deprecated APIs (verified via source grep; deprecated signatures like `VGSCardIOScanController` and deprecated masked text field methods MUST NOT be referenced or generated).
 - Emphasis: security, correctness, determinism, reproducibility.
 
 Success Criteria for Any Agent Task
@@ -21,6 +21,31 @@ Success Criteria for Any Agent Task
 - UI inputs (`VGSTextField`, `VGSCardTextField`) never expose raw values outside controlled SDK memory; you interact through configuration + state snapshots.
 - Field `state` drives UI (validity, emptiness, metadata like last4, brand) – do not persist raw input.
 - Submissions can be performed via closure, async/await, or Combine publisher APIs returning success/failure with alias JSON.
+
+---
+## 1A. Environment Preconditions
+Purpose: ensure correct vault/environment pairing before any field setup or submission.
+
+Required:
+- Non-empty `vaultId` string (assert with `precondition(!vaultId.isEmpty)` in debug builds).
+- Explicit environment selection: `.sandbox` for development/testing; `.live` for production only.
+- Keep sandbox and live vault IDs distinct; never point `.live` at a sandbox vault ID.
+- Optional hostname override (if provided): verify matches VGS dashboard configuration before deploy.
+
+Quick Examples:
+```
+// Sandbox collector (dev/test)
+let collector = VGSCollect(id: sandboxVaultId, environment: .sandbox)
+
+// Production collector (release build)
+let liveCollector = VGSCollect(id: liveVaultId, environment: .live)
+```
+Failure Modes:
+- Empty vaultId → initialization should fail fast (use preconditions).
+- Using `.live` in debug with test cards unintentionally → enforce build configuration checks.
+- Mixing aliases from different environments → keep storage / processing segregated.
+
+Security Note: Never derive environment from user input; it must be a static config determined at build or app launch.
 
 ---
 ## 2. Public Building Blocks (Summary Table)
