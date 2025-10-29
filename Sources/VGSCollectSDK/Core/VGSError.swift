@@ -38,11 +38,11 @@ public enum VGSErrorType: Int {
     /// When response type is not supported
     case unexpectedResponseType = 1400
     
-    /// When reponse data format is not supported
+    /// When response data format is not supported
     case unexpectedResponseDataFormat = 1401
 
-		/// When VGS config URL is not valid.
-		case invalidConfigurationURL = 1480
+        /// When VGS config URL is not valid.
+        case invalidConfigurationURL = 1480
 }
 
 /// An error produced by `VGSCollectSDK`. Works similar to default `NSError` in iOS.
@@ -56,15 +56,15 @@ public class VGSError: NSError, @unchecked Sendable {
         return type.rawValue
     }
 
-	  ///: nodoc. Public required init.
+      ///: nodoc. Public required init.
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-	/// Initializer.
-	/// - Parameters:
-	///   - type: `VGSErrorType` object, error type.
-	///   - info: `VGSErrorInfo?` object, error info, default is `nil`.
+    /// Initializer.
+    /// - Parameters:
+    ///   - type: `VGSErrorType` object, error type.
+    ///   - info: `VGSErrorInfo?` object, error info, default is `nil`.
     internal required init(type: VGSErrorType, userInfo info: VGSErrorInfo? = nil) {
         self.type = type
         super.init(domain: VGSCollectSDKErrorDomain, code: type.rawValue, userInfo: info?.asDictionary)

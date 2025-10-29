@@ -8,46 +8,47 @@
 
 import Foundation
 
-/// Class responsible for storing and managing Payment Cards in SDK.
-/// - Contains editable defined Payment Cards Models
-/// - Allows to add Custom Payment Cards Models
-/// - Allows to edit Unknown Payment Cards Models(brands not defined by SDK and Developer)
+/// Class responsible for storing and managing Payment Card definitions used by the SDK.
+/// - Provides predefined payment card models (Visa, Mastercard, Amex, etc.).
+/// - Supports adding custom payment card models (regex & format pattern based).
+/// - Allows configuring behaviour and validation for unknown brands through `VGSPaymentCards.unknown`.
 @MainActor final public class VGSPaymentCards {
 
-	/// no:doc
+    /// Private initialization to restrict instantiation. Use static members instead.
   private init() {}
     
   // MARK: - CardBrand Enum Cases
 
-  /// Supported card brands
+  /// Supported card brands handled by the SDK.
+  /// - NOTE: `.custom(brandName:)` can be used to add developer-defined brands; ensure `brandName` uniqueness.
   public enum CardBrand: Equatable, Sendable {
-      /// ELO
+      /// ELO brand.
       case elo
-      /// Visa Electron
+      /// Visa Electron brand.
       case visaElectron
-      /// Maestro
+      /// Maestro brand.
       case maestro
-      /// Forbrugsforeningen
+      /// Forbrugsforeningen brand.
       case forbrugsforeningen
-      /// Dankort
+      /// Dankort brand.
       case dankort
-      /// Visa
+      /// Visa brand.
       case visa
-      /// Mastercard
+      /// Mastercard brand.
       case mastercard
-      /// American Express
+      /// American Express brand.
       case amex
-      /// Hipercard
+      /// Hipercard brand.
       case hipercard
-      /// Diners Club
+      /// Diners Club brand.
       case dinersClub
-      /// Discover
+      /// Discover brand.
       case discover
-      /// UnionPay
+      /// UnionPay brand.
       case unionpay
-      /// JCB
+      /// JCB brand.
       case jcb
-      /// Not supported card brand - "unknown"
+      /// Not supported / undetected brand.
       case unknown
       /// Custom Payment Card Brand. Should have unique `brandName`.
       case custom(brandName: String)
@@ -55,50 +56,49 @@ import Foundation
   
     // MARK: - Payment Card Models
   
-    ///  Elo Payment Card Model
+    /// Elo payment card model.
     @MainActor public static var elo = VGSPaymentCardModel(brand: .elo)
-    ///  Visa Electron Payment Card Model
+    /// Visa Electron payment card model.
     @MainActor public static var visaElectron = VGSPaymentCardModel(brand: .visaElectron)
-    ///  Maestro Payment Card Model
+    /// Maestro payment card model.
     @MainActor public static var maestro = VGSPaymentCardModel(brand: .maestro)
-    ///  Forbrugsforeningen Payment Card Model
+    /// Forbrugsforeningen payment card model.
     @MainActor public static var forbrugsforeningen = VGSPaymentCardModel(brand: .forbrugsforeningen)
-    ///  Dankort Payment Card Model
+    /// Dankort payment card model.
     @MainActor public static var dankort = VGSPaymentCardModel(brand: .dankort)
-    ///  Elo Payment Card Model
+    /// Visa payment card model.
     @MainActor public static var visa = VGSPaymentCardModel(brand: .visa)
-    ///  Master Card Payment Card Model
+    /// Mastercard payment card model.
     @MainActor public static var masterCard = VGSPaymentCardModel(brand: .mastercard)
-    ///  Amex Payment Card Model
+    /// American Express payment card model.
     @MainActor public static var amex = VGSPaymentCardModel(brand: .amex)
-    ///  Hipercard Payment Card Model
+    /// Hipercard payment card model.
     @MainActor public static var hipercard = VGSPaymentCardModel(brand: .hipercard)
-    ///  DinersClub Payment Card Model
+    /// Diners Club payment card model.
     @MainActor public static var dinersClub = VGSPaymentCardModel(brand: .dinersClub)
-    ///  Discover Payment Card Model
+    /// Discover payment card model.
     @MainActor public static var discover = VGSPaymentCardModel(brand: .discover)
-    ///  UnionPay Payment Card Model
+    /// UnionPay payment card model.
     @MainActor public static var unionpay = VGSPaymentCardModel(brand: .unionpay)
-    ///  JCB Payment Card Model
+    /// JCB payment card model.
     @MainActor public static var jcb = VGSPaymentCardModel(brand: .jcb)
   
     // MARK: - Unknown Payment Card Model
   
-    ///  Unknown Brand Payment Card Model.  Can be used for specifing cards details when `VGSValidationRulePaymentCard` requires validating `CardBrand.unknown` cards.
+    /// Unknown brand payment card model. Customize to influence validation for brands not detected by predefined or custom models.
     @MainActor public static var unknown = VGSUnknownPaymentCardModel()
   
     // MARK: - Custom Payment Card Models
   
-    /// Array of Custom Payment Card Models.
-    /// - Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    /// Array of custom payment card models.
+    /// - Important: Order impacts brand detection priority. Earlier entries are matched first.
     @MainActor public static var cutomPaymentCardModels = [VGSCustomPaymentCardModel]()
 
-    /// An array of valid Card Brands, could include custom and default brands. If not set, will use `availableCardBrands` array instead.
-    /// - Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    /// Explicit list of valid brands (predefined + custom) to be used for detection. If `nil`, `availableCardBrands` is used.
+    /// - Important: Order impacts brand detection priority.
     @MainActor public static var validCardBrands: [VGSPaymentCardModelProtocol]?
 
-    /// Array of Available Cards.
-    /// -  Note: the order has impact on which card brand should be detected first by `VGSPaymentCardModel.regex`.
+    /// Internal array of default predefined card models in priority order.
     @MainActor internal static var defaultCardModels: [VGSPaymentCardModelProtocol] {
                                             return  [ elo,
                                                       visaElectron,
@@ -114,35 +114,31 @@ import Foundation
                                                       unionpay,
                                                       jcb ] }
       
-    /// Array of CardBrands that should be supported by SDK.
-    ///  Will return an array of `validCardBrands` when it's not nil.
-    ///  Will return All Card Models(Custom + Default) if specific `validCardBrands` is nil.
-    /// - Note: the order has impact on which card brand should be detected first by  `VGSPaymentCardModel.regex`
+    /// Array of card brands currently considered for detection and validation.
+    /// - Returns: `validCardBrands` if set, otherwise concatenation of `cutomPaymentCardModels` and `defaultCardModels`.
+    /// - Important: Order impacts heuristic detection by regex.
     @MainActor internal static var availableCardBrands: [VGSPaymentCardModelProtocol] {
-      /// Check if uset setup an array of specific CardBrands that should be supported by SDK.
       if let userValidBrands = validCardBrands {
         return userValidBrands
       }
-      /// If no specific valid brands, return All Card Models(Custom + Default)
       return Self.cutomPaymentCardModels + Self.defaultCardModels
     }
 }
 
 // MARK: - Attributes
-/// no:doc
 public extension VGSPaymentCards.CardBrand {
   
-    /// String representation of `VGSPaymentCards.CardBrand` enum values.
+    /// Human-readable name for the card brand (falls back to unknown brand name if not resolved).
     @MainActor var stringValue: String {
       return VGSPaymentCards.getCardModelFromAvailableModels(brand: self)?.name ?? VGSPaymentCards.unknown.name
     }
 
-    /// Returns array with valid card number lengths for specific `VGSPaymentCards.CardBrand`
+    /// Valid card number lengths for this brand (falls back to unknown model lengths if not resolved).
     @MainActor var cardLengths: [Int] {
       return VGSPaymentCards.getCardModelFromAvailableModels(brand: self)?.cardNumberLengths ?? VGSPaymentCards.unknown.cardNumberLengths
     }
   
-    /// :nodoc:  Equatable protocol
+    /// Equatable implementation comparing brand identity or custom brand names.
     static func == (lhs: Self, rhs: Self) -> Bool {
       switch (lhs, rhs) {
       case (.visa, .visa),
@@ -167,15 +163,18 @@ public extension VGSPaymentCards.CardBrand {
     }
 }
 
-/// no:doc
 public extension VGSPaymentCards {
 
-		/// no:doc
+        /// Returns the payment card model for a specific brand from currently available models.
+    /// - Parameter brand: Brand to look up.
+    /// - Returns: `VGSPaymentCardModelProtocol?` matching model or `nil` if not available.
     @MainActor static func getCardModelFromAvailableModels(brand: VGSPaymentCards.CardBrand) -> VGSPaymentCardModelProtocol? {
       return Self.availableCardBrands.first(where: { $0.brand == brand})
     }
 
-		/// no:doc
+        /// Detects card brand from raw PAN input by evaluating regex of available models in priority order.
+    /// - Parameter input: Raw card number string (digits only or may include spacing which should be sanitized before detection).
+    /// - Returns: Resolved `CardBrand` or `.unknown` if no regex matches.
     @MainActor static func detectCardBrandFromAvailableCards(input: String) -> VGSPaymentCards.CardBrand {
       for cardModel in Self.availableCardBrands {
           let predicate = NSPredicate(format: "SELF MATCHES %@", cardModel.regex)

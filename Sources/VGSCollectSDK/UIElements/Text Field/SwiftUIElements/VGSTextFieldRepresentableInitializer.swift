@@ -8,6 +8,12 @@ import SwiftUI
 @available(iOS 14.0, *)
 @MainActor
 internal struct VGSTextFieldRepresentableInitializer {
+    /// Applies shared representable configuration properties to the underlying `VGSTextField` instance.
+    ///
+    /// Order of operations intentionally sets core text attributes before placeholder & scan registration.
+    /// - Parameters:
+    ///   - textField: The `VGSTextField` (or subclass) being configured.
+    ///   - representable: The SwiftUI representable carrying styling and behavior configuration.
     static func configure<T: VGSTextField>(_ textField: T, representable: VGSTextFieldRepresentableProtocol) {
         textField.font = representable.font
         textField.autocorrectionType = representable.autocorrectionType

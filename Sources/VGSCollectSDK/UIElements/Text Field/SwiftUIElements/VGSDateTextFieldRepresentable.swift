@@ -6,6 +6,16 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
+/// A SwiftUI wrapper for `VGSDateTextField` enabling secure date collection (day/month/year) with picker UI.
+///
+/// Features:
+/// - Chainable configuration similar to base representable.
+/// - Custom month label formatting via `monthPickerFormat`.
+/// - State & editing callbacks.
+///
+/// Security & Validation:
+/// - Date selection constrained by configuration date ranges.
+/// - Returned `VGSTextFieldState` reflects validation status in callbacks.
 public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   /// A class responsible for configuration VGSDateTextFieldRepresentable.
   var configuration: VGSDateConfiguration
@@ -103,6 +113,7 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
     }
   }
   /// Removes text from input.
+  /// Binding is reset to `false` after clearing to avoid repeated clears.
   public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSDateTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.clearTextTrigger = binding

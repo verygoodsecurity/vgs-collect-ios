@@ -14,14 +14,28 @@ import UIKit
 /// :nodoc: Extensions for `VGSTextField.`
 public extension VGSTextField {
 
-	  /// Return current focus status.
+      /// Return current focus status.
     override var isFocused: Bool {
         return focusStatus
     }
     
     // MARK: - State
   
-    /// Describes `VGSTextField` input   `State`
+    /// Describes `VGSTextField` input `State`.
+    ///
+    /// Returned instance type varies by `fieldType`:
+    /// - `.cardNumber` -> `VGSCardState` (includes `bin`, `last4`, `cardBrand`).
+    /// - `.ssn` -> `VGSSSNState` (includes `last4`).
+    /// - other types -> `VGSTextFieldState`.
+    ///
+    /// Evaluation occurs lazily when accessed; validation rules run to populate `isValid` & `validationErrors`.
+    ///
+    /// Usage:
+    /// ```swift
+    /// let state = cardField.state
+    /// if state.isValid { print(state.description) }
+    /// ```
+    /// Avoid calling repeatedly inside performance‑critical loops; cache if needed within a single run‑loop tick.
     var state: VGSTextFieldState {
         var result: VGSTextFieldState
         

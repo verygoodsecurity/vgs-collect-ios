@@ -11,25 +11,27 @@ import Foundation
 import UIKit
 #endif
 
-/// no:doc
 @MainActor extension VGSPaymentCards.CardBrand {
+    /// Default icon for unknown brand (used as fallback for unknown or custom brands without provided image).
     static var defaultUnknownBrandIcon = UIImage(named: "unknown", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
   
+    /// Default CVC icon for brands with 3-digit CVC.
     static var defaultCVCIcon3Digits = UIImage(named: "cvc3", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
   
+    /// Default CVC icon for brands with 4-digit CVC (e.g. Amex).
     static var defaultCVCIcon4Digits = UIImage(named: "cvc4", in: AssetsBundle.main.iconBundle, compatibleWith: nil)
 
-		/// no:doc
+    /// Current brand icon. Returns custom brand icon if supplied via `VGSPaymentCardModel.brandIcon`, otherwise default asset or unknown fallback.
     public var brandIcon: UIImage? {
       return VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self })?.brandIcon ?? VGSPaymentCards.unknown.brandIcon
     }
 
-		/// no:doc
+    /// Current brand CVC helper icon. Returns custom icon if supplied via `VGSPaymentCardModel.cvcIcon`, otherwise default length-specific asset or unknown fallback.
     public var cvcIcon: UIImage? {
       return VGSPaymentCards.availableCardBrands.first(where: { $0.brand == self })?.cvcIcon ?? VGSPaymentCards.unknown.cvcIcon
     }
 
-		/// no:doc
+    /// Default brand icon resolved from bundled images based on brand value.
     var defaultBrandIcon: UIImage? {
         let bundle = AssetsBundle.main.iconBundle
         
@@ -69,7 +71,7 @@ import UIKit
         return resultIcon
     }
 
-		/// no:doc
+    /// Default CVC icon resolved from bundled images based on brand's expected CVC length.
     var defaultCVCIcon: UIImage? {
         var resultIcon: UIImage?
         switch self {
@@ -82,31 +84,27 @@ import UIKit
     }
 }
 
-/// no:doc
+/// Internal helper for resolving image bundle for different integration methods (SPM, CocoaPods, Carthage).
 internal class AssetsBundle {
     @MainActor static let main = AssetsBundle()
     var iconBundle: Bundle?
 
-		/// no:doc
+        /// Initializes and resolves the appropriate bundle containing card icons.
     init() {
-			// Identify bundle for SPM.
-			#if SWIFT_PACKAGE
-				iconBundle = Bundle.module
-			#endif
+            #if SWIFT_PACKAGE
+                iconBundle = Bundle.module
+            #endif
 
-			// Return if bundle is found.
-			guard iconBundle == nil else {
-				return
-			}
+            guard iconBundle == nil else {
+                return
+            }
 
-			let containingBundle = Bundle(for: AssetsBundle.self)
+            let containingBundle = Bundle(for: AssetsBundle.self)
 
-			// Look for CardIcon bundle (handle CocoaPods integration).
-			if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
-				iconBundle = Bundle(url: bundleURL)
-			} else {
-				// Icon bundle matches containing bundle (Carthage integration).
-				iconBundle = containingBundle
-			}
+            if let bundleURL = containingBundle.url(forResource: "CardIcon", withExtension: "bundle") {
+                iconBundle = Bundle(url: bundleURL)
+            } else {
+                iconBundle = containingBundle
+            }
     }
 }

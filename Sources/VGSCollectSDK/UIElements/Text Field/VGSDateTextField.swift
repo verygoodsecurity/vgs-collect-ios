@@ -127,7 +127,7 @@ extension VGSDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
             }
             
         default:
-            // This should never happend
+            // This should never happened
             assertionFailure("No valid component index for picker")
             return 0
         }
@@ -173,7 +173,7 @@ extension VGSDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
             }
             
         default:
-            // This should never happend
+            // This should never happened
             assertionFailure("No valid component index for picker")
             return ""
         }
@@ -197,7 +197,7 @@ extension VGSDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
                 updateDaysDataSource()
             }
         default:
-            // This should never happend
+            // This should never happened
             assertionFailure("No valid component index for picker")
         }
         

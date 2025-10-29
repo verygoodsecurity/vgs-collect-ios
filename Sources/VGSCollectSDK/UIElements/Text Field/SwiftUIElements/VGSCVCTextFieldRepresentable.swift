@@ -6,6 +6,17 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
+/// A SwiftUI wrapper for `VGSCVCTextField` enabling secure collection of card security codes (CVC/CVV) with dynamic icon and brand-aware validation.
+///
+/// Features:
+/// - Chainable styling & behavior modifiers.
+/// - Customizable CVC icon size, position, accessibility.
+/// - State & editing callbacks for validation updates.
+/// - Integrates with `VGSCardTextField` for dynamic length changes.
+///
+/// Security:
+/// - CVC is especially sensitive; enable `isSecureTextEntry` if you need obscured input.
+/// - Do not store raw CVC values in app.
 public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   
   /// A class responsible for configuration VGSCVCTextFieldRepresentable.
@@ -119,6 +130,7 @@ public struct VGSCVCTextFieldRepresentable: UIViewRepresentable, VGSCVCTextField
     uiView.cvcIconViewIsAccessibilityElement = cvcIconViewIsAccessibilityElement
   }
   /// Removes text from input.
+  /// Binding is reset asynchronously to prevent repeated clears on render cycles.
   public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCVCTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.clearTextTrigger = binding

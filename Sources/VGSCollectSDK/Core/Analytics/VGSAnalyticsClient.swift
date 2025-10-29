@@ -11,37 +11,47 @@ import Foundation
 import UIKit
 #endif
 
-/// :nodoc: VGS Analytics event type
+/// VGS Analytics event types produced by the SDK.
 public enum VGSAnalyticsEventType: String {
+  /// Event type for form initialization.
   case fieldInit = "Init"
+  /// Event type for hostname validation.
   case hostnameValidation = "HostNameValidation"
+  /// Event type for actions before form submission.
   case beforeSubmit = "BeforeSubmit"
+  /// Event type for form submission.
   case submit = "Submit"
+  /// Event type for scanning actions.
   case scan = "Scan"
 }
 
-/// Client responsably for managing and sending VGS Collect SDK analytics events.
-/// Note: we track only VGSCollectSDK usage and features statistics.
+/// Client responsible for managing and sending VGS Collect SDK analytics events.
+/// Note: Only anonymized usage and feature statistics are tracked. No sensitive user data is collected.
 /// :nodoc:
 public class VGSAnalyticsClient {
   
+  /// Status for an analytics event.
   public enum AnalyticEventStatus: String {
+    /// Operation finished successfully.
     case success = "Ok"
+    /// Operation failed.
     case failed = "Failed"
+    /// Operation was canceled by user or programmatically.
     case cancel = "Cancel"
   }
   
-  /// Shared `VGSAnalyticsClient` instance
+  /// Shared singleton `VGSAnalyticsClient` instance.
   @MainActor
   public static let shared = VGSAnalyticsClient()
   
-  /// Enable or disable VGS analytics tracking
+  /// Flag controlling whether analytics events should be collected and sent. Defaults to `true`.
+  /// Set to `false` to completely disable analytics tracking.
   public var shouldCollectAnalytics = true
 
-	/// URL session object with ]ol;`.urlSession` configuration.
-	internal let urlSession = URLSession(configuration: .ephemeral)
+    /// URL session object with ephemeral configuration used for sending analytics requests.
+    internal let urlSession = URLSession(configuration: .ephemeral)
 
-  /// Uniq id that should stay the same during application rintime
+  /// Unique identifier generated once per application runtime session. Included with every analytics event.
   public let vgsCollectSessionId = UUID().uuidString
   
   private init() {}
@@ -71,7 +81,12 @@ public class VGSAnalyticsClient {
       return defaultUserAgentData
       }()
 
-  /// :nodoc: Track events related to specific VGSCollect instance
+  /// Tracks an analytics event bound to a specific VGS form instance.
+  /// - Parameters:
+  ///   - form: Form analytics details container.
+  ///   - type: Event type to track.
+  ///   - status: Operation status. Defaults to `.success`.
+  ///   - extraData: Optional additional key-value data to merge into the event payload.
     @MainActor
     public func trackFormEvent(_ form: VGSFormAnanlyticsDetails, type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       let formDetails = ["formId": form.formId,
@@ -87,7 +102,11 @@ public class VGSAnalyticsClient {
     trackEvent(type, status: status, extraData: data)
   }
 
-  /// :nodoc: Base function to Track analytics event
+  /// Base function to track an analytics event not tied to a specific form.
+  /// - Parameters:
+  ///   - type: Event type to track.
+  ///   - status: Operation status. Defaults to `.success`.
+  ///   - extraData: Optional additional key-value data.
     @MainActor
     public func trackEvent(_ type: VGSAnalyticsEventType, status: AnalyticEventStatus = .success, extraData: [String: Any]? = nil) {
       var data = [String: Any]()
@@ -104,16 +123,16 @@ public class VGSAnalyticsClient {
       sendAnalyticsRequest(data: data)
   }
 
-	/// SDK integration tool.
-	private static var sdkIntegration: String {
-		#if COCOAPODS
-			return "COCOAPODS"
-		#elseif SWIFT_PACKAGE
+    /// SDK integration tool value resolved at compile time.
+    private static var sdkIntegration: String {
+        #if COCOAPODS
+            return "COCOAPODS"
+        #elseif SWIFT_PACKAGE
       return "SPM"
-		#else
+        #else
       return "OTHER"
-		#endif
-	}
+        #endif
+    }
 }
 
 internal extension VGSAnalyticsClient {
@@ -138,6 +157,6 @@ internal extension VGSAnalyticsClient {
       let encodedJSON = jsonData?.base64EncodedData()
       request.httpBody = encodedJSON
       // Send data
-			urlSession.dataTask(with: request).resume()
+            urlSession.dataTask(with: request).resume()
   }
 }
