@@ -29,14 +29,11 @@ import UIKit
 /// - Default validation rules determined by `FieldType`; can be overridden via `configuration.validationRules`.
 /// - Validation runs on each editing change and contributes to field & form state.
 ///
-/// Tokenization:
-/// - If a tokenization configuration subclass is assigned, internal `tokenizationParameters` are captured for Vault alias creation.
-/// - Tokenization does not modify validation or formatting; it only affects how collected data is transformed server-side.
-///
 /// Usage:
 /// ```swift
 /// let cardField = VGSCardTextField() // or VGSTextField()
-/// let cfg = VGSCardNumberTokenizationConfiguration(collector: collector, fieldName: "card_number")
+/// let cfg = VGSConfiguration(collector: collector, fieldName: "card_number")
+/// cfg.type = .cardNumber
 /// cfg.isRequiredValidOnly = true
 /// cardField.configuration = cfg // registers with collector
 /// // Observe validity via collector.observeFieldState or cardField.state (if public)
