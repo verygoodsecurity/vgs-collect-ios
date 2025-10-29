@@ -2,14 +2,14 @@
   "warnings": [
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
-      "line": 76,
+      "line": 123,
       "symbol": "VGSDateTokenizationConfiguration.serializers",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
-      "line": 85,
+      "line": 132,
       "symbol": "VGSDateTokenizationConfiguration.tokenizationParameters",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -72,35 +72,49 @@
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCVCTextFieldRepresentable.swift",
-      "line": 9,
+      "line": 20,
       "symbol": "VGSCVCTextFieldRepresentable",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
+      "line": 23,
+      "symbol": "VGSCardScanCoordinator",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
+      "line": 38,
+      "symbol": "VGSCardScanCoordinator",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardTextFieldRepresentable.swift",
-      "line": 10,
+      "line": 20,
       "symbol": "VGSCardTextFieldRepresentable",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSDateTextFieldRepresentable.swift",
-      "line": 9,
+      "line": 19,
       "symbol": "VGSDateTextFieldRepresentable",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSExpDateTextFieldRepresentable.swift",
-      "line": 10,
+      "line": 20,
       "symbol": "VGSExpDateTextFieldRepresentable",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentable.swift",
-      "line": 10,
+      "line": 35,
       "symbol": "VGSTextFieldRepresentable",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"

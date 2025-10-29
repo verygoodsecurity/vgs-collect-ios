@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,8 +421,33 @@
               </div>
             <p><code>VGSCVCTokenizationParameters</code> - parameters required for tokenization api.</p>
 
+<p>Summary:
+Defines how CVC input is tokenized when using Vault tokenization APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Defaults to volatile (<code>VOLATILE</code>) to avoid persisting raw token beyond session scope.</li>
+<li><code>format</code>: Alias format applied to the tokenized value. Default is <code>NUM_LENGTH_PRESERVING</code> (keeps length characteristics without exposing original digits).</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">VGSCVCTokenizationParameters</span><span class="p">()</span>
+<span class="n">params</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">NUM_LENGTH_PRESERVING</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or other supported format</span>
+<span class="k">let</span> <span class="nv">cfg</span> <span class="o">=</span> <span class="kt">VGSCVCTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_cvc"</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">params</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Choose volatile storage for high-sensitivity short-lived values like CVC.</li>
+<li>Format changes affect alias representation only, not validation rules.</li>
+</ul>
+
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L9-L16">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L29-L36">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -449,7 +482,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L12">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -467,7 +500,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Data alies format.</p>
+                        <p>Data alias format.</p>
 
                       </div>
                       <div class="declaration">
@@ -480,7 +513,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L15">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -493,7 +526,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

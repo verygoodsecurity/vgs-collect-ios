@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -411,10 +419,35 @@
 
                 </div>
               </div>
-            <p><code>VGSCardTokenizationParameters</code> - parameters required for tokenization api.</p>
+            <p><code>VGSCardNumberTokenizationParameters</code> - parameters required for tokenization API.</p>
+
+<p>Summary:
+Defines how primary account number (PAN) input (FieldType <code>.cardNumber</code>) is transformed into an alias for Vault tokenization / alias creation APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Uses <code>.PERSISTENT</code> by default to enable downstream reuse in PCI compliant flows (e.g. recurring billing).</li>
+<li><code>format</code>: Alias format. Default <code>FPE_SIX_T_FOUR</code> preserves first six (BIN) + last four digits while protecting the middle digits.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">cardParams</span> <span class="o">=</span> <span class="kt">VGSCardNumberTokenizationParameters</span><span class="p">()</span>
+<span class="n">cardParams</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">FPE_SIX_T_FOUR</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or a fully opaque format e.g. UUID</span>
+<span class="k">let</span> <span class="nv">cardCfg</span> <span class="o">=</span> <span class="kt">VGSCardNumberTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cardCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">cardParams</span>
+<span class="n">cardField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cardCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Choose a fully opaque format (e.g. <code>UUID</code>) when BIN + last4 are not required in client logic.</li>
+<li>Format affects alias output only; validation (length, Luhn) controlled via rules / field type.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L9-L15">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L29-L37">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -436,7 +469,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Vault storage type.</p>
+                        <p>Vault storage type.
+Card numbers typically require future re-use (e.g. replay with PCI compliant workflows) so <code>.PERSISTENT</code> is used.</p>
 
                       </div>
                       <div class="declaration">
@@ -449,7 +483,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L11">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -467,7 +501,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Data alies format.</p>
+                        <p>Data alias format.
+Uses a length-preserving format with first six and last four digits exposed (<code>FPE_SIX_T_FOUR</code>) to support BIN + last4 business logic while keeping middle digits protected.</p>
 
                       </div>
                       <div class="declaration">
@@ -480,7 +515,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L14">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -493,7 +528,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

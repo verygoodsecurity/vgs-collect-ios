@@ -384,6 +384,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -401,438 +409,328 @@
             <p><a href="https://dl.circleci.com/status-badge/redirect/gh/verygoodsecurity/vgs-collect-ios/tree/master"><img src="https://dl.circleci.com/status-badge/img/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg" alt="CircleCI"></a>
 <a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
 <a href="https://github.com/verygoodsecurity/vgs-collect-ios"><img src="https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat" alt="Platform"></a>
-<a href=""><img src="https://img.shields.io/badge/swift-5-orange" alt="swift"></a>
+<a href=""><img src="https://img.shields.io/badge/swift-5.9+-orange" alt="swift"></a>
 <a href=""><img src="https://img.shields.io/badge/SwiftUI-524520?logo=swift" alt="swiftui"></a>
 <a href=""><img src="https://img.shields.io/badge/SwiftPM-Compatible-brightgreen" alt="SwiftPM Compatible"></a>
 <a href="https://cocoapods.org/pods/VGSCollectSDK"><img src="https://img.shields.io/cocoapods/v/VGSCollectSDK.svg?style=flat" alt="Cocoapods Compatible"></a>
-<img src="./images/VGSZeroData.png" height="20"></p>
+<a href=""><img src="https://img.shields.io/badge/AI%20Agent-Ready-blue" alt="AI Agent Ready"></a>
+<img src="./images/VGSZeroData.png" height="20" alt="VGS Zero Data"/></p>
 <h1 id='vgs-collect-ios-sdk' class='heading'>VGS Collect iOS SDK</h1>
 
-<p>VGS Collect - is a product suite that allows customers to collect information securely without possession of it. VGSCollect iOS SDK  allows you to securely collect data from your users via forms without having to have that data pass through your systems. The form fields behave like traditional input fields while securing access to the unsecured data.</p>
-<h1 id='table-of-contents' class='heading'>Table of contents</h1>
+<p>VGS Collect lets you capture sensitive user data (payment cards, PII, files) without that raw data ever traversing or being stored within your infrastructure. <code>VGSCollectSDK</code> provides secure UI elements (text fields, file picker, card scanning) that look &amp; behave like native inputs while enforcing client‑side validation and secure submission to a VGS Vault.</p>
+<h2 id='table-of-contents' class='heading'>Table of Contents</h2>
 
 <!--ts-->
 
 <ul>
-<li><a href="#before-you-start">Before you start</a></li>
+<li><a href="#before-you-start">Before You Start</a></li>
+<li><a href="#features">Features</a></li>
 <li><a href="#integration">Integration</a>
 
 <ul>
 <li><a href="#swift-package-manager">Swift Package Manager</a></li>
 <li><a href="#cocoapods">CocoaPods</a></li>
 </ul></li>
-<li><a href="#usage">Usage</a>
+<li><a href="#ai-agent-integration">AI Agent Integration</a></li>
+<li><a href="#quick-start">Quick Start</a>
 
 <ul>
-<li><a href="#create-vgscollect-instance-and-vgs-ui-elements">Create VGSCollect instance and VGS UI Elements</a></li>
-<li><a href="#scan-credit-card-data">Scan Credit Card Data</a></li>
-<li><a href="#upload-files">Upload Files</a></li>
-<li><a href="#swiftui-support">SwiftUI support</a></li>
+<li><a href="#initialize--configure-fields">Initialize &amp; Configure Fields</a></li>
+<li><a href="#observe-field-state">Observe Field State</a></li>
+<li><a href="#submit-data">Submit Data</a></li>
+</ul></li>
+<li><a href="#card-scanning">Card Scanning</a></li>
+<li><a href="#file-upload">File Upload</a></li>
+<li><a href="#swiftui-support">SwiftUI Support</a></li>
 <li><a href="#demo-application">Demo Application</a></li>
 <li><a href="#documentation">Documentation</a></li>
 <li><a href="#releases">Releases</a></li>
-<li><a href="#privacy">Privacy</a></li>
-</ul></li>
+<li><a href="#analytics--privacy">Analytics &amp; Privacy</a></li>
+<li><a href="#security-guidance">Security Guidance</a></li>
 <li><a href="#dependencies">Dependencies</a></li>
 <li><a href="#license">License</a>
 &lt;!&ndash;te&ndash;&gt;</li>
 </ul>
 
 <p align="center">
-    <img src="images/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20">
-    <img src="images/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20">
+  <img src="images/vgs-collect-ios-state.png" width="200" alt="VGS Collect iOS SDK State" hspace="20"/>
+  <img src="images/vgs-collect-ios-response.png" width="200" alt="VGS Collect iOS SDK Response" hspace="20"/>
 </p>
-<h2 id='before-you-start' class='heading'>Before you start</h2>
+<h2 id='before-you-start' class='heading'>Before You Start</h2>
 
-<p>You should have your organization registered at <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Sandbox vault will be pre-created for you. You should use your <code>&lt;vaultId&gt;</code> to start collecting data. Follow integration guide below.</p>
-<h1 id='integration' class='heading'>Integration</h1>
-<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
-
-<p>The <a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for automating the distribution of Swift code and is integrated into the <code>swift</code> compiler.
-Xcode with Swift tools version of 5.9+ is required for VGSCollectSDK.
-To check your current Swift tools version run in your terminal:</p>
-<pre class="highlight ruby"><code><span class="n">xcrun</span> <span class="n">swift</span> <span class="o">-</span><span class="n">version</span>
-</code></pre>
-
-<p>To use Swift Package Manager, in Xcode add the <a href="https://github.com/verygoodsecurity/vgs-collect-ios.git">https://github.com/verygoodsecurity/vgs-collect-ios.git</a> dependency and choose the <code>Exact</code> version.</p>
-
-<p align="center">
-<img src="images/VGSCollect_CardScan_SPM_1.png" width="70%">
-</p>
-
-<p>Select <code>VGSCollectSDK</code> and optionally other packages provided with <code>VGSCollectSDK</code>:</p>
-
-<p align="center">
-<img src="images/VGSCollect_CardScan_SPM_2.png" width="70%">
-</p>
-<h3 id='cocoapods' class='heading'>CocoaPods</h3>
-
-<p><a href="https://cocoapods.org">CocoaPods</a> is a dependency manager for Cocoa projects. For usage and installation instructions, visit CocoaPods website. To integrate VGSCollectSDK into your Xcode project using CocoaPods, specify it in your <code>Podfile</code>:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
-</code></pre>
-<h2 id='usage' class='heading'>Usage</h2>
-<h3 id='import-sdk-into-your-file' class='heading'>Import SDK into your file</h3>
-<pre class="highlight swift"><code>
-<span class="kd">import</span> <span class="kt">VGSCollectSDK</span>
-
-</code></pre>
-<h3 id='create-vgscollect-instance-and-vgs-ui-elements' class='heading'>Create VGSCollect instance and VGS UI Elements</h3>
-
-<p>Use your <code>&lt;vaultId&gt;</code> to initialize VGSCollect instance. You can get it in your <a href="https://dashboard.verygoodsecurity.com/">organisation dashboard</a>.</p>
-<h3 id='code-example' class='heading'>Code example</h3>
-
-<table>
-  <tr">
-    <th >Here&rsquo;s an example</th>
-    <th width="27%">In Action</th>
-  </tr>
-  <tr>
-    <td>Customize  VGSTextFields&hellip;</td>
-     <th rowspan="2"><img src="images/add-card.gif"></th>
-  </tr>
-  <tr>
-    <td>
-
-    /// Initialize VGSCollect instance
-    var vgsCollect = VGSCollect(id: &ldquo;vauiltId&rdquo;, environment: .sandbox)
-
-    /// VGS UI Elements
-    var cardNumberField = VGSCardTextField()
-    var cardHolderNameField = VGSTextField()
-    var expCardDateField = VGSTextField()
-    var cvcField = VGSTextField()
-
-    /// Native UI Elements
-    @IBOutlet weak var stackView: UIStackView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        /// Create card number field configuration
-        let cardConfiguration = VGSConfiguration(collector: vgsCollect,
-                                             fieldName: &ldquo;card_number&rdquo;)
-        cardConfiguration.type = .cardNumber
-        cardConfiguration.isRequiredValidOnly = true
-
-        /// Setup configuration to card number field
-        cardNumberField.configuration = cardConfiguration
-        cardNumberField.placeholder = &ldquo;Card Number&rdquo;
-        stackView.addArrangedSubview(cardNumberField)
-
-        /// Setup next textfields&hellip;
-    }
-    &hellip;
-  </td>
-  </tr>
-  <tr>
-    <td>&hellip; observe filed states </td>
-     <th rowspan="2"><img src="images/state.gif"></th>
-  </tr>
-  <tr>
-    <td>
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        &hellip;
-        
-        /// Setup delegate
-        cardNumberField.delegate = self
-    }
-    
-  extension ViewController: VGSTextFieldDelegate {
-    func vgsTextFieldDidChange(_ textField: VGSTextField) {
-      textField.borderColor = textField.state.isValid  ? .gray : .red
-
-      /// Check Card Number Field State with addition attributes
-      if let cardState = textField.state as? VGSCardState, cardState.isValid {
-          print(&ldquo;THIS IS: \(cardState.cardBrand.stringValue) - \(cardState.bin.prefix(4)) **** **** \(cardState.last4)&rdquo;)
-      }
-    }
-  }
-  </td>
-  </tr>
-  <tr>
-    <td colspan="2">&hellip; send data to your Vault</td>
-  </tr>
-  <tr>
-    <td colspan="2">
-        
-    // &hellip;
-
-    // MARK: - Send data    
-    func sendData() {
-    
-        /// handle fields validation before send data
-        guard cardNumberField.state.isValid else {
-        print(&ldquo;cardNumberField input is not valid&rdquo;)
-        }
-    
-        /// extra information will be sent together with all sensitive card information
-        var extraData = [String: Any]()
-        extraData[&ldquo;customKey&rdquo;] = &ldquo;Custom Value&rdquo;
-
-        /// send data to your Vault
-        vgsCollect.sendData(path: &ldquo;/post&rdquo;, extraData: extraData) { [weak self](response) in
-          switch response {
-            case .success(let code, let data, let response):
-              // parse data
-            case .failure(let code, let data, let response, let error):
-              // handle failed request
-              switch code {
-                // handle error codes
-              }
-          }
-        }
-    }
-  </td>
-  </tr>
-</table>
-
-<p><strong>VGSCardTextField</strong> automatically detects card provider and display card brand icon in the input field.</p>
-<h3 id='scan-credit-card-data' class='heading'>Scan Credit Card Data</h3>
-
-<p>VGS Collect SDK provides optional card scan solution. It&rsquo;s required to use only Scan modules provided by VGS, which are audited by VGS PCI requirements.</p>
-<h4 id='integrate-with-cocoapods' class='heading'>Integrate with Cocoapods</h4>
-
-<p>Add &lsquo;VGSCollectSDK&rsquo; alongside with one of scan modules pod:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
-
-<span class="c1"># Add one of available scan providers</span>
-<span class="n">pod</span> <span class="s1">'VGSCollectSDK/BlinkCard'</span>  
-</code></pre>
-<h4 id='integrate-with-swift-package-manager' class='heading'>Integrate with Swift Package Manager</h4>
-
-<p>To use <strong>BlinkCard</strong> add <code>VGSCollectSDK</code>, <code>VGSBlinkCardCollector</code> packages to your target. </p>
-<h4 id='code-example' class='heading'>Code Example</h4>
-
-<table>
-  <tr>
-    <th>Here&rsquo;s an example</th>
-    <th width="25%">In Action</th>
-  </tr>
-  <tr>
-    <td>Setup  VGSBlinkCardController&hellip;</td>
-    <th rowspan="2"><img src="images/card-scan.gif"></th>
-  </tr>
-  <tr>
-    <td>
-    
-    class ViewController: UIViewController {
-        /// Init VGSBlinkCardController
-        var scanController: VGSBlinkCardController?
-
-        /// Init VGSTextFields&hellip;
-
-        override func viewDidLoad() {
-          super.viewDidLoad()
-
-          // Init VGSBlinkCardController with BlinkCard license key and delegate
-            scanController = VGSBlinkCardController(licenseKey: &ldquo;<blinkCardLicenseKey>&rdquo;, delegate: self, onError: { errorCode in
-              print(&ldquo;BlinkCard license error, code: \(errorCode)&rdquo;)
-            })
-        }
-
-        /// Present scan controller 
-        func scanData() {
-          scanController?.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
-        }
-    }
-    &hellip;
-  </td>
-  </tr>
-  <tr>
-    <td colspan="2">&hellip; handle VGSBlinkCardControllerDelegate</td>
-  </tr>
-  <tr>
-    <td colspan="2">
-        
-    // &hellip;
-    
-    /// Implement VGSBlinkCardControllerDelegate methods
-  extension ViewController: VGSBlinkCardControllerDelegate {
-    func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
-      // match VGSTextField with scanned data
-      switch type {
-      case .expirationDate:
-          return expCardDate
-      case .cardNumber:
-          return cardNumber
-      case .cvc:
-        return cvcCardNum
-      case .name:
-        return cardHolderName
-      default:
-          return nil
-      }
-    }
-  
-    func userDidFinishScan() {
-      scanController?.dismissCardScanner(animated: true, completion: {
-          // add actions on scan controller dismiss completion
-      })
-    }
-  
-    func userDidCancelScan() {
-      scanController?.dismissCardScanner(animated: true, completion: {
-          // add actions on scan controller dismiss completion
-      })
-    }
-  }
-
-  </td>
-  </tr>
-</table>
-
-<p>Handle <code>VGSBlinkCardControllerDelegate</code> functions. To setup scanned data into specific  VGSTextField implement <code>textFieldForScannedData:</code> . If scanned data is valid it will be set in your VGSTextField automatically after user confirmation. Check  <code>VGSBlinkCardDataType</code> to get available scand data types.</p>
-
-<p>Don&rsquo;t forget to add <strong>NSCameraUsageDescription</strong> key and description into your App <code>Info.plist</code>.</p>
-<h3 id='upload-files' class='heading'>Upload Files</h3>
-
-<p>You can add a file uploading functionality to your application with <strong>VGSFilePickerController</strong>.</p>
-<h4 id='code-example' class='heading'>Code Example</h4>
-
-<table>
-  <tr">
-    <th  colspan="2>Here&rsquo;s an example</th>
-  </tr>
-  <tr>
-    <td colspan="2">Setup  VGSFilePickerController&hellip;</td>
-  </tr>
-  <tr>
-    <td colspan="2">
-        
-    class FilePickerViewController: UIViewController, VGSFilePickerControllerDelegate {
-
-      var vgsCollect = VGSCollect(id: &ldquo;vailtId&rdquo;, environment: .sandbox)
-      
-      /// Create strong referrence of VGSFilePickerController
-      var pickerController: VGSFilePickerController?
-
-      override func viewDidLoad() {
-          super.viewDidLoad()
-
-          /// create picker configuration
-          let filePickerConfig = VGSFilePickerConfiguration(collector: vgsCollect,
-                                    fieldName: &ldquo;secret_doc&rdquo;,
-                                   fileSource: .photoLibrary)
-
-          /// init picket controller with configuration
-          pickerController = VGSFilePickerController(configuration: filePickerConfig)
-
-          /// handle picker delegates
-          pickerController?.delegate = self
-      }
-
-      /// Present picker controller
-      func presentFilePicker() {
-          pickerController?.presentFilePicker(on: self, animated: true, completion: nil)
-      }
-    }
-    &hellip;
-  </td>
-  </tr>
-  <tr>
-    <td>&hellip; handle VGSFilePickerControllerDelegate</td>
-    <th width="27%">In Action</th>
-  </tr>
-  <tr>
-    <td>
-    
-    // &hellip;  
-    
-    // MARK: - VGSFilePickerControllerDelegate
-    /// Check file info, selected by user
-    func userDidPickFileWithInfo(_ info: VGSFileInfo) {
-        let fileInfo = &ldquo;&rdquo;&ldquo;
-                File info:
-                - fileExtension: \(info.fileExtension ?? &quot;unknown&rdquo;)
-                - size: \(info.size)
-                - sizeUnits: \(info.sizeUnits ?? &ldquo;unknown&rdquo;)
-                &ldquo;&rdquo;&ldquo;
-        print(fileInfo)
-        pickerController?.dismissFilePicker(animated: true,
-                          completion: { [weak self] in
-                          
-            self?.sendFile()
-        })
-    }
-
-    // Handle cancel file selection
-    func userDidSCancelFilePicking() {
-        pickerController?.dismissFilePicker(animated: true)
-    }
-
-    // Handle errors on picking the file
-    func filePickingFailedWithError(_ error: VGSError) {
-        pickerController?.dismissFilePicker(animated: true)
-    }
-   
-  </td>
-  <td><img src="images/file-picker.gif"></td>
-  </tr>
-  <tr>
-    <td colspan="2">&hellip; send file to your Vault</td>
-  </tr>
-  <tr>
-    <td colspan="2">
-        
-    // &hellip;
-
-    // MARK: - Send File    
-    /// Send file and extra data
-    func sendFile() {
-    
-        /// add extra data to send request  
-        let extraData = [&quot;document_holder&rdquo;: &ldquo;Joe B&rdquo;]
-    
-      /// send file to your Vault
-      vgsCollect.sendFile(path: &ldquo;/post&rdquo;, extraData: extraData) { [weak self](response) in
-        switch response {
-          case .success(let code, let data, let response):
-            /// remove file from VGSCollect storage
-            self?.vgsCollect.cleanFiles()
-          case .failure(let code, let data, let response, let error):
-            // handle failed request
-            switch code {
-              // handle error codes
-            }
-        }
-      }
-    }
-  </td>
-  </tr>
-</table>
-
-<p>Use vgsCollect.cleanFiles() to unassign file from associated VGSCollect instance whenever you need.</p>
-<h3 id='swiftui-support' class='heading'>SwiftUI support</h3>
-
-<p>VGS Collect iOS SDK provide support for integration with apps that are buid with SwiftUI toolkit by providing SwiftUI wrappers for all VGS textfields. Follow examples <a href="./demoapp/demoapp/UseCases/SwiftUI/README.md">here</a>.</p>
-<h2 id='demo-application' class='heading'>Demo Application</h2>
-
-<p>Demo application for collecting card data on iOS is <a href="https://github.com/vgs-samples/very-spacy-food-iOS">here</a>.</p>
-<h3 id='documentation' class='heading'>Documentation</h3>
+<p>Create an organization at the <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. A sandbox vault is created automatically. Use your vault ID (<code>&lt;vaultId&gt;</code>) when initializing the collector.</p>
+<h2 id='features' class='heading'>Features</h2>
 
 <ul>
-<li>SDK Documentation: <a href="https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk">https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk</a></li>
-<li>API Documentation: <a href="https://verygoodsecurity.github.io/vgs-collect-ios/">https://verygoodsecurity.github.io/vgs-collect-ios/</a></li>
+<li>Secure text input elements with masking, formatting, validation &amp; metadata (card brand, BIN, last4).</li>
+<li>Audited credit card scanning (BlinkCard) via VGS‑provided modules.</li>
+<li>Secure file picker &amp; upload with explicit post‑upload cleanup.</li>
+<li>Field state observation API to drive UI (enable/disable actions based on validity).</li>
+<li>Multiple submission APIs (closure, async/await, Combine publisher variants).</li>
+<li>SwiftUI wrappers for all provided text field types.</li>
 </ul>
-<h3 id='releases' class='heading'>Releases</h3>
+<h2 id='integration' class='heading'>Integration</h2>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
-<p>To follow <code>VGSCollectSDK</code> updates and changes check the <a href="https://github.com/verygoodsecurity/vgs-collect-ios/releases">releases</a> page.</p>
-<h3 id='privacy' class='heading'>Privacy</h3>
-
-<p>VGSCollectSDK tracks a few key metrics to understand SDK features usage, which helps us know what areas need improvement. No personal information is tracked.
-You can read more about VGS Privacy details ans iOS Privacy Manifest file at our <a href="https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/privacy-details">web site</a>.</p>
-
-<p>You can opt-out of metrics collection in <code>VGSAnalyticsClient</code>:</p>
-<pre class="highlight plaintext"><code>VGSAnalyticsClient.shared.shouldCollectAnalytics = false
+<p>Requires Swift tools version 5.9 or higher. Check your installed version:</p>
+<pre class="highlight shell"><code>xcrun swift <span class="nt">-version</span>
 </code></pre>
+
+<p>Add the package in Xcode using the repository URL:</p>
+<pre class="highlight plaintext"><code>https://github.com/verygoodsecurity/vgs-collect-ios.git
+</code></pre>
+
+<p>Select the exact version you want to pin, then add <code>VGSCollectSDK</code> and optionally scanning/file modules (e.g. <code>VGSBlinkCardCollector</code>). Pinning versions ensures reproducible builds.</p>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>Add to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>              <span class="c1"># Core</span>
+<span class="n">pod</span> <span class="s1">'VGSCollectSDK/BlinkCard'</span>    <span class="c1"># Optional card scan provider</span>
+</code></pre>
+
+<p>Install:</p>
+<pre class="highlight shell"><code>pod repo update
+pod <span class="nb">install</span>
+</code></pre>
+
+<p>Always pin versions to avoid accidental upgrades.</p>
+<h2 id='ai-agent-integration' class='heading'>AI Agent Integration</h2>
+
+<p>Use <a href="./AGENTS.md"><code>AGENTS.md</code></a> as the single authoritative context for autonomous coding agents integrating or maintaining <code>VGSCollectSDK</code>. It lists public APIs, security constraints, validation rules, upgrade &amp; testing expectations.</p>
+
+<p>Minimal System Prompt Example:</p>
+<pre class="highlight plaintext"><code>You are an autonomous engineering agent integrating the VGS Collect iOS SDK into an existing Swift app.
+Use the full contents of AGENTS.md as the authoritative policy.
+Constraints:
+- Only public, non-deprecated APIs.
+- No raw sensitive data in logs/tests.
+- Validate all fields before submission.
+- Clean files after successful upload.
+Goals:
+1. Add a secure card form (number, name, exp, cvc) with redacted logging.
+2. Integrate BlinkCard scanning.
+3. Provide unit tests for valid/invalid card + expiration edge case.
+Return: Modified Swift source files only, no secrets.
+</code></pre>
+
+<p>Developer Prompt (Inline Example for a Single Task):</p>
+<pre class="highlight plaintext"><code>Task: Add a custom payment card brand "mycard" (BIN starts with 7777) and ensure CVC field adapts.
+Follow AGENTS.md Section 2B.
+Do not break existing brand detection; add tests for detection and negative near-miss.
+</code></pre>
+<h2 id='quick-start' class='heading'>Quick Start</h2>
+<h3 id='import-sdk' class='heading'>Import SDK</h3>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">VGSCollectSDK</span>
+</code></pre>
+<h3 id='initialize-amp-configure-fields' class='heading'>Initialize &amp; Configure Fields</h3>
+<pre class="highlight swift"><code><span class="c1">// Initialize collector with your vault ID (sandbox example)</span>
+<span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;vaultId&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
+
+<span class="c1">// Card number field</span>
+<span class="k">let</span> <span class="nv">cardNumberField</span> <span class="o">=</span> <span class="kt">VGSCardTextField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">cardConfig</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cardConfig</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cardNumber</span>
+<span class="n">cardConfig</span><span class="o">.</span><span class="n">isRequiredValidOnly</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">cardNumberField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cardConfig</span>
+<span class="n">cardNumberField</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"Card Number"</span>
+
+<span class="c1">// Cardholder name</span>
+<span class="k">let</span> <span class="nv">nameField</span> <span class="o">=</span> <span class="kt">VGSTextField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">nameConfig</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_holder"</span><span class="p">)</span>
+<span class="n">nameConfig</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">name</span>
+<span class="n">nameField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">nameConfig</span>
+<span class="n">nameField</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"Name on Card"</span>
+
+<span class="c1">// Expiration date</span>
+<span class="k">let</span> <span class="nv">expField</span> <span class="o">=</span> <span class="kt">VGSTextField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">expConfig</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"exp_date"</span><span class="p">)</span>
+<span class="n">expConfig</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">expDate</span>
+<span class="n">expConfig</span><span class="o">.</span><span class="n">formatPattern</span> <span class="o">=</span> <span class="s">"##/##"</span>  <span class="c1">// MM/YY</span>
+<span class="n">expConfig</span><span class="o">.</span><span class="n">divider</span> <span class="o">=</span> <span class="s">"/"</span>
+<span class="n">expConfig</span><span class="o">.</span><span class="n">isRequiredValidOnly</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">expField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">expConfig</span>
+<span class="n">expField</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"MM/YY"</span>
+
+<span class="c1">// CVC</span>
+<span class="k">let</span> <span class="nv">cvcField</span> <span class="o">=</span> <span class="kt">VGSTextField</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">cvcConfig</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"cvc"</span><span class="p">)</span>
+<span class="n">cvcConfig</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cvc</span>
+<span class="n">cvcConfig</span><span class="o">.</span><span class="n">isRequiredValidOnly</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cvcConfig</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">placeholder</span> <span class="o">=</span> <span class="s">"CVC"</span>
+</code></pre>
+
+<p>Add these fields to your view hierarchy (e.g. a <code>UIStackView</code>).</p>
+<h3 id='observe-field-state' class='heading'>Observe Field State</h3>
+<pre class="highlight swift"><code><span class="n">cardNumberField</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+
+<span class="kd">extension</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">VGSTextFieldDelegate</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">vgsTextFieldDidChange</span><span class="p">(</span><span class="n">_</span> <span class="nv">textField</span><span class="p">:</span> <span class="kt">VGSTextField</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">textField</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="n">textField</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span> <span class="p">?</span> <span class="o">.</span><span class="nv">gray</span> <span class="p">:</span> <span class="o">.</span><span class="n">red</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">cardState</span> <span class="o">=</span> <span class="n">textField</span><span class="o">.</span><span class="n">state</span> <span class="k">as?</span> <span class="kt">VGSCardState</span><span class="p">,</span> <span class="n">cardState</span><span class="o">.</span><span class="n">isValid</span> <span class="p">{</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Card submitted brand=</span><span class="se">\(</span><span class="n">cardState</span><span class="o">.</span><span class="n">cardBrand</span><span class="o">.</span><span class="n">stringValue</span><span class="se">)</span><span class="s"> last4=</span><span class="se">\(</span><span class="n">cardState</span><span class="o">.</span><span class="n">last4</span><span class="se">)</span><span class="s">"</span><span class="p">)</span> <span class="c1">// Redacted logging</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='submit-data' class='heading'>Submit Data</h3>
+
+<p>Validate before submitting:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">submit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">cardNumberField</span><span class="p">,</span> <span class="n">nameField</span><span class="p">,</span> <span class="n">expField</span><span class="p">,</span> <span class="n">cvcField</span><span class="p">]</span>
+  <span class="k">guard</span> <span class="n">fields</span><span class="o">.</span><span class="nf">allSatisfy</span><span class="p">({</span> <span class="nv">$0</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span> <span class="p">})</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Highlight invalid fields instead of sending</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+
+  <span class="k">let</span> <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">"customKey"</span><span class="p">:</span> <span class="s">"Custom Value"</span><span class="p">]</span>
+  <span class="n">collector</span><span class="o">.</span><span class="nf">sendData</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="s">"/post"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="n">extraData</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">response</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">statusCode</span><span class="p">,</span> <span class="k">let</span> <span class="nv">data</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+      <span class="c1">// Parse alias JSON in `data`</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Success status=</span><span class="se">\(</span><span class="n">statusCode</span><span class="se">)</span><span class="s"> aliases=</span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">statusCode</span><span class="p">,</span> <span class="k">let</span> <span class="nv">data</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+      <span class="c1">// Map status and show user-friendly message</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"Failure status=</span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">statusCode</span><span class="p">)</span><span class="se">)</span><span class="s"> error=</span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">"unknown"</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><strong>Note:</strong> <code><a href="Classes/VGSCardTextField.html">VGSCardTextField</a></code> automatically detects and shows the card brand icon for card number input.</p>
+<h2 id='card-scanning' class='heading'>Card Scanning</h2>
+
+<p>Use only VGS‑provided scan subspecs or SPM targets.</p>
+<h3 id='cocoapods-example' class='heading'>CocoaPods Example</h3>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
+<span class="n">pod</span> <span class="s1">'VGSCollectSDK/BlinkCard'</span>
+</code></pre>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>Add <code>VGSCollectSDK</code> and <code>VGSBlinkCardCollector</code> targets.</p>
+<h3 id='usage' class='heading'>Usage</h3>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">VGSCollectSDK</span>
+<span class="kd">import</span> <span class="kt">VGSBlinkCardCollector</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">VGSBlinkCardControllerDelegate</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">scanController</span><span class="p">:</span> <span class="kt">VGSBlinkCardController</span><span class="p">?</span>
+
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+    <span class="n">scanController</span> <span class="o">=</span> <span class="kt">VGSBlinkCardController</span><span class="p">(</span><span class="nv">licenseKey</span><span class="p">:</span> <span class="s">"&lt;blinkCardLicenseKey&gt;"</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">code</span> <span class="k">in</span>
+      <span class="nf">print</span><span class="p">(</span><span class="s">"BlinkCard license error code=</span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">scanCard</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">scanController</span><span class="p">?</span><span class="o">.</span><span class="nf">presentCardScanner</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">modalPresentationStyle</span><span class="p">:</span> <span class="o">.</span><span class="n">fullScreen</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// MARK: - VGSBlinkCardControllerDelegate</span>
+  <span class="kd">func</span> <span class="nf">textFieldForScannedData</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">VGSBlinkCardDataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">VGSTextField</span><span class="p">?</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="n">type</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">cardNumber</span><span class="p">:</span> <span class="k">return</span> <span class="n">cardNumberField</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">expirationDate</span><span class="p">:</span> <span class="k">return</span> <span class="n">expField</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">cvc</span><span class="p">:</span> <span class="k">return</span> <span class="n">cvcField</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">name</span><span class="p">:</span> <span class="k">return</span> <span class="n">nameField</span>
+    <span class="k">default</span><span class="p">:</span> <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">userDidFinishScan</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">scanController</span><span class="p">?</span><span class="o">.</span><span class="nf">dismissCardScanner</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Post-dismiss actions</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">userDidCancelScan</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">scanController</span><span class="p">?</span><span class="o">.</span><span class="nf">dismissCardScanner</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Add <code>NSCameraUsageDescription</code> to your app&rsquo;s <code>Info.plist</code> with a clear purpose string.</p>
+<h2 id='file-upload' class='heading'>File Upload</h2>
+
+<p>Add secure file selection &amp; upload with <code><a href="Classes/VGSFilePickerController.html">VGSFilePickerController</a></code>.</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">FilePickerViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">VGSFilePickerControllerDelegate</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;vaultId&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
+  <span class="k">var</span> <span class="nv">filePicker</span><span class="p">:</span> <span class="kt">VGSFilePickerController</span><span class="p">?</span>
+
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+    <span class="k">let</span> <span class="nv">cfg</span> <span class="o">=</span> <span class="kt">VGSFilePickerConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"secret_doc"</span><span class="p">,</span> <span class="nv">fileSource</span><span class="p">:</span> <span class="o">.</span><span class="n">photoLibrary</span><span class="p">)</span>
+    <span class="n">filePicker</span> <span class="o">=</span> <span class="kt">VGSFilePickerController</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">cfg</span><span class="p">)</span>
+    <span class="n">filePicker</span><span class="p">?</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">presentPicker</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">filePicker</span><span class="p">?</span><span class="o">.</span><span class="nf">presentFilePicker</span><span class="p">(</span><span class="nv">on</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// MARK: - VGSFilePickerControllerDelegate</span>
+  <span class="kd">func</span> <span class="nf">userDidPickFileWithInfo</span><span class="p">(</span><span class="n">_</span> <span class="nv">info</span><span class="p">:</span> <span class="kt">VGSFileInfo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"File selected ext=</span><span class="se">\(</span><span class="n">info</span><span class="o">.</span><span class="n">fileExtension</span> <span class="p">??</span> <span class="s">"unknown"</span><span class="se">)</span><span class="s"> size=</span><span class="se">\(</span><span class="n">info</span><span class="o">.</span><span class="n">size</span><span class="se">)\(</span><span class="n">info</span><span class="o">.</span><span class="n">sizeUnits</span> <span class="p">??</span> <span class="s">""</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">filePicker</span><span class="p">?</span><span class="o">.</span><span class="nf">dismissFilePicker</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="k">in</span>
+      <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">sendFile</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">userDidSCancelFilePicking</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// Delegate name includes 'S' per current API</span>
+    <span class="n">filePicker</span><span class="p">?</span><span class="o">.</span><span class="nf">dismissFilePicker</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">func</span> <span class="nf">filePickingFailedWithError</span><span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">VGSError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">filePicker</span><span class="p">?</span><span class="o">.</span><span class="nf">dismissFilePicker</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="kd">func</span> <span class="nf">sendFile</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">extra</span> <span class="o">=</span> <span class="p">[</span><span class="s">"document_holder"</span><span class="p">:</span> <span class="s">"Joe B"</span><span class="p">]</span>
+    <span class="n">collector</span><span class="o">.</span><span class="nf">sendFile</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="s">"/post"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="n">extra</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="n">response</span> <span class="k">in</span>
+      <span class="k">switch</span> <span class="n">response</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+        <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">collector</span><span class="o">.</span><span class="nf">cleanFiles</span><span class="p">()</span> <span class="c1">// Cleanup after successful upload</span>
+      <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">status</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Upload failed status=</span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">status</span><span class="p">)</span><span class="se">)</span><span class="s"> error=</span><span class="se">\(</span><span class="n">error</span><span class="p">?</span><span class="o">.</span><span class="n">localizedDescription</span> <span class="p">??</span> <span class="s">"unknown"</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Use <code>collector.cleanFiles()</code> whenever you need to unassign a file (always after a successful upload).</p>
+<h2 id='swiftui-support' class='heading'>SwiftUI Support</h2>
+
+<p>The SDK provides SwiftUI wrappers for all text fields, enabling reactive, declarative UIs without exposing raw sensitive input to <code>@State</code>. </p>
+<h2 id='demo-application' class='heading'>Demo Application</h2>
+
+<p>Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.</p>
+<h2 id='documentation' class='heading'>Documentation</h2>
+
+<ul>
+<li>SDK Guide: <a href="https://docs.verygoodsecurity.com/vault/developer-tools/vgs-collect/ios-sdk">https://docs.verygoodsecurity.com/vault/developer-tools/vgs-collect/ios-sdk</a></li>
+<li>API Reference: <a href="https://verygoodsecurity.github.io/vgs-collect-ios/">https://verygoodsecurity.github.io/vgs-collect-ios/</a></li>
+</ul>
+<h2 id='releases' class='heading'>Releases</h2>
+
+<p>Track updates &amp; migration notes: <a href="https://github.com/verygoodsecurity/vgs-collect-ios/releases">https://github.com/verygoodsecurity/vgs-collect-ios/releases</a></p>
+<h2 id='analytics-amp-privacy' class='heading'>Analytics &amp; Privacy</h2>
+
+<p><code>VGSCollectSDK</code> tracks limited, non-personal usage metrics (feature adoption) to improve the SDK. No raw sensitive data is collected.
+Opt out if required:</p>
+<pre class="highlight swift"><code><span class="kt">VGSAnalyticsClient</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">shouldCollectAnalytics</span> <span class="o">=</span> <span class="kc">false</span>
+</code></pre>
+
+<p>Read more: <a href="https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/privacy-details">https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/privacy-details</a></p>
+<h2 id='security-guidance' class='heading'>Security Guidance</h2>
+
+<p>If you discover a security concern, follow responsible disclosure guidelines in the <a href="./SECURITY.md"><code>SECURITY.md</code></a> and avoid sharing sensitive details publicly.</p>
 <h2 id='dependencies' class='heading'>Dependencies</h2>
 
 <ul>
 <li>iOS 13+</li>
-<li>Swift 5.9</li>
-<li>Optional 3rd party libraries:
+<li>Swift 5.9+</li>
+<li>Optional third‑party scan library via subspec or SPM target:
 
 <ul>
 <li><a href="https://github.com/blinkcard/blinkcard-ios">BlinkCard</a></li>
@@ -840,7 +738,9 @@ You can read more about VGS Privacy details ans iOS Privacy Manifest file at our
 </ul>
 <h2 id='license' class='heading'>License</h2>
 
-<p>VGSCollect iOS SDK is released under the MIT license. <a href="https://github.com/verygoodsecurity/vgs-collect-ios/blob/master/LICENSE">See LICENSE</a> for details.</p>
+<p>VGSCollect iOS SDK is released under the MIT License. See <a href="https://github.com/verygoodsecurity/vgs-collect-ios/blob/master/LICENSE">LICENSE</a> for details.</p>
+
+<hr>
 
           </div>
         </section>
@@ -849,7 +749,7 @@ You can read more about VGS Privacy details ans iOS Privacy Manifest file at our
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
