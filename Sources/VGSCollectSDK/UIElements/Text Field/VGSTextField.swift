@@ -9,7 +9,58 @@ import UIKit
 #endif
 
 // swiftlint:disable file_length
-/// An object that displays an editable text area in user interface.
+/// A secure input view that masks, formats, and validates sensitive user data before submission via `VGSCollect`.
+///
+/// Summary:
+/// Acts as the primary UI component for secure data entry (card number, CVC, expiration date, SSN, generic text, etc.).
+/// Provides formatting masks, validation rule application, secure raw storage abstraction, and integration hooks for tokenization.
+///
+/// Responsibilities:
+/// - Applies format pattern & divider to user keystrokes (dynamic for certain types like card number).
+/// - Exposes state snapshots (`state`) through `VGSCollect` observation closures for validation & UI feedback.
+/// - Holds reference to `VGSConfiguration` that defines semantic role, validation rules, input formatting and tokenization parameters.
+///
+/// Formatting & Masking:
+/// - `formatPattern` (from configuration or dynamic adjustment) determines visible grouping (# placeholders).
+/// - `divider` inserted between pattern groups (e.g. `/` for dates, `-` for SSN).
+/// - Card number and CVC patterns update automatically based on detected brand when using associated field types.
+///
+/// Validation:
+/// - Default validation rules determined by `FieldType`; can be overridden via `configuration.validationRules`.
+/// - Validation runs on each editing change and contributes to field & form state.
+///
+/// Tokenization:
+/// - If a tokenization configuration subclass is assigned, internal `tokenizationParameters` are captured for Vault alias creation.
+/// - Tokenization does not modify validation or formatting; it only affects how collected data is transformed server-side.
+///
+/// Usage:
+/// ```swift
+/// let cardField = VGSCardTextField() // or VGSTextField()
+/// let cfg = VGSCardNumberTokenizationConfiguration(collector: collector, fieldName: "card_number")
+/// cfg.isRequiredValidOnly = true
+/// cardField.configuration = cfg // registers with collector
+/// // Observe validity via collector.observeFieldState or cardField.state (if public)
+/// ```
+///
+/// Security:
+/// - Never read or log internal `textField` contents directly; rely on state metadata (`last4`, `isValid`).
+/// - Do not persist raw user-entered values (store only aliases returned from backend responses).
+/// - Avoid copying sensitive field values into analytics, crash logs, or third-party SDKs.
+///
+/// Performance:
+/// - Avoid repeatedly reassigning configuration after user input begins.
+///
+/// Accessibility:
+/// - Customize accessibility label/hint via provided properties; keep hints free of sensitive content.
+/// - Ensure sufficient contrast and dynamic type scaling if `adjustsFontForContentSizeCategory` is enabled.
+///
+/// Invariants / Preconditions:
+/// - A non-nil `configuration` is required before using the field for secure submission.
+/// - Do not mutate `configuration` while field is first responder to avoid inconsistent formatting.
+///
+/// See also:
+/// - `VGSConfiguration` for defining semantic meaning & validation.
+/// - `VGSCollect` for submission & state observation.
 public class VGSTextField: UIView {
     
     private(set) weak var vgsCollector: VGSCollect?
@@ -28,109 +79,117 @@ public class VGSTextField: UIView {
 
     // MARK: - UI Attributes
     
-    /// Textfield placeholder string.
+    /// Placeholder text displayed when there is no user input.
+    /// - Update before field becomes first responder to avoid layout flicker.
     public var placeholder: String? {
         didSet { textField.placeholder = placeholder }
     }
 
-	/// Textfield autocapitalization type. Default is `.sentences`.
-	public var autocapitalizationType: UITextAutocapitalizationType = .sentences {
-		didSet {
-			textField.autocapitalizationType = autocapitalizationType
-		}
-	}
+    /// Autocapitalization behavior for textual input.
+    /// - Default: `.sentences`.
+    /// - Usually left as default for names; set `.none` for numeric / code inputs.
+    public var autocapitalizationType: UITextAutocapitalizationType = .sentences {
+        didSet { textField.autocapitalizationType = autocapitalizationType }
+    }
 
-	/// Textfield spell checking type. Default is `UITextSpellCheckingType.default`.
-	public var spellCheckingType: UITextSpellCheckingType  = .default {
-		didSet {
-			textField.spellCheckingType = spellCheckingType
-		}
-	}
+    /// Spell checking behavior.
+    /// - Default: `.default`.
+    /// - Set `.no` for numeric or strictly formatted fields (card, CVC, SSN).
+    public var spellCheckingType: UITextSpellCheckingType  = .default {
+        didSet { textField.spellCheckingType = spellCheckingType }
+    }
     
-    /// Textfield attributedPlaceholder string.
+    /// Attributed placeholder allowing styled placeholder text.
+    /// - Loses effect if `placeholder` later reassigned; prefer one approach.
     public var attributedPlaceholder: NSAttributedString? {
-        didSet {
-            textField.attributedPlaceholder = attributedPlaceholder
-        }
+        didSet { textField.attributedPlaceholder = attributedPlaceholder }
     }
   
-    /// The natural size for the Textfield, considering only properties of the view itself.
-    public override var intrinsicContentSize: CGSize {
-      return getIntrinsicContentSize()
-    }
+    /// Natural intrinsic size including content insets (padding).
+    public override var intrinsicContentSize: CGSize { getIntrinsicContentSize() }
     
-    /// `UIEdgeInsets` for text and placeholder inside `VGSTextField`.
+    /// Content inset for text & placeholder inside the field.
+    /// - Adjust to increase touch target or visual spacing.
     public var padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
         didSet { setMainPaddings() }
     }
     
-    /// The technique to use for aligning the text.
+    /// Horizontal text alignment.
+    /// - Defaults to `.natural`; adjust for RTL/LTR explicit layout needs.
     public var textAlignment: NSTextAlignment = .natural {
         didSet { textField.textAlignment = textAlignment }
     }
     
-    /// Sets when the clear button shows up. Default is `UITextField.ViewMode.never`
+    /// Clear button display mode.
+    /// - Default: `.never`.
+    /// - Avoid enabling for sensitive fields unless UX mandates quick clearing.
     public var clearButtonMode: UITextField.ViewMode = .never {
       didSet { textField.clearButtonMode = clearButtonMode }
     }
   
-    /// Identifies whether the text object should disable text copying and in some cases hide the text being entered. Default is false.
+    /// Secure text entry toggle.
+    /// - Masks visible characters when true; use for CVC or other sensitive short values.
+    /// - Avoid enabling for card number masking (handled by format pattern & state exposure of last4 instead).
     public var isSecureTextEntry: Bool = false {
         didSet { textField.isSecureTextEntry = isSecureTextEntry }
     }
   
-    /// Indicates whether `VGSTextField ` should automatically update its font when the device’s `UIContentSizeCategory` is changed.
+    /// Dynamic Type scaling flag.
+    /// - Enable if adopting system-wide accessibility text size adjustments.
     public var adjustsFontForContentSizeCategory: Bool = false {
       didSet { textField.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory }
     }
     
-    /// Input Accessory View
+    /// Custom accessory view displayed above the keyboard (e.g. toolbar with Done button).
     public var keyboardAccessoryView: UIView? {
       didSet { textField.inputAccessoryView = keyboardAccessoryView }
     }
   
-    /// Determines whether autocorrection is enabled or disabled during typing.
+    /// Autocorrection behavior.
+    /// - Default `.default`; disable (`.no`) for formats like card number, CVC, SSN, dates.
     public var autocorrectionType: UITextAutocorrectionType = .default {
-      didSet {
-        textField.autocorrectionType = autocorrectionType
-      }
+      didSet { textField.autocorrectionType = autocorrectionType }
     }
 
     // MARK: - Accessibility Attributes
-    /// A succinct label in a localized string that identifies the accessibility text field.
+    
+    /// Accessibility label describing the field's purpose (without sensitive content).
     public var textFieldAccessibilityLabel: String? {
-        get {
-            return textField.accessibilityLabel
-        }
-        set {
-            textField.accessibilityLabel = newValue
-        }
+        get { textField.accessibilityLabel }
+        set { textField.accessibilityLabel = newValue }
     }
     
-    /// A localized string that contains a brief description of the result of
-    /// performing an action on the accessibility text field.
+    /// Accessibility hint describing the result of interaction (avoid exposing actual values).
     public var textFieldAccessibilityHint: String? {
-        get {
-            return textField.accessibilityHint
-        }
-        set {
-            textField.accessibilityHint = newValue
-        }
+        get { textField.accessibilityHint }
+        set { textField.accessibilityHint = newValue }
     }
     
-    /// Boolean value that determinates if the text field should be exposed as an accesibility element.
+    /// Determines if the underlying text control is an accessibility element.
+    /// - Set false only when grouping with a custom container element.
     public var textFieldIsAccessibilityElement: Bool {
-        get {
-            return textField.isAccessibilityElement
-        }
-        set {
-            textField.isAccessibilityElement = newValue
-        }
+        get { textField.isAccessibilityElement }
+        set { textField.isAccessibilityElement = newValue }
     }
 
     // MARK: - Functional Attributes
     
-    /// Specifies `VGSTextField` configuration parameters to work with `VGSCollect`.
+    /// Configuration establishing semantic type, formatting, validation rules, and collector registration.
+    ///
+    /// Behavior:
+    /// - On assignment: registers with the provided `VGSCollect` instance; applies format & validation defaults.
+    /// - Re-assignment replaces previous configuration (not recommended mid-edit).
+    /// - Nil assignment logs a warning and leaves field unregistered.
+    ///
+    /// Usage:
+    /// ```swift
+    /// let cfg = VGSConfiguration(collector: collector, fieldName: "card_cvc")
+    /// cfg.type = .cvc
+    /// cvcField.configuration = cfg
+    /// ```
+    ///
+    /// Notes:
+    /// - Set before user interaction; avoid mutation while first responder.
     public var configuration: VGSConfiguration? {
         didSet {
             guard let configuration = configuration else {
@@ -143,7 +202,7 @@ public class VGSTextField: UIView {
         }
     }
     
-    /// Delegates `VGSTextField` editing events. Default is `nil`.
+    /// Delegate receiving editing lifecycle callbacks (`begin`, `change`, `end`, `return`).
     public weak var delegate: VGSTextFieldDelegate?
     
     // MARK: - Init
@@ -162,31 +221,34 @@ public class VGSTextField: UIView {
     }
   
     // MARK: - Manage input
-  
-    /// Set textfield default text.
-    /// - Note: This will not change `State.isDirty` attribute.
-    /// - Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.
+    
+    /// Sets a default (prefilled) value WITHOUT marking field as dirty.
+    /// - Use for restoring a non-sensitive placeholder-like value or formatting demonstration.
+    /// - Does not trigger `isDirty` so initial unchanged state logic remains intact.
+    /// - If `maxInputLength` is specified, value is trimmed accordingly.
     public func setDefaultText(_ text: String?) {
-			let trimmedText = trimTextIfNeeded(text)
-			updateTextFieldInput(trimmedText)
+            let trimmedText = trimTextIfNeeded(text)
+            updateTextFieldInput(trimmedText)
     }
-  
-    /// :nodoc: Set textfield text.
+    /// :nodoc: 
     public func setText(_ text: String?) {
-			isDirty = true
-			let trimmedText = trimTextIfNeeded(text)
-			updateTextFieldInput(trimmedText)
+            isDirty = true
+            let trimmedText = trimTextIfNeeded(text)
+            updateTextFieldInput(trimmedText)
     }
 
-    /// Removes input from field.
+    /// Removes all input content.
+    /// - Resets formatting state while retaining configuration.
     public func cleanText() {
       updateTextFieldInput("")
     }
   
     // MARK: - Compare Input
 
-    /// Check if input text in two textfields is same. Returns `Bool`.
-    /// - Note: Result will be based on raw text, mask and dividers will be ignored.
+    /// Compares raw (unformatted) content equality with another `VGSTextField`.
+    /// - Ignores masking characters and dividers.
+    /// - Returns true only if secure raw strings match exactly.
+    /// - Useful for confirm-input patterns (e.g. email repeat) when using masking.
     public func isContentEqual(_ textField: VGSTextField) -> Bool {
       return self.textField.getSecureRawText == textField.textField.getSecureRawText
     }
@@ -264,7 +326,7 @@ extension VGSTextField {
 // MARK: - Textfiled delegate
 extension VGSTextField: UITextFieldDelegate {
 
-	 /// :nodoc: Wrap native `UITextField` delegate method for `textFieldDidBeginEditing`.
+     /// :nodoc: Wrap native `UITextField` delegate method for `textFieldDidBeginEditing`.
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidBeginEditing?(self)
@@ -276,7 +338,7 @@ extension VGSTextField: UITextFieldDelegate {
         delegate?.vgsTextFieldDidChange?(self)
     }
 
-	  /// :nodoc: Wrap native `UITextField` delegate method for `didEndEditing`.
+      /// :nodoc: Wrap native `UITextField` delegate method for `didEndEditing`.
     public func textFieldDidEndEditing(_ textField: UITextField) {
         textFieldValueChanged()
         delegate?.vgsTextFieldDidEndEditing?(self)
@@ -402,22 +464,22 @@ internal extension VGSTextField {
     delegate?.vgsTextFieldDidChange?(self)
   }
 
-	/// Returns trimmed text if `.maxInputLength` is set.
-	/// - Parameter text: `String?` object, new text to set.
-	/// - Returns: `String?` object, trimmed text or initial text if `.maxInputLength` not set.
-	func trimTextIfNeeded(_ text: String?) -> String? {
-		guard let maxInputLength = configuration?.maxInputLength, let newText = text else {
-			return text
-		}
+    /// Returns trimmed text if `.maxInputLength` is set.
+    /// - Parameter text: `String?` object, new text to set.
+    /// - Returns: `String?` object, trimmed text or initial text if `.maxInputLength` not set.
+    func trimTextIfNeeded(_ text: String?) -> String? {
+        guard let maxInputLength = configuration?.maxInputLength, let newText = text else {
+            return text
+        }
 
-		let trimmedText = String(newText.prefix(maxInputLength))
-		return trimmedText
-	}
+        let trimmedText = String(newText.prefix(maxInputLength))
+        return trimmedText
+    }
 
-	/// `true` if has format pattern.
-	fileprivate var hasFormatPattern: Bool {
-		return !textField.formatPattern.isEmpty
-	}
+    /// `true` if has format pattern.
+    fileprivate var hasFormatPattern: Bool {
+        return !textField.formatPattern.isEmpty
+    }
 }
 
 // MARK: - MaskedTextFieldDelegate
