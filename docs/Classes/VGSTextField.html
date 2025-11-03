@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,10 +421,81 @@
 
                 </div>
               </div>
-            <p>An object that displays an editable text area in user interface.</p>
+            <p>A secure input view that masks, formats, and validates sensitive user data before submission via <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code>.</p>
+
+<p>Summary:
+Acts as the primary UI component for secure data entry (card number, CVC, expiration date, SSN, generic text, etc.).
+Provides formatting masks, validation rule application, secure raw storage abstraction, and integration hooks for tokenization.</p>
+
+<p>Responsibilities:</p>
+
+<ul>
+<li>Applies format pattern &amp; divider to user keystrokes (dynamic for certain types like card number).</li>
+<li>Exposes state snapshots (<code>state</code>) through <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> observation closures for validation &amp; UI feedback.</li>
+<li>Holds reference to <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> that defines semantic role, validation rules, input formatting and tokenization parameters.</li>
+</ul>
+
+<p>Formatting &amp; Masking:</p>
+
+<ul>
+<li><code>formatPattern</code> (from configuration or dynamic adjustment) determines visible grouping (# placeholders).</li>
+<li><code>divider</code> inserted between pattern groups (e.g. <code>/</code> for dates, <code>-</code> for SSN).</li>
+<li>Card number and CVC patterns update automatically based on detected brand when using associated field types.</li>
+</ul>
+
+<p>Validation:</p>
+
+<ul>
+<li>Default validation rules determined by <code><a href="../Enums/FieldType.html">FieldType</a></code>; can be overridden via <code>configuration.validationRules</code>.</li>
+<li>Validation runs on each editing change and contributes to field &amp; form state.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cardField</span> <span class="o">=</span> <span class="kt">VGSCardTextField</span><span class="p">()</span> <span class="c1">// or VGSTextField()</span>
+<span class="k">let</span> <span class="nv">cfg</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cardNumber</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">isRequiredValidOnly</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">cardField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cfg</span> <span class="c1">// registers with collector</span>
+<span class="c1">// Observe validity via collector.observeFieldState or cardField.state (if public)</span>
+</code></pre>
+
+<p>Security:</p>
+
+<ul>
+<li>Never read or log internal <code>textField</code> contents directly; rely on state metadata (<code>last4</code>, <code>isValid</code>).</li>
+<li>Do not persist raw user-entered values (store only aliases returned from backend responses).</li>
+<li>Avoid copying sensitive field values into analytics, crash logs, or third-party SDKs.</li>
+</ul>
+
+<p>Performance:</p>
+
+<ul>
+<li>Avoid repeatedly reassigning configuration after user input begins.</li>
+</ul>
+
+<p>Accessibility:</p>
+
+<ul>
+<li>Customize accessibility label/hint via provided properties; keep hints free of sensitive content.</li>
+<li>Ensure sufficient contrast and dynamic type scaling if <code>adjustsFontForContentSizeCategory</code> is enabled.</li>
+</ul>
+
+<p>Invariants / Preconditions:</p>
+
+<ul>
+<li>A non-nil <code>configuration</code> is required before using the field for secure submission.</li>
+<li>Do not mutate <code>configuration</code> while field is first responder to avoid inconsistent formatting.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+<li><code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> for defining semantic meaning &amp; validation.</li>
+<li><code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> for submission &amp; state observation.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L13-L244">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L61-L303">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -447,7 +526,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Textfield placeholder string.</p>
+                        <p>Placeholder text displayed when there is no user input.</p>
+
+<ul>
+<li>Update before field becomes first responder to avoid layout flicker.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -460,7 +543,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L32-L34">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L81-L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -478,7 +561,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Textfield autocapitalization type. Default is <code>.sentences</code>.</p>
+                        <p>Autocapitalization behavior for textual input.</p>
+
+<ul>
+<li>Default: <code>.sentences</code>.</li>
+<li>Usually left as default for names; set <code>.none</code> for numeric / code inputs.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -491,7 +579,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L37-L41">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L88-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -509,7 +597,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Textfield spell checking type. Default is <code>UITextSpellCheckingType.default</code>.</p>
+                        <p>Spell checking behavior.</p>
+
+<ul>
+<li>Default: <code>.default</code>.</li>
+<li>Set <code>.no</code> for numeric or strictly formatted fields (card, CVC, SSN).</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -522,7 +615,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L44-L48">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L95-L97">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -540,7 +633,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Textfield attributedPlaceholder string.</p>
+                        <p>Attributed placeholder allowing styled placeholder text.</p>
+
+<ul>
+<li>Loses effect if <code><a href="../Classes/VGSTextField.html#/s:13VGSCollectSDK12VGSTextFieldC11placeholderSSSgvp">placeholder</a></code> later reassigned; prefer one approach.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -553,7 +650,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L51-L55">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L101-L103">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -571,7 +668,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The natural size for the Textfield, considering only properties of the view itself.</p>
+                        <p>Natural intrinsic size including content insets (padding).</p>
 
                       </div>
                       <div class="declaration">
@@ -584,7 +681,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L58-L60">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L106">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -602,7 +699,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>UIEdgeInsets</code> for text and placeholder inside <code>VGSTextField</code>.</p>
+                        <p>Content inset for text &amp; placeholder inside the field.</p>
+
+<ul>
+<li>Adjust to increase touch target or visual spacing.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -615,7 +716,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L63-L65">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L110-L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -633,7 +734,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The technique to use for aligning the text.</p>
+                        <p>Horizontal text alignment.</p>
+
+<ul>
+<li>Defaults to <code>.natural</code>; adjust for RTL/LTR explicit layout needs.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -646,7 +751,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L68-L70">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L116-L118">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -664,7 +769,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets when the clear button shows up. Default is <code>UITextField.ViewMode.never</code></p>
+                        <p>Clear button display mode.</p>
+
+<ul>
+<li>Default: <code>.never</code>.</li>
+<li>Avoid enabling for sensitive fields unless UX mandates quick clearing.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -677,7 +787,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L73-L75">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L123-L125">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -695,7 +805,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Identifies whether the text object should disable text copying and in some cases hide the text being entered. Default is false.</p>
+                        <p>Secure text entry toggle.</p>
+
+<ul>
+<li>Masks visible characters when true; use for CVC or other sensitive short values.</li>
+<li>Avoid enabling for card number masking (handled by format pattern &amp; state exposure of last4 instead).</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -708,7 +823,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L78-L80">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L130-L132">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -726,7 +841,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Indicates whether <code>VGSTextField</code> should automatically update its font when the device’s <code>UIContentSizeCategory</code> is changed.</p>
+                        <p>Dynamic Type scaling flag.</p>
+
+<ul>
+<li>Enable if adopting system-wide accessibility text size adjustments.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -739,7 +858,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L83-L85">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L136-L138">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -757,7 +876,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Input Accessory View</p>
+                        <p>Custom accessory view displayed above the keyboard (e.g. toolbar with Done button).</p>
 
                       </div>
                       <div class="declaration">
@@ -770,7 +889,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L88-L90">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L141-L143">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -788,7 +907,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Determines whether autocorrection is enabled or disabled during typing.</p>
+                        <p>Autocorrection behavior.</p>
+
+<ul>
+<li>Default <code>.default</code>; disable (<code>.no</code>) for formats like card number, CVC, SSN, dates.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -801,7 +924,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L93-L97">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L147-L149">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -832,7 +955,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A succinct label in a localized string that identifies the accessibility text field.</p>
+                        <p>Accessibility label describing the field&rsquo;s purpose (without sensitive content).</p>
 
                       </div>
                       <div class="declaration">
@@ -845,7 +968,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L101-L108">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L154-L157">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -863,8 +986,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A localized string that contains a brief description of the result of
-performing an action on the accessibility text field.</p>
+                        <p>Accessibility hint describing the result of interaction (avoid exposing actual values).</p>
 
                       </div>
                       <div class="declaration">
@@ -877,7 +999,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L112-L119">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L160-L163">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -895,7 +1017,11 @@ performing an action on the accessibility text field.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Boolean value that determinates if the text field should be exposed as an accesibility element.</p>
+                        <p>Determines if the underlying text control is an accessibility element.</p>
+
+<ul>
+<li>Set false only when grouping with a custom container element.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -908,7 +1034,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L122-L129">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L167-L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -939,7 +1065,27 @@ performing an action on the accessibility text field.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Specifies <code>VGSTextField</code> configuration parameters to work with <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code>.</p>
+                        <p>Configuration establishing semantic type, formatting, validation rules, and collector registration.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>On assignment: registers with the provided <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> instance; applies format &amp; validation defaults.</li>
+<li>Re-assignment replaces previous configuration (not recommended mid-edit).</li>
+<li>Nil assignment logs a warning and leaves field unregistered.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cfg</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_cvc"</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cvc</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Set before user interaction; avoid mutation while first responder.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -952,7 +1098,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L134-L144">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L190-L200">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -970,7 +1116,7 @@ performing an action on the accessibility text field.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Delegates <code>VGSTextField</code> editing events. Default is <code>nil</code>.</p>
+                        <p>Delegate receiving editing lifecycle callbacks (<code>begin</code>, <code>change</code>, <code>end</code>, <code>return</code>).</p>
 
                       </div>
                       <div class="declaration">
@@ -983,7 +1129,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L147">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L203">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1014,13 +1160,12 @@ performing an action on the accessibility text field.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set textfield default text.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    This will not change <code>State.isDirty</code> attribute.
+                        <p>Sets a default (prefilled) value WITHOUT marking field as dirty.</p>
 
-</div><ul>
-<li>Discussion: probably you should want to set field configuration before setting default value, so the input format will be update as required.</li>
+<ul>
+<li>Use for restoring a non-sensitive placeholder-like value or formatting demonstration.</li>
+<li>Does not trigger <code>isDirty</code> so initial unchanged state logic remains intact.</li>
+<li>If <code>maxInputLength</code> is specified, value is trimmed accordingly.</li>
 </ul>
 
                       </div>
@@ -1034,7 +1179,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L169-L172">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L226-L229">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1052,7 +1197,11 @@ performing an action on the accessibility text field.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes input from field.</p>
+                        <p>Removes all input content.</p>
+
+<ul>
+<li>Resets formatting state while retaining configuration.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -1065,7 +1214,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L182-L184">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L239-L241">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1096,12 +1245,12 @@ performing an action on the accessibility text field.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Check if input text in two textfields is same. Returns <code>Bool</code>.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    Result will be based on raw text, mask and dividers will be ignored.
+                        <p>Compares raw (unformatted) content equality with another <code>VGSTextField</code>.</p>
 
-</div>
+<ul>
+<li>Ignores masking characters and dividers.</li>
+<li>Useful for confirm-input patterns (e.g. email repeat) when using masking.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -1114,7 +1263,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L190-L192">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L249-L251">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1158,7 +1307,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L19-L26">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L16-L23">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1190,7 +1339,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L29-L36">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L26-L33">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1235,7 +1384,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L41-L49">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L38-L46">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1267,7 +1416,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L52-L59">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L49-L56">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1299,7 +1448,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L62-L72">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField+UIBuilder.swift#L59-L69">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1375,7 +1524,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L249-L251">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L308-L310">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1407,7 +1556,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L254-L256">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L313-L315">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1438,7 +1587,7 @@ performing an action on the accessibility text field.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L259-L261">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L318-L320">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1451,7 +1600,7 @@ performing an action on the accessibility text field.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

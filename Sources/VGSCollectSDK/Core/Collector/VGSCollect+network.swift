@@ -12,7 +12,7 @@ extension VGSCollect {
    Send data from VGSTextFields to your organization vault.
    
    - Parameters:
-   - path: Inbound rout path for your organization vault.
+   - path: Inbound route path for your organization vault.
    - method: VGSCollectHTTPMethod, default is `.post`.
    - routeId: id of VGS Proxy Route, default is `nil`.
    - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
@@ -69,7 +69,7 @@ extension VGSCollect {
    Send file to your organization vault. Only send one file at a time.
    
    - Parameters:
-   - path: Inbound rout path for your organization vault.
+   - path: Inbound route path for your organization vault.
    - method: HTTPMethod, default is `.post`.
    - routeId: id of VGS Proxy Route, default is `nil`.
    - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
@@ -171,7 +171,7 @@ extension VGSCollect {
   // MARK: - Tokenization(Vault API) requests
   
   /**
-   Send tokenization request with data from VGSTextFields to Vaulr API v1.
+   Send tokenization request with data from VGSTextFields to Vault API v1.
    - Parameters:
    - routeId: id of VGS Proxy Route, default is `nil`.
    - completion: response completion block, returns `VGSTokenizationResponse`.
@@ -311,7 +311,7 @@ extension VGSCollect {
    Asynchronously send data from VGSTextFields to your organization vault.
    
    - Parameters:
-      - path: Inbound rout path for your organization vault.
+      - path: Inbound route path for your organization vault.
       - method: VGSCollectHTTPMethod, default is `.post`.
       - routeId: id of VGS Proxy Route, default is `nil`.
       - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
@@ -338,7 +338,7 @@ extension VGSCollect {
    Asynchronously send file to your organization vault. Only send one file at a time.
    
    - Parameters:
-      - path: Inbound rout path for your organization vault.
+      - path: Inbound route path for your organization vault.
       - method: HTTPMethod, default is `.post`.
       - routeId: id of VGS Proxy Route, default is `nil`.
       - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
@@ -419,7 +419,7 @@ extension VGSCollect {
    Send data from VGSTextFields to your organization vault using the Combine framework.
    
    - Parameters:
-      - path: Inbound rout path for your organization vault.
+      - path: Inbound route path for your organization vault.
       - method: VGSCollectHTTPMethod, default is `.post`.
       - routeId: id of VGS Proxy Route, default is `nil`.
       - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.
@@ -441,7 +441,7 @@ extension VGSCollect {
    Send file to your organization vault using the Combine framework.
    
    - Parameters:
-      - path: Inbound rout path for your organization vault.
+      - path: Inbound route path for your organization vault.
       - method: VGSCollectHTTPMethod, default is `.post`.
       - routeId: id of VGS Proxy Route, default is `nil`.
       - extraData: Any data you want to send together with data from VGSTextFields , default is `nil`.

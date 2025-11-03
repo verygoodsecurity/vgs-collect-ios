@@ -387,6 +387,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -456,6 +464,31 @@
                       <div class="abstract">
                         <p><code>VGSCVCTokenizationParameters</code> - parameters required for tokenization api.</p>
 
+<p>Summary:
+Defines how CVC input is tokenized when using Vault tokenization APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Defaults to volatile (<code>VOLATILE</code>) to avoid persisting raw token beyond session scope.</li>
+<li><code>format</code>: Alias format applied to the tokenized value. Default is <code>NUM_LENGTH_PRESERVING</code> (keeps length characteristics without exposing original digits).</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">VGSCVCTokenizationParameters</span><span class="p">()</span>
+<span class="n">params</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">NUM_LENGTH_PRESERVING</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or other supported format</span>
+<span class="k">let</span> <span class="nv">cfg</span> <span class="o">=</span> <span class="kt">VGSCVCTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_cvc"</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">params</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Choose volatile storage for high-sensitivity short-lived values like CVC.</li>
+<li>Format changes affect alias representation only, not validation rules.</li>
+</ul>
+
                         <a href="Structs/VGSCVCTokenizationParameters.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -468,7 +501,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L9-L16">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L29-L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -500,7 +533,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardHolderNameTokenizationConfiguration.swift#L9-L15">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardHolderNameTokenizationConfiguration.swift#L9-L17">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -518,7 +551,32 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSCardTokenizationParameters</code> - parameters required for tokenization api.</p>
+                        <p><code>VGSCardNumberTokenizationParameters</code> - parameters required for tokenization API.</p>
+
+<p>Summary:
+Defines how primary account number (PAN) input (FieldType <code>.cardNumber</code>) is transformed into an alias for Vault tokenization / alias creation APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Uses <code>.PERSISTENT</code> by default to enable downstream reuse in PCI compliant flows (e.g. recurring billing).</li>
+<li><code>format</code>: Alias format. Default <code>FPE_SIX_T_FOUR</code> preserves first six (BIN) + last four digits while protecting the middle digits.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">cardParams</span> <span class="o">=</span> <span class="kt">VGSCardNumberTokenizationParameters</span><span class="p">()</span>
+<span class="n">cardParams</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">FPE_SIX_T_FOUR</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or a fully opaque format e.g. UUID</span>
+<span class="k">let</span> <span class="nv">cardCfg</span> <span class="o">=</span> <span class="kt">VGSCardNumberTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cardCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">cardParams</span>
+<span class="n">cardField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cardCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Choose a fully opaque format (e.g. <code>UUID</code>) when BIN + last4 are not required in client logic.</li>
+<li>Format affects alias output only; validation (length, Luhn) controlled via rules / field type.</li>
+</ul>
 
                         <a href="Structs/VGSCardNumberTokenizationParameters.html" class="slightly-smaller">See more</a>
                       </div>
@@ -532,7 +590,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L9-L15">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L29-L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -552,6 +610,31 @@
                       <div class="abstract">
                         <p><code>VGSDateTokenizationParameters</code> - parameters required for tokenization API</p>
 
+<p>Summary:
+Defines how generic date input (FieldType <code>.date</code>) is tokenized when using Vault tokenization or alias creation APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type used for the alias. Defaults to persistent storage — change only if compliance requires ephemeral handling.</li>
+<li><code>format</code>: Alias format applied to the date value (default <code>.UUID</code>). Does not alter user-visible formatting.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">VGSDateTokenizationParameters</span><span class="p">()</span>
+<span class="n">params</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or other supported alias format</span>
+<span class="k">let</span> <span class="nv">dateCfg</span> <span class="o">=</span> <span class="kt">VGSDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"start_date"</span><span class="p">)</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">params</span>
+<span class="n">dateField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">dateCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Changing <code>format</code> influences only alias representation, not validation or display.</li>
+<li>Keep date parsing/format validation separate via <code>validationRules</code> and <code>formatPattern</code>.</li>
+</ul>
+
                         <a href="Structs/VGSDateTokenizationParameters.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -564,7 +647,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L9-L16">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L29-L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -584,6 +667,31 @@
                       <div class="abstract">
                         <p><code>VGSExpDateTokenizationParameters</code> - parameters required for tokenization api.</p>
 
+<p>Summary:
+Defines how card expiration date input (FieldType <code>.expDate</code>) is tokenized when using Vault tokenization or alias creation APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Persistent by default to allow alias reuse server-side.</li>
+<li><code>format</code>: Alias format applied to the expiration value. Default <code>.UUID</code> creates opaque aliases.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">VGSExpDateTokenizationParameters</span><span class="p">()</span>
+<span class="n">params</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or FPE / numeric-preserving format</span>
+<span class="k">let</span> <span class="nv">expCfg</span> <span class="o">=</span> <span class="kt">VGSExpDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_exp"</span><span class="p">)</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">params</span>
+<span class="n">expField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">expCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Format affects alias representation only, not validation or formatting in the UI.</li>
+<li>Keep raw MM/YY or MM/YYYY formatting logic in <code>formatPattern</code> and date validation via rules (<code><a href="Structs/VGSValidationRuleCardExpirationDate.html">VGSValidationRuleCardExpirationDate</a></code>).</li>
+</ul>
+
                         <a href="Structs/VGSExpDateTokenizationParameters.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -596,7 +704,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L8-L15">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L28-L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -616,6 +724,31 @@
                       <div class="abstract">
                         <p><code>VGSSSNTokenizationParameters</code> - parameters required for tokenization api.</p>
 
+<p>Summary:
+Defines how US Social Security Number input (FieldType <code>.ssn</code>) is transformed into an alias when using Vault tokenization or alias creation APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type (persistent by default for reuse on backend workflows).</li>
+<li><code>format</code>: Alias format representation (default <code>.UUID</code> ensures fully opaque alias value).</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">ssnParams</span> <span class="o">=</span> <span class="kt">VGSSSNTokenizationParameters</span><span class="p">()</span>
+<span class="n">ssnParams</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or another supported alias format</span>
+<span class="k">let</span> <span class="nv">ssnCfg</span> <span class="o">=</span> <span class="kt">VGSSSNTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"user_ssn"</span><span class="p">)</span>
+<span class="n">ssnCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">ssnParams</span>
+<span class="n">ssnField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">ssnCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Changing <code>format</code> impacts only alias output, not validation or masking.</li>
+<li>Keep SSN input formatting &amp; validation in <code>formatPattern</code> and rule set (<code><a href="Structs/VGSValidationRulePattern.html">VGSValidationRulePattern</a></code>).</li>
+</ul>
+
                         <a href="Structs/VGSSSNTokenizationParameters.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -628,7 +761,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L9-L17">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L29-L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -646,7 +779,32 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSTokenizationParameters</code> - parameters required for tokenization api.</p>
+                        <p><code>VGSTokenizationParameters</code> - parameters required for tokenization API.</p>
+
+<p>Summary:
+Defines generic tokenization settings for fields that do not have a specialized tokenization configuration (e.g. custom text, card holder name, miscellaneous identifiers).</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Defaults to <code>.PERSISTENT</code> enabling server-side reuse. Switch to <code>.VOLATILE</code> only if value must not persist (e.g. ephemeral session identifiers).</li>
+<li><code>format</code>: Alias format. Default <code>.UUID</code> produces an opaque, non-reversible alias appropriate for most free-form text values.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">genericParams</span> <span class="o">=</span> <span class="kt">VGSTokenizationParameters</span><span class="p">()</span>
+<span class="n">genericParams</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or another supported format</span>
+<span class="k">let</span> <span class="nv">holderCfg</span> <span class="o">=</span> <span class="kt">VGSTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_holder"</span><span class="p">)</span>
+<span class="n">holderCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">genericParams</span>
+<span class="n">nameField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">holderCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Changing <code>format</code> affects alias representation only, not validation or field UI formatting.</li>
+<li>Prefer specialized configurations (e.g. <code><a href="Classes/VGSCardNumberTokenizationConfiguration.html">VGSCardNumberTokenizationConfiguration</a></code>) for field types with domain-specific alias requirements.</li>
+</ul>
 
                         <a href="Structs/VGSTokenizationParameters.html" class="slightly-smaller">See more</a>
                       </div>
@@ -660,7 +818,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L12-L19">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L32-L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -735,7 +893,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

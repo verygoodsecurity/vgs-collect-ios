@@ -36,77 +36,125 @@ internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtoco
     var textContentType: UITextContentType? { get set }
 }
 
-/// A class responsible for configuration VGSTextField.
+/// A configuration object that defines semantic meaning, formatting and validation rules for an attached `VGSTextField`.
+///
+/// Summary:
+/// Configure how a secure text field should behave (data type, keyboard, formatting, validation, and submission key) when collecting sensitive data for VGS vault submission.
+///
+/// Responsibilities:
+/// - Declares the vault JSON key (`fieldName`) used during submission.
+/// - Specifies field semantic `type` (e.g. card number, CVC) that drives built–in formatting & validation defaults.
+/// - Holds optional custom validation rules and formatting pattern overrides.
+/// - Provides UI hints (keyboard type, return key, content type, appearance) without directly altering UI until bound.
+///
+/// Security:
+/// - `fieldName` is a logical alias only; never place raw secrets or PII in the name itself.
+/// - Formatting (masking/spacing) is purely cosmetic and does NOT sanitize or truncate the raw secure value transmitted to the vault.
+///
+/// Usage:
+/// 1. Instantiate with a `VGSCollect` instance and unique `fieldName`.
+/// 2. Adjust optional properties (e.g. `isRequired`, `validationRules`, `formatPattern`).
+/// 3. Assign the configuration to a `VGSTextField` before user input begins.
+///
+/// Invariants / Preconditions:
+/// - `fieldName` should be non-empty and unique per collector to avoid ambiguous payload keys. (Not currently enforced at runtime.)
+/// - Changing properties after the field has begun editing may not retroactively re-validate already entered content.
 public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     
     // MARK: - Attributes
     
-    /// Collect form that will be assiciated with VGSTextField.
+    /// Collect form (owner) associated with this configuration.
+    ///
+    /// Side Effects: None on assignment (set only in initializer).
+    /// Lifetime: Weak to avoid retain cycles with `VGSTextField` & collector.
     public private(set) weak var vgsCollector: VGSCollect?
   
-    /// Type of field congfiguration. Default is `FieldType.none`.
+    /// Semantic field type driving built-in behavior (formatting, validation defaults, keyboard suggestions).
+    ///
+    /// Default: `.none` (generic text input). Update before binding to a text field for consistent behavior.
     public var type: FieldType = .none
     
-    /// Name that will be associated with `VGSTextField` and used as a JSON key on send request with textfield data to your organozation vault.
+    /// Vault JSON key that the collected value will map to upon submission.
+    ///
+    /// Invariants: Should be stable, URL-safe, and unique within a single collector; collisions cause overwriting in the outgoing body.
+    /// Security: Never embed real secrets; treat as a metadata label only.
     public let fieldName: String
     
-    /// Set if `VGSTextField` is required to be non-empty and non-nil on send request. Default is `false`.
+    /// Indicates that the field must contain a non-empty value for form submission to be considered valid.
+    ///
+    /// Validation: Checked during collector validation. Empty required fields produce an error list.
     public var isRequired: Bool = false
     
-    /// Set if `VGSTextField` is required to be valid only on send request. Default is `false`.
+    /// Indicates that if the user provides any value, it must pass validation rules.
+    ///
+    /// Use Case: Optional fields like second address line or promo code that should not contain invalid data when filled.
     public var isRequiredValidOnly: Bool = false
     
-    /// Input data visual format pattern. If not applied, will be  set by default depending on field `type`.
-		public var formatPattern: String? {
-			didSet {
-				logWarningForFormatPatternIfNeeded()
-			}
-		}
+    /// Optional visual formatting pattern (e.g. "#### #### #### ####" for card numbers).
+    ///
+    /// Behavior: Applied purely at UI layer for readability. Raw value is still captured unformatted.
+    public var formatPattern: String? {
+            didSet {
+                logWarningForFormatPatternIfNeeded()
+            }
+        }
     
-    /// String, used to replace not default `VGSConfiguration.formatPattern` characters in input text on send request.
+    /// Replacement divider string used when serializing formatted input back to a raw value.
+    /// Example: A phone pattern with spaces might be collapsed or replaced with `divider` value during serialization.
     public var divider: String?
     
-    /// Preferred UITextContentType for or `VGSTextField`. If note set, default value could be set based on `VGSTextField.type` value.
+    /// Preferred `UITextContentType` override used to enhance autofill & keyboard heuristics.
+    ///
+    /// Auto-Assignment: If not explicitly set, the owning text field may assign a sensible default based on `type`.
+    /// Tracking: `isTextContentTypeSet` indicates whether a custom value has been provided.
     public var textContentType: UITextContentType? {
         didSet { isTextContentTypeSet = true }
     }
     internal var isTextContentTypeSet = false
 
-    /// Preferred UIKeyboardType for `VGSTextField`.  If not applied, will be set by default depending on field `type` parameter.
+    /// Keyboard layout preference; if nil, a type-specific default (e.g. numeric) might be applied by the UI component.
     public var keyboardType: UIKeyboardType?
     
-    /// Preferred UIReturnKeyType for `VGSTextField`.
+    /// Return key style suggestion; does not enforce submission logic itself.
     public var returnKeyType: UIReturnKeyType?
     
-    /// Preferred UIKeyboardAppearance for textfield. By default is `UIKeyboardAppearance.default`.
+    /// Keyboard appearance preference (e.g. dark). Default is system/host app standard when nil.
     public var keyboardAppearance: UIKeyboardAppearance?
   
-    /// Validation rules for field input. Defines `State.isValide` result.
+    /// A composite of validation rules executed against the raw (unformatted) value to update field validity state.
+    ///
+    /// Security: Pure evaluation; does not log or persist sensitive values.
     public var validationRules: VGSValidationRuleSet?
 
-	  /// Max input length. **IMPORTANT!** Can conflict with `.formatPattern` attribute.
-		public var maxInputLength: Int? {
-			didSet {
-				logWarningForFormatPatternIfNeeded()
-			}
-		}
+    /// Maximum allowed raw input length (excluding formatting separators).
+    ///
+    /// Enforcement: Additional user input is rejected or ignored beyond this limit.
+    public var maxInputLength: Int? {
+            didSet {
+                logWarningForFormatPatternIfNeeded()
+            }
+        }
 
-	  /// Logs warning when both `.formatPattern` and `.maxInputLength` are used.
-		internal func logWarningForFormatPatternIfNeeded() {
-			if !formatPattern.isNilOrEmpty && maxInputLength != nil {
-				let message = "Format pattern (\(formatPattern ?? "")) and maxInputLength (\(maxInputLength ?? 0)) can conflict when both are in use!"
-				let event = VGSLogEvent(level: .warning, text: message, severityLevel: .warning)
-				VGSCollectLogger.shared.forwardLogEvent(event)
-			}
-		}
+    /// Emits a warning log if both `formatPattern` and `maxInputLength` are set, signalling potential conflicting constraints.
+    ///
+    /// Side Effects: Sends a `.warning` level `VGSLogEvent`. No behavioral modifications occur.
+    internal func logWarningForFormatPatternIfNeeded() {
+            if !formatPattern.isNilOrEmpty && maxInputLength != nil {
+                let message = "Format pattern (\(formatPattern ?? "")) and maxInputLength (\(maxInputLength ?? 0)) can conflict when both are in use!"
+                let event = VGSLogEvent(level: .warning, text: message, severityLevel: .warning)
+                VGSCollectLogger.shared.forwardLogEvent(event)
+            }
+        }
            
     // MARK: - Initialization
     
-    /// Initialization
+    /// Designated initializer.
     ///
-    /// - Parameters:
-    ///   - vgs: `VGSCollect` instance.
-    ///   - fieldName: associated `fieldName`.
+    /// Parameters:
+    /// - vgs: Owning `VGSCollect` instance that will manage submission.
+    /// - fieldName: Vault JSON key for the eventual secure submission payload.
+    ///
+    /// Preconditions: `fieldName` should be non-empty (not enforced).
     public init(collector vgs: VGSCollect, fieldName: String) {
         self.vgsCollector = vgs
         self.fieldName = fieldName

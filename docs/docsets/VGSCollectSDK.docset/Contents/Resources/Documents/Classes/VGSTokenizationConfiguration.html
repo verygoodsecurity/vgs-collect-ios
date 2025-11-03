@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -411,10 +419,43 @@
 
                 </div>
               </div>
-            <p><code>VGSTokenizationConfiguration</code> - textfield configuration for textfield with any type of data, required for work with tokenization api.</p>
+            <p><code>VGSTokenizationConfiguration</code> - textfield configuration for a text field with any supported <code><a href="../Enums/FieldType.html">FieldType</a></code>, enabling tokenization when no specialized configuration exists.</p>
+
+<p>Summary:
+Generic catch-all tokenization configuration. Use for field types like <code>.cardHolderName</code>, <code>.none</code>, or custom data keys where dedicated tokenization subclasses are not provided.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Inherits all formatting, validation, and requirement handling from <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code>.</li>
+<li>Adds <code>tokenizationParameters</code> consumed by Vault tokenization / alias creation APIs (<code>tokenizeData</code>, <code>createAliases</code>).</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nameCfg</span> <span class="o">=</span> <span class="kt">VGSTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_holder"</span><span class="p">)</span>
+<span class="n">nameCfg</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cardHolderName</span>
+<span class="n">nameCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">nameField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">nameCfg</span>
+<span class="c1">// Later:</span>
+<span class="n">collector</span><span class="o">.</span><span class="n">createAliases</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span> <span class="cm">/* handle alias mapping */</span> <span class="p">}</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Set <code>type</code> and any <code>validationRules</code> before tokenization to ensure correct evaluation.</li>
+<li>For highly sensitive transient values consider switching <code>storage</code> to <code>.VOLATILE</code> (alias may not be reusable long-term).</li>
+<li>Use a deterministic alias format only if your backend requires stable pattern characteristics.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Never log raw input pre-tokenization.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L22-L30">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L68-L76">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -449,7 +490,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L25">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -462,7 +503,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

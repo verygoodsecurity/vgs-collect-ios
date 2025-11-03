@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -411,10 +419,42 @@
 
                 </div>
               </div>
-            <p><code>VGSCardTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.cardNumber</code>, required for work with tokenization api.</p>
+            <p><code>VGSCardNumberTokenizationConfiguration</code> - configuration for a text field collecting card numbers (<code>.cardNumber</code>). Required for tokenization API usage.</p>
+
+<p>Summary:
+Specialized configuration enabling PAN tokenization while retaining dynamic brand-driven formatting and validation inherited from <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code>.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.cardNumber</code>.</li>
+<li>Supplies <code>tokenizationParameters</code> consumed by tokenization / alias APIs.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cardCfg</span> <span class="o">=</span> <span class="kt">VGSCardNumberTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cardCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">FPE_SIX_T_FOUR</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">cardField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cardCfg</span>
+<span class="c1">// Later submit</span>
+<span class="n">collector</span><span class="o">.</span><span class="n">createAliases</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span> <span class="cm">/* handle */</span> <span class="p">}</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Override <code>tokenizationParameters.format</code> before attaching to the field to avoid mid-edit alias policy changes.</li>
+<li>For fully opaque tokens choose <code>VGSVaultAliasFormat.UUID.rawValue</code>.</li>
+<li>Validation rules can be replaced with a custom <code><a href="../Structs/VGSValidationRuleSet.html">VGSValidationRuleSet</a></code> if business logic restricts brands or lengths.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Never log raw PAN; rely on card state (<code>last4</code>, brand) for limited display needs.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L18-L30">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L64-L76">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -436,7 +476,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSCardTokenizationParameters</code> - tokenization configuration parameters.</p>
+                        <p><code><a href="../Structs/VGSCardNumberTokenizationParameters.html">VGSCardNumberTokenizationParameters</a></code> - tokenization configuration parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -449,7 +489,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L21">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L67">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -479,7 +519,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L24-L27">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L70-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -492,7 +532,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

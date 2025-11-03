@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,8 +421,41 @@
               </div>
             <p>An object that displays an editable text area. Can be use instead of a <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> when need to detect and show credit card brand images.</p>
 
+<p>Overview:
+<code>VGSCardTextField</code> extends <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> to provide real-time card brand detection (Visa, Mastercard, etc.) and an optional brand icon. It dynamically:</p>
+
+<ul>
+<li>Detects card brand as the user types.</li>
+<li>Updates spacing/formatting pattern automatically.</li>
+<li>Propagates brand-specific CVC length &amp; formatting to attached <code><a href="../Classes/VGSCVCTextField.html">VGSCVCTextField</a></code>.</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Create instance and assign a <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> whose <code>type</code> is <code>.cardNumber</code> (or specialized tokenization configuration).</li>
+<li>Optionally customize icon presentation via <code>cardIconLocation</code>, <code>cardIconSize</code>, or supply a closure in <code>cardsIconSource</code> for custom imagery.</li>
+<li>Observe field state (<code>state</code> cast to <code><a href="../Classes/VGSCardState.html">VGSCardState</a></code>) to access <code>bin</code>, <code>last4</code>, and <code>cardBrand</code> after valid input.</li>
+</ol>
+
+<p>Accessibility:</p>
+
+<ul>
+<li>Keep <code>cardIconViewIsAccessibilityElement = true</code> for voiceover users; set <code>cardIconAccessibilityHint</code> to a localized brand description.</li>
+<li>Avoid adding sensitive PAN information to accessibility hints.</li>
+</ul>
+
+<p>Performance:
+Brand detection runs on each input change.</p>
+
+<p>Security:</p>
+
+<ul>
+<li>No raw PAN characters are logged or exposed via public API.</li>
+</ul>
+
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L14-L74">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L32-L90">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -458,7 +499,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L25-L31">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L43-L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -502,7 +543,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L35-L39">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L53-L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -520,7 +561,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Card brand icon size.</p>
+                        <p>Card brand icon size. Adjust before heavy layout cycles; changing will update size constraints.</p>
 
                       </div>
                       <div class="declaration">
@@ -533,7 +574,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L42-L46">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L60-L64">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -551,7 +592,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Card Icon accissibility view hint. You can change the hint dynamically based on detected card brand.</p>
+                        <p>Card Icon accessibility element flag. Set <code>false</code> to hide icon from VoiceOver if redundant.</p>
 
                       </div>
                       <div class="declaration">
@@ -564,7 +605,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L49-L53">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L67-L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -582,7 +623,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Card Icon accissibility view hint. You can change the hint dynamically based on detected card brand.</p>
+                        <p>Card Icon accessibility hint. Provide a localized description of current brand (e.g. &ldquo;Visa card brand icon&rdquo;).</p>
 
                       </div>
                       <div class="declaration">
@@ -595,7 +636,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L56">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -626,7 +667,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Asks custom image for specific <code><a href="../Classes/VGSPaymentCards/CardBrand.html">VGSPaymentCards.CardBrand</a></code></p>
+                        <p>Custom card brand image provider. Return a <code>UIImage</code> for the detected brand or <code>nil</code> to fallback to default asset.</p>
 
                       </div>
                       <div class="declaration">
@@ -639,7 +680,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L61">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -657,7 +698,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The natural size for the Textfield, considering only properties of the view itself.</p>
+                        <p>The natural size for the Textfield, considering only properties of the view itself plus icon width &amp; height.</p>
 
                       </div>
                       <div class="declaration">
@@ -670,7 +711,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L71-L73">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L87-L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -683,7 +724,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

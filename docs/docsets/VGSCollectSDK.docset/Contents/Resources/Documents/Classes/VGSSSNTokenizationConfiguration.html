@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,8 +421,38 @@
               </div>
             <p><code>VGSSSNTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.ssn</code>, required for work with tokenization api.</p>
 
+<p>Summary:
+Specialized configuration enabling tokenization for SSN fields, ensuring alias creation while preserving standard SSN input formatting and validation.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.ssn</code> regardless of external attempts to modify.</li>
+<li>Supplies <code>tokenizationParameters</code> consumed by tokenization / alias APIs.</li>
+<li>Inherits base formatting &amp; validation from <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code>; you may override <code>validationRules</code> for custom compliance constraints.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">ssnCfg</span> <span class="o">=</span> <span class="kt">VGSSSNTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"user_ssn"</span><span class="p">)</span>
+<span class="n">ssnCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">ssnField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">ssnCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Adjust alias format prior to assigning configuration to avoid mid-edit format shifts.</li>
+<li>Do not relax SSN regex to avoid collecting malformed identifiers.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Treat SSN as highly sensitive.</li>
+</ul>
+
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L21-L35">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L63-L77">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -449,7 +487,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L24">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -479,7 +517,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L27-L30">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L69-L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -492,7 +530,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

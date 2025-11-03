@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -412,10 +420,47 @@
 
                 </div>
               </div>
-            <p><code>VGSExpDateTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.expDate</code>, required for work with tokenization api.</p>
+            <p><code>VGSExpDateTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.expDate</code>, required for work with tokenization api.
+Assign to <code><a href="../Classes/VGSExpDateTextField.html">VGSExpDateTextField</a></code> (or generic <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>) before user input to enable expiration date tokenization.</p>
+
+<p>Summary:
+Specialized configuration enabling tokenization, optional date picker input source, and raw-to-formatted expiration date conversion (short/long year) prior to submission.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.expDate</code>.</li>
+<li>Provides <code>tokenizationParameters</code> consumed by tokenization / alias APIs.</li>
+<li>Supports picker-based entry via <code>inputSource = .datePicker</code> and format conversion using <code>inputDateFormat</code> / <code>outputDateFormat</code>.</li>
+<li>Allows serialization into structured components through <code>serializers</code> before alias creation.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">expCfg</span> <span class="o">=</span> <span class="kt">VGSExpDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_exp"</span><span class="p">)</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">inputSource</span> <span class="o">=</span> <span class="o">.</span><span class="n">datePicker</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">inputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">shortYear</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">outputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">longYear</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">serializers</span> <span class="o">=</span> <span class="p">[</span><span class="kt">ExpDateFormatSerializer</span><span class="o">.</span><span class="nf">month</span><span class="p">(</span><span class="s">"exp_month"</span><span class="p">),</span> <span class="kt">ExpDateFormatSerializer</span><span class="o">.</span><span class="nf">year</span><span class="p">(</span><span class="s">"exp_year"</span><span class="p">)]</span> <span class="c1">// example serializers</span>
+<span class="n">expField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">expCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Set format conversion &amp; serializers before assigning configuration to field for consistent initial UI.</li>
+<li>Use serializers only when you need extra separated alias fields (month/year) beyond the single expiration alias.</li>
+<li>Validation rules can be overridden with a custom <code><a href="../Structs/VGSValidationRuleSet.html">VGSValidationRuleSet</a></code> if business constraints differ (e.g. extended future range).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Treat expiration dates as sensitive.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L18-L59">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L68-L109">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -458,7 +503,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L22-L25">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L72-L75">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -502,7 +547,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L29">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L79">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -533,7 +578,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L32">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -564,7 +609,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L85">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -608,7 +653,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L39">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -652,7 +697,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L47">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L97">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -665,7 +710,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

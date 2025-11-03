@@ -387,6 +387,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -422,7 +430,57 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An object you use for observing <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> <code>State</code> and send data to your organization vault.</p>
+                        <p>A collector object that registers secure input fields (<code><a href="Classes/VGSTextField.html">VGSTextField</a></code>) and submits their data/files to a VGS Vault.</p>
+
+<p>Summary:
+Provides the orchestration layer for secure data collection: field registration, state observation, JSON/body construction, vault/network submission, tokenization/alias creation and file lifecycle management.</p>
+
+<p>Responsibilities:</p>
+
+<ul>
+<li>Registers text fields automatically when a <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> referencing this collector is assigned.</li>
+<li>Observes editing state via <code>observeFieldState</code> (focused field) and <code>observeStates</code> (all fields snapshot).</li>
+<li>Submits values with <code>sendData</code> / <code>sendFile</code> (closure, async/await, Combine variants).</li>
+<li>Performs tokenization (<code>tokenizeData</code>) and alias creation (<code>createAliases</code>), plus card creation via CMP (<code>createCard</code>).</li>
+<li>Cleans up attached files after successful upload (<code>cleanFiles</code>).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Never logs or exposes raw sensitive values through public APIs.</li>
+<li>Avoid adding PII or secrets to <code>customHeaders</code> &amp; <code>fieldName</code> values; use them strictly for routing/auth metadata.</li>
+<li>Internal storage is transient and cleared/replaced as input changes; persistence is the caller&rsquo;s responsibility (and should only store aliases).</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Initialize with vault id &amp; environment: <code>let collector = VGSCollect(id: vaultId, environment: .sandbox)</code>.</li>
+<li>Create a <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> per field and assign to each <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> (registration happens automatically).</li>
+<li>Optionally set observation closures for validation/UI updates.</li>
+<li>Validate all required fields (<code>state.isValid</code>) before calling a submit method.</li>
+<li>Parse response aliases/tokens; discard raw user input from UI components.</li>
+<li>After file submission success, call <code>cleanFiles()</code>.</li>
+</ol>
+
+<p>Invariants / Preconditions:</p>
+
+<ul>
+<li><code>id</code> must be a non-empty vault identifier.</li>
+<li>All required fields should be valid before invoking submission APIs.</li>
+<li>Only one logical file should be attached when calling <code>sendFile</code>.</li>
+<li>For alias creation (<code>createAliases</code>), appropriate authentication must be provided in <code>customHeaders</code>.</li>
+<li>UI access (field state collection) occurs on the main thread; ensure you invoke async calls from the main actor when updating UI.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+<li><code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> (per-field setup)</li>
+<li><code><a href="Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></code> (JSON mapping policy)</li>
+<li><code><a href="Structs/VGSValidationRuleSet.html">VGSValidationRuleSet</a></code> (custom validation)</li>
+</ul>
 
                         <a href="Classes/VGSCollect.html" class="slightly-smaller">See more</a>
                       </div>
@@ -436,7 +494,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L16-L120">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L47-L253">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -795,7 +853,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

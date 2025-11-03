@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,8 +421,33 @@
               </div>
             <p><code>VGSExpDateTokenizationParameters</code> - parameters required for tokenization api.</p>
 
+<p>Summary:
+Defines how card expiration date input (FieldType <code>.expDate</code>) is tokenized when using Vault tokenization or alias creation APIs.</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Persistent by default to allow alias reuse server-side.</li>
+<li><code>format</code>: Alias format applied to the expiration value. Default <code>.UUID</code> creates opaque aliases.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">VGSExpDateTokenizationParameters</span><span class="p">()</span>
+<span class="n">params</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or FPE / numeric-preserving format</span>
+<span class="k">let</span> <span class="nv">expCfg</span> <span class="o">=</span> <span class="kt">VGSExpDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_exp"</span><span class="p">)</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">params</span>
+<span class="n">expField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">expCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Format affects alias representation only, not validation or formatting in the UI.</li>
+<li>Keep raw MM/YY or MM/YYYY formatting logic in <code>formatPattern</code> and date validation via rules (<code><a href="../Structs/VGSValidationRuleCardExpirationDate.html">VGSValidationRuleCardExpirationDate</a></code>).</li>
+</ul>
+
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L8-L15">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L28-L36">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -449,7 +482,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L11">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -467,7 +500,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Data alies format.</p>
+                        <p>Data alias format.
+Defines transformation applied to raw expiration date when creating an alias. Default: <code>.UUID</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -480,7 +514,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L14">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -493,7 +527,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

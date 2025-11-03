@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -411,10 +419,35 @@
 
                 </div>
               </div>
-            <p><code>VGSTokenizationParameters</code> - parameters required for tokenization api.</p>
+            <p><code>VGSTokenizationParameters</code> - parameters required for tokenization API.</p>
+
+<p>Summary:
+Defines generic tokenization settings for fields that do not have a specialized tokenization configuration (e.g. custom text, card holder name, miscellaneous identifiers).</p>
+
+<p>Properties:</p>
+
+<ul>
+<li><code>storage</code>: Vault storage type. Defaults to <code>.PERSISTENT</code> enabling server-side reuse. Switch to <code>.VOLATILE</code> only if value must not persist (e.g. ephemeral session identifiers).</li>
+<li><code>format</code>: Alias format. Default <code>.UUID</code> produces an opaque, non-reversible alias appropriate for most free-form text values.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">genericParams</span> <span class="o">=</span> <span class="kt">VGSTokenizationParameters</span><span class="p">()</span>
+<span class="n">genericParams</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span> <span class="c1">// or another supported format</span>
+<span class="k">let</span> <span class="nv">holderCfg</span> <span class="o">=</span> <span class="kt">VGSTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_holder"</span><span class="p">)</span>
+<span class="n">holderCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span> <span class="o">=</span> <span class="n">genericParams</span>
+<span class="n">nameField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">holderCfg</span>
+</code></pre>
+
+<p>Notes:</p>
+
+<ul>
+<li>Changing <code>format</code> affects alias representation only, not validation or field UI formatting.</li>
+<li>Prefer specialized configurations (e.g. <code><a href="../Classes/VGSCardNumberTokenizationConfiguration.html">VGSCardNumberTokenizationConfiguration</a></code>) for field types with domain-specific alias requirements.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L12-L19">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L32-L40">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -449,7 +482,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L15">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -467,7 +500,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Data alies format.</p>
+                        <p>Data alias format.
+Default <code>.UUID</code> produces opaque, non-reversible alias suitable for most generic text values.</p>
 
                       </div>
                       <div class="declaration">
@@ -480,7 +514,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L18">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L39">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -493,7 +527,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

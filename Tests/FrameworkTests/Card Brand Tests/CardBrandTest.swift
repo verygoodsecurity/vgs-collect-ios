@@ -2,9 +2,7 @@
 //  MasterCardBrandTest.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 06.04.2020.
-//  Copyright © 2020 VGS. All rights reserved.
-//
+
 
 import XCTest
 @testable import VGSCollectSDK

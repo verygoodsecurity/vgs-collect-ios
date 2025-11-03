@@ -7,6 +7,31 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
+/// A SwiftUI wrapper around `VGSTextField` providing secure data collection with a declarative builder-style API.
+///
+/// Overview:
+/// `VGSTextFieldRepresentable` lets you embed the UIKit `VGSTextField` inside SwiftUI while configuring appearance, behavior, and callbacks in a chainable, value-type friendly manner.
+///
+/// Features:
+/// - Chainable modifiers (`font`, `placeholder`, `border`, etc.).
+/// - Live state & editing event callbacks (`onEditingEvent`, `onStateChange`).
+/// - Optional accessory view and secure text entry.
+///
+/// Security:
+/// - No sensitive text is exposed through published properties; retrieval and submission handled internally.
+/// - Avoid storing raw values outside SDK-managed flows.
+///
+/// Clearing Input:
+/// - Use `clearTextTrigger(_:)` binding to programmatically clear the field from SwiftUI state.
+///
+/// Example:
+/// ```swift
+/// VGSTextFieldRepresentable(configuration: config)
+///   .placeholder("Cardholder name")
+///   .font(.preferredFont(forTextStyle: .body))
+///   .border(color: .gray, lineWidth: 1)
+///   .onStateChange { state in print(state.isValid) }
+/// ```
 public struct VGSTextFieldRepresentable: UIViewRepresentable, @preconcurrency VGSTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   
     /// A class responsible for configuration VGSTextFieldRepresentable.
@@ -99,6 +124,7 @@ public struct VGSTextFieldRepresentable: UIViewRepresentable, @preconcurrency VG
     }
   }
   /// Removes text from input.
+  /// - Parameter binding: A `Binding<Bool>` that when set to `true` triggers clearing and is reset to `false` automatically.
   public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.clearTextTrigger = binding

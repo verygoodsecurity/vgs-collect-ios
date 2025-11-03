@@ -157,7 +157,7 @@ internal extension FieldType {
       return rules
     }
   
-    // String idetifier for each  field type. Can be used for ananlytics, etc.
+    // String identifier for each field type. Can be used for analytics, etc.
     var stringIdentifier: String {
       switch self {
       case .cardHolderName:
