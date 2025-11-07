@@ -21,44 +21,41 @@ let package = Package(
           targets: ["VGSBlinkCardCollector"])
     ],
     dependencies: [
-            .package(
-                        name: "CardIOSDK",
-                        url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git",
-                        .exact("5.5.7")
-            ),
-      .package(
-            name: "BlinkCard",
-            url: "https://github.com/blinkcard/blinkcard-swift-package",
-            .exact("2.12.0")
-      )
+        // Updated to new requirement API (exact:) to silence deprecation warnings.
+        .package(url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git", exact: "5.5.7"),
+        .package(url: "https://github.com/blinkcard/blinkcard-swift-package", exact: "2.12.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "VGSCollectSDK",
-                      exclude: [
+            exclude: [
               "Info.plist",
-                            "VGSCollectSDK.h"
-                     ],
-          resources: [.copy("PrivacyInfo.xcprivacy")]),
+              "VGSCollectSDK.h"
+            ],
+            // Added processing of Resources directory (including CardIcon.xcassets) to silence unhandled resource warning.
+            resources: [
+              .copy("PrivacyInfo.xcprivacy"),
+              .process("Resources")
+            ]),
         .testTarget(
             name: "FrameworkTests",
             dependencies: ["VGSCollectSDK"],
-                      exclude: [
-                        "Info.plist",
-                        "FrameworkTests.xctestplan"
-                      ],
-                      resources: [.process("Resources")]),
+            exclude: [
+              "Info.plist",
+              "FrameworkTests.xctestplan"
+            ],
+            resources: [.process("Resources")]),
         .target(
           name: "VGSCardIOCollector",
           dependencies: ["VGSCollectSDK",
-                         .product(name: "CardIOSDK", package: "CardIOSDK")],
+                         .product(name: "CardIOSDK", package: "CardIOSDK-iOS")],
           path: "Sources/VGSCardIOCollector/"),
         .target(
             name: "VGSBlinkCardCollector",
             dependencies: ["VGSCollectSDK",
-                      .product(name: "BlinkCard", package: "BlinkCard")],
+                      .product(name: "BlinkCard", package: "blinkcard-swift-package")],
             path: "Sources/VGSBlinkCardCollector/")
         ]
 )
