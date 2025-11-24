@@ -2,15 +2,33 @@
 //  VGSCardTextField.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 24.11.2019.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 #if os(iOS)
 import UIKit
 #endif
 
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to detect and show credit card brand images.
+///
+/// Overview:
+/// `VGSCardTextField` extends `VGSTextField` to provide real-time card brand detection (Visa, Mastercard, etc.) and an optional brand icon. It dynamically:
+/// - Detects card brand as the user types.
+/// - Updates spacing/formatting pattern automatically.
+/// - Propagates brand-specific CVC length & formatting to attached `VGSCVCTextField`.
+///
+/// Usage:
+/// 1. Create instance and assign a `VGSConfiguration` whose `type` is `.cardNumber` (or specialized tokenization configuration).
+/// 2. Optionally customize icon presentation via `cardIconLocation`, `cardIconSize`, or supply a closure in `cardsIconSource` for custom imagery.
+/// 3. Observe field state (`state` cast to `VGSCardState`) to access `bin`, `last4`, and `cardBrand` after valid input.
+///
+/// Accessibility:
+/// - Keep `cardIconViewIsAccessibilityElement = true` for voiceover users; set `cardIconAccessibilityHint` to a localized brand description.
+/// - Avoid adding sensitive PAN information to accessibility hints.
+///
+/// Performance:
+/// Brand detection runs on each input change.
+///
+/// Security:
+/// - No raw PAN characters are logged or exposed via public API.
 public final class VGSCardTextField: VGSTextField {
   
   internal let cardIconView = UIImageView()
@@ -38,36 +56,34 @@ public final class VGSCardTextField: VGSTextField {
     }
   }
   
-  /// Card brand icon size.
+  /// Card brand icon size. Adjust before heavy layout cycles; changing will update size constraints.
   public var cardIconSize: CGSize = CGSize(width: 45, height: 45) {
     didSet {
       updateCardIconViewSize()
     }
   }
     
-  /// Card Icon accissibility view hint. You can change the hint dynamically based on detected card brand.
-    public var cardIconViewIsAccessibilityElement = true {
+  /// Card Icon accessibility element flag. Set `false` to hide icon from VoiceOver if redundant.
+  public var cardIconViewIsAccessibilityElement = true {
         didSet {
             cardIconView.isAccessibilityElement = cardIconViewIsAccessibilityElement
         }
     }
     
-  /// Card Icon accissibility view hint. You can change the hint dynamically based on detected card brand.
+  /// Card Icon accessibility hint. Provide a localized description of current brand (e.g. "Visa card brand icon").
   public var  cardIconAccessibilityHint = "card brand icon"
 
-  
   // MARK: Custom card brand images
-  /// Asks custom image for specific `VGSPaymentCards.CardBrand`
+  /// Custom card brand image provider. Return a `UIImage` for the detected brand or `nil` to fallback to default asset.
   public var cardsIconSource: ((VGSPaymentCards.CardBrand) -> UIImage?)?
 
-  
-  /// :nodoc:
+  /// :nodoc: (Internal lifecycle) Ensures icon updates when view is attached.
   public override func didMoveToSuperview() {
     super.didMoveToSuperview()
     updateCardImage()
   }
   
-  /// The natural size for the Textfield, considering only properties of the view itself.
+  /// The natural size for the Textfield, considering only properties of the view itself plus icon width & height.
   public override var intrinsicContentSize: CGSize {
     return getIntrinsicContentSize()
   }
@@ -136,13 +152,14 @@ internal extension VGSCardTextField {
         updateCardImage()
     }
   
+    /// Update card brand icon based on detected brand (or unknown fallback) and refresh accessibility hint.
     func updateCardImage() {
        if let state = state as? VGSCardState {
           cardIconView.image = (cardsIconSource == nil) ? state.cardBrand.brandIcon :  cardsIconSource?(state.cardBrand)
        } else {
         cardIconView.image = VGSPaymentCards.unknown.brandIcon
        }
-        /// Update accessibility hint 
+        /// Update accessibility hint
         cardIconView.accessibilityHint = cardIconAccessibilityHint
     }
   

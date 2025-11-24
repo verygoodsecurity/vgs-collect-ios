@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,8 +421,40 @@
               </div>
             <p><code>VGSCVCTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.cvc</code>, required for work with tokenization api.</p>
 
+<p>Summary:
+Specialized configuration subclass for CVC fields enabling tokenization when submitting via Vault API methods (e.g. <code>tokenizeData</code>, <code>createAliases</code>).</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.cvc</code> (override ignores external setter attempts).</li>
+<li>Supplies <code>tokenizationParameters</code> used to build tokenization request body.</li>
+<li>Inherits formatting &amp; validation from <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code>; defaults still apply unless overridden.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cvcCfg</span> <span class="o">=</span> <span class="kt">VGSCVCTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_cvc"</span><span class="p">)</span>
+<span class="c1">// Optional: adjust alias format</span>
+<span class="n">cvcCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">FPE_SIX_T_FOUR</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cvcCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Modify <code>tokenizationParameters.format</code> before assigning configuration to the field.</li>
+<li>Validation rules can still be overridden via <code>validationRules</code> if needed.</li>
+<li>Storage should remain volatile for CVC (do not switch to persistent unless explicit compliance requirements dictate).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Tokenization reduces exposure of raw CVC; never log raw input even with tokenization enabled.</li>
+</ul>
+
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L19-L33">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L63-L77">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -449,7 +489,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L22">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -479,7 +519,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L25-L28">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L69-L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -492,7 +532,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

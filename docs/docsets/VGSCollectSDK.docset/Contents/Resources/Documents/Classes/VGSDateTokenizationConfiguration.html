@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -412,11 +420,46 @@
 
                 </div>
               </div>
-            <p>Class responsible for configuration <code><a href="../Classes/VGSDateTextField.html">VGSDateTextField</a></code> or <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> with <code>fieldType = .date</code>.
-Extends <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code>. Required to work with tokenization API.</p>
+            <p><code>VGSDateTokenizationConfiguration</code> - configuration object for a date field tokenization.</p>
+
+<p>Summary:
+Specialized configuration for <code>.date</code> fields enabling Vault tokenization, optional date-picker input, and optional format serialization before submission.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.date</code>.</li>
+<li>Provides <code>tokenizationParameters</code> consumed by tokenization/alias APIs.</li>
+<li>Supports optional date picker via <code>inputSource = .datePicker</code> and year range customization (<code>datePickerStartDate</code> / <code>datePickerEndDate</code>).</li>
+<li>Allows input/output date format conversion &amp; serialization through <code>serializers</code> collection.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">dateCfg</span> <span class="o">=</span> <span class="kt">VGSDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"event_date"</span><span class="p">)</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">inputSource</span> <span class="o">=</span> <span class="o">.</span><span class="n">datePicker</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">inputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">mmddyyyy</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">outputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">yyyymmdd</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">dateField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">dateCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Set format conversion properties before assigning configuration to the field.</li>
+<li>Provide serializers when you need extra structured output (e.g. separate year/month fields) prior to tokenization.</li>
+<li>Adjust start/end picker dates via initializer optional parameters.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Tokenization replaces raw date with an alias; never log raw date content if considered sensitive (e.g. birth dates).</li>
+<li>Do not persist raw input.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L20-L89">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L67-L136">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -522,7 +565,7 @@ it will be calculated removing 100 years from current date.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L48-L62">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L95-L109">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -565,7 +608,7 @@ it will be calculated removing 100 years from current date.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L65-L68">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L112-L115">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -681,7 +724,7 @@ it will be calculated removing 100 years from current date.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

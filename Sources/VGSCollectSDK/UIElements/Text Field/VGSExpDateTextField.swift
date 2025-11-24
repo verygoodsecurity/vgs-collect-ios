@@ -8,6 +8,27 @@ import UIKit
 #endif
 
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show picker view with Card Number Expiration Month and Year.
+///
+/// Overview:
+/// `VGSExpDateTextField` presents a month/year picker or keyboard for collecting card expiration date securely. It auto-validates against current month to prevent past dates and adapts its formatting based on configuration.
+///
+/// Features:
+/// - Month & year picker with customizable label formats (`MonthFormat`, `YearFormat`).
+/// - Prevents selection of expired month (auto-corrects if user navigates to past entry in current year).
+/// - Supports keyboard input fallback when configuration sets `inputSource = .keyboard`.
+/// - Integrates with `VGSExpDateConfiguration` for formatting & serialization, including tokenization scenarios.
+///
+/// Usage:
+/// 1. Create text field and assign a `VGSExpDateConfiguration` (or tokenization configuration) to `configuration` before editing begins.
+/// 2. Optionally set `monthPickerFormat` / `yearPickerFormat` for UI preferences.
+/// 3. Read `state` for validation errors; submit through `VGSCollect`.
+///
+/// Accessibility:
+/// - Picker components inherit system traits; provide a meaningful placeholder so VoiceOver announces context.
+/// - Avoid exposing actual card number or other PII in any associated labels.
+///
+/// Performance:
+/// - Data source arrays are lightweight; picker updates only on relevant component changes.
 public final class VGSExpDateTextField: VGSTextField {
     
     // MARK: - Enums
@@ -90,12 +111,12 @@ public final class VGSExpDateTextField: VGSTextField {
 
 extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
 
-	  /// :nodoc: Picker view dataSource implementation.
+      /// :nodoc: Picker view dataSource implementation.
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
 
-	  /// :nodoc: Picker view dataSource implementation.
+      /// :nodoc: Picker view dataSource implementation.
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case monthPickerComponent:
@@ -105,7 +126,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 
-	  /// :nodoc: Picker view delegate implementation.
+      /// :nodoc: Picker view delegate implementation.
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case monthPickerComponent:
@@ -115,7 +136,7 @@ extension VGSExpDateTextField: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 
-	  /// :nodoc: Picker view delegate implementation.
+      /// :nodoc: Picker view delegate implementation.
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
       /// check that date is not before current month
       let currentMonthIndex = Calendar(identifier: .gregorian).component(.month, from: Date()) - 1

@@ -7,6 +7,16 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
+/// A SwiftUI wrapper for `VGSCardTextField` enabling secure card number entry with real-time brand detection & adaptive formatting.
+///
+/// Features:
+/// - Brand icon customization (size, position, accessibility).
+/// - Chainable UI modifiers for font, placeholder, border, etc.
+/// - Editing & state callbacks exposing `VGSCardState` (BIN, last4, brand).
+///
+/// Security:
+/// - PAN is sensitive.
+/// - Tokenize using `VGSCollect` methods for safe vault storage.
 public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
     /// A class responsible for configuration VGSCardTextFieldRepresentable.
     var configuration: VGSConfiguration
@@ -114,6 +124,7 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
       uiView.cardIconViewIsAccessibilityElement = cardIconViewIsAccessibilityElement
     }
     /// Removes text from input.
+    /// Binding resets to `false` after clearing to avoid repeat triggers.
     public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSCardTextFieldRepresentable {
         var newRepresentable = self
         newRepresentable.clearTextTrigger = binding

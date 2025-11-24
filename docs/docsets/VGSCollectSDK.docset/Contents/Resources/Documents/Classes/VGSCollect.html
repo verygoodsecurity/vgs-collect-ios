@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -411,10 +419,60 @@
 
                 </div>
               </div>
-            <p>An object you use for observing <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> <code>State</code> and send data to your organization vault.</p>
+            <p>A collector object that registers secure input fields (<code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>) and submits their data/files to a VGS Vault.</p>
+
+<p>Summary:
+Provides the orchestration layer for secure data collection: field registration, state observation, JSON/body construction, vault/network submission, tokenization/alias creation and file lifecycle management.</p>
+
+<p>Responsibilities:</p>
+
+<ul>
+<li>Registers text fields automatically when a <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> referencing this collector is assigned.</li>
+<li>Observes editing state via <code>observeFieldState</code> (focused field) and <code>observeStates</code> (all fields snapshot).</li>
+<li>Submits values with <code>sendData</code> / <code>sendFile</code> (closure, async/await, Combine variants).</li>
+<li>Performs tokenization (<code>tokenizeData</code>) and alias creation (<code>createAliases</code>), plus card creation via CMP (<code>createCard</code>).</li>
+<li>Cleans up attached files after successful upload (<code>cleanFiles</code>).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Never logs or exposes raw sensitive values through public APIs.</li>
+<li>Avoid adding PII or secrets to <code>customHeaders</code> &amp; <code>fieldName</code> values; use them strictly for routing/auth metadata.</li>
+<li>Internal storage is transient and cleared/replaced as input changes; persistence is the caller&rsquo;s responsibility (and should only store aliases).</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Initialize with vault id &amp; environment: <code>let collector = VGSCollect(id: vaultId, environment: .sandbox)</code>.</li>
+<li>Create a <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> per field and assign to each <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> (registration happens automatically).</li>
+<li>Optionally set observation closures for validation/UI updates.</li>
+<li>Validate all required fields (<code>state.isValid</code>) before calling a submit method.</li>
+<li>Parse response aliases/tokens; discard raw user input from UI components.</li>
+<li>After file submission success, call <code>cleanFiles()</code>.</li>
+</ol>
+
+<p>Invariants / Preconditions:</p>
+
+<ul>
+<li><code>id</code> must be a non-empty vault identifier.</li>
+<li>All required fields should be valid before invoking submission APIs.</li>
+<li>Only one logical file should be attached when calling <code>sendFile</code>.</li>
+<li>For alias creation (<code>createAliases</code>), appropriate authentication must be provided in <code>customHeaders</code>.</li>
+<li>UI access (field state collection) occurs on the main thread; ensure you invoke async calls from the main actor when updating UI.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+<li><code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> (per-field setup)</li>
+<li><code><a href="../Structs/VGSCollectRequestOptions.html">VGSCollectRequestOptions</a></code> (JSON mapping policy)</li>
+<li><code><a href="../Structs/VGSValidationRuleSet.html">VGSValidationRuleSet</a></code> (custom validation)</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L16-L120">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L47-L253">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -445,7 +503,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set your custom HTTP headers.</p>
+                        <p>A dictionary of custom HTTP header key-value pairs applied to all subsequent network submissions initiated by this collector.</p>
+
+<p>Purpose:
+Provide route-specific auth tokens (e.g. Bearer JWT), idempotency or correlation identifiers.</p>
+
+<p>Security:</p>
+
+<ul>
+<li>Never include raw PAN/CVC/SSN or other sensitive user input.</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -458,7 +525,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L34-L40">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L71-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -489,7 +556,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Observe only focused <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> on editing events.</p>
+                        <p>Closure invoked on every editing event for the currently focused <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>.</p>
+
+<p>Purpose:
+Supply real-time, field-specific validation feedback or UI updates (e.g. show/hide error label).</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Called after input changes or focus transitions.</li>
+<li>Provides access to <code>textField.state</code> for validation and metadata (e.g. card brand via cast to <code><a href="../Classes/VGSCardState.html">VGSCardState</a></code>).</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="n">collector</span><span class="o">.</span><span class="n">observeFieldState</span> <span class="o">=</span> <span class="p">{</span> <span class="n">tf</span> <span class="k">in</span>
+  <span class="k">if</span> <span class="o">!</span><span class="n">tf</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span> <span class="p">{</span> <span class="cm">/* highlight */</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -502,7 +585,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L45">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -520,7 +603,22 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Observe  all <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> on editing events.</p>
+                        <p>Closure invoked on every editing event with a snapshot array of all registered <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> instances.</p>
+
+<p>Purpose:
+Evaluate aggregate form validity or enable/disable a submit button.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Each field&rsquo;s <code>.state</code> reflects latest formatting &amp; validation outcome.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="n">collector</span><span class="o">.</span><span class="n">observeStates</span> <span class="o">=</span> <span class="p">{</span> <span class="n">fields</span> <span class="k">in</span>
+  <span class="n">submitButton</span><span class="o">.</span><span class="n">isEnabled</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">allSatisfy</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -533,7 +631,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L48">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -564,7 +662,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns array of <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>s associated with <code>VGSCollect</code> instance.</p>
+                        <p>All text fields currently registered with this collector.</p>
+
+<p>Registration:
+Occurs automatically when a <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> whose <code>collector</code> is this instance is assigned to a <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>.</p>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">allValid</span> <span class="o">=</span> <span class="n">collector</span><span class="o">.</span><span class="n">textFields</span><span class="o">.</span><span class="n">allSatisfy</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span> <span class="p">}</span>
+</code></pre>
+
+<p>Notes:
+Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
 
                       </div>
                       <div class="declaration">
@@ -577,7 +685,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L53-L55">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L128-L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -608,7 +716,27 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialization.</p>
+                        <p>Creates a collector bound to a specific vault environment string.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>id: Non-empty vault identifier.</li>
+<li>environment: Environment string (e.g. &ldquo;sandbox&rdquo;, &ldquo;live&rdquo;, &ldquo;live-eu1&rdquo;).</li>
+<li>hostname: Optional custom hostname override (nil uses default vault routing).</li>
+</ul>
+
+<p>Preconditions:</p>
+
+<ul>
+<li><code>id</code> should be valid; empty values will lead to failing upstream requests.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">vaultId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="s">"sandbox"</span><span class="p">)</span>
+</code></pre>
+
+<p>Prefer the convenience initializer for typed environment + region.</p>
 
                       </div>
                       <div class="declaration">
@@ -620,51 +748,8 @@
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>id</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>String</code> object, your organization vault id.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>environment</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>String</code> object, your organization vault environment with data region.(e.g. &ldquo;live&rdquo;, &ldquo;live-eu1&rdquo;, &ldquo;sandbox&rdquo;).</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>hostname</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>String?</code> object, custom Hostname, if not set, data will be sent to Vault Url. Default is <code>nil</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L65-L71">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L149-L155">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -682,7 +767,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialization.</p>
+                        <p>Convenience initializer composing a regional environment string.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>id: Vault identifier.</li>
+<li>environment: Enumerated environment (<code>.sandbox</code> or <code>.live</code>).</li>
+<li>dataRegion: Optional region segment (e.g. &ldquo;eu1&rdquo;) appended to environment.</li>
+<li>hostname: Optional custom hostname.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">vaultId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">live</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="s">"eu1"</span><span class="p">)</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -694,63 +792,8 @@
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>id</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>String</code> object, your organization vault id.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>environment</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Enums/Environment.html">Environment</a></code> object, your organization vault environment. By default <code><a href="../Enums/Environment.html#/s:13VGSCollectSDK11EnvironmentO7sandboxyA2CmF">Environment.sandbox</a></code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>dataRegion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>String</code> object, id of data storage region (e.g. &ldquo;eu-123&rdquo;).</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>hostname</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code>String</code> object, custom Hostname, if not set, data will be sent to Vault Url. Default is <code>nil</code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L81-L84">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L169-L172">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -781,7 +824,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> with <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC9fieldNameSSvp">VGSConfiguration.fieldName</a></code> associated with <code>VGCollect</code> instance.</p>
+                        <p>Returns the first registered field matching a given <code>fieldName</code>.</p>
+
+<p>Parameter:</p>
+
+<ul>
+<li>fieldName: The JSON key assigned in its <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code>.</li>
+</ul>
+
+<p>Returns:</p>
+
+<ul>
+<li><code>VGSTextField?</code> found or <code>nil</code> if no match.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">cardField</span> <span class="o">=</span> <span class="n">collector</span><span class="o">.</span><span class="nf">getTextField</span><span class="p">(</span><span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">),</span> <span class="n">cardField</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -794,7 +853,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L89-L91">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L188-L190">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -812,7 +871,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Unasubscribe <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> from <code>VGSCollect</code> instance.</p>
+                        <p>Unregisters a single text field from this collector.</p>
+
+<p>Parameter:</p>
+
+<ul>
+<li>textField: Field instance to detach.</li>
+</ul>
+
+<p>Effects:</p>
+
+<ul>
+<li>Field is excluded from future submissions and observation callbacks.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="n">collector</span><span class="o">.</span><span class="nf">unsubscribeTextField</span><span class="p">(</span><span class="n">nameField</span><span class="p">)</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -824,27 +899,8 @@
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>textField</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> that should be unsubscribed.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L97-L99">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L204-L206">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -862,7 +918,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Unasubscribe <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>s from <code>VGSCollect</code> instance.</p>
+                        <p>Unregisters multiple text fields.</p>
+
+<p>Parameter:</p>
+
+<ul>
+<li>textFields: Array of field instances to detach.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="n">collector</span><span class="o">.</span><span class="nf">unsubscribeTextFields</span><span class="p">([</span><span class="n">cardField</span><span class="p">,</span> <span class="n">expField</span><span class="p">])</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -874,27 +940,8 @@
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>textFields</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an array of <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>s that should be unsubscribed.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L105-L107">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L217-L219">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -912,7 +959,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Unasubscribe  all <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>s from <code>VGSCollect</code> instance.</p>
+                        <p>Unregisters all currently registered text fields.</p>
+
+<p>Purpose:
+Simplify form teardown (e.g. view controller disappearing) to prevent accidental resubmission.</p>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="n">collector</span><span class="o">.</span><span class="nf">unsubscribeAllTextFields</span><span class="p">()</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -925,7 +979,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L110-L112">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L230-L232">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -956,7 +1010,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Detach files for associated <code>VGSCollect</code> instance.</p>
+                        <p>Detaches all selected/attached files from this collector.</p>
+
+<p>Purpose:
+Free ephemeral memory and avoid unintended re-use of stale file data after successful upload or cancellation.</p>
+
+<p>Behavior:
+Safe to call multiple times; subsequent invocations are no-ops once files are cleared.</p>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="n">collector</span><span class="o">.</span><span class="nf">sendFile</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="s">"/post"</span><span class="p">)</span> <span class="p">{</span> <span class="n">resp</span> <span class="k">in</span>
+  <span class="k">if</span> <span class="k">case</span> <span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="n">resp</span> <span class="p">{</span> <span class="n">collector</span><span class="o">.</span><span class="nf">cleanFiles</span><span class="p">()</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -969,7 +1035,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L117-L119">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L250-L252">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1003,7 +1069,7 @@
                         <p>Send data from VGSTextFields to your organization vault.</p>
 
 <ul>
-<li>path: Inbound rout path for your organization vault.</li>
+<li>path: Inbound route path for your organization vault.</li>
 <li>method: VGSCollectHTTPMethod, default is <code>.post</code>.</li>
 <li>routeId: id of VGS Proxy Route, default is <code>nil</code>.</li>
 <li>extraData: Any data you want to send together with data from VGSTextFields , default is <code>nil</code>.</li>
@@ -1047,7 +1113,7 @@
                         <p>Send file to your organization vault. Only send one file at a time.</p>
 
 <ul>
-<li>path: Inbound rout path for your organization vault.</li>
+<li>path: Inbound route path for your organization vault.</li>
 <li>method: HTTPMethod, default is <code>.post</code>.</li>
 <li>routeId: id of VGS Proxy Route, default is <code>nil</code>.</li>
 <li>extraData: Any data you want to send together with data from VGSTextFields , default is <code>nil</code>.</li>
@@ -1100,7 +1166,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Send tokenization request with data from VGSTextFields to Vaulr API v1.</p>
+                        <p>Send tokenization request with data from VGSTextFields to Vault API v1.</p>
 
 <ul>
 <li>routeId: id of VGS Proxy Route, default is <code>nil</code>.</li>
@@ -1339,7 +1405,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>Inbound rout path for your organization vault.</p>
+                                  <p>Inbound route path for your organization vault.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1449,7 +1515,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>Inbound rout path for your organization vault.</p>
+                                  <p>Inbound route path for your organization vault.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1795,7 +1861,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>Inbound rout path for your organization vault.</p>
+                                  <p>Inbound route path for your organization vault.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1902,7 +1968,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>Inbound rout path for your organization vault.</p>
+                                  <p>Inbound route path for your organization vault.</p>
                                 </div>
                               </td>
                             </tr>
@@ -2172,7 +2238,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

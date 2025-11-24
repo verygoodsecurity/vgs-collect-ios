@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -411,16 +419,16 @@
 
                 </div>
               </div>
-            <p>Class responsible for storing and managing Payment Cards in SDK.</p>
+            <p>Class responsible for storing and managing Payment Card definitions used by the SDK.</p>
 
 <ul>
-<li>Contains editable defined Payment Cards Models</li>
-<li>Allows to add Custom Payment Cards Models</li>
-<li>Allows to edit Unknown Payment Cards Models(brands not defined by SDK and Developer)</li>
+<li>Provides predefined payment card models (Visa, Mastercard, Amex, etc.).</li>
+<li>Supports adding custom payment card models (regex &amp; format pattern based).</li>
+<li>Allows configuring behaviour and validation for unknown brands through <code><a href="../Classes/VGSPaymentCards.html#/s:13VGSCollectSDK15VGSPaymentCardsC7unknownAA26VGSUnknownPaymentCardModelVvpZ">VGSPaymentCards.unknown</a></code>.</li>
 </ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L15-L129">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L15-L126">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -451,7 +459,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Supported card brands</p>
+                        <p>Supported card brands handled by the SDK.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <code>.custom(brandName:)</code> can be used to add developer-defined brands; ensure <code>brandName</code> uniqueness.
+
+</div>
 
                         <a href="../Classes/VGSPaymentCards/CardBrand.html" class="slightly-smaller">See more</a>
                       </div>
@@ -464,7 +477,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L23-L54">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L24-L55">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -495,7 +508,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Elo Payment Card Model</p>
+                        <p>Elo payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -508,7 +521,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L59">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -526,7 +539,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Visa Electron Payment Card Model</p>
+                        <p>Visa Electron payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -539,7 +552,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L61">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -557,7 +570,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Maestro Payment Card Model</p>
+                        <p>Maestro payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -570,7 +583,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L63">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L64">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -588,7 +601,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Forbrugsforeningen Payment Card Model</p>
+                        <p>Forbrugsforeningen payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -601,7 +614,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L65">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -619,7 +632,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Dankort Payment Card Model</p>
+                        <p>Dankort payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -632,7 +645,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L67">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -650,7 +663,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Elo Payment Card Model</p>
+                        <p>Visa payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -663,7 +676,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L69">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -681,7 +694,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Master Card Payment Card Model</p>
+                        <p>Mastercard payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -694,7 +707,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L71">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -712,7 +725,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Amex Payment Card Model</p>
+                        <p>American Express payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -725,7 +738,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L73">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -743,7 +756,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Hipercard Payment Card Model</p>
+                        <p>Hipercard payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -756,7 +769,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L75">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -774,7 +787,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>DinersClub Payment Card Model</p>
+                        <p>Diners Club payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -787,7 +800,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L77">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -805,7 +818,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Discover Payment Card Model</p>
+                        <p>Discover payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -818,7 +831,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L79">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L80">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -836,7 +849,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>UnionPay Payment Card Model</p>
+                        <p>UnionPay payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -849,7 +862,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L81">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -867,7 +880,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>JCB Payment Card Model</p>
+                        <p>JCB payment card model.</p>
 
                       </div>
                       <div class="declaration">
@@ -880,7 +893,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L83">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L84">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -911,7 +924,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Unknown Brand Payment Card Model.  Can be used for specifing cards details when <code><a href="../Structs/VGSValidationRulePaymentCard.html">VGSValidationRulePaymentCard</a></code> requires validating <code><a href="../Classes/VGSPaymentCards/CardBrand.html#/s:13VGSCollectSDK15VGSPaymentCardsC9CardBrandO7unknownyA2EmF">CardBrand.unknown</a></code> cards.</p>
+                        <p>Unknown brand payment card model. Customize to influence validation for brands not detected by predefined or custom models.</p>
 
                       </div>
                       <div class="declaration">
@@ -924,7 +937,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L88">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -955,10 +968,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Array of Custom Payment Card Models.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    the order has impact on which card brand should be detected first by <code><a href="../Structs/VGSPaymentCardModel.html#/s:13VGSCollectSDK19VGSPaymentCardModelV5regexSSvp">VGSPaymentCardModel.regex</a></code>.
+                        <p>Array of custom payment card models.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Order impacts brand detection priority. Earlier entries are matched first.
 
 </div>
 
@@ -973,7 +986,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L94">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L95">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -991,10 +1004,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An array of valid Card Brands, could include custom and default brands. If not set, will use <code>availableCardBrands</code> array instead.</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    the order has impact on which card brand should be detected first by <code><a href="../Structs/VGSPaymentCardModel.html#/s:13VGSCollectSDK19VGSPaymentCardModelV5regexSSvp">VGSPaymentCardModel.regex</a></code>.
+                        <p>Explicit list of valid brands (predefined + custom) to be used for detection. If <code>nil</code>, <code>availableCardBrands</code> is used.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Order impacts brand detection priority.
 
 </div>
 
@@ -1009,7 +1022,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L98">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L99">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1040,7 +1053,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>no:doc</p>
+                        <pre class="highlight swift"><code><span class="kt">Returns</span> <span class="n">the</span> <span class="n">payment</span> <span class="n">card</span> <span class="n">model</span> <span class="k">for</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">brand</span> <span class="n">from</span> <span class="n">currently</span> <span class="n">available</span> <span class="n">models</span><span class="o">.</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -1052,8 +1066,31 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>brand</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Brand to look up.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>VGSPaymentCardModelProtocol?</code> matching model or <code>nil</code> if not available.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L174-L176">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L171-L173">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1071,7 +1108,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>no:doc</p>
+                        <pre class="highlight swift"><code><span class="kt">Detects</span> <span class="n">card</span> <span class="n">brand</span> <span class="n">from</span> <span class="n">raw</span> <span class="kt">PAN</span> <span class="n">input</span> <span class="n">by</span> <span class="n">evaluating</span> <span class="n">regex</span> <span class="n">of</span> <span class="n">available</span> <span class="n">models</span> <span class="k">in</span> <span class="n">priority</span> <span class="n">order</span><span class="o">.</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -1083,8 +1121,31 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>input</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Raw card number string (digits only or may include spacing which should be sanitized before detection).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Resolved <code><a href="../Classes/VGSPaymentCards/CardBrand.html">CardBrand</a></code> or <code><a href="../Classes/VGSPaymentCards.html#/s:13VGSCollectSDK15VGSPaymentCardsC7unknownAA26VGSUnknownPaymentCardModelVvpZ">.unknown</a></code> if no regex matches.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L179-L187">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSPaymentCards/Core/VGSPaymentCards.swift#L178-L186">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1097,7 +1158,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

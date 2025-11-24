@@ -1,8 +1,6 @@
 //
 //  MaskedTextField+security.swift
 //
-//  Created by Vitalii Obertynskyi on 06.11.2019.
-//
 
 import Foundation
 #if os(iOS)

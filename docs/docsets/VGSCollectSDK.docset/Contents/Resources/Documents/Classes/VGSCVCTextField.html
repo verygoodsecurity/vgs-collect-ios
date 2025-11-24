@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -413,8 +421,32 @@
               </div>
             <p>An object that displays an editable text area. Can be use instead of a <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> when need to show CVC/CVV images for credit card brands.</p>
 
+<p>Overview:
+<code>VGSCVCTextField</code> augments <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> by rendering a brand-specific CVC/CVV helper icon whose size and position you can customize. When paired with a <code><a href="../Classes/VGSCardTextField.html">VGSCardTextField</a></code>, the icon and validation rules adapt to the detected brand (e.g. 3 vs 4 digit CVC length).</p>
+
+<p>Usage:</p>
+
+<ol>
+<li>Assign a <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> with <code>type = .cvc</code> (or tokenization config) before user input.</li>
+<li>Optionally adjust <code>cvcIconLocation</code>, <code>cvcIconSize</code>, or supply a custom image provider via <code>cvcIconSource</code>.</li>
+<li>Keep accessibility hints descriptive but free of sensitive details.</li>
+</ol>
+
+<p>Accessibility:</p>
+
+<ul>
+<li><code>cvcIconViewIsAccessibilityElement</code> controls VoiceOver exposure.</li>
+<li>Use <code>cvcIconAccessibilityHint</code> for localized explanation: e.g. &ldquo;CVC help icon&rdquo;.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Avoid logging or embedding confidential data inside accessibility strings.</li>
+</ul>
+
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L14-L88">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L29-L103">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -458,7 +490,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L41-L47">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L56-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -502,7 +534,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L51-L55">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L66-L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -533,7 +565,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L58-L62">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L73-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -564,7 +596,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L65-L67">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L80-L82">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -582,7 +614,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>CVC/CVV Icon accissibility view hint. You can change the hint dynamically based on detected card brand. Default is true.</p>
+                        <p>CVC/CVV icon accessibility element flag. You can change the flag dynamically based on detected card brand. Default is true.</p>
 
                       </div>
                       <div class="declaration">
@@ -595,7 +627,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L70-L74">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L85-L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -613,7 +645,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>CVC/CVV Icon accissibility view hint. You can change the hint dynamically based on detected card brand.</p>
+                        <p>CVC/CVV icon accessibility hint. Provide localized description of the icon purpose, not the code value.</p>
 
                       </div>
                       <div class="declaration">
@@ -626,7 +658,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L77">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L92">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -670,7 +702,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L81">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -683,7 +715,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

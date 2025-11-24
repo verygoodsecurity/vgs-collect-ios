@@ -7,6 +7,16 @@ import SwiftUI
 import Combine
 
 @available(iOS 14.0, *)
+/// A SwiftUI wrapper for `VGSExpDateTextField` collecting card expiration date (MM / YY or MM / YYYY) with a picker, supporting brand-aware formatting.
+///
+/// Features:
+/// - Configurable month & year display formats.
+/// - Chainable UI configuration & secure entry toggle.
+/// - State & editing callbacks for validation monitoring.
+///
+/// Security:
+/// - Expiration date treated as sensitive until tokenized; avoid persisting raw values.
+/// - Picker prevents selection of past months in current year.
 public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   /// A class responsible for configuration VGSExpDateTextFieldRepresentable.
   var configuration: VGSConfiguration
@@ -108,6 +118,7 @@ public struct VGSExpDateTextFieldRepresentable: UIViewRepresentable, VGSExpDateT
     }
   }
   /// Removes text from input.
+  /// Resets binding to `false` asynchronously after clearing.
   public func clearTextTrigger(_ binding: Binding<Bool>) -> VGSExpDateTextFieldRepresentable {
       var newRepresentable = self
       newRepresentable.clearTextTrigger = binding

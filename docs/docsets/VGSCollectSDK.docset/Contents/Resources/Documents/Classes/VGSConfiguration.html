@@ -389,6 +389,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -410,10 +418,44 @@
 
                 </div>
               </div>
-            <p>A class responsible for configuration VGSTextField.</p>
+            <p>A configuration object that defines semantic meaning, formatting and validation rules for an attached <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>.</p>
+
+<p>Summary:
+Configure how a secure text field should behave (data type, keyboard, formatting, validation, and submission key) when collecting sensitive data for VGS vault submission.</p>
+
+<p>Responsibilities:</p>
+
+<ul>
+<li>Declares the vault JSON key (<code>fieldName</code>) used during submission.</li>
+<li>Specifies field semantic <code>type</code> (e.g. card number, CVC) that drives built–in formatting &amp; validation defaults.</li>
+<li>Holds optional custom validation rules and formatting pattern overrides.</li>
+<li>Provides UI hints (keyboard type, return key, content type, appearance) without directly altering UI until bound.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li><code>fieldName</code> is a logical alias only; never place raw secrets or PII in the name itself.</li>
+<li>Formatting (masking/spacing) is purely cosmetic and does NOT sanitize or truncate the raw secure value transmitted to the vault.</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Instantiate with a <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> instance and unique <code>fieldName</code>.</li>
+<li>Adjust optional properties (e.g. <code>isRequired</code>, <code>validationRules</code>, <code>formatPattern</code>).</li>
+<li>Assign the configuration to a <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> before user input begins.</li>
+</ol>
+
+<p>Invariants / Preconditions:</p>
+
+<ul>
+<li><code>fieldName</code> should be non-empty and unique per collector to avoid ambiguous payload keys. (Not currently enforced at runtime.)</li>
+<li>Changing properties after the field has begun editing may not retroactively re-validate already entered content.</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L40-L114">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L62-L162">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -444,7 +486,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Collect form that will be assiciated with VGSTextField.</p>
+                        <p>Collect form (owner) associated with this configuration.</p>
+
+<p>Side Effects: None on assignment (set only in initializer).
+Lifetime: Weak to avoid retain cycles with <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> &amp; collector.</p>
 
                       </div>
                       <div class="declaration">
@@ -456,7 +501,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L45">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -474,7 +519,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Type of field congfiguration. Default is <code><a href="../Enums/FieldType.html#/s:13VGSCollectSDK9FieldTypeO4noneyA2CmF">FieldType.none</a></code>.</p>
+                        <p>Semantic field type driving built-in behavior (formatting, validation defaults, keyboard suggestions).</p>
+
+<p>Default: <code>.none</code> (generic text input). Update before binding to a text field for consistent behavior.</p>
 
                       </div>
                       <div class="declaration">
@@ -486,7 +533,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L48">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L75">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -504,7 +551,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Name that will be associated with <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> and used as a JSON key on send request with textfield data to your organozation vault.</p>
+                        <p>Vault JSON key that the collected value will map to upon submission.</p>
+
+<p>Invariants: Should be stable, URL-safe, and unique within a single collector; collisions cause overwriting in the outgoing body.
+Security: Never embed real secrets; treat as a metadata label only.</p>
 
                       </div>
                       <div class="declaration">
@@ -516,7 +566,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L51">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L81">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -534,7 +584,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set if <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> is required to be non-empty and non-nil on send request. Default is <code>false</code>.</p>
+                        <p>Indicates that the field must contain a non-empty value for form submission to be considered valid.</p>
+
+<p>Validation: Checked during collector validation. Empty required fields produce an error list.</p>
 
                       </div>
                       <div class="declaration">
@@ -546,7 +598,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L54">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L86">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -564,7 +616,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set if <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> is required to be valid only on send request. Default is <code>false</code>.</p>
+                        <p>Indicates that if the user provides any value, it must pass validation rules.</p>
+
+<p>Use Case: Optional fields like second address line or promo code that should not contain invalid data when filled.</p>
 
                       </div>
                       <div class="declaration">
@@ -576,7 +630,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L57">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -594,7 +648,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Input data visual format pattern. If not applied, will be  set by default depending on field <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC4typeAA9FieldTypeOvp">type</a></code>.</p>
+                        <p>Optional visual formatting pattern (e.g. &ldquo;#### #### #### ####&rdquo; for card numbers).</p>
+
+<p>Behavior: Applied purely at UI layer for readability. Raw value is still captured unformatted.</p>
 
                       </div>
                       <div class="declaration">
@@ -606,7 +662,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L60-L64">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L96-L100">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -624,7 +680,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>String, used to replace not default <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC13formatPatternSSSgvp">VGSConfiguration.formatPattern</a></code> characters in input text on send request.</p>
+                        <p>Replacement divider string used when serializing formatted input back to a raw value.
+Example: A phone pattern with spaces might be collapsed or replaced with <code>divider</code> value during serialization.</p>
 
                       </div>
                       <div class="declaration">
@@ -636,7 +693,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L67">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L104">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -654,7 +711,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Preferred UITextContentType for or <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>. If note set, default value could be set based on <code>VGSTextField.type</code> value.</p>
+                        <p>Preferred <code>UITextContentType</code> override used to enhance autofill &amp; keyboard heuristics.</p>
+
+<p>Auto-Assignment: If not explicitly set, the owning text field may assign a sensible default based on <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC4typeAA9FieldTypeOvp">type</a></code>.
+Tracking: <code>isTextContentTypeSet</code> indicates whether a custom value has been provided.</p>
 
                       </div>
                       <div class="declaration">
@@ -666,7 +726,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L70-L72">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L110-L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -684,7 +744,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Preferred UIKeyboardType for <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>.  If not applied, will be set by default depending on field <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC4typeAA9FieldTypeOvp">type</a></code> parameter.</p>
+                        <p>Keyboard layout preference; if nil, a type-specific default (e.g. numeric) might be applied by the UI component.</p>
 
                       </div>
                       <div class="declaration">
@@ -696,7 +756,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L76">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L116">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -714,7 +774,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Preferred UIReturnKeyType for <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>.</p>
+                        <p>Return key style suggestion; does not enforce submission logic itself.</p>
 
                       </div>
                       <div class="declaration">
@@ -726,7 +786,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L79">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L119">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -744,7 +804,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Preferred UIKeyboardAppearance for textfield. By default is <code>UIKeyboardAppearance.default</code>.</p>
+                        <p>Keyboard appearance preference (e.g. dark). Default is system/host app standard when nil.</p>
 
                       </div>
                       <div class="declaration">
@@ -756,7 +816,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L82">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L122">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -774,7 +834,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Validation rules for field input. Defines <code>State.isValide</code> result.</p>
+                        <p>A composite of validation rules executed against the raw (unformatted) value to update field validity state.</p>
+
+<p>Security: Pure evaluation; does not log or persist sensitive values.</p>
 
                       </div>
                       <div class="declaration">
@@ -786,7 +848,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L85">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L127">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -804,7 +866,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Max input length. <strong>IMPORTANT!</strong> Can conflict with <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC13formatPatternSSSgvp">.formatPattern</a></code> attribute.</p>
+                        <p>Maximum allowed raw input length (excluding formatting separators).</p>
+
+<p>Enforcement: Additional user input is rejected or ignored beyond this limit.</p>
 
                       </div>
                       <div class="declaration">
@@ -816,7 +880,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L88-L92">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L132-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -847,7 +911,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialization</p>
+                        <p>Designated initializer.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li>vgs: Owning <code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> instance that will manage submission.</li>
+<li>fieldName: Vault JSON key for the eventual secure submission payload.</li>
+</ul>
+
+<p>Preconditions: <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC9fieldNameSSvp">fieldName</a></code> should be non-empty (not enforced).</p>
 
                       </div>
                       <div class="declaration">
@@ -858,39 +931,8 @@
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>vgs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p><code><a href="../Classes/VGSCollect.html">VGSCollect</a></code> instance.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>fieldName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>associated <code><a href="../Classes/VGSConfiguration.html#/s:13VGSCollectSDK16VGSConfigurationC9fieldNameSSvp">fieldName</a></code>.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L110-L113">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L158-L161">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -903,7 +945,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

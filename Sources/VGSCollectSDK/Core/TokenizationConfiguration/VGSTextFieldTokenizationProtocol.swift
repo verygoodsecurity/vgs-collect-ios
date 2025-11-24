@@ -76,9 +76,9 @@ internal protocol VGSTextFieldTokenizationConfigurationProtocol {
 /// Parameters describing textfield input tokenization.
 @MainActor
 public protocol VGSTokenizationParametersProtocol {
-  /// Tokenization format.
+  /// Tokenization format (alias type) applied by Vault service (see VGSVaultAliasFormat docs).
   var format: String { get }
-  /// Storage type.
+  /// Vault storage type where tokenized data resides (persistent vs volatile lifecycle).
   var storage: String  { get }
 }
 

@@ -2,9 +2,6 @@
 //  Storage.swift
 //  VGSCollectSDK
 //
-//  Created by Vitalii Obertynskyi on 8/14/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 import Foundation
 #if os(iOS)

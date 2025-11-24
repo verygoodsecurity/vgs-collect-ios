@@ -11,6 +11,21 @@ import UIKit
 #endif
 
 /// An object that displays an editable text area. Can be use instead of a `VGSTextField` when need to show CVC/CVV images for credit card brands.
+///
+/// Overview:
+/// `VGSCVCTextField` augments `VGSTextField` by rendering a brand-specific CVC/CVV helper icon whose size and position you can customize. When paired with a `VGSCardTextField`, the icon and validation rules adapt to the detected brand (e.g. 3 vs 4 digit CVC length).
+///
+/// Usage:
+/// 1. Assign a `VGSConfiguration` with `type = .cvc` (or tokenization config) before user input.
+/// 2. Optionally adjust `cvcIconLocation`, `cvcIconSize`, or supply a custom image provider via `cvcIconSource`.
+/// 3. Keep accessibility hints descriptive but free of sensitive details.
+///
+/// Accessibility:
+/// - `cvcIconViewIsAccessibilityElement` controls VoiceOver exposure.
+/// - Use `cvcIconAccessibilityHint` for localized explanation: e.g. "CVC help icon".
+///
+/// Security:
+/// - Avoid logging or embedding confidential data inside accessibility strings.
 public final class VGSCVCTextField: VGSTextField {
   
     /// Image view displaying CVC icon.
@@ -66,14 +81,14 @@ public final class VGSCVCTextField: VGSTextField {
       return getIntrinsicContentSize()
     }
         
-    /// CVC/CVV Icon accissibility view hint. You can change the hint dynamically based on detected card brand. Default is true.
+    /// CVC/CVV icon accessibility element flag. You can change the flag dynamically based on detected card brand. Default is true.
       public var cvcIconViewIsAccessibilityElement = true {
           didSet {
               cvcIconImageView.isAccessibilityElement = cvcIconViewIsAccessibilityElement
           }
       }
       
-    /// CVC/CVV Icon accissibility view hint. You can change the hint dynamically based on detected card brand.
+    /// CVC/CVV icon accessibility hint. Provide localized description of the icon purpose, not the code value.
     public var  cvcIconAccessibilityHint = "CVC Icon"
     
     // MARK: Custom CVC images for specific card brands
@@ -135,6 +150,7 @@ internal extension VGSCVCTextField {
         return stack
     }
 
+    /// Update accessibility hint after brand or configuration changes.
     func updateCVCImage(for cardBrand: VGSPaymentCards.CardBrand) {
         cvcIconImageView.accessibilityHint = cvcIconAccessibilityHint
         cvcIconImageView.image = (cvcIconSource == nil) ? cardBrand.cvcIcon :  cvcIconSource?(cardBrand)

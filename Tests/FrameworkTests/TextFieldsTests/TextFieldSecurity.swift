@@ -2,9 +2,6 @@
 //  TextFieldSecurity.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 06.11.2019.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
 
 import XCTest
 @testable import VGSCollectSDK

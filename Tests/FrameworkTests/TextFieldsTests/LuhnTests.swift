@@ -2,9 +2,7 @@
 //  LuhnTests.swift
 //  FrameworkTests
 //
-//  Created by Vitalii Obertynskyi on 10/3/19.
-//  Copyright © 2019 Vitalii Obertynskyi. All rights reserved.
-//
+
 
 import XCTest
 @testable import VGSCollectSDK

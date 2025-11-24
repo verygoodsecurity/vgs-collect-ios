@@ -387,6 +387,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -422,7 +430,78 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An object that displays an editable text area in user interface.</p>
+                        <p>A secure input view that masks, formats, and validates sensitive user data before submission via <code><a href="Classes/VGSCollect.html">VGSCollect</a></code>.</p>
+
+<p>Summary:
+Acts as the primary UI component for secure data entry (card number, CVC, expiration date, SSN, generic text, etc.).
+Provides formatting masks, validation rule application, secure raw storage abstraction, and integration hooks for tokenization.</p>
+
+<p>Responsibilities:</p>
+
+<ul>
+<li>Applies format pattern &amp; divider to user keystrokes (dynamic for certain types like card number).</li>
+<li>Exposes state snapshots (<code>state</code>) through <code><a href="Classes/VGSCollect.html">VGSCollect</a></code> observation closures for validation &amp; UI feedback.</li>
+<li>Holds reference to <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> that defines semantic role, validation rules, input formatting and tokenization parameters.</li>
+</ul>
+
+<p>Formatting &amp; Masking:</p>
+
+<ul>
+<li><code>formatPattern</code> (from configuration or dynamic adjustment) determines visible grouping (# placeholders).</li>
+<li><code>divider</code> inserted between pattern groups (e.g. <code>/</code> for dates, <code>-</code> for SSN).</li>
+<li>Card number and CVC patterns update automatically based on detected brand when using associated field types.</li>
+</ul>
+
+<p>Validation:</p>
+
+<ul>
+<li>Default validation rules determined by <code><a href="Enums/FieldType.html">FieldType</a></code>; can be overridden via <code>configuration.validationRules</code>.</li>
+<li>Validation runs on each editing change and contributes to field &amp; form state.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cardField</span> <span class="o">=</span> <span class="kt">VGSCardTextField</span><span class="p">()</span> <span class="c1">// or VGSTextField()</span>
+<span class="k">let</span> <span class="nv">cfg</span> <span class="o">=</span> <span class="kt">VGSConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cardNumber</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">isRequiredValidOnly</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">cardField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cfg</span> <span class="c1">// registers with collector</span>
+<span class="c1">// Observe validity via collector.observeFieldState or cardField.state (if public)</span>
+</code></pre>
+
+<p>Security:</p>
+
+<ul>
+<li>Never read or log internal <code>textField</code> contents directly; rely on state metadata (<code>last4</code>, <code>isValid</code>).</li>
+<li>Do not persist raw user-entered values (store only aliases returned from backend responses).</li>
+<li>Avoid copying sensitive field values into analytics, crash logs, or third-party SDKs.</li>
+</ul>
+
+<p>Performance:</p>
+
+<ul>
+<li>Avoid repeatedly reassigning configuration after user input begins.</li>
+</ul>
+
+<p>Accessibility:</p>
+
+<ul>
+<li>Customize accessibility label/hint via provided properties; keep hints free of sensitive content.</li>
+<li>Ensure sufficient contrast and dynamic type scaling if <code>adjustsFontForContentSizeCategory</code> is enabled.</li>
+</ul>
+
+<p>Invariants / Preconditions:</p>
+
+<ul>
+<li>A non-nil <code>configuration</code> is required before using the field for secure submission.</li>
+<li>Do not mutate <code>configuration</code> while field is first responder to avoid inconsistent formatting.</li>
+</ul>
+
+<p>See also:</p>
+
+<ul>
+<li><code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> for defining semantic meaning &amp; validation.</li>
+<li><code><a href="Classes/VGSCollect.html">VGSCollect</a></code> for submission &amp; state observation.</li>
+</ul>
 
                         <a href="Classes/VGSTextField.html" class="slightly-smaller">See more</a>
                       </div>
@@ -438,7 +517,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L13-L244">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextField.swift#L61-L303">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -458,6 +537,39 @@
                       <div class="abstract">
                         <p>An object that displays an editable text area. Can be use instead of a <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> when need to detect and show credit card brand images.</p>
 
+<p>Overview:
+<code>VGSCardTextField</code> extends <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> to provide real-time card brand detection (Visa, Mastercard, etc.) and an optional brand icon. It dynamically:</p>
+
+<ul>
+<li>Detects card brand as the user types.</li>
+<li>Updates spacing/formatting pattern automatically.</li>
+<li>Propagates brand-specific CVC length &amp; formatting to attached <code><a href="Classes/VGSCVCTextField.html">VGSCVCTextField</a></code>.</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Create instance and assign a <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> whose <code>type</code> is <code>.cardNumber</code> (or specialized tokenization configuration).</li>
+<li>Optionally customize icon presentation via <code>cardIconLocation</code>, <code>cardIconSize</code>, or supply a closure in <code>cardsIconSource</code> for custom imagery.</li>
+<li>Observe field state (<code>state</code> cast to <code><a href="Classes/VGSCardState.html">VGSCardState</a></code>) to access <code>bin</code>, <code>last4</code>, and <code>cardBrand</code> after valid input.</li>
+</ol>
+
+<p>Accessibility:</p>
+
+<ul>
+<li>Keep <code>cardIconViewIsAccessibilityElement = true</code> for voiceover users; set <code>cardIconAccessibilityHint</code> to a localized brand description.</li>
+<li>Avoid adding sensitive PAN information to accessibility hints.</li>
+</ul>
+
+<p>Performance:
+Brand detection runs on each input change.</p>
+
+<p>Security:</p>
+
+<ul>
+<li>No raw PAN characters are logged or exposed via public API.</li>
+</ul>
+
                         <a href="Classes/VGSCardTextField.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -470,7 +582,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L14-L74">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCardTextField.swift#L32-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -490,6 +602,39 @@
                       <div class="abstract">
                         <p>An object that displays an editable text area. Can be use instead of a <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> when need to show picker view with Card Number Expiration Month and Year.</p>
 
+<p>Overview:
+<code>VGSExpDateTextField</code> presents a month/year picker or keyboard for collecting card expiration date securely. It auto-validates against current month to prevent past dates and adapts its formatting based on configuration.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Month &amp; year picker with customizable label formats (<code>MonthFormat</code>, <code>YearFormat</code>).</li>
+<li>Prevents selection of expired month (auto-corrects if user navigates to past entry in current year).</li>
+<li>Supports keyboard input fallback when configuration sets <code>inputSource = .keyboard</code>.</li>
+<li>Integrates with <code><a href="Classes/VGSExpDateConfiguration.html">VGSExpDateConfiguration</a></code> for formatting &amp; serialization, including tokenization scenarios.</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Create text field and assign a <code><a href="Classes/VGSExpDateConfiguration.html">VGSExpDateConfiguration</a></code> (or tokenization configuration) to <code>configuration</code> before editing begins.</li>
+<li>Optionally set <code>monthPickerFormat</code> / <code>yearPickerFormat</code> for UI preferences.</li>
+<li>Read <code>state</code> for validation errors; submit through <code><a href="Classes/VGSCollect.html">VGSCollect</a></code>.</li>
+</ol>
+
+<p>Accessibility:</p>
+
+<ul>
+<li>Picker components inherit system traits; provide a meaningful placeholder so VoiceOver announces context.</li>
+<li>Avoid exposing actual card number or other PII in any associated labels.</li>
+</ul>
+
+<p>Performance:</p>
+
+<ul>
+<li>Data source arrays are lightweight; picker updates only on relevant component changes.</li>
+</ul>
+
                         <a href="Classes/VGSExpDateTextField.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -503,7 +648,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSExpDateTextField.swift#L11-L89">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSExpDateTextField.swift#L32-L110">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -556,6 +701,30 @@
                       <div class="abstract">
                         <p>An object that displays an editable text area. Can be use instead of a <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> when need to show CVC/CVV images for credit card brands.</p>
 
+<p>Overview:
+<code>VGSCVCTextField</code> augments <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> by rendering a brand-specific CVC/CVV helper icon whose size and position you can customize. When paired with a <code><a href="Classes/VGSCardTextField.html">VGSCardTextField</a></code>, the icon and validation rules adapt to the detected brand (e.g. 3 vs 4 digit CVC length).</p>
+
+<p>Usage:</p>
+
+<ol>
+<li>Assign a <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code> with <code>type = .cvc</code> (or tokenization config) before user input.</li>
+<li>Optionally adjust <code>cvcIconLocation</code>, <code>cvcIconSize</code>, or supply a custom image provider via <code>cvcIconSource</code>.</li>
+<li>Keep accessibility hints descriptive but free of sensitive details.</li>
+</ol>
+
+<p>Accessibility:</p>
+
+<ul>
+<li><code>cvcIconViewIsAccessibilityElement</code> controls VoiceOver exposure.</li>
+<li>Use <code>cvcIconAccessibilityHint</code> for localized explanation: e.g. &ldquo;CVC help icon&rdquo;.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Avoid logging or embedding confidential data inside accessibility strings.</li>
+</ul>
+
                         <a href="Classes/VGSCVCTextField.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -568,7 +737,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L14-L88">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSCVCTextField.swift#L29-L103">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -601,7 +770,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextFieldDelegate.swift#L15-L30">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/VGSTextFieldDelegate.swift#L12-L27">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -619,7 +788,41 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A class responsible for configuration VGSTextField.</p>
+                        <p>A configuration object that defines semantic meaning, formatting and validation rules for an attached <code><a href="Classes/VGSTextField.html">VGSTextField</a></code>.</p>
+
+<p>Summary:
+Configure how a secure text field should behave (data type, keyboard, formatting, validation, and submission key) when collecting sensitive data for VGS vault submission.</p>
+
+<p>Responsibilities:</p>
+
+<ul>
+<li>Declares the vault JSON key (<code>fieldName</code>) used during submission.</li>
+<li>Specifies field semantic <code>type</code> (e.g. card number, CVC) that drives built–in formatting &amp; validation defaults.</li>
+<li>Holds optional custom validation rules and formatting pattern overrides.</li>
+<li>Provides UI hints (keyboard type, return key, content type, appearance) without directly altering UI until bound.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li><code>fieldName</code> is a logical alias only; never place raw secrets or PII in the name itself.</li>
+<li>Formatting (masking/spacing) is purely cosmetic and does NOT sanitize or truncate the raw secure value transmitted to the vault.</li>
+</ul>
+
+<p>Usage:</p>
+
+<ol>
+<li>Instantiate with a <code><a href="Classes/VGSCollect.html">VGSCollect</a></code> instance and unique <code>fieldName</code>.</li>
+<li>Adjust optional properties (e.g. <code>isRequired</code>, <code>validationRules</code>, <code>formatPattern</code>).</li>
+<li>Assign the configuration to a <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> before user input begins.</li>
+</ol>
+
+<p>Invariants / Preconditions:</p>
+
+<ul>
+<li><code>fieldName</code> should be non-empty and unique per collector to avoid ambiguous payload keys. (Not currently enforced at runtime.)</li>
+<li>Changing properties after the field has begun editing may not retroactively re-validate already entered content.</li>
+</ul>
 
                         <a href="Classes/VGSConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
@@ -632,7 +835,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L40-L114">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSConfiguration.swift#L62-L162">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -716,6 +919,21 @@
                       <div class="abstract">
                         <p><code>VGSCardHolderNameTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.cardHolderName</code>, required for work with tokenization api.</p>
 
+<p>Usage:</p>
+
+<ol>
+<li>Initialize with your <code><a href="Classes/VGSCollect.html">VGSCollect</a></code> instance and a <code>fieldName</code> (JSON key for outbound payload).</li>
+<li>Assign to a <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> before user begins editing.</li>
+<li>Call <code>tokenizeData(routeId:)</code> or <code>createAliases(routeId:)</code> on the collector; the response JSON will include generated alias(es).</li>
+</ol>
+
+<p>Notes:</p>
+
+<ul>
+<li>Customize <code>tokenizationParameters.format</code> if you need different alias semantics.</li>
+<li>Never include real PII inside <code>fieldName</code>; it is only a logical key.</li>
+</ul>
+
                         <a href="Classes/VGSCardHolderNameTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -728,7 +946,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardHolderNameTokenizationConfiguration.swift#L18-L33">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardHolderNameTokenizationConfiguration.swift#L29-L44">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -746,7 +964,39 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSCardTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.cardNumber</code>, required for work with tokenization api.</p>
+                        <p><code>VGSCardNumberTokenizationConfiguration</code> - configuration for a text field collecting card numbers (<code>.cardNumber</code>). Required for tokenization API usage.</p>
+
+<p>Summary:
+Specialized configuration enabling PAN tokenization while retaining dynamic brand-driven formatting and validation inherited from <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code>.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.cardNumber</code>.</li>
+<li>Supplies <code>tokenizationParameters</code> consumed by tokenization / alias APIs.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cardCfg</span> <span class="o">=</span> <span class="kt">VGSCardNumberTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_number"</span><span class="p">)</span>
+<span class="n">cardCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">FPE_SIX_T_FOUR</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">cardField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cardCfg</span>
+<span class="c1">// Later submit</span>
+<span class="n">collector</span><span class="o">.</span><span class="n">createAliases</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span> <span class="cm">/* handle */</span> <span class="p">}</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Override <code>tokenizationParameters.format</code> before attaching to the field to avoid mid-edit alias policy changes.</li>
+<li>For fully opaque tokens choose <code>VGSVaultAliasFormat.UUID.rawValue</code>.</li>
+<li>Validation rules can be replaced with a custom <code><a href="Structs/VGSValidationRuleSet.html">VGSValidationRuleSet</a></code> if business logic restricts brands or lengths.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Never log raw PAN; rely on card state (<code>last4</code>, brand) for limited display needs.</li>
+</ul>
 
                         <a href="Classes/VGSCardNumberTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
@@ -760,7 +1010,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L18-L30">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCardTokenizationConfiguration.swift#L64-L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -780,6 +1030,38 @@
                       <div class="abstract">
                         <p><code>VGSCVCTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.cvc</code>, required for work with tokenization api.</p>
 
+<p>Summary:
+Specialized configuration subclass for CVC fields enabling tokenization when submitting via Vault API methods (e.g. <code>tokenizeData</code>, <code>createAliases</code>).</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.cvc</code> (override ignores external setter attempts).</li>
+<li>Supplies <code>tokenizationParameters</code> used to build tokenization request body.</li>
+<li>Inherits formatting &amp; validation from <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code>; defaults still apply unless overridden.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cvcCfg</span> <span class="o">=</span> <span class="kt">VGSCVCTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_cvc"</span><span class="p">)</span>
+<span class="c1">// Optional: adjust alias format</span>
+<span class="n">cvcCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">FPE_SIX_T_FOUR</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">cvcField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">cvcCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Modify <code>tokenizationParameters.format</code> before assigning configuration to the field.</li>
+<li>Validation rules can still be overridden via <code>validationRules</code> if needed.</li>
+<li>Storage should remain volatile for CVC (do not switch to persistent unless explicit compliance requirements dictate).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Tokenization reduces exposure of raw CVC; never log raw input even with tokenization enabled.</li>
+</ul>
+
                         <a href="Classes/VGSCVCTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -792,7 +1074,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L19-L33">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSCVCTokenizationConfiguration.swift#L63-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -810,8 +1092,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Class responsible for configuration <code><a href="Classes/VGSDateTextField.html">VGSDateTextField</a></code> or <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> with <code>fieldType = .date</code>.
-Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code>. Required to work with tokenization API.</p>
+                        <p><code>VGSDateTokenizationConfiguration</code> - configuration object for a date field tokenization.</p>
+
+<p>Summary:
+Specialized configuration for <code>.date</code> fields enabling Vault tokenization, optional date-picker input, and optional format serialization before submission.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.date</code>.</li>
+<li>Provides <code>tokenizationParameters</code> consumed by tokenization/alias APIs.</li>
+<li>Supports optional date picker via <code>inputSource = .datePicker</code> and year range customization (<code>datePickerStartDate</code> / <code>datePickerEndDate</code>).</li>
+<li>Allows input/output date format conversion &amp; serialization through <code>serializers</code> collection.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">dateCfg</span> <span class="o">=</span> <span class="kt">VGSDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"event_date"</span><span class="p">)</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">inputSource</span> <span class="o">=</span> <span class="o">.</span><span class="n">datePicker</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">inputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">mmddyyyy</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">outputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">yyyymmdd</span>
+<span class="n">dateCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">dateField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">dateCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Set format conversion properties before assigning configuration to the field.</li>
+<li>Provide serializers when you need extra structured output (e.g. separate year/month fields) prior to tokenization.</li>
+<li>Adjust start/end picker dates via initializer optional parameters.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Tokenization replaces raw date with an alias; never log raw date content if considered sensitive (e.g. birth dates).</li>
+<li>Do not persist raw input.</li>
+</ul>
 
                         <a href="Classes/VGSDateTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
@@ -826,7 +1143,7 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L20-L89">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift#L67-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -844,7 +1161,44 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSExpDateTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.expDate</code>, required for work with tokenization api.</p>
+                        <p><code>VGSExpDateTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.expDate</code>, required for work with tokenization api.
+Assign to <code><a href="Classes/VGSExpDateTextField.html">VGSExpDateTextField</a></code> (or generic <code><a href="Classes/VGSTextField.html">VGSTextField</a></code>) before user input to enable expiration date tokenization.</p>
+
+<p>Summary:
+Specialized configuration enabling tokenization, optional date picker input source, and raw-to-formatted expiration date conversion (short/long year) prior to submission.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.expDate</code>.</li>
+<li>Provides <code>tokenizationParameters</code> consumed by tokenization / alias APIs.</li>
+<li>Supports picker-based entry via <code>inputSource = .datePicker</code> and format conversion using <code>inputDateFormat</code> / <code>outputDateFormat</code>.</li>
+<li>Allows serialization into structured components through <code>serializers</code> before alias creation.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">expCfg</span> <span class="o">=</span> <span class="kt">VGSExpDateTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_exp"</span><span class="p">)</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">inputSource</span> <span class="o">=</span> <span class="o">.</span><span class="n">datePicker</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">inputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">shortYear</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">outputDateFormat</span> <span class="o">=</span> <span class="o">.</span><span class="n">longYear</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">expCfg</span><span class="o">.</span><span class="n">serializers</span> <span class="o">=</span> <span class="p">[</span><span class="kt">ExpDateFormatSerializer</span><span class="o">.</span><span class="nf">month</span><span class="p">(</span><span class="s">"exp_month"</span><span class="p">),</span> <span class="kt">ExpDateFormatSerializer</span><span class="o">.</span><span class="nf">year</span><span class="p">(</span><span class="s">"exp_year"</span><span class="p">)]</span> <span class="c1">// example serializers</span>
+<span class="n">expField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">expCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Set format conversion &amp; serializers before assigning configuration to field for consistent initial UI.</li>
+<li>Use serializers only when you need extra separated alias fields (month/year) beyond the single expiration alias.</li>
+<li>Validation rules can be overridden with a custom <code><a href="Structs/VGSValidationRuleSet.html">VGSValidationRuleSet</a></code> if business constraints differ (e.g. extended future range).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Treat expiration dates as sensitive.</li>
+</ul>
 
                         <a href="Classes/VGSExpDateTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
@@ -859,7 +1213,7 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L18-L59">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSExpDateTokenizationConfiguration.swift#L68-L109">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -879,6 +1233,36 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                       <div class="abstract">
                         <p><code>VGSSSNTokenizationConfiguration</code> - textfield configuration for textfield with type <code>.ssn</code>, required for work with tokenization api.</p>
 
+<p>Summary:
+Specialized configuration enabling tokenization for SSN fields, ensuring alias creation while preserving standard SSN input formatting and validation.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Forces <code>type</code> to <code>.ssn</code> regardless of external attempts to modify.</li>
+<li>Supplies <code>tokenizationParameters</code> consumed by tokenization / alias APIs.</li>
+<li>Inherits base formatting &amp; validation from <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code>; you may override <code>validationRules</code> for custom compliance constraints.</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">ssnCfg</span> <span class="o">=</span> <span class="kt">VGSSSNTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"user_ssn"</span><span class="p">)</span>
+<span class="n">ssnCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">ssnField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">ssnCfg</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Adjust alias format prior to assigning configuration to avoid mid-edit format shifts.</li>
+<li>Do not relax SSN regex to avoid collecting malformed identifiers.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Treat SSN as highly sensitive.</li>
+</ul>
+
                         <a href="Classes/VGSSSNTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
@@ -891,7 +1275,7 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L21-L35">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSSSNTokenizationConfiguration.swift#L63-L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -909,7 +1293,40 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSTokenizationConfiguration</code> - textfield configuration for textfield with any type of data, required for work with tokenization api.</p>
+                        <p><code>VGSTokenizationConfiguration</code> - textfield configuration for a text field with any supported <code><a href="Enums/FieldType.html">FieldType</a></code>, enabling tokenization when no specialized configuration exists.</p>
+
+<p>Summary:
+Generic catch-all tokenization configuration. Use for field types like <code>.cardHolderName</code>, <code>.none</code>, or custom data keys where dedicated tokenization subclasses are not provided.</p>
+
+<p>Behavior:</p>
+
+<ul>
+<li>Inherits all formatting, validation, and requirement handling from <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code>.</li>
+<li>Adds <code>tokenizationParameters</code> consumed by Vault tokenization / alias creation APIs (<code>tokenizeData</code>, <code>createAliases</code>).</li>
+</ul>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nameCfg</span> <span class="o">=</span> <span class="kt">VGSTokenizationConfiguration</span><span class="p">(</span><span class="nv">collector</span><span class="p">:</span> <span class="n">collector</span><span class="p">,</span> <span class="nv">fieldName</span><span class="p">:</span> <span class="s">"card_holder"</span><span class="p">)</span>
+<span class="n">nameCfg</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="o">.</span><span class="n">cardHolderName</span>
+<span class="n">nameCfg</span><span class="o">.</span><span class="n">tokenizationParameters</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="kt">VGSVaultAliasFormat</span><span class="o">.</span><span class="kt">UUID</span><span class="o">.</span><span class="n">rawValue</span>
+<span class="n">nameField</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">nameCfg</span>
+<span class="c1">// Later:</span>
+<span class="n">collector</span><span class="o">.</span><span class="n">createAliases</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span> <span class="cm">/* handle alias mapping */</span> <span class="p">}</span>
+</code></pre>
+
+<p>Customization Notes:</p>
+
+<ul>
+<li>Set <code>type</code> and any <code>validationRules</code> before tokenization to ensure correct evaluation.</li>
+<li>For highly sensitive transient values consider switching <code>storage</code> to <code>.VOLATILE</code> (alias may not be reusable long-term).</li>
+<li>Use a deterministic alias format only if your backend requires stable pattern characteristics.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Never log raw input pre-tokenization.</li>
+</ul>
 
                         <a href="Classes/VGSTokenizationConfiguration.html" class="slightly-smaller">See more</a>
                       </div>
@@ -923,7 +1340,7 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L22-L30">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSTokenizationConfiguration.swift#L68-L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1126,7 +1543,7 @@ Extends <code><a href="Classes/VGSConfiguration.html">VGSConfiguration</a></code
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-21)</p>
+      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-10-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
