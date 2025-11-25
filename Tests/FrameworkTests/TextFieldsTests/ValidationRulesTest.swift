@@ -15,7 +15,7 @@ class ValidationRulesTest: VGSCollectBaseTestCase {
     var textfield: VGSTextField!
     
     override func setUp() {
-			super.setUp()
+            super.setUp()
       form = VGSCollect(id: "tntva5wfdrp")
       textfield = VGSTextField()
     }
@@ -218,5 +218,52 @@ class ValidationRulesTest: VGSCollectBaseTestCase {
       textfield.textField.secureText = "111234567"
       XCTAssertTrue(textfield.state.isValid)
       XCTAssertTrue(textfield.state.validationErrors.count == 0)
+    }
+    
+    func testValidABARoutingNumber() {
+      let error = VGSValidationErrorType.abaRoutingNumber.rawValue
+      let config = VGSConfiguration(collector: form, fieldName: "test_field")
+      config.type = .none
+      config.validationRules = VGSValidationRuleSet(rules: [
+        VGSValidationRuleABARoutingNumber(error: error)
+      ])
+      textfield.configuration = config
+      // Valid ABA Routing Number
+      textfield.textField.secureText = "100000175"
+      XCTAssertTrue(textfield.state.isValid)
+      XCTAssertTrue(textfield.state.validationErrors.count == 0)
+    }
+    
+    func testInvalidABARoutingNumber() {
+      let error = VGSValidationErrorType.abaRoutingNumber.rawValue
+      let config = VGSConfiguration(collector: form, fieldName: "test_field")
+      config.type = .none
+      config.validationRules = VGSValidationRuleSet(rules: [
+        VGSValidationRuleABARoutingNumber(error: error)
+      ])
+      textfield.configuration = config
+      // Invalid ABA Routing Number
+      textfield.textField.secureText = "123456789"
+      XCTAssertTrue(textfield.state.isValid == false)
+      XCTAssertTrue(textfield.state.validationErrors.count == 1)
+      XCTAssertTrue(textfield.state.validationErrors.first == error)
+    }
+    
+    func testEmptyABARoutingNumber() {
+      let abaError = VGSValidationErrorType.abaRoutingNumber.rawValue
+      let lengthError = VGSValidationErrorType.length.rawValue
+      let config = VGSConfiguration(collector: form, fieldName: "test_field")
+      config.type = .none
+      config.validationRules = VGSValidationRuleSet(rules: [
+        VGSValidationRuleABARoutingNumber(error: abaError),
+        VGSValidationRuleLength(min: 1, error: lengthError)
+      ])
+      textfield.configuration = config
+      // Empty ABA Routing Number - should fail both validations
+      textfield.textField.secureText = ""
+      XCTAssertTrue(textfield.state.isValid == false)
+      XCTAssertTrue(textfield.state.validationErrors.count == 2)
+      XCTAssertTrue(textfield.state.validationErrors.contains(abaError))
+      XCTAssertTrue(textfield.state.validationErrors.contains(lengthError))
     }
 }
