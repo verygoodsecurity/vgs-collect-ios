@@ -33,4 +33,7 @@ public enum VGSValidationErrorType: String {
   
   /// Default Validation error for `VGSValidationRuleLuhnCheck`
   case luhnCheck = "LUHN_ALGORITHM_CHECK_VALIDATION_ERROR"
+  
+  /// Default Validation error for `VGSValidationRuleABARoutingNumber`
+  case abaRoutingNumber = "ABA_ROUTING_NUMBER_VALIDATION_ERROR"
 }

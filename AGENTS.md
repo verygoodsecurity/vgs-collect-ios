@@ -287,6 +287,9 @@ Rule: VGSValidationRuleLength
 Rule: VGSValidationRuleLengthMatch
 - Purpose: Input length must match one of provided lengths (e.g. CVC 3 or 4).
 
+Rule: VGSValidationRuleABARoutingNumber
+- Purpose: Validates US ABA routing number integrity (exactly 9 digits + checksum).
+
 Building a Custom Rule Set Example (Name must be 2–40 chars alpha-numeric plus limited punctuation):
 ```
 var rs = VGSValidationRuleSet()
