@@ -7,7 +7,6 @@
 //  - consists of exactly 9 digits
 //  - passes checksum: (3*(d0+d3+d6) + 7*(d1+d4+d7) + 1*(d2+d5+d8)) % 10 == 0
 //
-//  Reference logic aligned with JS implementation in downstream tooling.
 //
 
 import Foundation
