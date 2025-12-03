@@ -1,5 +1,7 @@
 # AGENTS.md
 
+**SDK Version: 1.18.2**
+
 This guide is tailored for autonomous engineering agents integrating `VGSCollectSDK` into iOS applications. It focuses on deterministic, automatable steps: environment assessment, dependency installation, feature wiring (text fields, scanning, file upload), privacy compliance, testing, maintenance, and safe upgrade workflows.
 
 Scope
@@ -286,6 +288,9 @@ Rule: VGSValidationRuleLength
 
 Rule: VGSValidationRuleLengthMatch
 - Purpose: Input length must match one of provided lengths (e.g. CVC 3 or 4).
+
+Rule: VGSValidationRuleABARoutingNumber
+- Purpose: Validates US ABA routing number integrity (exactly 9 digits + checksum).
 
 Building a Custom Rule Set Example (Name must be 2–40 chars alpha-numeric plus limited punctuation):
 ```
