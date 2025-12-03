@@ -1,5 +1,7 @@
 # AGENTS.md
 
+**SDK Version: 1.18.2**
+
 This guide is tailored for autonomous engineering agents integrating `VGSCollectSDK` into iOS applications. It focuses on deterministic, automatable steps: environment assessment, dependency installation, feature wiring (text fields, scanning, file upload), privacy compliance, testing, maintenance, and safe upgrade workflows.
 
 Scope
