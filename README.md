@@ -1,4 +1,3 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/verygoodsecurity/vgs-collect-ios/tree/master)
 [![license](https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg)]()
 [![Platform](https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat)](https://github.com/verygoodsecurity/vgs-collect-ios)
 [![swift](https://img.shields.io/badge/swift-5.9+-orange)]()
