@@ -16,7 +16,7 @@ jobs:
     runs-on: macos-14
     strategy:
       matrix:
-        xcode: ['16.3.0']
+        xcode: ['16.2.0']
         ios: ['18.4']
         device: ['iPhone 16']
     steps:
@@ -107,7 +107,7 @@ jobs:
     runs-on: macos-14
     strategy:
       matrix:
-        xcode: ['16.3.0']
+        xcode: ['16.2.0']
         ios: ['18.4']
         device: ['iPhone 16']
     steps:
