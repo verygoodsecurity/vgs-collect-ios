@@ -1,0 +1,11 @@
+name: CI Tests
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v*'
