@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         xcode: ['16.2.0']
-        ios: ['18.4']
+        ios: ['18.2']
         device: ['iPhone 16']
     steps:
       - name: Checkout
@@ -108,7 +108,7 @@ jobs:
     strategy:
       matrix:
         xcode: ['16.2.0']
-        ios: ['18.4']
+        ios: ['18.2']
         device: ['iPhone 16']
     steps:
       - name: Checkout
