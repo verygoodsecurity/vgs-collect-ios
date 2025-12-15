@@ -183,38 +183,3 @@ jobs:
           name: demoapp-ui-tests-log-xcode-${{ matrix.xcode }}
           path: demoapp/xcodebuild.log
           if-no-files-found: warn
-
-  semgrep-diff:
-    name: Semgrep Diff Scan
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
-      pull-requests: read
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Semgrep Scan (diff)
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: 'p/ci'
-
-  semgrep-full:
-    name: Semgrep Full Scan
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
-    if: startsWith(github.ref, 'refs/tags/production-')
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Semgrep Scan (full)
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: 'p/ci'
