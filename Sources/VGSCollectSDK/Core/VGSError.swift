@@ -43,6 +43,12 @@ public enum VGSErrorType: Int {
 
         /// When VGS config URL is not valid.
         case invalidConfigurationURL = 1480
+    
+    /// When card number is incomplete (less than 11 digits).
+    case incompleteCardNumber = 1481
+    
+    /// When field type is not cardNumber.
+    case invalidFieldType = 1482
 }
 
 /// An error produced by `VGSCollectSDK`. Works similar to default `NSError` in iOS.
