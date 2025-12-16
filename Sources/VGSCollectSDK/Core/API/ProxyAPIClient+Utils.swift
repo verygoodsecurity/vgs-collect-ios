@@ -61,4 +61,66 @@ internal extension ProxyAPIClient {
 		}
 		return url
 	}
+  
+  // MARK: - Card Attributes
+  
+  /// Fetches card attributes from the card attributes server using first 11 digits of card number.
+  /// - Parameters:
+  ///   - cardNumberBin: First 11 digits of the card number
+  ///   - completion: Completion block with VGSResponse
+  func fetchCardAttributes(cardNumberBin: String, completion: @escaping (VGSResponse) -> Void) {
+    // Card attributes API endpoint
+      // TODO: Update endpoint when moved to production
+    let urlString = "https://js.verygoodvault.com/card-attributes/v1/\(cardNumberBin)"
+    
+    guard let url = URL(string: urlString) else {
+      let invalidURLError = VGSError(type: .invalidConfigurationURL)
+      completion(.failure(invalidURLError.code, nil, nil, invalidURLError))
+      return
+    }
+    
+    sendCardAttributesRequest(to: url, completion: completion)
+  }
+  
+  /// Sends request to card attributes endpoint
+  @MainActor private func sendCardAttributesRequest(to url: URL, completion: @escaping (VGSResponse) -> Void) {
+    var headers = ProxyAPIClient.defaultHttpHeaders
+    headers["Content-Type"] = "application/json"
+    
+    // Add custom headers if needed
+    if let customHeaders = customHeader, !customHeaders.isEmpty {
+      customHeaders.forEach { key, value in
+        headers[key] = value
+      }
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+    
+    // Log request
+    VGSCollectRequestLogger.logRequest(request, payload: [:])
+    
+    // Send request
+    urlSession.dataTask(with: request) { data, response, error in
+      DispatchQueue.main.async {
+        if let error = error as NSError? {
+          VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
+          completion(.failure(error.code, data, response, error))
+          return
+        }
+        
+        let statusCode = (response as? HTTPURLResponse)?.statusCode ?? VGSErrorType.unexpectedResponseType.rawValue
+        
+        switch statusCode {
+        case 200..<300:
+          VGSCollectRequestLogger.logSuccessResponse(response, data: data, code: statusCode)
+          completion(.success(statusCode, data, response))
+        default:
+          VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: statusCode)
+          completion(.failure(statusCode, data, response, error))
+        }
+      }
+    }.resume()
+  }
 }
