@@ -166,7 +166,11 @@ jobs:
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
             | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml || true
+            | xcpretty --report junit --output test-results/junit.xml
+          
+          status=${PIPESTATUS[0]}
+          echo "xcodebuild exit status: $status"
+          exit $status
 
       - name: Upload Test Results
         if: always()
