@@ -152,6 +152,11 @@ import UIKit
       self.formAnalyticsDetails = VGSFormAnanlyticsDetails.init(formId: formId, tenantId: tenantId, environment: regionalEnvironment)
       self.proxyAPIClient = ProxyAPIClient(tenantId: id, regionalEnvironment: environment, hostname: hostname, formAnalyticsDetails: formAnalyticsDetails)
       self.cmpAPIClient = CMPAPIClient(environment: environment, formAnalyticsDetails: formAnalyticsDetails)
+        VGSAnalyticsClient.shared.trackFormEvent(
+          self.formAnalyticsDetails,
+          type: .create,
+          status: .success
+        )
     }
   
     /// Convenience initializer composing a regional environment string.
