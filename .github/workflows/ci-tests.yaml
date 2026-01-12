@@ -16,8 +16,8 @@ jobs:
     runs-on: macos-15
     strategy:
       matrix:
-        xcode: ['26.2']
-        ios: ['26.2']
+        xcode: ['26.1.1']
+        ios: ['26.1']
         device: ['iPhone 17']
     steps:
       - name: Checkout
@@ -107,8 +107,8 @@ jobs:
     runs-on: macos-15
     strategy:
       matrix:
-        xcode: ['26.2']
-        ios: ['26.2']
+        xcode: ['26.1.1']
+        ios: ['26.1']
         device: ['iPhone 17']
     steps:
       - name: Checkout
