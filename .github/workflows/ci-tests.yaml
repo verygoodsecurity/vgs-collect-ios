@@ -13,12 +13,12 @@ on:
 jobs:
   build-and-test-sdk:
     name: Build & Test SDK (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-14
+    runs-on: macos-15
     strategy:
       matrix:
-        xcode: ['16.2.0']
-        ios: ['18.2']
-        device: ['iPhone 16']
+        xcode: ['26.2']
+        ios: ['26.2']
+        device: ['iPhone 17']
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -104,12 +104,12 @@ jobs:
 
   build-and-ui-test-demo-app:
     name: Build & UI Test Demo App (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-14
+    runs-on: macos-15
     strategy:
       matrix:
-        xcode: ['16.2.0']
-        ios: ['18.2']
-        device: ['iPhone 16']
+        xcode: ['26.2']
+        ios: ['26.2']
+        device: ['iPhone 17']
     steps:
       - name: Checkout
         uses: actions/checkout@v6
