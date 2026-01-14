@@ -1,27 +1,21 @@
 source 'https://github.com/CocoaPods/Specs.git'
-
 platform :ios, '14.5'
 
-target 'demoapp' do
-  # Comment the next line if you don't want to use dynamic frameworks
+abstract_target 'demoappPods' do
   use_frameworks!
 
-  # Pods for demoapp
-
-#  pod 'VGSCollectSDK'
   pod 'VGSCollectSDK', :path => "../"
   pod 'VGSCollectSDK/CardIO', :path => "../"
   pod 'VGSCollectSDK/BlinkCard', :path => "../"
 
+  target 'demoapp' do
+  end
 
-end
+  target 'demoappTests' do
+    inherit! :search_paths
+  end
 
-target 'demoappTests' do
-  inherit! :search_paths
-  # Pods for testing
-end
-
-target 'demoappUITests' do
-  inherit! :search_paths
-  # Pods for testing
+  target 'demoappUITests' do
+    inherit! :complete
+  end
 end
