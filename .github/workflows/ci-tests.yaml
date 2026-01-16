@@ -63,11 +63,10 @@ jobs:
         env:
           TOKENIZATION_VAULT_ID: ${{ secrets.TOKENIZATION_VAULT_ID }}
           VAULT_ID: ${{ secrets.VAULT_ID }}
+        working-directory: Tests/FrameworkTests/Resources
         run: |
-          cd Tests/FrameworkTests/Resources
           plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
           plutil -insert vaultID -string "${VAULT_ID}" MockedData.plist
-          cd ../../..
 
       - name: Run Unit Tests
         run: |
@@ -80,7 +79,7 @@ jobs:
             -enableCodeCoverage YES \
             -testPlan FrameworkTests \
             | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml || true
+            | xcpretty --report junit --output test-results/junit.xml
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
@@ -142,23 +141,23 @@ jobs:
           echo "Simulator booted successfully"
 
       - name: Install CocoaPods Dependencies
+        working-directory: demoapp
         run: |
-          cd demoapp
           pod install
 
       - name: Configure UI Test Data
         env:
           TOKENIZATION_VAULT_ID: ${{ secrets.TOKENIZATION_VAULT_ID }}
           VAULT_ID: ${{ secrets.VAULT_ID }}
+        working-directory: demoapp/demoapp
         run: |
-          cd demoapp/demoapp
           plutil -insert vaultID -string "${VAULT_ID}" UITestsMockedData.plist
           plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
 
       - name: Run UI Tests
+        working-directory: demoapp
         run: |
           set -eo pipefail
-          cd demoapp
           xcodebuild \
             test \
             -workspace demoapp.xcworkspace \
