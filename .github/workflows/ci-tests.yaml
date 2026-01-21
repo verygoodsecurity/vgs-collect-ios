@@ -75,7 +75,8 @@ jobs:
             test \
             -project VGSCollectSDK.xcodeproj \
             -scheme FrameworkTests \
-            -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
+            -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
+            -parallel-testing-enabled NO \
             -enableCodeCoverage YES \
             -testPlan FrameworkTests \
             | tee xcodebuild.log \
@@ -132,6 +133,7 @@ jobs:
           fi
           
           echo "Using simulator: $SIMULATOR_UDID"
+          echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
           
           # Boot simulator
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
@@ -163,7 +165,8 @@ jobs:
             -workspace demoapp.xcworkspace \
             -scheme demoappUITests \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
+            -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
+            -parallel-testing-enabled NO \
             | tee xcodebuild.log \
             | xcpretty --report junit --output test-results/junit.xml
           
