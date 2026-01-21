@@ -6,7 +6,7 @@ on:
       - '**'
   push:
     branches:
-      - 'master'
+      - 'main'
     tags:
       - 'v*'
       
@@ -65,8 +65,8 @@ jobs:
           VAULT_ID: ${{ secrets.VAULT_ID }}
         working-directory: Tests/FrameworkTests/Resources
         run: |
-          plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
-          plutil -insert vaultID -string "${VAULT_ID}" MockedData.plist
+          plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
+          plutil -insert VAULT_ID -string "${VAULT_ID}" MockedData.plist
 
       - name: Run Unit Tests
         run: |
@@ -79,8 +79,10 @@ jobs:
             -parallel-testing-enabled NO \
             -enableCodeCoverage YES \
             -testPlan FrameworkTests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
@@ -153,8 +155,8 @@ jobs:
           VAULT_ID: ${{ secrets.VAULT_ID }}
         working-directory: demoapp/demoapp
         run: |
-          plutil -insert vaultID -string "${VAULT_ID}" UITestsMockedData.plist
-          plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
+          plutil -insert VAULT_ID -string "${VAULT_ID}" UITestsMockedData.plist
+          plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
 
       - name: Run UI Tests
         working-directory: demoapp
