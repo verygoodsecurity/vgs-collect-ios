@@ -144,6 +144,15 @@ jobs:
           
           echo "Simulator booted successfully"
 
+      # --- Caching to fix slow "cloning" speed ---
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: demoapp/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('demoapp/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
       - name: Install CocoaPods Dependencies
         working-directory: demoapp
         run: |
@@ -162,6 +171,10 @@ jobs:
         working-directory: demoapp
         run: |
           set -eo pipefail
+          
+          # Create isolated DerivedData to prevent permissions/cache issues
+          mkdir -p DerivedData
+          
           xcodebuild \
             test \
             -workspace demoapp.xcworkspace \
@@ -169,8 +182,13 @@ jobs:
             -sdk iphonesimulator \
             -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
             -parallel-testing-enabled NO \
-            | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml
+            -derivedDataPath ./DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | tee xcodebuild.log
+          
+          # NOTE: Removed '| xcpretty' to ensure you see raw crash logs if it fails.
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
