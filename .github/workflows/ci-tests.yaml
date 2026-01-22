@@ -183,8 +183,9 @@ jobs:
             -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
             -parallel-testing-enabled NO \
             -derivedDataPath ./DerivedData \
-            CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=YES \
             | tee xcodebuild.log
           
           # NOTE: Removed '| xcpretty' to ensure you see raw crash logs if it fails.
