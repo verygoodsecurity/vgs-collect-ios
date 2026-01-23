@@ -4,7 +4,7 @@ on:
   pull_request:
   workflow_dispatch:
   schedule:
-    - cron: '30 5 * * *' # Sets Semgrep to scan every day at 5:30 UTC
+    - cron: '30 5 * * 5'
 
 jobs:
   scan:
