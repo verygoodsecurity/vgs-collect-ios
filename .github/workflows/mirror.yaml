@@ -11,5 +11,5 @@ on:
 jobs:
   mirror:
     name: Mirror Repository
-    uses: verygood-ops/cicd-shared/.github/workflows/public-mirror.yaml@feature/mirror-repo
+    uses: verygood-ops/cicd-shared/.github/workflows/public-mirror.yaml@public-mirror-workflow-v1.0.0
     secrets: inherit
