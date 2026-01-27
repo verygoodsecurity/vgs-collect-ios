@@ -6,7 +6,7 @@ on:
       - '**'
   push:
     branches:
-      - 'master'
+      - 'main'
     tags:
       - 'v*'
       
@@ -63,11 +63,10 @@ jobs:
         env:
           TOKENIZATION_VAULT_ID: ${{ secrets.TOKENIZATION_VAULT_ID }}
           VAULT_ID: ${{ secrets.VAULT_ID }}
+        working-directory: Tests/FrameworkTests/Resources
         run: |
-          cd Tests/FrameworkTests/Resources
-          plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
-          plutil -insert vaultID -string "${VAULT_ID}" MockedData.plist
-          cd ../../..
+          plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
+          plutil -insert VAULT_ID -string "${VAULT_ID}" MockedData.plist
 
       - name: Run Unit Tests
         run: |
@@ -76,11 +75,14 @@ jobs:
             test \
             -project VGSCollectSDK.xcodeproj \
             -scheme FrameworkTests \
-            -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
+            -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
+            -parallel-testing-enabled NO \
             -enableCodeCoverage YES \
             -testPlan FrameworkTests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml || true
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
@@ -133,6 +135,7 @@ jobs:
           fi
           
           echo "Using simulator: $SIMULATOR_UDID"
+          echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
           
           # Boot simulator
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
@@ -141,32 +144,51 @@ jobs:
           
           echo "Simulator booted successfully"
 
+      # --- Caching to fix slow "cloning" speed ---
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: demoapp/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('demoapp/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
       - name: Install CocoaPods Dependencies
+        working-directory: demoapp
         run: |
-          cd demoapp
           pod install
 
       - name: Configure UI Test Data
         env:
           TOKENIZATION_VAULT_ID: ${{ secrets.TOKENIZATION_VAULT_ID }}
           VAULT_ID: ${{ secrets.VAULT_ID }}
+        working-directory: demoapp/demoapp
         run: |
-          cd demoapp/demoapp
-          plutil -insert vaultID -string "${VAULT_ID}" UITestsMockedData.plist
-          plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
+          plutil -insert VAULT_ID -string "${VAULT_ID}" UITestsMockedData.plist
+          plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
 
       - name: Run UI Tests
+        working-directory: demoapp
         run: |
           set -eo pipefail
-          cd demoapp
+          
+          # Create isolated DerivedData to prevent permissions/cache issues
+          mkdir -p DerivedData
+          
           xcodebuild \
             test \
             -workspace demoapp.xcworkspace \
             -scheme demoappUITests \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
-            | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml
+            -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
+            -parallel-testing-enabled NO \
+            -derivedDataPath ./DerivedData \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=YES \
+            | tee xcodebuild.log
+          
+          # NOTE: Removed '| xcpretty' to ensure you see raw crash logs if it fails.
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"

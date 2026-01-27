@@ -20,9 +20,9 @@ final class UITestsMockedDataProvider {
 					return
 			}
 
-      let vaultIdForUITests = dictionary["vaultID"] as? String ?? ""
+      let vaultIdForUITests = dictionary["VAULT_ID"] as? String ?? ""
       AppCollectorConfiguration.shared.vaultId = vaultIdForUITests
-      let tokenizationVaultIdForUITests = dictionary["tokenization_vaultId"] as? String ?? ""
+      let tokenizationVaultIdForUITests = dictionary["TOKENIZATION_VAULT_ID"] as? String ?? ""
       AppCollectorConfiguration.shared.tokenizationVaultId = tokenizationVaultIdForUITests
 		}
 	}
