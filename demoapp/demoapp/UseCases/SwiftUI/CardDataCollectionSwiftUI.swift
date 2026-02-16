@@ -5,6 +5,7 @@
 
 import SwiftUI
 import VGSCollectSDK
+import VGSBlinkCardCollector
 
 struct CardDataCollectionSwiftUI: View {
     let vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)

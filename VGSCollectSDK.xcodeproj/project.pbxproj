@@ -592,13 +592,6 @@
 			path = CardDataMappers;
 			sourceTree = "<group>";
 		};
-		24A3321F33CCBCFBF0C01580 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		32093D7225CD9F88006CD242 /* Loggers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1100,7 +1093,6 @@
 				03B10BB028E20A3A009B409B /* VGSBlinkCardCollector */,
 				FD12B9B02304619100B670DD /* Products */,
 				32CFC72324EBF3B500457B17 /* Frameworks */,
-				24A3321F33CCBCFBF0C01580 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
