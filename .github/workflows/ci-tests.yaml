@@ -6,9 +6,9 @@ on:
       - '**'
   push:
     branches:
-      - 'master'
+      - 'main'
     tags:
-      - 'v*'
+      - '**'
       
 jobs:
   build-and-test-sdk:
@@ -141,10 +141,12 @@ jobs:
           
           echo "Simulator booted successfully"
 
-      - name: Install CocoaPods Dependencies
+      - name: Resolve Swift Package Dependencies
         run: |
-          cd demoapp
-          pod install
+          xcodebuild \
+            -resolvePackageDependencies \
+            -project demoapp/demoapp.xcodeproj \
+            -scheme demoappUITests
 
       - name: Configure UI Test Data
         env:
@@ -158,14 +160,13 @@ jobs:
       - name: Run UI Tests
         run: |
           set -eo pipefail
-          cd demoapp
           xcodebuild \
             test \
-            -workspace demoapp.xcworkspace \
+            -project demoapp/demoapp.xcodeproj \
             -scheme demoappUITests \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
-            | tee xcodebuild.log \
+            | tee demoapp/xcodebuild.log \
             | xcpretty --report junit --output test-results/junit.xml
           
           status=${PIPESTATUS[0]}
