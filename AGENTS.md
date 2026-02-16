@@ -324,6 +324,9 @@ Max total file size enforced internally (rejects oversize gracefully—react by 
 
 ---
 ## 8. Card Scanning (BlinkCard)
+Import Note:
+- For SwiftPM integrations, files using BlinkCard APIs must explicitly import `VGSBlinkCardCollector` (do not rely on `import VGSCollectSDK` alone for `VGSBlinkCardController` symbols).
+
 Initialization:
 ```
 let scanController = VGSBlinkCardController(licenseKey: blinkKey, delegate: self) { code in
