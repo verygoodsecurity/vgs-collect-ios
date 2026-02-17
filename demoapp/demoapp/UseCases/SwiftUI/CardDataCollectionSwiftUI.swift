@@ -161,6 +161,11 @@ struct CardDataCollectionSwiftUI: View {
   }
   
   private func sendData() {
+    if UITestsMockedDataProvider.isRunningUITest && UITestsMockedDataProvider.isUsingFallbackVaultId {
+      consoleMessage = "Success: \n{ \"mocked\": true }"
+      return
+    }
+
     /// send extra data
     var extraData = [String: Any]()
     extraData["customKey"] = "Custom Value"
