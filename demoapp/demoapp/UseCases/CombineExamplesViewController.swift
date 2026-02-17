@@ -5,6 +5,7 @@
 
 import UIKit
 import VGSCollectSDK
+import VGSBlinkCardCollector
 import Combine
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS

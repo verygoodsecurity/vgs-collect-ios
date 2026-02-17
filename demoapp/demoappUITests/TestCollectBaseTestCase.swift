@@ -17,8 +17,9 @@ class TestCollectBaseTestCase: XCTestCase {
 		continueAfterFailure = false
 
 		app = XCUIApplication()
-		app.launchArguments.append("VGSCollectDemoAppUITests")
+		app.launchArguments += ["VGSCollectDemoAppUITests", "-ApplePersistenceIgnoreState", "YES"]
 		app.launch()
+    XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15), "Demo app should be in foreground before test actions.")
 
 		fillInTestData()
 	}
@@ -30,6 +31,12 @@ class TestCollectBaseTestCase: XCTestCase {
 	func fillInTestData() {
 		wait(forTimeInterval: 0.3)
 	}
+
+  func openCollectFlow(_ flow: TestsCollectFlowType, timeout: TimeInterval = 15) {
+    let flowItem = app.tables.staticTexts[flow.name]
+    XCTAssertTrue(flowItem.waitForExistence(timeout: timeout), "Flow item '\(flow.name)' should be visible on the main screen.")
+    flowItem.tap()
+  }
 
   func fillInCorrectDateWithDatePicker() {
     app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "March")

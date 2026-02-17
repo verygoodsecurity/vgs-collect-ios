@@ -8,6 +8,7 @@
 
 import UIKit
 import VGSCollectSDK
+import VGSBlinkCardCollector
 
 /// A class that demonstrates how to collect data from VGSTextFields and upload it to VGS
 class CardsDataCollectingViewController: UIViewController {

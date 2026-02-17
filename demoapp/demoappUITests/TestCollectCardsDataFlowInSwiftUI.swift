@@ -67,7 +67,7 @@ class TestCollectCardsDataFlowInSwiftUI: TestCollectBaseTestCase {
   func testPutCorrectData() {
 
     // Navigate to payment cards.
-    app.tables.staticTexts[TestsCollectFlowType.paymentCardsInSwiftUI.name].tap()
+    openCollectFlow(.paymentCardsInSwiftUI)
  
     // Fill in correct data.
     fillInCorrectCardData()
@@ -88,16 +88,20 @@ class TestCollectCardsDataFlowInSwiftUI: TestCollectBaseTestCase {
     let expDateField = UIElements.VGSTextFieldRepresentable.CardDetails.expirationDate.find(in: app)
     let cvcField = UIElements.VGSTextFieldRepresentable.CardDetails.cvc.find(in: app)
 
+    XCTAssertTrue(cardHolderNameField.waitForExistence(timeout: 15), "Card holder field should appear in SwiftUI card form.")
     cardHolderNameField.tap()
     cardHolderNameField.typeText("Joe B")
 
+    XCTAssertTrue(cardNumberField.waitForExistence(timeout: 15), "Card number field should appear in SwiftUI card form.")
     cardNumberField.tap()
     cardNumberField.typeText("378282246310005")
 
+    XCTAssertTrue(expDateField.waitForExistence(timeout: 15), "Expiration date field should appear in SwiftUI card form.")
     expDateField.tap()
 
     fillInCorrectDateWithDatePicker()
 
+    XCTAssertTrue(cvcField.waitForExistence(timeout: 15), "CVC field should appear in SwiftUI card form.")
     cvcField.tap()
     cvcField.typeText("1234")
   }

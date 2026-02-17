@@ -5,6 +5,7 @@
 
 import SwiftUI
 import VGSCollectSDK
+import VGSBlinkCardCollector
 
 struct CardDataCollectionSwiftUI: View {
     let vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
@@ -160,6 +161,11 @@ struct CardDataCollectionSwiftUI: View {
   }
   
   private func sendData() {
+    if UITestsMockedDataProvider.isRunningUITest && UITestsMockedDataProvider.isUsingFallbackVaultId {
+      consoleMessage = "Success: \n{ \"mocked\": true }"
+      return
+    }
+
     /// send extra data
     var extraData = [String: Any]()
     extraData["customKey"] = "Custom Value"

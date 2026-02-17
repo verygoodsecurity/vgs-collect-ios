@@ -297,7 +297,8 @@ Use `collector.cleanFiles()` whenever you need to unassign a file (always after 
 The SDK provides SwiftUI wrappers for all text fields, enabling reactive, declarative UIs without exposing raw sensitive input to `@State`. 
 
 ## Demo Application
-Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.
+- SDK demo app with use-case examples (this repository): [`demoapp/README.md`](./demoapp/README.md)
+- Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.
 
 ## Documentation
 - SDK Guide: https://docs.verygoodsecurity.com/vault/developer-tools/vgs-collect/ios-sdk
