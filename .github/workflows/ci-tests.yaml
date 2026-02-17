@@ -88,19 +88,31 @@ jobs:
 
       - name: Upload Test Results
         if: always()
+        id: sdk_upload_test_results
+        continue-on-error: true
         uses: actions/upload-artifact@v6
         with:
           name: test-results-xcode-${{ matrix.xcode }}
           path: test-results/
           if-no-files-found: warn
 
+      - name: Warn if SDK Test Results Upload Failed
+        if: always() && steps.sdk_upload_test_results.outcome != 'success'
+        run: echo "::warning::SDK test-results artifact upload failed (non-blocking)."
+
       - name: Upload Xcodebuild Log
         if: always()
+        id: sdk_upload_xcodebuild_log
+        continue-on-error: true
         uses: actions/upload-artifact@v6
         with:
           name: xcodebuild-log-${{ matrix.xcode }}
           path: xcodebuild.log
           if-no-files-found: warn
+
+      - name: Warn if SDK Xcodebuild Log Upload Failed
+        if: always() && steps.sdk_upload_xcodebuild_log.outcome != 'success'
+        run: echo "::warning::SDK xcodebuild.log artifact upload failed (non-blocking)."
 
   build-and-ui-test-demo-app:
     name: Build & UI Test Demo App (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
@@ -175,16 +187,28 @@ jobs:
 
       - name: Upload Test Results
         if: always()
+        id: ui_upload_test_results
+        continue-on-error: true
         uses: actions/upload-artifact@v6
         with:
           name: ui-test-results-xcode-${{ matrix.xcode }}
           path: test-results/
           if-no-files-found: warn
 
+      - name: Warn if UI Test Results Upload Failed
+        if: always() && steps.ui_upload_test_results.outcome != 'success'
+        run: echo "::warning::UI test-results artifact upload failed (non-blocking)."
+
       - name: Upload Xcodebuild Log
         if: always()
+        id: ui_upload_xcodebuild_log
+        continue-on-error: true
         uses: actions/upload-artifact@v6
         with:
           name: demoapp-ui-tests-log-xcode-${{ matrix.xcode }}
           path: demoapp/xcodebuild.log
           if-no-files-found: warn
+
+      - name: Warn if UI Xcodebuild Log Upload Failed
+        if: always() && steps.ui_upload_xcodebuild_log.outcome != 'success'
+        run: echo "::warning::UI xcodebuild.log artifact upload failed (non-blocking)."
