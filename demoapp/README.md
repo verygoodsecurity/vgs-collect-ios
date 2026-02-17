@@ -4,7 +4,7 @@
 
 ## Current Integration Model
 
-- The app is built from `demoapp/demoapp.xcodeproj` (not an `.xcworkspace`).
+- The app is built from `demoapp/demoapp.xcodeproj`.
 - Dependencies are resolved with Swift Package Manager.
 - The project uses a **local package reference** to repository root (`..`), so demo builds against local SDK sources by default.
 - Linked local package products:
@@ -105,10 +105,9 @@ Because the demo project points to local package path `..`, changes under:
 - `Sources/VGSBlinkCardCollector`
 - `Sources/VGSCardIOCollector`
 
-are picked up directly by `demoapp` after rebuild/retest, without `pod install`.
+are picked up directly by `demoapp` after rebuild/retest`.
 
 ## Notes
 
 - Debug logging is enabled in `demoapp/demoapp/AppDelegate.swift` for `DEBUG` builds.
-- Some flows require additional backend setup and valid credentials; otherwise `/post` requests will fail with 4xx responses.
-- Apple Pay flow requires a real device and valid merchant configuration.
+- Some flows require additional backend setup and valid credentials; otherwise requests will fail with 4xx responses.
