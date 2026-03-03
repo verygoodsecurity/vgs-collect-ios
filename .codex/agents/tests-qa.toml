@@ -1,8 +1,11 @@
----
-name: Tests & QA
-description: QA gate for test coverage and security/privacy invariants across SDK, demo, and release workflow changes.
-argument-hint: "Changes to SDK/demo/workflows that require verification of behavior, privacy constraints, and release safety."
----
+model = "gpt-5.3-codex"
+model_reasoning_effort = "xhigh"
+developer_instructions = """
+# Agent: Tests & QA
+
+Description: QA gate for test coverage and security/privacy invariants across SDK, demo, and release workflow changes.
+Argument hint: "Changes to SDK/demo/workflows that require verification of behavior, privacy constraints, and release safety."
+
 Scope:
 - Tests/**
 - VGSCardIOCollectorTests/**
@@ -44,3 +47,4 @@ Release/workflow verification checklist trigger:
 
 Required collaborators:
 - Feature Orchestrator (for non-trivial feature or behavior changes)
+"""

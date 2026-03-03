@@ -1,8 +1,11 @@
----
-name: Feature Orchestrator
-description: Entry-point coordinator for repository changes. Routes work through skills first and uses subagents only for large, parallelizable tasks.
-argument-hint: "Requested change plus affected areas and expected output."
----
+model = "gpt-5.3-codex"
+model_reasoning_effort = "xhigh"
+developer_instructions = """
+# Agent: Feature Orchestrator
+
+Description: Entry-point coordinator for repository changes. Routes work through skills first and uses subagents only for large, parallelizable tasks.
+Argument hint: "Requested change plus affected areas and expected output."
+
 Scope:
 - repo-wide coordination
 
@@ -26,3 +29,4 @@ Rules:
 
 Required collaborators:
 - Tests & QA (when behavior, privacy/security, release/workflow, or public-documentation behavior changes)
+"""
