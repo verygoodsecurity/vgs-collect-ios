@@ -8,7 +8,8 @@ on:
 
 jobs:
   scan:
-    uses: verygood-ops/cicd-shared/.github/workflows/security-scan-sast.yaml@5540b0fc76a2fc46814ef2d88034fde6d7876c85 # security-scan-sast-v2.0.8
+    uses: verygood-ops/cicd-shared/.github/workflows/security-scan-sast.yaml@security-scan-sast-v2
     secrets:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
       SAST_SLACK_WORKFLOW_WEBHOOK: ${{ secrets.SAST_SLACK_WORKFLOW_WEBHOOK }}
+      DOCKERHUB_TOKEN: dckr_pat_xM4_CBKsO8eed2RdDKUHQicVKg8
