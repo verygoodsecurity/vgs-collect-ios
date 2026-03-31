@@ -20,9 +20,6 @@
 		03B992D829C8A5BF00B10A70 /* CombineExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B992D729C8A5BF00B10A70 /* CombineExamplesViewController.swift */; };
 		03DBB7B4292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */; };
 		03E38D952DCBA06D00F1F9FE /* CreateCardAliasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E38D942DCBA06D00F1F9FE /* CreateCardAliasesViewController.swift */; };
-		E14A9F692DB1223A00971101 /* VGSCollectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E14A9F6C2DB1223A00971101 /* VGSCollectSDK */; };
-		E14A9F6A2DB1223A00971101 /* VGSBlinkCardCollector in Frameworks */ = {isa = PBXBuildFile; productRef = E14A9F6D2DB1223A00971101 /* VGSBlinkCardCollector */; };
-		E14A9F6B2DB1223A00971101 /* VGSCardIOCollector in Frameworks */ = {isa = PBXBuildFile; productRef = E14A9F6E2DB1223A00971101 /* VGSCardIOCollector */; };
 		322196DE24D19CE900A66EC9 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322196DD24D19CE900A66EC9 /* InitialViewController.swift */; };
 		3258CB3D24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */; };
 		325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */; };
@@ -50,7 +47,11 @@
 		44D8691C26205F670014645F /* SSNCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691426205F670014645F /* SSNCollectingViewController.swift */; };
 		44D8691D26205F670014645F /* CustomDataCollectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691526205F670014645F /* CustomDataCollectingViewController.swift */; };
 		44D8692026205F670014645F /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D8691926205F670014645F /* FilePickerViewController.swift */; };
+		4A2B41FC0E68A834C5CCD832 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE39A0683A88DAB0EC586A4 /* SceneDelegate.swift */; };
 		A01CE3F529E5C50D0059700F /* DateValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01CE3F429E5C50D0059700F /* DateValidationViewController.swift */; };
+		E14A9F692DB1223A00971101 /* VGSCollectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E14A9F6C2DB1223A00971101 /* VGSCollectSDK */; };
+		E14A9F6A2DB1223A00971101 /* VGSBlinkCardCollector in Frameworks */ = {isa = PBXBuildFile; productRef = E14A9F6D2DB1223A00971101 /* VGSBlinkCardCollector */; };
+		E14A9F6B2DB1223A00971101 /* VGSCardIOCollector in Frameworks */ = {isa = PBXBuildFile; productRef = E14A9F6E2DB1223A00971101 /* VGSCardIOCollector */; };
 		FD12B9782304616C00B670DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD12B9772304616C00B670DD /* AppDelegate.swift */; };
 		FD12B97F2304616E00B670DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD12B97E2304616E00B670DD /* Assets.xcassets */; };
 		FD12B9822304616E00B670DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD12B9802304616E00B670DD /* LaunchScreen.storyboard */; };
@@ -90,6 +91,7 @@
 		03DBB7B3292FBFDA00F4DCA2 /* CollectApplePayDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectApplePayDataViewController.swift; sourceTree = "<group>"; };
 		03DBB7B5292FC41600F4DCA2 /* demoapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = demoapp.entitlements; sourceTree = "<group>"; };
 		03E38D942DCBA06D00F1F9FE /* CreateCardAliasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardAliasesViewController.swift; sourceTree = "<group>"; };
+		0EE39A0683A88DAB0EC586A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		322196DD24D19CE900A66EC9 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		3258CB3C24D1B79000C0CC8D /* TestCollectCardsDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectCardsDataFlow.swift; sourceTree = "<group>"; };
 		325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCollectorConfiguration.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				325A06C3240FF97B00BCE764 /* AppCollectorConfiguration.swift */,
 				44241E9C25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift */,
 				44241EA125B1B8FB00FC85D9 /* UITestsMockedData.plist */,
+				0EE39A0683A88DAB0EC586A4 /* SceneDelegate.swift */,
 			);
 			path = demoapp;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				038541CF2AD54C8100DE9F72 /* CollectCardDataSwiftUIHostingVC.swift in Sources */,
 				325A06C4240FF97B00BCE764 /* AppCollectorConfiguration.swift in Sources */,
 				44241E9D25B1B8C500FC85D9 /* UITestsMockedDataProvider.swift in Sources */,
+				4A2B41FC0E68A834C5CCD832 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,31 +620,6 @@
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ..;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E14A9F6C2DB1223A00971101 /* VGSCollectSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */;
-			productName = VGSCollectSDK;
-		};
-		E14A9F6D2DB1223A00971101 /* VGSBlinkCardCollector */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */;
-			productName = VGSBlinkCardCollector;
-		};
-		E14A9F6E2DB1223A00971101 /* VGSCardIOCollector */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */;
-			productName = VGSCardIOCollector;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FD12B99A2304616E00B670DD /* Debug */ = {
@@ -935,6 +914,31 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E14A9F6C2DB1223A00971101 /* VGSCollectSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */;
+			productName = VGSCollectSDK;
+		};
+		E14A9F6D2DB1223A00971101 /* VGSBlinkCardCollector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */;
+			productName = VGSBlinkCardCollector;
+		};
+		E14A9F6E2DB1223A00971101 /* VGSCardIOCollector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E14A9F6F2DB1223A00971101 /* XCLocalSwiftPackageReference ".." */;
+			productName = VGSCardIOCollector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD12B96C2304616C00B670DD /* Project object */;
 }
