@@ -1,0 +1,68 @@
+---
+## Automated Renovate PR review via Claude Code.
+## Triggers when a PR receives the renovate label, on an hourly schedule
+## (batch triage), or manually via workflow_dispatch. Calls the shared
+## claude-renovate-review workflow from cicd-shared which provides the
+## review skill and claude-code-action infrastructure.
+##
+## Manual testing:
+##   gh workflow run claude-renovate-review.yaml -f pr_number=<PR>
+
+name: claude renovate review
+
+on:
+  pull_request:
+    types: [labeled]
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to review (for manual testing)'
+        type: string
+        required: true
+
+jobs:
+  resolve-pr:
+    runs-on: ubuntu-latest
+    outputs:
+      pr_number: ${{ steps.resolve.outputs.pr_number }}
+      should_review: ${{ steps.resolve.outputs.should_review }}
+    steps:
+      - name: Resolve PR number and check label
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          DISPATCH_PR: ${{ inputs.pr_number }}
+          PR_LABEL: ${{ github.event.label.name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            echo "pr_number=$DISPATCH_PR" >> "$GITHUB_OUTPUT"
+            echo "should_review=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$EVENT_NAME" == "schedule" ]]; then
+            echo "pr_number=" >> "$GITHUB_OUTPUT"
+            echo "should_review=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$PR_LABEL" == "renovate" ]]; then
+            echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+            echo "should_review=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::Label is not renovate -- skipping"
+            echo "pr_number=" >> "$GITHUB_OUTPUT"
+            echo "should_review=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  review:
+    needs: resolve-pr
+    if: ${{ needs.resolve-pr.outputs.should_review == 'true' }}
+    uses: >-
+      verygood-ops/cicd-shared/.github/workflows/claude-renovate-review.yaml@main
+    with:
+      pr_number: ${{ needs.resolve-pr.outputs.pr_number }}
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      VGS_GITHUB_CI_BOT_APP_ID: ${{ secrets.VGS_GITHUB_CI_BOT_APP_ID }}
+      VGS_GITHUB_CI_BOT_APP_PEM_FILE: >-
+        ${{ secrets.VGS_GITHUB_CI_BOT_APP_PEM_FILE }}
