@@ -7,6 +7,7 @@ import Foundation
 
 /// Format used to validate a VGS date text input
 @MainActor
+// swiftlint:disable:next redundant_sendable
 public enum VGSDateFormat: InputConvertableFormat, OutputConvertableFormat, Sendable {
     case mmddyyyy
     case ddmmyyyy

@@ -97,9 +97,6 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     // Wait for request.
     wait(forTimeInterval: 30)
 
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
-
     // Verify success response.
     verifySuccessResponse()
   }
@@ -123,9 +120,6 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
 
     // Wait for request.
     wait(forTimeInterval: 30)
-
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
 
     // Verify success response.
     verifySuccessResponse()

@@ -51,7 +51,6 @@
 		03B10C1128E31B8F009B409B /* VGSBlinkCardCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B10BB128E20A3A009B409B /* VGSBlinkCardCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03B983972B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */; };
 		03BC1E2D2DD5EE76003E9D4D /* VaultAPIVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BC1E2C2DD5EE61003E9D4D /* VaultAPIVersion.swift */; };
-		03F42F9F2D7F014E00813F31 /* BlinkCard.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */; };
 		03F42FAB2D804F2E00813F31 /* VGSTextFieldRepresentableInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */; };
 		03FB86762DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */; };
 		03FB86782DAFCB1500169B1D /* CMPAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB86772DAFCB1500169B1D /* CMPAPIClient.swift */; };
@@ -100,7 +99,6 @@
 		326FFAFF24F908E40024A4F9 /* VGSCardIOScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FFAFC24F908E30024A4F9 /* VGSCardIOScanController.swift */; };
 		326FFB0024F908E40024A4F9 /* VGSCardIOScanControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FFAFD24F908E30024A4F9 /* VGSCardIOScanControllerDelegate.swift */; };
 		326FFB0424F90B940024A4F9 /* CrardScannerInteractionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326FFB0324F90B940024A4F9 /* CrardScannerInteractionProtocol.swift */; };
-		326FFB0624F90D920024A4F9 /* CardIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326FFB0524F90D920024A4F9 /* CardIO.framework */; };
 		326FFB0924F90DA00024A4F9 /* VGSCollectSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12B9AF2304619100B670DD /* VGSCollectSDK.framework */; };
 		3270D3F1248155B200004E3B /* SSNTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3270D3F0248155B200004E3B /* SSNTextFieldTests.swift */; };
 		327C9E142407EF92004C641C /* VGSErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C9E132407EF92004C641C /* VGSErrorInfo.swift */; };
@@ -152,6 +150,8 @@
 		44AF14B526161A580055CD91 /* VGSCardIOExpirationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF14B426161A580055CD91 /* VGSCardIOExpirationDate.swift */; };
 		44AF14D32616CCFC0055CD91 /* VGSCardIOCollector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326FFAF224F904430024A4F9 /* VGSCardIOCollector.framework */; platformFilter = ios; };
 		44AF15052616CF680055CD91 /* VGSCardIODataMapUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AF15042616CF680055CD91 /* VGSCardIODataMapUtilsTests.swift */; };
+		B7A1C0052EEC100000207001 /* BlinkCard in Frameworks */ = {isa = PBXBuildFile; productRef = B7A1C0032EEC100000207001 /* BlinkCard */; };
+		B7A1C0062EEC100000207001 /* CardIOSDK in Frameworks */ = {isa = PBXBuildFile; productRef = B7A1C0042EEC100000207001 /* CardIOSDK */; };
 		44C23A7925F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C23A7825F7B7EF000EA556 /* VGSFieldNameToJSONTests.swift */; };
 		44D520AE2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D520AD2672218A005AB588 /* VGSFlatJSONStructMappingTests.swift */; };
 		44D5210A2681B7F6005AB588 /* FrameworkTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 44D521092681B7F5005AB588 /* FrameworkTests.xctestplan */; };
@@ -278,7 +278,6 @@
 		03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VGSBlinkCardCollector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B983962B628AFC00230467 /* VGSCardIOViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSCardIOViewControllerRepresentable.swift; sourceTree = "<group>"; };
 		03BC1E2C2DD5EE61003E9D4D /* VaultAPIVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultAPIVersion.swift; sourceTree = "<group>"; };
-		03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = BlinkCard.xcframework; sourceTree = "<group>"; };
 		03F42FAA2D804F1600813F31 /* VGSTextFieldRepresentableInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableInitializer.swift; sourceTree = "<group>"; };
 		03FB86752DA40AF000169B1D /* VGSTextFieldRepresentableCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldRepresentableCoordinator.swift; sourceTree = "<group>"; };
 		03FB86772DAFCB1500169B1D /* CMPAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMPAPIClient.swift; sourceTree = "<group>"; };
@@ -329,7 +328,6 @@
 		326FFAFC24F908E30024A4F9 /* VGSCardIOScanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanController.swift; sourceTree = "<group>"; };
 		326FFAFD24F908E30024A4F9 /* VGSCardIOScanControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VGSCardIOScanControllerDelegate.swift; sourceTree = "<group>"; };
 		326FFB0324F90B940024A4F9 /* CrardScannerInteractionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrardScannerInteractionProtocol.swift; sourceTree = "<group>"; };
-		326FFB0524F90D920024A4F9 /* CardIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardIO.framework; path = Carthage/Build/iOS/CardIO.framework; sourceTree = "<group>"; };
 		3270D3F0248155B200004E3B /* SSNTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSNTextFieldTests.swift; sourceTree = "<group>"; };
 		327C9E132407EF92004C641C /* VGSErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSErrorInfo.swift; sourceTree = "<group>"; };
 		327C9E152407F43A004C641C /* VGSErrorInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSErrorInfoKey.swift; sourceTree = "<group>"; };
@@ -465,7 +463,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F42F9F2D7F014E00813F31 /* BlinkCard.xcframework in Frameworks */,
+				B7A1C0052EEC100000207001 /* BlinkCard in Frameworks */,
 				03B10C0228E31B1A009B409B /* VGSCollectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,7 +472,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326FFB0624F90D920024A4F9 /* CardIO.framework in Frameworks */,
+				B7A1C0062EEC100000207001 /* CardIOSDK in Frameworks */,
 				326FFB0924F90DA00024A4F9 /* VGSCollectSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -776,8 +774,6 @@
 		32CFC72324EBF3B500457B17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03F42F9E2D7F014E00813F31 /* BlinkCard.xcframework */,
-				326FFB0524F90D920024A4F9 /* CardIO.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1304,6 +1300,9 @@
 			dependencies = (
 			);
 			name = VGSBlinkCardCollector;
+			packageProductDependencies = (
+				B7A1C0032EEC100000207001 /* BlinkCard */,
+			);
 			productName = VGSCardScanCollector;
 			productReference = 03B10C0A28E31B1A009B409B /* VGSBlinkCardCollector.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1323,6 +1322,9 @@
 			dependencies = (
 			);
 			name = VGSCardIOCollector;
+			packageProductDependencies = (
+				B7A1C0042EEC100000207001 /* CardIOSDK */,
+			);
 			productName = VGSCardIOCollector;
 			productReference = 326FFAF224F904430024A4F9 /* VGSCardIOCollector.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1389,6 +1391,7 @@
 		FD12B9A62304619100B670DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = VGS;
@@ -1422,6 +1425,10 @@
 				Base,
 			);
 			mainGroup = FD12B9A52304619100B670DD;
+			packageReferences = (
+				B7A1C0012EEC100000207001 /* XCRemoteSwiftPackageReference "BlinkCard" */,
+				B7A1C0022EEC100000207001 /* XCRemoteSwiftPackageReference "CardIOSDK-iOS" */,
+			);
 			productRefGroup = FD12B9B02304619100B670DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1514,7 +1521,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		03AA85C029799580006DC673 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1532,7 +1539,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		03B10C0628E31B1A009B409B /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1551,7 +1558,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		03F42F762D79A23700813F31 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1566,6 +1573,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(SRCROOT)/build/VGSCollectSDK.xcframework.zip",
+				"$(SRCROOT)/VGSCollectSDK-checksum.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1588,7 +1597,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/usr/local/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint lint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2316,6 +2325,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B7A1C0012EEC100000207001 /* XCRemoteSwiftPackageReference "BlinkCard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/blinkcard/blinkcard-swift-package";
+			requirement = {
+				kind = exactVersion;
+				version = 2.12.0;
+			};
+		};
+		B7A1C0022EEC100000207001 /* XCRemoteSwiftPackageReference "CardIOSDK-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/verygoodsecurity/CardIOSDK-iOS.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.5.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7A1C0032EEC100000207001 /* BlinkCard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7A1C0012EEC100000207001 /* XCRemoteSwiftPackageReference "BlinkCard" */;
+			productName = BlinkCard;
+		};
+		B7A1C0042EEC100000207001 /* CardIOSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7A1C0022EEC100000207001 /* XCRemoteSwiftPackageReference "CardIOSDK-iOS" */;
+			productName = CardIOSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD12B9A62304619100B670DD /* Project object */;
 }

@@ -150,6 +150,12 @@ class CardsDataTokenizationViewController: UIViewController {
         textField.borderColor = textField.state.isValid ? .lightGray : .red
       }
 
+      if let mockedResponse = UITestsMockedDataProvider.mockedSuccessResponse(for: .tokenize) {
+        consoleStatusLabel.text = "RESPONSE"
+        consoleLabel.text = mockedResponse
+        return
+      }
+
       vgsCollect.tokenizeData { [weak self](response) in
         
         self?.consoleStatusLabel.text = "RESPONSE"

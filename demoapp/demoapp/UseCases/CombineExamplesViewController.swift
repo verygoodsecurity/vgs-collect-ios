@@ -30,7 +30,6 @@ class CombineExamplesViewController: UIViewController {
   
   /// BlinkCard Card Scanner
   var scanController: VGSBlinkCardController?
-
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -186,6 +185,12 @@ class CombineExamplesViewController: UIViewController {
     // send extra data
     var extraData = [String: Any]()
     extraData["customKey"] = "Custom Value"
+
+    if let mockedResponse = UITestsMockedDataProvider.mockedSuccessResponse(for: .collect) {
+      consoleStatusLabel.text = "RESPONSE"
+      consoleLabel.text = mockedResponse
+      return
+    }
     
     vgsCollect.sendDataPublisher(path: "/post", extraData: extraData).sink(
       receiveCompletion: { completion in

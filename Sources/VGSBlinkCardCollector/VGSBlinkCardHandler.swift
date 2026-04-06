@@ -26,7 +26,7 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
       return MBCBlinkCardRecognizer()
     }()
     /// MBCBlinkCardOverlaySettings.
-    lazy var overlaySettings : MBCBlinkCardOverlaySettings = {
+    lazy var overlaySettings: MBCBlinkCardOverlaySettings = {
       let settings: MBCBlinkCardOverlaySettings = MBCBlinkCardOverlaySettings()
       settings.enableEditScreen = false
       return settings

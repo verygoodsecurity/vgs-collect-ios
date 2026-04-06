@@ -23,10 +23,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Xcode ${{ matrix.xcode }}
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: ${{ matrix.xcode }}
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: |
+          XCODE_PATH="/Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer"
+          if [ ! -d "$XCODE_PATH" ]; then
+            echo "Expected Xcode path not found: $XCODE_PATH"
+            ls -1 /Applications | grep '^Xcode' || true
+            exit 1
+          fi
+
+          sudo xcode-select -s "$XCODE_PATH"
+          xcodebuild -version
 
       - name: List installed runtimes & devices (debug)
         run: |
@@ -126,10 +133,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Xcode ${{ matrix.xcode }}
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: ${{ matrix.xcode }}
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: |
+          XCODE_PATH="/Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer"
+          if [ ! -d "$XCODE_PATH" ]; then
+            echo "Expected Xcode path not found: $XCODE_PATH"
+            ls -1 /Applications | grep '^Xcode' || true
+            exit 1
+          fi
+
+          sudo xcode-select -s "$XCODE_PATH"
+          xcodebuild -version
 
       - name: Create and Boot Simulator
         run: |

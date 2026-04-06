@@ -28,26 +28,29 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
     var cancellables: Set<AnyCancellable>!
 
     override func setUp() {
-			collector = VGSCollect(id: MockedDataProvider.shared.tokenizationVaultId, environment: .sandbox)
-      cancellables = Set<AnyCancellable>()
-      cardTextField = VGSCardTextField()
-      cvcTextField = VGSCVCTextField()
-      expDateTextField = VGSExpDateTextField()
-      cardHolderTextField = VGSTextField()
-      numbersTextField = VGSCardTextField()
+        super.setUp()
+        cancellables = Set<AnyCancellable>()
+        cardTextField = VGSCardTextField()
+        cvcTextField = VGSCVCTextField()
+        expDateTextField = VGSExpDateTextField()
+        cardHolderTextField = VGSTextField()
+        numbersTextField = VGSCardTextField()
     }
   
     override func tearDown() {
-      collector = nil
-      cancellables = nil
-      cardTextField = nil
-      expDateTextField = nil
-      cvcTextField = nil
-      cardHolderTextField = nil
-      numbersTextField = nil
+        collector = nil
+        cancellables = nil
+        cardTextField = nil
+        expDateTextField = nil
+        cvcTextField = nil
+        cardHolderTextField = nil
+        numbersTextField = nil
+        super.tearDown()
     }
 
-  func testSendCardToTokenizationAPI() {
+  func testSendCardToTokenizationAPI() throws {
+      try requireConfiguredVaultId()
+      initializeCollector()
       configureCardTextFields()
       let expectation = XCTestExpectation(description: "Sending data...")
       collector.tokenizeData { [weak self] result in
@@ -59,12 +62,16 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
   
     @MainActor
     func testAsyncTokenizeCardToEchoServer() async throws {
+        try requireConfiguredVaultId()
+        initializeCollector()
         configureCardTextFields()
         let result = await collector.tokenizeData()
         validateTokenizeDataResponseResults(result)
     }
   
-    func testAsyncTokenizeCardURL() {
+    func testAsyncTokenizeCardURL() throws {
+      try requireConfiguredVaultId()
+      initializeCollector()
       let vaultId = MockedDataProvider.shared.tokenizationVaultId
       let routeId = UUID().uuidString.lowercased()
       let environment = "sandbox"
@@ -83,13 +90,15 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
         case .failure(_, _, let response, _):
           responeURL = response?.url?.absoluteString
         }
-        XCTAssertTrue(expectedUrl == responeURL, "-testAsyncTokenizeCardURL error: wrong resopnseURL \(responeURL)")
+        XCTAssertTrue(expectedUrl == responeURL, "-testAsyncTokenizeCardURL error: wrong resopnseURL \(responeURL ?? "nil")")
         expectation.fulfill()
       }
       wait(for: [expectation], timeout: 60)
     }
     
-    func testCardSendPublisherToEchoServer() {
+    func testCardSendPublisherToEchoServer() throws {
+      try requireConfiguredVaultId()
+      initializeCollector()
       self.configureCardTextFields()
       let expectation = XCTestExpectation(description: "Sending data...")
       collector.tokenizeDataPublisher()
@@ -102,7 +111,9 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
       wait(for: [expectation], timeout: 60)
     }
 
-    func testNotTokenizableFieldsTokenization() {
+    func testNotTokenizableFieldsTokenization() throws {
+      try requireConfiguredVaultId()
+      initializeCollector()
       /// this test require setting tokenzation url as upstream host
     
       /// Fields that should be ignored if not set as tokenized
@@ -228,5 +239,18 @@ class TokenizationApiTests: VGSCollectBaseTestCase {
     case .failure(let code, _, _, let error):
         XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
     }
+  }
+
+  private func initializeCollector() {
+    collector = VGSCollect(id: MockedDataProvider.shared.tokenizationVaultId, environment: .sandbox)
+  }
+
+  private func requireConfiguredVaultId(file: StaticString = #filePath, line: UInt = #line) throws {
+    try XCTSkipUnless(
+      !MockedDataProvider.shared.tokenizationVaultId.isEmpty,
+      "Tokenization integration vault ID is not configured in Tests/FrameworkTests/Resources/MockedData.plist",
+      file: file,
+      line: line
+    )
   }
 }

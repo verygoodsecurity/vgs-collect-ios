@@ -3,7 +3,6 @@
 //  FrameworkTests
 //
 
-
 import XCTest
 @testable import VGSCollectSDK
 

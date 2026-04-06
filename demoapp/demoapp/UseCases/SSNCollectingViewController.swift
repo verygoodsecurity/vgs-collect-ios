@@ -106,6 +106,12 @@ class SSNCollectingViewController: UIViewController {
       var extraData = [String: Any]()
       extraData["customKey"] = "Custom Value"
 
+      if let mockedResponse = UITestsMockedDataProvider.mockedSuccessResponse(for: .collect) {
+        self.consoleStatusLabel.text = "RESPONSE"
+        self.consoleLabel.text = mockedResponse
+        return
+      }
+
       /// New sendRequest func
       vgsCollect.sendData(path: "/post", extraData: extraData) { [weak self](response) in
         

@@ -8,6 +8,11 @@ import Foundation
 /// Utility class for UITests only.
 final class UITestsMockedDataProvider {
 
+  enum RequestKind {
+    case collect
+    case tokenize
+  }
+
   private enum Fallback {
     static let vaultId = "demovaultid123"
     static let tokenizationVaultId = "demotokenvault123"
@@ -50,7 +55,20 @@ final class UITestsMockedDataProvider {
   }
 
 	/// `true` if demo app in UITests mode.
-	static var isRunningUITest: Bool {
+  static var isRunningUITest: Bool {
 			return ProcessInfo().arguments.contains("VGSCollectDemoAppUITests")
 	}
+
+  @MainActor static func mockedSuccessResponse(for requestKind: RequestKind) -> String? {
+    guard isRunningUITest else { return nil }
+
+    switch requestKind {
+    case .collect where isUsingFallbackVaultId:
+      return "Success: \n{ \"mocked\": true }"
+    case .tokenize where isUsingFallbackTokenizationVaultId:
+      return "Success: \n{ \"mocked\": true }"
+    default:
+      return nil
+    }
+  }
 }

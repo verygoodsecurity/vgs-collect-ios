@@ -3,10 +3,9 @@
 //  FrameworkTests
 //
 
-
 import XCTest
 @testable import VGSCollectSDK
-@MainActor 
+@MainActor
 class LuhnTests: VGSCollectBaseTestCase {
     var textField: VGSTextField!
     let cardNumer = "4111111111111111"

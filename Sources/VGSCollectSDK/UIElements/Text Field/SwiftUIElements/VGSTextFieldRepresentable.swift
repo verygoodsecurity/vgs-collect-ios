@@ -32,7 +32,7 @@ import Combine
 ///   .border(color: .gray, lineWidth: 1)
 ///   .onStateChange { state in print(state.isValid) }
 /// ```
-public struct VGSTextFieldRepresentable: UIViewRepresentable, @preconcurrency VGSTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
+public struct VGSTextFieldRepresentable: UIViewRepresentable, VGSTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
   
     /// A class responsible for configuration VGSTextFieldRepresentable.
     var configuration: VGSConfiguration

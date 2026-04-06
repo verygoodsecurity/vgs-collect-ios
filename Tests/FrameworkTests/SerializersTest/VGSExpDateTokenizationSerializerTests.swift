@@ -24,13 +24,12 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
             }
         }
     }
-    @MainActor
     struct TestJSONData: TestJSONDataProtocol {
         let fieldValue: String
         let monthFieldName: String
         let yearFieldName: String
         let submitJSON: JsonData
-        let outputFormat: VGSCardExpDateFormat
+        let outputFormatName: String
         let comment: String
         let tokenizedPayloads: [JsonData]
         
@@ -39,8 +38,7 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
                 XCTFail("Cannot parse test data.")
                 return nil
             }
-            guard let formatName = json["outputFormat"] as? String,
-                  let format = VGSCardExpDateFormat(name: formatName) else {
+            guard let formatName = json["outputFormat"] as? String else {
                 XCTFail("Cannot parse output format from test json")
                 return nil
             }
@@ -48,7 +46,7 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
             self.monthFieldName = json["monthFieldName"] as? String ?? ""
             self.yearFieldName = json["yearFieldName"] as? String ?? ""
             self.submitJSON = submitJSON
-            self.outputFormat = format
+            self.outputFormatName = formatName
             self.comment = json["comment"] as? String ?? ""
             guard let tokenizedPayloads  = submitJSON["data"] as? [JsonData] else {
                 XCTFail("Invalid payload")
@@ -84,7 +82,7 @@ class VGSExpDateTokenizationSerializerTests: VGSCollectBaseTestCase {
         
         for test in testData {
             config.serializers = [VGSExpDateSeparateSerializer(monthFieldName: test.monthFieldName, yearFieldName: test.yearFieldName)]
-            config.outputDateFormat = test.outputFormat
+            config.outputDateFormat = VGSCardExpDateFormat(name: test.outputFormatName)
             textField.configuration = config
             
             textField.setText(test.fieldValue)

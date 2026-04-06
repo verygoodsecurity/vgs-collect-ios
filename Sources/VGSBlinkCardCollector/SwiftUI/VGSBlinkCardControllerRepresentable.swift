@@ -53,8 +53,7 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
   public var showOnboardingInfo: Bool = true
   /// Defines whether tutorial alert will be presented on appear.
   public var showIntroductionDialog: Bool = true
-  
-  
+
   /// Card scan data coordinators dict connects scanned data with VGSTextFields.
   private var dataCoordinators = [VGSBlinkCardDataType: VGSCardScanCoordinator]()
   
@@ -161,8 +160,7 @@ public struct VGSBlinkCardControllerRepresentable: UIViewControllerRepresentable
     newRepresentable.showOnboardingInfo = show
     return newRepresentable
   }
-  
-  
+
   // MARK: - Coordinator
   public class Coordinator: NSObject, MBCBlinkCardOverlayViewControllerDelegate {
     var parent: VGSBlinkCardControllerRepresentable

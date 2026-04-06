@@ -3,7 +3,6 @@
 //  demoappUITests
 //
 
-
 import XCTest
 
 /// Test SSN flow.
@@ -69,9 +68,6 @@ class TestDateValidationFlow: TestCollectBaseTestCase {
 
     // Navigate to payment cards.
     app.tables.staticTexts[TestsCollectFlowType.date.name].tap()
-
-    // Tap on nav bar.
-    let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
 
     // Fill in correct data.
     fillInCorrectCardData()

@@ -32,23 +32,26 @@ class ApiClientTests: VGSCollectBaseTestCase {
     var cancellables: Set<AnyCancellable>!
   
     override func setUp() {
-      collector = VGSCollect(id: MockedDataProvider.shared.vaultId, environment: .sandbox)
-      cancellables = Set<AnyCancellable>()
-      cardTextField = VGSCardTextField()
-      expDateTextField = VGSExpDateTextField()
-      cardHolderTextField = VGSTextField()
-      numbersTextField = VGSCardTextField()
+        super.setUp()
+        cancellables = Set<AnyCancellable>()
+        cardTextField = VGSCardTextField()
+        expDateTextField = VGSExpDateTextField()
+        cardHolderTextField = VGSTextField()
+        numbersTextField = VGSCardTextField()
     }
   
     override func tearDown() {
-      collector = nil
-      cardTextField = nil
-      expDateTextField = nil
-      cardHolderTextField = nil
-      numbersTextField = nil
+        collector = nil
+        cardTextField = nil
+        expDateTextField = nil
+        cardHolderTextField = nil
+        numbersTextField = nil
+        super.tearDown()
     }
   
-    func testSendCardToEchoServer() {
+    func testSendCardToEchoServer() throws {
+        try requireConfiguredVaultId()
+        initializeCollector()
         self.configureCardTextFields()
    
       collector.customHeaders = [
@@ -66,7 +69,9 @@ class ApiClientTests: VGSCollectBaseTestCase {
           wait(for: [expectation], timeout: 60.0)
     }
   
-  func testAsyncSendCardToEchoServer() {
+  func testAsyncSendCardToEchoServer() throws {
+    try requireConfiguredVaultId()
+    initializeCollector()
     self.configureCardTextFields()
     collector.customHeaders = [
         customHeaderKey: customHeaderValue
@@ -81,7 +86,9 @@ class ApiClientTests: VGSCollectBaseTestCase {
     wait(for: [expectation], timeout: 60.0)
   }
   
-  func testCardSendPublisherToEchoServer() {
+  func testCardSendPublisherToEchoServer() throws {
+    try requireConfiguredVaultId()
+    initializeCollector()
     self.configureCardTextFields()
     collector.customHeaders = [
         customHeaderKey: customHeaderValue
@@ -98,7 +105,8 @@ class ApiClientTests: VGSCollectBaseTestCase {
     wait(for: [expectation], timeout: 60)
   }
 
-  func testWrongTanentId() {
+  func testWrongTanentId() throws {
+    try requireConfiguredVaultId()
     let form = VGSCollect(id: "wrongId")
     let conf = VGSConfiguration(collector: form, fieldName: "cardField")
     conf.type = .cardNumber
@@ -121,7 +129,9 @@ class ApiClientTests: VGSCollectBaseTestCase {
     wait(for: [expectation], timeout: 60.0)
   }
     
-    func testWrongPath() {
+    func testWrongPath() throws {
+        try requireConfiguredVaultId()
+        initializeCollector()
         let conf = VGSConfiguration(collector: collector, fieldName: "cardField")
         conf.type = .cardNumber
         let field = VGSTextField()
@@ -155,7 +165,9 @@ class ApiClientTests: VGSCollectBaseTestCase {
     XCTAssertTrue(url?.absoluteString == expectedUrl?.absoluteString, "-testValidRouteId error, wrong url: \(String(describing: url))")
   }
   
-  func testBaseUrlNotChangedAfterRouteIdSet() {
+  func testBaseUrlNotChangedAfterRouteIdSet() throws {
+    try requireConfiguredVaultId()
+    initializeCollector()
     let routeId = UUID().uuidString
     let baseUrl = collector.proxyAPIClient.baseURL
     // dummy field
@@ -233,5 +245,18 @@ class ApiClientTests: VGSCollectBaseTestCase {
     case .failure(let code, _, _, let error):
         XCTFail("Error: code=\(code):\(String(describing: error?.localizedDescription))")
     }
+  }
+
+  private func initializeCollector() {
+    collector = VGSCollect(id: MockedDataProvider.shared.vaultId, environment: .sandbox)
+  }
+
+  private func requireConfiguredVaultId(file: StaticString = #filePath, line: UInt = #line) throws {
+    try XCTSkipUnless(
+      !MockedDataProvider.shared.vaultId.isEmpty,
+      "Integration vault ID is not configured in Tests/FrameworkTests/Resources/MockedData.plist",
+      file: file,
+      line: line
+    )
   }
 }

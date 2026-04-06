@@ -3,7 +3,6 @@
 //  VGSCollectSDK
 //
 
-
 #if os(iOS)
 import UIKit
 #endif
