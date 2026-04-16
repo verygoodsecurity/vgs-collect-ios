@@ -146,7 +146,7 @@ jobs:
 
       # --- Caching to fix slow "cloning" speed ---
       - name: Cache CocoaPods
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: demoapp/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('demoapp/Podfile.lock') }}
