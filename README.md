@@ -78,7 +78,25 @@ pod install
 Always pin versions to avoid accidental upgrades.
 
 ## AI Agent Integration
-Use [`AGENTS.md`](./AGENTS.md) as the single authoritative context for autonomous coding agents integrating or maintaining `VGSCollectSDK`. It lists public APIs, security constraints, validation rules, upgrade & testing expectations.
+This repository ships a public AI skill at [`skills/vgs-collect-ios-guide/SKILL.md`](./skills/vgs-collect-ios-guide/SKILL.md) for teams integrating `VGSCollectSDK` into an app.
+
+Recommended: install the skill with `skills.sh`. This is the easiest way to give a compatible AI agent the repository-specific guidance it needs for `VGSCollectSDK` integrations.
+
+The installed skill bundle includes `references/AGENTS.md`, and repository root `AGENTS.md` points to that same file, so a compatible skill-aware agent receives the durable integration policy automatically as part of the skill download without maintaining two copies.
+
+What the skill is useful for:
+- choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation
+- asking a clarifying question when a card-entry request is ambiguous and the flow is not specified
+- steering non-card collection requests such as SSN or generic sensitive fields toward the correct field and tokenization APIs instead of card-specific ones
+- keeping generated guidance aligned with the installed SDK version when that version can be detected
+- following the integration rules in [`AGENTS.md`](./AGENTS.md) for public APIs, validation, privacy, and cleanup requirements automatically
+
+Install the skill with `skills.sh`:
+```bash
+npx skills add https://github.com/verygoodsecurity/vgs-collect-ios --skill vgs-collect-ios-guide
+```
+
+If your AI tool does not support skills yet, you can still copy [`AGENTS.md`](./AGENTS.md) into the agent context manually. That file remains the authoritative integration guide for supported public APIs, security constraints, validation rules, migration expectations, and testing requirements.
 
 Minimal System Prompt Example:
 ```
@@ -297,7 +315,8 @@ Use `collector.cleanFiles()` whenever you need to unassign a file (always after 
 The SDK provides SwiftUI wrappers for all text fields, enabling reactive, declarative UIs without exposing raw sensitive input to `@State`. 
 
 ## Demo Application
-Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.
+- SDK demo app with use-case examples (this repository): [`demoapp/README.md`](./demoapp/README.md)
+- Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.
 
 ## Documentation
 - SDK Guide: https://docs.verygoodsecurity.com/vault/developer-tools/vgs-collect/ios-sdk

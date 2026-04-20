@@ -1,0 +1,36 @@
+name: validate skills
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**'
+  push:
+    paths:
+      - 'skills/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install skills-ref
+        run: python -m pip install --upgrade pip skills-ref
+
+      - name: Validate public skill
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v skills-ref >/dev/null 2>&1 && command -v agentskills >/dev/null 2>&1; then
+            printf '#!/usr/bin/env bash\nexec agentskills "$@"\n' > "$RUNNER_TEMP/skills-ref"
+            chmod +x "$RUNNER_TEMP/skills-ref"
+            export PATH="$RUNNER_TEMP:$PATH"
+          fi
+          skills-ref validate skills/vgs-collect-ios-guide

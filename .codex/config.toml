@@ -1,0 +1,16 @@
+# Codex multi-agent routing config. Source of truth: .codex/agents/*
+
+[features]
+multi_agent = true
+
+[agents]
+max_depth = 2
+# Subagents are allowed only for large, parallelizable, isolated tasks with non-overlapping ownership.
+
+[agents."feature-orchestrator"]
+description = "Entry-point coordinator; skills-first routing, direct execution by default, and selective multi-agent decomposition."
+config_file = "agents/feature-orchestrator.toml"
+
+[agents."tests-qa"]
+description = "QA gate for tests plus security/privacy and release-workflow invariants."
+config_file = "agents/tests-qa.toml"
