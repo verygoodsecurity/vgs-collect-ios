@@ -67,12 +67,11 @@ git checkout -b feature/DEVX-1234/short-description
   - `build-and-ui-test-demo-app` (demo app build + UI tests)
 - Keep job names stable unless intentionally migrating CI structure; update this section and related skills/agent checks in the same change.
 
-## Mirror Sync Rule
+## Agent Docs Source Of Truth
 
 - `.codex/agents` is authoritative.
-- `.github/agents` is generated output from `scripts/sync_agents_mirror.py`.
-- Validate mirror integrity with `bash scripts/check_agents_mirror.sh`.
-- Do not hand-edit generated files in `.github/agents`; edit `.codex/agents` and regenerate.
+- Keep contributor routing docs only in `.codex/agents`.
+- Do not create, regenerate, or update a `.github/agents` mirror.
 
 ## Stewardship
 

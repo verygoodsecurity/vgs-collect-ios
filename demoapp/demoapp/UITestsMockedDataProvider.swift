@@ -30,8 +30,8 @@ final class UITestsMockedDataProvider {
       dictionary = values
     }
 
-    let validVaultId = validatedVaultId(dictionary["vaultID"] as? String)
-    let validTokenizationVaultId = validatedVaultId(dictionary["tokenization_vaultId"] as? String)
+    let validVaultId = validatedVaultId(firstStringValue(in: dictionary, keys: ["VAULT_ID", "vaultID"]))
+    let validTokenizationVaultId = validatedVaultId(firstStringValue(in: dictionary, keys: ["TOKENIZATION_VAULT_ID", "tokenization_vaultId"]))
     isUsingFallbackVaultId = validVaultId == nil
     isUsingFallbackTokenizationVaultId = validTokenizationVaultId == nil
 
@@ -54,10 +54,14 @@ final class UITestsMockedDataProvider {
     return value
   }
 
-	/// `true` if demo app in UITests mode.
+  private static func firstStringValue(in dictionary: [String: Any], keys: [String]) -> String? {
+    keys.lazy.compactMap { dictionary[$0] as? String }.first
+  }
+
+  /// `true` if demo app in UITests mode.
   static var isRunningUITest: Bool {
-			return ProcessInfo().arguments.contains("VGSCollectDemoAppUITests")
-	}
+    ProcessInfo().arguments.contains("VGSCollectDemoAppUITests")
+  }
 
   @MainActor static func mockedSuccessResponse(for requestKind: RequestKind) -> String? {
     guard isRunningUITest else { return nil }

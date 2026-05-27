@@ -17,6 +17,14 @@ This is an internal contributor guide describing how customers use `VGSCollectSD
 5. App submits via collector APIs and receives alias/token response payloads.
 6. For file upload flows, app calls `collector.cleanFiles()` after successful upload.
 
+## Submission Family Selection
+
+- `VGSCollect(id:environment:)` is shared setup, not a substitute for choosing a submission family.
+- Integrators may submit through `sendData`, `tokenizeData`, `createAliases`, `createCard`, or `sendFile` depending on the product flow.
+- Generic card-entry prompts are not enough to assume `createCard`; explicit CMP or card-management intent is required.
+- Non-card fields such as SSN, password, routing number, or generic identifiers must not drift into card-management APIs.
+- When the intended submission family is ambiguous, contributor-facing guidance should preserve a clarification step instead of guessing.
+
 ## Primary Customer Use Cases to Preserve
 
 - Card form tokenization:

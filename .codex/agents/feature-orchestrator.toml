@@ -25,7 +25,7 @@ Rules:
   3) each worker has an explicit ownership plus merge contract.
 - Keep all code paths aligned with public, non-deprecated SDK APIs.
 - Preserve integration invariants from `AGENTS.md` and `.codex/agents/MENTAL_MODEL.md`.
-- Treat `.codex/agents` as source of truth; `.github/agents` is generated via `scripts/sync_agents_mirror.py`.
+- Treat `.codex/agents` as the only source of truth for contributor routing docs.
 
 Required collaborators:
 - Tests & QA (when behavior, privacy/security, release/workflow, or public-documentation behavior changes)

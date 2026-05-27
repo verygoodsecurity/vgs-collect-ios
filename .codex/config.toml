@@ -1,5 +1,4 @@
 # Codex multi-agent routing config. Source of truth: .codex/agents/*
-# Generated mirror destination: .github/agents/*
 
 [features]
 multi_agent = true

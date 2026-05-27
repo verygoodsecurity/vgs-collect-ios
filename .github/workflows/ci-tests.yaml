@@ -8,7 +8,7 @@ on:
     branches:
       - 'main'
     tags:
-      - '**'
+      - 'v*'
       
 jobs:
   build-and-test-sdk:
@@ -21,7 +21,7 @@ jobs:
         device: ['iPhone 17']
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Select Xcode ${{ matrix.xcode }}
         run: |
@@ -70,22 +70,26 @@ jobs:
         env:
           TOKENIZATION_VAULT_ID: ${{ secrets.TOKENIZATION_VAULT_ID }}
           VAULT_ID: ${{ secrets.VAULT_ID }}
+        working-directory: Tests/FrameworkTests/Resources
         run: |
-          cd Tests/FrameworkTests/Resources
-          plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
-          plutil -insert vaultID -string "${VAULT_ID}" MockedData.plist
-          cd ../../..
+          plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" MockedData.plist
+          plutil -insert VAULT_ID -string "${VAULT_ID}" MockedData.plist
 
       - name: Run Unit Tests
         run: |
           set -eo pipefail
+          mkdir -p test-results
           xcodebuild \
             test \
             -project VGSCollectSDK.xcodeproj \
             -scheme FrameworkTests \
-            -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
+            -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
+            -parallel-testing-enabled NO \
             -enableCodeCoverage YES \
             -testPlan FrameworkTests \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild.log \
             | xcpretty --report junit --output test-results/junit.xml || true
           
@@ -97,7 +101,7 @@ jobs:
         if: always()
         id: sdk_upload_test_results
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: test-results-xcode-${{ matrix.xcode }}
           path: test-results/
@@ -111,7 +115,7 @@ jobs:
         if: always()
         id: sdk_upload_xcodebuild_log
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: xcodebuild-log-${{ matrix.xcode }}
           path: xcodebuild.log
@@ -131,7 +135,7 @@ jobs:
         device: ['iPhone 17']
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Select Xcode ${{ matrix.xcode }}
         run: |
@@ -159,12 +163,13 @@ jobs:
           fi
           
           echo "Using simulator: $SIMULATOR_UDID"
+          echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
           
           # Boot simulator
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
           xcrun simctl boot "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
-          
+
           echo "Simulator booted successfully"
 
       - name: Resolve Swift Package Dependencies
@@ -178,20 +183,28 @@ jobs:
         env:
           TOKENIZATION_VAULT_ID: ${{ secrets.TOKENIZATION_VAULT_ID }}
           VAULT_ID: ${{ secrets.VAULT_ID }}
+        working-directory: demoapp/demoapp
         run: |
-          cd demoapp/demoapp
-          plutil -insert vaultID -string "${VAULT_ID}" UITestsMockedData.plist
-          plutil -insert tokenization_vaultId -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
+          plutil -insert VAULT_ID -string "${VAULT_ID}" UITestsMockedData.plist
+          plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
 
       - name: Run UI Tests
         run: |
           set -eo pipefail
+
+          # Create isolated DerivedData to prevent permissions/cache issues
+          mkdir -p demoapp/DerivedData test-results
           xcodebuild \
             test \
             -project demoapp/demoapp.xcodeproj \
             -scheme demoappUITests \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.ios }}' \
+            -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
+            -parallel-testing-enabled NO \
+            -derivedDataPath demoapp/DerivedData \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=YES \
             | tee demoapp/xcodebuild.log \
             | xcpretty --report junit --output test-results/junit.xml
           
@@ -203,7 +216,7 @@ jobs:
         if: always()
         id: ui_upload_test_results
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: ui-test-results-xcode-${{ matrix.xcode }}
           path: test-results/
@@ -217,7 +230,7 @@ jobs:
         if: always()
         id: ui_upload_xcodebuild_log
         continue-on-error: true
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: demoapp-ui-tests-log-xcode-${{ matrix.xcode }}
           path: demoapp/xcodebuild.log

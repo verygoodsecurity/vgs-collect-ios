@@ -65,7 +65,6 @@ git checkout -b feature/DEVX-1234/short-description
   - `build-and-test-sdk`
   - `build-and-ui-test-demo-app`
 - Public docs remain aligned with non-deprecated API behavior.
-- Contributor routing docs remain aligned with generated `.github/agents` mirror.
 - Release tag value equals `spec.version` in `VGSCollectSDK.podspec`.
 
 ## Verification commands
@@ -88,7 +87,6 @@ rm -rf build
 xcodebuild -project VGSCollectSDK.xcodeproj -scheme VGSCollectSDK_XCFramework build
 ls -la build | rg -n "VGSCollectSDK.xcframework|VGSCollectSDK.xcframework.zip"
 test -s VGSCollectSDK-checksum.txt
-bash scripts/check_agents_mirror.sh
 python3 scripts/check_mental_model_sync.py
 ```
 
