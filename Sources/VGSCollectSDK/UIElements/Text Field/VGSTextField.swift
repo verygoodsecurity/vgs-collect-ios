@@ -480,13 +480,13 @@ internal extension VGSTextField {
 
 // MARK: - MaskedTextFieldDelegate
 
-extension VGSTextField: @preconcurrency MaskedTextFieldDelegate {
+extension VGSTextField: @MainActor MaskedTextFieldDelegate {
 	func maskedTextField(_ maskedTextField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
 		guard let maxInputLength = configuration?.maxInputLength, let currentString: NSString = textField.secureText as? NSString else {return true}
 
 		let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
 
-		// Do not filter text when format pattern is not set (empty). Spaces and non alpha-numeric chards will be treated as valid characters and will be used in maxInputLength check.
+		// Do not filter text when format pattern is not set (empty). Spaces and non alphanumeric characters will be treated as valid characters and will be used in maxInputLength check.
 		// Otherwise when formatPattern is set filter text only for alphanumeric characters.
 		let rawText: NSString
 		if hasFormatPattern {

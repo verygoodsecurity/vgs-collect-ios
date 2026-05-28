@@ -13,11 +13,11 @@ on:
 jobs:
   build-and-test-sdk:
     name: Build & Test SDK (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-15
+    runs-on: macos-26
     strategy:
       matrix:
-        xcode: ['26.1.1']
-        ios: ['26.1']
+        xcode: ['26.5']
+        ios: ['26.5']
         device: ['iPhone 17']
     steps:
       - name: Checkout
@@ -42,25 +42,22 @@ jobs:
 
       - name: Create and Boot Simulator
         run: |
-          # Find or create the target simulator
           DEVICE_NAME="${{ matrix.device }}"
           IOS_VERSION="${{ matrix.ios }}"
-          
-          SIMULATOR_UDID=$(xcrun simctl list devices available | grep "$DEVICE_NAME" | grep -o '([A-F0-9-]*)\s*$' | tr -d '() ' | head -n 1 || echo "")
-          
-          if [ -z "$SIMULATOR_UDID" ]; then
-            echo "Creating new $DEVICE_NAME simulator with iOS $IOS_VERSION"
-            SIMULATOR_UDID=$(xcrun simctl create "$DEVICE_NAME-Test" "com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}" "com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}")
-          fi
-          
+          DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}"
+          RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}"
+          SIMULATOR_NAME="${DEVICE_NAME}-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${GITHUB_JOB}"
+
+          echo "Creating simulator $SIMULATOR_NAME"
+          SIMULATOR_UDID=$(xcrun simctl create "$SIMULATOR_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+
           echo "Using simulator: $SIMULATOR_UDID"
           echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
-          
-          # Boot simulator
+
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
           xcrun simctl boot "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
-          
+
           echo "Simulator booted successfully"
 
       - name: Install xcov
@@ -125,13 +122,20 @@ jobs:
         if: always() && steps.sdk_upload_xcodebuild_log.outcome != 'success'
         run: echo "::warning::SDK xcodebuild.log artifact upload failed (non-blocking)."
 
+      - name: Delete Simulator
+        if: always()
+        run: |
+          if [ -n "${SIMULATOR_UDID:-}" ]; then
+            xcrun simctl delete "$SIMULATOR_UDID" || true
+          fi
+
   build-and-ui-test-demo-app:
     name: Build & UI Test Demo App (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-15
+    runs-on: macos-26
     strategy:
       matrix:
-        xcode: ['26.1.1']
-        ios: ['26.1']
+        xcode: ['26.5']
+        ios: ['26.5']
         device: ['iPhone 17']
     steps:
       - name: Checkout
@@ -151,21 +155,17 @@ jobs:
 
       - name: Create and Boot Simulator
         run: |
-          # Find or create the target simulator
           DEVICE_NAME="${{ matrix.device }}"
           IOS_VERSION="${{ matrix.ios }}"
-          
-          SIMULATOR_UDID=$(xcrun simctl list devices available | grep "$DEVICE_NAME" | grep -o '([A-F0-9-]*)\s*$' | tr -d '() ' | head -n 1 || echo "")
-          
-          if [ -z "$SIMULATOR_UDID" ]; then
-            echo "Creating new $DEVICE_NAME simulator with iOS $IOS_VERSION"
-            SIMULATOR_UDID=$(xcrun simctl create "$DEVICE_NAME-Test" "com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}" "com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}")
-          fi
-          
+          DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}"
+          RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}"
+          SIMULATOR_NAME="${DEVICE_NAME}-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${GITHUB_JOB}"
+
+          echo "Creating simulator $SIMULATOR_NAME"
+          SIMULATOR_UDID=$(xcrun simctl create "$SIMULATOR_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+
           echo "Using simulator: $SIMULATOR_UDID"
           echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
-          
-          # Boot simulator
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
           xcrun simctl boot "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
@@ -239,3 +239,10 @@ jobs:
       - name: Warn if UI Xcodebuild Log Upload Failed
         if: always() && steps.ui_upload_xcodebuild_log.outcome != 'success'
         run: echo "::warning::UI xcodebuild.log artifact upload failed (non-blocking)."
+
+      - name: Delete Simulator
+        if: always()
+        run: |
+          if [ -n "${SIMULATOR_UDID:-}" ]; then
+            xcrun simctl delete "$SIMULATOR_UDID" || true
+          fi

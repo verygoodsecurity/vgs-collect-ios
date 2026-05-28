@@ -11,6 +11,7 @@ description: Use when changing versions, packaging metadata, CI workflows, migra
 - Changes under `.github/workflows/**`.
 - Changes to `Package.swift`, `Package.resolved`, `VGSCollectSDK.podspec`, `VGSCollectSDK-checksum.txt`, `VGSCollectSDK.xcodeproj/project.pbxproj`, or version constants.
 - Changes to `README.md`, `MIGRATING.md`, `AGENTS.md`, and agent routing docs.
+- Changes to repo-local skill guidance under `.codex/skills/**`.
 - Changes to feature artifact workflow under `.specs/features/**`.
 
 ## Branch preflight (required for feature work)
@@ -65,6 +66,7 @@ git checkout -b feature/DEVX-1234/short-description
   - `build-and-test-sdk`
   - `build-and-ui-test-demo-app`
 - Public docs remain aligned with non-deprecated API behavior.
+- Any changed contributor guidance in `README.md`, `AGENTS.md`, or relevant repo-local `.codex/skills/**` files is committed with the feature branch; do not leave those guidance updates local-only.
 - Release tag value equals `spec.version` in `VGSCollectSDK.podspec`.
 
 ## Verification commands

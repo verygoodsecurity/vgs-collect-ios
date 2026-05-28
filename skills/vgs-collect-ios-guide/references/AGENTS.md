@@ -502,6 +502,15 @@ config.validationRules = rules
 4. Update affected code (avoid deprecated replacements if still available; choose newest non-deprecated path).
 5. Update this file only if public usage guidance changes.
 
+Toolchain Validation Note
+- The SDK is validated with Xcode 26.5 / Swift 6.3 while keeping `Package.swift` at `swift-tools-version: 5.9` and `VGSCollectSDK.podspec` `spec.swift_version = '5.9'` unless support policy changes.
+- For CLI SwiftPM validation, build against an iOS SDK explicitly. A plain host `swift build` targets macOS and is not a representative validation command for this UIKit-based iOS SDK. Use the latest validated iOS runtime in examples unless you are intentionally checking minimum deployment compatibility.
+- Recommended commands:
+```
+swift build --sdk "$(xcrun --sdk iphonesimulator --show-sdk-path)" --triple arm64-apple-ios26.5-simulator
+swift build --sdk "$(xcrun --sdk iphoneos --show-sdk-path)" --triple arm64-apple-ios26.5
+```
+
 ---
 ## 18. Non-Goals (What Agents Must Not Attempt)
 - Re-implement tokenization or encryption around SDK fields.
