@@ -5,8 +5,8 @@ This file is the contributor-agent entrypoint for maintenance work in this repo.
 ## Authority
 
 Contributor workflow authority:
-- `.codex/agents/README.md`
-- `.codex/agents/*.toml`
+- `.codex/agents/AGENTS.md`
+- `.codex/agents/MENTAL_MODEL.md`
 - `~/.codex/skills/collect-ios-*/SKILL.md`
 
 Integration behavior contract reference:
@@ -26,12 +26,10 @@ If contributor guidance in `.codex/agents/*` conflicts with integration behavior
    - Read `ARCHITECTURE.md`.
    - Read `.codex/agents/MENTAL_MODEL.md`.
    - Read only relevant `~/.codex/skills/collect-ios-*/SKILL.md` for the task scope.
-3. Route non-trivial work through `.codex/agents/feature-orchestrator.toml`.
+3. Use relevant `~/.codex/skills/collect-ios-*` workflow checklists when task scope matches a retained machine-level skill.
 4. For `feature/DEVX-*` branches, create and maintain required artifacts under `.specs/features/<ticket>/` using `~/.codex/skills/collect-ios-feature-artifacts/SKILL.md`.
-5. Use relevant `~/.codex/skills/collect-ios-*` workflow checklists before introducing subagents.
-6. Engage `.codex/agents/tests-qa.toml` for behavior-sensitive changes.
-7. For public behavior changes, update contributor docs and integration guidance in the same change, including `skills/vgs-collect-ios-guide/SKILL.md` when flow selection, version-guidance, or public integration behavior changes.
-8. If a public skill directory or skill name changes, update every hard-coded CI/workflow reference in the same change, especially `.github/workflows/validate-skills.yml`.
+5. For public behavior changes, update contributor docs and integration guidance in the same change, including `skills/vgs-collect-ios-guide/SKILL.md` when flow selection, version-guidance, or public integration behavior changes.
+6. If a public skill directory or skill name changes, update every hard-coded CI/workflow reference in the same change, especially `.github/workflows/validate-skills.yml`.
 
 ## Integration Constraints That Always Win
 
@@ -52,8 +50,6 @@ If contributor guidance in `.codex/agents/*` conflicts with integration behavior
   - `~/.codex/skills/collect-ios-file-scanner/SKILL.md`
 - Logging, analytics, and error privacy behavior:
   - `~/.codex/skills/collect-ios-observability-privacy/SKILL.md`
-- Release, version, CI, and docs consistency:
-  - `~/.codex/skills/collect-ios-release-docs/SKILL.md`
 - Feature artifact workflow:
   - `~/.codex/skills/collect-ios-feature-artifacts/SKILL.md`
 
@@ -62,4 +58,4 @@ If contributor guidance in `.codex/agents/*` conflicts with integration behavior
 - Keep `.codex/agents/MENTAL_MODEL.md` aligned with `../../AGENTS.md` for integration contracts and use-case behavior.
 - Keep `skills/vgs-collect-ios-guide/SKILL.md` aligned with `../../AGENTS.md` whenever public flow selection, version-source rules, or integration guidance changes.
 - Keep `.github/workflows/validate-skills.yml` aligned with the current public skill directory and skill rename history.
-- `.codex/agents` is the only maintained source for contributor routing docs; do not create or update a `.github/agents` mirror.
+- `.codex/agents` contains only this file and `MENTAL_MODEL.md`; do not add mirrored agent docs elsewhere.

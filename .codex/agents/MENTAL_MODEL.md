@@ -95,4 +95,4 @@ This is an internal contributor guide describing how customers use `VGSCollectSD
 
 - Integration policy: `../../AGENTS.md`
 - Implementation map: `ARCHITECTURE.md`
-- Maintenance routing: `.codex/agents/README.md`
+- Maintenance routing: `.codex/agents/AGENTS.md`
