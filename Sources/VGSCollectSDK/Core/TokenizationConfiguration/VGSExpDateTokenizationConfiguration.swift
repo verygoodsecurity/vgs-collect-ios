@@ -65,7 +65,7 @@ public struct VGSExpDateTokenizationParameters: VGSTokenizationParametersProtoco
 ///
 /// Security:
 /// - Treat expiration dates as sensitive.
-public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, @preconcurrency VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
+public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExpDateConfigurationProtocol, VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
   
   // MARK: - Attributes
   /// `FieldType.expDate` type of `VGSTextField`tokenization  configuration.
@@ -109,7 +109,7 @@ public final class VGSExpDateTokenizationConfiguration: VGSConfiguration, VGSExp
 }
 
 /// Implement `TextFormatConvertable` protocol.
-extension VGSExpDateTokenizationConfiguration: @preconcurrency VGSTextFormatConvertable {
+extension VGSExpDateTokenizationConfiguration: VGSTextFormatConvertable {
     
     var inputFormat: InputConvertableFormat? {
         return inputDateFormat

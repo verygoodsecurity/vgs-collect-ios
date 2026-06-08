@@ -32,7 +32,6 @@ class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
     }
     
     /// Store the JSON data for testing
-    @MainActor
     private struct TestJSONData: TestJSONDataProtocol {
         
         // MARK: - Properties
@@ -41,7 +40,7 @@ class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
         let dayFieldName: String
         let yearFieldName: String
         let submitJSON: JsonData
-        let outputFormat: VGSDateFormat
+        let outputFormatName: String
         let comment: String
         let tokenizedPayloads: [JsonData]
         
@@ -51,8 +50,7 @@ class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
                 XCTFail("Cannot parse test data.")
                 return nil
             }
-            guard let formatName = json["outputFormat"] as? String,
-                  let format = VGSDateFormat(name: formatName) else {
+            guard let formatName = json["outputFormat"] as? String else {
                 XCTFail("Cannot parse output format from test json")
                 return nil
             }
@@ -61,7 +59,7 @@ class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
             self.dayFieldName = json["dayFieldName"] as? String ?? ""
             self.yearFieldName = json["yearFieldName"] as? String ?? ""
             self.submitJSON = submitJSON
-            self.outputFormat = format
+            self.outputFormatName = formatName
             self.comment = json["comment"] as? String ?? ""
             guard let tokenizedPayloads  = submitJSON["data"] as? [JsonData] else {
                 XCTFail("Invalid payload")
@@ -106,7 +104,7 @@ class VGSDateTokenizationSerializerTests: VGSCollectBaseTestCase {
                     yearFieldName: test.yearFieldName
                 )
             ]
-            config.outputDateFormat = test.outputFormat
+            config.outputDateFormat = VGSDateFormat(name: test.outputFormatName)
             /// Update configuration
             textField.configuration = config
             /// Setup test value

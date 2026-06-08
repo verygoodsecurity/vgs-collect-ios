@@ -26,7 +26,7 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
       return MBCBlinkCardRecognizer()
     }()
     /// MBCBlinkCardOverlaySettings.
-    lazy var overlaySettings : MBCBlinkCardOverlaySettings = {
+    lazy var overlaySettings: MBCBlinkCardOverlaySettings = {
       let settings: MBCBlinkCardOverlaySettings = MBCBlinkCardOverlaySettings()
       settings.enableEditScreen = false
       return settings
@@ -39,24 +39,26 @@ internal class VGSBlinkCardHandler: NSObject, VGSScanHandlerProtocol {
     required init(licenseKey: String, errorCallback: @escaping ((NSInteger) -> Void)) {
       super.init()
       MBCMicroblinkSDK.shared().setLicenseKey(licenseKey) { error in
-        VGSAnalyticsClient.shared.trackEvent(.scan, status: .failed, extraData: ["scannerType": "BlinkCard", "errorCode": error])
+        Task { @MainActor in
+          VGSAnalyticsClient.shared.trackEvent(.scan, status: .failed, extraData: ["scannerType": "BlinkCard", "errorCode": error])
+        }
         errorCallback(error.rawValue)
       }
     }
     
-    /// Setup BlinlCard params and present scanner.
+    /// Setup BlinkCard params and present scanner.
     func presentScanVC(on viewController: UIViewController, animated: Bool, modalPresentationStyle: UIModalPresentationStyle, completion: (() -> Void)?) {
-       // Crate recognizer collection
+       // Create recognizer collection
        let recognizerList = [cardRecognizer]
        let recognizerCollection: MBCRecognizerCollection = MBCRecognizerCollection(recognizers: recognizerList)
-        // Create  overlay view controller
+        // Create overlay view controller
       let blinkCardOverlayViewController = MBCBlinkCardOverlayViewController(settings: overlaySettings, recognizerCollection: recognizerCollection, delegate: self)
         // Create recognizer view controller with wanted overlay view controller
-       let recognizerRunneViewController: UIViewController = MBCViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: blinkCardOverlayViewController)!
-        recognizerRunneViewController.modalPresentationStyle = modalPresentationStyle
-        self.view = recognizerRunneViewController
+       let recognizerRunnerViewController: UIViewController = MBCViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: blinkCardOverlayViewController)!
+        recognizerRunnerViewController.modalPresentationStyle = modalPresentationStyle
+        self.view = recognizerRunnerViewController
         // Present the recognizer runner view controller
-        viewController.present(recognizerRunneViewController, animated: true, completion: completion)
+        viewController.present(recognizerRunnerViewController, animated: true, completion: completion)
     }
 
     /// Setup BlinkCard params and present scanner.

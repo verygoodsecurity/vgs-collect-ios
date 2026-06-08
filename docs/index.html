@@ -139,9 +139,6 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
               </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -414,8 +411,7 @@
         <section class="section">
           <div class="section-content top-matter">
             
-            <p><a href="https://dl.circleci.com/status-badge/redirect/gh/verygoodsecurity/vgs-collect-ios/tree/master"><img src="https://dl.circleci.com/status-badge/img/gh/verygoodsecurity/vgs-collect-ios/tree/master.svg?style=svg" alt="CircleCI"></a>
-<a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
+            <p><a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
 <a href="https://github.com/verygoodsecurity/vgs-collect-ios"><img src="https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat" alt="Platform"></a>
 <a href=""><img src="https://img.shields.io/badge/swift-5.9+-orange" alt="swift"></a>
 <a href=""><img src="https://img.shields.io/badge/SwiftUI-524520?logo=swift" alt="swiftui"></a>
@@ -484,11 +480,27 @@
 <pre class="highlight shell"><code>xcrun swift <span class="nt">-version</span>
 </code></pre>
 
+<p>The SDK is currently validated with Xcode 26.5 / Swift 6.3 while keeping the package manifest at <code>swift-tools-version: 5.9</code> for customer compatibility.</p>
+
 <p>Add the package in Xcode using the repository URL:</p>
 <pre class="highlight plaintext"><code>https://github.com/verygoodsecurity/vgs-collect-ios.git
 </code></pre>
 
 <p>Select the exact version you want to pin, then add <code>VGSCollectSDK</code> and optionally scanning/file modules (e.g. <code>VGSBlinkCardCollector</code>). Pinning versions ensures reproducible builds.</p>
+
+<p>If you validate the package from the command line instead of Xcode, build against an iOS SDK explicitly. A plain host <code>swift build</code> targets macOS and does not reflect the supported integration path for this iOS-only SDK. The examples below use the latest validated iOS runtime for this repository, not the minimum supported deployment target.</p>
+
+<p>Simulator example:</p>
+<pre class="highlight shell"><code>swift build <span class="se">\</span>
+  <span class="nt">--sdk</span> <span class="s2">"</span><span class="si">$(</span>xcrun <span class="nt">--sdk</span> iphonesimulator <span class="nt">--show-sdk-path</span><span class="si">)</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">--triple</span> arm64-apple-ios26.5-simulator
+</code></pre>
+
+<p>Device example:</p>
+<pre class="highlight shell"><code>swift build <span class="se">\</span>
+  <span class="nt">--sdk</span> <span class="s2">"</span><span class="si">$(</span>xcrun <span class="nt">--sdk</span> iphoneos <span class="nt">--show-sdk-path</span><span class="si">)</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">--triple</span> arm64-apple-ios26.5
+</code></pre>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p>Add to your <code>Podfile</code>:</p>
@@ -504,7 +516,27 @@ pod <span class="nb">install</span>
 <p>Always pin versions to avoid accidental upgrades.</p>
 <h2 id='ai-agent-integration' class='heading'>AI Agent Integration</h2>
 
-<p>Use <a href="./AGENTS.md"><code>AGENTS.md</code></a> as the single authoritative context for autonomous coding agents integrating or maintaining <code>VGSCollectSDK</code>. It lists public APIs, security constraints, validation rules, upgrade &amp; testing expectations.</p>
+<p>This repository ships a public AI skill at <a href="./skills/vgs-collect-ios-guide/SKILL.md"><code>skills/vgs-collect-ios-guide/SKILL.md</code></a> for teams integrating <code>VGSCollectSDK</code> into an app.</p>
+
+<p>Recommended: install the skill with <code>skills.sh</code>. This is the easiest way to give a compatible AI agent the repository-specific guidance it needs for <code>VGSCollectSDK</code> integrations.</p>
+
+<p>The installed skill bundle includes <code>references/AGENTS.md</code>, and repository root <code>AGENTS.md</code> points to that same file, so a compatible skill-aware agent receives the durable integration policy automatically as part of the skill download without maintaining two copies.</p>
+
+<p>What the skill is useful for:</p>
+
+<ul>
+<li>choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation</li>
+<li>asking a clarifying question when a card-entry request is ambiguous and the flow is not specified</li>
+<li>steering non-card collection requests such as SSN or generic sensitive fields toward the correct field and tokenization APIs instead of card-specific ones</li>
+<li>keeping generated guidance aligned with the installed SDK version when that version can be detected</li>
+<li>following the integration rules in <a href="./AGENTS.md"><code>AGENTS.md</code></a> for public APIs, validation, privacy, and cleanup requirements automatically</li>
+</ul>
+
+<p>Install the skill with <code>skills.sh</code>:</p>
+<pre class="highlight shell"><code>npx skills add https://github.com/verygoodsecurity/vgs-collect-ios <span class="nt">--skill</span> vgs-collect-ios-guide
+</code></pre>
+
+<p>If your AI tool does not support skills yet, you can still copy <a href="./AGENTS.md"><code>AGENTS.md</code></a> into the agent context manually. That file remains the authoritative integration guide for supported public APIs, security constraints, validation rules, migration expectations, and testing requirements.</p>
 
 <p>Minimal System Prompt Example:</p>
 <pre class="highlight plaintext"><code>You are an autonomous engineering agent integrating the VGS Collect iOS SDK into an existing Swift app.
@@ -712,7 +744,10 @@ Do not break existing brand detection; add tests for detection and negative near
 <p>The SDK provides SwiftUI wrappers for all text fields, enabling reactive, declarative UIs without exposing raw sensitive input to <code>@State</code>. </p>
 <h2 id='demo-application' class='heading'>Demo Application</h2>
 
-<p>Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.</p>
+<ul>
+<li>SDK demo app with use-case examples (this repository): <a href="./demoapp/README.md"><code>demoapp/README.md</code></a></li>
+<li>Sample card collection application: <a href="https://github.com/vgs-samples/very-spacy-food-iOS">Very Spacy Food iOS</a>.</li>
+</ul>
 <h2 id='documentation' class='heading'>Documentation</h2>
 
 <ul>
@@ -757,7 +792,7 @@ Opt out if required:</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2025 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2025-12-03)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-06-08)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

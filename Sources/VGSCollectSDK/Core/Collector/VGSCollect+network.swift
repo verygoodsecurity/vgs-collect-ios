@@ -6,6 +6,7 @@
 import Foundation
 import Combine
 
+// swiftlint:disable file_length
 // MARK: - Send data
 extension VGSCollect {
   /**
@@ -285,10 +286,10 @@ extension VGSCollect {
       body = merged
     }
     
-    cmpAPIClient.customHeader =  ["Content-Type": "application/vnd.api+json",
-                                  "Authorization": "Bearer \(token)"]
-    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: [ "statusCode": 200, "upstream" : "cmp", "content": content])
-    cmpAPIClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self](response ) in
+    cmpAPIClient.customHeader = ["Content-Type": "application/vnd.api+json",
+                                 "Authorization": "Bearer \(token)"]
+    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: ["statusCode": 200, "upstream": "cmp", "content": content])
+    cmpAPIClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self] (response) in
       // Analytics
       if let strongSelf = self {
         switch response {

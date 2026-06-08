@@ -65,7 +65,8 @@ public enum VGSTextFieldEditingEvent<StateType> {
     case didEnd(state: StateType)
 }
 
-/// `VGSTextFieldRepresentable` callbacks.
+// `VGSTextFieldRepresentable` callbacks.
+// swiftlint:disable:next type_name
 @MainActor public protocol VGSTextFieldRepresentableCallbacksProtocol {
     associatedtype StateType
     /// On editing events.

@@ -3,7 +3,6 @@
 //  VGSCollectSDK
 //
 
-
 import Foundation
 import XCTest
 @testable import VGSCollectSDK
@@ -133,7 +132,7 @@ extension VGSPaymentCards.CardBrand {
                 "36700102000000",
                 "36148900647913",
                 "3056930009020004",
-                "3096000032340126000",
+                "3096000032340126000"
             ]
         case .jcb:
             return [

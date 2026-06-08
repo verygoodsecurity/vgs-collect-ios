@@ -12,7 +12,7 @@ import UIKit
 #endif
 
 /// A class that manage UIImagePickerController
-@MainActor internal class VGSImagePicker: NSObject, @preconcurrency VGSFilePickerProtocol {
+@MainActor internal class VGSImagePicker: NSObject, VGSFilePickerProtocol {
     
     weak var delegate: VGSFilePickerControllerDelegate?
     

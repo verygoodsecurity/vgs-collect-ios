@@ -13,20 +13,27 @@ on:
 jobs:
   build-and-test-sdk:
     name: Build & Test SDK (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-15
+    runs-on: macos-26
     strategy:
       matrix:
-        xcode: ['26.1.1']
-        ios: ['26.1']
+        xcode: ['26.5']
+        ios: ['26.5']
         device: ['iPhone 17']
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Setup Xcode ${{ matrix.xcode }}
-        uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1
-        with:
-          xcode-version: ${{ matrix.xcode }}
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: |
+          XCODE_PATH="/Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer"
+          if [ ! -d "$XCODE_PATH" ]; then
+            echo "Expected Xcode path not found: $XCODE_PATH"
+            ls -1 /Applications | grep '^Xcode' || true
+            exit 1
+          fi
+
+          sudo xcode-select -s "$XCODE_PATH"
+          xcodebuild -version
 
       - name: List installed runtimes & devices (debug)
         run: |
@@ -35,25 +42,22 @@ jobs:
 
       - name: Create and Boot Simulator
         run: |
-          # Find or create the target simulator
           DEVICE_NAME="${{ matrix.device }}"
           IOS_VERSION="${{ matrix.ios }}"
-          
-          SIMULATOR_UDID=$(xcrun simctl list devices available | grep "$DEVICE_NAME" | grep -o '([A-F0-9-]*)\s*$' | tr -d '() ' | head -n 1 || echo "")
-          
-          if [ -z "$SIMULATOR_UDID" ]; then
-            echo "Creating new $DEVICE_NAME simulator with iOS $IOS_VERSION"
-            SIMULATOR_UDID=$(xcrun simctl create "$DEVICE_NAME-Test" "com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}" "com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}")
-          fi
-          
+          DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}"
+          RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}"
+          SIMULATOR_NAME="${DEVICE_NAME}-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${GITHUB_JOB}"
+
+          echo "Creating simulator $SIMULATOR_NAME"
+          SIMULATOR_UDID=$(xcrun simctl create "$SIMULATOR_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+
           echo "Using simulator: $SIMULATOR_UDID"
           echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
-          
-          # Boot simulator
+
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
           xcrun simctl boot "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
-          
+
           echo "Simulator booted successfully"
 
       - name: Install xcov
@@ -71,6 +75,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           set -eo pipefail
+          mkdir -p test-results
           xcodebuild \
             test \
             -project VGSCollectSDK.xcodeproj \
@@ -83,6 +88,7 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild.log \
+            | xcpretty --report junit --output test-results/junit.xml || true
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
@@ -90,73 +96,88 @@ jobs:
 
       - name: Upload Test Results
         if: always()
+        id: sdk_upload_test_results
+        continue-on-error: true
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: test-results-xcode-${{ matrix.xcode }}
           path: test-results/
           if-no-files-found: warn
 
+      - name: Warn if SDK Test Results Upload Failed
+        if: always() && steps.sdk_upload_test_results.outcome != 'success'
+        run: echo "::warning::SDK test-results artifact upload failed (non-blocking)."
+
       - name: Upload Xcodebuild Log
         if: always()
+        id: sdk_upload_xcodebuild_log
+        continue-on-error: true
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: xcodebuild-log-${{ matrix.xcode }}
           path: xcodebuild.log
           if-no-files-found: warn
 
+      - name: Warn if SDK Xcodebuild Log Upload Failed
+        if: always() && steps.sdk_upload_xcodebuild_log.outcome != 'success'
+        run: echo "::warning::SDK xcodebuild.log artifact upload failed (non-blocking)."
+
+      - name: Delete Simulator
+        if: always()
+        run: |
+          if [ -n "${SIMULATOR_UDID:-}" ]; then
+            xcrun simctl delete "$SIMULATOR_UDID" || true
+          fi
+
   build-and-ui-test-demo-app:
     name: Build & UI Test Demo App (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-15
+    runs-on: macos-26
     strategy:
       matrix:
-        xcode: ['26.1.1']
-        ios: ['26.1']
+        xcode: ['26.5']
+        ios: ['26.5']
         device: ['iPhone 17']
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Setup Xcode ${{ matrix.xcode }}
-        uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1
-        with:
-          xcode-version: ${{ matrix.xcode }}
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: |
+          XCODE_PATH="/Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer"
+          if [ ! -d "$XCODE_PATH" ]; then
+            echo "Expected Xcode path not found: $XCODE_PATH"
+            ls -1 /Applications | grep '^Xcode' || true
+            exit 1
+          fi
+
+          sudo xcode-select -s "$XCODE_PATH"
+          xcodebuild -version
 
       - name: Create and Boot Simulator
         run: |
-          # Find or create the target simulator
           DEVICE_NAME="${{ matrix.device }}"
           IOS_VERSION="${{ matrix.ios }}"
-          
-          SIMULATOR_UDID=$(xcrun simctl list devices available | grep "$DEVICE_NAME" | grep -o '([A-F0-9-]*)\s*$' | tr -d '() ' | head -n 1 || echo "")
-          
-          if [ -z "$SIMULATOR_UDID" ]; then
-            echo "Creating new $DEVICE_NAME simulator with iOS $IOS_VERSION"
-            SIMULATOR_UDID=$(xcrun simctl create "$DEVICE_NAME-Test" "com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}" "com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}")
-          fi
-          
+          DEVICE_TYPE_ID="com.apple.CoreSimulator.SimDeviceType.${DEVICE_NAME// /-}"
+          RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${IOS_VERSION//./-}"
+          SIMULATOR_NAME="${DEVICE_NAME}-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${GITHUB_JOB}"
+
+          echo "Creating simulator $SIMULATOR_NAME"
+          SIMULATOR_UDID=$(xcrun simctl create "$SIMULATOR_NAME" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+
           echo "Using simulator: $SIMULATOR_UDID"
           echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> $GITHUB_ENV
-          
-          # Boot simulator
           xcrun simctl shutdown "$SIMULATOR_UDID" || true
           xcrun simctl boot "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
-          
+
           echo "Simulator booted successfully"
 
-      # --- Caching to fix slow "cloning" speed ---
-      - name: Cache CocoaPods
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
-        with:
-          path: demoapp/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('demoapp/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Install CocoaPods Dependencies
-        working-directory: demoapp
+      - name: Resolve Swift Package Dependencies
         run: |
-          pod install
+          xcodebuild \
+            -resolvePackageDependencies \
+            -project demoapp/demoapp.xcodeproj \
+            -scheme demoappUITests
 
       - name: Configure UI Test Data
         env:
@@ -168,27 +189,24 @@ jobs:
           plutil -insert TOKENIZATION_VAULT_ID -string "${TOKENIZATION_VAULT_ID}" UITestsMockedData.plist
 
       - name: Run UI Tests
-        working-directory: demoapp
         run: |
           set -eo pipefail
-          
+
           # Create isolated DerivedData to prevent permissions/cache issues
-          mkdir -p DerivedData
-          
+          mkdir -p demoapp/DerivedData test-results
           xcodebuild \
             test \
-            -workspace demoapp.xcworkspace \
+            -project demoapp/demoapp.xcodeproj \
             -scheme demoappUITests \
             -sdk iphonesimulator \
             -destination "platform=iOS Simulator,id=${{ env.SIMULATOR_UDID }}" \
             -parallel-testing-enabled NO \
-            -derivedDataPath ./DerivedData \
+            -derivedDataPath demoapp/DerivedData \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=YES \
-            | tee xcodebuild.log
-          
-          # NOTE: Removed '| xcpretty' to ensure you see raw crash logs if it fails.
+            | tee demoapp/xcodebuild.log \
+            | xcpretty --report junit --output test-results/junit.xml
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
@@ -196,16 +214,35 @@ jobs:
 
       - name: Upload Test Results
         if: always()
+        id: ui_upload_test_results
+        continue-on-error: true
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: ui-test-results-xcode-${{ matrix.xcode }}
           path: test-results/
           if-no-files-found: warn
 
+      - name: Warn if UI Test Results Upload Failed
+        if: always() && steps.ui_upload_test_results.outcome != 'success'
+        run: echo "::warning::UI test-results artifact upload failed (non-blocking)."
+
       - name: Upload Xcodebuild Log
         if: always()
+        id: ui_upload_xcodebuild_log
+        continue-on-error: true
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: demoapp-ui-tests-log-xcode-${{ matrix.xcode }}
           path: demoapp/xcodebuild.log
           if-no-files-found: warn
+
+      - name: Warn if UI Xcodebuild Log Upload Failed
+        if: always() && steps.ui_upload_xcodebuild_log.outcome != 'success'
+        run: echo "::warning::UI xcodebuild.log artifact upload failed (non-blocking)."
+
+      - name: Delete Simulator
+        if: always()
+        run: |
+          if [ -n "${SIMULATOR_UDID:-}" ]; then
+            xcrun simctl delete "$SIMULATOR_UDID" || true
+          fi

@@ -64,7 +64,7 @@ public struct VGSDateTokenizationParameters: VGSTokenizationParametersProtocol {
 /// Security:
 /// - Tokenization replaces raw date with an alias; never log raw date content if considered sensitive (e.g. birth dates).
 /// - Do not persist raw input.
-@MainActor public final class VGSDateTokenizationConfiguration: VGSConfiguration, VGSDateConfigurationProtocol, @preconcurrency VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
+@MainActor public final class VGSDateTokenizationConfiguration: VGSConfiguration, VGSDateConfigurationProtocol, VGSTextFieldTokenizationConfigurationProtocol, VGSFormatSerializableProtocol {
     
     // MARK: - Properties
     /// Start date used to fill out the date picker
@@ -136,7 +136,7 @@ public struct VGSDateTokenizationParameters: VGSTokenizationParametersProtocol {
 }
 
 // MARK: - `TextFormatConvertable` implementation
-extension VGSDateTokenizationConfiguration: @preconcurrency VGSTextFormatConvertable {
+extension VGSDateTokenizationConfiguration: VGSTextFormatConvertable {
     
     /// :nodoc:
     var inputFormat: InputConvertableFormat? {

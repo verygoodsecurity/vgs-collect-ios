@@ -3,7 +3,6 @@
 //  VGSCollectSDK
 //
 
-
 import Foundation
 
 /// Handle cvc field type

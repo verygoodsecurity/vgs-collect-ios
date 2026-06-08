@@ -120,7 +120,6 @@ public struct VGSDateTextFieldRepresentable: UIViewRepresentable, VGSDateTextFie
       return newRepresentable
   }
 
-
   // MARK: - Configuration methods
   /// Set `UIFont` value.
   public func font(_ font: UIFont) -> VGSDateTextFieldRepresentable {

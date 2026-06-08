@@ -81,11 +81,16 @@ class CollectApplePayData: UIViewController {
   /// Initiate PKPayment Authorization request
   func startPayment() {
     self.consoleStatusLabel.text = "Collecting ApplePay data"
+    let handlePresentationFailure: @MainActor () -> Void = { [weak self] in
+      self?.consoleLabel.text = "Failed to present payment controller"
+    }
     paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)
     paymentController?.delegate = self
     paymentController?.present(completion: { (presented: Bool) in
         if !presented {
-          self.consoleLabel.text = "Failed to present payment controller"
+          Task { @MainActor in
+            handlePresentationFailure()
+          }
         }
     })
   }

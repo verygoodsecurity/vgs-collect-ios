@@ -79,7 +79,6 @@ public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFie
     var cardIconSize = CGSize(width: 45, height: 45)
     /// Card brand icon positions enum.
     var cardIconLocation = VGSCardTextField.CardIconLocation.right
-
     
     // MARK: - Initialization
     /// Initialization

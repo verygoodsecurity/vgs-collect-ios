@@ -11,6 +11,7 @@ import XCTest
 @testable import VGSCollectSDK
 
 /// Base VGSCollect test case for common setup.
+@MainActor
 class VGSCollectBaseTestCase: XCTestCase {
 
 	/// Setup collect before tests.

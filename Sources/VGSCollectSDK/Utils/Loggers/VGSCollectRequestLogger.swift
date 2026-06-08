@@ -42,15 +42,15 @@ import Foundation
 			print("❗Failed ⬇️ VGSCollectSDK request url: \(stringFromURL(url))")
 		}
 		print("❗Failed ⬇️ VGSCollectSDK response status code: \(code)")
-		if let httpResponse = response as? HTTPURLResponse {
-			print("❗Failed ⬇️ VGSCollectSDK response headers:")
-			print(normalizeHeadersForLogs(httpResponse.allHeaderFields))
-		}
-		if let errorData = data {
-			if let bodyErrorText = String(data: errorData, encoding: String.Encoding.utf8) {
-				print("❗Failed ⬇️ VGSCollectSDK response extra info:")
-				if bodyErrorText.count > maxTextCountToPrintLimit {
-					print("VGSCollectSDK response size is too big to print. Use debugger if needed.")
+			if let httpResponse = response as? HTTPURLResponse {
+				print("❗Failed ⬇️ VGSCollectSDK response headers:")
+				print(normalizeHeadersForLogs(httpResponse.allHeaderFields))
+			}
+			if let errorData = data {
+				if let bodyErrorText = String(bytes: errorData, encoding: .utf8) {
+					print("❗Failed ⬇️ VGSCollectSDK response extra info:")
+					if bodyErrorText.count > maxTextCountToPrintLimit {
+						print("VGSCollectSDK response size is too big to print. Use debugger if needed.")
 				} else {
 					print("\(bodyErrorText)")
 				}
@@ -122,7 +122,7 @@ import Foundation
 	/// - Returns: `String` object, pretty printed `JSON`.
 	private static func stringifyJSONForLogs(_ vgsJSON: JsonData) -> String {
 		if let json = try? JSONSerialization.data(withJSONObject: vgsJSON, options: .prettyPrinted) {
-			let stringToPrint = String(decoding: json, as: UTF8.self)
+			let stringToPrint = String(bytes: json, encoding: .utf8) ?? ""
 			if stringToPrint.count > maxTextCountToPrintLimit {
 				return "VGSCollectSDK response size is too big to print. Use debugger if needed."
 			} else {

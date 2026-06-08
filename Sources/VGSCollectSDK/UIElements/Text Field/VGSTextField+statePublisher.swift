@@ -39,7 +39,7 @@ public extension VGSTextField {
 /// A  `VGSTextFieldStateSubscription` subscription that conforms to the `Subscription` and `VGSTextFieldDelegate` protocols.
 /// Used  by the `VGSTextFieldStatePublisher` to manage the subscribers and deliver updates on the `VGSTextField`  `State`.
 @available(iOS 13, *)
-@MainActor final class VGSTextFieldStateSubscription<S: Subscriber>: NSObject, @preconcurrency Subscription, @preconcurrency VGSTextFieldDelegate where S.Input == VGSTextFieldState, S.Failure == Never {
+@MainActor final class VGSTextFieldStateSubscription<S: Subscriber>: NSObject, @preconcurrency Subscription, VGSTextFieldDelegate where S.Input == VGSTextFieldState, S.Failure == Never {
     private var subscriber: S?
     private unowned let vgsTextField: VGSTextField
 

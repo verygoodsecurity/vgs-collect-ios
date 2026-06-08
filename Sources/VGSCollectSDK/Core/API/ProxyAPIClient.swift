@@ -2,14 +2,12 @@
 //  APIClient.swift
 //  VGSCollectSDK
 //
-
 import Foundation
 
 class ProxyAPIClient: VGSAPIClientProtocol {
   func setCustomHeaders(headers: HTTPHeaders?) {
     self.customHeader = headers
   }
-  
 
 	/// Additional custom headers.
 	var customHeader: HTTPHeaders?
@@ -103,9 +101,9 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 
 	// MARK: - Send request
 
-  func sendRequest(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, value: BodyData, completion block: ((_ response: VGSResponse) -> Void)? ) {
+  func sendRequest(path: String, method: VGSCollectHTTPMethod = .post, routeId: String? = nil, value: BodyData, completion block: VGSResponseCompletion? ) {
 
-    let sendRequestBlock: (URL?) -> Void = {url in
+    let sendRequestBlock: (URL?) -> Void = { url in
 			guard var requestURL = url else {
 				let message = "CONFIGURATION ERROR: NOT VALID ORGANIZATION PARAMETERS!!! CANNOT BUILD URL!!!"
 				let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
@@ -150,7 +148,7 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 		}
 	}
 
-    @MainActor private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, block: ((_ response: VGSResponse) -> Void)? ) {
+    @MainActor private  func sendRequest(to url: URL, method: VGSCollectHTTPMethod = .post, value: BodyData, block: VGSResponseCompletion? ) {
 
 		// Add headers.
         var headers = ProxyAPIClient.defaultHttpHeaders
@@ -173,7 +171,7 @@ class ProxyAPIClient: VGSAPIClientProtocol {
         
         // Send data.
         urlSession.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 if let error = error as NSError? {
                     VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
                     block?(.failure(error.code, data, response, error))
@@ -198,7 +196,7 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 
 extension ProxyAPIClient {
 
-  private func updateHost(with hostname: String, completion: ((URL) -> Void)? = nil) {
+  private func updateHost(with hostname: String, completion: VGSResolvedURLCompletion? = nil) {
     dataSyncQueue.async { [weak self] in
       guard let self = self else { return }
 

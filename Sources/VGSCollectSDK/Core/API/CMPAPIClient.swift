@@ -31,7 +31,7 @@ import Foundation
     self.baseURL = Self.getBaseURL(env: environment)
   }
   
-  func sendRequest(path: String, method: VGSCollectHTTPMethod, routeId: String? = nil, value: BodyData, completion block: ((VGSResponse) -> Void)?) {
+  func sendRequest(path: String, method: VGSCollectHTTPMethod, routeId: String? = nil, value: BodyData, completion block: VGSResponseCompletion?) {
 
     // Add headers.
     var headers = ProxyAPIClient.defaultHttpHeaders
@@ -53,7 +53,7 @@ import Foundation
 
     // Send data.
     urlSession.dataTask(with: request) { (data, response, error) in
-      DispatchQueue.main.async {
+      Task { @MainActor in
         if let error = error as NSError? {
           VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
           block?(.failure(error.code, data, response, error))

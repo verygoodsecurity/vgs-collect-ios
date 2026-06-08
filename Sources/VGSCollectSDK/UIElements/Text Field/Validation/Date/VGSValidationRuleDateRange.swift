@@ -30,6 +30,7 @@ public struct VGSValidationRuleDateRange: VGSValidationRuleProtocol {
     ///   - error: Error used in case there is an error with the validation rule.
     ///   - startDate: optional `VGSDate` instance.
     ///   - endDate: optional `VGSDate` instance.
+    @MainActor
     public init(dateFormat: VGSDateFormat = VGSDateFormat.default,
                 error: VGSValidationError,
                 start: VGSDate? = nil,

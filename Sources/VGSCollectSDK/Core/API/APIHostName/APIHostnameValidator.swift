@@ -25,7 +25,7 @@ import Foundation
 	///   - hostname: `String` object, hostname to validate.
 	///   - tenantId: `String` object, tenant id.
 	///   - completion: `((URL?) -> Void)` completion block.
-	internal static func validateCustomHostname(_ hostname: String, tenantId: String, completion: @escaping ((URL?) -> Void)) {
+	internal static func validateCustomHostname(_ hostname: String, tenantId: String, completion: @escaping VGSOptionalURLCompletion) {
 
 		guard !hostname.isEmpty else {
 			completion(nil)
@@ -50,7 +50,7 @@ import Foundation
 	///   - normalizedHostName: `String` object, normalized hostname.
 	///   - validationURL: `URL` object, validation URL.
 	///   - completion:`((URL?) -> Void)` completion block.
-	private static func performHostnameValidationRequest(with hostname: String, normalizedHostName: String, validationURL: URL, completion: @escaping ((URL?) -> Void)) {
+	private static func performHostnameValidationRequest(with hostname: String, normalizedHostName: String, validationURL: URL, completion: @escaping VGSOptionalURLCompletion) {
 		let task = URLRequest(url: validationURL)
 		session.dataTask(with: task) { (responseData, response, error) in
 			guard let httpResponse = response as? HTTPURLResponse, let data = responseData else {
@@ -58,7 +58,9 @@ import Foundation
 				let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 				VGSCollectLogger.shared.forwardLogEvent(event)
 
-				completion(nil)
+                Task { @MainActor in
+                    completion(nil)
+                }
 				return
 			}
 
@@ -67,7 +69,9 @@ import Foundation
 				let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 				VGSCollectLogger.shared.forwardLogEvent(event)
 
-				completion(nil)
+                Task { @MainActor in
+                    completion(nil)
+                }
 				return
 			}
 
@@ -76,26 +80,31 @@ import Foundation
 			guard Constants.validStatuses.contains(statusCode) else {
                 Task { @MainActor in
                     logErrorForStatusCode(statusCode, hostname: hostname)
+                    completion(nil)
                 }
-				completion(nil)
 				return
 			}
 
-			let responseText = String(decoding: data, as: UTF8.self)
+			let responseText = String(bytes: data, encoding: .utf8) ?? ""
 
 			let eventText = "response text: \"\(responseText)\""
 			let event = VGSLogEvent(level: .info, text: eventText)
 			VGSCollectLogger.shared.forwardLogEvent(event)
 
 			if responseText.contains(normalizedHostName) {
-				completion(URL(string: responseText))
+                let resolvedURL = URL(string: responseText)
+                Task { @MainActor in
+                    completion(resolvedURL)
+                }
 				return
 			} else {
 				let text = "Error❗Cannot find hostname: \"\(hostname)\" in list: \"\(responseText)\""
 				let event = VGSLogEvent(level: .warning, text: text, severityLevel: .error)
 				VGSCollectLogger.shared.forwardLogEvent(event)
 
-				completion(nil)
+                Task { @MainActor in
+                    completion(nil)
+                }
 				return
 			}
 		}.resume()

@@ -69,9 +69,6 @@ class TestCollectCardsDataWithCombine: TestCollectBaseTestCase {
     // Navigate to payment cards.
     app.tables.staticTexts[TestsCollectFlowType.paymentCardsWithCombine.name].tap()
 
-    // Tap on nav bar.
-    let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
-
     // Fill in correct data.
     fillInCorrectCardData()
 
@@ -86,9 +83,6 @@ class TestCollectCardsDataWithCombine: TestCollectBaseTestCase {
 
     // Wait for request.
     wait(forTimeInterval: 30)
-
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
 
     // Verify success response.
     verifySuccessResponse()
@@ -115,4 +109,3 @@ class TestCollectCardsDataWithCombine: TestCollectBaseTestCase {
     cvcField.typeText("1234")
   }
 }
-

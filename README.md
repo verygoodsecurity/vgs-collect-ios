@@ -58,11 +58,29 @@ Requires Swift tools version 5.9 or higher. Check your installed version:
 ```bash
 xcrun swift -version
 ```
+The SDK is currently validated with Xcode 26.5 / Swift 6.3 while keeping the package manifest at `swift-tools-version: 5.9` for customer compatibility.
+
 Add the package in Xcode using the repository URL:
 ```
 https://github.com/verygoodsecurity/vgs-collect-ios.git
 ```
 Select the exact version you want to pin, then add `VGSCollectSDK` and optionally scanning/file modules (e.g. `VGSBlinkCardCollector`). Pinning versions ensures reproducible builds.
+
+If you validate the package from the command line instead of Xcode, build against an iOS SDK explicitly. A plain host `swift build` targets macOS and does not reflect the supported integration path for this iOS-only SDK. The examples below use the latest validated iOS runtime for this repository, not the minimum supported deployment target.
+
+Simulator example:
+```bash
+swift build \
+  --sdk "$(xcrun --sdk iphonesimulator --show-sdk-path)" \
+  --triple arm64-apple-ios26.5-simulator
+```
+
+Device example:
+```bash
+swift build \
+  --sdk "$(xcrun --sdk iphoneos --show-sdk-path)" \
+  --triple arm64-apple-ios26.5
+```
 
 ### CocoaPods
 Add to your `Podfile`:

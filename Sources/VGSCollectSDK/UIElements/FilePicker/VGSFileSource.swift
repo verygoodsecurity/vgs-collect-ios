@@ -3,7 +3,6 @@
 //  VGSCollectSDK
 //
 
-
 import Foundation
 
 /// Available file source destinations that `VGSFilePickerController` can work with.

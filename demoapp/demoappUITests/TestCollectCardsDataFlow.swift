@@ -3,7 +3,6 @@
 //  demoappUITests
 //
 
-
 import XCTest
 
 /// Payment cards flow.
@@ -70,9 +69,6 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     // Navigate to payment cards.
     app.tables.staticTexts[TestsCollectFlowType.paymentCards.name].tap()
 
-    // Tap on nav bar.
-    let navigationBar = UIElements.NavigationBar.navigationBar.find(in: app).staticTexts[UIElements.NavigationBar.title]
-
     // Fill in correct data.
     fillInCorrectCardData()
 
@@ -87,9 +83,6 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
 
     // Wait for request.
     wait(forTimeInterval: 30)
-
-    // Find response label.
-    let responseLabel = app.staticTexts[UIElements.Labels.response]
 
     // Verify success response.
     verifySuccessResponse()

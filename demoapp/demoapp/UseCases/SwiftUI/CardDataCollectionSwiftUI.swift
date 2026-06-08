@@ -5,6 +5,7 @@
 
 import SwiftUI
 import VGSCollectSDK
+import VGSBlinkCardCollector
 
 struct CardDataCollectionSwiftUI: View {
     let vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
@@ -119,7 +120,7 @@ struct CardDataCollectionSwiftUI: View {
           Button(action: {
             UIApplication.shared.endEditing()
             showingBlinkCardScanner = true
-          }) {
+          }, label: {
               Text("SCAN")
                   .padding()
                   .cornerRadius(8)
@@ -127,11 +128,15 @@ struct CardDataCollectionSwiftUI: View {
                       RoundedRectangle(cornerRadius: 10)
                           .stroke(Color.blue, lineWidth: 2)
                   )
-          }
+          })
           .fullScreenCover(isPresented: $showingBlinkCardScanner) {
-            VGSBlinkCardControllerRepresentable(licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!, dataCoordinators: scanedDataCoordinators) { (errorCode) in
-              print(errorCode)
-            }.allowInvalidCardNumber(true)
+            VGSBlinkCardControllerRepresentable(
+              licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!,
+              dataCoordinators: scanedDataCoordinators,
+              errorCallback: { errorCode in
+                print(errorCode)
+              }
+            ).allowInvalidCardNumber(true)
               .showOnboardingInfo(false)
               .showIntroductionDialog(false)
             .onCardScanned({
@@ -144,7 +149,7 @@ struct CardDataCollectionSwiftUI: View {
           Button(action: {
             UIApplication.shared.endEditing()
             sendData()
-          }) {
+          }, label: {
               Text("UPLOAD")
                   .padding()
                   .cornerRadius(8)
@@ -152,7 +157,7 @@ struct CardDataCollectionSwiftUI: View {
                       RoundedRectangle(cornerRadius: 10)
                           .stroke(Color.blue, lineWidth: 2)
                   )
-          }
+          })
         }.padding(.top, 50)
         Text("\(consoleMessage)")
       }.padding(.leading, 20)
@@ -160,6 +165,11 @@ struct CardDataCollectionSwiftUI: View {
   }
   
   private func sendData() {
+    if UITestsMockedDataProvider.isRunningUITest && UITestsMockedDataProvider.isUsingFallbackVaultId {
+      consoleMessage = "Success: \n{ \"mocked\": true }"
+      return
+    }
+
     /// send extra data
     var extraData = [String: Any]()
     extraData["customKey"] = "Custom Value"

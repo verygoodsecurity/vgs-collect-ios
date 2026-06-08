@@ -13,6 +13,8 @@ import UIKit
 
 /// VGS Analytics event types produced by the SDK.
 public enum VGSAnalyticsEventType: String {
+  /// Event type for VGSCollect instance create.
+  case create = "Create"
   /// Event type for form initialization.
   case fieldInit = "Init"
   /// Event type for hostname validation.

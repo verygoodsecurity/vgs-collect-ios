@@ -1,6 +1,6 @@
 # AGENTS.md
 
-**SDK Version: 1.18.2**
+**SDK Version: 1.18.3**
 
 This guide is tailored for autonomous engineering agents integrating `VGSCollectSDK` into iOS applications. It focuses on deterministic, automatable steps: environment assessment, dependency installation, feature wiring (text fields, scanning, file upload), privacy compliance, testing, maintenance, and safe upgrade workflows.
 
@@ -502,7 +502,6 @@ config.validationRules = rules
 4. Update affected code (avoid deprecated replacements if still available; choose newest non-deprecated path).
 5. Update this file only if public usage guidance changes.
 
----
 ## 18. Non-Goals (What Agents Must Not Attempt)
 - Re-implement tokenization or encryption around SDK fields.
 - Access or reflect private/internal properties through reflection.
