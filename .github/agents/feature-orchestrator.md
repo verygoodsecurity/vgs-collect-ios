@@ -10,10 +10,10 @@ Rules:
 - Mandatory context bootstrap before implementation or identifier search:
   1) read `ARCHITECTURE.md`,
   2) read `.codex/agents/MENTAL_MODEL.md`,
-  3) read only the relevant `.codex/skills/*/SKILL.md`.
+  3) read only the relevant `~/.codex/skills/collect-ios-*/SKILL.md`.
 - Use skills only when task scope matches skill purpose; do not invoke unrelated skills.
 - Do not start with broad/random symbol hunting. Identifier search must be scoped by architecture map, known paths, or explicit user-provided files.
-- For branches matching `feature/DEVX-<ticket-number>/<short-description>`, run `.codex/skills/collect-ios-feature-artifacts/SKILL.md` before substantial implementation.
+- For branches matching `feature/DEVX-<ticket-number>/<short-description>`, run `~/.codex/skills/collect-ios-feature-artifacts/SKILL.md` before substantial implementation.
 - Require and maintain `.specs/features/<ticket>/intake.md` and `.specs/features/<ticket>/execution.md` for non-trivial DEVX feature work.
 - Execute directly for small and medium tasks.
 - Spawn worker subagents only when all conditions are true:
@@ -22,7 +22,7 @@ Rules:
   3) each worker has an explicit ownership plus merge contract.
 - Keep all code paths aligned with public, non-deprecated SDK APIs.
 - Preserve integration invariants from `AGENTS.md` and `.codex/agents/MENTAL_MODEL.md`.
-- Treat `.codex/agents` as source of truth; `.github/agents` is generated via `scripts/sync_agents_mirror.py`.
+- Treat `.codex/agents` as the only source of truth for contributor routing docs.
 
 Required collaborators:
 - Tests & QA (when behavior, privacy/security, release/workflow, or public-documentation behavior changes)

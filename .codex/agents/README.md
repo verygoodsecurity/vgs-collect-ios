@@ -14,7 +14,7 @@ Before searching symbols/functions/classes:
 
 1. Read `ARCHITECTURE.md` to identify the relevant subsystem and concrete file paths.
 2. Read `.codex/agents/MENTAL_MODEL.md` for integration behavior constraints.
-3. Read only the relevant skill file(s) under `.codex/skills/*/SKILL.md`.
+3. Read only the relevant collect-ios skill file(s) under `~/.codex/skills/collect-ios-*/SKILL.md`.
 4. Run targeted file/path-scoped searches based on steps 1-3.
 
 Do not start with broad/random identifier hunts across the repository.
@@ -41,11 +41,11 @@ git checkout -b feature/DEVX-1234/short-description
 - QA and invariant gate:
   - `tests-qa.toml`
 - Domain workflows (skills-first):
-  - `.codex/skills/collect-ios-core-change/`
-  - `.codex/skills/collect-ios-file-scanner/`
-  - `.codex/skills/collect-ios-observability-privacy/`
-  - `.codex/skills/collect-ios-release-docs/`
-  - `.codex/skills/collect-ios-feature-artifacts/`
+  - `~/.codex/skills/collect-ios-core-change/`
+  - `~/.codex/skills/collect-ios-file-scanner/`
+  - `~/.codex/skills/collect-ios-observability-privacy/`
+  - `~/.codex/skills/collect-ios-release-docs/`
+  - `~/.codex/skills/collect-ios-feature-artifacts/`
 
 ## Operating Policy
 
