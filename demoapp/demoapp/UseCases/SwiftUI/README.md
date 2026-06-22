@@ -54,7 +54,7 @@ struct CardDataCollectionView: View {
 ```
 
 ## VGSBlinkCardControllerRepresentable
-VGSBlinkCardControllerRepresentable is a SwiftUI wrapper around BlinkCard card scanner controller and have similar attributes and functionality represented in SwiftUI way.
+VGSBlinkCardControllerRepresentable is a SwiftUI wrapper around BlinkCard v3000 card scanner controller and has similar attributes and functionality represented in a SwiftUI way. It requires iOS 16+ and Swift Package Manager.
 
 ### Code example
 
@@ -103,8 +103,8 @@ struct CardDataCollectionSwiftUI: View {
                   )
           }
           .fullScreenCover(isPresented: $showingBlinkCardScanner) {
-            VGSBlinkCardControllerRepresentable(licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!, dataCoordinators: scanedDataCoordinators) { (errorCode) in
-              print(errorCode)
+            VGSBlinkCardControllerRepresentable(licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!, dataCoordinators: scanedDataCoordinators) { errorCode in
+              // Handle safe scanner initialization error code.
             }.allowInvalidCardNumber(true)
             .onCardScanned({
               showingBlinkCardScanner = false

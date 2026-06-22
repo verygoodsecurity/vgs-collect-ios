@@ -15,12 +15,16 @@ internal struct VGSBlinkCardExpirationDate {
   /// Scanned year short: YY
   let shortYear: Int
     
-  init(_ month: Int, year: Int) {
+  init?(_ month: Int?, year: Int?) {
+    guard let month = month, let year = year, (1...12).contains(month), year > 0 else {
+      return nil
+    }
+    let normalizedYear = year < 100 ? 2000 + year : year
     self.month = month
     // Normalize month to format "01"
     self.monthString = Self.formatMonthString(from: month)
-    self.year = year
-    self.shortYear = year - 2000
+    self.year = normalizedYear
+    self.shortYear = normalizedYear - 2000
   }
   
   // MARK: - Helpers

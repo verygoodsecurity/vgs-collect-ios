@@ -44,19 +44,22 @@ public enum VGSBlinkCardDataType: Int, CaseIterable {
 
     /// Credit Card Expiration Date. String in format "yyyy/mm", e.g:"2021/01".
     case expirationDateLongYearThenMonth
+
+    /// Payment card IBAN, when BlinkCard returns one.
+    case iban
 }
 
-/// Delegates produced by `VGSBlinkCardController` instance.
+/// Delegate callbacks produced by a `VGSBlinkCardController` instance.
 @objc
 @MainActor
 public protocol VGSBlinkCardControllerDelegate {
     
-    // MARK: - Handle user ineraction with `BlinkCard`
+    // MARK: - Handle user interaction with `BlinkCard`
     
     /// On user confirm scanned data by selecting Done button on `BlinkCard` screen.
     @objc func userDidFinishScan()
     
-    /// On user press Cancel buttonn on `BlinkCard` screen.
+    /// On user press Cancel button on `BlinkCard` screen.
     @objc func userDidCancelScan()
     
     // MARK: - Manage scanned data

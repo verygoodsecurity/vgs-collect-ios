@@ -373,6 +373,11 @@ Max total file size enforced internally (rejects oversize gracefully—react by 
 
 ---
 ## 8. Card Scanning (BlinkCard)
+Compatibility:
+- `VGSBlinkCardCollector` uses BlinkCard v3000.0.1 through Swift Package Manager and requires iOS 16+ for the optional scanner module. Because SwiftPM platform declarations are package-wide, the SwiftPM package declares iOS 16; Core `VGSCollectSDK` remains iOS 13+ through CocoaPods and the Xcode framework target. BlinkCard v3000 also requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
+- CocoaPods does not provide the BlinkCard v3000 scanner module; use Swift Package Manager for BlinkCard scanning.
+- Existing production BlinkCard license keys remain valid with v3000.
+
 Import Note:
 - For SwiftPM integrations, files using BlinkCard APIs must explicitly import `VGSBlinkCardCollector` (do not rely on `import VGSCollectSDK` alone for `VGSBlinkCardController` symbols).
 
@@ -386,7 +391,7 @@ Present:
 ```
 scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
 ```
-Delegate mapping returns the appropriate `VGSTextField` for each `VGSBlinkCardDataType` case (e.g. `.cardNumber`, `.expirationDate`, `.cvc`, `.name`). Always include `NSCameraUsageDescription` in Info.plist.
+Delegate mapping returns the appropriate `VGSTextField` for each `VGSBlinkCardDataType` case (e.g. `.cardNumber`, `.expirationDate`, `.cvc`, `.name`, `.iban`). Always include `NSCameraUsageDescription` in Info.plist.
 
 ---
 ## 9. SwiftUI Usage
@@ -483,7 +488,7 @@ Add File Upload:
 3. On pick, send file -> on success `cleanFiles()`.
 
 Add BlinkCard Scan:
-1. Add BlinkCard module dependency.
+1. Add `VGSBlinkCardCollector` through Swift Package Manager.
 2. Initialize controller with license key + delegate.
 3. Present scanner; map scanned types to existing fields.
 

@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "VGSCollectSDK",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v16),
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
@@ -23,7 +23,7 @@ let package = Package(
     dependencies: [
         // Updated to new requirement API (exact:) to silence deprecation warnings.
         .package(url: "https://github.com/verygoodsecurity/CardIOSDK-iOS.git", exact: "5.5.7"),
-        .package(url: "https://github.com/blinkcard/blinkcard-swift-package", exact: "2.12.0")
+        .package(url: "https://github.com/BlinkCard/blinkcard-ios.git", exact: "3000.0.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -41,7 +41,7 @@ let package = Package(
             ]),
         .testTarget(
             name: "FrameworkTests",
-            dependencies: ["VGSCollectSDK"],
+            dependencies: ["VGSCollectSDK", "VGSBlinkCardCollector"],
             exclude: [
               "Info.plist",
               "FrameworkTests.xctestplan"
@@ -55,7 +55,7 @@ let package = Package(
         .target(
             name: "VGSBlinkCardCollector",
             dependencies: ["VGSCollectSDK",
-                      .product(name: "BlinkCard", package: "blinkcard-swift-package")],
+                      .product(name: "BlinkCardUX", package: "blinkcard-ios")],
             path: "Sources/VGSBlinkCardCollector/")
         ]
 )

@@ -1,5 +1,13 @@
 ## Migration Guides
 
+### Migrating from versions < v1.19.0
+#### Migrating BlinkCard scanner to v3000.0.1
+`VGSBlinkCardCollector` now wraps BlinkCard v3000.0.1 through Swift Package Manager and requires iOS 16+ for the optional scanner module. Because SwiftPM platform declarations are package-wide, the SwiftPM package declares iOS 16; Core `VGSCollectSDK` remains iOS 13+ through CocoaPods and the Xcode framework target. BlinkCard v3000 also requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
+
+Customers using Swift Package Manager should keep importing `VGSBlinkCardCollector` and can continue using `VGSBlinkCardController`, `VGSBlinkCardControllerDelegate`, and `VGSBlinkCardControllerRepresentable`. BlinkCard v3000 keeps existing production license keys valid.
+
+The old CocoaPods `VGSCollectSDK/BlinkCard` subspec depended on BlinkCard 2.x and is no longer shipped. CocoaPods users can keep using `VGSCollectSDK` Core; migrate BlinkCard scanner integrations to Swift Package Manager.
+
 ### Migrating from versions < v1.16.0
 #### Rename state classes 
 `CardState` -> `VGSCardState`
@@ -7,7 +15,7 @@
 
 ### Migrating from versions < v1.12.0
 #### `VGSCollectSDK/CardScan` scan module deprecated.
-Use `VGSCollectSDK/CardIO` or `VGSCollectSDK/BlinkCard` as card scan solution instead.
+For BlinkCard scanning, use `VGSBlinkCardCollector` through Swift Package Manager instead.
 
 ### Migrating from versions < v1.11.3
 #### Rename enum 
@@ -175,5 +183,3 @@ let expDateConfiguration = VGSConfiguration(collector: vgsCollect, fieldName: "c
 expDateConfiguration.type = .expDate
 expDateConfiguration.divider = ""
 ```
-
-

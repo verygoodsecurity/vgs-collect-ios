@@ -29,12 +29,8 @@ Pod::Spec.new do |spec|
 		}
   end
     
-  spec.subspec 'BlinkCard' do |blinkcard|
-      blinkcard.source_files  = "Sources/VGSBlinkCardCollector", "Sources/VGSBlinkCardCollector/**/*.{swift}"
-      blinkcard.dependency "VGSCollectSDK/Core"
-      blinkcard.dependency "MBBlinkCard", "2.12.0"
-      blinkcard.ios.deployment_target = "13.0"
-  end
+  # BlinkCard v3000 is distributed through Swift Package Manager and requires iOS 16+.
+  # The previous CocoaPods BlinkCard subspec depended on MBBlinkCard 2.x and is no longer shipped.
   
   spec.subspec 'CardIO' do |cardIO|
     cardIO.source_files  = "Sources/VGSCardIOCollector", "Sources/VGSCardIOCollector/**/*.{swift}", "Sources/VGSCardIOCollector/**/*.{h, m}"
