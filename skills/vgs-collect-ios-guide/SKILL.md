@@ -127,6 +127,6 @@ Begin every response by stating which version the guidance is based on, using on
 - `Using VGSCollectSDK 1.18.2.`
 - `Detected VGSCollectSDK 1.18.2 from Package.resolved.`
 - `Could not determine the installed VGSCollectSDK version; using latest guidance from the default branch.`
-- `Exact tag 1.18.3 was not found; using nearest compatible tag 1.18.2.`
+- `Exact tag 1.19.0 was not found; using nearest compatible tag 1.18.3.`
 
 Then proceed using the active version-matched snapshot.
