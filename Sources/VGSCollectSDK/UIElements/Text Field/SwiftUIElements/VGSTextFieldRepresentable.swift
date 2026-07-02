@@ -6,7 +6,6 @@
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, *)
 /// A SwiftUI wrapper around `VGSTextField` providing secure data collection with a declarative builder-style API.
 ///
 /// Overview:

@@ -9,7 +9,7 @@
 import Foundation
 #if canImport(UIKit)
 import UIKit
-import MobileCoreServices
+import UniformTypeIdentifiers
 #endif
 
 /// A class that manage UIDocumentPickerViewController
@@ -25,15 +25,10 @@ internal class VGSDocumentPicker: NSObject, VGSFilePickerProtocol {
         vgsCollector = configuration.vgsCollector
         filename = configuration.fieldName
         
-        let docType = [String(kUTTypeText),
-                       String(kUTTypeContent),
-                       String(kUTTypeItem),
-                       String(kUTTypeData)]
-        picker = UIDocumentPickerViewController(documentTypes: docType, in: .import)
+        let docTypes: [UTType] = [.text, .content, .item, .data]
+        picker = UIDocumentPickerViewController(forOpeningContentTypes: docTypes, asCopy: true)
         picker.delegate = self
-        if #available(iOS 11.0, *) {
-            picker.allowsMultipleSelection = false
-        }
+        picker.allowsMultipleSelection = false
     }
     
     func present(on viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
@@ -47,10 +42,6 @@ internal class VGSDocumentPicker: NSObject, VGSFilePickerProtocol {
 
 extension VGSDocumentPicker: UIDocumentPickerDelegate {
      func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard controller.documentPickerMode == .import else {
-            return
-        }
-
         if let url = urls.first, let fileData = try? Data(contentsOf: url) {
             vgsCollector?.storage.files = [filename: fileData]
             let fileMetadata = VGSFileInfo(fileExtension: url.pathExtension, size: fileData.count, sizeUnits: "bytes")

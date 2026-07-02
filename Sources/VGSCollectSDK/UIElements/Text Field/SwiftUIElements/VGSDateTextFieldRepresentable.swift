@@ -5,7 +5,6 @@
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, *)
 /// A SwiftUI wrapper for `VGSDateTextField` enabling secure date collection (day/month/year) with picker UI.
 ///
 /// Features:

@@ -302,7 +302,7 @@ collector.sendData(path: "/post", extraData: ["customKey": "value"]) { response 
   }
 }
 ```
-Async/Await (iOS 15+):
+Async/Await:
 ```
 let response = await collector.sendData(path: "/post")
 ```
@@ -374,7 +374,7 @@ Max total file size enforced internally (rejects oversize gracefully—react by 
 ---
 ## 8. Card Scanning (BlinkCard)
 Compatibility:
-- `VGSBlinkCardCollector` uses BlinkCard v3000.0.1 through Swift Package Manager and requires iOS 16+ for the optional scanner module. Because SwiftPM platform declarations are package-wide, the SwiftPM package declares iOS 16; Core `VGSCollectSDK` remains iOS 13+ through CocoaPods and the Xcode framework target. BlinkCard v3000 also requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
+- `VGSCollectSDK` requires iOS 16+. `VGSBlinkCardCollector` uses BlinkCard v3000.0.1 through Swift Package Manager and requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
 - CocoaPods does not provide the BlinkCard v3000 scanner module; use Swift Package Manager for BlinkCard scanning.
 - Existing production BlinkCard license keys remain valid with v3000.
 

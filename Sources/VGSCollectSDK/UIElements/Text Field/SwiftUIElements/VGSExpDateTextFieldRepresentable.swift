@@ -6,7 +6,6 @@
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, *)
 /// A SwiftUI wrapper for `VGSExpDateTextField` collecting card expiration date (MM / YY or MM / YYYY) with a picker, supporting brand-aware formatting.
 ///
 /// Features:

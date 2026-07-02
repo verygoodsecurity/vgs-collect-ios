@@ -7,7 +7,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, *)
 /// Coordinates external card scanning integrations with a bound `VGSTextField` (typically a `VGSCardTextField` or its SwiftUI representable).
 ///
 /// Responsibilities:
@@ -34,7 +33,6 @@ import Combine
         textField?.setText(text)
     }
 }
-@available(iOS 14.0, *)
 public extension VGSCardScanCoordinator {
   /// Track a generic scan analytics event. Supply a scanner type identifier (e.g. "blinkcard", "cardIO").
   func trackAnalyticsEvent(scannerType: String) {

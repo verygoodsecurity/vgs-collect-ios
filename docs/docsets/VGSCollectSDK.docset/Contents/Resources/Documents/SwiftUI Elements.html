@@ -140,6 +140,21 @@
             <a class="nav-group-name-link" href="SwiftUI%20Elements.html">SwiftUI Elements</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSTextFieldRepresentable.html">VGSTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSCardTextFieldRepresentable.html">VGSCardTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSExpDateTextFieldRepresentable.html">VGSExpDateTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSDateTextFieldRepresentable.html">VGSDateTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSCVCTextFieldRepresentable.html">VGSCVCTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
               </li>
             </ul>
@@ -384,6 +399,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSCardScanCoordinator.html">VGSCardScanCoordinator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -421,6 +444,265 @@
         <section class="section">
           <div class="section-content">
             <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK25VGSTextFieldRepresentableV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSTextFieldRepresentable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK25VGSTextFieldRepresentableV">VGSTextFieldRepresentable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A SwiftUI wrapper around <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> providing secure data collection with a declarative builder-style API.</p>
+
+<p>Overview:
+<code>VGSTextFieldRepresentable</code> lets you embed the UIKit <code><a href="Classes/VGSTextField.html">VGSTextField</a></code> inside SwiftUI while configuring appearance, behavior, and callbacks in a chainable, value-type friendly manner.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Chainable modifiers (<code>font</code>, <code>placeholder</code>, <code>border</code>, etc.).</li>
+<li>Live state &amp; editing event callbacks (<code>onEditingEvent</code>, <code>onStateChange</code>).</li>
+<li>Optional accessory view and secure text entry.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>No sensitive text is exposed through published properties; retrieval and submission handled internally.</li>
+<li>Avoid storing raw values outside SDK-managed flows.</li>
+</ul>
+
+<p>Clearing Input:</p>
+
+<ul>
+<li>Use <code>clearTextTrigger(_:)</code> binding to programmatically clear the field from SwiftUI state.</li>
+</ul>
+
+<p>Example:</p>
+<pre class="highlight swift"><code><span class="kt">VGSTextFieldRepresentable</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">placeholder</span><span class="p">(</span><span class="s">"Cardholder name"</span><span class="p">)</span>
+  <span class="o">.</span><span class="nf">font</span><span class="p">(</span><span class="o">.</span><span class="nf">preferredFont</span><span class="p">(</span><span class="nv">forTextStyle</span><span class="p">:</span> <span class="o">.</span><span class="n">body</span><span class="p">))</span>
+  <span class="o">.</span><span class="nf">border</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">onStateChange</span> <span class="p">{</span> <span class="n">state</span> <span class="k">in</span> <span class="nf">print</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">isValid</span><span class="p">)</span> <span class="p">}</span>
+</code></pre>
+
+                        <a href="Structs/VGSTextFieldRepresentable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSTextFieldRepresentable</span> <span class="p">:</span> <span class="kt">UIViewRepresentable</span><span class="p">,</span> <span class="kt">VGSTextFieldRepresentableProtocol</span><span class="p">,</span> <span class="kt">VGSTextFieldRepresentableCallbacksProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentable.swift#L34-L250">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK29VGSCardTextFieldRepresentableV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSCardTextFieldRepresentable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK29VGSCardTextFieldRepresentableV">VGSCardTextFieldRepresentable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A SwiftUI wrapper for <code><a href="Classes/VGSCardTextField.html">VGSCardTextField</a></code> enabling secure card number entry with real-time brand detection &amp; adaptive formatting.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Brand icon customization (size, position, accessibility).</li>
+<li>Chainable UI modifiers for font, placeholder, border, etc.</li>
+<li>Editing &amp; state callbacks exposing <code><a href="Classes/VGSCardState.html">VGSCardState</a></code> (BIN, last4, brand).</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>PAN is sensitive.</li>
+<li>Tokenize using <code><a href="Classes/VGSCollect.html">VGSCollect</a></code> methods for safe vault storage.</li>
+</ul>
+
+                        <a href="Structs/VGSCardTextFieldRepresentable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSCardTextFieldRepresentable</span> <span class="p">:</span> <span class="kt">UIViewRepresentable</span><span class="p">,</span> <span class="kt">VGSCardTextFieldRepresentableProtocol</span><span class="p">,</span> <span class="kt">VGSTextFieldRepresentableCallbacksProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardTextFieldRepresentable.swift#L19-L274">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK32VGSExpDateTextFieldRepresentableV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSExpDateTextFieldRepresentable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK32VGSExpDateTextFieldRepresentableV">VGSExpDateTextFieldRepresentable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A SwiftUI wrapper for <code><a href="Classes/VGSExpDateTextField.html">VGSExpDateTextField</a></code> collecting card expiration date (MM / YY or MM / YYYY) with a picker, supporting brand-aware formatting.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Configurable month &amp; year display formats.</li>
+<li>Chainable UI configuration &amp; secure entry toggle.</li>
+<li>State &amp; editing callbacks for validation monitoring.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>Expiration date treated as sensitive until tokenized; avoid persisting raw values.</li>
+<li>Picker prevents selection of past months in current year.</li>
+</ul>
+
+                        <a href="Structs/VGSExpDateTextFieldRepresentable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSExpDateTextFieldRepresentable</span> <span class="p">:</span> <span class="kt">UIViewRepresentable</span><span class="p">,</span> <span class="kt">VGSExpDateTextFieldRepresentableProtocol</span><span class="p">,</span> <span class="kt">VGSTextFieldRepresentableCallbacksProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSExpDateTextFieldRepresentable.swift#L19-L257">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK29VGSDateTextFieldRepresentableV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSDateTextFieldRepresentable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK29VGSDateTextFieldRepresentableV">VGSDateTextFieldRepresentable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A SwiftUI wrapper for <code><a href="Classes/VGSDateTextField.html">VGSDateTextField</a></code> enabling secure date collection (day/month/year) with picker UI.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Chainable configuration similar to base representable.</li>
+<li>Custom month label formatting via <code>monthPickerFormat</code>.</li>
+<li>State &amp; editing callbacks.</li>
+</ul>
+
+<p>Security &amp; Validation:</p>
+<div class="aside aside-date">
+    <p class="aside-title">Date</p>
+    Date selection constrained by configuration date ranges.
+
+</div><ul>
+<li>Returned <code><a href="Classes/VGSTextFieldState.html">VGSTextFieldState</a></code> reflects validation status in callbacks.</li>
+</ul>
+
+                        <a href="Structs/VGSDateTextFieldRepresentable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSDateTextFieldRepresentable</span> <span class="p">:</span> <span class="kt">UIViewRepresentable</span><span class="p">,</span> <span class="kt">VGSDateTextFieldRepresentableProtocol</span><span class="p">,</span> <span class="kt">VGSTextFieldRepresentableCallbacksProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSDateTextFieldRepresentable.swift#L18-L247">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK28VGSCVCTextFieldRepresentableV"></a>
+                    <a name="//apple_ref/swift/Struct/VGSCVCTextFieldRepresentable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK28VGSCVCTextFieldRepresentableV">VGSCVCTextFieldRepresentable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A SwiftUI wrapper for <code><a href="Classes/VGSCVCTextField.html">VGSCVCTextField</a></code> enabling secure collection of card security codes (CVC/CVV) with dynamic icon and brand-aware validation.</p>
+
+<p>Features:</p>
+
+<ul>
+<li>Chainable styling &amp; behavior modifiers.</li>
+<li>Customizable CVC icon size, position, accessibility.</li>
+<li>State &amp; editing callbacks for validation updates.</li>
+<li>Integrates with <code><a href="Classes/VGSCardTextField.html">VGSCardTextField</a></code> for dynamic length changes.</li>
+</ul>
+
+<p>Security:</p>
+
+<ul>
+<li>CVC is especially sensitive; enable <code>isSecureTextEntry</code> if you need obscured input.</li>
+<li>Do not store raw CVC values in app.</li>
+</ul>
+
+                        <a href="Structs/VGSCVCTextFieldRepresentable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">VGSCVCTextFieldRepresentable</span> <span class="p">:</span> <span class="kt">UIViewRepresentable</span><span class="p">,</span> <span class="kt">VGSCVCTextFieldRepresentableProtocol</span><span class="p">,</span> <span class="kt">VGSTextFieldRepresentableCallbacksProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCVCTextFieldRepresentable.swift#L19-L287">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
               <div class="task-name-container">
                 <a name="/VGSCardTextFieldRepresentable."></a>
                 <a name="//apple_ref/swift/Section/VGSCardTextFieldRepresentable." class="dashAnchor"></a>
@@ -444,7 +726,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>VGSTextFieldRepresentable</code> editing events.</p>
+                        <p><code><a href="Structs/VGSTextFieldRepresentable.html">VGSTextFieldRepresentable</a></code> editing events.</p>
 
                         <a href="Enums/VGSTextFieldEditingEvent.html" class="slightly-smaller">See more</a>
                       </div>
@@ -457,7 +739,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentableProtocol.swift#L59-L66">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentableProtocol.swift#L58-L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

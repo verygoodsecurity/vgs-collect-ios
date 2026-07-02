@@ -7,7 +7,6 @@ import XCTest
 import Combine
 @testable import VGSCollectSDK
 
-@available(iOS 13, *)
 @MainActor 
 class ApiClientTests: VGSCollectBaseTestCase {
     var collector: VGSCollect!

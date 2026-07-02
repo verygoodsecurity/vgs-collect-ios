@@ -6,7 +6,6 @@
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, *)
 /// A SwiftUI wrapper for `VGSCardTextField` enabling secure card number entry with real-time brand detection & adaptive formatting.
 ///
 /// Features:

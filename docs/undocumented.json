@@ -1,159 +1,131 @@
 {
   "warnings": [
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
       "line": 123,
       "symbol": "VGSDateTokenizationConfiguration.serializers",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
       "line": 132,
       "symbol": "VGSDateTokenizationConfiguration.tokenizationParameters",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
       "line": 9,
       "symbol": "VGSConfiguration.makeCardNumberConfiguration(collector:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
       "line": 17,
       "symbol": "VGSConfiguration.makeCardholderConfiguration(collector:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
       "line": 23,
       "symbol": "VGSConfiguration.makeExpDateConfiguration(collector:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
       "line": 32,
       "symbol": "VGSConfiguration.makeCVCConfiguration(collector:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSDate.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSDate.swift",
       "line": 12,
       "symbol": "VGSDate.day",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSDate.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSDate.swift",
       "line": 13,
       "symbol": "VGSDate.month",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSDate.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSDate.swift",
       "line": 14,
       "symbol": "VGSDate.year",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Core/VGSDateConfiguration.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSDateConfiguration.swift",
       "line": 78,
       "symbol": "VGSDateConfiguration.serializers",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCVCTextFieldRepresentable.swift",
-      "line": 20,
-      "symbol": "VGSCVCTextFieldRepresentable",
-      "symbol_kind": "source.lang.swift.decl.struct",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
+      "line": 25,
+      "symbol": "VGSCardScanCoordinator.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
-      "line": 23,
-      "symbol": "VGSCardScanCoordinator",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
+      "line": 32,
+      "symbol": "VGSCardScanCoordinator.setText(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
-      "line": 38,
-      "symbol": "VGSCardScanCoordinator",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardTextFieldRepresentable.swift",
+      "line": 69,
+      "symbol": "VGSCardTextFieldRepresentable.StateType",
+      "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardTextFieldRepresentable.swift",
-      "line": 20,
-      "symbol": "VGSCardTextFieldRepresentable",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSDateTextFieldRepresentable.swift",
-      "line": 19,
-      "symbol": "VGSDateTextFieldRepresentable",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSExpDateTextFieldRepresentable.swift",
-      "line": 20,
-      "symbol": "VGSExpDateTextFieldRepresentable",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentable.swift",
-      "line": 35,
-      "symbol": "VGSTextFieldRepresentable",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentableProtocol.swift",
-      "line": 70,
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentableProtocol.swift",
+      "line": 69,
       "symbol": "VGSTextFieldRepresentableCallbacksProtocol",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
       "line": 12,
       "symbol": "VGSDateFormat.mmddyyyy",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
       "line": 13,
       "symbol": "VGSDateFormat.ddmmyyyy",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/Validation/Date/VGSDateFormat.swift",
       "line": 14,
       "symbol": "VGSDateFormat.yyyymmdd",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0/Sources/VGSCollectSDK/Utils/Helpers/Serializers/VGSDateSeparateSerializer.swift",
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Utils/Helpers/Serializers/VGSDateSeparateSerializer.swift",
       "line": 8,
       "symbol": "VGSDateSeparateSerializer",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/dmytro.khludkov/.codex/worktrees/vgs-collect-ios-release-1.19.0"
+  "source_directory": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios"
 }

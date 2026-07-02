@@ -66,7 +66,7 @@ https://github.com/verygoodsecurity/vgs-collect-ios.git
 ```
 Select the exact version you want to pin, then add `VGSCollectSDK` and optionally scanning/file modules (e.g. `VGSBlinkCardCollector`). Pinning versions ensures reproducible builds.
 
-`VGSBlinkCardCollector` uses BlinkCard v3000.0.1 through Swift Package Manager and requires iOS 16+. Because SwiftPM platform declarations are package-wide, the SwiftPM package declares iOS 16; the core SDK remains iOS 13+ through CocoaPods and the Xcode framework target. BlinkCard v3000 also requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
+`VGSCollectSDK` requires iOS 16+. `VGSBlinkCardCollector` uses BlinkCard v3000.0.1 through Swift Package Manager and requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
 
 If you validate the package from the command line instead of Xcode, build against an iOS SDK explicitly. A plain host `swift build` targets macOS and does not reflect the supported integration path for this iOS-only SDK. The examples below use the latest validated iOS runtime for this repository, not the minimum supported deployment target.
 
@@ -230,7 +230,7 @@ func submit() {
 **Note:** `VGSCardTextField` automatically detects and shows the card brand icon for card number input.
 
 ## Card Scanning
-Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000. SwiftPM consumers must use the iOS 16 package floor; CocoaPods Core consumers keep their existing lower deployment targets.
+Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000.
 
 ### Swift Package Manager
 Add `VGSCollectSDK` and `VGSBlinkCardCollector` products.
@@ -354,7 +354,7 @@ Read more: https://www.verygoodsecurity.com/docs/vgs-collect/ios-sdk/privacy-det
 If you discover a security concern, follow responsible disclosure guidelines in the [`SECURITY.md`](./SECURITY.md) and avoid sharing sensitive details publicly.
 
 ## Dependencies
-- iOS 13+
+- iOS 16+
 - Swift 5.9+ for Core and CocoaPods consumers.
 - Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, when adding the optional `VGSBlinkCardCollector` Swift Package Manager product.
 - Optional third-party scan library via SPM target:

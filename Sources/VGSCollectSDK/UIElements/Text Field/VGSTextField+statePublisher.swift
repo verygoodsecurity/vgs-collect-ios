@@ -6,7 +6,6 @@
 import Foundation
 import Combine
 
-@available(iOS 13, *)
 public extension VGSTextField {
   /// `VGSTextFieldStatePublisher` publisher that emits the `State`  of a given `VGSTextField`.
     var statePublisher: VGSTextFieldStatePublisher {
@@ -15,7 +14,6 @@ public extension VGSTextField {
 }
 
 /// A custom publisher that emits `State` of a given `VGSTextField`.
-@available(iOS 13, *)
 @MainActor public struct VGSTextFieldStatePublisher: @preconcurrency Publisher {
   public typealias Output = VGSTextFieldState
   public typealias Failure = Never
@@ -38,7 +36,6 @@ public extension VGSTextField {
 
 /// A  `VGSTextFieldStateSubscription` subscription that conforms to the `Subscription` and `VGSTextFieldDelegate` protocols.
 /// Used  by the `VGSTextFieldStatePublisher` to manage the subscribers and deliver updates on the `VGSTextField`  `State`.
-@available(iOS 13, *)
 @MainActor final class VGSTextFieldStateSubscription<S: Subscriber>: NSObject, @preconcurrency Subscription, VGSTextFieldDelegate where S.Input == VGSTextFieldState, S.Failure == Never {
     private var subscriber: S?
     private unowned let vgsTextField: VGSTextField

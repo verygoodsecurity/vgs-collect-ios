@@ -306,7 +306,6 @@ extension VGSCollect {
 }
 
 // MARK: VGSCollect + async
-@available(iOS 13, *)
 extension VGSCollect {
   /**
    Asynchronously send data from VGSTextFields to your organization vault.
@@ -414,7 +413,6 @@ extension VGSCollect {
 }
   
 // MARK: VGSCollect + Combine
-@available(iOS 13, *)
 extension VGSCollect {
   /**
    Send data from VGSTextFields to your organization vault using the Combine framework.

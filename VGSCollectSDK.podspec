@@ -13,8 +13,8 @@ Pod::Spec.new do |spec|
     "Very Good Security" => "support@verygoodsecurity.com"
   }
   spec.social_media_url   = "https://twitter.com/getvgs"
-  spec.platform     = :ios, "13.0"
-  spec.ios.deployment_target = "13.0"
+  spec.platform     = :ios, "16.0"
+  spec.ios.deployment_target = "16.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.requires_arc = true
   

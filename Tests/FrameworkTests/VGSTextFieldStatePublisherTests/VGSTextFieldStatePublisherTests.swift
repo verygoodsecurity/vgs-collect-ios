@@ -7,7 +7,6 @@ import XCTest
 import Combine
 @testable import VGSCollectSDK
 
-@available(iOS 13.0, *)
 @MainActor
 class VGSTextFieldStatePublisherTests: XCTestCase {
     
