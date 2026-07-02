@@ -32,89 +32,53 @@ internal extension UIColor {
 
 	/// :nodoc: System background color (white).
 	static var vgsSystemBackground: UIColor {
-		if #available(iOS 13, *) {
-			return .systemGroupedBackground
-		}
-
-    return .systemGroupedBackground
+		return .systemGroupedBackground
 	}
 
 	/// :nodoc: Input text color (black).
 	static var vgsInputBlackTextColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor {(traits) -> UIColor in
-				return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
-			}
-		} else {
-			return .black
+		return UIColor { traits -> UIColor in
+			return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
 		}
 	}
 
 	/// :nodoc: Input text color (black).
 	static var vgsBorderColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor {(traits) -> UIColor in
-				return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
-			}
-		} else {
-			return .black
+		return UIColor { traits -> UIColor in
+			return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
 		}
 	}
 
-	/// :nodoc: VGS section title color (with fallback to earlier versions).
+	/// :nodoc: VGS section title color.
 	static var vgsSectionTitleColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return label
-		} else {
-			return UIColor(hexString: "#1C1C1E")
-		}
+		return label
 	}
 
-	/// :nodoc: VGS section background color (with fallback to earlier versions).
+	/// :nodoc: VGS section background color.
 	static var vgsSectionBackgroundColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor.secondarySystemGroupedBackground
-		} else {
-			return .white
-		}
+		return UIColor.secondarySystemGroupedBackground
 	}
 
 	/// :nodoc:
 	static var vgsPaymentOptionBackgroundColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor.secondarySystemGroupedBackground
-		} else {
-			return .white
-		}
+		return UIColor.secondarySystemGroupedBackground
 	}
 
-	/// :nodoc: VGS systemGray2 color (with fallback to earlier versions).
+	/// :nodoc: VGS systemGray2 color.
 	static var vgsSystemGray2Color: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor.systemGray2
-		} else {
-			return UIColor(hexString: "#AEAEB2")
-		}
+		return UIColor.systemGray2
 	}
 
-	/// :nodoc: VGS systemGray color (with fallback to earlier versions).
+	/// :nodoc: VGS systemGray color.
 	static var vgsSystemGrayColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor.systemGray
-		} else {
-			return UIColor(hexString: "#AEAEB2")
-		}
+		return UIColor.systemGray
 	}
 }
 
 extension UIColor {
 	static var inputBlackTextColor: UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor {(traits) -> UIColor in
-				return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
-			}
-		} else {
-			return .black
+		return UIColor { traits -> UIColor in
+			return traits.userInterfaceStyle == .dark ? UIColor.white : UIColor.black
 		}
 	}
 }

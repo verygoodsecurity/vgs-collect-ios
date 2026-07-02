@@ -5,7 +5,6 @@
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, *)
 /// A SwiftUI wrapper for `VGSCVCTextField` enabling secure collection of card security codes (CVC/CVV) with dynamic icon and brand-aware validation.
 ///
 /// Features:

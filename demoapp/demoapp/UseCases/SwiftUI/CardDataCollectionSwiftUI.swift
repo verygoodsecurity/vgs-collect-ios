@@ -130,21 +130,25 @@ struct CardDataCollectionSwiftUI: View {
                   )
           })
           .fullScreenCover(isPresented: $showingBlinkCardScanner) {
-            VGSBlinkCardControllerRepresentable(
-              licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!,
-              dataCoordinators: scanedDataCoordinators,
-              errorCallback: { errorCode in
-                print(errorCode)
-              }
-            ).allowInvalidCardNumber(true)
-              .showOnboardingInfo(false)
-              .showIntroductionDialog(false)
-            .onCardScanned({
-              showingBlinkCardScanner = false
-            })
-            .onCardScanCanceled({
-              showingBlinkCardScanner = false
-            })
+            if #available(iOS 16.0, *) {
+              VGSBlinkCardControllerRepresentable(
+                licenseKey: AppCollectorConfiguration.shared.blinkCardLicenseKey!,
+                dataCoordinators: scanedDataCoordinators,
+                errorCallback: { errorCode in
+                  consoleMessage = "BlinkCard scanner unavailable. Code: \(errorCode)"
+                }
+              ).allowInvalidCardNumber(true)
+                .showOnboardingInfo(false)
+                .showIntroductionDialog(false)
+              .onCardScanned({
+                showingBlinkCardScanner = false
+              })
+              .onCardScanCanceled({
+                showingBlinkCardScanner = false
+              })
+            } else {
+              Text("BlinkCard scanner requires iOS 16 or newer.")
+            }
           }
           Button(action: {
             UIApplication.shared.endEditing()

@@ -77,6 +77,10 @@ Ask only when the missing info materially changes the recommendation:
 - whether the card scanner (BlinkCard) module is required
 - relevant error, log, or code snippet for troubleshooting
 
+BlinkCard scanner default:
+- For v3000.0.1 guidance, route users to Swift Package Manager with `VGSBlinkCardCollector`; the SwiftPM package declares iOS 16 because package platform floors are package-wide, BlinkCard v3000 requires a Swift tools 6.0-capable toolchain such as Xcode 26.2 or newer, and the scanner is not available as a CocoaPods subspec.
+- Preserve the existing VGS wrapper APIs (`VGSBlinkCardController`, delegate mapping, and `VGSBlinkCardControllerRepresentable`) unless the user explicitly asks for raw BlinkCard integration.
+
 ## Routing
 
 Choose one primary mode. In every mode: apply the collection-flow rules from `AGENTS.md` before generating output, prefer the smallest documented public API surface, and include tests or checks required by `AGENTS.md`.
@@ -123,6 +127,6 @@ Begin every response by stating which version the guidance is based on, using on
 - `Using VGSCollectSDK 1.18.2.`
 - `Detected VGSCollectSDK 1.18.2 from Package.resolved.`
 - `Could not determine the installed VGSCollectSDK version; using latest guidance from the default branch.`
-- `Exact tag 1.18.3 was not found; using nearest compatible tag 1.18.2.`
+- `Exact tag 1.19.0 was not found; using nearest compatible tag 1.18.3.`
 
 Then proceed using the active version-matched snapshot.

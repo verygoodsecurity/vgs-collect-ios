@@ -13,7 +13,6 @@ import CardIO
 #if !COCOAPODS
 import VGSCollectSDK
 #endif
-@available(iOS 14.0, *)
 public struct VGSCardIOViewControllerRepresentable: UIViewControllerRepresentable {
   
     var fieldMappingPolicy = [CradIODataType: VGSTextField]()

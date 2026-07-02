@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "blinkcard-swift-package",
+      "identity" : "blinkcard-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/blinkcard/blinkcard-swift-package",
+      "location" : "https://github.com/BlinkCard/blinkcard-ios.git",
       "state" : {
-        "revision" : "67866924224b198a8452052bbab768ad75fea749",
-        "version" : "2.12.0"
+        "revision" : "7655360d847005633188d19d3cf98c7b1f389df8",
+        "version" : "3000.0.1"
       }
     },
     {

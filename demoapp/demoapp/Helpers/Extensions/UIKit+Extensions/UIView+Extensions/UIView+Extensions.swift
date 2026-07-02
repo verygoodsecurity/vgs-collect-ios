@@ -126,12 +126,7 @@ internal extension UIView {
 
 	/// Activity indicator view.
 	private var activityIndicatorView: UIActivityIndicatorView {
-		let view: UIActivityIndicatorView
-		if #available(iOS 13.0, *) {
-			view = UIActivityIndicatorView(style: .large)
-		} else {
-			view = UIActivityIndicatorView(style: .whiteLarge)
-		}
+		let view = UIActivityIndicatorView(style: .large)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.tag = UIView.loadingViewTag
 		return view

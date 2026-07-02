@@ -29,6 +29,7 @@ class CombineExamplesViewController: UIViewController {
   var cardHolderName = VGSTextField()
   
   /// BlinkCard Card Scanner
+  @available(iOS 16.0, *)
   var scanController: VGSBlinkCardController?
   
   override func viewDidLoad() {
@@ -74,13 +75,8 @@ class CombineExamplesViewController: UIViewController {
       "custom_header": "some custom data"
     ]
     
-    // Init VGSBlinkCardController with BlinkCard license key
-    if let licenseKey = AppCollectorConfiguration.shared.blinkCardLicenseKey {
-      scanController = VGSBlinkCardController(licenseKey: licenseKey, delegate: self, onError: { errorCode in
-        print("BlinkCard license error, code: \(errorCode)")
-      })
-    } else {
-      print("⚠️ VGSBlinkCardController not initialized. Check license key!")
+    if #available(iOS 16.0, *) {
+      setupBlinkCardScanner()
     }
     
     //      // If you need to set your own card brand icons
@@ -88,6 +84,18 @@ class CombineExamplesViewController: UIViewController {
     //      VGSPaymentCards.visa.brandIcon = UIImage(named: "my visa icon")
     //      VGSPaymentCards.unknown.brandIcon = UIImage(named: "my unknown brand icon")
     
+  }
+
+  @available(iOS 16.0, *)
+  private func setupBlinkCardScanner() {
+    // Init VGSBlinkCardController with BlinkCard license key
+    if let licenseKey = AppCollectorConfiguration.shared.blinkCardLicenseKey {
+      scanController = VGSBlinkCardController(licenseKey: licenseKey, delegate: self, onError: { [weak self] errorCode in
+        self?.consoleLabel.text = "BlinkCard scanner unavailable. Code: \(errorCode)"
+      })
+    } else {
+      consoleLabel.text = "BlinkCard scanner unavailable. Check license key."
+    }
   }
   
   override func awakeFromNib() {
@@ -242,14 +250,19 @@ class CombineExamplesViewController: UIViewController {
   
   // Start BlinkCard scanning
   @IBAction func scanAction(_ sender: Any) {
+    guard #available(iOS 16.0, *) else {
+      consoleLabel.text = "BlinkCard scanner requires iOS 16 or newer."
+      return
+    }
     guard let scanController = scanController else {
-      print("⚠️ VGSBlinkCardController not initialized. Check license key!")
+      consoleLabel.text = "BlinkCard scanner unavailable. Check license key."
       return
     }
     scanController.presentCardScanner(on: self, animated: true, modalPresentationStyle: .fullScreen, completion: nil)
   }
 }
 
+@available(iOS 16.0, *)
 extension CombineExamplesViewController: VGSBlinkCardControllerDelegate {
   func textFieldForScannedData(type: VGSBlinkCardDataType) -> VGSTextField? {
       // match VGSTextField with scanned data

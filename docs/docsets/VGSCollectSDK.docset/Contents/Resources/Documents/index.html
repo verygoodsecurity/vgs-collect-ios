@@ -137,6 +137,21 @@
             <a class="nav-group-name-link" href="SwiftUI%20Elements.html">SwiftUI Elements</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSTextFieldRepresentable.html">VGSTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSCardTextFieldRepresentable.html">VGSCardTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSExpDateTextFieldRepresentable.html">VGSExpDateTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSDateTextFieldRepresentable.html">VGSDateTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/VGSCVCTextFieldRepresentable.html">VGSCVCTextFieldRepresentable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
               </li>
             </ul>
@@ -381,6 +396,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/VGSCardScanCoordinator.html">VGSCardScanCoordinator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -488,6 +511,8 @@
 
 <p>Select the exact version you want to pin, then add <code>VGSCollectSDK</code> and optionally scanning/file modules (e.g. <code>VGSBlinkCardCollector</code>). Pinning versions ensures reproducible builds.</p>
 
+<p><code>VGSCollectSDK</code> requires iOS 16+. <code>VGSBlinkCardCollector</code> uses BlinkCard v3000.0.1 through Swift Package Manager and requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.</p>
+
 <p>If you validate the package from the command line instead of Xcode, build against an iOS SDK explicitly. A plain host <code>swift build</code> targets macOS and does not reflect the supported integration path for this iOS-only SDK. The examples below use the latest validated iOS runtime for this repository, not the minimum supported deployment target.</p>
 
 <p>Simulator example:</p>
@@ -505,7 +530,6 @@
 
 <p>Add to your <code>Podfile</code>:</p>
 <pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>              <span class="c1"># Core</span>
-<span class="n">pod</span> <span class="s1">'VGSCollectSDK/BlinkCard'</span>    <span class="c1"># Optional card scan provider</span>
 </code></pre>
 
 <p>Install:</p>
@@ -514,6 +538,8 @@ pod <span class="nb">install</span>
 </code></pre>
 
 <p>Always pin versions to avoid accidental upgrades.</p>
+
+<p>BlinkCard scanning is not available through CocoaPods with BlinkCard v3000. Use Swift Package Manager and add the <code>VGSBlinkCardCollector</code> product for card scanning.</p>
 <h2 id='ai-agent-integration' class='heading'>AI Agent Integration</h2>
 
 <p>This repository ships a public AI skill at <a href="./skills/vgs-collect-ios-guide/SKILL.md"><code>skills/vgs-collect-ios-guide/SKILL.md</code></a> for teams integrating <code>VGSCollectSDK</code> into an app.</p>
@@ -640,25 +666,22 @@ Do not break existing brand detection; add tests for detection and negative near
 <p><strong>Note:</strong> <code><a href="Classes/VGSCardTextField.html">VGSCardTextField</a></code> automatically detects and shows the card brand icon for card number input.</p>
 <h2 id='card-scanning' class='heading'>Card Scanning</h2>
 
-<p>Use only VGS‑provided scan subspecs or SPM targets.</p>
-<h3 id='cocoapods-example' class='heading'>CocoaPods Example</h3>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'VGSCollectSDK'</span>
-<span class="n">pod</span> <span class="s1">'VGSCollectSDK/BlinkCard'</span>
-</code></pre>
+<p>Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000.</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
-<p>Add <code>VGSCollectSDK</code> and <code>VGSBlinkCardCollector</code> targets.</p>
+<p>Add <code>VGSCollectSDK</code> and <code>VGSBlinkCardCollector</code> products.</p>
 <h3 id='usage' class='heading'>Usage</h3>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">VGSCollectSDK</span>
 <span class="kd">import</span> <span class="kt">VGSBlinkCardCollector</span>
 
+<span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mf">16.0</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
 <span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">VGSBlinkCardControllerDelegate</span> <span class="p">{</span>
   <span class="k">var</span> <span class="nv">scanController</span><span class="p">:</span> <span class="kt">VGSBlinkCardController</span><span class="p">?</span>
 
   <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
     <span class="n">scanController</span> <span class="o">=</span> <span class="kt">VGSBlinkCardController</span><span class="p">(</span><span class="nv">licenseKey</span><span class="p">:</span> <span class="s">"&lt;blinkCardLicenseKey&gt;"</span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">code</span> <span class="k">in</span>
-      <span class="nf">print</span><span class="p">(</span><span class="s">"BlinkCard license error code=</span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+      <span class="c1">// Handle safe scanner initialization error code.</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
@@ -771,9 +794,10 @@ Opt out if required:</p>
 <h2 id='dependencies' class='heading'>Dependencies</h2>
 
 <ul>
-<li>iOS 13+</li>
-<li>Swift 5.9+</li>
-<li>Optional third‑party scan library via subspec or SPM target:
+<li>iOS 16+</li>
+<li>Swift 5.9+ for Core and CocoaPods consumers.</li>
+<li>Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, when adding the optional <code>VGSBlinkCardCollector</code> Swift Package Manager product.</li>
+<li>Optional third-party scan library via SPM target:
 
 <ul>
 <li><a href="https://github.com/blinkcard/blinkcard-ios">BlinkCard</a></li>
@@ -792,7 +816,7 @@ Opt out if required:</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-06-08)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-07-02)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

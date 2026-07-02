@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'VGSCollectSDK'
-  spec.version = '1.18.3'
+  spec.version = '1.19.0'
   spec.summary = 'VGS Collect - is a product suite that allows customers to collect information securely without possession of it.'
   spec.swift_version = '5.9'
   spec.description  = <<-DESC
@@ -13,8 +13,8 @@ Pod::Spec.new do |spec|
     "Very Good Security" => "support@verygoodsecurity.com"
   }
   spec.social_media_url   = "https://twitter.com/getvgs"
-  spec.platform     = :ios, "13.0"
-  spec.ios.deployment_target = "13.0"
+  spec.platform     = :ios, "16.0"
+  spec.ios.deployment_target = "16.0"
   spec.source = { :git => "https://github.com/verygoodsecurity/vgs-collect-ios.git", :tag => "#{spec.version}" }
   spec.requires_arc = true
   
@@ -29,12 +29,8 @@ Pod::Spec.new do |spec|
 		}
   end
     
-  spec.subspec 'BlinkCard' do |blinkcard|
-      blinkcard.source_files  = "Sources/VGSBlinkCardCollector", "Sources/VGSBlinkCardCollector/**/*.{swift}"
-      blinkcard.dependency "VGSCollectSDK/Core"
-      blinkcard.dependency "MBBlinkCard", "2.12.0"
-      blinkcard.ios.deployment_target = "13.0"
-  end
+  # BlinkCard v3000 is distributed through Swift Package Manager and requires iOS 16+.
+  # The previous CocoaPods BlinkCard subspec depended on MBBlinkCard 2.x and is no longer shipped.
   
   spec.subspec 'CardIO' do |cardIO|
     cardIO.source_files  = "Sources/VGSCardIOCollector", "Sources/VGSCardIOCollector/**/*.{swift}", "Sources/VGSCardIOCollector/**/*.{h, m}"

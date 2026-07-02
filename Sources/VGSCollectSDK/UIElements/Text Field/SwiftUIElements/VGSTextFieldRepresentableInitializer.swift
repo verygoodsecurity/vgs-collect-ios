@@ -5,7 +5,6 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
 @MainActor
 internal struct VGSTextFieldRepresentableInitializer {
     /// Applies shared representable configuration properties to the underlying `VGSTextField` instance.

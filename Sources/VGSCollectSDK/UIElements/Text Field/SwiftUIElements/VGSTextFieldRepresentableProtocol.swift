@@ -8,7 +8,6 @@ import UIKit
 import SwiftUI
 
 // MARK: - VGSCardTextFieldRepresentable.
-@available(iOS 14.0, *)
 @MainActor internal protocol VGSTextFieldRepresentableProtocol {
   /// Textfiled text font.
   var font: UIFont? {get set}
@@ -75,7 +74,6 @@ public enum VGSTextFieldEditingEvent<StateType> {
     var onStateChange: ((StateType) -> Void)? { get }
 }
 
-@available(iOS 14.0, *)
 @MainActor internal protocol VGSCardTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// Card brand icon size.
   var cardIconSize: CGSize {get set}
@@ -86,7 +84,6 @@ public enum VGSTextFieldEditingEvent<StateType> {
 }
 
 // MARK: - VGSExpDateTextFieldRepresentable.
-@available(iOS 14.0, *)
 @MainActor internal protocol VGSExpDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
   var monthPickerFormat: VGSExpDateTextField.MonthFormat {get set}
@@ -95,7 +92,6 @@ public enum VGSTextFieldEditingEvent<StateType> {
 }
 
 // MARK: - VGSCVCTextFieldRepresentable.
-@available(iOS 14.0, *)
 @MainActor internal protocol VGSCVCTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// Card brand icon size.
   var cvcIconSize: CGSize {get set}
@@ -110,7 +106,6 @@ public enum VGSTextFieldEditingEvent<StateType> {
 }
 
 // MARK: - VGSDateTextFieldRepresentable.
-@available(iOS 14.0, *)
 @MainActor internal protocol VGSDateTextFieldRepresentableProtocol: VGSTextFieldRepresentableProtocol {
   /// UIPickerView Month Label format.
   var monthPickerFormat: VGSDateTextField.MonthFormat {get set}

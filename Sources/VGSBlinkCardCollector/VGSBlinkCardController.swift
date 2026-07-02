@@ -12,7 +12,8 @@ import UIKit
 #endif
 
 /// Controller responsible for managing `BlinkCard` scanner.
-@available(iOS 13.0, *)
+@available(iOS 16.0, *)
+@MainActor
 public class VGSBlinkCardController {
     
     // MARK: - Attributes
@@ -30,38 +31,35 @@ public class VGSBlinkCardController {
       }
     }
     
-    // MARK: - MBCBlinkCardRecognizer params
-    /// https://blinkcard.github.io/blinkcard-ios/Classes/MBCBlinkCardRecognizer.html
-
     /// Should extract the card owner information.
     public var extractOwner: Bool = true {
-      didSet {scanHandler?.cardRecognizer.extractOwner = extractOwner }
+      didSet {scanHandler?.configuration.extractOwner = extractOwner }
     }
     /// Should extract the payment card’s month of expiry.
     public var extractExpiryDate: Bool = true {
-      didSet {scanHandler?.cardRecognizer.extractExpiryDate = extractExpiryDate }
+      didSet {scanHandler?.configuration.extractExpiryDate = extractExpiryDate }
     }
     /// Should extract CVV.
     public var extractCvv: Bool = true {
-      didSet {scanHandler?.cardRecognizer.extractCvv = extractCvv }
+      didSet {scanHandler?.configuration.extractCvv = extractCvv }
     }
     /// Should extract the payment card’s IBAN.
     public var extractIban: Bool = true {
-      didSet {scanHandler?.cardRecognizer.extractIban = extractIban }
+      didSet {scanHandler?.configuration.extractIban = extractIban }
     }
     /// Whether invalid card number is accepted.
     public var allowInvalidCardNumber: Bool = false {
-      didSet {scanHandler?.cardRecognizer.allowInvalidCardNumber = allowInvalidCardNumber }
+      didSet {scanHandler?.configuration.allowInvalidCardNumber = allowInvalidCardNumber }
     }
   
     // MARK: - Overlay settings
     /// Defines whether button for presenting onboarding screens will be present on screen. Default: true.
     public var showOnboardingInfo: Bool = true {
-      didSet {scanHandler?.overlaySettings.showOnboardingInfo = showOnboardingInfo }
+      didSet {scanHandler?.configuration.showOnboardingInfo = showOnboardingInfo }
     }
     /// Defines whether tutorial alert will be presented on appear. Default: true.
     public var showIntroductionDialog: Bool = true {
-      didSet {scanHandler?.overlaySettings.showIntroductionDialog = showIntroductionDialog }
+      didSet {scanHandler?.configuration.showIntroductionDialog = showIntroductionDialog }
     }
   
     // MARK: - Initialization
@@ -70,7 +68,7 @@ public class VGSBlinkCardController {
     /// - Parameters:
     ///   - licenseKey: key required for BlinkCard  SDK usage.
     ///   - delegate: `VGSBlinkCardControllerDelegate`. Default is `nil`.
-    ///   - errorCallback: Error callback with Int error code(represents `MBCLicenseError` enum), triggered only when error occured.
+    ///   - errorCallback: Error callback with safe scanner initialization error code, triggered only when an error occurs.
   public required init(licenseKey: String, delegate: VGSBlinkCardControllerDelegate? = nil, onError errorCallback: @escaping ((NSInteger) -> Void)) {
       self.scanHandler = VGSBlinkCardHandler(licenseKey: licenseKey, errorCallback: errorCallback)
       self.delegate = delegate
@@ -96,7 +94,8 @@ public class VGSBlinkCardController {
         scanHandler?.dismissScanVC(animated: animated, completion: completion)
     }
   
-    /// Set custom localization fileName.
+    /// BlinkCard v3000 uses package localization resources. This method is retained for source compatibility.
+    @available(*, deprecated, message: "BlinkCard v3000 uses BlinkCardUX package localization resources.")
     public static func setCustomLocalization(fileName: String) {
       VGSBlinkCardHandler.setCustomLocalization(fileName: fileName)
     }
