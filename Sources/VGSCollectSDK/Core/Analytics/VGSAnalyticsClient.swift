@@ -13,8 +13,10 @@ import UIKit
 
 /// VGS Analytics event types produced by the SDK.
 public enum VGSAnalyticsEventType: String {
-  /// Event type for VGSCollect instance create.
+  /// Event type representing VGSCollect instance creation.
   case create = "Create"
+  /// Event type for VGSCollect instance initialization.
+  case collectInit = "CollectInit"
   /// Event type for form initialization.
   case fieldInit = "Init"
   /// Event type for hostname validation.
@@ -25,6 +27,16 @@ public enum VGSAnalyticsEventType: String {
   case submit = "Submit"
   /// Event type for scanning actions.
   case scan = "Scan"
+  /// Event type for card attributes lookup attempts.
+  case cardLookup = "CardLookup"
+}
+
+/// VGS Analytics Collect form type.
+public enum VGSAnalyticsFormType: String {
+  /// VGSCollect init with vault.
+  case create
+  /// VGSCollect session init with form.
+  case session
 }
 
 /// Client responsible for managing and sending VGS Collect SDK analytics events.
@@ -51,7 +63,7 @@ public class VGSAnalyticsClient {
   public var shouldCollectAnalytics = true
 
     /// URL session object with ephemeral configuration used for sending analytics requests.
-    internal let urlSession = URLSession(configuration: .ephemeral)
+    internal var urlSession = URLSession(configuration: .ephemeral)
 
   /// Unique identifier generated once per application runtime session. Included with every analytics event.
   public let vgsCollectSessionId = UUID().uuidString

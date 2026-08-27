@@ -49,9 +49,29 @@ public let VGSSDKErrorSourceNotAvailable: VGSErrorInfoKey = "VGSSDKErrorSourceNo
 /// Error key, used for errors when access token is not valid.
 public let VGSSDKErrorInvalidAccessToken: VGSErrorInfoKey = "VGSSDKErrorInvalidAccessToken"
 
+/// Error key for an invalid CMP card ID.
+public let VGSSDKErrorInvalidCardID: VGSErrorInfoKey = "VGSSDKErrorInvalidCardID"
+
+/// Error key, used for errors when authHandler is not set but required.
+public let VGSSDKErrorAuthHandlerNotSet: VGSErrorInfoKey = "VGSSDKErrorAuthHandlerNotSet"
+
 // MARK: - Response errors
+/// Error key, used for errors when response type is not supported.
+public let VGSSDKErrorUnexpectedResponseType: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResponseType"
+
 /// Error key, used for errors when response for SDK API request is in format that not supported by SDK.
 public let VGSSDKErrorUnexpectedResponseDataFormat: VGSErrorInfoKey = "VGSSDKErrorUnexpectedResponseDataFormat"
 
 /// Error key, used for errors when wrong configuration was used, some functionality could be not supported.
 public let VGSSDKErrorWrongConfiguration: VGSErrorInfoKey = "VGSSDKErrorWrongConfiguration"
+
+/// Error key, used for errors when form parameter is invalid.
+public let VGSSDKErrorInvalidFormConfiguration: VGSErrorInfoKey = "VGSSDKErrorInvalidFormConfiguration"
+
+/// Error key, used when `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)`
+/// fails before the request starts because the session configuration URL cannot be built.
+public let VGSSDKErrorInvalidConfigurationURL: VGSErrorInfoKey = "VGSSDKErrorInvalidConfigurationURL"
+
+/// Error key, used when `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)`
+/// fails while requesting, receiving, or decoding the remote session configuration.
+public let VGSSDKErrorSessionInitializationFailed: VGSErrorInfoKey = "VGSSDKErrorSessionInitializationFailed"

@@ -106,7 +106,7 @@ Recommended: install the skill with `skills.sh`. This is the easiest way to give
 The installed skill bundle includes `references/AGENTS.md`, and repository root `AGENTS.md` points to that same file, so a compatible skill-aware agent receives the durable integration policy automatically as part of the skill download without maintaining two copies.
 
 What the skill is useful for:
-- choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation
+- choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation and update
 - asking a clarifying question when a card-entry request is ambiguous and the flow is not specified
 - steering non-card collection requests such as SSN or generic sensitive fields toward the correct field and tokenization APIs instead of card-specific ones
 - keeping generated guidance aligned with the installed SDK version when that version can be detected
@@ -228,6 +228,27 @@ func submit() {
 ```
 
 **Note:** `VGSCardTextField` automatically detects and shows the card brand icon for card number input.
+
+### Create a Card with CMP
+
+Pass only attributes supported by the Card Management API in `extraData`. The SDK
+places them under `data.attributes` and adds secure field values and SDK metadata.
+Unsupported attribute names or value types can result in a CMP `4xx` response.
+
+```swift
+let cardAttributes: [String: Any] = [
+  "nickname": "Primary",
+  "cardholder": [
+    "address": ["city": "Kyiv"]
+  ]
+]
+
+collector.createCard(token: "<ACCESS_TOKEN>", extraData: cardAttributes) { response in
+  // Handle the CMP response without logging raw request or response bodies.
+}
+```
+
+Pass the attributes directly without adding the `data.attributes` wrapper.
 
 ## Card Scanning
 Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000.

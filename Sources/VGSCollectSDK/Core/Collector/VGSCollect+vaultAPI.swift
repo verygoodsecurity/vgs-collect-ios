@@ -6,7 +6,6 @@
 import Foundation
 import Combine
 
-// swiftlint:disable file_length
 // MARK: - Send data
 extension VGSCollect {
   /**
@@ -241,71 +240,11 @@ extension VGSCollect {
     }
   }
   
-  /**
-   Send  request with data from VGSTextFields to create card via CMP  API(https://www.verygoodsecurity.com/docs/api/card-management#tag/card-management/POST/cards).
-   - Parameters:
-      - token: `JWT` access token.
-      - extraData: `[String: Any]` additional data for create card request. Default is `nil`
-      - completion: response completion block, returns `VGSResponse`.
-   - Note:
-      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
-  */
-  public func createCard(token: String, extraData: [String: Any]? = nil, completion block: @escaping ((_ response: VGSResponse) -> Void)) {
-    // Content analytics.
-    var content: [String] = ["textField"]
-    if !(extraData?.isEmpty ?? true) {
-      content.append("custom_data")
-    }
-    guard !token.isEmpty else {
-      let message = "Access token is required for -createCard(:) request!"
-      let event = VGSLogEvent(level: .warning, text: message, severityLevel: .error)
-      VGSCollectLogger.shared.forwardLogEvent(event)
-      let error = VGSError(type: .invalidAccessToken,
-                           userInfo: VGSErrorInfo(key: VGSSDKErrorInvalidAccessToken,
-                           description: message,
-                           extraInfo: [:]))
-      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp", "content": content])
-      
-      block(.failure(error.code, nil, nil, error))
-      return
-    }
-    if let error = validateStoredInputData() {
-      VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .failed, extraData: [ "statusCode": error.code, "upstream": "cmp", "content": content])
-      
-      block(.failure(error.code, nil, nil, error))
-      return
-    }
-    /// Make json body from fields data
-    let fieldsData = mapFieldsToBodyJSON(with: .flatJSON, extraData: nil)
-    let attributes: [String: JsonData] = ["attributes": fieldsData]
-    var body: [String: JsonData] = ["data": attributes]
-    /// Attach custom data if was set by user
-    if let userData = extraData,
-       !userData.isEmpty,
-       let merged = deepMerge(userData, body) as? [String: JsonData] {
-      body = merged
-    }
-    
-    cmpAPIClient.customHeader = ["Content-Type": "application/vnd.api+json",
-                                 "Authorization": "Bearer \(token)"]
-    VGSAnalyticsClient.shared.trackFormEvent(self.formAnalyticsDetails, type: .beforeSubmit, status: .success, extraData: ["statusCode": 200, "upstream": "cmp", "content": content])
-    cmpAPIClient.sendRequest(path: "cards", method: .post, routeId: nil, value: body) { [weak self] (response) in
-      // Analytics
-      if let strongSelf = self {
-        switch response {
-        case .success(let code, _, _):
-          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, extraData: ["statusCode": code, "upstream": "cmp", "content": content])
-        case .failure(let code, _, _, let error):
-          let errorMessage =  (error as NSError?)?.localizedDescription ?? ""
-          VGSAnalyticsClient.shared.trackFormEvent(strongSelf.formAnalyticsDetails, type: .submit, status: .failed, extraData: ["statusCode": code, "error": errorMessage, "upstream": "cmp", "content": content])
-        }
-      }
-      block(response)
-    }
-  }
+  
 }
 
 // MARK: VGSCollect + async
+@available(iOS 13, *)
 extension VGSCollect {
   /**
    Asynchronously send data from VGSTextFields to your organization vault.
@@ -390,29 +329,10 @@ extension VGSCollect {
       }
     }
   }
-  
-  /**
-   Asynchronously send  request with data from VGSTextFields to create card via CMP API.
-   - Parameters:
-      - token: `JWT` access token.
-      - extraData: `[String: Any]` additional data for create card request. Default is `nil`
-      - completion: response completion block, returns `VGSResponse`.
-   - Note:
-      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
-  */
-  public func createCard(token: String, extraData: [String: Any]? = nil) async -> VGSResponse {
-    return await withCheckedContinuation { continuation in
-      // NOTE:  We need to use main thread since data will be collected  from UI elements
-      DispatchQueue.main.async {
-        self.createCard(token: token, extraData: extraData) {response in
-          continuation.resume(returning: response)
-        }
-      }
-    }
-  }
 }
   
 // MARK: VGSCollect + Combine
+@available(iOS 13, *)
 extension VGSCollect {
   /**
    Send data from VGSTextFields to your organization vault using the Combine framework.
@@ -493,22 +413,13 @@ extension VGSCollect {
       }
     }
   }
-  
-  /**
-   Send  request with data from VGSTextFields to create card via CMP API  using the Combine framework.
-   
-   - Parameters:
-      - token: `JWT` access token.
-      - extraData: `[String: Any]` additional data for create card request. Default is `nil`
-   - Returns: A `Future` publisher that emits a single `VGSResponse`.
-   - Note:
-      - Errors can be returned in the `NSURLErrorDomain` and `VGSCollectSDKErrorDomain`.
-  */
-  public func createCardPublisher(token: String, extraData: [String: Any]? = nil) -> Future<VGSResponse, Never> {
-    return Future { [weak self] completion in
-      self?.createCard(token: token, extraData: extraData) { response in
-        completion(.success(response))
-      }
+}
+
+private extension VGSResponse {
+  var statusCode: Int? {
+    switch self {
+    case .success(let code, _, _): return code
+    case .failure(let code, _, _, _): return code
     }
   }
 }
