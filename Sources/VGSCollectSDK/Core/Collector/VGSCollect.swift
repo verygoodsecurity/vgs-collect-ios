@@ -22,7 +22,7 @@ import UIKit
 ///
 /// Security:
 /// - Never logs or exposes raw sensitive values through public APIs.
-/// - Avzaxoid adding PII or secrets to `customHeaders` & `fieldName` values; use them strictly for routing/auth metadata.
+/// - Avoid adding PII or secrets to `customHeaders` & `fieldName` values; use them strictly for routing/auth metadata.
 /// - Internal storage is transient and cleared/replaced as input changes; persistence is the caller's responsibility (and should only store aliases).
 ///
 /// Usage:

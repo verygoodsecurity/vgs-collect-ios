@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
-    
+
     <script src="js/lunr.min.js" defer></script>
     <script src="js/typeahead.jquery.js" defer></script>
     <script src="js/jazzy.search.js" defer></script>
@@ -23,22 +23,22 @@
         <a class="header-link" href="index.html">
           VGSCollectSDK
         </a>
-        
+
       </p>
-    
+
       <div class="header-col--secondary">
         <form role="search" action="search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
       </div>
-    
+
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/verygoodsecurity/vgs-collect-ios">
             <img class="header-icon" src="img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
-    
+
     </header>
 
     <p class="breadcrumbs">
@@ -156,6 +156,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
               </li>
             </ul>
           </li>
@@ -407,10 +410,42 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Global%20Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK28VGSSDKErrorAuthHandlerNotSetSSvp">VGSSDKErrorAuthHandlerNotSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK24VGSSDKErrorInvalidCardIDSSvp">VGSSDKErrorInvalidCardID</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK34VGSSDKErrorInvalidConfigurationURLSSvp">VGSSDKErrorInvalidConfigurationURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK35VGSSDKErrorInvalidFormConfigurationSSvp">VGSSDKErrorInvalidFormConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK38VGSSDKErrorSessionInitializationFailedSSvp">VGSSDKErrorSessionInitializationFailed</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK33VGSSDKErrorUnexpectedResponseTypeSSvp">VGSSDKErrorUnexpectedResponseType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSAnalyticsFormType.html">VGSAnalyticsFormType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSCardAttributesLookupResponse.html">VGSCardAttributesLookupResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSCollectSessionResponse.html">VGSCollectSessionResponse</a>
               </li>
             </ul>
           </li>
@@ -419,6 +454,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Other%20Extensions.html#/AppKit">AppKit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSCardAttributesLookupService.html">VGSCardAttributesLookupService</a>
               </li>
             </ul>
           </li>
@@ -449,6 +492,70 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:13VGSCollectSDK0A15SessionResponseO"></a>
+                    <a name="//apple_ref/swift/Enum/VGSCollectSessionResponse" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A15SessionResponseO">VGSCollectSessionResponse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Session initialization response enum cases.</p>
+
+                        <a href="Enums/VGSCollectSessionResponse.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSCollectSessionResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/API/VGSResponse.swift#L36-L54">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK31VGSCardAttributesLookupResponseO"></a>
+                    <a name="//apple_ref/swift/Enum/VGSCardAttributesLookupResponse" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK31VGSCardAttributesLookupResponseO">VGSCardAttributesLookupResponse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Card attributes lookup response enum cases.</p>
+
+                        <a href="Enums/VGSCardAttributesLookupResponse.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@frozen</span>
+<span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSCardAttributesLookupResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/API/VGSResponse.swift#L57-L78">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:13VGSCollectSDK21VGSAnalyticsEventTypeO"></a>
                     <a name="//apple_ref/swift/Enum/VGSAnalyticsEventType" class="dashAnchor"></a>
                     <a class="token" href="#/s:13VGSCollectSDK21VGSAnalyticsEventTypeO">VGSAnalyticsEventType</a>
@@ -472,7 +579,38 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Analytics/VGSAnalyticsClient.swift#L15-L28">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Analytics/VGSAnalyticsClient.swift#L15-L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK20VGSAnalyticsFormTypeO"></a>
+                    <a name="//apple_ref/swift/Enum/VGSAnalyticsFormType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK20VGSAnalyticsFormTypeO">VGSAnalyticsFormType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>VGS Analytics Collect form type.</p>
+
+                        <a href="Enums/VGSAnalyticsFormType.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSAnalyticsFormType</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Analytics/VGSAnalyticsClient.swift#L35-L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -485,7 +623,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-07-02)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-08-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
