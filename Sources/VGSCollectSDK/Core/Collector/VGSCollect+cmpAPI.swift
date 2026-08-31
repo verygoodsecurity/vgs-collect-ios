@@ -33,7 +33,7 @@ extension VGSCollect {
   internal func buildCreateCardBody(extraData: [String: Any]? = nil) -> BodyData {
     let fieldValues = mapFieldsToBodyJSON(with: .flatJSON, extraData: nil)
     let wrappedAttributes = (extraData?["data"] as? BodyData)?["attributes"] as? BodyData
-    var attributes = wrappedAttributes == nil ? extraData ?? [:] : [:]
+    var attributes = wrappedAttributes ?? extraData ?? [:]
     if let pan = fieldValues["pan"] {
       attributes["pan"] = pan
     }
@@ -46,6 +46,7 @@ extension VGSCollect {
       cardholder["name"] = cardholderName
       attributes["cardholder"] = cardholder
     }
+    normalizeCMPExpirationAttributes(in: &attributes)
     var meta: BodyData = [
       "_source": "vgs-collect",
       "_medium": "iosSDK",
@@ -76,6 +77,7 @@ extension VGSCollect {
     if let cvc = fieldValues["cvc"] {
       attributes["cvc"] = cvc
     }
+    normalizeCMPExpirationAttributes(in: &attributes)
     return [
       "data": [
         "attributes": attributes
@@ -91,6 +93,81 @@ extension VGSCollect {
     if let year = fieldValues["exp_year"] {
       attributes["exp_year"] = year
     }
+  }
+
+  private func normalizeCMPExpirationAttributes(in attributes: inout BodyData) {
+    for key in ["exp_month", "exp_year"] {
+      guard let value = attributes[key] else { continue }
+      if let integer = value as? Int {
+        attributes[key] = integer
+      } else if let string = value as? String, let integer = Int(string) {
+        attributes[key] = integer
+      }
+    }
+  }
+
+  private func makeCMPRequestValidationError(description: String) -> VGSError {
+    VGSError(
+      type: .inputDataIsNotValid,
+      userInfo: VGSErrorInfo(
+        key: VGSSDKErrorInputDataIsNotValid,
+        description: description,
+        extraInfo: [:]
+      )
+    )
+  }
+
+  private func validateCMPRequestBody(_ request: VGSCMPRequest) -> VGSError? {
+    guard let data = request.body["data"] as? BodyData,
+          let attributes = data["attributes"] as? BodyData else {
+      return makeCMPRequestValidationError(description: "CMP card attributes are required.")
+    }
+
+    switch request.operation {
+    case .createCard:
+      guard let pan = attributes["pan"] as? String, !pan.isEmpty else {
+        return makeCMPRequestValidationError(description: "PAN is required for a CMP create card request.")
+      }
+      guard validateCMPExpirationAttributes(attributes) else {
+        return makeCMPRequestValidationError(description: "Valid expiration month and year are required for a CMP create card request.")
+      }
+    case .updateCard:
+      let allowedKeys: Set<String> = ["cvc", "exp_month", "exp_year"]
+      guard !attributes.isEmpty else {
+        return makeCMPRequestValidationError(description: "At least one mutable card attribute is required for a CMP update request.")
+      }
+      guard Set(attributes.keys).isSubset(of: allowedKeys) else {
+        return makeCMPRequestValidationError(description: "CMP update request contains unsupported card attributes.")
+      }
+      guard validateOptionalCMPExpirationAttributes(attributes) else {
+        return makeCMPRequestValidationError(description: "CMP update request contains an invalid expiration month or year.")
+      }
+    }
+
+    if let cvc = attributes["cvc"] {
+      guard let cvc = cvc as? String, (3...4).contains(cvc.count) else {
+        return makeCMPRequestValidationError(description: "CMP card verification code must contain three or four characters.")
+      }
+    }
+    return nil
+  }
+
+  private func validateCMPExpirationAttributes(_ attributes: BodyData) -> Bool {
+    guard let month = attributes["exp_month"] as? Int,
+          let year = attributes["exp_year"] as? Int else {
+      return false
+    }
+    return (1...12).contains(month) && (0...99).contains(year)
+  }
+
+  private func validateOptionalCMPExpirationAttributes(_ attributes: BodyData) -> Bool {
+    if let month = attributes["exp_month"] {
+      guard let month = month as? Int, (1...12).contains(month) else { return false }
+    }
+    if let year = attributes["exp_year"] {
+      guard let year = year as? Int, (0...99).contains(year) else { return false }
+    }
+    return true
   }
 
   private func makeInvalidCardIDError() -> VGSError {
@@ -192,6 +269,17 @@ extension VGSCollect {
     }
 
     if let error = validateStoredInputData() {
+      trackCMPBeforeSubmit(
+        operation: request.operation,
+        status: .failed,
+        statusCode: error.code,
+        content: request.content
+      )
+      block(.failure(error.code, nil, nil, error))
+      return
+    }
+
+    if let error = validateCMPRequestBody(request) {
       trackCMPBeforeSubmit(
         operation: request.operation,
         status: .failed,

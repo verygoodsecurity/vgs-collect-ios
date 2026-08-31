@@ -112,6 +112,10 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
         let config = VGSConfiguration.makeCardNumberConfiguration(collector: vgsCollect)
         textField.configuration = config
         textField.setText("4111111111111111")
+
+        let expField = VGSTextField()
+        expField.configuration = .makeExpDateConfiguration(collector: vgsCollect)
+        expField.setText("12/30")
         
         // When: We trigger the call.
         vgsCollect.createCard(token: authToken) { result in
@@ -140,6 +144,10 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
       let config = VGSConfiguration.makeCardNumberConfiguration(collector: vgsCollect)
       textField.configuration = config
       textField.setText("4111111111111111")
+
+      let expField = VGSTextField()
+      expField.configuration = .makeExpDateConfiguration(collector: vgsCollect)
+      expField.setText("12/30")
       
       // When: We trigger the call.
       vgsCollect.createCard(token: authToken) { result in
@@ -180,6 +188,44 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
         expectation.fulfill()
       }
       wait(for: [expectation], timeout: 2.0)
+    }
+
+    func test_createCard_rejectsMissingExpirationBeforeRequest() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let configuration = URLSessionConfiguration.ephemeral
+      configuration.protocolClasses = [CMPURLProtocolStub.self]
+      vgsCollect.cmpAPIClient.urlSession = URLSession(configuration: configuration)
+      let requestExpectation = expectation(description: "request not sent")
+      requestExpectation.isInverted = true
+      let completionExpectation = expectation(description: "completion")
+
+      let panField = VGSTextField()
+      panField.configuration = .makeCardNumberConfiguration(collector: vgsCollect)
+      panField.setText("4111111111111111")
+
+      CMPURLProtocolStub.requestHandler = { request in
+        requestExpectation.fulfill()
+        let response = HTTPURLResponse(
+          url: try XCTUnwrap(request.url),
+          statusCode: 200,
+          httpVersion: nil,
+          headerFields: nil
+        )!
+        return (response, Data("{}".utf8))
+      }
+
+      vgsCollect.createCard(token: "token-123") { response in
+        guard case .failure(let code, _, _, let error) = response else {
+          XCTFail("Expected missing expiration failure")
+          completionExpectation.fulfill()
+          return
+        }
+        XCTAssertEqual(code, VGSErrorType.inputDataIsNotValid.rawValue)
+        XCTAssertEqual((error as? VGSError)?.type, .inputDataIsNotValid)
+        completionExpectation.fulfill()
+      }
+
+      wait(for: [completionExpectation, requestExpectation], timeout: 1.0)
     }
 
     func test_createCard_extraDataIsMappedUnderAttributes() {
@@ -328,8 +374,8 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
 
       XCTAssertEqual(attributes["pan"] as? String, "4111111111111111")
       XCTAssertEqual(attributes["cvc"] as? String, "123")
-      XCTAssertEqual(attributes["exp_month"] as? String, "12")
-      XCTAssertEqual(attributes["exp_year"] as? String, "30")
+      XCTAssertEqual(attributes["exp_month"] as? Int, 12)
+      XCTAssertEqual(attributes["exp_year"] as? Int, 30)
       XCTAssertEqual(cardholder["name"] as? String, "Taylor Doe")
       XCTAssertEqual(address["city"] as? String, "Kyiv")
     }
@@ -349,7 +395,7 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
       cvcField.configuration = .makeCVCConfiguration(collector: vgsCollect)
       cvcField.setText("123")
 
-      let body = vgsCollect.buildUpdateCardBody(extraData: ["nickname": "Primary"])
+      let body = vgsCollect.buildUpdateCardBody()
 
       guard let data = body["data"] as? [String: Any],
             let attributes = data["attributes"] as? [String: Any] else {
@@ -357,10 +403,9 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
         return
       }
 
-      XCTAssertEqual(attributes["nickname"] as? String, "Primary")
       XCTAssertEqual(attributes["cvc"] as? String, "123")
-      XCTAssertEqual(attributes["exp_month"] as? String, "12")
-      XCTAssertEqual(attributes["exp_year"] as? String, "30")
+      XCTAssertEqual(attributes["exp_month"] as? Int, 12)
+      XCTAssertEqual(attributes["exp_year"] as? Int, 30)
       XCTAssertNil(attributes["pan"])
       XCTAssertNil(data["meta"])
     }
@@ -383,6 +428,78 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
       wait(for: [expectation], timeout: 1.0)
     }
 
+    func test_updateCard_rejectsUnsupportedAttributesBeforeRequest() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let configuration = URLSessionConfiguration.ephemeral
+      configuration.protocolClasses = [CMPURLProtocolStub.self]
+      vgsCollect.cmpAPIClient.urlSession = URLSession(configuration: configuration)
+      let requestExpectation = expectation(description: "request not sent")
+      requestExpectation.isInverted = true
+      let completionExpectation = expectation(description: "completion")
+
+      CMPURLProtocolStub.requestHandler = { request in
+        requestExpectation.fulfill()
+        let response = HTTPURLResponse(
+          url: try XCTUnwrap(request.url),
+          statusCode: 200,
+          httpVersion: nil,
+          headerFields: nil
+        )!
+        return (response, Data("{}".utf8))
+      }
+
+      vgsCollect.updateCard(
+        cardId: "card_123",
+        token: "token-123",
+        extraData: ["nickname": "Primary"]
+      ) { response in
+        guard case .failure(let code, _, _, let error) = response else {
+          XCTFail("Expected unsupported attributes failure")
+          completionExpectation.fulfill()
+          return
+        }
+        XCTAssertEqual(code, VGSErrorType.inputDataIsNotValid.rawValue)
+        XCTAssertEqual((error as? VGSError)?.type, .inputDataIsNotValid)
+        completionExpectation.fulfill()
+      }
+
+      wait(for: [completionExpectation, requestExpectation], timeout: 1.0)
+    }
+
+    func test_updateCard_rejectsEmptyAttributesBeforeRequest() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let configuration = URLSessionConfiguration.ephemeral
+      configuration.protocolClasses = [CMPURLProtocolStub.self]
+      vgsCollect.cmpAPIClient.urlSession = URLSession(configuration: configuration)
+      let requestExpectation = expectation(description: "request not sent")
+      requestExpectation.isInverted = true
+      let completionExpectation = expectation(description: "completion")
+
+      CMPURLProtocolStub.requestHandler = { request in
+        requestExpectation.fulfill()
+        let response = HTTPURLResponse(
+          url: try XCTUnwrap(request.url),
+          statusCode: 200,
+          httpVersion: nil,
+          headerFields: nil
+        )!
+        return (response, Data("{}".utf8))
+      }
+
+      vgsCollect.updateCard(cardId: "card_123", token: "token-123") { response in
+        guard case .failure(let code, _, _, let error) = response else {
+          XCTFail("Expected empty attributes failure")
+          completionExpectation.fulfill()
+          return
+        }
+        XCTAssertEqual(code, VGSErrorType.inputDataIsNotValid.rawValue)
+        XCTAssertEqual((error as? VGSError)?.type, .inputDataIsNotValid)
+        completionExpectation.fulfill()
+      }
+
+      wait(for: [completionExpectation, requestExpectation], timeout: 1.0)
+    }
+
     func test_updateCard_sendsPatchToCardPathWithExpectedBody() {
       vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
       let configuration = URLSessionConfiguration.ephemeral
@@ -402,7 +519,7 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
         let body = try XCTUnwrap(JSONSerialization.jsonObject(with: bodyData) as? [String: Any])
         let data = try XCTUnwrap(body["data"] as? [String: Any])
         let attributes = try XCTUnwrap(data["attributes"] as? [String: Any])
-        XCTAssertEqual(attributes["nickname"] as? String, "Primary")
+        XCTAssertEqual(attributes["exp_month"] as? Int, 4)
         XCTAssertNil(data["meta"])
 
         requestExpectation.fulfill()
@@ -418,7 +535,7 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
       vgsCollect.updateCard(
         cardId: "card_123",
         token: "token-123",
-        extraData: ["nickname": "Primary"]
+        extraData: ["exp_month": 4]
       ) { response in
         guard case .success(let code, _, _) = response else {
           XCTFail("Expected update success")
@@ -450,7 +567,11 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
         return (response, Data("{}".utf8))
       }
 
-      vgsCollect.updateCard(cardId: "card_123", token: "Bearer token-123") { response in
+      vgsCollect.updateCard(
+        cardId: "card_123",
+        token: "Bearer token-123",
+        extraData: ["exp_year": 30]
+      ) { response in
         guard case .success = response else {
           XCTFail("Expected update success")
           expectation.fulfill()
@@ -486,7 +607,6 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
           analyticsPayloads.append(payload)
           let payloadDescription = String(data: decodedData, encoding: .utf8) ?? ""
           XCTAssertFalse(payloadDescription.contains("token-123"))
-          XCTAssertFalse(payloadDescription.contains("Primary"))
           analyticsExpectation.fulfill()
         }
 
@@ -502,7 +622,7 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
       vgsCollect.updateCard(
         cardId: "card_123",
         token: "token-123",
-        extraData: ["nickname": "Primary"]
+        extraData: ["exp_month": 4]
       ) { response in
         guard case .success = response else {
           XCTFail("Expected update success")
