@@ -34,6 +34,12 @@ public enum VGSErrorType: Int {
   
     /// When access token is nil or empty.
     case invalidAccessToken = 1300
+
+    /// When authHandler is not set but required.
+    case authHandlerNotSet = 1301
+
+    /// When a CMP update request has an empty or unsafe card ID.
+    case invalidCardID = 1302
   
     /// When response type is not supported
     case unexpectedResponseType = 1400
@@ -41,8 +47,26 @@ public enum VGSErrorType: Int {
     /// When response data format is not supported
     case unexpectedResponseDataFormat = 1401
 
-        /// When VGS config URL is not valid.
-        case invalidConfigurationURL = 1480
+    /// When form parameter is invalid.
+    case invalidFormConfiguration = 1460
+
+    /// When the session configuration URL cannot be built for `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)`.
+    case invalidConfigurationURL = 1480
+
+    /// When `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)` fails while loading or decoding the remote session configuration.
+    case sessionInitializationFailed = 1490
+}
+
+public extension VGSErrorType {
+    // Deprecated compatibility aliases for names published before Swift 6 lint cleanup.
+    @available(*, deprecated, renamed: "authHandlerNotSet")
+    static var AuthHandlerNotSet: VGSErrorType { .authHandlerNotSet }
+
+    @available(*, deprecated, renamed: "invalidFormConfiguration")
+    static var InvalidFormConfiguration: VGSErrorType { .invalidFormConfiguration }
+
+    @available(*, deprecated, renamed: "sessionInitializationFailed")
+    static var SessionInitializationFailed: VGSErrorType { .sessionInitializationFailed }
 }
 
 /// An error produced by `VGSCollectSDK`. Works similar to default `NSError` in iOS.

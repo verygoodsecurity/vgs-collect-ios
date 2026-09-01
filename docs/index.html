@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
-    
+
     <script src="js/lunr.min.js" defer></script>
     <script src="js/typeahead.jquery.js" defer></script>
     <script src="js/jazzy.search.js" defer></script>
@@ -22,22 +22,22 @@
         <a class="header-link" href="index.html">
           VGSCollectSDK
         </a>
-        
+
       </p>
-    
+
       <div class="header-col--secondary">
         <form role="search" action="search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
       </div>
-    
+
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/verygoodsecurity/vgs-collect-ios">
             <img class="header-icon" src="img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
-    
+
     </header>
 
     <p class="breadcrumbs">
@@ -153,6 +153,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
               </li>
             </ul>
           </li>
@@ -404,10 +407,42 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Global%20Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK28VGSSDKErrorAuthHandlerNotSetSSvp">VGSSDKErrorAuthHandlerNotSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK24VGSSDKErrorInvalidCardIDSSvp">VGSSDKErrorInvalidCardID</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK34VGSSDKErrorInvalidConfigurationURLSSvp">VGSSDKErrorInvalidConfigurationURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK35VGSSDKErrorInvalidFormConfigurationSSvp">VGSSDKErrorInvalidFormConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK38VGSSDKErrorSessionInitializationFailedSSvp">VGSSDKErrorSessionInitializationFailed</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Other%20Global%20Variables.html#/s:13VGSCollectSDK33VGSSDKErrorUnexpectedResponseTypeSSvp">VGSSDKErrorUnexpectedResponseType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Other%20Enums.html">Other Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSAnalyticsFormType.html">VGSAnalyticsFormType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSCardAttributesLookupResponse.html">VGSCardAttributesLookupResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/VGSCollectSessionResponse.html">VGSCollectSessionResponse</a>
               </li>
             </ul>
           </li>
@@ -416,6 +451,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Other%20Extensions.html#/AppKit">AppKit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Other%20Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/VGSCardAttributesLookupService.html">VGSCardAttributesLookupService</a>
               </li>
             </ul>
           </li>
@@ -433,7 +476,7 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            
+
             <p><a href=""><img src="https://img.shields.io/github/license/verygoodsecurity/vgs-collect-ios.svg" alt="license"></a>
 <a href="https://github.com/verygoodsecurity/vgs-collect-ios"><img src="https://img.shields.io/cocoapods/p/VGSCollectSDK.svg?style=flat" alt="Platform"></a>
 <a href=""><img src="https://img.shields.io/badge/swift-5.9+-orange" alt="swift"></a>
@@ -551,7 +594,7 @@ pod <span class="nb">install</span>
 <p>What the skill is useful for:</p>
 
 <ul>
-<li>choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation</li>
+<li>choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation and update</li>
 <li>asking a clarifying question when a card-entry request is ambiguous and the flow is not specified</li>
 <li>steering non-card collection requests such as SSN or generic sensitive fields toward the correct field and tokenization APIs instead of card-specific ones</li>
 <li>keeping generated guidance aligned with the installed SDK version when that version can be detected</li>
@@ -664,6 +707,24 @@ Do not break existing brand detection; add tests for detection and negative near
 </code></pre>
 
 <p><strong>Note:</strong> <code><a href="Classes/VGSCardTextField.html">VGSCardTextField</a></code> automatically detects and shows the card brand icon for card number input.</p>
+<h3 id='create-a-card-with-cmp' class='heading'>Create a Card with CMP</h3>
+
+<p>Pass only attributes supported by the Card Management API in <code>extraData</code>. The SDK
+places them under <code>data.attributes</code> and adds secure field values and SDK metadata.
+Unsupported attribute names or value types can result in a CMP <code>4xx</code> response.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">cardAttributes</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s">"nickname"</span><span class="p">:</span> <span class="s">"Primary"</span><span class="p">,</span>
+  <span class="s">"cardholder"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"address"</span><span class="p">:</span> <span class="p">[</span><span class="s">"city"</span><span class="p">:</span> <span class="s">"Kyiv"</span><span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">collector</span><span class="o">.</span><span class="nf">createCard</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;ACCESS_TOKEN&gt;"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="n">cardAttributes</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
+  <span class="c1">// Handle the CMP response without logging raw request or response bodies.</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Pass the attributes directly without adding the <code>data.attributes</code> wrapper.</p>
 <h2 id='card-scanning' class='heading'>Card Scanning</h2>
 
 <p>Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000.</p>
@@ -816,7 +877,7 @@ Opt out if required:</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-07-02)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-08-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

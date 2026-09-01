@@ -1,4 +1,0 @@
-# Codex repository guidance config. Source of truth: .codex/agents/AGENTS.md
-
-[features]
-multi_agent = false

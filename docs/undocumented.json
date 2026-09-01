@@ -1,6 +1,62 @@
 {
   "warnings": [
     {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 436,
+      "symbol": "VGSCollect.createCard(extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 442,
+      "symbol": "VGSCollect.createCard(token:extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 448,
+      "symbol": "VGSCollect.updateCard(cardId:extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 454,
+      "symbol": "VGSCollect.updateCard(cardId:token:extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 466,
+      "symbol": "VGSCollect.createCardPublisher(extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 472,
+      "symbol": "VGSCollect.createCardPublisher(token:extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 479,
+      "symbol": "VGSCollect.updateCardPublisher(cardId:extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
+      "line": 486,
+      "symbol": "VGSCollect.updateCardPublisher(cardId:token:extraData:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/TokenizationConfiguration/VGSDateTokenizationConfiguration.swift",
       "line": 123,
       "symbol": "VGSDateTokenizationConfiguration.serializers",
@@ -12,34 +68,6 @@
       "line": 132,
       "symbol": "VGSDateTokenizationConfiguration.tokenizationParameters",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
-      "line": 9,
-      "symbol": "VGSConfiguration.makeCardNumberConfiguration(collector:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
-      "line": 17,
-      "symbol": "VGSConfiguration.makeCardholderConfiguration(collector:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
-      "line": 23,
-      "symbol": "VGSConfiguration.makeExpDateConfiguration(collector:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSConfiguration+extension.swift",
-      "line": 32,
-      "symbol": "VGSConfiguration.makeCVCConfiguration(collector:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -71,6 +99,27 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSError.swift",
+      "line": 63,
+      "symbol": "VGSErrorType.AuthHandlerNotSet",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSError.swift",
+      "line": 66,
+      "symbol": "VGSErrorType.InvalidFormConfiguration",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/VGSError.swift",
+      "line": 69,
+      "symbol": "VGSErrorType.SessionInitializationFailed",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSCardScanCoordinator.swift",
       "line": 25,
       "symbol": "VGSCardScanCoordinator.init()",
@@ -93,9 +142,9 @@
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/UIElements/Text Field/SwiftUIElements/VGSTextFieldRepresentableProtocol.swift",
-      "line": 69,
-      "symbol": "VGSTextFieldRepresentableCallbacksProtocol",
-      "symbol_kind": "source.lang.swift.decl.protocol",
+      "line": 70,
+      "symbol": "VGSTextFieldRepresentableCallbacksProtocol.StateType",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {

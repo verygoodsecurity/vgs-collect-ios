@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
-    
+
     <script src="../js/lunr.min.js" defer></script>
     <script src="../js/typeahead.jquery.js" defer></script>
     <script src="../js/jazzy.search.js" defer></script>
@@ -23,22 +23,22 @@
         <a class="header-link" href="../index.html">
           VGSCollectSDK
         </a>
-        
+
       </p>
-    
+
       <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
       </div>
-    
+
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/verygoodsecurity/vgs-collect-ios">
             <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
-    
+
     </header>
 
     <p class="breadcrumbs">
@@ -158,6 +158,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/VGSTextFieldEditingEvent.html">VGSTextFieldEditingEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/VGSTextFieldRepresentableCallbacksProtocol.html">VGSTextFieldRepresentableCallbacksProtocol</a>
               </li>
             </ul>
           </li>
@@ -409,10 +412,42 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Global%20Variables.html">Other Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:13VGSCollectSDK28VGSSDKErrorAuthHandlerNotSetSSvp">VGSSDKErrorAuthHandlerNotSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:13VGSCollectSDK24VGSSDKErrorInvalidCardIDSSvp">VGSSDKErrorInvalidCardID</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:13VGSCollectSDK34VGSSDKErrorInvalidConfigurationURLSSvp">VGSSDKErrorInvalidConfigurationURL</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:13VGSCollectSDK35VGSSDKErrorInvalidFormConfigurationSSvp">VGSSDKErrorInvalidFormConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:13VGSCollectSDK38VGSSDKErrorSessionInitializationFailedSSvp">VGSSDKErrorSessionInitializationFailed</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Other%20Global%20Variables.html#/s:13VGSCollectSDK33VGSSDKErrorUnexpectedResponseTypeSSvp">VGSSDKErrorUnexpectedResponseType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Other%20Enums.html">Other Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/VGSAnalyticsEventType.html">VGSAnalyticsEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSAnalyticsFormType.html">VGSAnalyticsFormType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSCardAttributesLookupResponse.html">VGSCardAttributesLookupResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/VGSCollectSessionResponse.html">VGSCollectSessionResponse</a>
               </li>
             </ul>
           </li>
@@ -421,6 +456,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Other%20Extensions.html#/AppKit">AppKit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Other%20Protocols.html">Other Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/VGSCardAttributesLookupService.html">VGSCardAttributesLookupService</a>
               </li>
             </ul>
           </li>
@@ -441,7 +484,7 @@
             <h1>VGSErrorType</h1>
               <div class="declaration">
                 <div class="language">
-                  
+
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VGSErrorType</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                 </div>
@@ -449,7 +492,7 @@
             <p>Type of <code><a href="../Classes/VGSError.html">VGSError</a></code>  and it status code.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L12-L46">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L12-L58">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -676,6 +719,66 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:13VGSCollectSDK12VGSErrorTypeO17authHandlerNotSetyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/authHandlerNotSet" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK12VGSErrorTypeO17authHandlerNotSetyA2CmF">authHandlerNotSet</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When authHandler is not set but required.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">authHandlerNotSet</span> <span class="o">=</span> <span class="mi">1301</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK12VGSErrorTypeO13invalidCardIDyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/invalidCardID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK12VGSErrorTypeO13invalidCardIDyA2CmF">invalidCardID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When a CMP update request has an empty or unsafe card ID.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">invalidCardID</span> <span class="o">=</span> <span class="mi">1302</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:13VGSCollectSDK12VGSErrorTypeO018unexpectedResponseD0yA2CmF"></a>
                     <a name="//apple_ref/swift/Element/unexpectedResponseType" class="dashAnchor"></a>
                     <a class="token" href="#/s:13VGSCollectSDK12VGSErrorTypeO018unexpectedResponseD0yA2CmF">unexpectedResponseType</a>
@@ -698,7 +801,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L39">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L45">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -728,7 +831,37 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L42">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L48">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK12VGSErrorTypeO24invalidFormConfigurationyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/invalidFormConfiguration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK12VGSErrorTypeO24invalidFormConfigurationyA2CmF">invalidFormConfiguration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When form parameter is invalid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">invalidFormConfiguration</span> <span class="o">=</span> <span class="mi">1460</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L51">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -746,7 +879,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>When VGS config URL is not valid.</p>
+                        <p>When the session configuration URL cannot be built for <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C7session4with7vaultId11environment10dataRegion10completionySS_SSAA11EnvironmentOSSSgyAA0A15SessionResponseOctFZ">VGSCollect.session(with:vaultId:environment:dataRegion:completion:)</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -758,7 +891,37 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L45">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L54">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK12VGSErrorTypeO27sessionInitializationFailedyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/sessionInitializationFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK12VGSErrorTypeO27sessionInitializationFailedyA2CmF">sessionInitializationFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C7session4with7vaultId11environment10dataRegion10completionySS_SSAA11EnvironmentOSSSgyAA0A15SessionResponseOctFZ">VGSCollect.session(with:vaultId:environment:dataRegion:completion:)</a></code> fails while loading or decoding the remote session configuration.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">sessionInitializationFailed</span> <span class="o">=</span> <span class="mi">1490</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/VGSError.swift#L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -771,7 +934,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-07-02)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-08-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

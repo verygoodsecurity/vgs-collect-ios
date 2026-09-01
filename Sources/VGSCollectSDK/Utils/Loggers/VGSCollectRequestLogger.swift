@@ -13,15 +13,18 @@ import Foundation
 	///   - request: `URLRequest` object, request to send.
 	///   - payload: `VGSRequestPayloadBody` object, request payload.
 	internal static func logRequest(_ request: URLRequest, payload: JsonData?) {
-
 		if !VGSCollectLogger.shared.configuration.isNetworkDebugEnabled {return}
 
 		print("⬆️ Send VGSCollectSDK request url: \(stringFromURL(request.url))")
+		print("⬆️ Send VGSCollectSDK request method: \(request.httpMethod ?? "")")
 		if let headers = request.allHTTPHeaderFields {
 			print("⬆️ Send VGSCollectSDK request headers:")
 			print(normalizeRequestHeadersForLogs(headers))
 		}
-		if let payloadValue = payload {
+		if let requestBody = request.httpBody {
+			print("⬆️ Send VGSCollectSDK request payload:")
+			print(stringifyDataForLogs(requestBody))
+		} else if let payloadValue = payload {
 			print("⬆️ Send VGSCollectSDK request payload:")
 			print(stringifyRawRequestPayloadForLogs(payloadValue))
 		}
@@ -35,7 +38,6 @@ import Foundation
 	///   - error: `Error?` object, request error.
 	///   - code: `Int` object, status code.
 	internal static func logErrorResponse(_ response: URLResponse?, data: Data?, error: Error?, code: Int) {
-
 		if !VGSCollectLogger.shared.configuration.isNetworkDebugEnabled {return}
 
 		if let url = response?.url {
@@ -70,7 +72,6 @@ import Foundation
 	///   - data: `Data?` object of success request.
 	///   - code: `Int` object, status code.
 	internal static func logSuccessResponse(_ response: URLResponse?, data: Data?, code: Int) {
-
 		if !VGSCollectLogger.shared.configuration.isNetworkDebugEnabled {return}
 
 		print("✅ Success ⬇️ VGSCollectSDK request url: \(stringFromURL(response?.url))")
@@ -81,10 +82,10 @@ import Foundation
 			print(normalizeHeadersForLogs(httpResponse.allHeaderFields))
 		}
 
-    if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-        print("✅ Success ⬇️ VGSCollectSDK response JSON:")
-        print(stringifyJSONForLogs(jsonData))
-      }
+		if let data = data {
+			print("✅ Success ⬇️ VGSCollectSDK response body:")
+			print(stringifyDataForLogs(data))
+		}
 		print("------------------------------------")
 	}
 
@@ -99,7 +100,7 @@ import Foundation
 	/// Utility function to normalize request headers for logging.
 	/// - Parameter headers: `[String : String]`, request headers.
 	/// - Returns: `String` object, normalized headers string.
-	private static func normalizeRequestHeadersForLogs(_ headers: [String: String]) -> String {
+	internal static func normalizeRequestHeadersForLogs(_ headers: [String: String]) -> String {
 		let stringifiedHeaders = headers.map({return "  \($0.key) : \($0.value)"}).joined(separator: "\n  ")
 
 		return "[\n  \(stringifiedHeaders) \n]"
@@ -116,6 +117,13 @@ import Foundation
 
 	/// Limit string characters value to print.
 	private static var maxTextCountToPrintLimit: Int = 50000
+
+	/// Stringify raw request or response data for logging.
+	/// - Parameter data: Raw body data.
+	/// - Returns: UTF-8 text when available, otherwise a base64 representation.
+	internal static func stringifyDataForLogs(_ data: Data) -> String {
+		return String(data: data, encoding: .utf8) ?? data.base64EncodedString()
+	}
 
 	/// Stringify `JSON` for logging.
 	/// - Parameter vgsJSON: `VGSJSONData` object.

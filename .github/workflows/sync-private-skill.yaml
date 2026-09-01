@@ -1,0 +1,129 @@
+---
+name: Sync VGS Collect iOS skill to private catalog
+
+'on':
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-vgs-collect-ios-guide-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Create private catalog skill sync pull request
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Create token for the private skills catalog
+        id: catalog-token
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf  # v2
+        with:
+          app-id: ${{ secrets.VGS_GITHUB_CI_BOT_APP_ID }}
+          private-key: ${{ secrets.VGS_GITHUB_CI_BOT_APP_PEM_FILE }}
+          owner: verygoodsecurity
+          repositories: skills-private
+
+      - name: Checkout the released VGS Collect iOS source
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6
+        with:
+          ref: ${{ github.ref }}
+          path: vgs-collect-ios
+
+      - name: Checkout the private skills catalog
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8  # v6
+        with:
+          repository: verygoodsecurity/skills-private
+          ref: main
+          path: private-skills
+          token: ${{ steps.catalog-token.outputs.token }}
+
+      - name: Replace the private skill with the released source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C private-skills rm -r --ignore-unmatch \
+            skills/vgs-collect-ios-guide
+          while IFS= read -r -d '' source_path; do
+            target_path="private-skills/${source_path}"
+            mkdir -p "$(dirname "$target_path")"
+            cp -- "vgs-collect-ios/${source_path}" "$target_path"
+          done < <(git -C vgs-collect-ios ls-files -z -- \
+            skills/vgs-collect-ios-guide)
+          git -C private-skills add --all skills/vgs-collect-ios-guide
+
+      - name: Validate the refreshed private skill
+        shell: bash
+        working-directory: private-skills
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip skills-ref
+          if ! command -v skills-ref >/dev/null 2>&1 \
+            && command -v agentskills >/dev/null 2>&1; then
+            printf '#!/usr/bin/env bash\nexec agentskills "$@"\n' \
+              > "$RUNNER_TEMP/skills-ref"
+            chmod +x "$RUNNER_TEMP/skills-ref"
+            export PATH="$RUNNER_TEMP:$PATH"
+          fi
+          skills-ref validate skills/vgs-collect-ios-guide
+          git diff --cached --check
+
+      - name: Push the refresh branch and create its pull request
+        shell: bash
+        working-directory: private-skills
+        env:
+          GH_TOKEN: ${{ steps.catalog-token.outputs.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo 'The private skill already matches this release.'
+            exit 0
+          fi
+
+          branch_hash="$(printf '%s' "$RELEASE_TAG" | sha256sum | cut -c1-12)"
+          branch="automation/sync-vgs-collect-ios-guide-${branch_hash}"
+          git config user.name 'vgs-github-ci[bot]'
+          git config user.email 'vgs-github-ci[bot]@users.noreply.github.com'
+          git commit -m "docs: sync vgs-collect-ios-guide for ${RELEASE_TAG}"
+          catalog_url="https://github.com/verygoodsecurity/skills-private.git"
+          auth_url="x-access-token:${GH_TOKEN}@${catalog_url#https://}"
+          git remote set-url origin "https://${auth_url}"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            remote_ref="refs/remotes/origin/${branch}"
+            git fetch origin "+refs/heads/${branch}:${remote_ref}"
+            git push --force-with-lease="refs/heads/${branch}:${remote_ref}" \
+              origin "HEAD:${branch}"
+          else
+            git push origin "HEAD:${branch}"
+          fi
+
+          existing_pr="$(gh pr list \
+            --repo verygoodsecurity/skills-private \
+            --head "verygoodsecurity:${branch}" \
+            --state open \
+            --json url \
+            --jq '.[0].url')"
+          if [ -n "$existing_pr" ]; then
+            echo "Updated ${existing_pr}"
+            exit 0
+          fi
+
+          release_url="https://github.com/${GITHUB_REPOSITORY}/tree/${RELEASE_SHA}"
+          sync_summary='Synchronizes `skills/vgs-collect-ios-guide`'
+          sync_summary+=" from VGS Collect iOS ${RELEASE_TAG}."
+          validation='Validation: `skills-ref validate'
+          validation+=' skills/vgs-collect-ios-guide` and `git diff --check`.'
+          pr_body="$(printf '%s\n\n%s\n\n%s\n' \
+            "$sync_summary" "Source: ${release_url}" "$validation")"
+          gh pr create \
+            --repo verygoodsecurity/skills-private \
+            --base main \
+            --head "$branch" \
+            --title "docs: sync vgs-collect-ios-guide for ${RELEASE_TAG}" \
+            --body "$pr_body"

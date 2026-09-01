@@ -10,6 +10,10 @@ import Foundation
 
 @MainActor
 internal extension VGSCollect {
+    private static let sessionConfigurationBaseURLString = "https://js.verygoodvault.com/session-configuration"
+    static var sessionConfigurationURLSessionFactory: () -> URLSession = {
+      URLSession(configuration: .ephemeral)
+    }
   
     /// Validate tenant id
     class func tenantIDValid(_ tenantId: String) -> Bool {
@@ -70,11 +74,11 @@ internal extension VGSCollect {
     }
     
     /// Turns textfields data saved in Storage and extra data in format ready to send
-	func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
+    func mapStoredInputDataForSubmit(with extraData: [String: Any]? = nil) -> [String: Any] {
 
-		   let textFieldsData: BodyData = VGSCollect.mapFieldsDataToBody(from: storage.textFields)
+           let textFieldsData: BodyData = VGSCollect.mapFieldsDataToBody(from: storage.textFields)
 
-		    var body = mapInputFieldsDataToDictionary(textFieldsData)
+            var body = mapInputFieldsDataToDictionary(textFieldsData)
 
         if let customData = extraData, customData.count != 0 {
            // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
@@ -84,34 +88,34 @@ internal extension VGSCollect {
         return body
     }
 
-	static func mapStoredInpuToFlatJSON(with extraData: [String: Any]? = nil, from textFields: [VGSTextField]) -> [String: Any] {
-		var body: BodyData = mapFieldsDataToBody(from: textFields)
+    static func mapStoredInpuToFlatJSON(with extraData: [String: Any]? = nil, from textFields: [VGSTextField]) -> [String: Any] {
+        var body: BodyData = mapFieldsDataToBody(from: textFields)
 
-		 if let customData = extraData, customData.count != 0 {
-				// NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
-				body = deepMerge(customData, body)
-		 }
+         if let customData = extraData, customData.count != 0 {
+                // NOTE: If there are similar keys on same level, body values will override customvalues values for that keys
+                body = deepMerge(customData, body)
+         }
 
-		 return body
-	}
+         return body
+    }
 
-	  /// Map fields data to body.
-	  /// - Returns: `BodyData` from collect fields.
-	static func mapFieldsDataToBody(from textFields: [VGSTextField]) -> BodyData {
-			let textFieldsData: BodyData = textFields.reduce(into: BodyData()) { (dict, element) in
-				let output = element.getOutputText()
+      /// Map fields data to body.
+      /// - Returns: `BodyData` from collect fields.
+    static func mapFieldsDataToBody(from textFields: [VGSTextField]) -> BodyData {
+            let textFieldsData: BodyData = textFields.reduce(into: BodyData()) { (dict, element) in
+                let output = element.getOutputText()
 
-				/// Check if any serialization should be done before data will be send
-				if let serializable = element.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
-					let result = serializable.serialize(output ?? "")
-					dict = deepMerge(dict, result)
-				} else {
-					dict[element.fieldName] = output
-				}
-			}
+                /// Check if any serialization should be done before data will be send
+                if let serializable = element.configuration as? VGSFormatSerializableProtocol, serializable.shouldSerialize {
+                    let result = serializable.serialize(output ?? "")
+                    dict = deepMerge(dict, result)
+                } else {
+                    dict[element.fieldName] = output
+                }
+            }
 
-			return textFieldsData
-		}
+            return textFieldsData
+        }
 
     /// Maps textfield string key with separator  into nesting Dictionary
     func mapInputFieldsDataToDictionary(_ body: [String: Any]) -> [String: Any] {
@@ -132,7 +136,10 @@ internal extension VGSCollect {
         }
         // set focus for textField
         textField.focusStatus = true
-        
+
+        // Card attributes lookup trigger (first 11 digits of card number).
+        handlePotentialCardAttributesLookup(for: textField)
+
         // call observers ONLY after all internal updates done
         observeStates?(storage.textFields)
         observeFieldState?(textField)
@@ -176,4 +183,271 @@ internal extension VGSCollect {
   func unregisterAllFiles() {
       self.storage.removeFiles()
   }
+    
+    // MARK: - Form configuration
+    
+    /// Form ID validation regex used by `session(with:)`.
+    /// Validates `formId` format for async factory.
+    class func validateFormId(_ formId: String) -> Bool {
+      let formIdValidationRegex = "^[A-Za-z0-9_-]+$"
+      let hasValidFormat = formId.range(of: formIdValidationRegex, options: .regularExpression) != nil
+      return hasValidFormat && (1...50).contains(formId.count)
+    }
+
+    struct VGSFormConfigurationData: Decodable {
+      struct Config: Decodable {
+        struct CardAttributes: Decodable {
+          let enable: Bool?
+          let parameters: [String]?
+        }
+
+        let cardAttributes: CardAttributes?
+      }
+
+      let formName: String?
+      let version: String?
+      let config: Config?
+
+      enum CodingKeys: String, CodingKey {
+        case formName = "form_name"
+        case version
+        case config
+      }
+    }
+
+    struct VGSFormConfigurationLoadMetrics {
+      let filename: String
+      let statusCode: Int
+      let latency: Int
+    }
+
+    struct VGSFormConfigurationLoadResult {
+      let config: VGSFormConfigurationData
+      let metrics: VGSFormConfigurationLoadMetrics
+    }
+
+    struct VGSFormConfigurationLoadError: LocalizedError {
+      let underlyingResponse: VGSCollectSessionResponse
+      let metrics: VGSFormConfigurationLoadMetrics
+
+      var errorDescription: String? {
+        switch underlyingResponse {
+        case .success:
+          return nil
+        case .failure(let code, _, _, let error):
+          return error?.localizedDescription ?? "Failed to load form configuration: \(code)."
+        }
+      }
+    }
+
+    typealias VGSFormConfigurationLoadCompletion = @MainActor (Result<VGSFormConfigurationLoadResult, Error>) -> Void
+
+    static func createCollectInitExtraData() -> [String: Any] {
+      return ["formType": VGSAnalyticsFormType.create.rawValue]
+    }
+
+    static func sessionCollectInitExtraData(metrics: VGSFormConfigurationLoadMetrics) -> [String: Any] {
+      return [
+        "formType": VGSAnalyticsFormType.session.rawValue,
+        "configFile": metrics.filename,
+        "configFileStatusCode": metrics.statusCode,
+        "configFileLatency": metrics.latency
+      ]
+    }
+
+    private static func makeSessionConfigurationSDKError(type: VGSErrorType,
+                                                         description: String,
+                                                         extraInfo: [String: Any] = [:]) -> VGSError {
+      let key: VGSErrorInfoKey
+      switch type {
+      case .invalidConfigurationURL:
+        key = VGSSDKErrorInvalidConfigurationURL
+      case .sessionInitializationFailed:
+        key = VGSSDKErrorSessionInitializationFailed
+      default:
+        key = VGSSDKErrorSessionInitializationFailed
+      }
+
+      return VGSError(type: type,
+                      userInfo: VGSErrorInfo(key: key,
+                                             description: description,
+                                             extraInfo: extraInfo))
+    }
+
+    private static func formConfigurationLoadMetrics(filename: String,
+                                                     startedAt: Date,
+                                                     statusCode: Int) -> VGSFormConfigurationLoadMetrics {
+      let latency = Int(Date().timeIntervalSince(startedAt) * 1000)
+      return VGSFormConfigurationLoadMetrics(
+        filename: filename,
+        statusCode: statusCode,
+        latency: latency
+      )
+    }
+
+    /// Generates lowercase UTF-8 hex filename for the provided form name.
+    static func collectConfigFilenameHex(form: String) -> String {
+      return form.utf8.map { String(format: "%02x", $0) }.joined()
+    }
+
+    /// Builds canonical session configuration URL for form-driven session initialization.
+    static func buildSessionConfigURL(form: String, vaultId: String) -> URL? {
+      guard let baseURL = URL(string: sessionConfigurationBaseURLString) else { return nil }
+      let filename = collectConfigFilenameHex(form: form)
+      return baseURL
+        .appendingPathComponent(vaultId)
+        .appendingPathComponent("\(filename).json")
+    }
+
+    static func decodeFormConfiguration(from data: Data) throws -> VGSFormConfigurationData {
+      return try JSONDecoder().decode(VGSFormConfigurationData.self, from: data)
+    }
+
+    static func decodeInlineFormConfiguration(_ configuration: [String: Any]?) -> VGSFormConfigurationData? {
+      guard
+        let configuration,
+        JSONSerialization.isValidJSONObject(configuration),
+        let data = try? JSONSerialization.data(withJSONObject: ["config": configuration], options: [])
+      else {
+        return nil
+      }
+
+      return try? decodeFormConfiguration(from: data)
+    }
+
+    static func resolveIncludedCardAttributes(from config: VGSFormConfigurationData.Config?) -> [String] {
+      guard config?.cardAttributes?.enable == true else { return [] }
+      let raw = config?.cardAttributes?.parameters ?? []
+      let sanitized = raw
+        .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        .filter { !$0.isEmpty }
+      guard !sanitized.isEmpty else { return [] }
+
+      var seen = Set<String>()
+      var unique = [String]()
+      for item in sanitized where !seen.contains(item) {
+        seen.insert(item)
+        unique.append(item)
+      }
+      return unique
+    }
+
+    static func loadConfiguration(for formId: String,
+                                  vaultId: String,
+                                  completion: @escaping VGSFormConfigurationLoadCompletion) {
+      let filename = "\(collectConfigFilenameHex(form: formId)).json"
+      let startedAt = Date()
+
+      guard let url = buildSessionConfigURL(form: formId, vaultId: vaultId) else {
+        let error = makeSessionConfigurationSDKError(type: .invalidConfigurationURL,
+                                                     description: "Failed to build session configuration URL.")
+        let metrics = formConfigurationLoadMetrics(
+          filename: filename,
+          startedAt: startedAt,
+          statusCode: error.code
+        )
+        completion(.failure(VGSFormConfigurationLoadError(
+          underlyingResponse: .failure(error.code, nil, nil, error),
+          metrics: metrics
+        )))
+        return
+      }
+
+      let request = URLRequest(url: url)
+      VGSCollectRequestLogger.logRequest(request, payload: nil)
+      let session = sessionConfigurationURLSessionFactory()
+      session.dataTask(with: request) { data, response, error in
+        Task { @MainActor in
+          if let error = error {
+            let sdkError = makeSessionConfigurationSDKError(type: .sessionInitializationFailed,
+                                                            description: error.localizedDescription)
+            VGSCollectRequestLogger.logErrorResponse(response, data: data, error: sdkError, code: sdkError.code)
+            let metrics = formConfigurationLoadMetrics(
+              filename: filename,
+              startedAt: startedAt,
+              statusCode: sdkError.code
+            )
+            completion(.failure(VGSFormConfigurationLoadError(
+              underlyingResponse: .failure(sdkError.code, nil, nil, sdkError),
+              metrics: metrics
+            )))
+            return
+          }
+
+          guard let httpResponse = response as? HTTPURLResponse else {
+            let sdkError = makeSessionConfigurationSDKError(type: .sessionInitializationFailed,
+                                                            description: "Session configuration response is invalid.")
+            VGSCollectRequestLogger.logErrorResponse(response, data: data, error: sdkError, code: sdkError.code)
+            let metrics = formConfigurationLoadMetrics(
+              filename: filename,
+              startedAt: startedAt,
+              statusCode: sdkError.code
+            )
+            completion(.failure(VGSFormConfigurationLoadError(
+              underlyingResponse: .failure(sdkError.code, data, response, sdkError),
+              metrics: metrics
+            )))
+            return
+          }
+
+          guard (200..<300).contains(httpResponse.statusCode) else {
+            let statusCode = httpResponse.statusCode
+            let responseError: VGSCollectSessionResponse = .failure(statusCode, data, response, nil)
+            VGSCollectRequestLogger.logErrorResponse(response, data: data, error: nil, code: statusCode)
+            let metrics = formConfigurationLoadMetrics(
+              filename: filename,
+              startedAt: startedAt,
+              statusCode: statusCode
+            )
+            completion(.failure(VGSFormConfigurationLoadError(
+              underlyingResponse: responseError,
+              metrics: metrics
+            )))
+            return
+          }
+
+          guard let data else {
+            let error = makeSessionConfigurationSDKError(type: .sessionInitializationFailed,
+                                                         description: "Session configuration response body is empty.",
+                                                         extraInfo: ["statusCode": httpResponse.statusCode])
+            VGSCollectRequestLogger.logErrorResponse(response, data: nil, error: error, code: error.code)
+            let metrics = formConfigurationLoadMetrics(
+              filename: filename,
+              startedAt: startedAt,
+              statusCode: httpResponse.statusCode
+            )
+            completion(.failure(VGSFormConfigurationLoadError(
+              underlyingResponse: .failure(error.code, nil, nil, error),
+              metrics: metrics
+            )))
+            return
+          }
+
+          do {
+            let decoded = try decodeFormConfiguration(from: data)
+            VGSCollectRequestLogger.logSuccessResponse(response, data: data, code: httpResponse.statusCode)
+            let metrics = formConfigurationLoadMetrics(
+              filename: filename,
+              startedAt: startedAt,
+              statusCode: httpResponse.statusCode
+            )
+            completion(.success(VGSFormConfigurationLoadResult(config: decoded, metrics: metrics)))
+          } catch {
+            let sdkError = makeSessionConfigurationSDKError(type: .sessionInitializationFailed,
+                                                            description: "Session configuration response has invalid data shape.",
+                                                            extraInfo: ["statusCode": httpResponse.statusCode])
+            VGSCollectRequestLogger.logErrorResponse(response, data: data, error: sdkError, code: sdkError.code)
+            let metrics = formConfigurationLoadMetrics(
+              filename: filename,
+              startedAt: startedAt,
+              statusCode: httpResponse.statusCode
+            )
+            completion(.failure(VGSFormConfigurationLoadError(
+              underlyingResponse: .failure(sdkError.code, nil, nil, sdkError),
+              metrics: metrics
+            )))
+          }
+        }
+      }.resume()
+    }
 }

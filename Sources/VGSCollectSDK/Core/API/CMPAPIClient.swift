@@ -7,7 +7,7 @@ import Foundation
 
 @MainActor class CMPAPIClient: VGSAPIClientProtocol {
   
-  internal let urlSession = URLSession(configuration: .ephemeral)
+  internal var urlSession = URLSession(configuration: .ephemeral)
   
   var baseURL: URL?
   
@@ -19,18 +19,16 @@ import Foundation
   
   private static func getBaseURL(env: String) -> URL {
     let environment = env.lowercased()
-    switch environment {
-    case "sandbox":
+    if environment.starts(with: "sandbox") {
       return URL(string: "https://sandbox.vgsapi.com")!
-    default:
-      return URL(string: "https://vgsapi.com")!
     }
+    return URL(string: "https://vgsapi.com")!
   }
   
   required init(environment: String, formAnalyticsDetails: VGSFormAnanlyticsDetails) {
     self.baseURL = Self.getBaseURL(env: environment)
   }
-  
+
   func sendRequest(path: String, method: VGSCollectHTTPMethod, routeId: String? = nil, value: BodyData, completion block: VGSResponseCompletion?) {
 
     // Add headers.

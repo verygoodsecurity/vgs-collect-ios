@@ -1,6 +1,6 @@
 # AGENTS.md
 
-**SDK Version: 1.19.0**
+**SDK Version: 1.20.0**
 
 This guide is tailored for autonomous engineering agents integrating `VGSCollectSDK` into iOS applications. It focuses on deterministic, automatable steps: environment assessment, dependency installation, feature wiring (text fields, scanning, file upload), privacy compliance, testing, maintenance, and safe upgrade workflows.
 
@@ -14,15 +14,14 @@ Documentation Source of Truth Across Versions
 - Repository root `AGENTS.md` points to that canonical file so root-path workflows continue to work in a normal checkout.
 - The single public AI skill entrypoint lives at `skills/vgs-collect-ios-guide/SKILL.md`. It routes task type and version selection, then defers SDK rules and invariants to this file.
 - The installed skill bundle must ship `skills/vgs-collect-ios-guide/references/AGENTS.md` so standalone skill installs receive this policy file automatically.
-- For the public skill and public documentation workflows, the canonical repository for tags and versioned docs is `https://github.com/verygoodsecurity/vgs-collect-ios`.
-- When the SDK version used by the target project can be determined, agents MUST prefer root `AGENTS.md` from the matching Git tag in the public `verygoodsecurity/vgs-collect-ios` repository before giving version-sensitive guidance.
-- If an exact tag is unavailable, agents MUST use the nearest compatible tag and clearly disclose the mismatch before giving version-sensitive guidance.
-- Private forks or internal mirrors do not override the public repository as the source of truth for public skill guidance.
-- If the SDK is not installed or its version cannot be determined, agents SHOULD use the default-branch copy of this file and say that latest guidance is being used.
+- This bundled file is the agent-instruction snapshot available to an installed public skill.
+- If the target project's SDK version differs from the `SDK Version` header, agents MUST disclose that the bundled guidance may be outdated and show `npx skills check` followed by `npx skills update`. Agents must not run an update or silently reinstall the skill without an explicit user request.
+- If the SDK version cannot be determined, agents SHOULD disclose that this bundled snapshot is being used without claiming it is the latest available version.
+- Maintainers update this bundled snapshot in the source repository; runtime agents consume it as immutable guidance.
 - Release tags MUST be created only after `AGENTS.md`, `README.md`, `MIGRATING.md`, and `skills/vgs-collect-ios-guide/SKILL.md` match the shipped SDK behavior for that release.
 
 Success Criteria for Any Agent Task
-1. Sensitive data (PAN, CVC, SSN, files) NEVER logged, persisted, or leaked to analytics.
+1. Logging is disabled by default and before commit. During an explicit local Debug investigation, diagnostics may show the exact request and response, including synthetic sensitive values and disposable test credentials, under the safeguards in Section 11. Analytics must never receive these values.
 2. All fields validated (`state.isValid`) before submission.
 3. Network submission surfaces aliases/tokens only to the app layer.
 4. File uploads always followed by `collector.cleanFiles()` after success.
@@ -66,7 +65,7 @@ Security Note: Never derive environment from user input; it must be a static con
 Purpose: choose the correct submission family before generating fields, templates, or integration guidance.
 
 Key rule:
-- `VGSCollect(id:environment:)` is shared setup for every supported flow. It is not an alternative to `sendData`, `tokenizeData`, `createAliases`, `createCard`, or `sendFile`.
+- `VGSCollect(id:environment:)` is shared setup for every supported flow. It is not an alternative to `sendData`, `tokenizeData`, `createAliases`, `createCard`, `updateCard`, or `sendFile`.
 
 Choose the flow like this:
 - `sendData(path:...)`
@@ -81,17 +80,24 @@ Choose the flow like this:
 - `createCard(token:...)`
   - Use only for explicit Card Management / CMP card creation flows.
   - Requires an access token and must not be inferred from generic card-entry UI requests.
+  - `extraData` contains additional Card Management API attributes; do not add
+    the `data.attributes` wrapper for new integrations because the SDK adds it.
+    Attribute names and value types must match the CMP schema or CMP can return
+    a `4xx` response.
+- `updateCard(cardId:token:...)`
+  - Use only for explicit Card Management / CMP card update flows.
+  - Requires a valid card ID and access token. Tokenless overloads obtain the token from `authHandler`.
 - `sendFile(path:...)`
   - Use for file upload flows only; on success always call `collector.cleanFiles()`.
 
 Ambiguity rules for agents:
 - If the user asks for a `checkout`, `payment`, `card entry`, `save card`, or similar screen but does not specify the submission family, ask a short clarifying question before generating code beyond shared collector and field setup.
-- Do not infer `createCard` from `checkout`, `payment form`, `card form`, `add payment method`, or similar generic phrases.
+- Do not infer `createCard` or `updateCard` from `checkout`, `payment form`, `card form`, `add payment method`, or similar generic phrases.
 - If the user asks only for UI wiring, validation, or layout, generate field setup and leave submission unresolved until the flow is specified.
 - If the user request does not distinguish `tokenizeData` from `createAliases`, ask which Vault flow they need instead of guessing.
 
 Non-card rules:
-- For SSN, password, routing number, generic date, account identifier, or custom text collection, do not use `createCard` or card-only field/configuration types.
+- For SSN, password, routing number, generic date, account identifier, or custom text collection, do not use `createCard`, `updateCard`, or card-only field/configuration types.
 - For SSN tokenization, use `VGSSSNTokenizationConfiguration`.
 - For date tokenization, use `VGSDateTokenizationConfiguration`.
 - For generic non-card tokenization, use `VGSTokenizationConfiguration` with the correct semantic `type`.
@@ -172,7 +178,7 @@ FieldType ssn
 - P: `###-##-####`  D: `-`
 - Val: `VGSValidationRulePattern`
 - Meta: may expose last4 via specialized state (`VGSSSNState`) if available
-- Scan: No  Icon: No  Sens.: (Treat as sensitive in app logic even if `sensitive` flag false; never log.)
+- Scan: No  Icon: No  Sens.: (Treat as sensitive in app logic even if `sensitive` flag false; use synthetic placeholders when inspecting debug request structure.)
 
 Sensitive Flag (SDK internal): `cardNumber`, `cvc` return true (restrict tokenization bypass). Treat SSN as sensitive operationally even if not flagged.
 
@@ -206,7 +212,7 @@ VGSPaymentCards.cutomPaymentCardModels.append(myCard)
 Guidelines (short):
 - Anchor regex (`^...$`), avoid broad patterns.
 - Place specific custom models earlier if overlap possible.
-- Never log full PAN; only brand + last4.
+- Keep card logs to brand + last4. Use synthetic test values or placeholders when comparing request structure in debug diagnostics.
 - Test detection positive & a near‑miss negative.
 
 ---
@@ -284,7 +290,7 @@ extension ViewController: VGSTextFieldDelegate {
   }
 }
 ```
-Never log full PAN / CVC / SSN / raw file contents.
+Keep normal application logs limited to metadata such as brand, last4, and validity. Exact request and response logging is a temporary local Debug diagnostic governed by Section 11 and must be disabled before commit.
 
 ---
 ## 6. Submission APIs
@@ -414,13 +420,24 @@ Opt out if mandated:
 ```
 VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 ```
-Do not modify analytics payload structure. Toggle only.
+Do not modify analytics payload structure. Toggle only. Analytics must never contain PAN, CVC, SSN, file contents, authentication credentials, or raw backend payloads, regardless of debug settings.
 
 ---
-## 11. Logging & Redaction Policy
-Allowed: brand, last4, validity flags, aggregate counts, error categories (e.g. timeout, validationFailure).
-Forbidden: full PAN, full CVC, full SSN, unredacted file content, license keys, vault ID in user-visible error messages.
-Ensure production logger level minimal (`.none` or equivalent). Strip `print` statements in CI if containing patterns of 13–19 digits (add automated regex scan).
+## 11. Debug Logging & Pre-Commit Policy
+SDK debug diagnostics are intended to make local integration testing and network analysis complete and reproducible. When explicitly enabled for a local Debug session, they should show the exact outgoing request and incoming response without masking values.
+
+Requirements:
+- Debug diagnostics must require explicit runtime opt-in and remain disabled by default. The integrating app should wrap logger enablement in `#if DEBUG`; the SDK logger itself remains build-configuration agnostic.
+- Use debug diagnostics only with mocked or SANDBOX endpoints, synthetic secure-field values, and disposable test credentials. Do not use production/customer credentials, vaults, routes, files, or traffic.
+- For the active local Debug session, log the exact request URL, method, headers, and body plus the exact response status, headers, and body needed for analysis. Do not mask values in this explicitly enabled diagnostic output.
+- Treat the resulting console output as sensitive because it can contain authorization values, synthetic PAN/CVC/SSN data, complete payloads, and backend responses. Keep it local; do not persist, upload, attach to tickets or prompts, capture in shared screenshots or recordings, or send to remote log collectors.
+- Immediately after the investigation, disable the debug log level and network logging and remove temporary logging statements or enablement flags. Before staging or committing, verify that logging is disabled.
+- A committed diagnostics implementation may remain available, but it must be disabled by default. Production app configurations must not enable verbose request/response diagnostics.
+- Analytics, crash reporting, telemetry, and remote log collectors must never receive sensitive runtime values, synthetic secure-field values, or authentication credentials.
+- Application-authored persistent logs must remain limited to brand, last4, validity flags, aggregate counts, status codes, and error categories; the unredacted exception applies only to the explicitly enabled local Debug diagnostic session.
+- Token IDs and VGS aliases are non-sensitive identifiers unless a specific service accepts the value itself as an authentication credential. Bearer tokens, access tokens, refresh tokens, session credentials, private keys, and signing secrets remain sensitive credentials.
+- Vault IDs and license keys must not appear in user-visible error messages.
+- Before sharing any debug output, sanitize authorization values, customer identifiers, and sensitive payload fields. Sanitization is for the shared copy, not the local diagnostic console used during analysis.
 
 ---
 ## 12. Error Handling Guidelines
@@ -441,8 +458,10 @@ Pre-Commit CI Checklist Additions:
 1. Build (Debug + Release).
 2. Tests (unit + any UI/integration mocks) green.
 3. Lint/format passes.
-4. Regex scan for sensitive patterns (PAN-like digits, etc.).
+4. Review the staged diff and run a sensitive-literal scan for committed bearer/access tokens, private keys, credentials, real PAN-like values, CVC, SSN, license keys, and captured request/response payloads.
 5. Verify no deprecated API usage (grep for `deprecated` markers not allowed in new codepaths except inside SDK dependency sources).
+6. Verify temporary logging and all local debug/network logging enablement are disabled or removed before commit; retained diagnostics remain explicit opt-in and disabled by default, and app-side enablement is wrapped in `#if DEBUG`.
+7. Verify production app configurations, analytics, telemetry, crash reporting, and remote log collectors cannot emit request/response bodies, real or synthetic sensitive runtime values, or authentication credentials, even when debug logging support exists.
 
 ---
 ## 14. Testing Strategy (Minimum Set Agents Must Maintain)
@@ -473,14 +492,15 @@ Choose Card Submission Variant:
 1. If the user wants proxy submission to their backend or custom route, use `sendData`.
 2. If the user wants Vault tokenization or alias creation, use tokenization-capable configurations and submit with `tokenizeData` or `createAliases`.
 3. If the user wants CMP card creation and provides or expects a card-management access token, use `createCard`.
-4. If the request says only `checkout` or `card entry` without naming the flow, ask which submission family they need before generating submission code.
+4. If the user wants to change an existing CMP card and has its card ID, use `updateCard`.
+5. If the request says only `checkout` or `card entry` without naming the flow, ask which submission family they need before generating submission code.
 
 Add SSN or Generic Sensitive Field:
 1. Instantiate `VGSCollect` with pinned environment.
 2. Choose the semantic field type (`.ssn`, `.date`, `.none`, or another documented type) that matches the requested data.
 3. If the user wants Vault tokenization, use `VGSSSNTokenizationConfiguration`, `VGSDateTokenizationConfiguration`, or `VGSTokenizationConfiguration` as appropriate.
 4. If the user wants regular submission to their backend, use `VGSConfiguration` and submit with `sendData`.
-5. Do not use `createCard` unless the user explicitly requested CMP card creation.
+5. Do not use `createCard` or `updateCard` unless the user explicitly requested the corresponding CMP card operation.
 
 Add File Upload:
 1. Add picker configuration & controller.
@@ -515,7 +535,9 @@ config.validationRules = rules
 
 ---
 ## 19. Pre-Merge Security Review Checklist
-[ ] No logs of sensitive raw values.
+[ ] No credentials or real sensitive values are hardcoded or committed in source, fixtures, snapshots, documentation, or examples.
+[ ] Temporary logging and debug/network logging enablement are disabled or removed before commit; retained diagnostics are explicit opt-in and disabled by default, and app-side enablement is wrapped in `#if DEBUG`.
+[ ] Release/production logs, analytics, telemetry, crash reporting, and remote log collectors remain free of sensitive runtime values and authentication credentials.
 [ ] No deprecated API references added.
 [ ] All validation gates present before submissions.
 [ ] File uploads followed by cleanup.
