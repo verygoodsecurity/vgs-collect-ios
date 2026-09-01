@@ -73,18 +73,18 @@ class CMPAPIClientTests: VGSCollectBaseTestCase {
         XCTAssertEqual(client.baseURL?.absoluteString, "https://vgsapi.com", "Base URL should be the live URL.")
     }
 
-    func test_requestForLoggingRedactsAuthorizationAndBody() throws {
+    func test_networkDebugFormattingIncludesExactAuthorizationAndBody() throws {
         var request = URLRequest(url: try XCTUnwrap(URL(string: "https://sandbox.vgsapi.com/cards")))
         request.setValue("Bearer secret-token", forHTTPHeaderField: "Authorization")
         request.httpBody = Data("sensitive-card-data".utf8)
 
-        let redacted = CMPAPIClient.requestForLogging(request)
+        let headers = try XCTUnwrap(request.allHTTPHeaderFields)
+        let body = try XCTUnwrap(request.httpBody)
+        let loggedHeaders = VGSCollectRequestLogger.normalizeRequestHeadersForLogs(headers)
+        let loggedBody = VGSCollectRequestLogger.stringifyDataForLogs(body)
 
-        XCTAssertEqual(redacted.value(forHTTPHeaderField: "Authorization"), "[REDACTED]")
-        XCTAssertNil(redacted.httpBody)
-        XCTAssertNil(redacted.httpBodyStream)
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer secret-token")
-        XCTAssertNotNil(request.httpBody)
+        XCTAssertTrue(loggedHeaders.contains("Authorization : Bearer secret-token"))
+        XCTAssertEqual(loggedBody, "sensitive-card-data")
     }
 }
 @MainActor

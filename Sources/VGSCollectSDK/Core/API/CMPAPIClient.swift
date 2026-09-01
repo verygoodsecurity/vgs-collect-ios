@@ -29,16 +29,6 @@ import Foundation
     self.baseURL = Self.getBaseURL(env: environment)
   }
 
-  internal static func requestForLogging(_ request: URLRequest) -> URLRequest {
-    var redactedRequest = request
-    if request.value(forHTTPHeaderField: "Authorization") != nil {
-      redactedRequest.setValue("[REDACTED]", forHTTPHeaderField: "Authorization")
-    }
-    redactedRequest.httpBody = nil
-    redactedRequest.httpBodyStream = nil
-    return redactedRequest
-  }
-  
   func sendRequest(path: String, method: VGSCollectHTTPMethod, routeId: String? = nil, value: BodyData, completion block: VGSResponseCompletion?) {
 
     // Add headers.
@@ -57,13 +47,13 @@ import Foundation
     request.allHTTPHeaderFields = headers
 
     // Log request.
-    VGSCollectRequestLogger.logRequest(Self.requestForLogging(request), payload: nil)
+    VGSCollectRequestLogger.logRequest(request, payload: value)
 
     // Send data.
     urlSession.dataTask(with: request) { (data, response, error) in
       Task { @MainActor in
         if let error = error as NSError? {
-          VGSCollectRequestLogger.logErrorResponse(response, data: nil, error: error, code: error.code)
+          VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: error.code)
           block?(.failure(error.code, data, response, error))
           return
         }
@@ -71,11 +61,11 @@ import Foundation
 
         switch statusCode {
         case 200..<300:
-          VGSCollectRequestLogger.logSuccessResponse(response, data: nil, code: statusCode)
+          VGSCollectRequestLogger.logSuccessResponse(response, data: data, code: statusCode)
           block?(.success(statusCode, data, response))
           return
         default:
-          VGSCollectRequestLogger.logErrorResponse(response, data: nil, error: error, code: statusCode)
+          VGSCollectRequestLogger.logErrorResponse(response, data: data, error: error, code: statusCode)
           block?(.failure(statusCode, data, response, error))
           return
         }

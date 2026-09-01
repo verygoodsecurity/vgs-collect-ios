@@ -114,15 +114,7 @@ internal extension VGSCollect {
       finishLookupIfCurrent(digits11: digits11, result: .failure(response: response))
       return
     }
-    var loggedRequest = request
-    if loggedRequest.value(forHTTPHeaderField: "Authorization") != nil {
-      loggedRequest.setValue("Bearer [REDACTED]", forHTTPHeaderField: "Authorization")
-    }
-    let loggedPayload: [String: Any] = [
-      "number": "[REDACTED]",
-      "filter": includedCardAttributes
-    ]
-    VGSCollectRequestLogger.logRequest(loggedRequest, payload: loggedPayload)
+    VGSCollectRequestLogger.logRequest(request, payload: nil)
 
     cardAttributesLookupURLSession.dataTask(with: request) { [weak self] data, response, error in
       DispatchQueue.main.async {

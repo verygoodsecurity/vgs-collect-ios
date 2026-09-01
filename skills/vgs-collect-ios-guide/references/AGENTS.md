@@ -21,7 +21,7 @@ Documentation Source of Truth Across Versions
 - Release tags MUST be created only after `AGENTS.md`, `README.md`, `MIGRATING.md`, and `skills/vgs-collect-ios-guide/SKILL.md` match the shipped SDK behavior for that release.
 
 Success Criteria for Any Agent Task
-1. Real sensitive runtime values and authentication credentials are never emitted to logs or analytics. Debug diagnostics may expose request structure, token IDs/aliases, and synthetic test values under the safeguards in Section 11.
+1. Logging is disabled by default and before commit. During an explicit local Debug investigation, diagnostics may show the exact request and response, including synthetic sensitive values and disposable test credentials, under the safeguards in Section 11. Analytics must never receive these values.
 2. All fields validated (`state.isValid`) before submission.
 3. Network submission surfaces aliases/tokens only to the app layer.
 4. File uploads always followed by `collector.cleanFiles()` after success.
@@ -290,7 +290,7 @@ extension ViewController: VGSTextFieldDelegate {
   }
 }
 ```
-Keep logs redacted to metadata such as brand, last4, and validity. Use synthetic test values or placeholders when debug request inspection is required.
+Keep normal application logs limited to metadata such as brand, last4, and validity. Exact request and response logging is a temporary local Debug diagnostic governed by Section 11 and must be disabled before commit.
 
 ---
 ## 6. Submission APIs
@@ -423,21 +423,21 @@ VGSAnalyticsClient.shared.shouldCollectAnalytics = false
 Do not modify analytics payload structure. Toggle only. Analytics must never contain PAN, CVC, SSN, file contents, authentication credentials, or raw backend payloads, regardless of debug settings.
 
 ---
-## 11. Debug Logging & Release Redaction Policy
-SDK debug diagnostics may expose request and response structure, non-sensitive token IDs/aliases, status metadata, and synthetic test values so an integrating developer can compare the SDK request with Postman or another diagnostic tool.
+## 11. Debug Logging & Pre-Commit Policy
+SDK debug diagnostics are intended to make local integration testing and network analysis complete and reproducible. When explicitly enabled for a local Debug session, they should show the exact outgoing request and incoming response without masking values.
 
 Requirements:
-- Debug diagnostics must require both a Debug build and an explicit developer-selected debug log level. They must not be enabled by default.
-- Use debug diagnostics only with mocked or SANDBOX endpoints and synthetic test values. Do not use production/customer credentials, vaults, routes, files, or traffic.
-- Authorization headers and authentication credentials must remain redacted. For a Postman comparison, log a copyable placeholder such as `Authorization: Bearer <TOKEN>` and let the developer insert the credential directly in Postman.
-- Full real PAN, CVC, SSN, bank data, file contents, and raw customer request or response bodies must not be logged. Synthetic test values may be displayed only in local Debug output.
-- Console output must stay local and must not be persisted, uploaded, attached to tickets, or shared without redaction.
-- Release and production builds must keep verbose diagnostics disabled (`.none` or an equivalent redacted level).
+- Debug diagnostics must require explicit runtime opt-in and remain disabled by default. The integrating app should wrap logger enablement in `#if DEBUG`; the SDK logger itself remains build-configuration agnostic.
+- Use debug diagnostics only with mocked or SANDBOX endpoints, synthetic secure-field values, and disposable test credentials. Do not use production/customer credentials, vaults, routes, files, or traffic.
+- For the active local Debug session, log the exact request URL, method, headers, and body plus the exact response status, headers, and body needed for analysis. Do not mask values in this explicitly enabled diagnostic output.
+- Treat the resulting console output as sensitive because it can contain authorization values, synthetic PAN/CVC/SSN data, complete payloads, and backend responses. Keep it local; do not persist, upload, attach to tickets or prompts, capture in shared screenshots or recordings, or send to remote log collectors.
+- Immediately after the investigation, disable the debug log level and network logging and remove temporary logging statements or enablement flags. Before staging or committing, verify that logging is disabled.
+- A committed diagnostics implementation may remain available, but it must be disabled by default. Production app configurations must not enable verbose request/response diagnostics.
 - Analytics, crash reporting, telemetry, and remote log collectors must never receive sensitive runtime values, synthetic secure-field values, or authentication credentials.
-- Application-authored logs should remain redacted to brand, last4, validity flags, aggregate counts, status codes, and error categories.
+- Application-authored persistent logs must remain limited to brand, last4, validity flags, aggregate counts, status codes, and error categories; the unredacted exception applies only to the explicitly enabled local Debug diagnostic session.
 - Token IDs and VGS aliases are non-sensitive identifiers unless a specific service accepts the value itself as an authentication credential. Bearer tokens, access tokens, refresh tokens, session credentials, private keys, and signing secrets remain sensitive credentials.
 - Vault IDs and license keys must not appear in user-visible error messages.
-- Before sharing debug output, replace authorization values, customer identifiers, and sensitive payload fields with placeholders.
+- Before sharing any debug output, sanitize authorization values, customer identifiers, and sensitive payload fields. Sanitization is for the shared copy, not the local diagnostic console used during analysis.
 
 ---
 ## 12. Error Handling Guidelines
@@ -458,10 +458,10 @@ Pre-Commit CI Checklist Additions:
 1. Build (Debug + Release).
 2. Tests (unit + any UI/integration mocks) green.
 3. Lint/format passes.
-4. Review the staged diff and run a sensitive-literal scan for committed bearer/access tokens, private keys, credentials, real PAN-like values, CVC, SSN, license keys, and unredacted fixture payloads.
+4. Review the staged diff and run a sensitive-literal scan for committed bearer/access tokens, private keys, credentials, real PAN-like values, CVC, SSN, license keys, and captured request/response payloads.
 5. Verify no deprecated API usage (grep for `deprecated` markers not allowed in new codepaths except inside SDK dependency sources).
-6. Verify verbose diagnostics are gated by both Debug compilation and explicit runtime opt-in, use only synthetic secure-field values, and keep credentials redacted.
-7. Verify Release builds and analytics paths cannot emit real or synthetic sensitive runtime values or authentication credentials, even when debug logging code exists.
+6. Verify temporary logging and all local debug/network logging enablement are disabled or removed before commit; retained diagnostics remain explicit opt-in and disabled by default, and app-side enablement is wrapped in `#if DEBUG`.
+7. Verify production app configurations, analytics, telemetry, crash reporting, and remote log collectors cannot emit request/response bodies, real or synthetic sensitive runtime values, or authentication credentials, even when debug logging support exists.
 
 ---
 ## 14. Testing Strategy (Minimum Set Agents Must Maintain)
@@ -536,7 +536,7 @@ config.validationRules = rules
 ---
 ## 19. Pre-Merge Security Review Checklist
 [ ] No credentials or real sensitive values are hardcoded or committed in source, fixtures, snapshots, documentation, or examples.
-[ ] Verbose SDK diagnostics require a Debug build and explicit runtime opt-in, use synthetic secure-field values, and redact credentials.
+[ ] Temporary logging and debug/network logging enablement are disabled or removed before commit; retained diagnostics are explicit opt-in and disabled by default, and app-side enablement is wrapped in `#if DEBUG`.
 [ ] Release/production logs, analytics, telemetry, crash reporting, and remote log collectors remain free of sensitive runtime values and authentication credentials.
 [ ] No deprecated API references added.
 [ ] All validation gates present before submissions.

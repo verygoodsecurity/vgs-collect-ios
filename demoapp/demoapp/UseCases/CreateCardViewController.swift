@@ -263,7 +263,7 @@ extension CreateCardViewController: VGSTextFieldDelegate {
 
     /// Check Card Number Field State with additional attributes (brand/bin/last4). Never log full PAN.
     if let cardState = textField.state as? VGSCardState, cardState.isValid {
-        // Safe redacted log example: brand + last4 only.
+        // Safe metadata-only log example: brand + last4 only.
         print("Card: \(cardState.cardBrand.stringValue) last4=\(cardState.last4)")
     }
   }
