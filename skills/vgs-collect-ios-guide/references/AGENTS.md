@@ -320,6 +320,8 @@ collector.sendDataPublisher(path: "/post")
 ```
 Request Options (mapping policies): supply `VGSCollectRequestOptions(fieldNameMappingPolicy: ...)` for nested / array semantics. Use only documented policies (e.g. flat JSON, nested with array merge/overwrite).
 
+For card creation, pass card attributes in `extraData` and custom string metadata in `meta`, such as `meta: ["orderId": "order-123"]`.
+
 ---
 ## 6A. Validation Rule Catalogue
 All rules conform to `VGSValidationRuleProtocol` and can be composed in a `VGSValidationRuleSet` (order typically not critical; all evaluate). Prefer built-in defaults for standard field types; override only when product requirement differs.

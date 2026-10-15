@@ -243,12 +243,26 @@ let cardAttributes: [String: Any] = [
   ]
 ]
 
-collector.createCard(token: "<ACCESS_TOKEN>", extraData: cardAttributes) { response in
+collector.createCard(
+  token: "<ACCESS_TOKEN>",
+  extraData: cardAttributes,
+  meta: ["session_id": "sample-session-123"]
+) { response in
   // Handle the CMP response without logging raw request or response bodies.
 }
 ```
 
 Pass the attributes directly without adding the `data.attributes` wrapper.
+
+Use `meta` to associate custom string metadata with the card, such as an order
+or session identifier. Pass card attributes separately in `extraData`.
+
+The same `meta:` label is available with `authHandler`, async/await, and Combine:
+
+```swift
+let response = await collector.createCard(meta: ["session_id": "sample-session-123"])
+let publisher = collector.createCardPublisher(meta: ["session_id": "sample-session-123"])
+```
 
 ## Card Scanning
 Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000.

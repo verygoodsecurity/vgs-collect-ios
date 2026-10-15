@@ -82,6 +82,7 @@ First-time SDK adoption.
 Add or change supported functionality.
 - implement in the customer's app context, not a generic snippet
 - generate code with explicit validation and error handling
+- for CMP card creation, pass card attributes in `extraData` and custom string metadata through the separate `meta:` parameter
 - use placeholders only for secrets, identifiers, endpoints, and env values the user has not supplied
 
 ### `migrate`

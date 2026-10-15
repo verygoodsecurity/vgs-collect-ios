@@ -30,7 +30,8 @@ private struct VGSCMPRequest {
 
 // MARK: - CMP request construction
 extension VGSCollect {
-  internal func buildCreateCardBody(extraData: [String: Any]? = nil) -> BodyData {
+  internal func buildCreateCardBody(extraData: [String: Any]? = nil,
+                                    meta customMeta: [String: String]? = nil) -> BodyData {
     let fieldValues = mapFieldsToBodyJSON(with: .flatJSON, extraData: nil)
     let wrappedAttributes = (extraData?["data"] as? BodyData)?["attributes"] as? BodyData
     var attributes = wrappedAttributes ?? extraData ?? [:]
@@ -63,11 +64,24 @@ extension VGSCollect {
       ]
     ]
 
-    // Avoid nesting a caller-provided JSON:API attributes envelope twice.
+    // Do not add a second JSON:API attributes envelope.
+    var finalBody = body
     if wrappedAttributes != nil, let extraData {
-      return deepMerge(extraData, body)
+      finalBody = deepMerge(extraData, body)
     }
-    return body
+    guard let customMeta, !customMeta.isEmpty else { return finalBody }
+
+    // Add custom metadata after the envelope merge.
+    // Keep other metadata values in the request.
+    let reservedKeys: Set<String> = ["_source", "_medium", "_version", "_formId"]
+    var data = finalBody["data"] as? BodyData ?? [:]
+    var finalMeta = data["meta"] as? BodyData ?? [:]
+    for (key, value) in customMeta where !reservedKeys.contains(key) {
+      finalMeta[key] = value
+    }
+    data["meta"] = finalMeta
+    finalBody["data"] = data
+    return finalBody
   }
 
   internal func buildUpdateCardBody(extraData: [String: Any]? = nil) -> BodyData {
@@ -348,39 +362,72 @@ extension VGSCollect {
 
 // MARK: - CMP create card
 extension VGSCollect {
-  /// Creates a card through CMP using `authHandler` and the in-memory JWT cache.
+  /// Create a card with the Card Management API.
+  /// The SDK uses `authHandler` to get an access token.
   ///
-  /// - Parameter extraData: Additional CMP card attributes. Supply the contents
-  ///   of `data.attributes`; the SDK adds the JSON:API envelope. Attribute names
-  ///   and value types must match the Card Management API schema or CMP can
-  ///   return a `4xx` response.
+  /// - Parameters:
+  ///   - extraData: Supply the contents of `data.attributes`. The SDK adds the JSON:API envelope.
+  ///     Attribute names and value types must match the Card Management API schema.
+  ///     Invalid names or types can cause a `4xx` response.
+  ///   - block: Use this callback to receive the card response.
   public func createCard(extraData: [String: Any]? = nil,
+                         completion block: @escaping (VGSResponse) -> Void) {
+    createCard(extraData: extraData, meta: nil, completion: block)
+  }
+
+  /// Create a card with custom string metadata.
+  /// The SDK uses `authHandler` to get an access token.
+  ///
+  /// - Parameters:
+  ///   - extraData: Supply the contents of `data.attributes`. The SDK adds the JSON:API envelope.
+  ///     Attribute names and value types must match the Card Management API schema.
+  ///     Invalid names or types can cause a `4xx` response.
+  ///   - meta: Set custom string metadata for the card.
+  ///   - block: Use this callback to receive the card response.
+  public func createCard(extraData: [String: Any]? = nil,
+                         meta: [String: String]?,
                          completion block: @escaping (VGSResponse) -> Void) {
     let request = VGSCMPRequest(
       path: "cards",
       method: .post,
-      body: buildCreateCardBody(extraData: extraData),
+      body: buildCreateCardBody(extraData: extraData, meta: meta),
       operation: .createCard,
       content: cmpContent(extraData: extraData)
     )
     performCMPRequestUsingCachedJWT(request, completion: block)
   }
 
-  /// Creates a card through CMP using an explicit access token.
+  /// Create a card with a Card Management API access token.
   ///
   /// - Parameters:
-  ///   - token: Card Management API access token.
-  ///   - extraData: Additional CMP card attributes. Supply the contents of
-  ///     `data.attributes`; the SDK adds the JSON:API envelope. Attribute names
-  ///     and value types must match the Card Management API schema or CMP can
-  ///     return a `4xx` response.
+  ///   - token: Set the Card Management API access token.
+  ///   - extraData: Supply the contents of `data.attributes`. The SDK adds the JSON:API envelope.
+  ///     Attribute names and value types must match the Card Management API schema.
+  ///     Invalid names or types can cause a `4xx` response.
+  ///   - block: Use this callback to receive the card response.
   public func createCard(token: String,
                          extraData: [String: Any]? = nil,
+                         completion block: @escaping (VGSResponse) -> Void) {
+    createCard(token: token, extraData: extraData, meta: nil, completion: block)
+  }
+
+  /// Create a card with an access token and custom string metadata.
+  ///
+  /// - Parameters:
+  ///   - token: Set the Card Management API access token.
+  ///   - extraData: Supply the contents of `data.attributes`. The SDK adds the JSON:API envelope.
+  ///     Attribute names and value types must match the Card Management API schema.
+  ///     Invalid names or types can cause a `4xx` response.
+  ///   - meta: Set custom string metadata for the card.
+  ///   - block: Use this callback to receive the card response.
+  public func createCard(token: String,
+                         extraData: [String: Any]? = nil,
+                         meta: [String: String]?,
                          completion block: @escaping (VGSResponse) -> Void) {
     let request = VGSCMPRequest(
       path: "cards",
       method: .post,
-      body: buildCreateCardBody(extraData: extraData),
+      body: buildCreateCardBody(extraData: extraData, meta: meta),
       operation: .createCard,
       content: cmpContent(extraData: extraData)
     )
@@ -439,9 +486,27 @@ extension VGSCollect {
     }
   }
 
+  /// Create a card with custom string metadata.
+  /// The SDK uses `authHandler` to get an access token.
+  public func createCard(extraData: [String: Any]? = nil,
+                         meta: [String: String]?) async -> VGSResponse {
+    await withCheckedContinuation { continuation in
+      createCard(extraData: extraData, meta: meta) { continuation.resume(returning: $0) }
+    }
+  }
+
   public func createCard(token: String, extraData: [String: Any]? = nil) async -> VGSResponse {
     await withCheckedContinuation { continuation in
       createCard(token: token, extraData: extraData) { continuation.resume(returning: $0) }
+    }
+  }
+
+  /// Create a card with an access token and custom string metadata.
+  public func createCard(token: String,
+                         extraData: [String: Any]? = nil,
+                         meta: [String: String]?) async -> VGSResponse {
+    await withCheckedContinuation { continuation in
+      createCard(token: token, extraData: extraData, meta: meta) { continuation.resume(returning: $0) }
     }
   }
 
@@ -469,10 +534,28 @@ extension VGSCollect {
     }
   }
 
+  /// Get a publisher for card creation with custom string metadata.
+  /// The SDK uses `authHandler` to get an access token.
+  public func createCardPublisher(extraData: [String: Any]? = nil,
+                                  meta: [String: String]?) -> Future<VGSResponse, Never> {
+    Future { [weak self] completion in
+      self?.createCard(extraData: extraData, meta: meta) { completion(.success($0)) }
+    }
+  }
+
   public func createCardPublisher(token: String,
                                   extraData: [String: Any]? = nil) -> Future<VGSResponse, Never> {
     Future { [weak self] completion in
       self?.createCard(token: token, extraData: extraData) { completion(.success($0)) }
+    }
+  }
+
+  /// Get a publisher for card creation with an access token and custom string metadata.
+  public func createCardPublisher(token: String,
+                                  extraData: [String: Any]? = nil,
+                                  meta: [String: String]?) -> Future<VGSResponse, Never> {
+    Future { [weak self] completion in
+      self?.createCard(token: token, extraData: extraData, meta: meta) { completion(.success($0)) }
     }
   }
 
