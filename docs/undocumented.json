@@ -2,56 +2,56 @@
   "warnings": [
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 436,
+      "line": 483,
       "symbol": "VGSCollect.createCard(extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 442,
+      "line": 498,
       "symbol": "VGSCollect.createCard(token:extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 448,
+      "line": 513,
       "symbol": "VGSCollect.updateCard(cardId:extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 454,
+      "line": 519,
       "symbol": "VGSCollect.updateCard(cardId:token:extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 466,
+      "line": 531,
       "symbol": "VGSCollect.createCardPublisher(extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 472,
+      "line": 546,
       "symbol": "VGSCollect.createCardPublisher(token:extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 479,
+      "line": 562,
       "symbol": "VGSCollect.updateCardPublisher(cardId:extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.khludkov/projects/vgs-collect-orchestrator/vgs-collect-ios/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift",
-      "line": 486,
+      "line": 569,
       "symbol": "VGSCollect.updateCardPublisher(cardId:token:extraData:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

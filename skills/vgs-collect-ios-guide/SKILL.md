@@ -119,9 +119,9 @@ Keep formal Vault API names and service URLs accurate.
 ## Output contract
 
 Begin every response by stating which version the guidance is based on, using one of:
-- `Using bundled VGSCollectSDK 1.20.0 guidance.`
-- `Detected VGSCollectSDK 1.20.0 from Package.resolved; it matches the bundled guidance.`
-- `Detected VGSCollectSDK 1.21.0, but this skill bundles 1.20.0 guidance and may be outdated. Run npx skills check, then npx skills update.`
-- `Could not determine the installed VGSCollectSDK version; using the bundled 1.20.0 snapshot without claiming it is latest.`
+- `Using bundled VGSCollectSDK 1.20.1 guidance.`
+- `Detected VGSCollectSDK 1.20.1 from Package.resolved; it matches the bundled guidance.`
+- `Detected VGSCollectSDK 1.21.0, but this skill bundles 1.20.1 guidance and may be outdated. Run npx skills check, then npx skills update.`
+- `Could not determine the installed VGSCollectSDK version; using the bundled 1.20.1 snapshot without claiming it is latest.`
 
 Then proceed within the bundled snapshot and version-freshness rules above.
