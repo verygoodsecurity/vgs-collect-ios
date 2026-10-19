@@ -1,5 +1,19 @@
 ## Migration Guides
 
+### Tenant terminology
+
+No code changes are required for existing integrations.
+New integrations can pass the tenant identifier as `id` to `VGSCollect.session`.
+Existing `vaultId` session overloads remain supported without deprecation warnings.
+The `VGSCollect(id:environment:)` initializer keeps its existing labels.
+Existing configuration keys and service URLs remain valid.
+
+```swift
+VGSCollect.session(with: "checkout", id: tenantId, environment: .sandbox) { response in
+  // Handle the session response.
+}
+```
+
 ### Migrating from versions < v1.19.0
 #### Migrating BlinkCard scanner to v3000.0.1
 `VGSBlinkCardCollector` now wraps BlinkCard v3000.0.1 through Swift Package Manager and requires iOS 16+ for the optional scanner module. Because SwiftPM platform declarations are package-wide, the SwiftPM package declares iOS 16; Core `VGSCollectSDK` remains iOS 13+ through CocoaPods and the Xcode framework target. BlinkCard v3000 also requires a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer, for Swift Package Manager integrations.
@@ -159,7 +173,7 @@ Also remove `Alamofire` dependencies from your project's `Target`. Check targets
 
 ### Migrating from versions < v1.3.5
 #### Changed request data format for`.expDate` `FieldType`
-We add divider `"/"` to input data by default when sending it to your *vault* from `VGSTextField` with `FieldType.expDate`
+We add divider `"/"` to input data by default when sending it to your *tenant* from `VGSTextField` with `FieldType.expDate`
 
 Before:
 ```

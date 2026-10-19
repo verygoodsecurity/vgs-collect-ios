@@ -46,7 +46,7 @@ public struct VGSTokenizationParameters: VGSTokenizationParametersProtocol {
 ///
 /// Behavior:
 /// - Inherits all formatting, validation, and requirement handling from `VGSConfiguration`.
-/// - Adds `tokenizationParameters` consumed by Vault tokenization / alias creation APIs (`tokenizeData`, `createAliases`).
+/// - Adds `tokenizationParameters` consumed by Vault API tokenization / alias creation APIs (`tokenizeData`, `createAliases`).
 ///
 /// Usage:
 /// ```swift

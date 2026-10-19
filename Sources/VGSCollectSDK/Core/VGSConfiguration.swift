@@ -39,17 +39,17 @@ internal protocol VGSTextFieldConfigurationProtocol: VGSBaseConfigurationProtoco
 /// A configuration object that defines semantic meaning, formatting and validation rules for an attached `VGSTextField`.
 ///
 /// Summary:
-/// Configure how a secure text field should behave (data type, keyboard, formatting, validation, and submission key) when collecting sensitive data for VGS vault submission.
+/// Configure how a secure text field should behave (data type, keyboard, formatting, validation, and submission key) when collecting sensitive data for VGS tenant submission.
 ///
 /// Responsibilities:
-/// - Declares the vault JSON key (`fieldName`) used during submission.
+/// - Declares the submission JSON key (`fieldName`) used during submission.
 /// - Specifies field semantic `type` (e.g. card number, CVC) that drives built–in formatting & validation defaults.
 /// - Holds optional custom validation rules and formatting pattern overrides.
 /// - Provides UI hints (keyboard type, return key, content type, appearance) without directly altering UI until bound.
 ///
 /// Security:
 /// - `fieldName` is a logical alias only; never place raw secrets or PII in the name itself.
-/// - Formatting (masking/spacing) is purely cosmetic and does NOT sanitize or truncate the raw secure value transmitted to the vault.
+/// - Formatting (masking/spacing) is purely cosmetic and does NOT sanitize or truncate the raw secure value transmitted to the tenant.
 ///
 /// Usage:
 /// 1. Instantiate with a `VGSCollect` instance and unique `fieldName`.
@@ -74,7 +74,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     /// Default: `.none` (generic text input). Update before binding to a text field for consistent behavior.
     public var type: FieldType = .none
     
-    /// Vault JSON key that the collected value will map to upon submission.
+    /// Submission JSON key that the collected value will map to upon submission.
     ///
     /// Invariants: Should be stable, URL-safe, and unique within a single collector; collisions cause overwriting in the outgoing body.
     /// Security: Never embed real secrets; treat as a metadata label only.
@@ -152,7 +152,7 @@ public class VGSConfiguration: VGSTextFieldConfigurationProtocol {
     ///
     /// Parameters:
     /// - vgs: Owning `VGSCollect` instance that will manage submission.
-    /// - fieldName: Vault JSON key for the eventual secure submission payload.
+    /// - fieldName: Submission JSON key for the eventual secure submission payload.
     ///
     /// Preconditions: `fieldName` should be non-empty (not enforced).
     public init(collector vgs: VGSCollect, fieldName: String) {

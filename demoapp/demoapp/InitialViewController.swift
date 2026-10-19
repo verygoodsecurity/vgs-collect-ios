@@ -13,16 +13,16 @@ class InitialViewController: UITableViewController {
   
   @IBAction func setupVaultIdAction(_ sender: Any) {
     
-    let alert = UIAlertController(title: "Set <vault id>", message: "Add your organization Vault id here", preferredStyle: UIAlertController.Style.alert)
+    let alert = UIAlertController(title: "Set <tenant ID>", message: "Enter your tenant ID.", preferredStyle: UIAlertController.Style.alert)
     alert.addTextField { (textField) in
       textField.clearButtonMode = .always
-      textField.text = AppCollectorConfiguration.shared.vaultId
+      textField.text = AppCollectorConfiguration.shared.tenantId
     }
         
     alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
     alert.addAction(UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { (_)in
-      let vaultId = alert.textFields?.first?.text ?? "vaultId"
-      AppCollectorConfiguration.shared.vaultId = vaultId
+      let tenantId = alert.textFields?.first?.text ?? "tenantId"
+      AppCollectorConfiguration.shared.tenantId = tenantId
     }))
 
 		if let popoverController = alert.popoverPresentationController {

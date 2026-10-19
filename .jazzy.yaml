@@ -1,7 +1,7 @@
 ####################
 # Comments
 # 1. pods should be installed/updated
-# 2. jazzy command should be running form framework root dir
+# 2. jazzy command should be run from the framework root directory
 ####################
 #names
 module: VGSCollectSDK

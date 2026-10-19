@@ -8,7 +8,7 @@ import Foundation
 /// `VGSCardNumberTokenizationParameters` - parameters required for tokenization API.
 ///
 /// Summary:
-/// Defines how primary account number (PAN) input (FieldType `.cardNumber`) is transformed into an alias for Vault tokenization / alias creation APIs.
+/// Defines how primary account number (PAN) input (FieldType `.cardNumber`) is transformed into an alias for Vault API tokenization / alias creation APIs.
 ///
 /// Properties:
 /// - `storage`: Vault storage type. Uses `.PERSISTENT` by default to enable downstream reuse in PCI compliant flows (e.g. recurring billing).

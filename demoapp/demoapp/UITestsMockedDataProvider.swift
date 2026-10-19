@@ -36,10 +36,10 @@ final class UITestsMockedDataProvider {
     isUsingFallbackTokenizationVaultId = validTokenizationVaultId == nil
 
     let vaultIdForUITests = validVaultId ?? Fallback.vaultId
-    AppCollectorConfiguration.shared.vaultId = vaultIdForUITests
+    AppCollectorConfiguration.shared.tenantId = vaultIdForUITests
 
     let tokenizationVaultIdForUITests = validTokenizationVaultId ?? Fallback.tokenizationVaultId
-    AppCollectorConfiguration.shared.tokenizationVaultId = tokenizationVaultIdForUITests
+    AppCollectorConfiguration.shared.tokenizationTenantId = tokenizationVaultIdForUITests
   }
 
   private static func validatedVaultId(_ value: String?) -> String? {

@@ -6,16 +6,16 @@
 import Foundation
 import VGSCollectSDK
 
-/// Setup your Vault configuration details here
+/// Set your tenant configuration here.
 @MainActor
 class AppCollectorConfiguration {
     
     static let shared = AppCollectorConfiguration()
     
-    /// Set your vault id here https://www.verygoodsecurity.com/terminology/nomenclature#vault
-    var vaultId = "vaultId"
+    /// Set your tenant ID here https://www.verygoodsecurity.com/terminology/nomenclature#vault
+    var tenantId = "tenantId"
     
-    var tokenizationVaultId = "tokenizationVaultId"
+    var tokenizationTenantId = "tokenizationTenantId"
     
     ///  Set environment - `.sandbox` for testing or `.live` for production
     var environment = Environment.sandbox

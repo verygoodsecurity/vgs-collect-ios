@@ -255,7 +255,7 @@ final class SessionFormConfigurationTests: XCTestCase {
     return await withCheckedContinuation { continuation in
       VGSCollect.session(
         with: form,
-        vaultId: vaultId,
+        id: vaultId,
         environment: .sandbox,
         dataRegion: nil,
         configuration: configuration,

@@ -8,7 +8,7 @@ import Foundation
 /// `VGSSSNTokenizationParameters` - parameters required for tokenization api.
 ///
 /// Summary:
-/// Defines how US Social Security Number input (FieldType `.ssn`) is transformed into an alias when using Vault tokenization or alias creation APIs.
+/// Defines how US Social Security Number input (FieldType `.ssn`) is transformed into an alias when using Vault API tokenization or alias creation APIs.
 ///
 /// Properties:
 /// - `storage`: Vault storage type (persistent by default for reuse on backend workflows).
@@ -31,7 +31,7 @@ public struct VGSSSNTokenizationParameters: VGSTokenizationParametersProtocol {
     /// Vault storage type.
     public let storage: String = VGSVaultStorageType.PERSISTENT.rawValue
     
-    /// Data alies format.
+    /// Data alias format.
     public var format: String = VGSVaultAliasFormat.UUID.rawValue
 
 }

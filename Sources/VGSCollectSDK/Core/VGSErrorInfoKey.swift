@@ -68,10 +68,10 @@ public let VGSSDKErrorWrongConfiguration: VGSErrorInfoKey = "VGSSDKErrorWrongCon
 /// Error key, used for errors when form parameter is invalid.
 public let VGSSDKErrorInvalidFormConfiguration: VGSErrorInfoKey = "VGSSDKErrorInvalidFormConfiguration"
 
-/// Error key, used when `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)`
+/// Error key, used when `VGSCollect.session(with:id:environment:dataRegion:completion:)`
 /// fails before the request starts because the session configuration URL cannot be built.
 public let VGSSDKErrorInvalidConfigurationURL: VGSErrorInfoKey = "VGSSDKErrorInvalidConfigurationURL"
 
-/// Error key, used when `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)`
+/// Error key, used when `VGSCollect.session(with:id:environment:dataRegion:completion:)`
 /// fails while requesting, receiving, or decoding the remote session configuration.
 public let VGSSDKErrorSessionInitializationFailed: VGSErrorInfoKey = "VGSSDKErrorSessionInitializationFailed"

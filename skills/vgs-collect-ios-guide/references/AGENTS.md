@@ -30,35 +30,50 @@ Success Criteria for Any Agent Task
 
 ---
 ## 1. Core Concepts (Mental Model)
-- `VGSCollect` orchestrates secure collection & submission to a VGS Vault you own (identified by vault ID + environment / data region).
+- `VGSCollect` orchestrates secure collection & submission to a VGS tenant you own (identified by tenant ID + environment / data region).
 - UI inputs (`VGSTextField`, `VGSCardTextField`) never expose raw values outside controlled SDK memory; you interact through configuration + state snapshots.
 - Field `state` drives UI (validity, emptiness, metadata like last4, brand) – do not persist raw input.
-- Submissions can be performed via closure, async/await, or Combine publisher APIs returning success/failure responses. `sendData` returns a generic backend response, while `tokenizeData` and `createAliases` return Vault tokenization/alias payloads.
+- Submit data with a closure, async/await, or a Combine publisher. Each API returns a success or failure response.
+- `sendData` returns a backend response. `tokenizeData` and `createAliases` return Vault API tokenization or alias payloads.
 
 ---
 ## 1A. Environment Preconditions
-Purpose: ensure correct vault/environment pairing before any field setup or submission.
+Purpose: use the correct tenant and environment before field setup or submission.
 
 Required:
-- Non-empty `vaultId` string (assert with `precondition(!vaultId.isEmpty)` in debug builds).
+- Non-empty `tenantId` string (assert with `precondition(!tenantId.isEmpty)` in debug builds).
 - Explicit environment selection: `.sandbox` for development/testing; `.live` for production only.
-- Keep sandbox and live vault IDs distinct; never point `.live` at a sandbox vault ID.
+- Keep sandbox and live tenant IDs distinct; never point `.live` at a sandbox tenant ID.
 - Optional hostname override (if provided): verify matches VGS dashboard configuration before deploy.
 
 Quick Examples:
 ```
 // Sandbox collector (dev/test)
-let collector = VGSCollect(id: sandboxVaultId, environment: .sandbox)
+let collector = VGSCollect(id: sandboxTenantId, environment: .sandbox)
 
 // Production collector (release build)
-let liveCollector = VGSCollect(id: liveVaultId, environment: .live)
+let liveCollector = VGSCollect(id: liveTenantId, environment: .live)
 ```
 Failure Modes:
-- Empty vaultId → initialization should fail fast (use preconditions).
+- Empty tenantId → initialization should fail fast (use preconditions).
 - Using `.live` in debug with test cards unintentionally → enforce build configuration checks.
 - Mixing aliases from different environments → keep storage / processing segregated.
 
 Security Note: Never derive environment from user input; it must be a static config determined at build or app launch.
+
+---
+## Tenant terminology
+
+Use `id` for the tenant identifier (`tenantId`) in new `VGSCollect.session` calls.
+Keep `VGSVaultStorageType` and `VGSVaultAliasFormat` for Vault tokenization.
+Existing `vaultId` session calls remain supported without deprecation warnings.
+The collector initializer keeps the `id` label.
+
+```swift
+VGSCollect.session(with: "checkout", id: tenantId, environment: .sandbox) { response in
+  // Handle the session response.
+}
+```
 
 ---
 ## 1B. Collection Flow Selection
@@ -70,7 +85,7 @@ Key rule:
 Choose the flow like this:
 - `sendData(path:...)`
   - Use when the app should submit collected values to its own backend through a VGS proxy route.
-  - Works for card and non-card fields when the user wants regular secure submission instead of Vault tokenization or CMP card creation.
+  - Works for card and non-card fields when the user wants regular secure submission instead of Vault API tokenization or CMP card creation.
 - `tokenizeData(routeId:...)`
   - Use when the user explicitly wants Vault API v1 tokenization.
   - Requires tokenization-capable field configurations for fields that should return aliases instead of passthrough values.
@@ -94,7 +109,7 @@ Ambiguity rules for agents:
 - If the user asks for a `checkout`, `payment`, `card entry`, `save card`, or similar screen but does not specify the submission family, ask a short clarifying question before generating code beyond shared collector and field setup.
 - Do not infer `createCard` or `updateCard` from `checkout`, `payment form`, `card form`, `add payment method`, or similar generic phrases.
 - If the user asks only for UI wiring, validation, or layout, generate field setup and leave submission unresolved until the flow is specified.
-- If the user request does not distinguish `tokenizeData` from `createAliases`, ask which Vault flow they need instead of guessing.
+- If the user request does not distinguish `tokenizeData` from `createAliases`, ask which Vault API flow they need instead of guessing.
 
 Non-card rules:
 - For SSN, password, routing number, generic date, account identifier, or custom text collection, do not use `createCard`, `updateCard`, or card-only field/configuration types.
@@ -110,7 +125,7 @@ Non-card rules:
 - `VGSTextField`: generic configurable secure text field.
 - `VGSCardTextField`: adds automatic card brand detection & icon handling (for `.cardNumber`).
 - `VGSConfiguration`: binds a field to `fieldName`, semantic `type`, formatting & validation rules.
-- `VGSTokenizationConfiguration` (+ specialized subclasses such as `VGSCardNumberTokenizationConfiguration`, `VGSExpDateTokenizationConfiguration`, `VGSCVCTokenizationConfiguration`, `VGSCardHolderNameTokenizationConfiguration`, `VGSDateTokenizationConfiguration`, `VGSSSNTokenizationConfiguration`): opt fields into Vault tokenization / alias creation flows.
+- `VGSTokenizationConfiguration` (+ specialized subclasses such as `VGSCardNumberTokenizationConfiguration`, `VGSExpDateTokenizationConfiguration`, `VGSCVCTokenizationConfiguration`, `VGSCardHolderNameTokenizationConfiguration`, `VGSDateTokenizationConfiguration`, `VGSSSNTokenizationConfiguration`): opt fields into the Vault API tokenization / alias creation flows.
 - `VGSTextFieldState` (+ specialized states e.g. `VGSCardState`): read-only snapshot for UI logic.
 - `VGSFilePickerConfiguration` + `VGSFilePickerController`: secure file selection pipeline.
 - `VGSBlinkCardController` (+ its delegate): card scanning (BlinkCard module) – preferred scanning path.
@@ -219,7 +234,7 @@ Guidelines (short):
 ## 4. Field Setup & Configuration Pattern
 Canonical card form snippet (UIKit):
 ```
-let collector = VGSCollect(id: vaultId, environment: .sandbox)
+let collector = VGSCollect(id: tenantId, environment: .sandbox)
 
 let cardField = VGSCardTextField()
 let cardCfg = VGSConfiguration(collector: collector, fieldName: "card_number")
@@ -430,7 +445,7 @@ SDK debug diagnostics are intended to make local integration testing and network
 
 Requirements:
 - Debug diagnostics must require explicit runtime opt-in and remain disabled by default. The integrating app should wrap logger enablement in `#if DEBUG`; the SDK logger itself remains build-configuration agnostic.
-- Use debug diagnostics only with mocked or SANDBOX endpoints, synthetic secure-field values, and disposable test credentials. Do not use production/customer credentials, vaults, routes, files, or traffic.
+- Use debug diagnostics only with mocked or SANDBOX endpoints, synthetic secure-field values, and disposable test credentials. Do not use production/customer credentials, tenants, routes, files, or traffic.
 - For the active local Debug session, log the exact request URL, method, headers, and body plus the exact response status, headers, and body needed for analysis. Do not mask values in this explicitly enabled diagnostic output.
 - Treat the resulting console output as sensitive because it can contain authorization values, synthetic PAN/CVC/SSN data, complete payloads, and backend responses. Keep it local; do not persist, upload, attach to tickets or prompts, capture in shared screenshots or recordings, or send to remote log collectors.
 - Immediately after the investigation, disable the debug log level and network logging and remove temporary logging statements or enablement flags. Before staging or committing, verify that logging is disabled.
@@ -438,7 +453,7 @@ Requirements:
 - Analytics, crash reporting, telemetry, and remote log collectors must never receive sensitive runtime values, synthetic secure-field values, or authentication credentials.
 - Application-authored persistent logs must remain limited to brand, last4, validity flags, aggregate counts, status codes, and error categories; the unredacted exception applies only to the explicitly enabled local Debug diagnostic session.
 - Token IDs and VGS aliases are non-sensitive identifiers unless a specific service accepts the value itself as an authentication credential. Bearer tokens, access tokens, refresh tokens, session credentials, private keys, and signing secrets remain sensitive credentials.
-- Vault IDs and license keys must not appear in user-visible error messages.
+- Tenant IDs and license keys must not appear in user-visible error messages.
 - Before sharing any debug output, sanitize authorization values, customer identifiers, and sensitive payload fields. Sanitization is for the shared copy, not the local diagnostic console used during analysis.
 
 ---
@@ -451,8 +466,8 @@ Never surface raw backend debugging payload to user.
 
 ---
 ## 13. Security & Secrets
-- Vault ID & scanning license keys injected (XCConfig / environment) – never hardcode production identifiers in source.
-- Precondition: `precondition(!vaultId.isEmpty)` before initialization.
+- Tenant ID & scanning license keys injected (XCConfig / environment) – never hardcode production identifiers in source.
+- Precondition: `precondition(!tenantId.isEmpty)` before initialization.
 - Do not serialize `state` objects to disk.
 - Call `cleanFiles()` post successful upload.
 
@@ -469,7 +484,7 @@ Pre-Commit CI Checklist Additions:
 ## 14. Testing Strategy (Minimum Set Agents Must Maintain)
 1. Validation: card number valid/invalid (Luhn) toggles `state.isValid`.
 2. Expiration date past month invalid.
-3. Submission success returns the expected backend or Vault payload for the selected flow (mocked network or integration environment with sanitized test data).
+3. Submission success returns the expected backend or Vault API payload for the selected flow (mocked network or integration environment with sanitized test data).
 4. File upload test: attach -> send -> assert cleanup invoked.
 5. BlinkCard delegate mapping returns expected field references (if scanning included).
 6. Async & Combine submission tests (ensure no main-thread blocking).
@@ -492,7 +507,7 @@ Add Card Form:
 
 Choose Card Submission Variant:
 1. If the user wants proxy submission to their backend or custom route, use `sendData`.
-2. If the user wants Vault tokenization or alias creation, use tokenization-capable configurations and submit with `tokenizeData` or `createAliases`.
+2. If the user wants Vault API tokenization or alias creation, use tokenization-capable configurations and submit with `tokenizeData` or `createAliases`.
 3. If the user wants CMP card creation and provides or expects a card-management access token, use `createCard`.
 4. If the user wants to change an existing CMP card and has its card ID, use `updateCard`.
 5. If the request says only `checkout` or `card entry` without naming the flow, ask which submission family they need before generating submission code.
@@ -500,7 +515,7 @@ Choose Card Submission Variant:
 Add SSN or Generic Sensitive Field:
 1. Instantiate `VGSCollect` with pinned environment.
 2. Choose the semantic field type (`.ssn`, `.date`, `.none`, or another documented type) that matches the requested data.
-3. If the user wants Vault tokenization, use `VGSSSNTokenizationConfiguration`, `VGSDateTokenizationConfiguration`, or `VGSTokenizationConfiguration` as appropriate.
+3. If the user wants Vault API tokenization, use `VGSSSNTokenizationConfiguration`, `VGSDateTokenizationConfiguration`, or `VGSTokenizationConfiguration` as appropriate.
 4. If the user wants regular submission to their backend, use `VGSConfiguration` and submit with `sendData`.
 5. Do not use `createCard` or `updateCard` unless the user explicitly requested the corresponding CMP card operation.
 
@@ -548,7 +563,7 @@ config.validationRules = rules
 
 ---
 ## 20. Glossary
-- Vault ID: Identifier for your VGS secure storage.
+- Tenant ID: Identifier for your VGS secure storage.
 - Alias / Token: Non-sensitive substitute returned after submission.
 - PAN: Primary Account Number (card number).
 - CVC: Card security code.

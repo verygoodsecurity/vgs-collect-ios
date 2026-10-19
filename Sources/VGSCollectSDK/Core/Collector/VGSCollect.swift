@@ -8,10 +8,11 @@ import Foundation
 import UIKit
 #endif
 
-/// A collector object that registers secure input fields (`VGSTextField`) and submits their data/files to a VGS Vault.
+/// A collector object that registers secure input fields (`VGSTextField`) and submits their data/files to a VGS tenant.
 ///
 /// Summary:
-/// Provides the orchestration layer for secure data collection: field registration, state observation, JSON/body construction, vault/network submission, tokenization/alias creation and file lifecycle management.
+/// Registers fields, observes state, and submits data to a tenant.
+/// Provides tokenization, alias creation, and file cleanup.
 ///
 /// Responsibilities:
 /// - Registers text fields automatically when a `VGSConfiguration` referencing this collector is assigned.
@@ -26,7 +27,7 @@ import UIKit
 /// - Internal storage is transient and cleared/replaced as input changes; persistence is the caller's responsibility (and should only store aliases).
 ///
 /// Usage:
-/// 1. Initialize with vault id & environment: `let collector = VGSCollect(id: vaultId, environment: .sandbox)`.
+/// 1. Initialize with tenant ID & environment: `let collector = VGSCollect(id: tenantId, environment: .sandbox)`.
 /// 2. Create a `VGSConfiguration` per field and assign to each `VGSTextField` (registration happens automatically).
 /// 3. Optionally set observation closures for validation/UI updates.
 /// 4. Validate all required fields (`state.isValid`) before calling a submit method.
@@ -34,7 +35,7 @@ import UIKit
 /// 6. After file submission success, call `cleanFiles()`.
 ///
 /// Invariants / Preconditions:
-/// - `id` must be a non-empty vault identifier.
+/// - `id` must be a non-empty tenant identifier.
 /// - All required fields should be valid before invoking submission APIs.
 /// - Only one logical file should be attached when calling `sendFile`.
 /// - For alias creation (`createAliases`), appropriate authentication must be provided in `customHeaders`.
@@ -168,23 +169,23 @@ import UIKit
         )
     }
 
-    /// Creates a collector bound to a specific vault environment string.
+    /// Creates a collector bound to a specific tenant environment string.
     ///
     /// Parameters:
-    /// - id: Non-empty vault identifier.
+    /// - id: Non-empty tenant identifier.
     /// - environment: Environment string (e.g. "sandbox", "live", "live-eu1").
-    /// - hostname: Optional custom hostname override (nil uses default vault routing).
+    /// - hostname: Optional custom hostname override (nil uses default tenant routing).
     ///
     /// Preconditions:
     /// - `id` should be valid; empty values will lead to failing upstream requests.
     ///
     /// Behavior:
-    /// - Initializes a collector for direct vault-based usage.
+    /// - Initializes a collector for direct tenant-based usage.
     /// - Tracks a `CollectInit` analytics event with `formType=create`.
     ///
     /// Usage:
     /// ```swift
-    /// let collector = VGSCollect(id: vaultId, environment: "sandbox")
+    /// let collector = VGSCollect(id: tenantId, environment: "sandbox")
     /// ```
     /// Prefer the convenience initializer for typed environment + region when possible.
     public convenience init(id: String, environment: String, hostname: String? = nil) {
@@ -194,14 +195,14 @@ import UIKit
     /// Convenience initializer composing a regional environment string.
     ///
     /// Parameters:
-    /// - id: Vault identifier.
+    /// - id: Tenant identifier.
     /// - environment: Enumerated environment (`.sandbox` or `.live`).
     /// - dataRegion: Optional region segment (e.g. "eu1") appended to environment.
     /// - hostname: Optional custom hostname.
     ///
     /// Usage:
     /// ```swift
-    /// let collector = VGSCollect(id: vaultId, environment: .live, dataRegion: "eu1")
+    /// let collector = VGSCollect(id: tenantId, environment: .live, dataRegion: "eu1")
     /// ```
     public convenience init(id: String, environment: Environment = .sandbox, dataRegion: String? = nil, hostname: String? = nil) {
       let env = Self.generateRegionalEnvironmentString(environment, region: dataRegion)
@@ -209,6 +210,49 @@ import UIKit
     }
     
     // MARK: - Async Factory
+
+    /// Creates a session collector for a tenant and form.
+    ///
+    /// - Parameters:
+    ///   - form: The form name.
+    ///   - id: The tenant identifier (`tenantId`).
+    ///   - environment: The environment. The default is `.sandbox`.
+    ///   - dataRegion: An optional data region.
+    ///   - completion: The session result callback.
+    public static func session(with form: String,
+                               id: String,
+                               environment: Environment = .sandbox,
+                               dataRegion: String? = nil,
+                               completion: @escaping (VGSCollectSessionResponse) -> Void) {
+      session(with: form, vaultId: id, environment: environment,
+              dataRegion: dataRegion, completion: completion)
+    }
+
+    /// Creates a tenant session with an optional inline Form Configuration.
+    ///
+    /// Remote configuration takes precedence over inline configuration.
+    /// If remote configuration fails, `onError` receives the error before `completion` receives the collector.
+    /// Invalid form names produce a failure through `completion`.
+    ///
+    /// - Parameters:
+    ///   - form: The form name.
+    ///   - id: The tenant identifier (`tenantId`).
+    ///   - environment: The environment. The default is `.sandbox`.
+    ///   - dataRegion: An optional data region.
+    ///   - configuration: Inline configuration to use if remote configuration fails.
+    ///   - onError: An optional callback for remote configuration errors.
+    ///   - completion: The session result callback.
+    public static func session(with form: String,
+                               id: String,
+                               environment: Environment = .sandbox,
+                               dataRegion: String? = nil,
+                               configuration: [String: Any]?,
+                               onError: ((Error) -> Void)? = nil,
+                               completion: @escaping (VGSCollectSessionResponse) -> Void) {
+      session(with: form, vaultId: id, environment: environment,
+              dataRegion: dataRegion, configuration: configuration,
+              onError: onError, completion: completion)
+    }
 
     /// Asynchronously configures and initializes a VGSCollect instance.
     ///
@@ -229,16 +273,14 @@ import UIKit
     ///
     /// - Parameters:
     ///   - form: The unique Form Name.
-    ///   - vaultId: Vault identifier.
+    ///   - vaultId: Tenant identifier.
     ///   - environment: The environment (e.g., "sandbox", "live").
     ///   - dataRegion: Optional data region appended to the environment string.
-    ///   - configuration: Optional inline Form Configuration `config` object used only when remote configuration cannot be loaded.
-    ///   - onError: Optional callback for remote configuration loading errors.
     ///   - completion: A closure returning `VGSCollectSessionResponse`.
     ///
     /// Usage:
     /// ```swift
-    /// VGSCollect.session(with: formId, vaultId: vaultId, environment: .sandbox, dataRegion: nil) { result in
+    /// VGSCollect.session(with: formId, id: tenantId, environment: .sandbox, dataRegion: nil) { result in
     ///   switch result {
     ///   case .success(let collector):
     ///     self.collector = collector

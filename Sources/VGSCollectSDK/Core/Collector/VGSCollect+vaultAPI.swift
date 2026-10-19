@@ -219,7 +219,7 @@ extension VGSCollect {
     }
     // Get tokenized textfields params as JSON body
     let tokenizationJSON = mapFieldsToTokenizationRequestBodyJSON(tokenizableFields)
-    // Send request to vault api.
+    // Send the request to the Vault API.
     proxyAPIClient.sendRequest(path: path, method: .post, routeId: routeId, value: tokenizationJSON) { [weak self](response ) in
       if let strongSelf = self {
         switch response {

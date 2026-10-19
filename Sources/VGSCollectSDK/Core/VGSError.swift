@@ -50,10 +50,10 @@ public enum VGSErrorType: Int {
     /// When form parameter is invalid.
     case invalidFormConfiguration = 1460
 
-    /// When the session configuration URL cannot be built for `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)`.
+    /// When the session configuration URL cannot be built for `VGSCollect.session(with:id:environment:dataRegion:completion:)`.
     case invalidConfigurationURL = 1480
 
-    /// When `VGSCollect.session(with:vaultId:environment:dataRegion:completion:)` fails while loading or decoding the remote session configuration.
+    /// When `VGSCollect.session(with:id:environment:dataRegion:completion:)` fails while loading or decoding the remote session configuration.
     case sessionInitializationFailed = 1490
 }
 

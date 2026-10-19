@@ -12,13 +12,13 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 	/// Additional custom headers.
 	var customHeader: HTTPHeaders?
 
-  /// Vault Id.
+  /// Tenant ID.
 	private let vaultId: String
   
   /// Environment.
   private let environment: String
 
-	/// Vault URL.
+	/// Tenant URL.
 	private let vaultUrl: URL?
 
 	/// Form analytics details.
@@ -77,7 +77,7 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 		self.formAnalyticDetails = formAnalyticsDetails
 
 		guard let validVaultURL = vaultUrl else {
-			// Cannot resolve hostname with invalid Vault URL.
+			// Cannot resolve hostname with invalid tenant URL.
 			self.hostURLPolicy = .invalidVaultURL
 			return
 		}
@@ -90,7 +90,7 @@ class ProxyAPIClient: VGSAPIClientProtocol {
 				VGSCollectLogger.shared.forwardLogEvent(event)
 			}
 
-			// Use vault URL.
+			// Use tenant URL.
 			self.hostURLPolicy = .vaultURL(validVaultURL)
 			return
 		}

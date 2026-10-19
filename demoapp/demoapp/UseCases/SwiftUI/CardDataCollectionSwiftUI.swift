@@ -8,7 +8,7 @@ import VGSCollectSDK
 import VGSBlinkCardCollector
 
 struct CardDataCollectionSwiftUI: View {
-    let vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+    let vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment)
   
     // MARK: - State
     @State private var holderTextFieldState: VGSTextFieldState?
@@ -178,7 +178,7 @@ struct CardDataCollectionSwiftUI: View {
     var extraData = [String: Any]()
     extraData["customKey"] = "Custom Value"
 
-    /// Send Data from VGS textfield to Vault
+    /// Send Data from VGS textfield to the tenant
     vgsCollect.sendData(path: "/post", extraData: extraData) { (response) in
       
       switch response {
@@ -196,7 +196,7 @@ struct CardDataCollectionSwiftUI: View {
       case .failure(let code, _, _, let error):
         switch code {
         case 400..<499:
-          // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+          // Wrong request. This also can happen when your routes are not configured or your <tenantId> is incorrect
           self.consoleMessage = "Error: Wrong Request, code: \(code)"
           print("Error: Wrong Request, code: \(code)")
         case VGSErrorType.inputDataIsNotValid.rawValue:

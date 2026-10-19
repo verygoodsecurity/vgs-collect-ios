@@ -19,7 +19,7 @@ class FilePickerViewController: UIViewController {
     var pickerController: VGSFilePickerController?
     
     // Init VGS Collector
-    var vgsForm = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+    var vgsForm = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,7 @@ class FilePickerViewController: UIViewController {
         case .failure(let code, _, _, let error):
           switch code {
           case 400..<499:
-            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+            // Wrong request. This also can happen when your routes are not configured or your <tenantId> is incorrect
             self?.stateLabel.text = "Wrong Request Error: \(code)"
           case VGSErrorType.inputFileSizeExceedsTheLimit.rawValue:
             if let error = error as? VGSError {

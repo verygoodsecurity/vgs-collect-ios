@@ -93,7 +93,7 @@ class CreateCardViewController: UIViewController {
     /// This does NOT fetch a Form config; it creates a collector locally and applies default field configs.
     private func mockLoadCollectorSessionAndConfigure() {
         let collector = VGSCollect(
-            id: AppCollectorConfiguration.shared.vaultId,
+            id: AppCollectorConfiguration.shared.tenantId,
             environment: AppCollectorConfiguration.shared.environment.rawValue
         )
 
@@ -115,7 +115,7 @@ class CreateCardViewController: UIViewController {
     private func loadCollectorSessionAndConfigure() {
         VGSCollect.session(
             with: form,
-            vaultId: AppCollectorConfiguration.shared.vaultId,
+            id: AppCollectorConfiguration.shared.tenantId,
             environment: AppCollectorConfiguration.shared.environment,
             dataRegion: nil
         ) { [weak self] result in

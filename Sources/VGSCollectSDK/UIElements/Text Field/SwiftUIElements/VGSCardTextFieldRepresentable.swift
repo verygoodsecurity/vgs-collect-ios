@@ -15,7 +15,7 @@ import Combine
 ///
 /// Security:
 /// - PAN is sensitive.
-/// - Tokenize using `VGSCollect` methods for safe vault storage.
+/// - Tokenize using `VGSCollect` methods for secure Vault storage.
 public struct VGSCardTextFieldRepresentable: UIViewRepresentable, VGSCardTextFieldRepresentableProtocol, VGSTextFieldRepresentableCallbacksProtocol {
     /// A class responsible for configuration VGSCardTextFieldRepresentable.
     var configuration: VGSConfiguration

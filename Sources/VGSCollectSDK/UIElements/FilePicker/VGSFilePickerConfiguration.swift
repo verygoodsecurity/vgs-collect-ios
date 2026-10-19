@@ -21,7 +21,7 @@ public class VGSFilePickerConfiguration: VGSFilePickerConfigurationProtocol {
     internal let fileSource: VGSFileSource
     internal weak var vgsCollector: VGSCollect?
     
-    /// Name that will be associated with selected file by user. Used as a JSON key on send request with file data to your organization vault.
+    /// JSON key for the selected file when the collector submits file data to your tenant.
     public let fieldName: String
     
     // MARK: - Initialization

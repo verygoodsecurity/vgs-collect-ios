@@ -19,7 +19,7 @@ public enum VGSVaultStorageType: String, Sendable {
   case VOLATILE = "VOLATILE"
 }
 
-/// Type of Alias format. Read more about avaliable formats: https://www.verygoodsecurity.com/docs/terminology/nomenclature#alias-formats .
+/// Alias format. Read more about available formats: https://www.verygoodsecurity.com/docs/terminology/nomenclature#alias-formats .
 public enum VGSVaultAliasFormat: String, Sendable {
 	/// no:doc
   case FPE_ACC_NUM_T_FOUR = "FPE_ACC_NUM_T_FOUR"
