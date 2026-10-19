@@ -1,4 +1,5 @@
 import XCTest
+import Combine
 @testable import VGSCollectSDK
 
 private final class CMPURLProtocolStub: URLProtocol {
@@ -337,6 +338,258 @@ class VGSCollectCreateCardTests: VGSCollectBaseTestCase {
       }
 
       XCTAssertEqual(meta["_formId"] as? String, "checkout-form")
+    }
+
+    func test_createCard_customMetadataPreservesAttributesAndStringValues() throws {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let extraData: [String: Any] = ["nickname": "Primary", "meta": "attribute-value"]
+      let original = vgsCollect.buildCreateCardBody(extraData: extraData)
+      let custom = vgsCollect.buildCreateCardBody(extraData: extraData, meta: [
+        "session_id": "sample-session-123", "empty": "", "spacing": "  value  ",
+        "__type": "custom-type", "__proto__": "custom-proto"
+      ])
+      let originalData = try XCTUnwrap(original["data"] as? [String: Any])
+      let customData = try XCTUnwrap(custom["data"] as? [String: Any])
+      XCTAssertEqual(
+        NSDictionary(dictionary: try XCTUnwrap(originalData["attributes"] as? [String: Any])),
+        NSDictionary(dictionary: try XCTUnwrap(customData["attributes"] as? [String: Any]))
+      )
+      let meta = try XCTUnwrap(customData["meta"] as? [String: String])
+      XCTAssertEqual(meta["session_id"], "sample-session-123")
+      XCTAssertEqual(meta["empty"], "")
+      XCTAssertEqual(meta["spacing"], "  value  ")
+      XCTAssertEqual(meta["__type"], "custom-type")
+      XCTAssertEqual(meta["__proto__"], "custom-proto")
+      XCTAssertNoThrow(try JSONSerialization.data(withJSONObject: custom))
+      XCTAssertEqual(extraData["meta"] as? String, "attribute-value")
+    }
+
+    func test_createCard_nilAndEmptyMetadataPreserveAllExistingEnvelopeShapes() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let fixtures: [[String: Any]?] = [
+        nil,
+        ["meta": "attribute-value"],
+        ["data": ["attributes": ["nickname": "Primary"], "meta": [
+          "legacyNumber": 7, "legacyObject": ["flag": true], "_formId": "legacy-form"
+        ]]],
+        ["data": ["meta": ["legacyNumber": 7]]]
+      ]
+      for fixture in fixtures {
+        let original = NSDictionary(dictionary: vgsCollect.buildCreateCardBody(extraData: fixture))
+        XCTAssertEqual(original, NSDictionary(dictionary: vgsCollect.buildCreateCardBody(extraData: fixture, meta: nil)))
+        XCTAssertEqual(original, NSDictionary(dictionary: vgsCollect.buildCreateCardBody(extraData: fixture, meta: [:])))
+      }
+    }
+
+    func test_createCard_customMetadataOverlaysLegacyWithoutRevalidatingIt() throws {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let legacy: [String: Any] = ["data": [
+        "attributes": ["nickname": "Primary"],
+        "meta": ["orderId": "old-order", "legacyNumber": 7,
+                 "legacyObject": ["flag": true], "_formId": "legacy-form"]
+      ]]
+      let body = vgsCollect.buildCreateCardBody(extraData: legacy, meta: [
+        "orderId": "new-order", "integration": "checkout", "_formId": "spoofed-form"
+      ])
+      let data = try XCTUnwrap(body["data"] as? [String: Any])
+      let meta = try XCTUnwrap(data["meta"] as? [String: Any])
+      XCTAssertEqual(meta["orderId"] as? String, "new-order")
+      XCTAssertEqual(meta["integration"] as? String, "checkout")
+      XCTAssertEqual(meta["legacyNumber"] as? Int, 7)
+      XCTAssertEqual(meta["legacyObject"] as? [String: Bool], ["flag": true])
+      XCTAssertEqual(meta["_formId"] as? String, "legacy-form")
+      let legacyData = try XCTUnwrap(legacy["data"] as? [String: Any])
+      XCTAssertEqual((legacyData["meta"] as? [String: Any])?["orderId"] as? String, "old-order")
+    }
+
+    func test_createCard_customMetadataCannotReplaceSDKMetadataInDirectOrSessionMode() throws {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      for formId in [nil, "checkout-form"] as [String?] {
+        vgsCollect.sessionFormId = formId
+        let body = vgsCollect.buildCreateCardBody(meta: [
+          "_source": "spoofed", "_medium": "spoofed", "_version": "spoofed",
+          "_formId": "spoofed", "orderId": "order-123"
+        ])
+        let data = try XCTUnwrap(body["data"] as? [String: Any])
+        let meta = try XCTUnwrap(data["meta"] as? [String: String])
+        XCTAssertEqual(meta["_source"], "vgs-collect")
+        XCTAssertEqual(meta["_medium"], "iosSDK")
+        XCTAssertEqual(meta["_version"], Utils.vgsCollectVersion)
+        XCTAssertEqual(meta["_formId"], formId)
+        XCTAssertEqual(meta["orderId"], "order-123")
+      }
+    }
+
+    func test_createCard_existingFunctionReferencesRemainAvailable() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      _ = vgsCollect.createCard(extraData:completion:)
+      _ = vgsCollect.createCard(token:extraData:completion:)
+      _ = vgsCollect.createCard(extraData:)
+      _ = vgsCollect.createCard(token:extraData:)
+      _ = vgsCollect.createCardPublisher(extraData:)
+      _ = vgsCollect.createCardPublisher(token:extraData:)
+    }
+
+    func test_createCard_allMetadataAPIFamiliesSendMetadataToSandbox() async {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let fields = configureMetadataTestFields()
+      defer { withExtendedLifetime(fields) {} }
+      configureMetadataTestSession()
+      vgsCollect.authHandler = { $0(.success("test-jwt")) }
+      let metadata = ["session_id": "sample-session-123"]
+      var subscriptions = Set<AnyCancellable>()
+      var requestCount = 0
+      CMPURLProtocolStub.requestHandler = { request in
+        requestCount += 1
+        let url = try XCTUnwrap(request.url)
+        XCTAssertEqual(url.absoluteString, "https://sandbox.vgsapi.com/cards")
+        XCTAssertEqual(request.httpMethod, "POST")
+        let body = try XCTUnwrap(Self.requestBodyData(from: request))
+        let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: body) as? [String: Any])
+        let data = try XCTUnwrap(payload["data"] as? [String: Any])
+        let meta = try XCTUnwrap(data["meta"] as? [String: String])
+        XCTAssertEqual(meta["session_id"], "sample-session-123")
+        let attributes = try XCTUnwrap(data["attributes"] as? [String: Any])
+        XCTAssertNil(attributes["session_id"])
+        XCTAssertEqual(attributes["exp_month"] as? Int, 12)
+        XCTAssertEqual(attributes["exp_year"] as? Int, 30)
+        return (try XCTUnwrap(HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)), Data("{}".utf8))
+      }
+      let callbackResult = await withCheckedContinuation { continuation in
+        vgsCollect.createCard(meta: metadata) { continuation.resume(returning: $0) }
+      }
+      let tokenCallbackResult = await withCheckedContinuation { continuation in
+        vgsCollect.createCard(token: "test-jwt", meta: metadata) { continuation.resume(returning: $0) }
+      }
+      let asyncResult = await vgsCollect.createCard(meta: metadata)
+      let tokenAsyncResult = await vgsCollect.createCard(token: "test-jwt", meta: metadata)
+      let publisherResult = await withCheckedContinuation { continuation in
+        vgsCollect.createCardPublisher(meta: metadata)
+          .sink { continuation.resume(returning: $0) }.store(in: &subscriptions)
+      }
+      let tokenPublisherResult = await withCheckedContinuation { continuation in
+        vgsCollect.createCardPublisher(token: "test-jwt", meta: metadata)
+          .sink { continuation.resume(returning: $0) }.store(in: &subscriptions)
+      }
+      for response in [callbackResult, tokenCallbackResult, asyncResult, tokenAsyncResult, publisherResult, tokenPublisherResult] {
+        guard case .success(let code, _, _) = response else { XCTFail("Expected creation success"); continue }
+        XCTAssertEqual(code, 200)
+      }
+      XCTAssertEqual(requestCount, 6)
+    }
+
+    func test_createCard_metadataDoesNotBypassRequiredFieldValidation() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      configureMetadataTestSession()
+      CMPURLProtocolStub.requestHandler = { _ in
+        XCTFail("Invalid collected fields must not send a card request")
+        throw NSError(domain: "UnexpectedRequest", code: 0)
+      }
+      let completion = expectation(description: "validation response")
+      vgsCollect.createCard(token: "test-jwt", meta: ["orderId": "order-123"]) { response in
+        guard case .failure(let code, _, _, _) = response else {
+          XCTFail("Expected input validation failure")
+          completion.fulfill()
+          return
+        }
+        XCTAssertEqual(code, VGSErrorType.inputDataIsNotValid.rawValue)
+        completion.fulfill()
+      }
+      wait(for: [completion], timeout: 1)
+    }
+
+    func test_createCard_metadataRetryReusesOriginalBody() async {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let fields = configureMetadataTestFields()
+      defer { withExtendedLifetime(fields) {} }
+      configureMetadataTestSession()
+      var metadata = ["orderId": "original-order"]
+      var authCount = 0
+      var bodies = [Data]()
+      vgsCollect.authHandler = { completion in
+        authCount += 1
+        if authCount == 2 {
+          metadata["orderId"] = "changed-order"
+          fields[1].setText("12/31")
+        }
+        completion(.success("test-jwt-\(authCount)"))
+      }
+      CMPURLProtocolStub.requestHandler = { request in
+        bodies.append(try XCTUnwrap(Self.requestBodyData(from: request)))
+        let status = bodies.count == 1 ? 401 : 200
+        let response = try XCTUnwrap(HTTPURLResponse(
+          url: try XCTUnwrap(request.url), statusCode: status, httpVersion: nil, headerFields: nil
+        ))
+        return (response, Data("{}".utf8))
+      }
+      let result = await vgsCollect.createCard(meta: metadata)
+      guard case .success(let code, _, _) = result else { XCTFail("Expected refreshed creation success"); return }
+      XCTAssertEqual(code, 200)
+      XCTAssertEqual(authCount, 2)
+      XCTAssertEqual(bodies.count, 2)
+      guard bodies.count == 2 else { return }
+      // JSON object key ordering is not a wire contract.
+      let first = try? JSONSerialization.jsonObject(with: bodies[0]) as? NSDictionary
+      let retry = try? JSONSerialization.jsonObject(with: bodies[1]) as? NSDictionary
+      XCTAssertNotNil(first)
+      XCTAssertEqual(first, retry)
+      XCTAssertTrue(String(data: bodies[1], encoding: .utf8)?.contains("original-order") == true)
+      XCTAssertFalse(String(data: bodies[1], encoding: .utf8)?.contains("changed-order") == true)
+    }
+
+    func test_createCard_customMetadataValuesNeverEnterAnalytics() {
+      vgsCollect = VGSCollect(id: "tntid", environment: "sandbox")
+      let fields = configureMetadataTestFields()
+      defer { withExtendedLifetime(fields) {} }
+      configureMetadataTestSession()
+      VGSAnalyticsClient.shared.urlSession = vgsCollect.cmpAPIClient.urlSession
+      VGSAnalyticsClient.shared.shouldCollectAnalytics = true
+      let analyticsExpectation = expectation(description: "existing analytics events")
+      analyticsExpectation.expectedFulfillmentCount = 2
+      let completionExpectation = expectation(description: "card response")
+      var payloads = [[String: Any]]()
+      CMPURLProtocolStub.requestHandler = { request in
+        let url = try XCTUnwrap(request.url)
+        if url.host == "vgs-collect-keeper.apps.verygood.systems" {
+          let encoded = try XCTUnwrap(Self.requestBodyData(from: request))
+          let decoded = try XCTUnwrap(Data(base64Encoded: encoded))
+          payloads.append(try XCTUnwrap(JSONSerialization.jsonObject(with: decoded) as? [String: Any]))
+          let text = String(data: decoded, encoding: .utf8) ?? ""
+          XCTAssertFalse(text.contains("synthetic-private-order"))
+          XCTAssertFalse(text.contains("orderId"))
+          analyticsExpectation.fulfill()
+        } else {
+          let body = try XCTUnwrap(Self.requestBodyData(from: request))
+          let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: body) as? [String: Any])
+          let data = try XCTUnwrap(payload["data"] as? [String: Any])
+          XCTAssertEqual((data["meta"] as? [String: String])?["orderId"], "synthetic-private-order")
+        }
+        return (try XCTUnwrap(HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)), Data("{}".utf8))
+      }
+      vgsCollect.createCard(token: "test-jwt", meta: ["orderId": "synthetic-private-order"]) { response in
+        guard case .success = response else { XCTFail("Expected creation success"); completionExpectation.fulfill(); return }
+        completionExpectation.fulfill()
+      }
+      wait(for: [analyticsExpectation, completionExpectation], timeout: 2)
+      XCTAssertEqual(Set(payloads.compactMap { $0["type"] as? String }), ["BeforeSubmit", "Submit"])
+      XCTAssertEqual(Set(payloads.compactMap { $0["operation"] as? String }), ["cardCreate"])
+      for payload in payloads { XCTAssertEqual(payload["content"] as? [String], ["textField"]) }
+    }
+
+    private func configureMetadataTestFields() -> [VGSTextField] {
+      let card = VGSTextField()
+      card.configuration = .makeCardNumberConfiguration(collector: vgsCollect)
+      card.setText("4111111111111111")
+      let expiration = VGSTextField()
+      expiration.configuration = .makeExpDateConfiguration(collector: vgsCollect)
+      expiration.setText("12/30")
+      return [card, expiration]
+    }
+
+    private func configureMetadataTestSession() {
+      let configuration = URLSessionConfiguration.ephemeral
+      configuration.protocolClasses = [CMPURLProtocolStub.self]
+      vgsCollect.cmpAPIClient.urlSession = URLSession(configuration: configuration)
     }
 
     func test_createCard_mapsFieldsToCMPAttributes() {

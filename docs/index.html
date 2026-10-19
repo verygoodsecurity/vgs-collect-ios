@@ -487,7 +487,7 @@
 <img src="./images/VGSZeroData.png" height="20" alt="VGS Zero Data"/></p>
 <h1 id='vgs-collect-ios-sdk' class='heading'>VGS Collect iOS SDK</h1>
 
-<p>VGS Collect lets you capture sensitive user data (payment cards, PII, files) without that raw data ever traversing or being stored within your infrastructure. <code>VGSCollectSDK</code> provides secure UI elements (text fields, file picker, card scanning) that look &amp; behave like native inputs while enforcing client‑side validation and secure submission to a VGS Vault.</p>
+<p><code>VGSCollectSDK</code> provides native inputs to collect, validate, and securely submit payment cards, PII, and files to a VGS tenant.</p>
 <h2 id='table-of-contents' class='heading'>Table of Contents</h2>
 
 <!--ts-->
@@ -528,7 +528,7 @@
 </p>
 <h2 id='before-you-start' class='heading'>Before You Start</h2>
 
-<p>Create an organization at the <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. A sandbox vault is created automatically. Use your vault ID (<code>&lt;vaultId&gt;</code>) when initializing the collector.</p>
+<p>Create an organization in the <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Use its sandbox tenant ID (<code>&lt;tenantId&gt;</code>) to initialize the collector.</p>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
@@ -594,7 +594,7 @@ pod <span class="nb">install</span>
 <p>What the skill is useful for:</p>
 
 <ul>
-<li>choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation and update</li>
+<li>choosing the correct VGS Collect flow for the request, such as proxy submission, Vault API tokenization, alias creation, file upload, or CMP card creation and update</li>
 <li>asking a clarifying question when a card-entry request is ambiguous and the flow is not specified</li>
 <li>steering non-card collection requests such as SSN or generic sensitive fields toward the correct field and tokenization APIs instead of card-specific ones</li>
 <li>keeping generated guidance aligned with the installed SDK version when that version can be detected</li>
@@ -632,8 +632,8 @@ Do not break existing brand detection; add tests for detection and negative near
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">VGSCollectSDK</span>
 </code></pre>
 <h3 id='initialize-amp-configure-fields' class='heading'>Initialize &amp; Configure Fields</h3>
-<pre class="highlight swift"><code><span class="c1">// Initialize collector with your vault ID (sandbox example)</span>
-<span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;vaultId&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="c1">// Initialize collector with your tenant ID (sandbox example)</span>
+<span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;tenantId&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
 
 <span class="c1">// Card number field</span>
 <span class="k">let</span> <span class="nv">cardNumberField</span> <span class="o">=</span> <span class="kt">VGSCardTextField</span><span class="p">()</span>
@@ -719,12 +719,24 @@ Unsupported attribute names or value types can result in a CMP <code>4xx</code> 
   <span class="p">]</span>
 <span class="p">]</span>
 
-<span class="n">collector</span><span class="o">.</span><span class="nf">createCard</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;ACCESS_TOKEN&gt;"</span><span class="p">,</span> <span class="nv">extraData</span><span class="p">:</span> <span class="n">cardAttributes</span><span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
+<span class="n">collector</span><span class="o">.</span><span class="nf">createCard</span><span class="p">(</span>
+  <span class="nv">token</span><span class="p">:</span> <span class="s">"&lt;ACCESS_TOKEN&gt;"</span><span class="p">,</span>
+  <span class="nv">extraData</span><span class="p">:</span> <span class="n">cardAttributes</span><span class="p">,</span>
+  <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="s">"session_id"</span><span class="p">:</span> <span class="s">"sample-session-123"</span><span class="p">]</span>
+<span class="p">)</span> <span class="p">{</span> <span class="n">response</span> <span class="k">in</span>
   <span class="c1">// Handle the CMP response without logging raw request or response bodies.</span>
 <span class="p">}</span>
 </code></pre>
 
 <p>Pass the attributes directly without adding the <code>data.attributes</code> wrapper.</p>
+
+<p>Use <code>meta</code> to associate custom string metadata with the card, such as an order
+or session identifier. Pass card attributes separately in <code>extraData</code>.</p>
+
+<p>The same <code>meta:</code> label is available with <code>authHandler</code>, async/await, and Combine:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">collector</span><span class="o">.</span><span class="nf">createCard</span><span class="p">(</span><span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="s">"session_id"</span><span class="p">:</span> <span class="s">"sample-session-123"</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">publisher</span> <span class="o">=</span> <span class="n">collector</span><span class="o">.</span><span class="nf">createCardPublisher</span><span class="p">(</span><span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="s">"session_id"</span><span class="p">:</span> <span class="s">"sample-session-123"</span><span class="p">])</span>
+</code></pre>
 <h2 id='card-scanning' class='heading'>Card Scanning</h2>
 
 <p>Use only VGS-provided scanner modules. BlinkCard scanning uses BlinkCard v3000.0.1, is Swift Package Manager only, and requires iOS 16+ plus a Swift tools 6.0-capable toolchain, such as Xcode 26.2 or newer. Existing production BlinkCard license keys continue to work with v3000.</p>
@@ -778,7 +790,7 @@ Unsupported attribute names or value types can result in a CMP <code>4xx</code> 
 
 <p>Add secure file selection &amp; upload with <code><a href="Classes/VGSFilePickerController.html">VGSFilePickerController</a></code>.</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">FilePickerViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">VGSFilePickerControllerDelegate</span> <span class="p">{</span>
-  <span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;vaultId&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
+  <span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"&lt;tenantId&gt;"</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">)</span>
   <span class="k">var</span> <span class="nv">filePicker</span><span class="p">:</span> <span class="kt">VGSFilePickerController</span><span class="p">?</span>
 
   <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
@@ -877,7 +889,7 @@ Opt out if required:</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-08-31)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-10-19)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>

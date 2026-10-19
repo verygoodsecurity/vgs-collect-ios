@@ -1,6 +1,6 @@
 # AGENTS.md
 
-**SDK Version: 1.20.0**
+**SDK Version: 1.20.1**
 
 This guide is tailored for autonomous engineering agents integrating `VGSCollectSDK` into iOS applications. It focuses on deterministic, automatable steps: environment assessment, dependency installation, feature wiring (text fields, scanning, file upload), privacy compliance, testing, maintenance, and safe upgrade workflows.
 
@@ -334,6 +334,8 @@ collector.sendDataPublisher(path: "/post")
   .store(in: &cancellables)
 ```
 Request Options (mapping policies): supply `VGSCollectRequestOptions(fieldNameMappingPolicy: ...)` for nested / array semantics. Use only documented policies (e.g. flat JSON, nested with array merge/overwrite).
+
+For card creation, pass card attributes in `extraData` and custom string metadata in `meta`, such as `meta: ["orderId": "order-123"]`.
 
 ---
 ## 6A. Validation Rule Catalogue

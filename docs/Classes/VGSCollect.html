@@ -490,10 +490,11 @@
 
                 </div>
               </div>
-            <p>A collector object that registers secure input fields (<code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>) and submits their data/files to a VGS Vault.</p>
+            <p>A collector object that registers secure input fields (<code><a href="../Classes/VGSTextField.html">VGSTextField</a></code>) and submits their data/files to a VGS tenant.</p>
 
 <p>Summary:
-Provides the orchestration layer for secure data collection: field registration, state observation, JSON/body construction, vault/network submission, tokenization/alias creation and file lifecycle management.</p>
+Registers fields, observes state, and submits data to a tenant.
+Provides tokenization, alias creation, and file cleanup.</p>
 
 <p>Responsibilities:</p>
 
@@ -516,7 +517,7 @@ Provides the orchestration layer for secure data collection: field registration,
 <p>Usage:</p>
 
 <ol>
-<li>Initialize with vault id &amp; environment: <code>let collector = VGSCollect(id: vaultId, environment: .sandbox)</code>.</li>
+<li>Initialize with tenant ID &amp; environment: <code>let collector = VGSCollect(id: tenantId, environment: .sandbox)</code>.</li>
 <li>Create a <code><a href="../Classes/VGSConfiguration.html">VGSConfiguration</a></code> per field and assign to each <code><a href="../Classes/VGSTextField.html">VGSTextField</a></code> (registration happens automatically).</li>
 <li>Optionally set observation closures for validation/UI updates.</li>
 <li>Validate all required fields (<code>state.isValid</code>) before calling a submit method.</li>
@@ -527,7 +528,7 @@ Provides the orchestration layer for secure data collection: field registration,
 <p>Invariants / Preconditions:</p>
 
 <ul>
-<li><code>id</code> must be a non-empty vault identifier.</li>
+<li><code>id</code> must be a non-empty tenant identifier.</li>
 <li>All required fields should be valid before invoking submission APIs.</li>
 <li>Only one logical file should be attached when calling <code>sendFile</code>.</li>
 <li>For alias creation (<code>createAliases</code>), appropriate authentication must be provided in <code>customHeaders</code>.</li>
@@ -543,7 +544,7 @@ Provides the orchestration layer for secure data collection: field registration,
 </ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L47-L467">Show on GitHub</a>
+                <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L48-L509">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -596,7 +597,7 @@ Provide route-specific auth tokens (e.g. Bearer JWT), idempotency or correlation
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L90-L96">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L91-L97">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -656,7 +657,7 @@ Supply real-time, field-specific validation feedback or UI updates (e.g. show/hi
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L115">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L116">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -702,7 +703,7 @@ Evaluate aggregate form validity or enable/disable a submit button.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L131">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L132">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -756,7 +757,7 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L147-L149">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L148-L150">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -787,14 +788,14 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a collector bound to a specific vault environment string.</p>
+                        <p>Creates a collector bound to a specific tenant environment string.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li>id: Non-empty vault identifier.</li>
+<li>id: Non-empty tenant identifier.</li>
 <li>environment: Environment string (e.g. &ldquo;sandbox&rdquo;, &ldquo;live&rdquo;, &ldquo;live-eu1&rdquo;).</li>
-<li>hostname: Optional custom hostname override (nil uses default vault routing).</li>
+<li>hostname: Optional custom hostname override (nil uses default tenant routing).</li>
 </ul>
 
 <p>Preconditions:</p>
@@ -806,12 +807,12 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
 <p>Behavior:</p>
 
 <ul>
-<li>Initializes a collector for direct vault-based usage.</li>
+<li>Initializes a collector for direct tenant-based usage.</li>
 <li>Tracks a <code>CollectInit</code> analytics event with <code>formType=create</code>.</li>
 </ul>
 
 <p>Usage:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">vaultId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="s">"sandbox"</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">tenantId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="s">"sandbox"</span><span class="p">)</span>
 </code></pre>
 
 <p>Prefer the convenience initializer for typed environment + region when possible.</p>
@@ -827,7 +828,7 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L190-L192">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L191-L193">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -850,14 +851,14 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
 <p>Parameters:</p>
 
 <ul>
-<li>id: Vault identifier.</li>
+<li>id: Tenant identifier.</li>
 <li>environment: Enumerated environment (<code>.sandbox</code> or <code>.live</code>).</li>
 <li>dataRegion: Optional region segment (e.g. &ldquo;eu1&rdquo;) appended to environment.</li>
 <li>hostname: Optional custom hostname.</li>
 </ul>
 
 <p>Usage:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">vaultId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">live</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="s">"eu1"</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">collector</span> <span class="o">=</span> <span class="kt">VGSCollect</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">tenantId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">live</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="s">"eu1"</span><span class="p">)</span>
 </code></pre>
 
                       </div>
@@ -871,7 +872,7 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L206-L209">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L207-L210">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -889,6 +890,240 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                 </div>
               </div>
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C7session4with2id11environment10dataRegion10completionySS_SSAA11EnvironmentOSSSgyAA0A15SessionResponseOctFZ"></a>
+                    <a name="//apple_ref/swift/Method/session(with:id:environment:dataRegion:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C7session4with2id11environment10dataRegion10completionySS_SSAA11EnvironmentOSSSgyAA0A15SessionResponseOctFZ">session(with:<wbr>id:<wbr>environment:<wbr>dataRegion:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a session collector for a tenant and form.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">session</span><span class="p">(</span><span class="n">with</span> <span class="nv">form</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                           <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                           <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="../Enums/Environment.html">Environment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span>
+                           <span class="nv">dataRegion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                           <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSCollectSessionResponse.html">VGSCollectSessionResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>form</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The form name.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The tenant identifier (<code>tenantId</code>).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>environment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The environment. The default is <code>.sandbox</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataRegion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional data region.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session result callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L222-L229">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C7session4with2id11environment10dataRegion13configuration7onError10completionySS_SSAA11EnvironmentOSSSgSDySSypGSgys0K0_pcSgyAA0A15SessionResponseOctFZ"></a>
+                    <a name="//apple_ref/swift/Method/session(with:id:environment:dataRegion:configuration:onError:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C7session4with2id11environment10dataRegion13configuration7onError10completionySS_SSAA11EnvironmentOSSSgSDySSypGSgys0K0_pcSgyAA0A15SessionResponseOctFZ">session(with:<wbr>id:<wbr>environment:<wbr>dataRegion:<wbr>configuration:<wbr>onError:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a tenant session with an optional inline Form Configuration.</p>
+
+<p>Remote configuration takes precedence over inline configuration.
+If remote configuration fails, <code>onError</code> receives the error before <code>completion</code> receives the collector.
+Invalid form names produce a failure through <code>completion</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">session</span><span class="p">(</span><span class="n">with</span> <span class="nv">form</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                           <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                           <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="../Enums/Environment.html">Environment</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span>
+                           <span class="nv">dataRegion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                           <span class="nv">configuration</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?,</span>
+                           <span class="nv">onError</span><span class="p">:</span> <span class="p">((</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                           <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSCollectSessionResponse.html">VGSCollectSessionResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>form</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The form name.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The tenant identifier (<code>tenantId</code>).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>environment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The environment. The default is <code>.sandbox</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataRegion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional data region.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>configuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Inline configuration to use if remote configuration fails.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onError</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional callback for remote configuration errors.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The session result callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L245-L255">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -928,7 +1163,7 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
 </ul>
 
 <p>Usage:</p>
-<pre class="highlight swift"><code><span class="kt">VGSCollect</span><span class="o">.</span><span class="nf">session</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">formId</span><span class="p">,</span> <span class="nv">vaultId</span><span class="p">:</span> <span class="n">vaultId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="kt">VGSCollect</span><span class="o">.</span><span class="nf">session</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">formId</span><span class="p">,</span> <span class="nv">id</span><span class="p">:</span> <span class="n">tenantId</span><span class="p">,</span> <span class="nv">environment</span><span class="p">:</span> <span class="o">.</span><span class="n">sandbox</span><span class="p">,</span> <span class="nv">dataRegion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
   <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
   <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">collector</span><span class="p">):</span>
     <span class="k">self</span><span class="o">.</span><span class="n">collector</span> <span class="o">=</span> <span class="n">collector</span>
@@ -976,7 +1211,7 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Vault identifier.</p>
+                                  <p>Tenant identifier.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1007,30 +1242,6 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>configuration</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Optional inline Form Configuration <code>config</code> object used only when remote configuration cannot be loaded.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>onError</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Optional callback for remote configuration loading errors.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
                                 <em>completion</em>
                                 </code>
                               </td>
@@ -1044,7 +1255,7 @@ Treat as read-only snapshot; use unsubscribe APIs to remove fields cleanly.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L250-L264">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L292-L306">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1084,7 +1295,7 @@ receives the load error and the collector uses <code>configuration</code> when s
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L270-L337">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L312-L379">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1144,7 +1355,7 @@ receives the load error and the collector uses <code>configuration</code> when s
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L354-L356">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L396-L398">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1191,7 +1402,7 @@ receives the load error and the collector uses <code>configuration</code> when s
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L370-L372">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L412-L414">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1232,7 +1443,7 @@ receives the load error and the collector uses <code>configuration</code> when s
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L383-L385">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L425-L427">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1270,7 +1481,7 @@ Simplify form teardown (e.g. view controller disappearing) to prevent accidental
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L396-L398">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L438-L440">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1326,7 +1537,7 @@ Safe to call multiple times; subsequent invocations are no-ops once files are cl
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L416-L418">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L458-L460">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1373,7 +1584,7 @@ Use this to update your UI state (e.g., disable submit button, show spinner).</p
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L427">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L469">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1426,7 +1637,7 @@ For raw response bytes, use <code><a href="../Classes/VGSCollect.html#/s:13VGSCo
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L434">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L476">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1478,7 +1689,7 @@ For raw response bytes, use <code><a href="../Classes/VGSCollect.html#/s:13VGSCo
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L440">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L482">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1511,7 +1722,7 @@ For raw response bytes, use <code><a href="../Classes/VGSCollect.html#/s:13VGSCo
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L445">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L487">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1545,7 +1756,7 @@ You must call the provided <code>completion</code> block with your token or an e
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L451">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect.swift#L493">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1576,7 +1787,8 @@ You must call the provided <code>completion</code> block with your token or an e
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a card through CMP using <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C11authHandleryys6ResultOySSs5Error_pGccSgvp">authHandler</a></code> and the in-memory JWT cache.</p>
+                        <p>Create a card with the Card Management API.
+The SDK uses <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C11authHandleryys6ResultOySSs5Error_pGccSgvp">authHandler</a></code> to get an access token.</p>
 
                       </div>
                       <div class="declaration">
@@ -1601,10 +1813,21 @@ You must call the provided <code>completion</code> block with your token or an e
                               </td>
                               <td>
                                 <div>
-                                  <p>Additional CMP card attributes. Supply the contents
-of <code>data.attributes</code>; the SDK adds the JSON:API envelope. Attribute names
-and value types must match the Card Management API schema or CMP can
-return a <code>4xx</code> response.</p>
+                                  <p>Supply the contents of <code>data.attributes</code>. The SDK adds the JSON:API envelope.
+Attribute names and value types must match the Card Management API schema.
+Invalid names or types can cause a <code>4xx</code> response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Use this callback to receive the card response.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1612,7 +1835,86 @@ return a <code>4xx</code> response.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L357-L367">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L373-L376">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C10createCard9extraData4meta10completionySDySSypGSg_SDyS2SGSgyAA11VGSResponseOctF"></a>
+                    <a name="//apple_ref/swift/Method/createCard(extraData:meta:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C10createCard9extraData4meta10completionySDySSypGSg_SDyS2SGSgyAA11VGSResponseOctF">createCard(extraData:<wbr>meta:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a card with custom string metadata.
+The SDK uses <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C11authHandleryys6ResultOySSs5Error_pGccSgvp">authHandler</a></code> to get an access token.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCard</span><span class="p">(</span><span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                       <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?,</span>
+                       <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Supply the contents of <code>data.attributes</code>. The SDK adds the JSON:API envelope.
+Attribute names and value types must match the Card Management API schema.
+Invalid names or types can cause a <code>4xx</code> response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Set custom string metadata for the card.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Use this callback to receive the card response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L387-L398">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1630,7 +1932,7 @@ return a <code>4xx</code> response.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a card through CMP using an explicit access token.</p>
+                        <p>Create a card with a Card Management API access token.</p>
 
                       </div>
                       <div class="declaration">
@@ -1656,7 +1958,7 @@ return a <code>4xx</code> response.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Card Management API access token.</p>
+                                  <p>Set the Card Management API access token.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1668,10 +1970,21 @@ return a <code>4xx</code> response.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Additional CMP card attributes. Supply the contents of
-<code>data.attributes</code>; the SDK adds the JSON:API envelope. Attribute names
-and value types must match the Card Management API schema or CMP can
-return a <code>4xx</code> response.</p>
+                                  <p>Supply the contents of <code>data.attributes</code>. The SDK adds the JSON:API envelope.
+Attribute names and value types must match the Card Management API schema.
+Invalid names or types can cause a <code>4xx</code> response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Use this callback to receive the card response.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1679,7 +1992,98 @@ return a <code>4xx</code> response.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L377-L388">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L408-L412">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C10createCard5token9extraData4meta10completionySS_SDySSypGSgSDyS2SGSgyAA11VGSResponseOctF"></a>
+                    <a name="//apple_ref/swift/Method/createCard(token:extraData:meta:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C10createCard5token9extraData4meta10completionySS_SDySSypGSgSDyS2SGSgyAA11VGSResponseOctF">createCard(token:<wbr>extraData:<wbr>meta:<wbr>completion:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a card with an access token and custom string metadata.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCard</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                       <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                       <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?,</span>
+                       <span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>token</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Set the Card Management API access token.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Supply the contents of <code>data.attributes</code>. The SDK adds the JSON:API envelope.
+Attribute names and value types must match the Card Management API schema.
+Invalid names or types can cause a <code>4xx</code> response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Set custom string metadata for the card.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Use this callback to receive the card response.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L423-L435">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1725,7 +2129,7 @@ return a <code>4xx</code> response.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L394-L410">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L441-L457">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1759,7 +2163,171 @@ return a <code>4xx</code> response.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L413-L430">Show on GitHub</a>
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L460-L477">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CMP%20async%20APIs"></a>
+                <a name="//apple_ref/swift/Section/CMP async APIs" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/CMP%20async%20APIs"></a>
+                  <h3 class="section-name"><span>CMP async APIs</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C10createCard9extraData4metaAA11VGSResponseOSDySSypGSg_SDyS2SGSgtYaF"></a>
+                    <a name="//apple_ref/swift/Method/createCard(extraData:meta:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C10createCard9extraData4metaAA11VGSResponseOSDySSypGSg_SDyS2SGSgtYaF">createCard(extraData:<wbr>meta:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a card with custom string metadata.
+The SDK uses <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C11authHandleryys6ResultOySSs5Error_pGccSgvp">authHandler</a></code> to get an access token.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCard</span><span class="p">(</span><span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                       <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L491-L496">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C10createCard5token9extraData4metaAA11VGSResponseOSS_SDySSypGSgSDyS2SGSgtYaF"></a>
+                    <a name="//apple_ref/swift/Method/createCard(token:extraData:meta:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C10createCard5token9extraData4metaAA11VGSResponseOSS_SDySSypGSgSDyS2SGSgtYaF">createCard(token:<wbr>extraData:<wbr>meta:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a card with an access token and custom string metadata.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCard</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                       <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                       <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="k">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L505-L511">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CMP%20Combine%20APIs"></a>
+                <a name="//apple_ref/swift/Section/CMP Combine APIs" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/CMP%20Combine%20APIs"></a>
+                  <h3 class="section-name"><span>CMP Combine APIs</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C19createCardPublisher9extraData4meta7Combine6FutureCyAA11VGSResponseOs5NeverOGSDySSypGSg_SDyS2SGSgtF"></a>
+                    <a name="//apple_ref/swift/Method/createCardPublisher(extraData:meta:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C19createCardPublisher9extraData4meta7Combine6FutureCyAA11VGSResponseOs5NeverOGSDySSypGSg_SDyS2SGSgtF">createCardPublisher(extraData:<wbr>meta:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a publisher for card creation with custom string metadata.
+The SDK uses <code><a href="../Classes/VGSCollect.html#/s:13VGSCollectSDK0A0C11authHandleryys6ResultOySSs5Error_pGccSgvp">authHandler</a></code> to get an access token.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCardPublisher</span><span class="p">(</span><span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L539-L544">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13VGSCollectSDK0A0C19createCardPublisher5token9extraData4meta7Combine6FutureCyAA11VGSResponseOs5NeverOGSS_SDySSypGSgSDyS2SGSgtF"></a>
+                    <a name="//apple_ref/swift/Method/createCardPublisher(token:extraData:meta:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13VGSCollectSDK0A0C19createCardPublisher5token9extraData4meta7Combine6FutureCyAA11VGSResponseOs5NeverOGSS_SDySSypGSgSDyS2SGSgtF">createCardPublisher(token:<wbr>extraData:<wbr>meta:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a publisher for card creation with an access token and custom string metadata.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCardPublisher</span><span class="p">(</span><span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                <span class="nv">extraData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Future</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/VGSResponse.html">VGSResponse</a></span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/verygoodsecurity/vgs-collect-ios/tree/master/Sources/VGSCollectSDK/Core/Collector/VGSCollect+cmpAPI.swift#L554-L560">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2724,7 +3292,7 @@ return a <code>4xx</code> response.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-08-31)</p>
+      <p>&copy; 2026 <a class="link" href="https://verygoodsecurity.com" target="_blank" rel="external noopener">Very Good Security</a>. All rights reserved. (Last updated: 2026-10-19)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
