@@ -8,7 +8,7 @@ import Foundation
 /// `VGSCVCTokenizationParameters` - parameters required for tokenization api.
 ///
 /// Summary:
-/// Defines how CVC input is tokenized when using Vault tokenization APIs.
+/// Defines how CVC input is tokenized when using Vault API tokenization APIs.
 ///
 /// Properties:
 /// - `storage`: Vault storage type. Defaults to volatile (`VOLATILE`) to avoid persisting raw token beyond session scope.

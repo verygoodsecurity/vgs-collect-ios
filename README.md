@@ -9,7 +9,7 @@
 
 # VGS Collect iOS SDK
 
-VGS Collect lets you capture sensitive user data (payment cards, PII, files) without that raw data ever traversing or being stored within your infrastructure. `VGSCollectSDK` provides secure UI elements (text fields, file picker, card scanning) that look & behave like native inputs while enforcing client‑side validation and secure submission to a VGS Vault.
+`VGSCollectSDK` provides native inputs to collect, validate, and securely submit payment cards, PII, and files to a VGS tenant.
 
 ## Table of Contents
 <!--ts-->
@@ -41,7 +41,7 @@ VGS Collect lets you capture sensitive user data (payment cards, PII, files) wit
 </p>
 
 ## Before You Start
-Create an organization at the <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. A sandbox vault is created automatically. Use your vault ID (`<vaultId>`) when initializing the collector.
+Create an organization in the <a href="https://dashboard.verygoodsecurity.com/dashboard/">VGS Dashboard</a>. Use its sandbox tenant ID (`<tenantId>`) to initialize the collector.
 
 ## Features
 - Secure text input elements with masking, formatting, validation & metadata (card brand, BIN, last4).
@@ -106,7 +106,7 @@ Recommended: install the skill with `skills.sh`. This is the easiest way to give
 The installed skill bundle includes `references/AGENTS.md`, and repository root `AGENTS.md` points to that same file, so a compatible skill-aware agent receives the durable integration policy automatically as part of the skill download without maintaining two copies.
 
 What the skill is useful for:
-- choosing the correct VGS Collect flow for the request, such as proxy submission, Vault tokenization, alias creation, file upload, or CMP card creation and update
+- choosing the correct VGS Collect flow for the request, such as proxy submission, Vault API tokenization, alias creation, file upload, or CMP card creation and update
 - asking a clarifying question when a card-entry request is ambiguous and the flow is not specified
 - steering non-card collection requests such as SSN or generic sensitive fields toward the correct field and tokenization APIs instead of card-specific ones
 - keeping generated guidance aligned with the installed SDK version when that version can be detected
@@ -151,8 +151,8 @@ import VGSCollectSDK
 
 ### Initialize & Configure Fields
 ```swift
-// Initialize collector with your vault ID (sandbox example)
-let collector = VGSCollect(id: "<vaultId>", environment: .sandbox)
+// Initialize collector with your tenant ID (sandbox example)
+let collector = VGSCollect(id: "<tenantId>", environment: .sandbox)
 
 // Card number field
 let cardNumberField = VGSCardTextField()
@@ -304,7 +304,7 @@ Add `NSCameraUsageDescription` to your app's `Info.plist` with a clear purpose s
 Add secure file selection & upload with `VGSFilePickerController`.
 ```swift
 class FilePickerViewController: UIViewController, VGSFilePickerControllerDelegate {
-  let collector = VGSCollect(id: "<vaultId>", environment: .sandbox)
+  let collector = VGSCollect(id: "<tenantId>", environment: .sandbox)
   var filePicker: VGSFilePickerController?
 
   override func viewDidLoad() {

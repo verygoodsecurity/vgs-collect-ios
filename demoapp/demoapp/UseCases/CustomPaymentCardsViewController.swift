@@ -17,7 +17,7 @@ class CustomPaymentCardsViewController: UIViewController {
     @IBOutlet weak var consoleLabel: UILabel!
 
     // Init VGS Collector
-    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment, hostname: "blablabla.com")
+    var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment, hostname: "blablabla.com")
     
     // VGS UI Elements
     var cardNumber = VGSCardTextField()
@@ -210,7 +210,7 @@ class CustomPaymentCardsViewController: UIViewController {
         case .failure(let code, _, _, let error):
           switch code {
           case 400..<499:
-            // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+            // Wrong request. This also can happen when your routes are not configured or your <tenantId> is incorrect
             self?.consoleLabel.text = "Error: Wrong Request, code: \(code)"
           case VGSErrorType.inputDataIsNotValid.rawValue:
             if let error = error as? VGSError {

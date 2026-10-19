@@ -65,7 +65,7 @@ Core invariants:
 - Collector, submission, tokenization, CMP, field, or validation behavior: change `Sources/VGSCollectSDK/` and add focused `FrameworkTests` coverage.
 - Logging, analytics, error mapping, or privacy manifest: review the entire emitted data shape, not only the changed line.
 - File picker or scanner behavior: keep the integration module isolated and test mapping plus cleanup paths.
-- Public API or documented behavior: update tests, source documentation, `README.md`, `MIGRATING.md` when applicable, root `AGENTS.md`, and the public skill in the same change.
+- Public API or documented behavior: update affected tests, source documentation, root `AGENTS.md`, and the public skill. Update `README.md` or `MIGRATING.md` only when its existing guidance needs a change.
 - Dependency or platform changes: check both `Package.swift` and `VGSCollectSDK.podspec`, affected scanner modules, CI, README compatibility claims, and migration notes.
 - Demo-only behavior: avoid changing core SDK code unless the demo exposed a real SDK defect.
 

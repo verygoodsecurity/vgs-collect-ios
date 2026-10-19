@@ -31,8 +31,8 @@
 
 Primary runtime config is in `demoapp/demoapp/AppCollectorConfiguration.swift`:
 
-- `vaultId`
-- `tokenizationVaultId`
+- `tenantId`
+- `tokenizationTenantId`
 - `environment` (`.sandbox` by default)
 - `blinkCardLicenseKey` (optional, required for scanner actions)
 
@@ -79,8 +79,8 @@ On app startup, `UITestsMockedDataProvider` reads `demoapp/demoapp/UITestsMocked
 Populate test data before running UI tests:
 
 ```bash
-plutil -replace vaultID -string "<vault_id>" demoapp/demoapp/UITestsMockedData.plist
-plutil -replace tokenization_vaultId -string "<tokenization_vault_id>" demoapp/demoapp/UITestsMockedData.plist
+plutil -replace vaultID -string "<tenant_id>" demoapp/demoapp/UITestsMockedData.plist
+plutil -replace tokenization_vaultId -string "<tokenization_tenant_id>" demoapp/demoapp/UITestsMockedData.plist
 ```
 
 Run tests:

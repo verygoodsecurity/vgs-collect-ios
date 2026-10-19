@@ -7,7 +7,7 @@
 import UIKit
 #endif
 
-/// Organization vault environment.
+/// Organization tenant environment.
 public enum Environment: String {
     
     /// Should be used for development and testing purpose.

@@ -26,7 +26,7 @@ class CollectApplePayData: UIViewController {
   @IBOutlet weak var consoleStatusLabel: UILabel!
   
   /// Init VGS Collect
-  var collector = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+  var collector = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment)
   /// ApplePay payment controller
   var paymentController: PKPaymentAuthorizationController?
   /// Supported Networks via ApplePay
@@ -109,7 +109,7 @@ extension CollectApplePayData: PKPaymentAuthorizationControllerDelegate {
       let paymentData = ["paymentData": paymentDataDictionary]
       let paymentToken = ["token": paymentData]
     
-      /// Send data to your vault
+      /// Send data to your tenant.
     collector.sendData(path: "/post", extraData: paymentToken) { [weak self] result in
         self?.consoleStatusLabel.text = "RESPONSE"
 

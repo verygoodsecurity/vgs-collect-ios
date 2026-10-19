@@ -33,7 +33,7 @@ public enum VGSAnalyticsEventType: String {
 
 /// VGS Analytics Collect form type.
 public enum VGSAnalyticsFormType: String {
-  /// VGSCollect init with vault.
+  /// VGSCollect initialization with a tenant.
   case create
   /// VGSCollect session init with form.
   case session

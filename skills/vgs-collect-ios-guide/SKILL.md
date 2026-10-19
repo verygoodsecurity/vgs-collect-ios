@@ -107,6 +107,14 @@ Patch, PR, or design review.
 
 A task may have a secondary mode, but the primary mode controls planning and output.
 
+## Tenant terminology
+
+Use tenant terminology for tenant identifiers and collector configuration.
+Use `id` for the tenant identifier (`tenantId`) in new `VGSCollect.session` calls.
+Keep `VGSVaultStorageType` and `VGSVaultAliasFormat` for Vault tokenization.
+Existing `vaultId` session overloads remain supported without deprecation warnings.
+Keep formal Vault API names and service URLs accurate.
+
 ## Output contract
 
 Begin every response by stating which version the guidance is based on, using one of:

@@ -10,9 +10,9 @@ import Foundation
 
 internal extension ProxyAPIClient {
 
-	// MARK: - Vault Url
+	// MARK: - Tenant URL
 
-	/// Generates API URL with vault id, environment and data region.
+	/// Generates API URL with tenant ID, environment and data region.
   static func buildVaultURL(tenantId: String, regionalEnvironment: String, routeId: String? = nil) -> URL? {
 
 		// Check environment is valid.
@@ -49,7 +49,7 @@ internal extension ProxyAPIClient {
       strUrl = "https://" + tenantId + "." + regionalEnvironment + ".verygoodproxy.com"
     }
 
-		// Check vault url is valid.
+		// Check tenant URL is valid.
 		guard let url = URL(string: strUrl) else {
 			assertionFailure("❗VGSCollectSDK CONFIGURATION ERROR: : NOT VALID ORGANIZATION PARAMETERS!!!")
 

@@ -7,7 +7,7 @@ import Foundation
 /// `VGSExpDateTokenizationParameters` - parameters required for tokenization api.
 ///
 /// Summary:
-/// Defines how card expiration date input (FieldType `.expDate`) is tokenized when using Vault tokenization or alias creation APIs.
+/// Defines how card expiration date input (FieldType `.expDate`) is tokenized when using Vault API tokenization or alias creation APIs.
 ///
 /// Properties:
 /// - `storage`: Vault storage type. Persistent by default to allow alias reuse server-side.

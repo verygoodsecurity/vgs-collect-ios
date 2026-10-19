@@ -8,7 +8,7 @@ import Foundation
 /// `VGSDateTokenizationParameters` - parameters required for tokenization API
 ///
 /// Summary:
-/// Defines how generic date input (FieldType `.date`) is tokenized when using Vault tokenization or alias creation APIs.
+/// Defines how generic date input (FieldType `.date`) is tokenized when using Vault API tokenization or alias creation APIs.
 ///
 /// Properties:
 /// - `storage`: Vault storage type used for the alias. Defaults to persistent storage — change only if compliance requires ephemeral handling.
@@ -38,7 +38,7 @@ public struct VGSDateTokenizationParameters: VGSTokenizationParametersProtocol {
 /// `VGSDateTokenizationConfiguration` - configuration object for a date field tokenization.
 ///
 /// Summary:
-/// Specialized configuration for `.date` fields enabling Vault tokenization, optional date-picker input, and optional format serialization before submission.
+/// Specialized configuration for `.date` fields enabling Vault API tokenization, optional date-picker input, and optional format serialization before submission.
 ///
 /// Behavior:
 /// - Forces `type` to `.date`.

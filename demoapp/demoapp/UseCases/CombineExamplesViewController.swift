@@ -20,7 +20,7 @@ class CombineExamplesViewController: UIViewController {
   var cancellables = Set<AnyCancellable>()
   
   // Init VGS Collector
-  var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.vaultId, environment: AppCollectorConfiguration.shared.environment)
+  var vgsCollect = VGSCollect(id: AppCollectorConfiguration.shared.tenantId, environment: AppCollectorConfiguration.shared.environment)
   
   // VGS UI Elements
   var cardNumber = VGSCardTextField()
@@ -236,7 +236,7 @@ class CombineExamplesViewController: UIViewController {
   private func handleFailedRespose(_ errorCode: Int, error: Error?) {
     switch errorCode {
     case 400..<499:
-      // Wrong request. This also can happend when your Routs not setup yet or your <vaultId> is wrong
+      // Wrong request. This also can happen when your routes are not configured or your <tenantId> is incorrect
       self.consoleLabel.text = "Error: Wrong Request, code: \(errorCode)"
     case VGSErrorType.inputDataIsNotValid.rawValue:
       if let error = error as? VGSError {
