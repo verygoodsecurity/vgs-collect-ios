@@ -28,6 +28,141 @@ class MaskedTextFieldTest: VGSCollectBaseTestCase {
         textfield = nil
     }
     
+    func testPasteCursorAfterInsertedFormatting() throws {
+        try assertFormattedSelection("12345678", pattern: "#### ####", selection: 8..<8,
+                                     expectedText: "1234 5678", expectedSelection: 9..<9)
+    }
+    func testCardFieldBulkInsertionCursor() throws {
+        configuration.type = .cardNumber
+        textfield.configuration = configuration
+        textfield.textField.insertText("4111111111111111")
+        XCTAssertEqual(textfield.textField.secureText, "4111 1111 1111 1111")
+        let selection = try XCTUnwrap(textfield.textField.selectedTextRange)
+        XCTAssertEqual(textfield.textField.offset(from: textfield.textField.beginningOfDocument,
+                                                  to: selection.start), 19)
+    }
+    func testPasteCursorInMiddle() throws {
+        try assertFormattedSelection("1234567890", pattern: "#### #### ####", selection: 6..<6,
+                                     expectedText: "1234 5678 90", expectedSelection: 7..<7)
+    }
+    func testPasteCursorAfterFilteringAndTruncation() throws {
+        try assertFormattedSelection("12ab34-567890", pattern: "#### ####", selection: 13..<13,
+                                     expectedText: "1234 5678", expectedSelection: 9..<9)
+    }
+    func testSelectionSurvivesFormatting() throws {
+        try assertFormattedSelection("12345678", pattern: "#### ####", selection: 2..<6,
+                                     expectedText: "1234 5678", expectedSelection: 2..<7)
+    }
+    func testFormattedPastePreservesCursor() throws {
+        try assertFormattedSelection("1234 5678", pattern: "#### ####", selection: 7..<7,
+                                     expectedText: "1234 5678", expectedSelection: 7..<7)
+    }
+    func testUnicodePasteCursorUsesUTF16Offsets() throws {
+        try assertFormattedSelection("é😀1234", pattern: "##/##", selection: 7..<7,
+                                     expectedText: "12/34", expectedSelection: 5..<5)
+    }
+    func testUnmaskedPastePreservesCursor() throws {
+        try assertFormattedSelection("Hello 😀 world", pattern: "", selection: 8..<8,
+                                     expectedText: "Hello 😀 world", expectedSelection: 8..<8)
+    }
+    func testCursorWithDifferentMasksAndInputLengths() throws {
+        let cases: [FormattingCase] = [
+            .init(input: "4111111111111111", pattern: "#### #### #### ####", output: "4111 1111 1111 1111"),
+            .init(input: "411111", pattern: "#### #### #### ####", output: "4111 11"),
+            .init(input: "378282246310005", pattern: "#### ###### #####", output: "3782 822463 10005"),
+            .init(input: "3782822", pattern: "#### ###### #####", output: "3782 822"),
+            .init(input: "1230", pattern: "##/##", output: "12/30"),
+            .init(input: "123", pattern: "##/##", output: "12/3"),
+            .init(input: "122030", pattern: "##/####", output: "12/2030"),
+            .init(input: "123456789", pattern: "###-##-####", output: "123-45-6789"),
+            .init(input: "12345", pattern: "###-##-####", output: "123-45"),
+            .init(input: "1234567890", pattern: "(###) ###-####", output: "(123) 456-7890"),
+            .init(input: "1234", pattern: "(###) ###-####", output: "(123) 4"),
+            .init(input: "ABcd12", pattern: "AA-aa-##", output: "AB-cd-12"),
+            .init(input: "ABc", pattern: "AA-aa-##", output: "AB-c"),
+            .init(input: "123", pattern: "####", output: "123"),
+            .init(input: "12345", pattern: "####", output: "1234"),
+            .init(input: "abc", pattern: "#### ####", output: ""),
+            .init(input: "", pattern: "#### ####", output: ""),
+            .init(input: "Jane Doe", pattern: "", output: "Jane Doe"),
+            .init(input: "A😀Bé", pattern: "", output: "A😀Bé"),
+            .init(input: "", pattern: "", output: "")
+        ]
+        for testCase in cases {
+            try assertFormattedSelection(testCase.input, pattern: testCase.pattern,
+                                         selection: testCase.input.utf16.count..<testCase.input.utf16.count,
+                                         expectedText: testCase.output,
+                                         expectedSelection: testCase.output.utf16.count..<testCase.output.utf16.count)
+        }
+    }
+    func testNativeInsertionAndReplacementCursor() throws {
+        let cases: [InsertionCase] = [
+            .init(pattern: "#### #### #### ####", initial: "", selection: 0..<0, insertion: "4111111111111111", output: "4111 1111 1111 1111", cursor: 19),
+            .init(pattern: "#### ####", initial: "12", selection: 2..<2, insertion: "3456", output: "1234 56", cursor: 7),
+            .init(pattern: "#### ####", initial: "1256", selection: 2..<2, insertion: "34", output: "1234 56", cursor: 4),
+            .init(pattern: "#### ####", initial: "1234 5678", selection: 2..<7, insertion: "90", output: "1290 78", cursor: 4),
+            .init(pattern: "#### ####", initial: "1234 5678", selection: 0..<9, insertion: "987654", output: "9876 54", cursor: 7),
+            .init(pattern: "##/##", initial: "12/30", selection: 3..<5, insertion: "29", output: "12/29", cursor: 5),
+            .init(pattern: "###-##-####", initial: "123", selection: 3..<3, insertion: "456789", output: "123-45-6789", cursor: 11),
+            .init(pattern: "AA-aa-##", initial: "AB", selection: 2..<2, insertion: "cd12", output: "AB-cd-12", cursor: 8),
+            .init(pattern: "#### ####", initial: "12", selection: 2..<2, insertion: "a3-b4 56", output: "1234 56", cursor: 7),
+            .init(pattern: "####", initial: "12", selection: 2..<2, insertion: "345678", output: "1234", cursor: 4),
+            .init(pattern: "", initial: "Hello world", selection: 6..<11, insertion: "😀", output: "Hello 😀", cursor: 8),
+            .init(pattern: "", initial: "ab", selection: 1..<1, insertion: "XYZ", output: "aXYZb", cursor: 4),
+            .init(pattern: "", initial: "", selection: 0..<0, insertion: "Jane Doe", output: "Jane Doe", cursor: 8)
+        ]
+        for testCase in cases {
+          for usePasteDelegate in [false, true] {
+            let field = textfield.textField
+            field.formatPattern = testCase.pattern
+            field.secureText = testCase.initial
+            let start = try XCTUnwrap(field.position(from: field.beginningOfDocument, offset: testCase.selection.lowerBound))
+            let end = try XCTUnwrap(field.position(from: field.beginningOfDocument, offset: testCase.selection.upperBound))
+            field.selectedTextRange = field.textRange(from: start, to: end)
+            if usePasteDelegate {
+                let target = try XCTUnwrap(field.selectedTextRange)
+                _ = field.textPasteConfigurationSupporting(field, performPasteOf: NSAttributedString(string: testCase.insertion), to: target)
+            } else {
+                field.insertText(testCase.insertion)
+            }
+            XCTAssertEqual(field.secureText, testCase.output)
+            let result = try XCTUnwrap(field.selectedTextRange)
+            XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: result.start), testCase.cursor)
+            XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: result.end), testCase.cursor)
+          }
+        }
+    }
+    private struct FormattingCase {
+        let input: String
+        let pattern: String
+        let output: String
+    }
+    private struct InsertionCase {
+        let pattern: String
+        let initial: String
+        let selection: Range<Int>
+        let insertion: String
+        let output: String
+        let cursor: Int
+    }
+    private func assertFormattedSelection(_ input: String, pattern: String, selection: Range<Int>,
+                                          expectedText: String, expectedSelection: Range<Int>,
+                                          file: StaticString = #filePath, line: UInt = #line) throws {
+        let field = textfield.textField
+        field.formatPattern = ""
+        field.secureText = input
+        let start = try XCTUnwrap(field.position(from: field.beginningOfDocument, offset: selection.lowerBound))
+        let end = try XCTUnwrap(field.position(from: field.beginningOfDocument, offset: selection.upperBound))
+        field.selectedTextRange = field.textRange(from: start, to: end)
+        field.formatPattern = pattern
+        field.updateTextFormat()
+        XCTAssertEqual(field.secureText, expectedText, file: file, line: line)
+        let result = try XCTUnwrap(field.selectedTextRange)
+        XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: result.start),
+                       expectedSelection.lowerBound, file: file, line: line)
+        XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: result.end),
+                       expectedSelection.upperBound, file: file, line: line)
+    }
     func testDigitsMaskingText() {
         configuration.formatPattern = "#### ####-####.####"
         textfield.configuration = configuration

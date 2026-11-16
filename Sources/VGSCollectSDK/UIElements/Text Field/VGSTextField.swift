@@ -319,7 +319,7 @@ extension VGSTextField {
     }
 }
 
-// MARK: - Textfiled delegate
+// MARK: - Text field delegate
 extension VGSTextField: UITextFieldDelegate {
 
      /// :nodoc: Wrap native `UITextField` delegate method for `textFieldDidBeginEditing`.
@@ -355,7 +355,7 @@ internal extension VGSTextField {
         mainStyle()
         // add UI elements
         buildTextFieldUI()
-        // add otextfield observers and delegates
+        // add text field observers and delegates
         addTextFieldObservers()
     }
   
@@ -371,14 +371,12 @@ internal extension VGSTextField {
       // delegates
 			textField.delegate = textField
 			textField.customDelegate = self
+			textField.pasteDelegate = textField
 			textField.addSomeTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingDidBegin)
-      // Note: .allEditingEvents doesn't work proparly when set text programatically. Use setText instead!
+      // Note: .allEditingEvents doesn't work properly when set text programmatically. Use setText instead!
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
       textField.addSomeTarget(self, action: #selector(textFieldDidEndEditingOnExit), for: .editingDidEndOnExit)
       NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: UITextField.textDidChangeNotification, object: textField)
-      // tap gesture for update focus state
-      let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusOn))
-      textField.addGestureRecognizer(tapGesture)
     }
   
     @objc

@@ -109,4 +109,47 @@ class TextFieldMaxInputLengthTests: VGSCollectBaseTestCase {
 			XCTAssertTrue(textfield.state.isDirty == true)
 			XCTAssertTrue(textfield.state.isEmpty == true)
 	 }
+    func testMaskedPasteRespectsMaxInputLength() throws {
+        configuration.formatPattern = "#### ####"
+        configuration.maxInputLength = 6
+        textfield.configuration = configuration
+        let field = textfield.textField
+        field.secureText = "1234"
+        field.selectedTextRange = field.textRange(from: field.endOfDocument, to: field.endOfDocument)
+        let initialRange = try XCTUnwrap(field.selectedTextRange)
+        _ = field.textPasteConfigurationSupporting(field, performPasteOf: NSAttributedString(string: "567"), to: initialRange)
+        XCTAssertEqual(field.secureText, "1234")
+        let rejected = try XCTUnwrap(field.selectedTextRange)
+        XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: rejected.start), 4)
+        let acceptedRange = try XCTUnwrap(field.selectedTextRange)
+        _ = field.textPasteConfigurationSupporting(field, performPasteOf: NSAttributedString(string: "56"), to: acceptedRange)
+        XCTAssertEqual(field.secureText, "1234 56")
+        let accepted = try XCTUnwrap(field.selectedTextRange)
+        XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: accepted.start), 7)
+    }
+
+    func testMaskedDeletionAndChangeCallback() throws {
+        configuration.formatPattern = "#### ####"
+        textfield.configuration = configuration
+        let field = textfield.textField
+        field.secureText = "123456"
+        field.selectedTextRange = field.textRange(from: field.endOfDocument, to: field.endOfDocument)
+        let observer = ChangeObserver()
+        textfield.delegate = observer
+        field.deleteBackward()
+        XCTAssertEqual(field.secureText, "1234 5")
+        XCTAssertEqual(observer.changeCount, 1)
+        let selection = try XCTUnwrap(field.selectedTextRange)
+        XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: selection.start), 6)
+        field.insertText("67")
+        XCTAssertEqual(field.secureText, "1234 567")
+        XCTAssertEqual(observer.changeCount, 2)
+    }
+
+    private class ChangeObserver: NSObject, VGSTextFieldDelegate {
+        var changeCount = 0
+        func vgsTextFieldDidChange(_ textField: VGSTextField) {
+            changeCount += 1
+        }
+    }
 }

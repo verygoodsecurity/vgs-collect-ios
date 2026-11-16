@@ -49,7 +49,7 @@ internal class MaskedTextField: UITextField {
     /**
      Var that holds the prefix to be added to the textfield
      
-     If the prefix is set to "" no string will be added to the beggining
+     If the prefix is set to "" no string will be added to the beginning
      of the text
      */
     var prefix: String = ""
@@ -191,12 +191,46 @@ internal class MaskedTextField: UITextField {
      the class
      */
     func formatText() {
+        guard let text = super.text, !formatPattern.isEmpty else { return }
+        let selection = selectedTextRange.map {
+            (offset(from: beginningOfDocument, to: $0.start),
+             offset(from: beginningOfDocument, to: $0.end))
+        }
+        let formatted = formattedText(text)
+        guard formatted != text else { return }
+        super.text = formatted
+
+        if let selection = selection {
+            let source = text as NSString
+            let startOffset = formattedText(source.substring(to: min(selection.0, source.length))).utf16.count
+            let endOffset = formattedText(source.substring(to: min(selection.1, source.length))).utf16.count
+            if let start = position(from: beginningOfDocument, offset: min(startOffset, formatted.utf16.count)),
+               let end = position(from: beginningOfDocument, offset: min(endOffset, formatted.utf16.count)) {
+                selectedTextRange = textRange(from: start, to: end)
+            }
+        }
+    }
+
+    fileprivate func replaceFormattedText(in range: NSRange, with string: String) -> Bool {
+        let currentText = (super.text ?? "") as NSString
+        guard range.location >= 0, range.length >= 0,
+              range.location <= currentText.length,
+              range.length <= currentText.length - range.location else { return false }
+        super.text = currentText.replacingCharacters(in: range, with: string)
+        if let cursor = position(from: beginningOfDocument, offset: range.location + string.utf16.count) {
+            selectedTextRange = textRange(from: cursor, to: cursor)
+        }
+        NotificationCenter.default.post(name: UITextField.textDidChangeNotification, object: self)
+        sendActions(for: .editingChanged)
+        return true
+    }
+
+    private func formattedText(_ text: String) -> String {
+        guard !formatPattern.isEmpty else { return text }
         var currentTextForFormatting = ""
         
-        if let text = super.text {
-            if text.count > 0 {
-                currentTextForFormatting = self.getStringWithoutPrefix(text)
-            }
+        if !text.isEmpty {
+            currentTextForFormatting = self.getStringWithoutPrefix(text)
         }
         
         if self.maxLength > 0 {
@@ -260,20 +294,11 @@ internal class MaskedTextField: UITextField {
                 }
             }
             
-            if finalText.count > 0 {
-                super.text = "\(self.prefix)\(finalText)"
-            } else {
-                super.text = finalText
-            }
-            
-            if let text = self.secureText {
-                if text.count > self.maxLength {
-                    super.text = String(text[text.index(text.startIndex, offsetBy: self.maxLength)])
-                }
-            }
+            return finalText.isEmpty ? finalText : "\(self.prefix)\(finalText)"
         }
+        return text
     }
-  
+
   // Calculate IntrinsicContentSize
   fileprivate func getIntrinsicContentSize() -> CGSize {
     if secureText.isNilOrEmpty && placeholder.isNilOrEmpty {
@@ -296,6 +321,27 @@ extension MaskedTextField: UITextFieldDelegate {
 
 		return customTextFieldDelegate.maskedTextField(textField, shouldChangeCharactersInRange: range, replacementString: string)
 	}
+}
+
+extension MaskedTextField: UITextPasteDelegate {
+    func textPasteConfigurationSupporting(_ textPasteConfigurationSupporting: UITextPasteConfigurationSupporting,
+                                          performPasteOf attributedString: NSAttributedString,
+                                          to textRange: UITextRange) -> UITextRange {
+        let location = offset(from: beginningOfDocument, to: textRange.start)
+        let length = offset(from: textRange.start, to: textRange.end)
+        let source = (secureText ?? "") as NSString
+        guard location >= 0, length >= 0,
+              location <= source.length, length <= source.length - location else { return textRange }
+        let range = NSRange(location: location, length: length)
+        guard self.textField(self, shouldChangeCharactersIn: range, replacementString: attributedString.string) else {
+            return textRange
+        }
+        let startOffset = formattedText(source.substring(to: location)).utf16.count
+        guard replaceFormattedText(in: range, with: attributedString.string) else { return textRange }
+        guard let start = position(from: beginningOfDocument, offset: startOffset),
+              let end = selectedTextRange?.end else { return textRange }
+        return self.textRange(from: start, to: end) ?? textRange
+    }
 }
 
 extension MaskedTextField {

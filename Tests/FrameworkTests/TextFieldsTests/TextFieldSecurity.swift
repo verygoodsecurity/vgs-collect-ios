@@ -52,6 +52,43 @@ class TextFieldSecurity: VGSCollectBaseTestCase {
         XCTAssertFalse(txt4.contains(cleanCardNum))
     }
     
+    func testSecureEntryDisablesCopyAndCut() {
+        textField.isSecureTextEntry = true
+        let field = textField.textField
+        field.selectedTextRange = field.textRange(from: field.beginningOfDocument, to: field.endOfDocument)
+
+        XCTAssertTrue(field.isSecureTextEntry)
+        XCTAssertFalse(field.canPerformAction(#selector(UIResponderStandardEditActions.copy(_:)), withSender: nil))
+        XCTAssertFalse(field.canPerformAction(#selector(UIResponderStandardEditActions.cut(_:)), withSender: nil))
+    }
+
+    func testSetPasteDelegate() {
+        textField.textField.pasteDelegate = self
+        XCTAssertTrue(textField.textField.pasteDelegate === textField.textField)
+    }
+
+    func testCannotClearPasteDelegate() {
+        textField.textField.pasteDelegate = nil
+        XCTAssertTrue(textField.textField.pasteDelegate === textField.textField)
+    }
+
+    func testCannotUseAnotherFieldAsPasteDelegate() {
+        let otherField = MaskedTextField()
+        textField.textField.pasteDelegate = otherField
+        XCTAssertTrue(textField.textField.pasteDelegate === textField.textField)
+    }
+
+    func testPasteDelegateDoesNotRetainField() {
+        weak var releasedField: MaskedTextField?
+        autoreleasepool {
+            let field = MaskedTextField()
+            field.pasteDelegate = field
+            releasedField = field
+            XCTAssertTrue(field.pasteDelegate === field)
+        }
+        XCTAssertNil(releasedField)
+    }
+
     func testSetDelegate() {
         textField.subviews.forEach { (view) in
             if let tf = view as? UITextField {
@@ -80,7 +117,7 @@ class TextFieldSecurity: VGSCollectBaseTestCase {
                     }
                     
                     if let txt = tf.text, txt.count > 0 {
-                        XCTFail("Not secure. Text was gotted")
+                        XCTFail("Not secure. Text was accessible")
                     }
                 }
             }
@@ -88,7 +125,7 @@ class TextFieldSecurity: VGSCollectBaseTestCase {
     }
 }
 
-extension TextFieldSecurity: UITextFieldDelegate {
+extension TextFieldSecurity: UITextFieldDelegate, UITextPasteDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }

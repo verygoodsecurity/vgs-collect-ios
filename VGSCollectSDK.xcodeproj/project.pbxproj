@@ -112,6 +112,7 @@
 		328A574223FADD3D00714675 /* VGSFilePickerController+internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */; };
 		328B5C7023C8DA2600A39515 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B5C6F23C8DA2600A39515 /* String+extension.swift */; };
 		3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */; };
+		A17E3F8A2851000000000001 /* MaskedTextFieldPasteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17E3F8A2851000000000002 /* MaskedTextFieldPasteTests.swift */; };
 		32AFB93724FFD218007FFCAE /* VGSTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */; };
 		32C894DD256D4AE400DC5648 /* UIDevice+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C894DC256D4AE400DC5648 /* UIDevice+extension.swift */; };
 		32C894DE256D4AE400DC5648 /* UIDevice+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C894DC256D4AE400DC5648 /* UIDevice+extension.swift */; };
@@ -353,6 +354,7 @@
 		328A574123FADD3D00714675 /* VGSFilePickerController+internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VGSFilePickerController+internal.swift"; sourceTree = "<group>"; };
 		328B5C6F23C8DA2600A39515 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldTest.swift; sourceTree = "<group>"; };
+		A17E3F8A2851000000000002 /* MaskedTextFieldPasteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedTextFieldPasteTests.swift; sourceTree = "<group>"; };
 		32AFB93624FFD218007FFCAE /* VGSTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSTextFieldTests.swift; sourceTree = "<group>"; };
 		32C894DC256D4AE400DC5648 /* UIDevice+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+extension.swift"; sourceTree = "<group>"; };
 		32E4989B23FAEF8300863E61 /* VGSFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGSFileInfo.swift; sourceTree = "<group>"; };
@@ -1271,6 +1273,7 @@
 				32448008244606E4003A0676 /* CardHolderNameFieldTests.swift */,
 				FDF696E2234643F300063507 /* LuhnTests.swift */,
 				3299585C23DF043D0018FA50 /* MaskedTextFieldTest.swift */,
+				A17E3F8A2851000000000002 /* MaskedTextFieldPasteTests.swift */,
 				FD4ED0E42373666500AEAD24 /* TextFieldSecurity.swift */,
 				FDF696E023463ACA00063507 /* TextFielsStyleUI.swift */,
 				FDA680DE239844FC00372817 /* CardTextFieldTests.swift */,
@@ -1864,6 +1867,7 @@
 				A08E91B529F04600007EDA49 /* ValidationRuleDateTests.swift in Sources */,
 				03381F112E2E4B5B00E120BC /* CMPApiClientTests.swift in Sources */,
 				3299585D23DF043D0018FA50 /* MaskedTextFieldTest.swift in Sources */,
+				A17E3F8A2851000000000001 /* MaskedTextFieldPasteTests.swift in Sources */,
 				324CDEE323FB12E200653890 /* FilePickerTests.swift in Sources */,
 				443FDDC225DD4B2B006932C4 /* VGSCollectBaseTestCase.swift in Sources */,
 				327C9E182407FC62004C641C /* VGSErrorInfoKey.swift in Sources */,
@@ -1911,7 +1915,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSBlinkCardCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1941,7 +1945,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSBlinkCardCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1957,7 +1961,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4445Y664U5;
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1967,7 +1971,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4445Y664U5;
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1990,7 +1994,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2020,7 +2024,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework.VGSCardIOCollector;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2044,7 +2048,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = VGS.VGSCardIOCollectorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2068,7 +2072,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = VGS.VGSCardIOCollectorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2134,7 +2138,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2197,7 +2201,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2230,7 +2234,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2262,7 +2266,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.framework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2287,7 +2291,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2311,7 +2315,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20.1;
+				MARKETING_VERSION = 1.20.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgs.FrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
