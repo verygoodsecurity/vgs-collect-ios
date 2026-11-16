@@ -38,6 +38,19 @@ class TestCollectBaseTestCase: XCTestCase {
     flowItem.tap()
   }
 
+  func tapTextField(_ field: XCUIElement, file: StaticString = #filePath, line: UInt = #line) {
+    guard field.waitForExistence(timeout: 5) else {
+      XCTFail("Text field is missing.", file: file, line: line)
+      return
+    }
+    let frame = field.frame
+    guard !frame.isEmpty, app.frame.contains(frame) else {
+      XCTFail("Text field must be inside the visible app window.", file: file, line: line)
+      return
+    }
+    field.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+  }
+
   func fillInCorrectDateWithDatePicker() {
     app.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "March")
     app.pickerWheels.element(boundBy: 0).tap()

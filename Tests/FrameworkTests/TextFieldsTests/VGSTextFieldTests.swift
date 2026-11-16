@@ -28,6 +28,109 @@ class VGSTextFieldTests: VGSCollectBaseTestCase {
         textfield = nil
     }
   
+    func testAutoFillContentTypes() {
+        let types: [FieldType] = [.cardNumber, .cardHolderName, .expDate, .cvc, .ssn, .date, .none]
+        for type in types {
+            configuration.type = type
+            textfield.configuration = configuration
+            let expected: UITextContentType?
+            switch type {
+            case .cardNumber: expected = .creditCardNumber
+            case .cardHolderName:
+                if #available(iOS 17, *) { expected = .creditCardName } else { expected = .name }
+            case .expDate:
+                if #available(iOS 17, *) { expected = .creditCardExpiration } else { expected = nil }
+            case .cvc:
+                if #available(iOS 17, *) { expected = .creditCardSecurityCode } else { expected = nil }
+            default: expected = nil
+            }
+            XCTAssertEqual(textfield.textField.textContentType, expected)
+        }
+    }
+
+    func testAutoFillContentTypeOverrides() {
+        configuration.type = .none
+        for hint: UITextContentType in [.username, .password, .oneTimeCode, .emailAddress, .telephoneNumber] {
+            configuration.textContentType = hint
+            textfield.configuration = configuration
+            XCTAssertEqual(textfield.textField.textContentType, hint)
+        }
+        configuration.type = .cardNumber
+        configuration.textContentType = nil
+        textfield.configuration = configuration
+        XCTAssertNil(textfield.textField.textContentType)
+    }
+
+    func testAutoFillStyleBulkInsertion() throws {
+        configuration.type = .cardNumber
+        textfield.configuration = configuration
+        let observer = AutoFillChangeObserver()
+        textfield.delegate = observer
+        let field = textfield.textField
+        field.insertText("4111111111111111")
+        XCTAssertEqual(field.secureText, "4111 1111 1111 1111")
+        XCTAssertTrue(textfield.state.isValid)
+        XCTAssertTrue(textfield.state.isDirty)
+        XCTAssertEqual(observer.count, 1)
+        field.selectedTextRange = field.textRange(from: field.beginningOfDocument, to: field.endOfDocument)
+        field.insertText("378282246310005")
+        XCTAssertEqual(field.secureText, "3782 822463 10005")
+        XCTAssertTrue(textfield.state.isValid)
+        XCTAssertEqual(observer.count, 2)
+        let selection = try XCTUnwrap(field.selectedTextRange)
+        XCTAssertEqual(field.offset(from: field.beginningOfDocument, to: selection.start), 17)
+    }
+
+    func testBulkInsertionAcrossAutoFillFieldTypes() throws {
+        let cases: [BulkInputCase] = [
+            .init(type: .cardHolderName, input: "Jane Doe", output: "Jane Doe", secure: false),
+            .init(type: .expDate, input: "1235", output: "12/35", secure: false),
+            .init(type: .cvc, input: "123", output: "123", secure: true),
+            .init(type: .none, input: "user@example.com", output: "user@example.com", secure: false)
+        ]
+        for testCase in cases {
+            let config = VGSConfiguration(collector: collector, fieldName: "bulkInput")
+            config.type = testCase.type
+            let control = VGSTextField()
+            control.configuration = config
+            control.isSecureTextEntry = testCase.secure
+            let observer = AutoFillChangeObserver()
+            control.delegate = observer
+
+            control.textField.insertText(testCase.input)
+
+            XCTAssertEqual(control.textField.secureText, testCase.output)
+            XCTAssertTrue(control.state.isValid)
+            XCTAssertTrue(control.state.isDirty)
+            XCTAssertEqual(observer.count, 1)
+            XCTAssertEqual(control.textField.isSecureTextEntry, testCase.secure)
+            let selection = try XCTUnwrap(control.textField.selectedTextRange)
+            XCTAssertEqual(control.textField.offset(from: control.textField.beginningOfDocument,
+                                                   to: selection.start), testCase.output.utf16.count)
+        }
+    }
+
+    func testInvalidBulkCardInputRemainsInvalid() {
+        configuration.type = .cardNumber
+        textfield.configuration = configuration
+        textfield.textField.insertText("4111111111111112")
+        XCTAssertFalse(textfield.state.isValid)
+        XCTAssertTrue(textfield.state.isDirty)
+        XCTAssertEqual(textfield.state.inputLength, 16)
+    }
+
+    private struct BulkInputCase {
+        let type: FieldType
+        let input: String
+        let output: String
+        let secure: Bool
+    }
+
+    private class AutoFillChangeObserver: NSObject, VGSTextFieldDelegate {
+        var count = 0
+        func vgsTextFieldDidChange(_ textField: VGSTextField) { count += 1 }
+    }
+
     func testSetDefaultText() {
       configuration.type = .cardNumber
       textfield.configuration = configuration

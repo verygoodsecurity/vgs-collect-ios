@@ -132,17 +132,17 @@ class TestCustomCardNumbersDataFlow: TestCollectBaseTestCase {
     let expDateField = UIElements.VGSTextField.CardDetails.expirationDate.find(in: app)
     let cvcField = UIElements.VGSTextField.CardDetails.cvc.find(in: app)
 
-    cardHolderNameField.tap()
+    tapTextField(cardHolderNameField)
     cardHolderNameField.typeText("Joe B")
 
-    cardNumberField.tap()
+    tapTextField(cardNumberField)
     cardNumberField.typeText(cardNumber)
 
-    expDateField.tap()
+    tapTextField(expDateField)
 
     fillInCorrectDateWithDatePicker()
 
-    cvcField.tap()
+    tapTextField(cvcField)
     cvcField.typeText("1234")
   }
 }

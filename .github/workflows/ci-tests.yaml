@@ -13,11 +13,11 @@ on:
 jobs:
   build-and-test-sdk:
     name: Build & Test SDK (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-26
+    runs-on: xcode-27
     strategy:
       matrix:
-        xcode: ['26.5']
-        ios: ['26.5']
+        xcode: ['27.2']
+        ios: ['27.2']
         device: ['iPhone 17']
     steps:
       - name: Checkout
@@ -88,7 +88,7 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             | tee xcodebuild.log \
-            | xcpretty --report junit --output test-results/junit.xml || true
+            | xcpretty --report junit --output test-results/junit.xml
           
           status=${PIPESTATUS[0]}
           echo "xcodebuild exit status: $status"
@@ -131,11 +131,11 @@ jobs:
 
   build-and-ui-test-demo-app:
     name: Build & UI Test Demo App (iOS ${{ matrix.ios }}, Xcode ${{ matrix.xcode }})
-    runs-on: macos-26
+    runs-on: xcode-27
     strategy:
       matrix:
-        xcode: ['26.5']
-        ios: ['26.5']
+        xcode: ['27.2']
+        ios: ['27.2']
         device: ['iPhone 17']
     steps:
       - name: Checkout

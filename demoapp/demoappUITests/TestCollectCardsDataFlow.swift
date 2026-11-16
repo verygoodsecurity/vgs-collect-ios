@@ -63,6 +63,44 @@ class TestCollectCardsDataFlow: TestCollectBaseTestCase {
     // swiftlint:enable nesting
   }
 
+  func testSingleTapPasteMenu() {
+    openCollectFlow(.paymentCards)
+    let field = UIElements.VGSTextField.CardDetails.cardHolderName.find(in: app)
+    field.tap()
+    field.typeText("Example")
+    field.doubleTap()
+    let copy = app.menuItems["Copy"]
+    XCTAssertTrue(copy.waitForExistence(timeout: 5))
+    copy.tap()
+    field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 7))
+    field.tap()
+    let paste = app.menuItems["Paste"]
+    XCTAssertTrue(paste.waitForExistence(timeout: 5))
+    paste.tap()
+    XCTAssertEqual(field.value as? String, "Example")
+  }
+
+  func testSingleTapPastePreservesCardCursor() {
+    openCollectFlow(.paymentCards)
+    let source = UIElements.VGSTextField.CardDetails.cardHolderName.find(in: app)
+    source.tap()
+    source.typeText("41111111")
+    source.doubleTap()
+    let copy = app.menuItems["Copy"]
+    XCTAssertTrue(copy.waitForExistence(timeout: 5))
+    copy.tap()
+
+    let card = UIElements.VGSTextField.CardDetails.cardNumber.find(in: app)
+    card.tap()
+    card.tap()
+    let paste = app.menuItems["Paste"]
+    XCTAssertTrue(paste.waitForExistence(timeout: 5))
+    paste.tap()
+    XCTAssertEqual(card.value as? String, "4111 1111")
+    card.typeText("2")
+    XCTAssertEqual(card.value as? String, "4111 1111 2")
+  }
+
   /// Test valid data flow.
   func testPutCorrectData() {
 
